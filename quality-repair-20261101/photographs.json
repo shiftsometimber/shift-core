@@ -1,0 +1,41 @@
+{
+  "createdFor": "Fourteen page quality correction",
+  "images": [
+    {
+      "page": "mot",
+      "source": "exec-f9c5a45b-6c46-4ed8-8647-261bcdc05e5d.png",
+      "asset": "/assets/quality-repair-20261101/mot.webp"
+    },
+    {
+      "page": "roadmap",
+      "source": "exec-a4706724-4588-4bd8-b14a-6e039e34e2e4.png",
+      "asset": "/assets/quality-repair-20261101/roadmap.webp"
+    },
+    {
+      "page": "contributors",
+      "source": "exec-98eecc80-246c-417e-aa50-38397399615f.png",
+      "asset": "/assets/quality-repair-20261101/contributors.webp"
+    },
+    {
+      "page": "media",
+      "source": "exec-dfedde47-7174-476c-91c4-6d960cc3374a.png",
+      "asset": "/assets/quality-repair-20261101/media.webp"
+    },
+    {
+      "page": "partners",
+      "source": "exec-66acb680-a379-4e2e-b39c-8d3a432c9df2.png",
+      "asset": "/assets/quality-repair-20261101/partners.webp"
+    },
+    {
+      "page": "promise",
+      "source": "exec-f4d8c533-28da-4d54-b74d-743bd95b7c7c.png",
+      "asset": "/assets/quality-repair-20261101/promise.webp"
+    },
+    {
+      "page": "research",
+      "source": "exec-c48c26b3-8c1b-49f8-b811-6836e5fc9619.png",
+      "asset": "/assets/quality-repair-20261101/research.webp"
+    }
+  ],
+  "note": "Bespoke illustrative photography; no depicted person or organisation is represented as an actual contributor or partner. No image reused between these pages."
+}

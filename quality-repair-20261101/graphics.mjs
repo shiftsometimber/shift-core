@@ -1,0 +1,11 @@
+const tag=(word)=>'<span>'+word+'</span>';
+const panel=(kind,inside)=>'<div class="qr-graphic qr-graphic-'+kind+'" data-qr-decoration aria-hidden="true">'+inside+'</div>';
+export function graphic(kind){
+ if(kind==='routes'||kind==='tree')return panel(kind,'<p class="qr-micro">Four routes. Different questions.</p><div class="qr-route-origin">Your starting point</div><div class="qr-route-lines"></div><div class="qr-route-grid">'+['Lifestyle','NHS','Medication','Surgery'].map((s,i)=>'<div><span class="qr-route-no">0'+(i+1)+'</span><strong>'+s+'</strong></div>').join('')+'</div><p class="qr-graphic-foot">Relevance is a starting point for a conversation.</p>');
+ if(kind==='evidence')return panel(kind,'<p class="qr-micro">The evidence, in context.</p><div class="qr-evidence-stack">'+['Licensed formulation','Trial evidence','Access & cost'].map((s,i)=>'<div>'+tag('0'+(i+1))+'<strong>'+s+'</strong></div>').join('')+'</div><p class="qr-graphic-foot">No automatic winner.</p>');
+ if(kind==='principles'||kind==='independence')return panel(kind,'<p class="qr-micro">Commercial relationships</p><div class="qr-statement-type">Trust<br>comes<br><em>first.</em></div><div class="qr-statement-rule"></div><p class="qr-graphic-foot">Independent information.<br>Clear commercial boundaries.</p>');
+ if(kind==='disclosure')return panel(kind,'<p class="qr-micro">Open about how this works.</p><div class="qr-statement-type">Nothing<br>between<br><em>the lines.</em></div><div class="qr-statement-rule"></div><p class="qr-graphic-foot">Affiliate links · Sponsorship · Gifts</p>');
+ if(kind==='press')return panel(kind,'<p class="qr-micro">SHIFT / Press Centre</p><div class="qr-press-word">For the<br><em>record.</em></div><div class="qr-press-tags">'+['Background','Evidence','Enquiries'].map(tag).join('')+'</div><p class="qr-graphic-foot">Straight answers. Sources in view.</p>');
+ return '';
+}
+export const timeline='<div class="qr-timeline" data-qr-decoration aria-hidden="true"><p class="qr-micro">An organising framework</p><div>'+['30','60','90'].map(n=>'<span><strong>'+n+'</strong><small>days</small></span>').join('')+'</div><p>Planning horizons, not a promise of results.</p></div>';

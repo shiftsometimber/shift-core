@@ -1,0 +1,1131 @@
+{
+  "readOnly": true,
+  "source": "49d99f2136009e0e7effd4fb4022e57a85742e06",
+  "capturedAt": "2026-10-31T22:49:17.649Z",
+  "routeCount": 915,
+  "owners": [
+    {
+      "path": "/health-mot-methodology",
+      "route": {
+        "id": "a602b164c9e84a27aa7e817fbfc9da57",
+        "pattern": "https://shiftsometimber.co.uk/health-mot-methodology",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/health-mot-methodology?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/health-mot-methodology/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/health-mot-methodology/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/health-mot-methodology.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/health-mot-methodology.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/treatment-finder-methodology",
+      "route": {
+        "id": "211623759e4940ceb736a199ce105013",
+        "pattern": "https://shiftsometimber.co.uk/treatment-finder-methodology",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/treatment-finder-methodology?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/treatment-finder-methodology/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/treatment-finder-methodology/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/treatment-finder-methodology.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/treatment-finder-methodology.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/roadmap-methodology",
+      "route": {
+        "id": "08fc657138a041c7957ef0eda8284596",
+        "pattern": "https://shiftsometimber.co.uk/roadmap-methodology",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/roadmap-methodology?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/roadmap-methodology/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/roadmap-methodology/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/roadmap-methodology.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/roadmap-methodology.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/medication-comparison-methodology",
+      "route": {
+        "id": "8721dcaac351462e84cb1275a8b98f6b",
+        "pattern": "https://shiftsometimber.co.uk/medication-comparison-methodology",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/medication-comparison-methodology?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/medication-comparison-methodology/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/medication-comparison-methodology/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/medication-comparison-methodology.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/medication-comparison-methodology.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/decision-trees-explained",
+      "route": {
+        "id": "077639a003974598a30d42e34bfd2d3d",
+        "pattern": "https://shiftsometimber.co.uk/decision-trees-explained",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/decision-trees-explained?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/decision-trees-explained/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/decision-trees-explained/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/decision-trees-explained.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/decision-trees-explained.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/commercial-principles",
+      "route": {
+        "id": "4e43d6bf93684b6cb96ca972b7419668",
+        "pattern": "https://shiftsometimber.co.uk/commercial-principles",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/commercial-principles?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/commercial-principles/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/commercial-principles/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/commercial-principles.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/commercial-principles.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/how-we-review-products",
+      "route": {
+        "id": "593352a2787c42db945da572e8b555cd",
+        "pattern": "https://shiftsometimber.co.uk/how-we-review-products",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/how-we-review-products?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/how-we-review-products/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/how-we-review-products/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/how-we-review-products.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/how-we-review-products.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/affiliate-disclosure",
+      "route": {
+        "id": "f8e1a166900540f9b293a837b186b98c",
+        "pattern": "https://shiftsometimber.co.uk/affiliate-disclosure",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/affiliate-disclosure?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/affiliate-disclosure/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/affiliate-disclosure/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/affiliate-disclosure.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/affiliate-disclosure.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/advertise-with-us",
+      "route": {
+        "id": "45a71c26910144b79869c85b0c75a6d1",
+        "pattern": "https://shiftsometimber.co.uk/advertise-with-us",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/advertise-with-us?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/advertise-with-us/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/advertise-with-us/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/advertise-with-us.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/advertise-with-us.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/expert-contributors",
+      "route": {
+        "id": "111e9ace205047adb278042311596fac",
+        "pattern": "https://shiftsometimber.co.uk/expert-contributors",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/expert-contributors?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/expert-contributors/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/expert-contributors/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/expert-contributors.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/expert-contributors.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/media-centre",
+      "route": {
+        "id": "ef6fc15eae194f4784835c2b302b9405",
+        "pattern": "https://shiftsometimber.co.uk/media-centre",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/media-centre?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/media-centre/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/media-centre/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/media-centre.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/media-centre.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/press-centre",
+      "route": {
+        "id": "8bd135d95a06433cae729165fb2462f8",
+        "pattern": "https://shiftsometimber.co.uk/press-centre",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/press-centre?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/press-centre/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/press-centre/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/press-centre.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/press-centre.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/trusted-partners",
+      "route": {
+        "id": "37401fc311704ab19846fdc09577abc6",
+        "pattern": "https://shiftsometimber.co.uk/trusted-partners",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/trusted-partners?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/trusted-partners/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/trusted-partners/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/trusted-partners.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/trusted-partners.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-promise",
+      "route": {
+        "id": "9cc1f1633b1f437e934be9a391c44a4f",
+        "pattern": "https://shiftsometimber.co.uk/shift-promise",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-promise?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-promise/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-promise/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-promise.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-promise.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/assets/quality-repair-20261101/mot.webp",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/assets/quality-repair-20261101/roadmap.webp",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/assets/quality-repair-20261101/research.webp",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/assets/quality-repair-20261101/contributors.webp",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/assets/quality-repair-20261101/media.webp",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/assets/quality-repair-20261101/partners.webp",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/assets/quality-repair-20261101/promise.webp",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    }
+  ],
+  "workers": [
+    {
+      "name": "shift-public-presentation-batch-20261022",
+      "versionId": "c2e41256-eb0c-4420-8995-c2eb88645ba4",
+      "deploymentId": "9605acc0-9f32-4135-8cc8-ff2f61f0356d",
+      "main": "utility-pages-20261031/entry.mjs",
+      "modules": [
+        {
+          "name": "comparison-cp1/layout.mjs",
+          "bytes": 994
+        },
+        {
+          "name": "comparison-cp1/overlay.mjs",
+          "bytes": 1062
+        },
+        {
+          "name": "comparison-cp1/styles.mjs",
+          "bytes": 32043
+        },
+        {
+          "name": "downloads-dr3-20261031/config.mjs",
+          "bytes": 490
+        },
+        {
+          "name": "downloads-dr3-20261031/entry.mjs",
+          "bytes": 210
+        },
+        {
+          "name": "downloads-dr3-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "downloads-dr3-20261031/presentation.mjs",
+          "bytes": 8305
+        },
+        {
+          "name": "downloads-dr3-20261031/runtime.mjs",
+          "bytes": 3948
+        },
+        {
+          "name": "family-fd3-20261031/config.mjs",
+          "bytes": 493
+        },
+        {
+          "name": "family-fd3-20261031/entry.mjs",
+          "bytes": 214
+        },
+        {
+          "name": "family-fd3-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "family-fd3-20261031/presentation.mjs",
+          "bytes": 7722
+        },
+        {
+          "name": "family-fd3-20261031/runtime.mjs",
+          "bytes": 3288
+        },
+        {
+          "name": "health-hb2/layout.mjs",
+          "bytes": 1321
+        },
+        {
+          "name": "health-hb2/overlay.mjs",
+          "bytes": 1079
+        },
+        {
+          "name": "health-hb2/styles.mjs",
+          "bytes": 26189
+        },
+        {
+          "name": "hero-set-20261030/entry.mjs",
+          "bytes": 600
+        },
+        {
+          "name": "hero-set-20261030/payload.mjs",
+          "bytes": 39042
+        },
+        {
+          "name": "hero-set-20261030/runtime.mjs",
+          "bytes": 9762
+        },
+        {
+          "name": "knowledge-health-entry.mjs",
+          "bytes": 266
+        },
+        {
+          "name": "knowledge-health/client.mjs",
+          "bytes": 2540
+        },
+        {
+          "name": "knowledge-health/content.mjs",
+          "bytes": 54409
+        },
+        {
+          "name": "knowledge-health/evidence.mjs",
+          "bytes": 11569
+        },
+        {
+          "name": "knowledge-health/expansion-content.mjs",
+          "bytes": 97780
+        },
+        {
+          "name": "knowledge-health/production.mjs",
+          "bytes": 3726
+        },
+        {
+          "name": "knowledge-health/render.mjs",
+          "bytes": 22279
+        },
+        {
+          "name": "pending-pages-20261031/config.mjs",
+          "bytes": 983
+        },
+        {
+          "name": "pending-pages-20261031/entry.mjs",
+          "bytes": 220
+        },
+        {
+          "name": "pending-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "pending-pages-20261031/presentation.mjs",
+          "bytes": 25583
+        },
+        {
+          "name": "pending-pages-20261031/runtime.mjs",
+          "bytes": 5070
+        },
+        {
+          "name": "previews/public-presentation-batch/answer-depth.mjs",
+          "bytes": 35553
+        },
+        {
+          "name": "previews/public-presentation-batch/manifest.mjs",
+          "bytes": 20650
+        },
+        {
+          "name": "previews/public-presentation-batch/stopping-layout.mjs",
+          "bytes": 1073
+        },
+        {
+          "name": "previews/public-presentation-batch/stopping-style.mjs",
+          "bytes": 8263
+        },
+        {
+          "name": "previews/public-presentation-batch/style.mjs",
+          "bytes": 13197
+        },
+        {
+          "name": "previews/public-presentation-batch/worker.mjs",
+          "bytes": 4901
+        },
+        {
+          "name": "support-pages-20261031/config.mjs",
+          "bytes": 1161
+        },
+        {
+          "name": "support-pages-20261031/entry.mjs",
+          "bytes": 318
+        },
+        {
+          "name": "support-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "support-pages-20261031/presentation.mjs",
+          "bytes": 16635
+        },
+        {
+          "name": "support-pages-20261031/runtime.mjs",
+          "bytes": 4023
+        },
+        {
+          "name": "utility-pages-20261031/config.mjs",
+          "bytes": 1055
+        },
+        {
+          "name": "utility-pages-20261031/entry.mjs",
+          "bytes": 408
+        },
+        {
+          "name": "utility-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "utility-pages-20261031/presentation.mjs",
+          "bytes": 24334
+        },
+        {
+          "name": "utility-pages-20261031/runtime.mjs",
+          "bytes": 3274
+        },
+        {
+          "name": "weight-mw1/layout.mjs",
+          "bytes": 1053
+        },
+        {
+          "name": "weight-mw1/overlay.mjs",
+          "bytes": 1048
+        },
+        {
+          "name": "weight-mw1/styles.mjs",
+          "bytes": 44834
+        }
+      ],
+      "bindingCount": 4
+    },
+    {
+      "name": "shift-core",
+      "versionId": "e00b6393-1a4c-4663-971f-fa96d07926e0",
+      "deploymentId": "467e6024-364e-4a87-be0f-80c74eeb9fa1",
+      "main": "worker.js",
+      "modules": [
+        {
+          "name": "worker.js",
+          "bytes": 33697619
+        }
+      ],
+      "assets": {
+        "config": {
+          "html_handling": "auto-trailing-slash",
+          "not_found_handling": "none",
+          "run_worker_first": true,
+          "base_path": "/"
+        }
+      },
+      "bindingCount": 52
+    }
+  ],
+  "captures": [
+    {
+      "key": "mot",
+      "status": 200,
+      "bytes": 100567
+    },
+    {
+      "key": "finder",
+      "status": 200,
+      "bytes": 98912
+    },
+    {
+      "key": "roadmap",
+      "status": 200,
+      "bytes": 97287
+    },
+    {
+      "key": "medication",
+      "status": 200,
+      "bytes": 99203
+    },
+    {
+      "key": "trees",
+      "status": 200,
+      "bytes": 96833
+    },
+    {
+      "key": "commercial",
+      "status": 200,
+      "bytes": 95024
+    },
+    {
+      "key": "reviews",
+      "status": 200,
+      "bytes": 95572
+    },
+    {
+      "key": "disclosure",
+      "status": 200,
+      "bytes": 95386
+    },
+    {
+      "key": "advertising",
+      "status": 200,
+      "bytes": 83007
+    },
+    {
+      "key": "contributors",
+      "status": 200,
+      "bytes": 84335
+    },
+    {
+      "key": "media",
+      "status": 200,
+      "bytes": 82545
+    },
+    {
+      "key": "press",
+      "status": 200,
+      "bytes": 84950
+    },
+    {
+      "key": "partners",
+      "status": 200,
+      "bytes": 83746
+    },
+    {
+      "key": "promise",
+      "status": 200,
+      "bytes": 83004
+    }
+  ]
+}

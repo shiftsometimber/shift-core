@@ -1,0 +1,9 @@
+import p0 from "./photo-contributors.mjs";
+import p1 from "./photo-media.mjs";
+import p2 from "./photo-mot.mjs";
+import p3 from "./photo-partners.mjs";
+import p4 from "./photo-promise.mjs";
+import p5 from "./photo-research.mjs";
+import p6 from "./photo-roadmap.mjs";
+const sources={"/assets/quality-repair-20261101/contributors.webp":p0,"/assets/quality-repair-20261101/media.webp":p1,"/assets/quality-repair-20261101/mot.webp":p2,"/assets/quality-repair-20261101/partners.webp":p3,"/assets/quality-repair-20261101/promise.webp":p4,"/assets/quality-repair-20261101/research.webp":p5,"/assets/quality-repair-20261101/roadmap.webp":p6};
+export const media=path=>sources[path]?Uint8Array.from(atob(sources[path]),c=>c.charCodeAt(0)):null;
