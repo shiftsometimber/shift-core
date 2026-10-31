@@ -16,7 +16,7 @@ export function check(before,after,key){
  assert(updated.includes('data-approved-release="'+version+'"'));assert.equal((updated.match(/<h1\b/gi)||[]).length,1);
  assert.deepEqual(scripts(after),scripts(before),'All existing scripts unchanged');
  assert.equal(strip(after.replace(updated,'')),withoutTicker(before.replace(old,'')),'Shared header/footer/metadata preserved');
- if(before.includes('data-approved-release="'+version+'"')){assert.equal(after,before);return {alreadyAccepted:true};}
+ if(before.includes('data-approved-release="'+version+'"')){assert.equal(updated,old,'Stylesheet refresh retains exact main');assert.equal(after,transform(before,key),'Exact approved stylesheet refresh');assert.equal(transform(after,key),after);return {acceptedContentPreserved:true,stylesheetRefreshed:true};}
  const targets=hrefs(updated);for(const href of hrefs(old))assert(targets.has(href),'Existing destination lost '+href);
  const normal=mainHTML(normalise(before,key));
  const base=inner(normal).replace(byClass(normal,'nhh-hero').html,'');

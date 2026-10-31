@@ -3,6 +3,8 @@ import {release,identify,assets} from './config.mjs';
 import {bounds,byClass,mainHTML,withoutTicker} from './html.mjs';
 export {mainHTML,byClass};
 export {release as version};
+const root='html body main#main-content#main-content#main-content#main-content#main-content[data-approved-pages]';
+const styleTag=()=>'<style data-approved-page-style="'+release+'">'+css.replaceAll('MAIN',root)+'</style>';
 export function normalise(html,key){
  const main=mainHTML(html);if(!main||byClass(main,'nhh-hero'))return html;
  const heading=bounds(main,(_t,n)=>n==='h1');if(!heading)throw Error('Legacy heading missing');
@@ -22,7 +24,7 @@ export function normalise(html,key){
  return html.replace(main,updated);
 }
 export function transform(html,key){
- if(html.includes('data-approved-release="'+release+'"'))return html;
+ if(html.includes('data-approved-release="'+release+'"'))return html.replace(new RegExp('<style data-approved-page-style="'+release+'">[\\s\\S]*?<\\/style>'),styleTag());
  html=normalise(html,key);
  const old=mainHTML(html);if(!old)throw Error('Page main missing');
  const h=byClass(old,'nhh-hero');if(!h?.html.includes('<h1'))throw Error('Current hero missing '+key);
@@ -36,8 +38,7 @@ export function transform(html,key){
  }
  main=main.replace(/<main\b/,'<main data-approved-pages="'+key+'" data-approved-release="'+release+'"');
  if((main.match(/<h1\b/gi)||[]).length!==1)throw Error('Exactly one h1 required');
- const root='html body main#main-content#main-content#main-content#main-content#main-content[data-approved-pages]';
- return withoutTicker(html.replace(old,main)).replace('</head>','<style data-approved-page-style="'+release+'">'+css.replaceAll('MAIN',root)+'</style></head>');
+ return withoutTicker(html.replace(old,main)).replace('</head>',styleTag()+'</head>');
 }
 export function wrap(original,media,ownedPaths){return {...original,async fetch(request,env,ctx){
  const u=new URL(request.url),read=['GET','HEAD'].includes(request.method),asset=media&&assets.includes(u.pathname);

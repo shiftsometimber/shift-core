@@ -1,0 +1,17 @@
+{
+  "source": "16373bffee617eb145545526da9d523ae3957287",
+  "versions": {
+    "shift-support-presentation-20261022": "fa97eeea-a935-435b-9618-5a8ef29f1432",
+    "shift-public-answers": "a9ea7ee3-1146-4d78-9ef3-a244d2866f36",
+    "shift-public-presentation-batch-20261022": "54931832-bfa3-4e9a-8e60-37cfdb1b58e1",
+    "shift-core": "00f8f331-38ab-4d63-aeca-55e08bec7124",
+    "shift-blog-publisher": "c0aa3528-2523-4bc9-9534-a925dcfdc609"
+  },
+  "moduleHashes": {
+    "runtime.mjs": "382dc1c79fd5b74e01a79b7eb25b2b975d1dc73e00b202c0ee5a4a10b9adedf3",
+    "presentation.mjs": "16d3bf8ebb3ea326f061d898b90761a0002f20ccf650bf89d186a3d483282e3f",
+    "config.mjs": "820402f5ce8a257a7700ae0778f09e5e4ec552f80eeef55381616f89729912c7",
+    "html.mjs": "efb7081f50337295361cb96d6b05f5f7d7d03df773f625609299ca4e86297146",
+    "media.mjs": "db5b3a324a4b5068933c4abda81a1a6b1046093132e483df194dff2270ac98a6"
+  }
+}

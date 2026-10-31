@@ -24,6 +24,11 @@ export async function browserCheck({headers={},dir='pending-pages-evidence',labe
     for(const p of layout.panels){assert.equal(p.background,'rgb(231, 227, 218)');assert.equal(p.colour,'rgb(5, 5, 5)');}
     const stem=dir+'/'+label+'-'+item.key+(query?'-query':'')+'-'+viewport.width;
     await page.screenshot({path:stem+'.png',fullPage:false});if(!query&&viewport.width!==768)await page.screenshot({path:stem+'-full.png',fullPage:true});
+    const contrast=await page.evaluate(()=>{
+     const rgb=s=>(s.match(/[\d.]+/g)||[]).map(Number),lum=a=>a.slice(0,3).map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((s,v,i)=>s+v*[.2126,.7152,.0722][i],0);
+     return [...document.querySelectorAll('main p,main li,main h2,main h3,main strong,main td,main th,main span')].filter(e=>[...e.childNodes].some(n=>n.nodeType===3&&n.textContent.trim())&&e.getClientRects().length&&getComputedStyle(e).visibility!=='hidden').map(e=>{let bg=[255,255,255];for(let p=e;p;p=p.parentElement){const c=rgb(getComputedStyle(p).backgroundColor);if(c.length===3||c[3]>=.95){bg=c;break;}}const c=rgb(getComputedStyle(e).color),a=lum(c),b=lum(bg);return {text:e.textContent.trim().slice(0,90),colour:c,background:bg,ratio:(Math.max(a,b)+.05)/(Math.min(a,b)+.05)};}).filter(e=>e.ratio<3);
+    });
+    fs.writeFileSync(stem+'-contrast.json',JSON.stringify(contrast,null,2));assert.equal(contrast.length,0,'No unreadable retained text '+item.key+' '+JSON.stringify(contrast.slice(0,5)));
     const behaviour={};
     if(item.key==='support'){
      assert.equal(await page.locator('.sp-ticks li').count(),3);assert.equal(await page.locator('.spp-features .continuity-grid>div').count(),3);

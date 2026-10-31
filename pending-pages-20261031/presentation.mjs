@@ -73,9 +73,14 @@ MAIN .partner-grid-v3b2{display:grid!important;grid-template-columns:repeat(3,mi
 MAIN .partner-card-v3b2{background:#10130d!important;border:1px solid #707762!important;color:#E7E3DA!important;padding:20px!important;border-radius:4px!important;min-height:0!important;height:auto!important}
 MAIN .partner-card-v3b2 h3{color:#E7E3DA!important;font-size:20px!important;margin:0 0 10px!important}
 MAIN .partner-card-v3b2 p{color:#E7E3DA!important;font-size:15px!important;line-height:1.65!important;margin:0!important}
-MAIN .reading-layout>section:not(.sp-hero):not(.sp-benefits) :is(h2,h3,p,li,strong){color:#E7E3DA!important}
-MAIN .reading-layout>section:not(.sp-hero):not(.sp-benefits) p{font-size:16px!important;line-height:1.7!important}
-MAIN .reading-layout>section:not(.sp-hero):not(.sp-benefits) h2{font-size:29px!important;line-height:1.2!important;margin:0 0 18px!important}
+MAIN .sst-reading-article-v31>:is(h2,h3,p),MAIN .wrap.longread>:is(h2,h3,p,ul),MAIN .sst-reading-article-v31>p>strong{color:#E7E3DA!important}
+MAIN .sst-reading-article-v31>p,MAIN .wrap.longread>p{font-size:16px!important;line-height:1.7!important}
+MAIN .sst-reading-article-v31>h2,MAIN .wrap.longread>h2{font-size:29px!important;line-height:1.2!important;margin:0 0 18px!important}
+MAIN .sst-service-bridge{background:#10130d!important;color:#E7E3DA!important;border:1px solid #707762!important;padding:22px!important;border-radius:5px!important}
+MAIN .sst-service-bridge__main{background:transparent!important;color:#E7E3DA!important}
+MAIN .sst-service-bridge__main>:is(h2,p){color:#E7E3DA!important}
+MAIN :is(.sst-service-bridge__limit,.sst-service-bridge__action){background:#E7E3DA!important;color:#050505!important;border:1px solid #707762!important}
+MAIN :is(.sst-service-bridge__limit,.sst-service-bridge__action) :is(p,strong,span){color:#050505!important}
 MAIN .download-note-v3b2{background:#15180f!important;color:#E7E3DA!important;border:1px solid #707762!important;padding:20px!important}
 MAIN .sp-emphasis{font-size:19px!important;font-weight:700!important;line-height:1.5!important;color:#b6c197!important;margin:-8px 0 20px!important}
 MAIN .sp-mo3 .sp-start-panel{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);background:#E7E3DA!important;color:#050505!important;border-radius:6px;overflow:hidden;margin-top:26px!important;padding:0!important;border:0!important}
