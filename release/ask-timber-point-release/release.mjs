@@ -32,7 +32,7 @@ const save=()=>writeFileSync(dir+'/release.json',JSON.stringify(receipt,null,2))
 const settingBefore=await api('/workers/scripts/shift-core/settings');
 // All bindings, including secrets and assets, inherit from the CAPTURED SERVING
 // version by ID. Never inherit from a later unpromoted upload.
-const payload={main_module:version.main_module,compatibility_date:version.compatibility_date,compatibility_flags:version.compatibility_flags,modules:expectedModules,bindings:version.bindings.map(b=>({type:'inherit',name:b.name,version_id:originalVersionId})),annotations:{'workers/message':'Ask Timber only; exact six source-proven edits; source '+manifest.candidate,'workers/tag':'ask-timber-'+process.env.GITHUB_RUN_ID}};
+const payload={keep_assets:true,main_module:version.main_module,compatibility_date:version.compatibility_date,compatibility_flags:version.compatibility_flags,modules:expectedModules,bindings:version.bindings.map(b=>({type:'inherit',name:b.name,version_id:originalVersionId})),annotations:{'workers/message':'Ask Timber only; exact six source-proven edits; source '+manifest.candidate,'workers/tag':'ask-timber-'+process.env.GITHUB_RUN_ID}};
 for(const field of ['assets','limits','placement'])if(version[field]!==undefined)payload[field]=version[field];
 assert.equal((await current()).id,originalDeployment.id,'Serving deployment moved before staging');
 const staged=await api('/workers/workers/shift-core/versions?deploy=false',{method:'POST',body:JSON.stringify(payload)});assert(staged.id);receipt.stagedVersionId=staged.id;save();
