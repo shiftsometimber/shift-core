@@ -46,6 +46,7 @@ jobs:
           PY
       - name: Install locked release toolchain
         run: npm ci --ignore-scripts --no-audit --no-fund
+      # Re-run the bounded verifier after correcting its source-level regex escaping.
       - name: Verify focused Bloods retirement policy
         run: |
           node --check public-bloods/shift-bloods-public.mjs
