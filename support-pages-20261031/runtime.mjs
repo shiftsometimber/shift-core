@@ -6,6 +6,12 @@ const inner=s=>s.slice(s.indexOf('>')+1,s.lastIndexOf('</'));
 export function transform(html,key){
  if(html.includes('data-approved-release="'+release+'"'))return html;
  const page=pages.find(p=>p.key===key);if(!page)throw Error('Unapproved page');const old=mainHTML(html);if(!old)throw Error('Missing main');
+ if(old.includes('data-approved-pages="')){
+  let main=old.replace(/data-approved-release="[^"]+"/,'data-approved-release="'+release+'"');
+  if(key!=='stock'){const h=byClass(main,'sp-support-hero'),badge=byClass(h.html,'sp-support-symbol');const copy=inner(h.html).replace(badge.html,'');main=main.replace(h.html,'<section class="sp-support-hero"><div class="sp-support-copy">'+copy+'</div>'+badge.html+'</section>');}
+  const root='html body main#main-content#main-content#main-content#main-content#main-content#main-content[data-approved-pages]';
+  return html.replace(old,main).replace(/<style data-approved-page-style="support-pages-20261031-[^"]+">[\s\S]*?<\/style>/,'<style data-approved-page-style="'+release+'">'+css.replaceAll('MAIN',root)+'</style>');
+ }
  const open=old.slice(0,old.indexOf('>')+1).replace('<main','<main data-approved-pages="'+key+'" data-approved-release="'+release+'"');let body;
  if(key==='stock'){
   const h=byClass(old,'ct-hero'),form=byClass(old,'ct-form-card'),details=byClass(old,'ct-details');if(!h||!form||!details||!byId(form.html,'stockUpdateForm'))throw Error('Stock form boundaries missing');
@@ -14,7 +20,7 @@ export function transform(html,key){
   let h=byClass(old,page.hero),reading=inner(old);
   if(!h&&key==='advertising'){const heading=bounds(old,(_t,n)=>n==='h1');if(!heading)throw Error('Advertising heading missing');reading='<div class="mass-reading">'+reading.replace(heading.html,'')+'</div>';h={html:'<div>'+heading.html+'</div>'};}else if(h)reading=reading.replace(h.html,'');
   if(!h)throw Error('Original supporting hero missing '+key);
-  body='<section class="sp-support-hero">'+inner(h.html)+'<div class="sp-support-symbol">'+symbol(page.symbol)+'</div></section><div class="sp-support-body">'+reading+'</div>';
+  body='<section class="sp-support-hero"><div class="sp-support-copy">'+inner(h.html)+'</div><div class="sp-support-symbol">'+symbol(page.symbol)+'</div></section><div class="sp-support-body">'+reading+'</div>';
  }
  const main=open+body+'</main>',root='html body main#main-content#main-content#main-content#main-content#main-content#main-content[data-approved-pages]';
  return withoutTicker(html.replace(old,main)).replace('</head>','<style data-approved-page-style="'+release+'">'+css.replaceAll('MAIN',root)+'</style></head>');

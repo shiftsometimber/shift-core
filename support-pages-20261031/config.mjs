@@ -1,4 +1,4 @@
-export const release='support-pages-20261031-v1';
+export const release='support-pages-20261031-v2';
 export const mainPages=[
  {key:'stock',selected:'SU1',path:'/waiting-list-journey'},
  {key:'advertising',selected:'Delegated supporting-page refresh',path:'/advertise-with-us',hero:'mass-hero',symbol:'envelope'},

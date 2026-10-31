@@ -1,0 +1,12 @@
+{
+  "versions": {
+    "shift-public-presentation-batch-20261022": "c1189f9d-76d2-47af-8b9b-e93206d2130d",
+    "shift-seo-followup-v3-20261024": "191775c6-ab41-48d4-9591-3b6e52db3c20",
+    "shift-core": "7ba24299-8099-4853-a540-78e2c9d1c6b6"
+  },
+  "moduleHashes": {
+    "runtime.mjs": "c5071502f9005d222f9a55b3d59bd99960566f0c4ea1158b47962813fe2d3cbf",
+    "presentation.mjs": "6639b1d16dab6f92e5470e1d6a3b3bd65ac1c1cc4df5b2bfe249adde34a37199",
+    "config.mjs": "0dbc6655a1e3c5e86523eff61442d37f9bd252924df7c5a251cb988c724a3f8b"
+  }
+}
