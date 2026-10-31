@@ -42,7 +42,7 @@ html body main#main-content[data-approved-pages="about"] .ab-story p{line-height
 html body main#main-content[data-approved-pages="about"] .ab-story h2{font-size:27px!important;line-height:1.18!important;margin:32px 0 17px!important;scroll-margin-top:110px!important}
 html body main#main-content[data-approved-pages="about"] .ab-story .note{background:#15180f!important;border:1px solid #707762!important;color:#E7E3DA!important}
 html body main#main-content[data-approved-pages="about"] .ab-story a{color:#b9c39d!important}
-html body main#main-content[data-approved-pages] .sp-contact-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;max-width:1200px;margin:0 auto;padding:44px 32px 36px;align-items:start}
+html body main#main-content[data-approved-pages] .sp-contact-grid{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto!important;grid-auto-rows:auto!important;gap:56px;max-width:1200px;margin:0 auto;padding:44px 32px 36px;align-items:start!important;align-content:start!important}
 html body main#main-content[data-approved-pages="contact"] .ct-hero{margin:0!important;padding:0!important;min-height:0!important;background:#050505!important;border:0!important}
 html body main#main-content[data-approved-pages="contact"] .ct-hero .ct-wrap{padding:0!important;max-width:none!important;margin:0!important}
 html body main#main-content[data-approved-pages="contact"] .ct-hero h1{font-size:clamp(36px,4.4vw,60px)!important;line-height:1.05!important;letter-spacing:-.04em!important;color:#E7E3DA!important;margin:12px 0 20px!important}
@@ -50,7 +50,7 @@ html body main#main-content[data-approved-pages="contact"] .ct-hero p{font-size:
 html body main#main-content[data-approved-pages="contact"] .ct-hero .ct-eyebrow{font-size:12px!important;letter-spacing:.12em!important;color:#a8b08f!important}
 html body main#main-content[data-approved-pages="contact"] .ct-details{padding:14px 0 0!important;background:transparent!important;border:0!important}
 html body main#main-content[data-approved-pages="contact"] .ct-details-head{display:none!important}
-html body main#main-content[data-approved-pages="contact"] .ct-contact-list{display:grid!important;gap:0!important;border:0!important}
+html body main#main-content[data-approved-pages="contact"] .ct-contact-list{display:grid!important;grid-template-columns:1fr!important;grid-auto-rows:auto!important;gap:0!important;border:0!important}
 html body main#main-content[data-approved-pages="contact"] .ct-contact{padding:14px 0!important;border:0!important;border-top:1px solid #555d48!important;background:transparent!important;min-height:0!important}
 html body main#main-content[data-approved-pages="contact"] .ct-contact span{font-size:11px!important;letter-spacing:.09em!important;color:#a8b08f!important;margin-bottom:5px!important}
 html body main#main-content[data-approved-pages="contact"] .ct-contact a{font-size:19px!important;font-weight:700!important;background:transparent!important;padding:0!important;justify-content:flex-start!important;color:#E7E3DA!important;border-radius:0!important;min-height:32px!important}

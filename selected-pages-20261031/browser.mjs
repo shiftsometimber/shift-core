@@ -40,6 +40,7 @@ export async function browserCheck({headers={},dir='selected-pages-evidence',lab
    if(item.key==='newsroom'){
     const visible=()=>page.locator('[data-news-card]:not([hidden])');await page.waitForFunction(()=>document.querySelectorAll('[data-news-card]:not([hidden])').length===12);
     behaviour.initialStories=await visible().count();
+    if(viewport.width>600){const a=await visible().nth(0).boundingBox(),b=await visible().nth(1).boundingBox(),c=await visible().nth(2).boundingBox();assert(b.x>a.x&&Math.abs(a.y-b.y)<3,'NR3 begins with two cards alongside each other');assert(c.y>a.y&&c.width>a.width*1.8,'NR3 third card spans both columns');behaviour.mixedGrid=true;}
     await page.locator('input[name=q]').fill('yellow');await page.waitForFunction(()=>{const a=[...document.querySelectorAll('[data-news-card]:not([hidden])')];return a.length>0&&a.length<12&&a.every(e=>e.dataset.nrSearch.includes('yellow'));});behaviour.searchResults=await visible().count();
     await page.locator('input[name=q]').fill('');await page.waitForFunction(()=>document.querySelectorAll('[data-news-card]:not([hidden])').length===12);
     await page.locator('#news-sort').selectOption('oldest');
