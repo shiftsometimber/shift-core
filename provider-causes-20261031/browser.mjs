@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {pages,release} from './config.mjs';
+import {mainPages as pages,release} from './config.mjs';
 import {auditMobile} from './audit.mjs';
 export async function browserCheck({headers={},dir='provider-causes-evidence',label='candidate'}={}){
  const {chromium}=await import('../selected-pages-tools/node_modules/playwright/index.mjs'),browser=await chromium.launch({headless:true,channel:'chrome',args:['--no-sandbox']}),results=[];
@@ -38,7 +38,7 @@ export async function browserCheck({headers={},dir='provider-causes-evidence',la
   }
   fs.writeFileSync(dir+'/'+label+'-blocked-writes-'+viewport.width+'.json',JSON.stringify({allMutationsAborted:true,blockedWrites},null,2));await context.close();
  }
- if(label==='zero-traffic')await auditMobile(browser,{headers,dir,label});
+ if(label==='zero-traffic'){const audit=await auditMobile(browser,{headers,dir,label});assert.equal(audit.failures.length,0,'All approved normal/tracking URL mobile presentations must pass');}
  }finally{await browser.close();}
  fs.writeFileSync(dir+'/'+label+'-browser.json',JSON.stringify(results,null,2));return results;
 }

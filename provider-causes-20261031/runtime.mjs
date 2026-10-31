@@ -1,9 +1,17 @@
 import {providerHero,providerStrip,css} from './presentation.mjs';
 import {release,identify,assets} from './config.mjs';
+import {transform as transformQueryHero,classes as queryClasses} from './query-hero.mjs';
+import {pages as queryPages} from './query-payload.mjs';
 import {bounds,byClass,mainHTML,withoutTicker} from './html.mjs';
 export {mainHTML,byClass};
 export {release as version};
 export function normalise(html,key){
+ if(key.startsWith('query-')){
+  const id=key.slice(6),m=mainHTML(html),cl=queryClasses[id];if(byClass(m,cl))return html;
+  const heading=bounds(m,(_t,n)=>n==='h1');if(!heading)throw Error('Query heading missing '+id);
+  const open=m.slice(0,m.indexOf('>')+1),body=m.slice(heading.end,m.lastIndexOf('</main>'));
+  return html.replace(m,open+'<section class="'+cl+'">'+heading.html+'</section>'+body+'</main>');
+ }
  if(key!=='provider')return html;
  const m=mainHTML(html);if(!m||byClass(m,'nhh-hero'))return html;
  const heading=bounds(m,(_t,n)=>n==='h1');if(!heading)throw Error('Legacy provider heading missing');
@@ -16,7 +24,9 @@ export function normalise(html,key){
 }
 export function transform(html,key){
  if(html.includes('data-approved-release="'+release+'"'))return html;
- html=normalise(html,key);const old=mainHTML(html);if(!old)throw Error('Page main missing');let main=old;
+ html=normalise(html,key);const old=mainHTML(html);if(!old)throw Error('Page main missing');
+ if(key.startsWith('query-')){const p=queryPages.find(p=>p.id===key.slice(6));if(!p)throw Error('Unapproved query hero');const result=transformQueryHero(html,p).html,m=mainHTML(result);return result.replace(m,m.replace(/<main\b/,'<main data-approved-pages="'+key+'" data-approved-release="'+release+'"'));}
+ let main=old;
  if(key==='provider'){
   const h=byClass(main,'nhh-hero'),needs=byClass(main,'psp-needs');if(!h||!needs)throw Error('Provider layout boundaries missing');
   main=main.replace(needs.html,'').replace(h.html,providerHero+providerStrip+needs.html);

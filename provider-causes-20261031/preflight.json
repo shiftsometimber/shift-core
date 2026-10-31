@@ -1,7 +1,7 @@
 {
   "readOnly": true,
-  "source": "a52ce02a967310b6a281d968155457f6b311c5a1",
-  "capturedAt": "2026-10-31T20:25:50.363Z",
+  "source": "3d5d60e480508105bf19f32270b561234fd17b84",
+  "capturedAt": "2026-10-31T20:38:24.267Z",
   "routeCount": 915,
   "owners": [
     {
@@ -113,6 +113,168 @@
       }
     },
     {
+      "path": "/corporate-wellbeing?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/corporate-wellbeing/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/corporate-wellbeing.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/guides/retatrutide-uk-guide?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/guides/retatrutide-uk-guide/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/guides/retatrutide-uk-guide.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/husband-help?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/husband-help/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/husband-help.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/my-timber-for-providers?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/my-timber-for-providers/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/my-timber-for-providers.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/nhs-vs-private?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/nhs-vs-private/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/nhs-vs-private.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/surgery-comparison-centre?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/surgery-comparison-centre/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/surgery-comparison-centre.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
       "path": "/assets/provider-causes-20261031/provider-library.webp",
       "route": {
         "id": "07178fa6c72e461a82bb014b0284f37a",
@@ -126,7 +288,7 @@
     {
       "name": "shift-provider-presentation-20261022",
       "versionId": "86ef0591-d721-4dcd-bf14-339f73426da2",
-      "deploymentId": "5d7227e0-52de-456d-95d8-93584ca28950",
+      "deploymentId": "9979c851-3040-4f7c-9434-ba5802dd1c9e",
       "main": "provider-p1/overlay.mjs",
       "modules": [
         {
@@ -167,7 +329,7 @@
     {
       "name": "shift-core",
       "versionId": "d424405b-3def-462e-87e0-0ad616a45604",
-      "deploymentId": "d74b5e73-da09-496f-8ff9-2e9cc23d8e01",
+      "deploymentId": "e76a0137-286e-4f7d-b21e-1de405015d07",
       "main": "pending-pages-20261031/entry.mjs",
       "modules": [
         {
@@ -288,6 +450,36 @@
       "key": "causes",
       "status": 200,
       "bytes": 64872
+    },
+    {
+      "key": "query-corporate-wellbeing",
+      "status": 200,
+      "bytes": 72685
+    },
+    {
+      "key": "query-retatrutide",
+      "status": 200,
+      "bytes": 342037
+    },
+    {
+      "key": "query-partner-support",
+      "status": 200,
+      "bytes": 115598
+    },
+    {
+      "key": "query-provider-pilot",
+      "status": 200,
+      "bytes": 101800
+    },
+    {
+      "key": "query-nhs-private",
+      "status": 200,
+      "bytes": 83109
+    },
+    {
+      "key": "query-surgery-options",
+      "status": 200,
+      "bytes": 81713
     }
   ]
 }

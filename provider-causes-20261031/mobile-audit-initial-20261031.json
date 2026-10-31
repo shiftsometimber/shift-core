@@ -1,0 +1,1689 @@
+{
+  "checkedAt": "2026-10-31T20:35:56.357Z",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "pages": 32,
+  "checks": 64,
+  "failures": [
+    {
+      "path": "/corporate-wellbeing",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/corporate-wellbeing?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Corporate Wellbeing That Men Might Actually Engage With",
+      "headingVisible": true,
+      "mainAttributes": {
+        "class": "page-template template-article-guide-blog",
+        "id": "main-content"
+      },
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": false,
+      "issues": [
+        "Approved presentation marker absent"
+      ]
+    },
+    {
+      "path": "/explore-knowledge",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/knowledge",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Useful answers.For more of life.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "data-shift-knowledge": "",
+        "data-knowledge-health-version": "2026-10-29-v2"
+      },
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": false,
+      "issues": [
+        "Approved presentation marker absent"
+      ]
+    },
+    {
+      "path": "/explore-knowledge",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/knowledge?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Useful answers.For more of life.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "data-shift-knowledge": "",
+        "data-knowledge-health-version": "2026-10-29-v2"
+      },
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": false,
+      "issues": [
+        "Approved presentation marker absent"
+      ]
+    },
+    {
+      "path": "/guides/retatrutide-uk-guide",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/guides/retatrutide-uk-guide?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Retatrutide (Reta) in the UK: what we know so far",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "class": "page-template template-medicine-glp1",
+        "data-reta-guide": "2026-09-23"
+      },
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": false,
+      "issues": [
+        "Approved presentation marker absent"
+      ]
+    },
+    {
+      "path": "/husband-help",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/husband-help?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Someone you care about is trying to get his health back. What actually helps?",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "class": "continuity-page",
+        "data-public-continuity": ""
+      },
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": false,
+      "issues": [
+        "Approved presentation marker absent"
+      ]
+    },
+    {
+      "path": "/knowledge",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/knowledge",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Useful answers.For more of life.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "data-shift-knowledge": "",
+        "data-knowledge-health-version": "2026-10-29-v2"
+      },
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": false,
+      "issues": [
+        "Approved presentation marker absent"
+      ]
+    },
+    {
+      "path": "/knowledge",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/knowledge?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Useful answers.For more of life.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "data-shift-knowledge": "",
+        "data-knowledge-health-version": "2026-10-29-v2"
+      },
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": false,
+      "issues": [
+        "Approved presentation marker absent"
+      ]
+    },
+    {
+      "path": "/my-timber-for-providers",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/my-timber-for-providers?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Keep your male patients supported between and after treatment.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "class": "continuity-page",
+        "data-public-continuity": ""
+      },
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": false,
+      "issues": [
+        "Approved presentation marker absent"
+      ]
+    },
+    {
+      "path": "/nhs-vs-private",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/nhs-vs-private?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Wait, qualify, pay — or combine the routes?",
+      "headingVisible": true,
+      "mainAttributes": {
+        "class": "page-template template-comparison-methodology",
+        "id": "main-content"
+      },
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": false,
+      "issues": [
+        "Approved presentation marker absent"
+      ]
+    },
+    {
+      "path": "/surgery-comparison-centre",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/surgery-comparison-centre?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Compare the operation — not just the headline weight loss.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "class": "page-template template-comparison-methodology",
+        "id": "main-content"
+      },
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": false,
+      "issues": [
+        "Approved presentation marker absent"
+      ]
+    }
+  ],
+  "results": [
+    {
+      "path": "/about",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/about",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "My story.Why I built SHIFT.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-approved-pages": "about",
+        "data-approved-release": "selected-pages-20261031-v1",
+        "data-about-author-additions": "20261024-author-additions-v1",
+        "class": "ab",
+        "id": "main-content",
+        "data-about-presentation": "20261022-about-preview-v6-links",
+        "data-about-release": "20261022-about-live-v1"
+      },
+      "selected": "about",
+      "markers": [
+        "selected-pages-20261031-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/about",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/about?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "My story.Why I built SHIFT.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-approved-pages": "about",
+        "data-approved-release": "selected-pages-20261031-v1",
+        "data-about-author-additions": "20261024-author-additions-v1",
+        "class": "ab",
+        "id": "main-content",
+        "data-about-presentation": "20261022-about-preview-v6-links",
+        "data-about-release": "20261022-about-live-v1"
+      },
+      "selected": "about",
+      "markers": [
+        "selected-pages-20261031-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/articles/testosterone-weight-men",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/articles/testosterone-weight-men",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Testosterone and weight:which comes first?",
+      "headingVisible": true,
+      "mainAttributes": {
+        "class": "cluster-page massp",
+        "id": "main-content",
+        "data-batch-release": "20261022-public-presentation-v2"
+      },
+      "hero": "testosterone-weight",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/articles/testosterone-weight-men",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/articles/testosterone-weight-men?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Testosterone and weight:which comes first?",
+      "headingVisible": true,
+      "mainAttributes": {
+        "class": "cluster-page",
+        "id": "main-content"
+      },
+      "hero": "testosterone-weight",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/articles/wegovy-cost-uk",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/articles/wegovy-cost-uk",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Wegovy costs in the UK.Look beyond the first price.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "class": "sg massp",
+        "data-batch-release": "20261022-public-presentation-v2"
+      },
+      "hero": "wegovy-costs",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/articles/wegovy-cost-uk",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/articles/wegovy-cost-uk?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Wegovy costs in the UK.Look beyond the first price.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "class": "sg"
+      },
+      "hero": "wegovy-costs",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/clinic-gone-quiet",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/clinic-gone-quiet",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Clinic gone quiet?Keep your story together.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-approved-pages": "continuity",
+        "data-approved-release": "selected-pages-20261031-v1",
+        "data-continuity-c1": "continuity-c1-20261030",
+        "id": "main-content",
+        "class": "continuity-page qpp",
+        "data-public-continuity": "",
+        "data-quiet-release": "20261022-quiet-live-v1",
+        "data-continuity-review": "continuity-review-20261031-v1",
+        "data-continuity-polish": "continuity-polish-20261031-v1"
+      },
+      "selected": "continuity",
+      "markers": [
+        "selected-pages-20261031-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/clinic-gone-quiet",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/clinic-gone-quiet?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Clinic gone quiet?Keep your story together.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-approved-pages": "continuity",
+        "data-approved-release": "selected-pages-20261031-v1",
+        "id": "main-content",
+        "class": "continuity-page",
+        "data-public-continuity": ""
+      },
+      "selected": "continuity",
+      "markers": [
+        "selected-pages-20261031-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/compare-weight-loss-treatments",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/compare-weight-loss-treatments",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Weight-loss treatment.Compare the options.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-approved-pages": "comparison",
+        "data-approved-release": "pending-pages-20261031-v1",
+        "data-comparison-cp1": "comparison-cp1-20261031",
+        "class": "authority-hub massp",
+        "id": "main-content",
+        "data-batch-release": "20261022-public-presentation-v2"
+      },
+      "selected": "comparison",
+      "markers": [
+        "pending-pages-20261031-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/compare-weight-loss-treatments",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/compare-weight-loss-treatments?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Weight-loss treatment.Compare the options.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-approved-pages": "comparison",
+        "data-approved-release": "pending-pages-20261031-v1",
+        "class": "authority-hub",
+        "id": "main-content"
+      },
+      "selected": "comparison",
+      "markers": [
+        "pending-pages-20261031-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/contact",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/contact",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Give us a shout.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-approved-pages": "contact",
+        "data-approved-release": "selected-pages-20261031-v1",
+        "class": "contact-shift ctp",
+        "data-analytics-section": "contact",
+        "id": "main-content",
+        "data-contact-release": "20261022-contact-live-v1"
+      },
+      "selected": "contact",
+      "markers": [
+        "selected-pages-20261031-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/contact",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/contact?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Give us a shout.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-approved-pages": "contact",
+        "data-approved-release": "selected-pages-20261031-v1",
+        "class": "contact-shift ctp",
+        "data-analytics-section": "contact",
+        "id": "main-content",
+        "data-contact-release": "20261022-contact-live-v1"
+      },
+      "selected": "contact",
+      "markers": [
+        "selected-pages-20261031-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/corporate-wellbeing",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/corporate-wellbeing",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Health support thatfits working life.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "class": "page-template template-article-guide-blog massp",
+        "id": "main-content",
+        "data-batch-release": "20261022-public-presentation-v2"
+      },
+      "hero": "corporate-wellbeing",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/corporate-wellbeing",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/corporate-wellbeing?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Corporate Wellbeing That Men Might Actually Engage With",
+      "headingVisible": true,
+      "mainAttributes": {
+        "class": "page-template template-article-guide-blog",
+        "id": "main-content"
+      },
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": false,
+      "issues": [
+        "Approved presentation marker absent"
+      ]
+    },
+    {
+      "path": "/explore-knowledge",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/knowledge",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Useful answers.For more of life.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "data-shift-knowledge": "",
+        "data-knowledge-health-version": "2026-10-29-v2"
+      },
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": false,
+      "issues": [
+        "Approved presentation marker absent"
+      ]
+    },
+    {
+      "path": "/explore-knowledge",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/knowledge?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Useful answers.For more of life.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "data-shift-knowledge": "",
+        "data-knowledge-health-version": "2026-10-29-v2"
+      },
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": false,
+      "issues": [
+        "Approved presentation marker absent"
+      ]
+    },
+    {
+      "path": "/guides/mens-health-mot-guide",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/guides/mens-health-mot-guide",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Men's health MOT:what is actually checked?",
+      "headingVisible": true,
+      "mainAttributes": {
+        "class": "page-template template-calculator-tool-result massp",
+        "id": "main-content",
+        "data-batch-release": "20261022-public-presentation-v2"
+      },
+      "hero": "mot-guide",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/guides/mens-health-mot-guide",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/guides/mens-health-mot-guide?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Men's health MOT:what is actually checked?",
+      "headingVisible": true,
+      "mainAttributes": {
+        "class": "page-template template-calculator-tool-result",
+        "id": "main-content"
+      },
+      "hero": "mot-guide",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/guides/retatrutide-uk-guide",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/guides/retatrutide-uk-guide",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Retatrutide in the UK.Understand the research.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "class": "page-template template-medicine-glp1 massp",
+        "data-reta-guide": "2026-09-23",
+        "data-batch-release": "20261022-public-presentation-v2"
+      },
+      "hero": "retatrutide",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/guides/retatrutide-uk-guide",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/guides/retatrutide-uk-guide?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Retatrutide (Reta) in the UK: what we know so far",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "class": "page-template template-medicine-glp1",
+        "data-reta-guide": "2026-09-23"
+      },
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": false,
+      "issues": [
+        "Approved presentation marker absent"
+      ]
+    },
+    {
+      "path": "/husband-help",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/husband-help",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Be on his side.Find what actually helps.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-partner-hp1": "partner-hp1-20261031",
+        "id": "main-content",
+        "class": "continuity-page hpp",
+        "data-public-continuity": "",
+        "data-husband-release": "20261022-husband-live-v1"
+      },
+      "hero": "partner-support",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/husband-help",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/husband-help?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Someone you care about is trying to get his health back. What actually helps?",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "class": "continuity-page",
+        "data-public-continuity": ""
+      },
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": false,
+      "issues": [
+        "Approved presentation marker absent"
+      ]
+    },
+    {
+      "path": "/knowledge",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/knowledge",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Useful answers.For more of life.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "data-shift-knowledge": "",
+        "data-knowledge-health-version": "2026-10-29-v2"
+      },
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": false,
+      "issues": [
+        "Approved presentation marker absent"
+      ]
+    },
+    {
+      "path": "/knowledge",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/knowledge?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Useful answers.For more of life.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "data-shift-knowledge": "",
+        "data-knowledge-health-version": "2026-10-29-v2"
+      },
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": false,
+      "issues": [
+        "Approved presentation marker absent"
+      ]
+    },
+    {
+      "path": "/life-back",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/life-back",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "What do you wantyour life back for?",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-approved-pages": "life-back",
+        "data-approved-release": "selected-pages-20261031-v1",
+        "data-public-pb3": "public-pb3-20261031",
+        "id": "main-content",
+        "class": "continuity-page lbp",
+        "data-public-continuity": "",
+        "data-life-release": "20261022-life-live-v3"
+      },
+      "selected": "life-back",
+      "markers": [
+        "selected-pages-20261031-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/life-back",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/life-back?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "What do you wantyour life back for?",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-approved-pages": "life-back",
+        "data-approved-release": "selected-pages-20261031-v1",
+        "id": "main-content",
+        "class": "continuity-page",
+        "data-public-continuity": ""
+      },
+      "selected": "life-back",
+      "markers": [
+        "selected-pages-20261031-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/male-obesity",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/male-obesity",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Male obesity. A useful next step.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-approved-pages": "obesity",
+        "data-approved-release": "pending-pages-20261031-v1",
+        "id": "main-content",
+        "class": "shift-understanding mop",
+        "data-shift-weight-understanding": "",
+        "data-obesity-release": "20261022-obesity-live-v1"
+      },
+      "selected": "obesity",
+      "markers": [
+        "pending-pages-20261031-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/male-obesity",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/male-obesity?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Male obesity. A useful next step.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-approved-pages": "obesity",
+        "data-approved-release": "pending-pages-20261031-v1",
+        "id": "main-content",
+        "class": "shift-understanding mop",
+        "data-shift-weight-understanding": "",
+        "data-obesity-release": "20261022-obesity-live-v1"
+      },
+      "selected": "obesity",
+      "markers": [
+        "pending-pages-20261031-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/mens-weight-management",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/mens-weight-management",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Weight management.Built around real life.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-weight-mw1": "weight-mw1-20261031",
+        "class": "authority-hub massp",
+        "id": "main-content",
+        "data-batch-release": "20261022-public-presentation-v2"
+      },
+      "hero": "weight-management",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/mens-weight-management",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/mens-weight-management?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Weight management.Built around real life.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "class": "authority-hub",
+        "id": "main-content"
+      },
+      "hero": "weight-management",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/my-timber-for-providers",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/my-timber-for-providers",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Keep practical supportaround treatment.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "class": "continuity-page massp",
+        "data-public-continuity": "",
+        "data-batch-release": "20261022-public-presentation-v2"
+      },
+      "hero": "provider-pilot",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/my-timber-for-providers",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/my-timber-for-providers?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Keep your male patients supported between and after treatment.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "class": "continuity-page",
+        "data-public-continuity": ""
+      },
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": false,
+      "issues": [
+        "Approved presentation marker absent"
+      ]
+    },
+    {
+      "path": "/nhs-vs-private",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/nhs-vs-private",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "NHS or private?Understand your routes.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "class": "page-template template-comparison-methodology massp",
+        "id": "main-content",
+        "data-batch-release": "20261022-public-presentation-v2"
+      },
+      "hero": "nhs-private",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/nhs-vs-private",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/nhs-vs-private?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Wait, qualify, pay — or combine the routes?",
+      "headingVisible": true,
+      "mainAttributes": {
+        "class": "page-template template-comparison-methodology",
+        "id": "main-content"
+      },
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": false,
+      "issues": [
+        "Approved presentation marker absent"
+      ]
+    },
+    {
+      "path": "/our-causes-partners",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/our-causes-partners",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Life is biggerthan the scales.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-approved-pages": "causes",
+        "data-approved-release": "provider-causes-20261031-v1",
+        "id": "main-content",
+        "class": "causes-page"
+      },
+      "selected": "causes",
+      "markers": [
+        "provider-causes-20261031-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/our-causes-partners",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/our-causes-partners?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Life is biggerthan the scales.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-approved-pages": "causes",
+        "data-approved-release": "provider-causes-20261031-v1",
+        "id": "main-content",
+        "class": "causes-page"
+      },
+      "selected": "causes",
+      "markers": [
+        "provider-causes-20261031-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/partner-with-us",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/partner-with-us",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Partnerships witha useful purpose.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-approved-pages": "partner",
+        "data-approved-release": "pending-pages-20261031-v1",
+        "class": "page-template template-article-guide-blog massp",
+        "id": "main-content",
+        "data-batch-release": "20261022-public-presentation-v2"
+      },
+      "selected": "partner",
+      "markers": [
+        "pending-pages-20261031-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/partner-with-us",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/partner-with-us?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Partnerships witha useful purpose.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-approved-pages": "partner",
+        "data-approved-release": "pending-pages-20261031-v1",
+        "class": "page-template template-article-guide-blog",
+        "id": "main-content"
+      },
+      "selected": "partner",
+      "markers": [
+        "pending-pages-20261031-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/provider-switch",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/provider-switch",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Changing provider?Keep your story together.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-approved-pages": "provider",
+        "data-approved-release": "provider-causes-20261031-v1",
+        "data-provider-p1": "provider-p1-20261030",
+        "id": "main-content",
+        "class": "continuity-page psp",
+        "data-public-continuity": "",
+        "data-provider-release": "20261022-provider-live-v1"
+      },
+      "selected": "provider",
+      "markers": [
+        "provider-causes-20261031-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/provider-switch",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/provider-switch?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Changing provider?Keep your story together.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-approved-pages": "provider",
+        "data-approved-release": "provider-causes-20261031-v1",
+        "id": "main-content",
+        "class": "continuity-page",
+        "data-public-continuity": ""
+      },
+      "selected": "provider",
+      "markers": [
+        "provider-causes-20261031-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/shift-for-work",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/shift-for-work",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Men’s health support your workforce might actually use.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-work-w2": "work-w2-20261030-v1",
+        "id": "main-content",
+        "class": "fn fwork",
+        "tabindex": "-1",
+        "data-final-page": "work",
+        "data-final-pages-version": "20261021-work-v2-reference"
+      },
+      "selected": null,
+      "markers": [
+        "work-w2-20261030-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/shift-for-work",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/shift-for-work?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Men’s health support your workforce might actually use.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-work-w2": "work-w2-20261030-v1",
+        "id": "main-content",
+        "class": "fn fwork",
+        "tabindex": "-1",
+        "data-final-page": "work",
+        "data-final-pages-version": "20261021-work-v2-reference"
+      },
+      "selected": null,
+      "markers": [
+        "work-w2-20261030-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/shift-health/erectile-dysfunction",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/shift-health/erectile-dysfunction",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Erection worries?Start with understanding.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-health-hb2": "health-hb2-20261031",
+        "id": "main-content",
+        "data-shift-health": "",
+        "data-product": "",
+        "class": " massp",
+        "data-batch-release": "20261022-public-presentation-v2"
+      },
+      "hero": "confidence",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/shift-health/erectile-dysfunction",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/shift-health/erectile-dysfunction?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Erection worries?Start with understanding.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "data-shift-health": "",
+        "data-product": ""
+      },
+      "hero": "confidence",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/shift-health/fertility",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/shift-health/fertility",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Male fertility.Start with understanding.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "data-shift-knowledge": "",
+        "data-knowledge-health-version": "2026-10-29-v2"
+      },
+      "hero": "fertility",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/shift-health/fertility",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/shift-health/fertility?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Male fertility.Start with understanding.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "data-shift-knowledge": "",
+        "data-knowledge-health-version": "2026-10-29-v2"
+      },
+      "hero": "fertility",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/shift-health/health-mot",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/shift-health/health-mot",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "SHIFT Health MOT.A clearer picture.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "data-shift-health": "",
+        "data-product": "",
+        "class": " massp",
+        "data-batch-release": "20261022-public-presentation-v2"
+      },
+      "hero": "mot",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/shift-health/health-mot",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/shift-health/health-mot?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "SHIFT Health MOT.A clearer picture.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "data-shift-health": "",
+        "data-product": ""
+      },
+      "hero": "mot",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/shift-health/shift-measure",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/shift-health/shift-measure",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Measure what matters.See the pattern.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "data-shift-health": "",
+        "data-product": "",
+        "class": " massp",
+        "data-batch-release": "20261022-public-presentation-v2"
+      },
+      "hero": "measure",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/shift-health/shift-measure",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/shift-health/shift-measure?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Measure what matters.See the pattern.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "data-shift-health": "",
+        "data-product": ""
+      },
+      "hero": "measure",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/shift-health/stop-smoking",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/shift-health/stop-smoking",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Stop smoking.Start with a plan.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "data-shift-health": "",
+        "data-product": "",
+        "class": " massp",
+        "data-batch-release": "20261022-public-presentation-v2"
+      },
+      "hero": "smoking",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/shift-health/stop-smoking",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/shift-health/stop-smoking?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Stop smoking.Start with a plan.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "data-shift-health": "",
+        "data-product": ""
+      },
+      "hero": "smoking",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/shift-newsroom",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/shift-newsroom",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Health news. Made clearer.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-approved-pages": "newsroom",
+        "data-approved-release": "selected-pages-20261031-v1",
+        "class": "nr",
+        "id": "main-content",
+        "data-newsroom-presentation": "20261022-newsroom-preview-v2-refined",
+        "data-newsroom-release": "20261022-newsroom-live-v1"
+      },
+      "selected": "newsroom",
+      "markers": [
+        "selected-pages-20261031-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/shift-newsroom",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/shift-newsroom?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Health news. Made clearer.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-approved-pages": "newsroom",
+        "data-approved-release": "selected-pages-20261031-v1",
+        "class": "nr",
+        "id": "main-content",
+        "data-newsroom-presentation": "20261022-newsroom-preview-v2-refined",
+        "data-newsroom-release": "20261022-newsroom-live-v1"
+      },
+      "selected": "newsroom",
+      "markers": [
+        "selected-pages-20261031-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/surgery-comparison-centre",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/surgery-comparison-centre",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Weight-loss surgery.See the whole picture.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "class": "page-template template-comparison-methodology massp",
+        "id": "main-content",
+        "data-batch-release": "20261022-public-presentation-v2"
+      },
+      "hero": "surgery-options",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/surgery-comparison-centre",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/surgery-comparison-centre?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Compare the operation — not just the headline weight loss.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "class": "page-template template-comparison-methodology",
+        "id": "main-content"
+      },
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": false,
+      "issues": [
+        "Approved presentation marker absent"
+      ]
+    },
+    {
+      "path": "/tools",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/tools",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Useful numbers.Never the whole story.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-tools-ct3": "tools-ct3-20261031-v1",
+        "class": "page-template template-calculator-tool-result tpp",
+        "id": "main-content",
+        "data-tools-release": "20261022-tools-live-v1"
+      },
+      "selected": null,
+      "markers": [
+        "tools-ct3-20261031-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/tools",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/tools?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Useful numbers.Never the whole story.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-tools-ct3": "tools-ct3-20261031-v1",
+        "class": "page-template template-calculator-tool-result tpp",
+        "id": "main-content"
+      },
+      "selected": null,
+      "markers": [
+        "tools-ct3-20261031-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/treatment-centre/medicines-watch",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/treatment-centre/medicines-watch",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "New medicines.Clearer context.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "class": "medicines-watch",
+        "data-watch-version": "1"
+      },
+      "hero": "research",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/treatment-centre/medicines-watch",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/treatment-centre/medicines-watch?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "New medicines.Clearer context.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "id": "main-content",
+        "class": "medicines-watch",
+        "data-watch-version": "1"
+      },
+      "hero": "research",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/weight-loss-support-for-men",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/weight-loss-support-for-men",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Weight-loss support.For the week you have.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-approved-pages": "support",
+        "data-approved-release": "pending-pages-20261031-v1",
+        "data-support-sp1": "support-sp1-20261031",
+        "id": "main-content",
+        "class": "continuity-page spp",
+        "data-public-continuity": "",
+        "data-support-release": "20261022-support-live-v1"
+      },
+      "selected": "support",
+      "markers": [
+        "pending-pages-20261031-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/weight-loss-support-for-men",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/weight-loss-support-for-men?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Weight-loss support.For the week you have.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-approved-pages": "support",
+        "data-approved-release": "pending-pages-20261031-v1",
+        "id": "main-content",
+        "class": "continuity-page",
+        "data-public-continuity": ""
+      },
+      "selected": "support",
+      "markers": [
+        "pending-pages-20261031-v1"
+      ],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/work-with-us",
+      "query": false,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/work-with-us",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Build somethinguseful for men.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-work-ww1": "work-ww1-20261031",
+        "class": "work-with-shift wwp",
+        "id": "main-content",
+        "data-work-preview": "20261022-work-with-us-preview-v1",
+        "data-work-release": "20261022-work-with-us-live-v1"
+      },
+      "hero": "work-with-us",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    },
+    {
+      "path": "/work-with-us",
+      "query": true,
+      "status": 200,
+      "url": "https://shiftsometimber.co.uk/work-with-us?mobile-release-check=1",
+      "width": 390,
+      "scrollWidth": 375,
+      "heading": "Build somethinguseful for men.",
+      "headingVisible": true,
+      "mainAttributes": {
+        "data-work-ww1": "work-ww1-20261031",
+        "class": "work-with-shift wwp",
+        "id": "main-content",
+        "data-work-preview": "20261022-work-with-us-preview-v1",
+        "data-work-release": "20261022-work-with-us-live-v1"
+      },
+      "hero": "work-with-us",
+      "selected": null,
+      "markers": [],
+      "brokenImages": [],
+      "presentationPresent": true,
+      "issues": []
+    }
+  ]
+}
