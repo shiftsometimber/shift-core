@@ -49,7 +49,8 @@ export async function browserCheck({headers={},dir='selected-pages-evidence',lab
    }
    if(item.key==='continuity'){
     await page.getByRole('link',{name:'Find your next step',exact:true}).click();await page.waitForURL('**/clinic-gone-quiet#sp-help-routes');
-    behaviour.routes=await page.locator('#sp-help-routes').evaluate(e=>({top:e.getBoundingClientRect().top,text:e.textContent}));assert(behaviour.routes.top>=60&&behaviour.routes.top<300,'Help routes clear header');assert(behaviour.routes.text.includes('SHIFT check-ins are not monitored clinical messages.'));assert.equal(await page.locator('.qpp-needs').evaluate(e=>getComputedStyle(e).backgroundColor),'rgb(231, 227, 218)');
+    behaviour.routes=await page.locator('#sp-help-routes').evaluate(e=>({top:e.getBoundingClientRect().top,text:e.textContent}));assert(behaviour.routes.top>=60&&behaviour.routes.top<300,'Help routes clear header');assert((await page.locator('main').innerText()).includes('not monitored clinical messages.'));assert.equal(await page.locator('#sp-help-routes').evaluate(e=>getComputedStyle(e).backgroundColor),'rgb(231, 227, 218)');
+    if(await page.locator('#sp-help-routes .cr-choices').count()){behaviour.currentReviewRetained=true;assert.equal(await page.locator('#sp-help-routes details').count(),6);const first=page.locator('#sp-help-routes summary').first();await first.click();assert(await page.locator('#sp-help-routes details').first().evaluate(e=>e.open));}
    }
    if(item.key==='life-back'){
     assert.equal(await page.locator('.sp-copy .sp-button').getAttribute('href'),'/member/life-back');assert.equal(await page.locator('.lbp-needs .continuity-grid>div').count(),3);assert.equal(await page.locator('.lbp-needs').evaluate(e=>getComputedStyle(e).backgroundColor),'rgb(231, 227, 218)');

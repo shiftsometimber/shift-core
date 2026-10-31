@@ -33,10 +33,17 @@ export function transform(html,key){
    const needs=required(main,'lbp-needs').html;main=main.replace(needs,'');const h=required(main,'sp-hero');main=main.slice(0,h.end)+needs+main.slice(h.end);
   }
   if(key==='continuity'){
-   const oldNeeds=required(main,'qpp-needs');
-   const needs=oldNeeds.html.replace(/<div\b/,'<div id="sp-help-routes"').replace(/<p><strong>([\s\S]*?)<\/strong>([\s\S]*?)<\/p>/g,'<p><strong>$1</strong><span class="sp-route-detail">$2</span></p>');
    const strip=continuityStrip.replace('</section>','<a class="sp-link" href="#continuity-now-title">See what stays with you →</a></section>');
-   main=main.replace(oldNeeds.html,needs+strip);
+   if(byClass(main,'cr-choices')){
+    let remaining=main,offset=0,section;
+    while(remaining){const b=bounds(remaining,(_t,n)=>n==='section');if(!b)break;if(byClass(b.html,'cr-choices')){section={...b,start:offset+b.start,end:offset+b.end};break;}offset+=b.end;remaining=remaining.slice(b.end);}
+    if(!section)throw Error('Current Continuity choice section missing');
+    const needs=section.html.replace(/<section\b/,'<section id="sp-help-routes"');main=main.replace(section.html,needs+strip);
+   }else{
+    const oldNeeds=required(main,'qpp-needs');
+    const needs=oldNeeds.html.replace(/<div\b/,'<div id="sp-help-routes"').replace(/<p><strong>([\s\S]*?)<\/strong>([\s\S]*?)<\/p>/g,'<p><strong>$1</strong><span class="sp-route-detail">$2</span></p>');
+    main=main.replace(oldNeeds.html,needs+strip);
+   }
   }
  }
  main=main.replace(/<main\b/,'<main data-approved-pages="'+key+'" data-approved-release="'+release+'"');
