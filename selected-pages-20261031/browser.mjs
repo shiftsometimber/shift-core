@@ -6,12 +6,12 @@ export async function browserCheck({headers={},dir='selected-pages-evidence',lab
  const browser=await chromium.launch({headless:true,channel:'chrome',args:['--no-sandbox']});const results=[];
  try{for(const viewport of [{width:1440,height:1100},{width:768,height:1024},{width:390,height:844}]){
   const context=await browser.newContext({viewport,extraHTTPHeaders:headers,serviceWorkers:'block',reducedMotion:'reduce'});let writes=0;
+  await context.addInitScript(()=>localStorage.setItem('sstConsentV3',JSON.stringify({necessary:true,analytics:false,marketing:false,acquisition:false,updatedAt:new Date().toISOString()})));
   await context.route('**/*',route=>{if(['POST','PUT','PATCH','DELETE'].includes(route.request().method())){writes++;return route.abort();}return route.continue();});
   for(const item of pages){
    const page=await context.newPage();await page.bringToFront();
    await page.goto('https://shiftsometimber.co.uk'+item.path,{waitUntil:'domcontentloaded',timeout:60000});
    await page.locator('main[data-approved-release]').waitFor({state:'visible',timeout:30000});
-   const cookie=page.getByRole('button',{name:'Necessary only',exact:true});if(await cookie.isVisible())await cookie.click();
    await page.waitForLoadState('load',{timeout:45000});await page.evaluate(()=>document.fonts.ready);
    await page.locator('main .sp-photo img,main .sp-still').evaluateAll(images=>Promise.all(images.map(i=>i.decode())));
    const layout=await page.evaluate(()=>{
@@ -33,7 +33,7 @@ export async function browserCheck({headers={},dir='selected-pages-evidence',lab
     assert.equal(await page.locator('.ct-form-card').evaluate(e=>getComputedStyle(e).backgroundColor),'rgb(231, 227, 218)');
     await page.locator('#ct-name').fill('Layout verification');await page.locator('#ct-email').fill('invalid-email');await page.locator('#ct-subject').selectOption({label:'Website or technical help'});
     behaviour.invalidEmailRejected=await page.locator('#ct-email').evaluate(e=>!e.checkValidity());assert(behaviour.invalidEmailRejected);
-    assert.equal(await page.locator('a[href="tel:03303110981"]').count(),1);assert.equal(await page.locator('[data-contact-whatsapp] a').getAttribute('href'),'https://wa.me/447932618313');
+    assert.equal(await page.locator('main a[href="tel:03303110981"]').count(),1);assert.equal(await page.locator('main [data-contact-whatsapp] a').getAttribute('href'),'https://wa.me/447932618313');
     const b=await page.locator('.ct-form-card').boundingBox(),a=await page.locator('.sp-contact-intro').boundingBox();behaviour.formPosition={intro:a,form:b};if(viewport.width>600)assert(b.x>a.x&&Math.abs(b.y-a.y)<3,'CO1 form alongside intro');else assert(b.y>=a.y+a.height&&b.y-a.y-a.height<35,'Tight stacked mobile form');
     behaviour.formNotSubmitted=true;
    }
