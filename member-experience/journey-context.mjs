@@ -1,5 +1,6 @@
 import {nextShiftCard} from './life-back/next-shift.mjs';
 import {summary,lifeBackState} from './life-back/model.mjs';
+import {readFoodLog} from './food-log.mjs';
 export function ukDate(at=new Date()){return new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).format(at)}
 export function reflectionWeek(entries,date){
  const anchor=new Date(date+'T12:00:00Z'),offset=(anchor.getUTCDay()+6)%7;
@@ -30,5 +31,6 @@ export async function connectedDay(DB,userId,prefs,date=ukDate()){
    }
   }
  }
- return {date,meal,week:reflectionWeek(state.entries,date),weekMeals:prefs.grubV2?.week?.length||0,weekMovement:{done:weekMovement.filter(e=>e.status==='done').length,skipped:weekMovement.filter(e=>e.status==='skipped').length},movement:{done,skipped},lifeBack:{score:s.score,change:s.change,at:last?.at||null,win:state.win,recordedWin:[...state.entries].reverse().find(e=>e.win)?.win||null,goal:state.goal,entries:state.entries.length},mood:mood?{label:['Tough day','Struggling','OK','Good','Brilliant'][mood.wellbeing_score-1],at:mood.submitted_at}:null,next};
+ const foodLog=await readFoodLog(DB,userId,{now:new Date(date+'T12:00:00Z')});
+ return {date,meal,foodLog,week:reflectionWeek(state.entries,date),weekMeals:prefs.grubV2?.week?.length||0,weekMovement:{done:weekMovement.filter(e=>e.status==='done').length,skipped:weekMovement.filter(e=>e.status==='skipped').length},movement:{done,skipped},lifeBack:{score:s.score,change:s.change,at:last?.at||null,win:state.win,recordedWin:[...state.entries].reverse().find(e=>e.win)?.win||null,goal:state.goal,entries:state.entries.length},mood:mood?{label:['Tough day','Struggling','OK','Good','Brilliant'][mood.wellbeing_score-1],at:mood.submitted_at}:null,next};
 }

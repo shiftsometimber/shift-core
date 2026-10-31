@@ -1,4 +1,5 @@
 import {foodDiaryRuntime} from './food-diary-client.mjs';
+import {foodLogRuntime} from './food-log-client.mjs';
 import {treatmentHTML,treatmentRuntime,treatmentStyles} from './treatment-page.mjs';
 import {treatmentWeekRuntime,treatmentWeekStyles} from './treatment-week-client.mjs';
 import {treatmentServiceWorker} from './treatment-service-worker.mjs';
@@ -71,7 +72,7 @@ export function memberExperienceRoutes(request, env) {
     const body=a.base64?Uint8Array.from(atob(a.base64),c=>c.charCodeAt(0)):name==='index.html'?lifeBackChrome(a.body,env.WORK_V1_ENABLED==='true'):a.body;
     return new Response(request.method==='HEAD'?null:body,{headers:{...privateHeaders,'Content-Type':a.type}});
   }
-  const asset = {'/assets/member-experience/food-diary.mjs':[foodDiaryRuntime,'text/javascript'],'/assets/member-experience/day-guide.mjs':[dayGuideRuntime,'text/javascript'],'/assets/member-experience/day-guide.css':[dayGuideStyles,'text/css'],'/assets/member-experience/chrome.css':[memberChromeStyles,'text/css'],'/assets/member-experience/chrome.mjs':[memberChromeClient,'text/javascript'],'/assets/member-experience/tools.mjs':[dashboardToolsRuntime,'text/javascript'],'/assets/member-experience/tools.css':[dashboardToolsStyles,'text/css'],'/assets/member-experience/health.mjs':[healthRuntime,'text/javascript'],'/assets/member-experience/fit.mjs':[fitRuntime,'text/javascript'],'/assets/member-experience/grub.mjs':[grubRuntime,'text/javascript'],'/assets/member-experience/v1.css':[memberStyles+journeyStyles,'text/css'],'/assets/member-experience/v1.mjs':[memberClient,'text/javascript']}[path];
+  const asset = {'/assets/member-experience/food-diary.mjs':[foodDiaryRuntime,'text/javascript'],'/assets/member-experience/day-guide.mjs':[dayGuideRuntime,'text/javascript'],'/assets/member-experience/day-guide.css':[dayGuideStyles,'text/css'],'/assets/member-experience/chrome.css':[memberChromeStyles,'text/css'],'/assets/member-experience/chrome.mjs':[memberChromeClient,'text/javascript'],'/assets/member-experience/tools.mjs':[dashboardToolsRuntime,'text/javascript'],'/assets/member-experience/tools.css':[dashboardToolsStyles,'text/css'],'/assets/member-experience/health.mjs':[healthRuntime,'text/javascript'],'/assets/member-experience/fit.mjs':[fitRuntime,'text/javascript'],'/assets/member-experience/grub.mjs':[grubRuntime,'text/javascript'],'/assets/member-experience/v1.css':[memberStyles+journeyStyles,'text/css'],'/assets/member-experience/v1.mjs':[memberClient+foodLogRuntime,'text/javascript']}[path];
   if (!asset) return null;
   return new Response(request.method === 'HEAD' ? null : asset[0]+(path==='/assets/member-experience/v1.css'?grubIntelligenceCSS+ingredientStyles:''),{headers:{...privateHeaders,'Content-Type':asset[1]+'; charset=utf-8'}});
 }

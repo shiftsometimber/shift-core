@@ -1,33 +1,13 @@
 import {withCausesTeaser} from './causes-partners-teaser.mjs';
 import {withSharedFooter as withCanonicalSharedFooter} from './shared-footer.mjs';
-// Visible but deliberately non-interactive Timber Shed teaser.
-// No route, link, signup, member data, publication or community activation.
-const tag='<span class="sst-shed-teaser" aria-label="The Timber Shed — coming soon">The Timber Shed <small>SOON</small></span>';
-const drawerTag='<span class="sst-shed-teaser sst-shed-drawer" aria-label="The Timber Shed — coming soon">The Timber Shed <small>SOON</small></span>';
-const footerTag='<span class="sst-shed-teaser sst-shed-footer" aria-label="The Timber Shed — coming soon">The Timber Shed <small>SOON</small></span>';
-const css='<style id="sst-timber-shed-teaser-css">'+
-'.desktop-nav .sst-shed-teaser{display:inline-flex;align-items:center;gap:5px;color:#707762;font-weight:800;white-space:nowrap;cursor:default;font-size:12px;position:relative;padding:10px 0}'+
-'.desktop-nav .sst-shed-teaser::before{content:"";display:block;position:absolute;left:-13px;top:50%;margin-top:-10px;width:1px;height:20px;background:#707762}'+
-'.sst-shed-teaser small{font-size:9px;font-weight:800;letter-spacing:.04em;line-height:1;border:1px solid currentColor;border-radius:3px;padding:3px 4px;vertical-align:middle}'+
-'.site-drawer .sst-shed-teaser{display:flex;align-items:center;gap:9px;padding:12px 0;color:#707762;font-weight:800;cursor:default}'+
-'footer.site-footer .sst-shed-teaser{display:inline-flex;align-items:center;gap:5px;margin:6px 0;color:#707762;font-size:12px;font-weight:700;white-space:nowrap;cursor:default}'+
-'footer.site-footer .sst-shed-teaser small{text-transform:uppercase;font-size:9px}'+
-'@media(max-width:1150px){.desktop-nav .sst-shed-teaser{font-size:12px}.desktop-nav .sst-shed-teaser small{font-size:8px;padding:2px 3px}}'+
-'</style>';
-const primary=/<nav\b[^>]*class=["'][^"']*\bdesktop-nav\b[^"']*["'][^>]*>[\s\S]*?<\/nav>/i;
-const drawer=/<aside\b[^>]*id=["']site-drawer["'][^>]*>[\s\S]*?<\/aside>/i;
-const footer=/<footer\b[^>]*(?:class=["'][^"']*\bsite-footer\b[^"']*["']|id=["']sst-footer-c["'])[^>]*>[\s\S]*?<\/footer>/i;
+
+// Retain the historical export name for existing call sites while retiring the
+// unlinked “Timber Shed — SOON” navigation teaser from public responses.
+const retiredStyle=/<style\b[^>]*\bid=["']sst-timber-shed-teaser-css["'][^>]*>[\s\S]*?<\/style>/gi;
+const retiredTag=/<span\b(?=[^>]*\bclass=["'][^"']*\bsst-shed-teaser\b[^"']*["'])[^>]*>[\s\S]*?<\/span>/gi;
 export function addTimberShedTeaser(html,path='/'){
- if(typeof html!=='string'||!/\<html\b/i.test(html)||!/<\/head>/i.test(html)||!/<\/body>/i.test(html))return html;
- if(/^\/(?:member(?:\/|$)|v1(?:\/|$)|hq(?:\/|$)|api(?:\/|$)|staging(?:\/|$))/.test(path))return html;
- if(html.includes('id="sst-timber-shed-teaser-css"'))return html;
- const nav=html.match(primary)?.[0],side=html.match(drawer)?.[0],foot=html.match(footer)?.[0];
- if(!nav||!side||!foot||!/<h2>Support<\/h2>/.test(foot)||!/<a href="\/member\/dashboard">My Timber<\/a>/.test(foot))return html;
- if(nav.includes('sst-shed-teaser')||side.includes('sst-shed-teaser')||foot.includes('sst-shed-teaser'))return html;
- const navNext=nav.replace(/<\/nav>$/i,tag+'</nav>');
- const sideNext=side.replace(/<\/nav>/i,drawerTag+'</nav>');
- const footNext=foot.replace(/(<a href="\/member\/dashboard">My Timber<\/a>)/, '$1'+footerTag);
- return html.replace(nav,navNext).replace(side,sideNext).replace(foot,footNext).replace('</head>',css+'</head>');
+ if(typeof html!=='string')return html;
+ return html.replace(retiredStyle,'').replace(retiredTag,'');
 }
 export async function withTimberShedTeaser(request,response){
  if(request.method!=='GET'||!response?.ok||!response.headers.get('content-type')?.includes('text/html'))return response;
@@ -36,14 +16,14 @@ export async function withTimberShedTeaser(request,response){
  const original=await response.text(),next=addTimberShedTeaser(original,path);
  if(next===original)return new Response(original,{status:response.status,statusText:response.statusText,headers:response.headers});
  const headers=new Headers(response.headers);for(const name of ['content-length','etag','last-modified','content-encoding'])headers.delete(name);
+ headers.set('X-Shift-Timber-Shed-Policy','retired-20261031');
  return new Response(next,{status:response.status,statusText:response.statusText,headers});
 }
 
 // Compose only after the canonical footer has been installed. Preserve the
-// original Worker call sites and historical footer integration tests.
+// original Worker call sites, canonical footer and causes wrapper.
 export async function withSharedFooter(request,response){
  const canonical=await withCanonicalSharedFooter(request,response);
- // Keep the homepage byte-preserved; new discovery additions need separate approval.
  if(new URL(request.url).pathname==='/')return canonical;
  return withCausesTeaser(request,await withTimberShedTeaser(request,canonical));
 }

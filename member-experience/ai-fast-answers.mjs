@@ -1,7 +1,19 @@
 import {foundationEvidence} from './ai-foundation.mjs';
 const normal=q=>String(q).toLowerCase().replace(/[’']/g,"'").replace(/[^a-z0-9' ]/g,' ').replace(/\s+/g,' ').trim();
-export function savedFactKind(message){const q=normal(message);if(/^(?:what is|what's) my (?:personal life back |personal |life back |saved )?goal$/.test(q))return'goal';if(/^(?:what meal have i chosen today|what is my chosen meal today)$/.test(q))return'meal';if(q==='what meal have i chosen today and what is my personal goal')return'both';return null}
-export function savedFactAnswer(kind,journey){if(!kind||journey?.status!=='available')return null;const goal=journey.lifeBack?.goal,meal=journey.grub?.chosenForToday?.name;if(kind!=='meal'&&!goal||kind!=='goal'&&!meal)return null;return[(kind!=='goal'?`You've chosen ${meal} for today. That's your saved choice, not a record that you've eaten it.`:''),(kind!=='meal'?`Your Life Back goal is “${goal}”.`:'')].filter(Boolean).join(' ')}
+export function savedFactKind(message){const q=normal(message);if(/^(?:what (?:food |meals? )?(?:have i|did i) (?:eat|eaten|log|logged|record|recorded) today|what's in my food log today|what is in my food log today)$/.test(q))return'food_today';if(/^(?:how much protein (?:have i|did i) (?:log|logged|record|recorded) today|what is my logged protein today)$/.test(q))return'food_protein';if(/^(?:how many (?:calories|kcal) (?:have i|did i) (?:log|logged|record|recorded) today|what are my logged calories today)$/.test(q))return'food_kcal';if(/^(?:what is|what's) my (?:personal life back |personal |life back |saved )?goal$/.test(q))return'goal';if(/^(?:what meal have i chosen today|what is my chosen meal today)$/.test(q))return'meal';if(q==='what meal have i chosen today and what is my personal goal')return'both';return null}
+export function savedFactAnswer(kind,journey){if(!kind||journey?.status!=='available')return null;if(kind.startsWith('food_'))return savedFoodAnswer(kind,journey.grub?.foodLog);const goal=journey.lifeBack?.goal,meal=journey.grub?.chosenForToday?.name;if(kind!=='meal'&&!goal||kind!=='goal'&&!meal)return null;return[(kind!=='goal'?`You've chosen ${meal} for today. That's your saved choice, not a record that you've eaten it.`:''),(kind!=='meal'?`Your Life Back goal is “${goal}”.`:'')].filter(Boolean).join(' ')}
+function savedFoodAnswer(kind,log){
+ if(log?.status!=='available')return 'I cannot read your current food log just now. Open Grub to check your saved entries; I will not fill the gap from earlier chat.';
+ const period=log.today,count=period.entryCount;
+ if(!count)return 'You have no saved eaten-food entries for today. That does not tell me whether or what you ate.';
+ if(kind==='food_today'){
+  const foods=log.recent.filter(entry=>entry.on===log.date).map(entry=>entry.food),listed=foods.length;
+  return `You have ${count} saved food ${count===1?'entry':'entries'} for today: ${foods.join('; ')}.${count>listed?' These are the latest '+listed+'; open Grub for the other entries.':''} This covers what you recorded, not necessarily everything you ate.`;
+ }
+ const key=kind==='food_protein'?'proteinG':'kcal',label=key==='proteinG'?'protein':'energy',unit=key==='proteinG'?'g':'kcal',value=period.nutrition[key];
+ if(!value)return `You have ${count} food ${count===1?'entry':'entries'} saved for today, but no ${label} amounts recorded. Missing amounts are unknown.`;
+ return `Your food log contains ${value.total} ${unit} ${label} across ${value.recordedEntries} of ${count} saved ${count===1?'entry':'entries'} today.${value.missingEntries?' '+value.missingEntries+' '+(value.missingEntries===1?'entry has':'entries have')+' no '+label+' amount.':''}${period.estimatedEntries?' Photo-derived amounts remain estimates.':''} This is a total of recorded amounts, not proof of your whole day’s intake.`;
+}
 export function fastPublicAnswer(message){
  const q=normal(message);if(!/^(?:how can i make protein practical when appetite is low|how can i eat more protein with (?:a )?(?:low|small) appetite|how do i get enough protein with (?:a )?(?:low|small) appetite)$/.test(q))return null;
  const sources=foundationEvidence('protein appetite').map((s,i)=>({id:i+1,title:s.title,url:s.provenance[0].ref,authority:s.authority,reviewState:s.reviewState,citation:s.citation,provenance:s.provenance,limitations:s.limitations}));

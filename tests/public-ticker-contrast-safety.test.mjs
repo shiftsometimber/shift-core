@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {Script} from 'node:vm';
-import {contrastSafetyStyles,contrastSafetyVersion,contrastSafetyClient,withPublicTicker} from '../public-navigation-policy.mjs';
+import {contrastSafetyStyles,contrastSafetyVersion,contrastSafetyClient,navigationSafetyClient,navigationSafetyVersion,removeRetiredShedTeasers,withPublicTicker,withRetiredShedNavigation} from '../public-navigation-policy.mjs';
 import {preserveReviewedContrastGuard,priorContrastSafetyClient} from '../member-experience/public-preservation.mjs';
 
 test('audited public contrast safety stays brand-only and covers the shared collision roots',()=>{
@@ -62,4 +62,55 @@ test('public preservation admits only the exact reviewed contrast-client repair'
   assert.throws(()=>preserveReviewedContrastGuard(page,Buffer.from('<html><body>Keep every byte.</body></html>'),{required:true}),/exactly one/);
   assert.deepEqual(preserveReviewedContrastGuard('/turnstile-auth-v1.js?v=timeout-20260912',Buffer.from('const untouched=true;')),Buffer.from('const untouched=true;'));
   assert.notDeepEqual(preserveReviewedContrastGuard(page,shell(priorContrastSafetyClient)),preserveReviewedContrastGuard(page,Buffer.from('<html><body><main>Changed.</main>'+tag(contrastSafetyClient)+'</body></html>'),{required:true}));
+});
+
+
+test('retired Timber Shed teaser is removed from public header, drawer and footer markup',async()=>{
+  const header='<span class="sst-shed-teaser" aria-label="The Timber Shed — coming soon">The Timber Shed <small>SOON</small></span>';
+  const drawer='<span class="sst-shed-teaser sst-shed-drawer" aria-label="The Timber Shed — coming soon">The Timber Shed <small>SOON</small></span>';
+  const footer='<span class="sst-shed-teaser sst-shed-footer" aria-label="The Timber Shed — coming soon">The Timber Shed <small>SOON</small></span>';
+  const html='<!doctype html><html><head><title>Work with us</title></head><body><header>'+header+'</header><nav>'+drawer+'</nav><main>Keep this public content.</main><footer>'+footer+'</footer></body></html>';
+  const request=new Request('https://shiftsometimber.co.uk/work-with-us');
+  const output=await withPublicTicker(request,new Response(html,{headers:{'Content-Type':'text/html; charset=utf-8'}}));
+  const body=await output.text();
+  assert.equal(removeRetiredShedTeasers(header),'');
+  assert.doesNotMatch(body,/<span\\b[^>]*\\bsst-shed-teaser\\b/i);
+  assert.doesNotMatch(body,/The Timber Shed|>SOON</i);
+  assert.match(body,/<main>Keep this public content\.<\/main>/);
+  assert.equal(output.headers.get('X-Shift-Navigation-Policy'),'approved-20261031');
+});
+
+
+test('retired teaser stays absent after legacy client bundles mutate the rendered shell',async()=>{
+  new Script(navigationSafetyClient);
+  const html='<!doctype html><html><head><title>Work with us</title></head><body><header></header><main>Keep this public content.</main><footer></footer></body></html>';
+  const request=new Request('https://shiftsometimber.co.uk/work-with-us');
+  const once=await(await withPublicTicker(request,new Response(html,{headers:{'Content-Type':'text/html; charset=utf-8'}}))).text();
+  const twice=await(await withPublicTicker(request,new Response(once,{headers:{'Content-Type':'text/html; charset=utf-8'}}))).text();
+  assert.equal((once.match(/data-shift-navigation-retirement/g)||[]).length,2);
+  assert.equal((twice.match(/data-shift-navigation-retirement/g)||[]).length,2);
+  assert.match(once,new RegExp(navigationSafetyVersion));
+  assert.match(once,/\.sst-shed-teaser\{display:none!important\}/);
+  assert.match(once,/MutationObserver\(retire\)/);
+  assert.match(once,/querySelectorAll\('\.sst-shed-teaser'\)/);
+  assert.match(once,/node\.hidden=true/);
+  assert.match(once,/node\.setAttribute\('aria-hidden','true'\)/);
+  assert.match(once,/node\.textContent=''/);
+  assert.doesNotMatch(once,/node\.remove\(\)/);
+  assert.match(once,/<main>Keep this public content\.<\/main>/);
+});
+
+
+test('dedicated SHIFT Health responses receive retirement guard without a ticker',async()=>{
+  const teaser='<span class="sst-shed-teaser">The Timber Shed <small>SOON</small></span>';
+  const html='<!doctype html><html><head><title>SHIFT Bloods</title></head><body><header>'+teaser+'</header><main>Blood tests</main><footer>'+teaser+'</footer></body></html>';
+  const request=new Request('https://shiftsometimber.co.uk/shift-health/blood-tests');
+  const response=await withRetiredShedNavigation(request,new Response(html,{headers:{'Content-Type':'text/html; charset=utf-8','ETag':'old'} }));
+  const body=await response.text();
+  assert.doesNotMatch(body,/<span\\b[^>]*\\bsst-shed-teaser\\b/i);
+  assert.doesNotMatch(body,/The Timber Shed|>SOON</i);
+  assert.equal((body.match(/data-shift-navigation-retirement/g)||[]).length,2);
+  assert.doesNotMatch(body,/id="shift-public-news"/);
+  assert.equal(response.headers.get('X-Shift-Navigation-Policy'),'approved-20261031');
+  assert.equal(response.headers.get('ETag'),null);
 });

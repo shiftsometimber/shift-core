@@ -7,6 +7,7 @@ import {buildMemberJourneyContext,requestMemberJourney} from '../member-experien
 import {askTimberRoutes} from '../ask-timber-v1.js';
 import {buildShiftBrainContext} from '../shift-brain-v1.js';
 import {ukDate} from '../member-experience/journey-context.mjs';
+import {journeyPortabilityRoutes} from '../member-experience/journey-portability.mjs';
 
 class Statement {
   constructor(db,sql){this.db=db;this.sql=sql;this.args=[]}
@@ -392,4 +393,23 @@ test('explicit personalisation opt-out drops client history that could contain p
  const {env,calls}=fixture(t);enableMemory(env);
  await ask(env,{message:'How can protein help?',personalisation:false,history:[{role:'assistant',content:'OLD_PRIVATE_REPLY'}]});
  assert.doesNotMatch(prompt(calls),/OLD_PRIVATE_REPLY|Synthetic Lentil Bowl|Enjoying weekend walks/);
+});
+
+
+test('confirmed food saves and deletions reach Ask Timber and the shared brain without copying or double-counting',async t=>{
+ const {DB,env,calls}=fixture(t);env.SHIFT_AI_PRACTICAL_CONTEXT='true';
+ const entry={operationId:'connected-food-confirmed-operation',on:currentDate(),food:'Synthetic eaten eggs and toast',proteinG:18,kcal:300,nutritionSource:'member_confirmed_estimate'};
+ const foodRequest=(body,method=body?'POST':'GET')=>new Request('https://shiftsometimber.co.uk/v1/grub/eaten',{method,headers:{Origin:'https://shiftsometimber.co.uk',Cookie:'sst_session=synthetic-1','Content-Type':'application/json'},body:body?JSON.stringify(body):undefined});
+ const foodEnv={...env,MEMBER_EXPERIENCE_V1_ENABLED:'true'};
+ assert.equal((await journeyPortabilityRoutes(foodRequest(entry),foodEnv)).status,201);
+ assert.equal((await journeyPortabilityRoutes(foodRequest(entry),foodEnv)).status,200);
+ const diary=await(await journeyPortabilityRoutes(foodRequest(),foodEnv)).json();
+ const brain=await buildShiftBrainContext(env,1,'',{knowledgeLimit:0});
+ assert.deepEqual(brain.journey.grub.foodLog,diary.foodLog);assert.equal(brain.journey.grub.foodLog.today.entryCount,1);assert.equal(brain.journey.grub.foodLog.today.nutrition.proteinG.total,18);
+ assert.equal(brain.journey.grub.chosenForToday.name,'Synthetic Lentil Bowl');
+ const answer=await(await ask(env,{message:'What have I eaten today?'})).json();assert.equal(answer.delivery,'saved_fact');assert.match(answer.answer,/Synthetic eaten eggs and toast/);assert.doesNotMatch(answer.answer,/Lentil Bowl/);
+ const protein=await(await ask(env,{message:'How much protein have I logged today?'})).json();assert.equal(protein.delivery,'saved_fact');assert.match(protein.answer,/18 g/);assert.match(protein.answer,/not proof of your whole day/);assert.equal(calls.length,0);
+ assert.equal((await journeyPortabilityRoutes(foodRequest({id:entry.operationId},'DELETE'),foodEnv)).status,200);
+ const after=await(await ask(env,{message:'What have I eaten today?',history:[{role:'assistant',content:'Synthetic eaten eggs and toast was logged earlier.'}]})).json();assert.match(after.answer,/no saved eaten-food entries/);assert.doesNotMatch(after.answer,/Synthetic eaten eggs/);assert.equal(calls.length,0);
+ assert.equal(DB.sqlite.prepare('SELECT COUNT(*) n FROM member_food_entries').get().n,0);
 });

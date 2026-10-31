@@ -59,6 +59,44 @@ Authoritative implementation references checked 31 October 2026:
 
 ## Grub
 
+### Confirmed food integration — 31 October 2026, Europe/London
+
+Matt required saving food to update the wider logs and shared Shift AI context.
+The previous branch saved the diary but left that connection incomplete.
+
+`member_food_entries` is now the single source for confirmed eaten food.
+`food-log.mjs` calculates today's and the last seven days' entry counts and
+optional nutrition, with known/missing amount coverage. It aggregates the full
+date range independently of the 365-entry diary and 12-entry AI display limits.
+Actual recorded zeros count; unknown amounts remain absent. Planned meals and
+separately entered daily progress totals are never added to food-log amounts.
+There is no duplicate write to progress, plans or AI memory.
+
+The existing diary API returns this read model. Connected Today context and
+the shared member journey expose the same model to Shift AI and Ask Timber.
+Direct questions about today's logged food, protein or energy use current
+confirmed records without a model call, including after deletion. Context
+rules prohibit restoring deleted entries from chat or presenting partial logs
+as a complete day's intake. Unrelated practical questions omit the food list.
+
+Shared Today and Journey cards show recorded food and optional totals. Saves
+and deletions emit invalidation signals; other tabs receive no food content or
+member identifiers and fetch their own authenticated records. Views verify the
+current account before displaying results, cancel stale reads, and clear on
+background/navigation. Grub's summary reads the same aggregate rather than
+counting a truncated client history. Save acknowledgement remains distinct
+from a failed view refresh; simultaneous identical retries count once.
+
+Local checks cover real authenticated SQLite saves, idempotent/concurrent
+retries, deletion, consent/pause and changes during reads, account separation,
+London dates, missing-versus-zero amounts, full-range totals beyond display
+limits, current AI facts and cancelled/mismatched-account view responses.
+Hosted checks additionally exercise the actual Ask Timber route and shared
+brain. Browser acceptance and the current CI run must be read separately from
+these implementation statements. Photo processing remains inactive; no
+additional processor, agreement, paid inference or production release is
+activated by this logging work.
+
 The existing private food diary is extended with description, packet lookup,
 photo-recognition preparation, explicit portion review, recent foods and a
 summary of actual saved entries. Recipe plans never count as eaten food.

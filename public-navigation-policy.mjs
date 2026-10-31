@@ -154,11 +154,38 @@ export function publicTickerAsset(request) {
   if (new URL(request.url).pathname !== tickerAsset || !['GET','HEAD'].includes(request.method)) return null;
   return new Response(request.method === 'HEAD' ? null : tickerClient, {headers:{'Content-Type':'application/javascript; charset=utf-8','Cache-Control':'public, max-age=300','X-Content-Type-Options':'nosniff'}});
 }
+export function removeRetiredShedTeasers(html) {
+  return html.replace(/<span\b(?=[^>]*\bclass=["'][^"']*\bsst-shed-teaser\b[^"']*["'])[^>]*>[\s\S]*?<\/span>/gi, '');
+}
+export const navigationSafetyVersion='public-navigation-20261031-r2';
+export const navigationSafetyStyles='.sst-shed-teaser{display:none!important}';
+export const navigationSafetyClient=String.raw`(function retireTimberShedClient(){
+  function retire(){for(const node of document.querySelectorAll('.sst-shed-teaser')){node.hidden=true;node.setAttribute('aria-hidden','true');if(node.textContent)node.textContent=''}}
+  retire();
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',retire,{once:true});
+  new MutationObserver(retire).observe(document.documentElement,{childList:true,subtree:true});
+  setTimeout(retire,0);setTimeout(retire,250);
+})();`;
+function guardRetiredShedNavigation(source){
+  const navigationSource=removeRetiredShedTeasers(source);
+  return navigationSource.includes('data-shift-navigation-retirement')?navigationSource:navigationSource.replace(/<\/head>/i,`<style data-shift-navigation-retirement="${navigationSafetyVersion}">${navigationSafetyStyles}</style></head>`).replace(/<\/body>/i,`<script data-shift-navigation-retirement="${navigationSafetyVersion}">${navigationSafetyClient}</script></body>`);
+}
+export async function withRetiredShedNavigation(request,response){
+  if(!response.ok||!['GET','HEAD'].includes(request.method)||!/text\/html/i.test(response.headers.get('Content-Type')||''))return response;
+  const source=await response.text();
+  if(!/<\/head>/i.test(source)||!/<\/body>/i.test(source))return new Response(request.method==='HEAD'?null:source,response);
+  const html=guardRetiredShedNavigation(source);
+  if(html===source)return new Response(request.method==='HEAD'?null:source,response);
+  const headers=new Headers(response.headers);for(const name of ['Content-Length','ETag','Last-Modified'])headers.delete(name);
+  headers.set('X-Shift-Navigation-Policy','approved-20261031');
+  return new Response(request.method==='HEAD'?null:html,{status:response.status,statusText:response.statusText,headers});
+}
 export async function withPublicTicker(request, response) {
   if (!response.ok || !['GET','HEAD'].includes(request.method) || !/text\/html/i.test(response.headers.get('Content-Type') || '')) return response;
   const source = await response.text();
   if (!/<\/head>/i.test(source) || !/<\/body>/i.test(source)) return new Response(request.method === 'HEAD' ? null : source, response);
-  const contrastSource=repairServiceBridgePaint(source.includes('data-shift-public-contrast')?source:source.replace(/<\/head>/i,`<style data-shift-public-contrast="${contrastSafetyVersion}">${contrastSafetyStyles}</style></head>`));
+  const navigationGuarded=guardRetiredShedNavigation(source);
+  const contrastSource=repairServiceBridgePaint(navigationGuarded.includes('data-shift-public-contrast')?navigationGuarded:navigationGuarded.replace(/<\/head>/i,`<style data-shift-public-contrast="${contrastSafetyVersion}">${contrastSafetyStyles}</style></head>`));
   const guardedSource=contrastSource.includes('data-shift-contrast-guard')?contrastSource:contrastSource.replace(/<\/body>/i,`<script data-shift-contrast-guard="${contrastSafetyVersion}">${contrastSafetyClient}</script></body>`);
   const enabled = tickerAllowed(new URL(request.url).pathname);
   let html = guardedSource
@@ -177,6 +204,7 @@ export async function withPublicTicker(request, response) {
   const headers = new Headers(response.headers);
   for (const h of ['Content-Length','ETag','Last-Modified']) headers.delete(h);
   headers.set('X-Shift-Ticker-Policy', tickerVersion);
+  headers.set('X-Shift-Navigation-Policy', 'approved-20261031');
   headers.set('X-Shift-Contrast-Safety', contrastSafetyVersion);
   return new Response(request.method === 'HEAD' ? null : html, {status:response.status,statusText:response.statusText,headers});
 }
