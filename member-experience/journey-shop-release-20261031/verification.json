@@ -1,0 +1,1691 @@
+{
+  "state": "SOURCE_AND_ISOLATED_ACCEPTANCE_PASSED_NOT_DEPLOYED",
+  "predecessors": {
+    "journey": "a67f1b3f1bdd51ca2b93997fa796a1e1202b390b",
+    "shop": "15c370ea58f1277ef838b1956da6dfbce90c72dc"
+  },
+  "sourceFiles": {
+    "member-experience/journey-shop-release.mjs": {
+      "gitBlob": "7a3d6e32783c5939456cd86118a6e81111e5b3a1",
+      "sha256": "097d5b1b5f4a865c81c471be186b0a970dad8e4b950277a9b5ce8dff1afa7044",
+      "bytes": 3518,
+      "endsNewline": true
+    },
+    "member-experience/shop-document-release.mjs": {
+      "gitBlob": "898a2e38aee94ae54bdbd4fc80d656c1b05b3f51",
+      "sha256": "d4cf5cc9139ad55eaed5042b6d6ab8fd83fe1e3a1e9fcd66cd8c49ccda8383b3",
+      "bytes": 543,
+      "endsNewline": true
+    },
+    "member-experience/journey-shop-assets.mjs": {
+      "gitBlob": "eb2df081a0a25ca7ca92776a337caaa34319792e",
+      "sha256": "8af1fb7356e6f8366c3bd7a4ed98e2389c95bcd5bf3298a933426ca832b210aa",
+      "bytes": 5235,
+      "endsNewline": true
+    },
+    "member-experience/tests/journey-shop-release.test.mjs": {
+      "gitBlob": "58c8508ea8e4bf18758557b6287cb18d353f0805",
+      "sha256": "acc8adcccd6ef09daae7ba233a38a13cef061e6cb665e1db38b4921b5ae34710",
+      "bytes": 6246,
+      "endsNewline": true
+    },
+    "member-experience/tests/shop-connected-browser.mjs": {
+      "gitBlob": "f2ce9921a29a474e6f07393b766bd8a953d0ff09",
+      "sha256": "e15f6e96bda2429a9b7d4ef9474fa35f3415b942de10178544ae6267b3e181aa",
+      "bytes": 22238,
+      "endsNewline": true
+    },
+    "member-experience/shop-navigation-client.mjs": {
+      "gitBlob": "588b5c935765dc4dd4c4a4e5d84119c3fe5181b2",
+      "sha256": "94821ce6d5a389f6be6deaffc6dea98324095929a3844dcf345f96d98dd32fa4",
+      "bytes": 7471,
+      "endsNewline": true
+    },
+    "member-experience/journey-shop-build.mjs": {
+      "gitBlob": "24571dadcc7d16b3be718b377a545c0f58dc9d60",
+      "sha256": "cff2090710f1601f07235b5fa905d719fb5c04b731276fd1bdcca15b8d039cdd",
+      "bytes": 2368,
+      "endsNewline": true
+    },
+    "member-experience/journey-shop-publish.mjs": {
+      "gitBlob": "0f72ea845f9223b617ac1a407922fa09ee62b184",
+      "sha256": "9f4145d784255ee12c96371ff4f75d4189dd4df53b2ae75fc5936e636425a13f",
+      "bytes": 9831,
+      "endsNewline": true
+    },
+    "member-experience/tests/fixtures/journey-shop-live-layout-20261031.txt": {
+      "gitBlob": "49314a1fbf4c265fa0d718fff090756cc9539508",
+      "sha256": "cf2fea148c1a2949dbbb6097ee6ed5e270149e8a4796cddc0e526d9fdc261f40",
+      "bytes": 167960,
+      "endsNewline": true
+    }
+  },
+  "sourceTests": {
+    "passed": 27,
+    "failed": 0
+  },
+  "browser": {
+    "chromium": {
+      "kind": "MY_TIMBER_SHOP_OFFLINE_BROWSER_ACCEPTANCE",
+      "at": "2026-10-31T22:56:55.937Z",
+      "browser": "chromium",
+      "nativeScriptSha256": [],
+      "live": false,
+      "productionWrites": 0,
+      "checkoutPosts": 0,
+      "fixtureSha256": {
+        "testing": "37dcc2914eb57989a5defecb3a6f108fd9e4c2dfc2d50d837289bbc9c424099d",
+        "testing-vitamin-d": "8ea8757559a0ae8d2ebc3ca185b40f109c719bf6d8a800782c4ad47840403e0c",
+        "nutrition": "1212d50d473075477d480ea46d9b2c31d8fccf273ca054c896906a4d8557da7b",
+        "kit": "2562bda3cf82a650f2bcd35adf6dfe32b13afaebf7c201e18c94f77358454bba",
+        "kit-product": "b90ec41d856243903ebd078ed0d137cd7ed02586fa72d38746842c7400de96be",
+        "basket": "ef92a52d7aaddc8ecd06fa79efeea83ac7ef85df633d1c06a789f817886904fe"
+      },
+      "checks": 30,
+      "results": [
+        {
+          "width": 320,
+          "case": "approved hub, 8px spacing, seven tabs, icons and no horizontal overflow",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "all seven destinations navigate and More retains account/settings/orders",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "refresh, resize and rotation retain one unobscured navigation",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "real integrated Journey handlers save all six dated record types, refresh, correction, deletion and Snapshot safeguards in isolated SQLite",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "real product content, held purchase button, nutrition form and kit colour flow retained",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "basket count across pages, saved checkout and account-switch clearing; zero checkout POSTs",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "anonymous sign-in guard never reveals app chrome or catalogue",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "approved hub, 8px spacing, seven tabs, icons and no horizontal overflow",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "all seven destinations navigate and More retains account/settings/orders",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "refresh, resize and rotation retain one unobscured navigation",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "real integrated Journey handlers save all six dated record types, refresh, correction, deletion and Snapshot safeguards in isolated SQLite",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "real product content, held purchase button, nutrition form and kit colour flow retained",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "basket count across pages, saved checkout and account-switch clearing; zero checkout POSTs",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "anonymous sign-in guard never reveals app chrome or catalogue",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "approved hub, 8px spacing, seven tabs, icons and no horizontal overflow",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "all seven destinations navigate and More retains account/settings/orders",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "refresh, resize and rotation retain one unobscured navigation",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "real integrated Journey handlers save all six dated record types, refresh, correction, deletion and Snapshot safeguards in isolated SQLite",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "real product content, held purchase button, nutrition form and kit colour flow retained",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "basket count across pages, saved checkout and account-switch clearing; zero checkout POSTs",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "anonymous sign-in guard never reveals app chrome or catalogue",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "approved hub, 8px spacing, seven tabs, icons and no horizontal overflow",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "all seven destinations navigate and More retains account/settings/orders",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "refresh, resize and rotation retain one unobscured navigation",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "real integrated Journey handlers save all six dated record types, refresh, correction, deletion and Snapshot safeguards in isolated SQLite",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "real product content, held purchase button, nutrition form and kit colour flow retained",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "basket count across pages, saved checkout and account-switch clearing; zero checkout POSTs",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "anonymous sign-in guard never reveals app chrome or catalogue",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "late old-account basket response is discarded",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "unavailable identity check fails closed without repeated background requests",
+          "pass": true
+        }
+      ]
+    },
+    "webkit-native": {
+      "kind": "MY_TIMBER_SHOP_OFFLINE_BROWSER_ACCEPTANCE",
+      "at": "2026-10-31T22:57:10.821Z",
+      "browser": "webkit",
+      "nativeScriptSha256": [
+        "00fe5e04f7e1ab9f757ba0106a95b6622314748f388ee17b40c2961f3958e88b",
+        "1a5a30528ac9fa41264df609811f2151ed7cf02a465a116cd0ac527b0b870872"
+      ],
+      "live": false,
+      "productionWrites": 0,
+      "checkoutPosts": 0,
+      "fixtureSha256": {
+        "testing": "37dcc2914eb57989a5defecb3a6f108fd9e4c2dfc2d50d837289bbc9c424099d",
+        "testing-vitamin-d": "8ea8757559a0ae8d2ebc3ca185b40f109c719bf6d8a800782c4ad47840403e0c",
+        "nutrition": "1212d50d473075477d480ea46d9b2c31d8fccf273ca054c896906a4d8557da7b",
+        "kit": "2562bda3cf82a650f2bcd35adf6dfe32b13afaebf7c201e18c94f77358454bba",
+        "kit-product": "b90ec41d856243903ebd078ed0d137cd7ed02586fa72d38746842c7400de96be",
+        "basket": "ef92a52d7aaddc8ecd06fa79efeea83ac7ef85df633d1c06a789f817886904fe"
+      },
+      "checks": 30,
+      "results": [
+        {
+          "width": 320,
+          "case": "approved hub, 8px spacing, seven tabs, icons and no horizontal overflow",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "all seven destinations navigate and More retains account/settings/orders",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "refresh, resize and rotation retain one unobscured navigation",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "real integrated Journey handlers save all six dated record types, refresh, correction, deletion and Snapshot safeguards in isolated SQLite",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "real product content, held purchase button, nutrition form and kit colour flow retained",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "basket count across pages, saved checkout and account-switch clearing; zero checkout POSTs",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "anonymous sign-in guard never reveals app chrome or catalogue",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "approved hub, 8px spacing, seven tabs, icons and no horizontal overflow",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "all seven destinations navigate and More retains account/settings/orders",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "refresh, resize and rotation retain one unobscured navigation",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "real integrated Journey handlers save all six dated record types, refresh, correction, deletion and Snapshot safeguards in isolated SQLite",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "real product content, held purchase button, nutrition form and kit colour flow retained",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "basket count across pages, saved checkout and account-switch clearing; zero checkout POSTs",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "anonymous sign-in guard never reveals app chrome or catalogue",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "approved hub, 8px spacing, seven tabs, icons and no horizontal overflow",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "all seven destinations navigate and More retains account/settings/orders",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "refresh, resize and rotation retain one unobscured navigation",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "real integrated Journey handlers save all six dated record types, refresh, correction, deletion and Snapshot safeguards in isolated SQLite",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "real product content, held purchase button, nutrition form and kit colour flow retained",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "basket count across pages, saved checkout and account-switch clearing; zero checkout POSTs",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "anonymous sign-in guard never reveals app chrome or catalogue",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "approved hub, 8px spacing, seven tabs, icons and no horizontal overflow",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "all seven destinations navigate and More retains account/settings/orders",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "refresh, resize and rotation retain one unobscured navigation",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "real integrated Journey handlers save all six dated record types, refresh, correction, deletion and Snapshot safeguards in isolated SQLite",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "real product content, held purchase button, nutrition form and kit colour flow retained",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "basket count across pages, saved checkout and account-switch clearing; zero checkout POSTs",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "anonymous sign-in guard never reveals app chrome or catalogue",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "late old-account basket response is discarded",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "unavailable identity check fails closed without repeated background requests",
+          "pass": true
+        }
+      ]
+    }
+  },
+  "build": {
+    "at": "2026-10-31T23:02:11.236Z",
+    "esbuildVersion": "0.28.1",
+    "externalServingModule": "support-service-prior.mjs",
+    "overrides": {
+      "grub-uk-full-publication-20261018.mjs": {
+        "contents": "export {UK_FULL_PUBLICATION} from '../support-service-prior.mjs';\n",
+        "sha256": "036ec09c9a67cf45b608dc8a56e2e3d719b06ba96e455e7190d883683b010587"
+      }
+    },
+    "bundles": {
+      "programme": {
+        "sha256": "ca1552ffc9109fe5fd08fbc57041660d9c1b595ac5060d27432ae1085f98cecd",
+        "bytes": 7079589,
+        "inputs": {
+          "scoped-source/member-state-fast-v1.js": {
+            "bytes": 6158,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "d8dcf15f7b66da7cfbb67fa859ed68d1bd2525f3f1ff760d37b223d2c14dc8e9"
+          },
+          "scoped-source/member-experience/journey-portability.mjs": {
+            "bytes": 7451,
+            "imports": [
+              {
+                "path": "scoped-source/member-state-fast-v1.js",
+                "kind": "import-statement",
+                "original": "../member-state-fast-v1.js"
+              },
+              {
+                "path": "scoped-source/member-experience/health-routes.mjs",
+                "kind": "import-statement",
+                "original": "./health-routes.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "fcb10700268d4b710a86c192bd1df998a5fe1ad7d9241db6b1b7624c1bc5f580"
+          },
+          "scoped-source/member-experience/unit-settings.mjs": {
+            "bytes": 4440,
+            "imports": [
+              {
+                "path": "scoped-source/member-state-fast-v1.js",
+                "kind": "import-statement",
+                "original": "../member-state-fast-v1.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "a0ce445fc33c1304a0b9c18dfbfe607b52e278bd038a2e8ef96f0e13f9d0cbe9"
+          },
+          "scoped-source/member-experience/device-health.mjs": {
+            "bytes": 7872,
+            "imports": [
+              {
+                "path": "scoped-source/member-state-fast-v1.js",
+                "kind": "import-statement",
+                "original": "../member-state-fast-v1.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "22baa39275ebb7e96b5af357a25a52f8ebb97b181637083da74eb4831a0eb0cb"
+          },
+          "scoped-source/member-experience/support-records.mjs": {
+            "bytes": 4961,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "d04e916804316ff193ed05a413e4e3979eeb52c54da05f266800c43fdbabca52"
+          },
+          "scoped-source/member-experience/support-review.mjs": {
+            "bytes": 5800,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/support-records.mjs",
+                "kind": "import-statement",
+                "original": "./support-records.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "8c30b44874a6443c2be472e3d67b3f1b517c083125cb1c5f6c2cfe5e7940f188"
+          },
+          "scoped-source/member-experience/support-plan.mjs": {
+            "bytes": 15200,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/support-records.mjs",
+                "kind": "import-statement",
+                "original": "./support-records.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/support-review.mjs",
+                "kind": "import-statement",
+                "original": "./support-review.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "6dde00ca9820d29a032f3332f8983a0602fd793823ceb31a25a87eff0aee5848"
+          },
+          "scoped-source/member-experience/life-back/next-shift.mjs": {
+            "bytes": 13665,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/support-plan.mjs",
+                "kind": "import-statement",
+                "original": "../support-plan.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "8d160c06bd307d599e947c10bea7feddc7824d0be7a12ca3095484de014c9fc0"
+          },
+          "scoped-source/member-experience/life-back/model.mjs": {
+            "bytes": 4576,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "7ca76d9b7a9727ae175664dc20f4fc02f85d87088c14a5f20be7485f86d22b8a"
+          },
+          "scoped-source/member-experience/journey-context.mjs": {
+            "bytes": 5091,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/life-back/next-shift.mjs",
+                "kind": "import-statement",
+                "original": "./life-back/next-shift.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/life-back/model.mjs",
+                "kind": "import-statement",
+                "original": "./life-back/model.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "fee09b4f46403ea56cbd277809a992e544fa3bfab8a102df9e402f372b1c154f"
+          },
+          "scoped-source/member-experience/checkin-followup.mjs": {
+            "bytes": 5607,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/journey-context.mjs",
+                "kind": "import-statement",
+                "original": "./journey-context.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/life-back/next-shift.mjs",
+                "kind": "import-statement",
+                "original": "./life-back/next-shift.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "511f11aeeb533b57b6abc2ab9bada6ccf87c2da4639abd5784f3ced0b0953285"
+          },
+          "scoped-source/member-experience/health-interest-store.mjs": {
+            "bytes": 3498,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "55b8813b86e8c75639d9b2b7130a09f97816d049f81d6db9bb161c9c7b4e5ed4"
+          },
+          "scoped-source/member-experience/health-routes.mjs": {
+            "bytes": 10368,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/journey-portability.mjs",
+                "kind": "import-statement",
+                "original": "./journey-portability.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/unit-settings.mjs",
+                "kind": "import-statement",
+                "original": "./unit-settings.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/device-health.mjs",
+                "kind": "import-statement",
+                "original": "./device-health.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/checkin-followup.mjs",
+                "kind": "import-statement",
+                "original": "./checkin-followup.mjs"
+              },
+              {
+                "path": "scoped-source/member-state-fast-v1.js",
+                "kind": "import-statement",
+                "original": "../member-state-fast-v1.js"
+              },
+              {
+                "path": "scoped-source/member-experience/health-interest-store.mjs",
+                "kind": "import-statement",
+                "original": "./health-interest-store.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "8d1c3d34ed8af0f02defec02d8cc5bec2fa19018214a5551b08fcea5a35020b7"
+          },
+          "scoped-source/member-experience/journey-records.mjs": {
+            "bytes": 6140,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "e21a48d9fbbedfb2406b3e492111668c24f8b2cddd2a58f15d90ecd5e5fefba0"
+          },
+          "scoped-source/member-experience/journey-data.mjs": {
+            "bytes": 5551,
+            "imports": [
+              {
+                "path": "scoped-source/member-state-fast-v1.js",
+                "kind": "import-statement",
+                "original": "../member-state-fast-v1.js"
+              },
+              {
+                "path": "scoped-source/member-experience/health-routes.mjs",
+                "kind": "import-statement",
+                "original": "./health-routes.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/journey-records.mjs",
+                "kind": "import-statement",
+                "original": "./journey-records.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "ac098bbbe9b1e90b35648c7d69f6155ffa62694c35afffbaea6ae4b9d20af8df"
+          },
+          "scoped-source/member-experience/session-state.mjs": {
+            "bytes": 4870,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "9cdfe92b4a3e14ff1ebbc3ad8d3d844ea48a8ce7c84e328be5970bc9f97ebd65"
+          },
+          "scoped-source/member-experience/journey-presentation.mjs": {
+            "bytes": 8685,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "9581091090fceb537ea05ca2c49b074e3f1e680acf22a39d2bfef76691fed4f2"
+          },
+          "scoped-source/member-experience/journey-page-client.mjs": {
+            "bytes": 35689,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/journey-presentation.mjs",
+                "kind": "import-statement",
+                "original": "./journey-presentation.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "76434136c4a97f91bbcbd316ee60b8ca416ba7e39187f78a178b070a24adae38"
+          },
+          "scoped-source/member-experience/journey-page.mjs": {
+            "bytes": 11861,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/session-state.mjs",
+                "kind": "import-statement",
+                "original": "./session-state.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/journey-page-client.mjs",
+                "kind": "import-statement",
+                "original": "./journey-page-client.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "35e3c3c375675e0507f0ba5f89fb7a296fe2ea6dadc6f788b4ef18a63ad6e13e"
+          },
+          "scoped-source/industrial-catalogue-v1.js": {
+            "bytes": 23464,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "e9156f27fd2eb199944af021c4d78157c3da5686630b2f8446e2a664aea47a4f"
+          },
+          "scoped-source/industrial-catalogue-v2.js": {
+            "bytes": 1510,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v1.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v1.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "0db7e93b5cec79df41188ab3b2c46ef95f42f2f573f4869bd28790a40215881d"
+          },
+          "scoped-source/industrial-catalogue-v3.js": {
+            "bytes": 20456,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v2.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v2.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "3f5e9561d6403d190af874ef1847059c8d36ded213f69c90b6a4c9df9e3c4b43"
+          },
+          "scoped-source/industrial-catalogue-v4.js": {
+            "bytes": 4265,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v3.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v3.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "608bf7c2b1ad7d752fb055d5157e44d801f165a3295b53d8ba38144ed72eb867"
+          },
+          "scoped-source/industrial-catalogue-v5.js": {
+            "bytes": 1392,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v4.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v4.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "2b3b1e7f8049af83438fcaede4cda878a6b3cca3d1919938134d5443e096d539"
+          },
+          "scoped-source/industrial-catalogue-v6.js": {
+            "bytes": 2146,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v5.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v5.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "c42e212782b3edaf1d3d9b7a77f7afc0c91b28e63a1c9113478d942dd078a34a"
+          },
+          "scoped-source/industrial-catalogue-v7.js": {
+            "bytes": 1937,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v6.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v6.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "1d70fca6f6cacf0c523196b753c80f008cf525a6d0682624b0b437219f696f2f"
+          },
+          "scoped-source/industrial-catalogue-v8.js": {
+            "bytes": 7447,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v7.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v7.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "8e5108f27c4084b8b662f4531bbedb6e0586895dc302916f234b845c1ba62fba"
+          },
+          "scoped-source/industrial-catalogue-v9.js": {
+            "bytes": 4345,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v8.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v8.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "ef1c48132cb816fa333309c989c87b3a6c66cf7f518c099d53f51f0a670e576f"
+          },
+          "scoped-source/industrial-catalogue-v10.js": {
+            "bytes": 4446,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v9.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v9.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "f069559df379fa209566b73408e6f447038cc58063ca191d433714f5299d7c55"
+          },
+          "scoped-source/industrial-grub-semantic-quality-v1.mjs": {
+            "bytes": 5890,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "8fa55d634559f7bc7d8f03287255ac286de870ac429f9ec368f099ee0968b2b7"
+          },
+          "scoped-source/industrial-catalogue-v11.js": {
+            "bytes": 7241,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v10.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v10.js"
+              },
+              {
+                "path": "scoped-source/industrial-grub-semantic-quality-v1.mjs",
+                "kind": "import-statement",
+                "original": "./industrial-grub-semantic-quality-v1.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "3327faa61a37ac471ac2df14a2c0fdf8081f6bc59440b1af6ca04c22b27820c3"
+          },
+          "scoped-source/industrial-catalogue-v12.js": {
+            "bytes": 5009,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v11.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v11.js"
+              },
+              {
+                "path": "scoped-source/industrial-grub-semantic-quality-v1.mjs",
+                "kind": "import-statement",
+                "original": "./industrial-grub-semantic-quality-v1.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "a6a51be39aaf9dbb202d42fbfc95fa448bc80f4ccc6dfe957e773458981525d7"
+          },
+          "scoped-source/industrial-catalogue-v13.js": {
+            "bytes": 10975,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v12.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v12.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "219223dc52af235ad200848974b375e82c928153d262d296192efed28e7a6bc4"
+          },
+          "scoped-source/industrial-catalogue-v14.js": {
+            "bytes": 9670,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v13.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v13.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "082796344c07fa09f1356679dae7aeda5a2d02aba599b7b19db3a74fa7268db8"
+          },
+          "scoped-source/member-experience/grub-image-map.mjs": {
+            "bytes": 5261759,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "82cbb550bafe6f587e009eb044f9c796eafcdf3207ba0a4600e995c48af00d69"
+          },
+          "scoped-source/member-experience/grub-discovery-manifest-20261017.mjs": {
+            "bytes": 1126013,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "a05afad0d77a2d11eaef400d50da02e6363ace838e19963db6fe15bcb813fdbc"
+          },
+          "scoped-source/member-experience/grub-discovery.mjs": {
+            "bytes": 1679,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/grub-discovery-manifest-20261017.mjs",
+                "kind": "import-statement",
+                "original": "./grub-discovery-manifest-20261017.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "7c61aae81555251927d8ad1ce75b89b893977c0c39b902e73569334e9854ab2e"
+          },
+          "scoped-source/member-experience/grub-search.mjs": {
+            "bytes": 8540,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v14.js",
+                "kind": "import-statement",
+                "original": "../industrial-catalogue-v14.js"
+              },
+              {
+                "path": "scoped-source/member-experience/grub-image-map.mjs",
+                "kind": "import-statement",
+                "original": "./grub-image-map.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/grub-discovery.mjs",
+                "kind": "import-statement",
+                "original": "./grub-discovery.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "968b1e6de5c0eeddfda00a2a67d6854fa1c05ab6154e1edc063ebbd3a4030f36"
+          },
+          "scoped-source/member-experience/grub-ingredients.mjs": {
+            "bytes": 6672,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "cf5e2ed2e9cf9b65463f44a334ea9ba3c54556a5768415fb8059adf4a70557be"
+          },
+          "scoped-source/member-experience/grub-intelligence.mjs": {
+            "bytes": 11420,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/grub-search.mjs",
+                "kind": "import-statement",
+                "original": "./grub-search.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/grub-discovery.mjs",
+                "kind": "import-statement",
+                "original": "./grub-discovery.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "eaeded910ad9b8fb6987b3d31853c830acaff4045343cb1713fcedb6c86a64f9"
+          },
+          "scoped-source/member-experience/grub-workspace.mjs": {
+            "bytes": 12863,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/grub-ingredients.mjs",
+                "kind": "import-statement",
+                "original": "./grub-ingredients.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/grub-discovery.mjs",
+                "kind": "import-statement",
+                "original": "./grub-discovery.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/grub-search.mjs",
+                "kind": "import-statement",
+                "original": "./grub-search.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/grub-intelligence.mjs",
+                "kind": "import-statement",
+                "original": "./grub-intelligence.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "cba12f8a764d946aa7091b49cd4ba1392d486e42661551722fac68b37f766261"
+          },
+          "scoped-source/grub-everyday-publication-v1.mjs": {
+            "bytes": 78689,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "1aa0ee0d7a766596a7debb567bb4225c5a67750be8988f80e023241e9aad26d6"
+          },
+          "scoped-source/grub-everyday-authority-v1.mjs": {
+            "bytes": 3699,
+            "imports": [
+              {
+                "path": "scoped-source/grub-everyday-publication-v1.mjs",
+                "kind": "import-statement",
+                "original": "./grub-everyday-publication-v1.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "05ce28a30c0c384cadbda726185fe91448aef9001a306ac9df25addfc2e09524"
+          },
+          "scoped-source/grub-uk-full-publication-20261018.mjs": {
+            "bytes": 66,
+            "imports": [
+              {
+                "path": "../support-service-prior.mjs",
+                "kind": "import-statement",
+                "external": true
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "8a2285269526c955dfde5e657e96031ac24cbdd7a673bcd92c430decbda81a3b"
+          },
+          "scoped-source/grub-uk-full-authority-20261018.mjs": {
+            "bytes": 2357,
+            "imports": [
+              {
+                "path": "scoped-source/grub-uk-full-publication-20261018.mjs",
+                "kind": "import-statement",
+                "original": "./grub-uk-full-publication-20261018.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "5a71784f94f4b1edef8b74066f1b5bb6c2bc5131791b27daecebfcc8416d6349"
+          },
+          "scoped-source/grub-uk-core-publication-20261017.mjs": {
+            "bytes": 93259,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "1213caeaf4253da8e05fc94fc1324917c0fdfc583851d69c45a7c17f707c45e9"
+          },
+          "scoped-source/grub-uk-core-authority-20261017.mjs": {
+            "bytes": 2299,
+            "imports": [
+              {
+                "path": "scoped-source/grub-uk-core-publication-20261017.mjs",
+                "kind": "import-statement",
+                "original": "./grub-uk-core-publication-20261017.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "156287d6eb04393d77bf1c8f3523e50449b55910252f62f9c949101b7a5b4dc4"
+          },
+          "scoped-source/grub-expansion-serving-manifest-v1.mjs": {
+            "bytes": 362347,
+            "imports": [
+              {
+                "path": "node:zlib",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "node:buffer",
+                "kind": "import-statement",
+                "external": true
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "fdc923cb77e7b46a02c4be3be107d078af3256b361f8e0dcf683e14348c42d20"
+          },
+          "scoped-source/grub-expansion-authority-v1.mjs": {
+            "bytes": 9331,
+            "imports": [
+              {
+                "path": "scoped-source/grub-everyday-authority-v1.mjs",
+                "kind": "import-statement",
+                "original": "./grub-everyday-authority-v1.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/grub-discovery.mjs",
+                "kind": "import-statement",
+                "original": "./member-experience/grub-discovery.mjs"
+              },
+              {
+                "path": "scoped-source/grub-uk-full-authority-20261018.mjs",
+                "kind": "import-statement",
+                "original": "./grub-uk-full-authority-20261018.mjs"
+              },
+              {
+                "path": "scoped-source/grub-uk-core-authority-20261017.mjs",
+                "kind": "import-statement",
+                "original": "./grub-uk-core-authority-20261017.mjs"
+              },
+              {
+                "path": "scoped-source/grub-expansion-serving-manifest-v1.mjs",
+                "kind": "import-statement",
+                "original": "./grub-expansion-serving-manifest-v1.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "9184b98f149ff084ee1e237ea0d1ce6b4db550467cf402506a16b8fb467a5060"
+          },
+          "scoped-source/member-experience/grub-routes.mjs": {
+            "bytes": 3742,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/journey-context.mjs",
+                "kind": "import-statement",
+                "original": "./journey-context.mjs"
+              },
+              {
+                "path": "scoped-source/member-state-fast-v1.js",
+                "kind": "import-statement",
+                "original": "../member-state-fast-v1.js"
+              },
+              {
+                "path": "scoped-source/member-experience/grub-search.mjs",
+                "kind": "import-statement",
+                "original": "./grub-search.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/grub-workspace.mjs",
+                "kind": "import-statement",
+                "original": "./grub-workspace.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/grub-intelligence.mjs",
+                "kind": "import-statement",
+                "original": "./grub-intelligence.mjs"
+              },
+              {
+                "path": "scoped-source/grub-expansion-authority-v1.mjs",
+                "kind": "import-statement",
+                "original": "../grub-expansion-authority-v1.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "f907c825d4267c8335356698f625b22bb745950d26f4c3c75bc4eb5b5adb5f1f"
+          },
+          "scoped-source/member-experience/support-prepared-options.mjs": {
+            "bytes": 8715,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/grub-routes.mjs",
+                "kind": "import-statement",
+                "original": "./grub-routes.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/grub-workspace.mjs",
+                "kind": "import-statement",
+                "original": "./grub-workspace.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/grub-intelligence.mjs",
+                "kind": "import-statement",
+                "original": "./grub-intelligence.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/support-records.mjs",
+                "kind": "import-statement",
+                "original": "./support-records.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "57e3da6b81f8828f4f4c5c334c6b3e5781e55988ea98e6c69e9df664afa554af"
+          },
+          "scoped-source/member-experience/shed-pilot-access.mjs": {
+            "bytes": 797,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "763f708d2b80c2772535f69abb6f20dd02c05ed931f2bd4aea73dc01ce783cce"
+          },
+          "scoped-source/member-experience/timber-shed-privacy-signals.mjs": {
+            "bytes": 637,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "ee06b61b9057764172c5033c6d6dd6220e5e8a5e1315760651181332f69c81a2"
+          },
+          "scoped-source/member-experience/timber-shed-community-bouncer.mjs": {
+            "bytes": 7606,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/timber-shed-privacy-signals.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-privacy-signals.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "6551357918181d2d7815e00390dfc674f5a5dbcf89a972e400b646ff976a4819"
+          },
+          "scoped-source/member-experience/timber-shed-routine-publication.mjs": {
+            "bytes": 2626,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/timber-shed-community-bouncer.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-community-bouncer.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "92fe90e8a302bbb7e587395009db4bad2a5eeff65da02aef81bec6d97768f292"
+          },
+          "scoped-source/member-experience/timber-shed-governance.mjs": {
+            "bytes": 8367,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "41f6139883275aa6785380f1529640714e7fced45b298e071fe181d3b052d145"
+          },
+          "scoped-source/member-experience/timber-shed-forums.mjs": {
+            "bytes": 4159,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "3ec36ff9ae9da3d91180e3afc51add9a6aa7a5f0cb6499a9bf31934c1ab45668"
+          },
+          "scoped-source/member-experience/timber-shed-ai-moderation.mjs": {
+            "bytes": 3892,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "3b75c1d32faa6d2312c91dafdfa73fc3c257c3bdeafb5296b6b5798e2ae5368a"
+          },
+          "scoped-source/member-experience/timber-shed-forum-appeals.mjs": {
+            "bytes": 5280,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "fb9b735cc2696e0226bd374d75a39bd20b83d35816baabcd256074c578cb462e"
+          },
+          "scoped-source/member-experience/timber-shed-forum-protection.mjs": {
+            "bytes": 9864,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "da2c801f4c090f819df4a5298b3e8fdf8ed3a9520108e9307a46ce7dd7c370b4"
+          },
+          "scoped-source/member-experience/timber-shed-forum-privacy.mjs": {
+            "bytes": 3805,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "a5f3933115bc2a2e98140819481e8393d92a9e76f536fad40486b0bb14fafee3"
+          },
+          "scoped-source/member-experience/timber-shed-forum-notifications.mjs": {
+            "bytes": 1668,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "08fa4eefb35f348729614f4ac963fc525c7d2461953510421f3b1a131bf0a1f9"
+          },
+          "scoped-source/member-experience/timber-shed-forum-routes.mjs": {
+            "bytes": 28471,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/timber-shed-routine-publication.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-routine-publication.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-governance.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-governance.mjs"
+              },
+              {
+                "path": "scoped-source/member-state-fast-v1.js",
+                "kind": "import-statement",
+                "original": "../member-state-fast-v1.js"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-forums.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-forums.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-community-bouncer.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-community-bouncer.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-ai-moderation.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-ai-moderation.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-forum-appeals.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-forum-appeals.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-forum-protection.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-forum-protection.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-forum-privacy.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-forum-privacy.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-forum-notifications.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-forum-notifications.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "b24715e6de4a6efca785298fa5033a55b6a8e7b51558341753f98d1cd738fced"
+          },
+          "scoped-source/member-experience/timber-shed-retention.mjs": {
+            "bytes": 4085,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/timber-shed-governance.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-governance.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "e84685b89ee69afbaf69a9902b8c775c794931446c609be20780bbc36421a091"
+          },
+          "scoped-source/member-experience/shed-support-loop.mjs": {
+            "bytes": 25542,
+            "imports": [
+              {
+                "path": "scoped-source/member-state-fast-v1.js",
+                "kind": "import-statement",
+                "original": "../member-state-fast-v1.js"
+              },
+              {
+                "path": "scoped-source/member-experience/health-routes.mjs",
+                "kind": "import-statement",
+                "original": "./health-routes.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/shed-pilot-access.mjs",
+                "kind": "import-statement",
+                "original": "./shed-pilot-access.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-forum-routes.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-forum-routes.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-governance.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-governance.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-community-bouncer.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-community-bouncer.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-forum-protection.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-forum-protection.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/support-records.mjs",
+                "kind": "import-statement",
+                "original": "./support-records.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-retention.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-retention.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "3bb4d45485ff9286a277265ce6a579e92723703572c6a14ee0b5724e3bc24a56"
+          },
+          "scoped-source/shift-coach/safety.mjs": {
+            "bytes": 3632,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "166eb97fb0c294a9a410b075268d239954da863ef28416cb61107c588588e5d4"
+          },
+          "scoped-source/shift-coach/support.mjs": {
+            "bytes": 6156,
+            "imports": [
+              {
+                "path": "scoped-source/shift-coach/safety.mjs",
+                "kind": "import-statement",
+                "original": "./safety.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "7edbbc4fc57d4360a93c7989b7cc3e65de8bfb9eea68064a69a06d7d34cdceed"
+          },
+          "scoped-source/member-experience/support-policy.mjs": {
+            "bytes": 1895,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "6537e1ae994fb906ccbc548cfc16979d4a534a5488202266607826688f04465b"
+          },
+          "scoped-source/member-experience/member-support-contact.mjs": {
+            "bytes": 5105,
+            "imports": [
+              {
+                "path": "scoped-source/member-state-fast-v1.js",
+                "kind": "import-statement",
+                "original": "../member-state-fast-v1.js"
+              },
+              {
+                "path": "scoped-source/shift-coach/safety.mjs",
+                "kind": "import-statement",
+                "original": "../shift-coach/safety.mjs"
+              },
+              {
+                "path": "scoped-source/shift-coach/support.mjs",
+                "kind": "import-statement",
+                "original": "../shift-coach/support.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/support-policy.mjs",
+                "kind": "import-statement",
+                "original": "./support-policy.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/support-policy.mjs",
+                "kind": "import-statement",
+                "original": "./support-policy.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "0be0d077666785fd97ab87689b3b5dcbbf8053b78cc9a4ce7b79d86be9586048"
+          },
+          "scoped-source/member-experience/life-back-routes.mjs": {
+            "bytes": 8848,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/support-prepared-options.mjs",
+                "kind": "import-statement",
+                "original": "./support-prepared-options.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/shed-support-loop.mjs",
+                "kind": "import-statement",
+                "original": "./shed-support-loop.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/member-support-contact.mjs",
+                "kind": "import-statement",
+                "original": "./member-support-contact.mjs"
+              },
+              {
+                "path": "scoped-source/member-state-fast-v1.js",
+                "kind": "import-statement",
+                "original": "../member-state-fast-v1.js"
+              },
+              {
+                "path": "scoped-source/member-experience/health-routes.mjs",
+                "kind": "import-statement",
+                "original": "./health-routes.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/life-back/model.mjs",
+                "kind": "import-statement",
+                "original": "./life-back/model.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/life-back/next-shift.mjs",
+                "kind": "import-statement",
+                "original": "./life-back/next-shift.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/journey-context.mjs",
+                "kind": "import-statement",
+                "original": "./journey-context.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/support-plan.mjs",
+                "kind": "import-statement",
+                "original": "./support-plan.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/journey-records.mjs",
+                "kind": "import-statement",
+                "original": "./journey-records.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "e403e3f07dfe2006434cdef0bd7bbb247f2ad7d3580bab7d7b3098551ab210b1"
+          },
+          "scoped-source/member-experience/shop-navigation-client.mjs": {
+            "bytes": 7471,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "94821ce6d5a389f6be6deaffc6dea98324095929a3844dcf345f96d98dd32fa4"
+          },
+          "scoped-source/member-experience/shop-navigation.mjs": {
+            "bytes": 10932,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/shop-navigation-client.mjs",
+                "kind": "import-statement",
+                "original": "./shop-navigation-client.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "9bf9d73438d076e8f7d1957f907eb56f501bfdc904b7ba230dd44fda5e8acbb2"
+          },
+          "scoped-source/member-experience/shop-routes.mjs": {
+            "bytes": 7868,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/session-state.mjs",
+                "kind": "import-statement",
+                "original": "./session-state.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/shop-navigation.mjs",
+                "kind": "import-statement",
+                "original": "./shop-navigation.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "46f6910488e89d3e6e7d3dca0608be6190dda76f49309dfe9c795f65e0c3a60e"
+          },
+          "scoped-source/member-experience/shop-basket.mjs": {
+            "bytes": 5060,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/shop-navigation.mjs",
+                "kind": "import-statement",
+                "original": "./shop-navigation.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "93260f324f4660ca43ea4a2011084148a9664ebc157e618666d7ea053543fbd7"
+          },
+          "scoped-source/member-experience/journey-shop-assets.mjs": {
+            "bytes": 5235,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "8af1fb7356e6f8366c3bd7a4ed98e2389c95bcd5bf3298a933426ca832b210aa"
+          },
+          "scoped-source/member-experience/journey-shop-release.mjs": {
+            "bytes": 3518,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/journey-data.mjs",
+                "kind": "import-statement",
+                "original": "./journey-data.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/journey-page.mjs",
+                "kind": "import-statement",
+                "original": "./journey-page.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/life-back-routes.mjs",
+                "kind": "import-statement",
+                "original": "./life-back-routes.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/shop-routes.mjs",
+                "kind": "import-statement",
+                "original": "./shop-routes.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/shop-navigation.mjs",
+                "kind": "import-statement",
+                "original": "./shop-navigation.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/shop-basket.mjs",
+                "kind": "import-statement",
+                "original": "./shop-basket.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/journey-shop-assets.mjs",
+                "kind": "import-statement",
+                "original": "./journey-shop-assets.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "097d5b1b5f4a865c81c471be186b0a970dad8e4b950277a9b5ce8dff1afa7044"
+          },
+          "scoped-source/journey-shop-programme-factory.mjs": {
+            "bytes": 84,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/journey-shop-release.mjs",
+                "kind": "import-statement",
+                "original": "./member-experience/journey-shop-release.mjs"
+              }
+            ],
+            "format": "esm",
+            "generatedEntry": true
+          }
+        }
+      },
+      "documents": {
+        "sha256": "4e8e63f984a5a266aee61fa6d76fcca2a9d4050d433c23d1f945bc5647ed1841",
+        "bytes": 16617,
+        "inputs": {
+          "scoped-source/member-experience/shop-navigation-client.mjs": {
+            "bytes": 7471,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "94821ce6d5a389f6be6deaffc6dea98324095929a3844dcf345f96d98dd32fa4"
+          },
+          "scoped-source/member-experience/shop-navigation.mjs": {
+            "bytes": 10932,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/shop-navigation-client.mjs",
+                "kind": "import-statement",
+                "original": "./shop-navigation-client.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "9bf9d73438d076e8f7d1957f907eb56f501bfdc904b7ba230dd44fda5e8acbb2"
+          },
+          "scoped-source/member-experience/shop-document-release.mjs": {
+            "bytes": 543,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/shop-navigation.mjs",
+                "kind": "import-statement",
+                "original": "./shop-navigation.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "d4cf5cc9139ad55eaed5042b6d6ab8fd83fe1e3a1e9fcd66cd8c49ccda8383b3"
+          },
+          "scoped-source/journey-shop-documents-factory.mjs": {
+            "bytes": 87,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/shop-document-release.mjs",
+                "kind": "import-statement",
+                "original": "./member-experience/shop-document-release.mjs"
+              }
+            ],
+            "format": "esm",
+            "generatedEntry": true
+          }
+        }
+      }
+    }
+  },
+  "providerBaselines": {
+    "checkedAt": "2026-10-31T22:52:16.971Z",
+    "owners": {
+      "shift-programme-member-20261023": {
+        "entrypoint": "continuity-review-20261031/entry.mjs",
+        "expectedEntrypoint": "continuity-review-20261031/entry.mjs",
+        "contentType": "multipart/form-data; boundary=ef5cbb4a228ebfaed85c19acea5fd226bb7317a7ba0a15c00fa45f29c852",
+        "moduleHashes": {
+          "continuity-review-20261031/handoff.mjs": "6aae38134d1aa1c9f66b12b64ab3b6808eb71d9bb26f69db988fe3f7684d92b5",
+          "continuity-review-20261031/html.mjs": "6fc6472132ab06a69fb99bdeaf1e74cb006827db5e8798270104177d5c6ea92e",
+          "data.mjs": "04eeffcded2e2365a76a73e914c0ed4deb461b7001eb43697cddcd63d51df40e",
+          "presentation-entry.mjs": "28154046175263fad23dfdb139acdeb2a637c0daf32d64134e1121bfe1ab56f5",
+          "presentation.mjs": "f3411974c4a5f9c417077a7e6de4298ea96254135137426d8c1f980c2c346c39",
+          "support-service-next.mjs": "4d5232198f92e6e1fc528b3e385921a9c675861a9d5bd5878a667776e2db12c3",
+          "support-service-prior.mjs": "cc8f3f834acebddfefe8c9e6bda52f05d7f7131cf4882ebbfa4abb7fd1032bf4",
+          "urgent-phone-link.mjs": "2959b38f5259960d18af0cdef8cbeb17f5063048a0e000bf1e229499629a2a04",
+          "continuity-review-20261031/entry.mjs": "69349447b3584bf8a34717f2946badb999c245d79a53b4c5ff47feece48c875a",
+          "continuity-review-20261031/runtime.mjs": "d4480c7fe2455d3f87ecb1e57863218fb466f8e624ba0a364f5d4d421779d42c",
+          "support-release-gate.mjs": "a66f8d44b1a409fbfd94e209e0c138dd1cfeb812f3f89089683d0be85ace3798",
+          "support-service.mjs": "257023e78469382031e9da3654ebf879fa352f4d3c3c47897618e95b3bd206cf",
+          "worker.mjs": "a8e356b3eb5f991473bb3c9e0971407fdac5c4b5840d625f7cbc95da72e8fc95"
+        },
+        "changedModules": [],
+        "bindings": [
+          {
+            "name": "CORE",
+            "type": "service"
+          },
+          {
+            "name": "DB",
+            "type": "d1"
+          },
+          {
+            "name": "MEMBER_EXPERIENCE_V1_ENABLED",
+            "type": "plain_text"
+          },
+          {
+            "name": "MY_TIMBER_V6_RELEASE_ENABLED",
+            "type": "secret_text"
+          }
+        ],
+        "compatibilityDate": "2026-08-09",
+        "compatibilityFlags": [
+          "nodejs_compat",
+          "global_fetch_strictly_public"
+        ]
+      },
+      "shift-hq-member-comms-20261023": {
+        "entrypoint": "presentation-entry.mjs",
+        "expectedEntrypoint": "presentation-entry.mjs",
+        "contentType": "multipart/form-data; boundary=defbe433837e18120947a66be8ff1587665c5fb5569e260b3fc1f87d3ca5",
+        "moduleHashes": {
+          "support-release-gate.mjs": "a66f8d44b1a409fbfd94e209e0c138dd1cfeb812f3f89089683d0be85ace3798",
+          "worker.js": "42ff6cc0794618ea9521c532f06f8562f6f467588345ddb75be7732a138aa793",
+          "data.mjs": "04eeffcded2e2365a76a73e914c0ed4deb461b7001eb43697cddcd63d51df40e",
+          "presentation-entry.mjs": "de73cf1ae340ebad4dc6c72214d38a8a4706838c707c1f2f53ea8fbda13f6857",
+          "presentation.mjs": "5b87498f0fd0a69363177f71502a96a42790f5072178ac653d8de6fdf5c7ad9f",
+          "support-markup-next.mjs": "03977c34506c2b3aefe7f1d9945712400fe6d44a1ecd24a252a0606e1c8c80da",
+          "support-markup-prior.mjs": "28f7d1dbf1d9fc27d65fbd4a5ff1edef79cbe001bb7921e1a6a5113ce34aea73",
+          "support-markup.mjs": "71a0ab7b49a09e86050c672c7eda4920f0234738f6d3d4f213da0700740d38ed"
+        },
+        "changedModules": [],
+        "bindings": [
+          {
+            "name": "CORE",
+            "type": "service"
+          },
+          {
+            "name": "DB",
+            "type": "d1"
+          },
+          {
+            "name": "EMAIL",
+            "type": "send_email"
+          },
+          {
+            "name": "HQ",
+            "type": "service"
+          },
+          {
+            "name": "MY_TIMBER_V6_RELEASE_ENABLED",
+            "type": "secret_text"
+          },
+          {
+            "name": "SUPPORT",
+            "type": "service"
+          }
+        ],
+        "compatibilityDate": "2026-10-23",
+        "compatibilityFlags": [
+          "nodejs_compat"
+        ]
+      }
+    }
+  },
+  "limits": [
+    "Synthetic sessions and isolated databases do not prove ordinary production login.",
+    "WebKit compatibility is not physical iPhone acceptance."
+  ],
+  "apple": "Build 1.0.0 (8), review notes, privacy declaration, messages and release settings untouched."
+}
