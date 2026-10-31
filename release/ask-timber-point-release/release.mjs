@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
-import {patchServingModule,sha,assertOwnedDeployment} from './patch.mjs';
+import {patchServingModule,sha,assertOwnedDeployment,assertReleaseSettings} from './patch.mjs';
 import {uploadPreservedAssets,verifyPreservedAssets} from '../../knowledge-health/release-assets.mjs';
 const dir='evidence/ask-timber-point-release';mkdirSync(dir,{recursive:true});
 const manifest=JSON.parse(readFileSync('release/ask-timber-point-release/patches.json'));
@@ -47,7 +47,7 @@ for(const field of ['main_module','compatibility_date','compatibility_flags','as
 // Cloudflare documents migration_tag as absent until a version is deployed.
 assert.equal(stagedRead.migration_tag,undefined,'Staged version must not run a migration');assert.equal(payload.migrations,undefined);
 assert.equal((await current()).id,originalDeployment.id,'Serving deployment moved during staging');
-assert.deepEqual(await api('/workers/scripts/shift-core/settings'),settingBefore,'Worker settings changed during staging');
+assertReleaseSettings(await api('/workers/scripts/shift-core/settings'),settingBefore,payload.annotations);
 receipt.stagingVerified=true;save();console.log('STAGING_VERIFIED '+JSON.stringify(receipt));
 if(process.env.ASK_TIMBER_PROMOTE!=='ASK_TIMBER_ONLY')process.exit(0);
 const assetPaths=['/assets/ask-timber-v1.js','/assets/ask-timber-v1.css','/api-adapter-v33d.js'];
@@ -66,7 +66,7 @@ try{
  const urgent=await chat('I have severe chest pain and cannot breathe');assert.equal(urgent.mode,'safety');assert.equal(urgent.category,'medical_emergency');evidence.push({check:'urgent_safety_preserved',...urgent});
  assert.deepEqual(await assets(),beforeAssets,'Public chat assets changed');
  await verifyPreservedAssets(preserved.checks);receipt.preservedLiveTextAssetCount=preserved.checks.length;
- assert.deepEqual(await api('/workers/scripts/shift-core/settings'),settingBefore,'Worker settings changed after promotion');
+ assertReleaseSettings(await api('/workers/scripts/shift-core/settings'),settingBefore,payload.annotations);
  assertOwnedDeployment(await current(),staged.id);
  const deployedRead=await api('/workers/workers/shift-core/versions/'+staged.id);assert.equal(deployedRead.migration_tag,version.migration_tag,'Existing migration tag must remain unchanged');
  receipt.liveVerified=true;receipt.checks=evidence;receipt.publicAssetsPreserved=beforeAssets;save();console.log('LIVE_VERIFIED '+JSON.stringify(receipt));

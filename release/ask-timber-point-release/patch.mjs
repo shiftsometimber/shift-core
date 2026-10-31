@@ -13,3 +13,8 @@ export function patchServingModule(input,manifest){
  return{code,proof:{beforeSHA256:sha(input),afterSHA256:sha(code),hunks:6,offsets,exactInverse:true,candidate:manifest.candidate}};
 }
 export function assertOwnedDeployment(current,expected){assert.equal(current.versions?.length,1);assert.equal(current.versions[0].percentage,100);assert.equal(current.versions[0].version_id,expected,'Another deployment owns current traffic');}
+
+export function assertReleaseSettings(current,before,annotations){
+ assert.deepEqual(Object.keys(annotations).sort(),['workers/message','workers/tag']);
+ assert.deepEqual(current,{...before,annotations:{...before.annotations,...annotations}},'Runtime settings must be exact; only release message and tag may change');
+}
