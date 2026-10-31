@@ -1,5 +1,5 @@
 name: Public navigation retirement release
-# Runtime under release: fadfd13b2d714be5fc5f64b0fa3e9e4807ad1508
+# Runtime under release: 807859b5d59c7281fe9b16d21f7ee65597c6237d
 on:
   push:
     branches: [main]
