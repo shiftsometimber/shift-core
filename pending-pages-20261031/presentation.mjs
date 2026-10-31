@@ -36,7 +36,7 @@ MAIN .sp-fs1 .sp-actions{align-items:flex-start;flex-direction:column;gap:6px}
 MAIN .sp-ticks{list-style:none!important;padding:0!important;margin:26px 0!important}
 MAIN .sp-ticks li{position:relative;padding-left:43px!important;margin:0 0 20px!important;font-size:19px!important;line-height:1.35!important}
 MAIN .sp-ticks li::before{content:'✓';position:absolute;left:0;top:0;width:29px;height:29px;border-radius:50%;background:#59624b;color:#E7E3DA;text-align:center;font-size:22px;line-height:29px;font-weight:bold}
-MAIN .sp-panel-note{padding-top:18px;border-top:1px solid #a6a998}
+MAIN .sp-panel-note{padding:18px 0 0!important;border:0!important;border-top:1px solid #a6a998!important;background:transparent!important;margin:0!important;min-height:0!important}
 MAIN .sp-panel-note p:last-child{font-size:12px!important;margin-bottom:0!important}
 MAIN :is(.nhh-context,.spp-features,.spp-reading,.mop-contents,.mop-reading,.authority-wrap,.authority-next,.continuity-links,.reading-layout){background:#050505!important;color:#E7E3DA!important;border:0!important;box-shadow:none!important}
 MAIN .nhh-context{max-width:1280px!important;padding:18px 32px!important;margin:0 auto!important;min-height:0!important}
@@ -67,10 +67,10 @@ MAIN .sp-category-links h2{grid-column:1/-1;font-size:29px!important;margin:0!im
 MAIN .sp-category-links p{grid-column:1/-1;margin:0 0 8px!important;font-size:15px!important}
 MAIN .sp-category-links a{border:1px solid #707762;border-radius:4px;padding:12px 16px;justify-content:space-between;text-decoration:none!important;font-size:16px!important}
 MAIN .reading-layout{padding:0!important;max-width:none!important;margin:0!important;display:block!important}
-MAIN .reading-layout>section:not(.sp-hero):not(.sp-benefits){max-width:1216px;margin:0 auto;padding:20px 0;background:#050505!important;color:#E7E3DA!important}
+MAIN .reading-layout>section:not(.sp-hero):not(.sp-benefits){width:calc(100% - 64px)!important;max-width:1216px!important;margin:0 auto!important;padding:20px 0!important;background:#050505!important;color:#E7E3DA!important}
 MAIN :is(.sst-reading-grid-v31,.wrap.longread){max-width:100%!important;padding:0!important;margin:0!important;background:#050505!important;color:#E7E3DA!important}
-MAIN .partner-grid-v3b2{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important}
-MAIN .partner-card-v3b2{background:#10130d!important;border:1px solid #707762!important;color:#E7E3DA!important;padding:20px!important;border-radius:4px!important}
+MAIN .partner-grid-v3b2{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-rows:auto!important;align-items:start!important;gap:14px!important}
+MAIN .partner-card-v3b2{background:#10130d!important;border:1px solid #707762!important;color:#E7E3DA!important;padding:20px!important;border-radius:4px!important;min-height:0!important;height:auto!important}
 MAIN .partner-card-v3b2 h3{color:#E7E3DA!important;font-size:20px!important;margin:0 0 10px!important}
 MAIN .partner-card-v3b2 p{color:#E7E3DA!important;font-size:15px!important;line-height:1.65!important;margin:0!important}
 MAIN .reading-layout>section:not(.sp-hero):not(.sp-benefits) :is(h2,h3,p,li,strong){color:#E7E3DA!important}
@@ -127,7 +127,7 @@ MAIN .continuity-links{max-width:1000px!important;margin:auto!important;padding:
  MAIN .sp-benefits{margin-inline:24px!important;gap:16px!important}
  MAIN .sp-benefits>div{padding-right:16px}
  MAIN .sp-category-links{padding:0 24px 24px}
- MAIN .reading-layout>section:not(.sp-hero):not(.sp-benefits){margin:0 24px!important}
+ MAIN .reading-layout>section:not(.sp-hero):not(.sp-benefits){width:calc(100% - 48px)!important;margin:0 auto!important}
  MAIN .mop-contents{padding:0 24px 24px!important}
  MAIN .mop-contents nav{grid-template-columns:repeat(3,minmax(0,1fr))!important;row-gap:10px!important}
  MAIN .sp-comparison-grid{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
@@ -154,7 +154,7 @@ MAIN .continuity-links{max-width:1000px!important;margin:auto!important;padding:
  MAIN .sp-benefits>div:last-child{padding-bottom:0}
  MAIN .sp-category-links{padding:0 20px 24px;grid-template-columns:1fr 1fr;gap:10px}
  MAIN .sp-category-links a{font-size:14px!important;padding:12px;min-height:58px}
- MAIN .reading-layout>section:not(.sp-hero):not(.sp-benefits){margin:0 20px!important}
+ MAIN .reading-layout>section:not(.sp-hero):not(.sp-benefits){width:calc(100% - 40px)!important;margin:0 auto!important}
  MAIN .partner-grid-v3b2{grid-template-columns:1fr!important}
  MAIN .sp-mo3 .sp-start-panel{grid-template-columns:1fr!important;margin-top:23px!important}
  MAIN .sp-start-copy{padding:22px}
