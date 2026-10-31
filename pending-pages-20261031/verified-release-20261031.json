@@ -1,0 +1,1219 @@
+{
+  "verified": true,
+  "source": "05e1b985101b118a2df3f4b07168a346e2b2ab1a",
+  "release": "pending-pages-20261031-v1",
+  "pages": [
+    {
+      "key": "support",
+      "path": "/weight-loss-support-for-men",
+      "selected": "FS1"
+    },
+    {
+      "key": "partner",
+      "path": "/partner-with-us",
+      "selected": "PW2"
+    },
+    {
+      "key": "obesity",
+      "path": "/male-obesity",
+      "selected": "MO3"
+    },
+    {
+      "key": "comparison",
+      "path": "/compare-weight-loss-treatments",
+      "selected": "TC2"
+    }
+  ],
+  "workers": [
+    {
+      "name": "shift-support-presentation-20261022",
+      "versionId": "31c37f1f-5054-436b-866f-a3318f13853c",
+      "previousVersion": "fa97eeea-a935-435b-9618-5a8ef29f1432",
+      "retainedModules": 11,
+      "refreshedOwnedModules": 2,
+      "bindingsPreserved": 1
+    },
+    {
+      "name": "shift-public-answers",
+      "versionId": "a7c4898b-b68b-4846-9313-65b013884f40",
+      "previousVersion": "a9ea7ee3-1146-4d78-9ef3-a244d2866f36",
+      "retainedModules": 7,
+      "refreshedOwnedModules": 2,
+      "bindingsPreserved": 1
+    },
+    {
+      "name": "shift-public-presentation-batch-20261022",
+      "versionId": "efd66f45-2fcb-41d9-8976-fb2ec9829911",
+      "previousVersion": "54931832-bfa3-4e9a-8e60-37cfdb1b58e1",
+      "retainedModules": 28,
+      "refreshedOwnedModules": 2,
+      "bindingsPreserved": 4
+    },
+    {
+      "name": "shift-core",
+      "versionId": "d424405b-3def-462e-87e0-0ad616a45604",
+      "previousVersion": "00f8f331-38ab-4d63-aeca-55e08bec7124",
+      "retainedModules": 22,
+      "refreshedOwnedModules": 2,
+      "bindingsPreserved": 52
+    },
+    {
+      "name": "shift-blog-publisher",
+      "versionId": "a46df39a-2bf7-4ae5-8bf7-de4e74a97570",
+      "previousVersion": "c0aa3528-2523-4bc9-9534-a925dcfdc609",
+      "retainedModules": 21,
+      "refreshedOwnedModules": 2,
+      "bindingsPreserved": 16
+    }
+  ],
+  "routeCount": 915,
+  "routesChanged": 0,
+  "checks": [
+    {
+      "path": "/weight-loss-support-for-men",
+      "key": "support",
+      "acceptedContentPreserved": true,
+      "stylesheetRefreshed": true
+    },
+    {
+      "path": "/weight-loss-support-for-men?presentation=1",
+      "key": "support",
+      "acceptedContentPreserved": true,
+      "stylesheetRefreshed": true
+    },
+    {
+      "path": "/weight-loss-support-for-men/",
+      "key": "support",
+      "acceptedContentPreserved": true,
+      "stylesheetRefreshed": true
+    },
+    {
+      "path": "/weight-loss-support-for-men.html",
+      "key": "support",
+      "acceptedContentPreserved": true,
+      "stylesheetRefreshed": true
+    },
+    {
+      "path": "/partner-with-us",
+      "key": "partner",
+      "acceptedContentPreserved": true,
+      "stylesheetRefreshed": true
+    },
+    {
+      "path": "/partner-with-us?presentation=1",
+      "key": "partner",
+      "acceptedContentPreserved": true,
+      "stylesheetRefreshed": true
+    },
+    {
+      "path": "/male-obesity",
+      "key": "obesity",
+      "acceptedContentPreserved": true,
+      "stylesheetRefreshed": true
+    },
+    {
+      "path": "/male-obesity?presentation=1",
+      "key": "obesity",
+      "acceptedContentPreserved": true,
+      "stylesheetRefreshed": true
+    },
+    {
+      "path": "/male-obesity/",
+      "key": "obesity",
+      "acceptedContentPreserved": true,
+      "stylesheetRefreshed": true
+    },
+    {
+      "path": "/male-obesity/?presentation=1",
+      "key": "obesity",
+      "acceptedContentPreserved": true,
+      "stylesheetRefreshed": true
+    },
+    {
+      "path": "/male-obesity.html",
+      "key": "obesity",
+      "acceptedContentPreserved": true,
+      "stylesheetRefreshed": true
+    },
+    {
+      "path": "/male-obesity.html?presentation=1",
+      "key": "obesity",
+      "acceptedContentPreserved": true,
+      "stylesheetRefreshed": true
+    },
+    {
+      "path": "/compare-weight-loss-treatments",
+      "key": "comparison",
+      "acceptedContentPreserved": true,
+      "stylesheetRefreshed": true
+    },
+    {
+      "path": "/compare-weight-loss-treatments?presentation=1",
+      "key": "comparison",
+      "acceptedContentPreserved": true,
+      "stylesheetRefreshed": true
+    }
+  ],
+  "protectedPages": [
+    "/tools/bmi",
+    "/tools/calories",
+    "/tools/healthy-weight",
+    "/tools/protein",
+    "/tools/waist-height",
+    "/tools/walking",
+    "/tools/water",
+    "/tools/steps",
+    "/tools/sleep",
+    "/tools/alcohol",
+    "/tools/weight-management-review",
+    "/how-are-you-feeling",
+    "/",
+    "/start-here",
+    "/programme",
+    "/shift-health",
+    "/knowledge",
+    "/explore-knowledge",
+    "/ask-timber",
+    "/treatment-centre",
+    "/member/dashboard",
+    "/mens-mental-health",
+    "/shift-for-work",
+    "/shift-health/stop-smoking",
+    "/tools",
+    "/tools?ct3=1",
+    "/provider-switch",
+    "/clinic-gone-quiet",
+    "/about",
+    "/contact",
+    "/shift-newsroom",
+    "/life-back",
+    "/articles/stopping-glp1",
+    "/articles/food-noise-after-stopping-glp1",
+    "/member/life-back",
+    "/shift-newsroom/client.js",
+    "/shift-newsroom/compare.js"
+  ],
+  "calculatorPages": [
+    "/tools/bmi",
+    "/tools/calories",
+    "/tools/healthy-weight",
+    "/tools/protein",
+    "/tools/waist-height",
+    "/tools/walking",
+    "/tools/water",
+    "/tools/steps",
+    "/tools/sleep",
+    "/tools/alcohol",
+    "/tools/weight-management-review"
+  ],
+  "existingCodeAssetsPreserved": 206,
+  "photographs": [
+    {
+      "path": "/assets/pending-pages-20261031/partner-community.webp",
+      "sha256": "5b412d8633662348bff7edaea6febde8cad959790775a038bfc394205a753878"
+    },
+    {
+      "path": "/assets/pending-pages-20261031/everyday-tea.webp",
+      "sha256": "ddf7fd1532899c6725ff07277683097891c4643ef08a1f356e2fcb9cc65271d2"
+    }
+  ],
+  "browser": [
+    {
+      "page": "support",
+      "selected": "FS1",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "query": false,
+      "layout": {
+        "marker": "pending-pages-20261031-v1",
+        "key": "support",
+        "viewport": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [],
+        "panels": [
+          {
+            "className": "sp-panel",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "anchor": {
+          "top": 109.890625,
+          "visible": true
+        }
+      }
+    },
+    {
+      "page": "support",
+      "selected": "FS1",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "query": true,
+      "layout": {
+        "marker": "pending-pages-20261031-v1",
+        "key": "support",
+        "viewport": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [],
+        "panels": [
+          {
+            "className": "sp-panel",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "anchor": {
+          "top": 110.21875,
+          "visible": true
+        }
+      }
+    },
+    {
+      "page": "partner",
+      "selected": "PW2",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "query": false,
+      "layout": {
+        "marker": "pending-pages-20261031-v1",
+        "key": "partner",
+        "viewport": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [
+          {
+            "src": "/assets/pending-pages-20261031/partner-community.webp",
+            "complete": true,
+            "width": 1536
+          }
+        ],
+        "panels": [
+          {
+            "className": "sp-benefits",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "alphabeticalCategories": [
+          "Charities & community",
+          "Clinicians",
+          "Employers",
+          "Pharmacy / prescribing",
+          "Referral partners",
+          "Research",
+          "Sport",
+          "Technology"
+        ],
+        "anchor": {
+          "top": 110.21875,
+          "visible": true
+        }
+      }
+    },
+    {
+      "page": "partner",
+      "selected": "PW2",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "query": true,
+      "layout": {
+        "marker": "pending-pages-20261031-v1",
+        "key": "partner",
+        "viewport": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [
+          {
+            "src": "/assets/pending-pages-20261031/partner-community.webp",
+            "complete": true,
+            "width": 1536
+          }
+        ],
+        "panels": [
+          {
+            "className": "sp-benefits",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "alphabeticalCategories": [
+          "Charities & community",
+          "Clinicians",
+          "Employers",
+          "Pharmacy / prescribing",
+          "Referral partners",
+          "Research",
+          "Sport",
+          "Technology"
+        ],
+        "anchor": {
+          "top": 109.734375,
+          "visible": true
+        }
+      }
+    },
+    {
+      "page": "obesity",
+      "selected": "MO3",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "query": false,
+      "layout": {
+        "marker": "pending-pages-20261031-v1",
+        "key": "obesity",
+        "viewport": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [
+          {
+            "src": "/assets/pending-pages-20261031/everyday-tea.webp",
+            "complete": true,
+            "width": 1024
+          }
+        ],
+        "panels": [
+          {
+            "className": "sp-start-panel",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "anchor": {
+          "top": 109.8125,
+          "visible": true
+        }
+      }
+    },
+    {
+      "page": "obesity",
+      "selected": "MO3",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "query": true,
+      "layout": {
+        "marker": "pending-pages-20261031-v1",
+        "key": "obesity",
+        "viewport": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [
+          {
+            "src": "/assets/pending-pages-20261031/everyday-tea.webp",
+            "complete": true,
+            "width": 1024
+          }
+        ],
+        "panels": [
+          {
+            "className": "sp-start-panel",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "anchor": {
+          "top": 109.8125,
+          "visible": true
+        }
+      }
+    },
+    {
+      "page": "comparison",
+      "selected": "TC2",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "query": false,
+      "layout": {
+        "marker": "pending-pages-20261031-v1",
+        "key": "comparison",
+        "viewport": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [],
+        "panels": [
+          {
+            "className": "sp-panel",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "anchor": {
+          "top": 110.125,
+          "visible": true
+        }
+      }
+    },
+    {
+      "page": "comparison",
+      "selected": "TC2",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "query": true,
+      "layout": {
+        "marker": "pending-pages-20261031-v1",
+        "key": "comparison",
+        "viewport": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [],
+        "panels": [
+          {
+            "className": "sp-panel",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "anchor": {
+          "top": 110.3125,
+          "visible": true
+        }
+      }
+    },
+    {
+      "page": "support",
+      "selected": "FS1",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "query": false,
+      "layout": {
+        "marker": "pending-pages-20261031-v1",
+        "key": "support",
+        "viewport": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [],
+        "panels": [
+          {
+            "className": "sp-panel",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "anchor": {
+          "top": 109.65625,
+          "visible": true
+        }
+      }
+    },
+    {
+      "page": "support",
+      "selected": "FS1",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "query": true,
+      "layout": {
+        "marker": "pending-pages-20261031-v1",
+        "key": "support",
+        "viewport": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [],
+        "panels": [
+          {
+            "className": "sp-panel",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "anchor": {
+          "top": 109.984375,
+          "visible": true
+        }
+      }
+    },
+    {
+      "page": "partner",
+      "selected": "PW2",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "query": false,
+      "layout": {
+        "marker": "pending-pages-20261031-v1",
+        "key": "partner",
+        "viewport": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [
+          {
+            "src": "/assets/pending-pages-20261031/partner-community.webp",
+            "complete": true,
+            "width": 1536
+          }
+        ],
+        "panels": [
+          {
+            "className": "sp-benefits",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "alphabeticalCategories": [
+          "Charities & community",
+          "Clinicians",
+          "Employers",
+          "Pharmacy / prescribing",
+          "Referral partners",
+          "Research",
+          "Sport",
+          "Technology"
+        ],
+        "anchor": {
+          "top": 109.640625,
+          "visible": true
+        }
+      }
+    },
+    {
+      "page": "partner",
+      "selected": "PW2",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "query": true,
+      "layout": {
+        "marker": "pending-pages-20261031-v1",
+        "key": "partner",
+        "viewport": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [
+          {
+            "src": "/assets/pending-pages-20261031/partner-community.webp",
+            "complete": true,
+            "width": 1536
+          }
+        ],
+        "panels": [
+          {
+            "className": "sp-benefits",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "alphabeticalCategories": [
+          "Charities & community",
+          "Clinicians",
+          "Employers",
+          "Pharmacy / prescribing",
+          "Referral partners",
+          "Research",
+          "Sport",
+          "Technology"
+        ],
+        "anchor": {
+          "top": 109.828125,
+          "visible": true
+        }
+      }
+    },
+    {
+      "page": "obesity",
+      "selected": "MO3",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "query": false,
+      "layout": {
+        "marker": "pending-pages-20261031-v1",
+        "key": "obesity",
+        "viewport": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [
+          {
+            "src": "/assets/pending-pages-20261031/everyday-tea.webp",
+            "complete": true,
+            "width": 1024
+          }
+        ],
+        "panels": [
+          {
+            "className": "sp-start-panel",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "anchor": {
+          "top": 110.453125,
+          "visible": true
+        }
+      }
+    },
+    {
+      "page": "obesity",
+      "selected": "MO3",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "query": true,
+      "layout": {
+        "marker": "pending-pages-20261031-v1",
+        "key": "obesity",
+        "viewport": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [
+          {
+            "src": "/assets/pending-pages-20261031/everyday-tea.webp",
+            "complete": true,
+            "width": 1024
+          }
+        ],
+        "panels": [
+          {
+            "className": "sp-start-panel",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "anchor": {
+          "top": 110.453125,
+          "visible": true
+        }
+      }
+    },
+    {
+      "page": "comparison",
+      "selected": "TC2",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "query": false,
+      "layout": {
+        "marker": "pending-pages-20261031-v1",
+        "key": "comparison",
+        "viewport": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [],
+        "panels": [
+          {
+            "className": "sp-panel",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "anchor": {
+          "top": 109.84375,
+          "visible": true
+        }
+      }
+    },
+    {
+      "page": "comparison",
+      "selected": "TC2",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "query": true,
+      "layout": {
+        "marker": "pending-pages-20261031-v1",
+        "key": "comparison",
+        "viewport": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [],
+        "panels": [
+          {
+            "className": "sp-panel",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "anchor": {
+          "top": 109.5,
+          "visible": true
+        }
+      }
+    },
+    {
+      "page": "support",
+      "selected": "FS1",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "query": false,
+      "layout": {
+        "marker": "pending-pages-20261031-v1",
+        "key": "support",
+        "viewport": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [],
+        "panels": [
+          {
+            "className": "sp-panel",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "anchor": {
+          "top": 109.96875,
+          "visible": true
+        }
+      }
+    },
+    {
+      "page": "support",
+      "selected": "FS1",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "query": true,
+      "layout": {
+        "marker": "pending-pages-20261031-v1",
+        "key": "support",
+        "viewport": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [],
+        "panels": [
+          {
+            "className": "sp-panel",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "anchor": {
+          "top": 110.34375,
+          "visible": true
+        }
+      }
+    },
+    {
+      "page": "partner",
+      "selected": "PW2",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "query": false,
+      "layout": {
+        "marker": "pending-pages-20261031-v1",
+        "key": "partner",
+        "viewport": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [
+          {
+            "src": "/assets/pending-pages-20261031/partner-community.webp",
+            "complete": true,
+            "width": 1536
+          }
+        ],
+        "panels": [
+          {
+            "className": "sp-benefits",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "alphabeticalCategories": [
+          "Charities & community",
+          "Clinicians",
+          "Employers",
+          "Pharmacy / prescribing",
+          "Referral partners",
+          "Research",
+          "Sport",
+          "Technology"
+        ],
+        "anchor": {
+          "top": 110.1875,
+          "visible": true
+        }
+      }
+    },
+    {
+      "page": "partner",
+      "selected": "PW2",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "query": true,
+      "layout": {
+        "marker": "pending-pages-20261031-v1",
+        "key": "partner",
+        "viewport": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [
+          {
+            "src": "/assets/pending-pages-20261031/partner-community.webp",
+            "complete": true,
+            "width": 1536
+          }
+        ],
+        "panels": [
+          {
+            "className": "sp-benefits",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "alphabeticalCategories": [
+          "Charities & community",
+          "Clinicians",
+          "Employers",
+          "Pharmacy / prescribing",
+          "Referral partners",
+          "Research",
+          "Sport",
+          "Technology"
+        ],
+        "anchor": {
+          "top": 109.6875,
+          "visible": true
+        }
+      }
+    },
+    {
+      "page": "obesity",
+      "selected": "MO3",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "query": false,
+      "layout": {
+        "marker": "pending-pages-20261031-v1",
+        "key": "obesity",
+        "viewport": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [
+          {
+            "src": "/assets/pending-pages-20261031/everyday-tea.webp",
+            "complete": true,
+            "width": 1024
+          }
+        ],
+        "panels": [
+          {
+            "className": "sp-start-panel",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "anchor": {
+          "top": 110.328125,
+          "visible": true
+        }
+      }
+    },
+    {
+      "page": "obesity",
+      "selected": "MO3",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "query": true,
+      "layout": {
+        "marker": "pending-pages-20261031-v1",
+        "key": "obesity",
+        "viewport": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [
+          {
+            "src": "/assets/pending-pages-20261031/everyday-tea.webp",
+            "complete": true,
+            "width": 1024
+          }
+        ],
+        "panels": [
+          {
+            "className": "sp-start-panel",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "anchor": {
+          "top": 110.328125,
+          "visible": true
+        }
+      }
+    },
+    {
+      "page": "comparison",
+      "selected": "TC2",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "query": false,
+      "layout": {
+        "marker": "pending-pages-20261031-v1",
+        "key": "comparison",
+        "viewport": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [],
+        "panels": [
+          {
+            "className": "sp-panel",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "anchor": {
+          "top": 109.9375,
+          "visible": true
+        }
+      }
+    },
+    {
+      "page": "comparison",
+      "selected": "TC2",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "query": true,
+      "layout": {
+        "marker": "pending-pages-20261031-v1",
+        "key": "comparison",
+        "viewport": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [],
+        "panels": [
+          {
+            "className": "sp-panel",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "anchor": {
+          "top": 110.3125,
+          "visible": true
+        }
+      }
+    }
+  ],
+  "verifiedAt": "2026-10-31T19:59:24.547Z"
+}
