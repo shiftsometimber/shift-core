@@ -1,0 +1,43 @@
+name: Transparency and methodology pages
+on:
+  push:
+    branches: [release/utility-pages-20261031]
+    paths: ['utility-pages-20261031/**', '.github/workflows/utility-pages-20261031.yml']
+permissions:
+  contents: read
+concurrency:
+  group: ${{ contains(github.event.head_commit.message, '[pages preflight]') && 'utility-pages-read-only-preflight' || 'cloudflare-production-promote' }}
+  cancel-in-progress: false
+jobs:
+  selected-pages:
+    if: "!contains(github.event.head_commit.message, '[audit only]')"
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Read current owners and page structures
+        if: contains(github.event.head_commit.message, '[pages preflight]')
+        run: node utility-pages-20261031/capture.mjs
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      - name: Check and release Transparency and methodology pages
+        if: "!contains(github.event.head_commit.message, '[pages preflight]')"
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm install --prefix selected-pages-tools --no-save --ignore-scripts --no-audit --no-fund playwright@1.56.1
+          node --check utility-pages-20261031/runtime.mjs
+          node --check utility-pages-20261031/deploy.mjs
+          node --test utility-pages-20261031/*.test.mjs
+          node utility-pages-20261031/deploy.mjs
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          SELECTED_PAGES_PREVIEW_ONLY: ${{ contains(github.event.head_commit.message, '[pages preview]') && '1' || '' }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: utility-pages-${{ github.run_id }}
+          path: utility-pages-evidence/
+          retention-days: 90
