@@ -1,0 +1,2674 @@
+{
+  "verified": true,
+  "source": "c079966418ebad99ed3cc675147e937c7b0983e8",
+  "release": "support-pages-20261031-v2",
+  "pages": [
+    {
+      "key": "stock",
+      "path": "/waiting-list-journey",
+      "selected": "SU1"
+    },
+    {
+      "key": "advertising",
+      "path": "/advertise-with-us",
+      "selected": "Delegated supporting-page refresh"
+    },
+    {
+      "key": "contributors",
+      "path": "/expert-contributors",
+      "selected": "Delegated supporting-page refresh"
+    },
+    {
+      "key": "media",
+      "path": "/media-centre",
+      "selected": "Delegated supporting-page refresh"
+    },
+    {
+      "key": "press",
+      "path": "/press-centre",
+      "selected": "Delegated supporting-page refresh"
+    },
+    {
+      "key": "partners",
+      "path": "/trusted-partners",
+      "selected": "Delegated supporting-page refresh"
+    },
+    {
+      "key": "promise",
+      "path": "/shift-promise",
+      "selected": "Delegated supporting-page refresh"
+    }
+  ],
+  "workers": [
+    {
+      "name": "shift-public-presentation-batch-20261022",
+      "versionId": "e79d75a5-8e3b-474a-a432-c00eac500ed9",
+      "previousVersion": "c1189f9d-76d2-47af-8b9b-e93206d2130d",
+      "retainedModules": 42,
+      "refreshedOwnedModules": 3,
+      "bindingsPreserved": 4
+    },
+    {
+      "name": "shift-seo-followup-v3-20261024",
+      "versionId": "81fba449-ba5c-41dc-b9fe-b8f82f748fe5",
+      "previousVersion": "191775c6-ab41-48d4-9591-3b6e52db3c20",
+      "retainedModules": 19,
+      "refreshedOwnedModules": 3,
+      "bindingsPreserved": 4
+    },
+    {
+      "name": "shift-core",
+      "versionId": "1517e488-aaf8-4f1f-a66a-83aee766e893",
+      "previousVersion": "7ba24299-8099-4853-a540-78e2c9d1c6b6",
+      "retainedModules": 53,
+      "refreshedOwnedModules": 3,
+      "bindingsPreserved": 52
+    }
+  ],
+  "routeCount": 915,
+  "routesChanged": 0,
+  "checks": [
+    {
+      "path": "/waiting-list-journey",
+      "key": "stock",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/waiting-list-journey?presentation=1",
+      "key": "stock",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/advertise-with-us",
+      "key": "advertising",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/advertise-with-us?presentation=1",
+      "key": "advertising",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/expert-contributors",
+      "key": "contributors",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/expert-contributors?presentation=1",
+      "key": "contributors",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/media-centre",
+      "key": "media",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/media-centre?presentation=1",
+      "key": "media",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/press-centre",
+      "key": "press",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/press-centre?presentation=1",
+      "key": "press",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/trusted-partners",
+      "key": "partners",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/trusted-partners?presentation=1",
+      "key": "partners",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/shift-promise",
+      "key": "promise",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/shift-promise?presentation=1",
+      "key": "promise",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    }
+  ],
+  "protectedPages": [
+    "/tools/bmi",
+    "/tools/calories",
+    "/tools/healthy-weight",
+    "/tools/protein",
+    "/tools/waist-height",
+    "/tools/walking",
+    "/tools/water",
+    "/tools/steps",
+    "/tools/sleep",
+    "/tools/alcohol",
+    "/tools/weight-management-review",
+    "/how-are-you-feeling",
+    "/",
+    "/start-here",
+    "/programme",
+    "/shift-health",
+    "/knowledge",
+    "/explore-knowledge",
+    "/ask-timber",
+    "/treatment-centre",
+    "/member/dashboard",
+    "/mens-mental-health",
+    "/shift-for-work",
+    "/shift-health/stop-smoking",
+    "/tools",
+    "/tools?ct3=1",
+    "/weight-loss-support-for-men",
+    "/partner-with-us",
+    "/male-obesity",
+    "/compare-weight-loss-treatments",
+    "/clinic-gone-quiet",
+    "/about",
+    "/contact",
+    "/shift-newsroom",
+    "/life-back",
+    "/corporate-wellbeing",
+    "/guides/retatrutide-uk-guide",
+    "/husband-help",
+    "/my-timber-for-providers",
+    "/nhs-vs-private",
+    "/surgery-comparison-centre",
+    "/knowledge?presentation=1",
+    "/articles/stopping-glp1",
+    "/articles/food-noise-after-stopping-glp1",
+    "/member/life-back",
+    "/shift-newsroom/client.js",
+    "/shift-newsroom/compare.js",
+    "/provider-switch",
+    "/our-causes-partners",
+    "/downloads-resources",
+    "/downloads-resources?presentation=1",
+    "/family-discussion-guide",
+    "/family-discussion-guide?presentation=1",
+    "/community",
+    "/community?presentation=1",
+    "/faq",
+    "/help"
+  ],
+  "calculatorPages": [
+    "/tools/bmi",
+    "/tools/calories",
+    "/tools/healthy-weight",
+    "/tools/protein",
+    "/tools/waist-height",
+    "/tools/walking",
+    "/tools/water",
+    "/tools/steps",
+    "/tools/sleep",
+    "/tools/alcohol",
+    "/tools/weight-management-review"
+  ],
+  "existingCodeAssetsPreserved": 213,
+  "photographs": [],
+  "browser": [
+    {
+      "page": "stock",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "stock",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 686.5,
+          "scroll": 562,
+          "width": 562
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "validation": "Email and specific consent required; no submit performed",
+        "controls": [
+          {
+            "name": "first_name",
+            "type": "text",
+            "required": false,
+            "checked": false,
+            "width": 244.5,
+            "height": 50
+          },
+          {
+            "name": "email",
+            "type": "email",
+            "required": true,
+            "checked": false,
+            "width": 244.5,
+            "height": 50
+          },
+          {
+            "name": "consent",
+            "type": "checkbox",
+            "required": true,
+            "checked": false,
+            "width": 22,
+            "height": 22
+          }
+        ]
+      }
+    },
+    {
+      "page": "stock",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "stock",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 686.5,
+          "scroll": 562,
+          "width": 562
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "controls": [
+          {
+            "name": "first_name",
+            "type": "text",
+            "required": false,
+            "checked": false,
+            "width": 244.5,
+            "height": 50
+          },
+          {
+            "name": "email",
+            "type": "email",
+            "required": true,
+            "checked": false,
+            "width": 244.5,
+            "height": 50
+          },
+          {
+            "name": "consent",
+            "type": "checkbox",
+            "required": true,
+            "checked": false,
+            "width": 22,
+            "height": 22
+          }
+        ]
+      }
+    },
+    {
+      "page": "advertising",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "advertising",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1145.5,
+          "scroll": 1021,
+          "width": 1021
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "Advertising enquiries do not buy editorial coverage, favoura",
+            "fits": true,
+            "height": 493.59375,
+            "decoration": "none"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "page": "advertising",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "advertising",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1024.5,
+          "scroll": 900,
+          "width": 900
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "Advertising enquiries do not buy editorial coverage, favoura",
+            "fits": true,
+            "height": 472.046875,
+            "decoration": "none"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "page": "contributors",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "contributors",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1145.5,
+          "scroll": 1021,
+          "width": 1021
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "Written and researched by Matt O’BrienMatt owns the research",
+            "fits": true,
+            "height": 182.25,
+            "decoration": "none"
+          },
+          {
+            "text": "Expert contributionA qualified contributor can write, co-aut",
+            "fits": true,
+            "height": 182.25,
+            "decoration": "none"
+          },
+          {
+            "text": "Primary-source verificationRegulatory status, approved uses,",
+            "fits": true,
+            "height": 182.25,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/contact"
+          }
+        ]
+      }
+    },
+    {
+      "page": "contributors",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "contributors",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1024.5,
+          "scroll": 900,
+          "width": 900
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "Written and researched by Matt O’BrienMatt owns the research",
+            "fits": true,
+            "height": 182.25,
+            "decoration": "none"
+          },
+          {
+            "text": "Expert contributionA qualified contributor can write, co-aut",
+            "fits": true,
+            "height": 182.25,
+            "decoration": "none"
+          },
+          {
+            "text": "Primary-source verificationRegulatory status, approved uses,",
+            "fits": true,
+            "height": 182.25,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/contact"
+          }
+        ]
+      }
+    },
+    {
+      "page": "media",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "media",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1145.5,
+          "scroll": 1021,
+          "width": 1021
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "PressJournalist or producer?Use the dedicated Press Centre f",
+            "fits": true,
+            "height": 245.265625,
+            "decoration": "none"
+          },
+          {
+            "text": "ResourcesPrintable preparation toolsFree checklists for trea",
+            "fits": true,
+            "height": 245.265625,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/press-centre"
+          },
+          {
+            "height": 48.390625,
+            "href": "/downloads-resources"
+          }
+        ]
+      }
+    },
+    {
+      "page": "media",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "media",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1024.5,
+          "scroll": 900,
+          "width": 900
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "PressJournalist or producer?Use the dedicated Press Centre f",
+            "fits": true,
+            "height": 242.265625,
+            "decoration": "none"
+          },
+          {
+            "text": "ResourcesPrintable preparation toolsFree checklists for trea",
+            "fits": true,
+            "height": 242.265625,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/press-centre"
+          },
+          {
+            "height": 48.390625,
+            "href": "/downloads-resources"
+          }
+        ]
+      }
+    },
+    {
+      "page": "press",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "press",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1145.5,
+          "scroll": 1021,
+          "width": 1021
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "About Shift Some TimberAn evidence-led UK weight-management ",
+            "fits": true,
+            "height": 212,
+            "decoration": "none"
+          },
+          {
+            "text": "TopicsGLP-1/GIP medicines, future medicines, NHS pathways, b",
+            "fits": true,
+            "height": 212,
+            "decoration": "none"
+          },
+          {
+            "text": "Press contactUse the press route in the Contact Centre and w",
+            "fits": true,
+            "height": 212,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/contact?type=Press#contact-options"
+          }
+        ]
+      }
+    },
+    {
+      "page": "press",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "press",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1024.5,
+          "scroll": 900,
+          "width": 900
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "About Shift Some TimberAn evidence-led UK weight-management ",
+            "fits": true,
+            "height": 212,
+            "decoration": "none"
+          },
+          {
+            "text": "TopicsGLP-1/GIP medicines, future medicines, NHS pathways, b",
+            "fits": true,
+            "height": 212,
+            "decoration": "none"
+          },
+          {
+            "text": "Press contactUse the press route in the Contact Centre and w",
+            "fits": true,
+            "height": 212,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/contact?type=Press#contact-options"
+          }
+        ]
+      }
+    },
+    {
+      "page": "partners",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "partners",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1145.5,
+          "scroll": 1021,
+          "width": 1021
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "No logos for show.We are not filling this page with brands w",
+            "fits": true,
+            "height": 203.140625,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/clinical-governance"
+          },
+          {
+            "height": 48.390625,
+            "href": "/commercial-principles"
+          },
+          {
+            "height": 48.390625,
+            "href": "/affiliate-disclosure"
+          },
+          {
+            "height": 48.390625,
+            "href": "/partner-with-us"
+          }
+        ]
+      }
+    },
+    {
+      "page": "partners",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "partners",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1024.5,
+          "scroll": 900,
+          "width": 900
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "No logos for show.We are not filling this page with brands w",
+            "fits": true,
+            "height": 226.390625,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/clinical-governance"
+          },
+          {
+            "height": 48.390625,
+            "href": "/commercial-principles"
+          },
+          {
+            "height": 48.390625,
+            "href": "/affiliate-disclosure"
+          },
+          {
+            "height": 48.390625,
+            "href": "/partner-with-us"
+          }
+        ]
+      }
+    },
+    {
+      "page": "promise",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "promise",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1145.5,
+          "scroll": 1021,
+          "width": 1021
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "1. Evidence honestlyWe'll explain what the evidence supports",
+            "fits": true,
+            "height": 132.75,
+            "decoration": "none"
+          },
+          {
+            "text": "2. Uncertainty honestlyWhen evidence is emerging, incomplete",
+            "fits": true,
+            "height": 132.75,
+            "decoration": "none"
+          },
+          {
+            "text": "3. No profit-led treatment choiceWe won't tell you a treatme",
+            "fits": true,
+            "height": 132.75,
+            "decoration": "none"
+          },
+          {
+            "text": "4. Your informed decisionOur role is to help you understand ",
+            "fits": true,
+            "height": 132.75,
+            "decoration": "none"
+          },
+          {
+            "text": "5. Individual journeys matterThere is no moral hierarchy bet",
+            "fits": true,
+            "height": 132.75,
+            "decoration": "none"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "page": "promise",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "promise",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1024.5,
+          "scroll": 900,
+          "width": 900
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "1. Evidence honestlyWe'll explain what the evidence supports",
+            "fits": true,
+            "height": 132.75,
+            "decoration": "none"
+          },
+          {
+            "text": "2. Uncertainty honestlyWhen evidence is emerging, incomplete",
+            "fits": true,
+            "height": 132.75,
+            "decoration": "none"
+          },
+          {
+            "text": "3. No profit-led treatment choiceWe won't tell you a treatme",
+            "fits": true,
+            "height": 132.75,
+            "decoration": "none"
+          },
+          {
+            "text": "4. Your informed decisionOur role is to help you understand ",
+            "fits": true,
+            "height": 132.75,
+            "decoration": "none"
+          },
+          {
+            "text": "5. Individual journeys matterThere is no moral hierarchy bet",
+            "fits": true,
+            "height": 132.75,
+            "decoration": "none"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "page": "stock",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "stock",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 329.546875,
+          "scroll": 306,
+          "width": 306
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "controls": [
+          {
+            "name": "first_name",
+            "type": "text",
+            "required": false,
+            "checked": false,
+            "width": 155.21875,
+            "height": 50
+          },
+          {
+            "name": "email",
+            "type": "email",
+            "required": true,
+            "checked": false,
+            "width": 155.234375,
+            "height": 50
+          },
+          {
+            "name": "consent",
+            "type": "checkbox",
+            "required": true,
+            "checked": false,
+            "width": 22,
+            "height": 22
+          }
+        ]
+      }
+    },
+    {
+      "page": "stock",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "stock",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 329.546875,
+          "scroll": 306,
+          "width": 306
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "controls": [
+          {
+            "name": "first_name",
+            "type": "text",
+            "required": false,
+            "checked": false,
+            "width": 155.21875,
+            "height": 50
+          },
+          {
+            "name": "email",
+            "type": "email",
+            "required": true,
+            "checked": false,
+            "width": 155.234375,
+            "height": 50
+          },
+          {
+            "name": "consent",
+            "type": "checkbox",
+            "required": true,
+            "checked": false,
+            "width": 22,
+            "height": 22
+          }
+        ]
+      }
+    },
+    {
+      "page": "advertising",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "advertising",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "Advertising enquiries do not buy editorial coverage, favoura",
+            "fits": true,
+            "height": 602.109375,
+            "decoration": "none"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "page": "advertising",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "advertising",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "Advertising enquiries do not buy editorial coverage, favoura",
+            "fits": true,
+            "height": 585.703125,
+            "decoration": "none"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "page": "contributors",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "contributors",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "Written and researched by Matt O’BrienMatt owns the research",
+            "fits": true,
+            "height": 132.75,
+            "decoration": "none"
+          },
+          {
+            "text": "Expert contributionA qualified contributor can write, co-aut",
+            "fits": true,
+            "height": 132.75,
+            "decoration": "none"
+          },
+          {
+            "text": "Primary-source verificationRegulatory status, approved uses,",
+            "fits": true,
+            "height": 132.75,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/contact"
+          }
+        ]
+      }
+    },
+    {
+      "page": "contributors",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "contributors",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "Written and researched by Matt O’BrienMatt owns the research",
+            "fits": true,
+            "height": 132.75,
+            "decoration": "none"
+          },
+          {
+            "text": "Expert contributionA qualified contributor can write, co-aut",
+            "fits": true,
+            "height": 132.75,
+            "decoration": "none"
+          },
+          {
+            "text": "Primary-source verificationRegulatory status, approved uses,",
+            "fits": true,
+            "height": 132.75,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/contact"
+          }
+        ]
+      }
+    },
+    {
+      "page": "media",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "media",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "PressJournalist or producer?Use the dedicated Press Centre f",
+            "fits": true,
+            "height": 268.515625,
+            "decoration": "none"
+          },
+          {
+            "text": "ResourcesPrintable preparation toolsFree checklists for trea",
+            "fits": true,
+            "height": 268.515625,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/press-centre"
+          },
+          {
+            "height": 48.390625,
+            "href": "/downloads-resources"
+          }
+        ]
+      }
+    },
+    {
+      "page": "media",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "media",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "PressJournalist or producer?Use the dedicated Press Centre f",
+            "fits": true,
+            "height": 265.515625,
+            "decoration": "none"
+          },
+          {
+            "text": "ResourcesPrintable preparation toolsFree checklists for trea",
+            "fits": true,
+            "height": 265.515625,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/press-centre"
+          },
+          {
+            "height": 48.390625,
+            "href": "/downloads-resources"
+          }
+        ]
+      }
+    },
+    {
+      "page": "press",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "press",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "About Shift Some TimberAn evidence-led UK weight-management ",
+            "fits": true,
+            "height": 188.75,
+            "decoration": "none"
+          },
+          {
+            "text": "TopicsGLP-1/GIP medicines, future medicines, NHS pathways, b",
+            "fits": true,
+            "height": 188.75,
+            "decoration": "none"
+          },
+          {
+            "text": "Press contactUse the press route in the Contact Centre and w",
+            "fits": true,
+            "height": 188.75,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/contact?type=Press#contact-options"
+          }
+        ]
+      }
+    },
+    {
+      "page": "press",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "press",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "About Shift Some TimberAn evidence-led UK weight-management ",
+            "fits": true,
+            "height": 188.75,
+            "decoration": "none"
+          },
+          {
+            "text": "TopicsGLP-1/GIP medicines, future medicines, NHS pathways, b",
+            "fits": true,
+            "height": 188.75,
+            "decoration": "none"
+          },
+          {
+            "text": "Press contactUse the press route in the Contact Centre and w",
+            "fits": true,
+            "height": 188.75,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/contact?type=Press#contact-options"
+          }
+        ]
+      }
+    },
+    {
+      "page": "partners",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "partners",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "No logos for show.We are not filling this page with brands w",
+            "fits": true,
+            "height": 226.390625,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/clinical-governance"
+          },
+          {
+            "height": 48.390625,
+            "href": "/commercial-principles"
+          },
+          {
+            "height": 48.390625,
+            "href": "/affiliate-disclosure"
+          },
+          {
+            "height": 48.390625,
+            "href": "/partner-with-us"
+          }
+        ]
+      }
+    },
+    {
+      "page": "partners",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "partners",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "No logos for show.We are not filling this page with brands w",
+            "fits": true,
+            "height": 226.390625,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/clinical-governance"
+          },
+          {
+            "height": 48.390625,
+            "href": "/commercial-principles"
+          },
+          {
+            "height": 48.390625,
+            "href": "/affiliate-disclosure"
+          },
+          {
+            "height": 48.390625,
+            "href": "/partner-with-us"
+          }
+        ]
+      }
+    },
+    {
+      "page": "promise",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "promise",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "1. Evidence honestlyWe'll explain what the evidence supports",
+            "fits": true,
+            "height": 182.25,
+            "decoration": "none"
+          },
+          {
+            "text": "2. Uncertainty honestlyWhen evidence is emerging, incomplete",
+            "fits": true,
+            "height": 182.25,
+            "decoration": "none"
+          },
+          {
+            "text": "3. No profit-led treatment choiceWe won't tell you a treatme",
+            "fits": true,
+            "height": 182.25,
+            "decoration": "none"
+          },
+          {
+            "text": "4. Your informed decisionOur role is to help you understand ",
+            "fits": true,
+            "height": 182.25,
+            "decoration": "none"
+          },
+          {
+            "text": "5. Individual journeys matterThere is no moral hierarchy bet",
+            "fits": true,
+            "height": 182.25,
+            "decoration": "none"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "page": "promise",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "promise",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "1. Evidence honestlyWe'll explain what the evidence supports",
+            "fits": true,
+            "height": 182.25,
+            "decoration": "none"
+          },
+          {
+            "text": "2. Uncertainty honestlyWhen evidence is emerging, incomplete",
+            "fits": true,
+            "height": 182.25,
+            "decoration": "none"
+          },
+          {
+            "text": "3. No profit-led treatment choiceWe won't tell you a treatme",
+            "fits": true,
+            "height": 182.25,
+            "decoration": "none"
+          },
+          {
+            "text": "4. Your informed decisionOur role is to help you understand ",
+            "fits": true,
+            "height": 182.25,
+            "decoration": "none"
+          },
+          {
+            "text": "5. Individual journeys matterThere is no moral hierarchy bet",
+            "fits": true,
+            "height": 182.25,
+            "decoration": "none"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "page": "stock",
+      "query": false,
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "stock",
+        "width": 360,
+        "scrollWidth": 345,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 327,
+          "scroll": 309,
+          "width": 309
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "controls": [
+          {
+            "name": "first_name",
+            "type": "text",
+            "required": false,
+            "checked": false,
+            "width": 269,
+            "height": 50
+          },
+          {
+            "name": "email",
+            "type": "email",
+            "required": true,
+            "checked": false,
+            "width": 269,
+            "height": 50
+          },
+          {
+            "name": "consent",
+            "type": "checkbox",
+            "required": true,
+            "checked": false,
+            "width": 22,
+            "height": 22
+          }
+        ]
+      }
+    },
+    {
+      "page": "stock",
+      "query": true,
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "stock",
+        "width": 360,
+        "scrollWidth": 345,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 327,
+          "scroll": 309,
+          "width": 309
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "controls": [
+          {
+            "name": "first_name",
+            "type": "text",
+            "required": false,
+            "checked": false,
+            "width": 269,
+            "height": 50
+          },
+          {
+            "name": "email",
+            "type": "email",
+            "required": true,
+            "checked": false,
+            "width": 269,
+            "height": 50
+          },
+          {
+            "name": "consent",
+            "type": "checkbox",
+            "required": true,
+            "checked": false,
+            "width": 22,
+            "height": 22
+          }
+        ]
+      }
+    },
+    {
+      "page": "stock",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "stock",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "controls": [
+          {
+            "name": "first_name",
+            "type": "text",
+            "required": false,
+            "checked": false,
+            "width": 299,
+            "height": 50
+          },
+          {
+            "name": "email",
+            "type": "email",
+            "required": true,
+            "checked": false,
+            "width": 299,
+            "height": 50
+          },
+          {
+            "name": "consent",
+            "type": "checkbox",
+            "required": true,
+            "checked": false,
+            "width": 22,
+            "height": 22
+          }
+        ]
+      }
+    },
+    {
+      "page": "stock",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "stock",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "controls": [
+          {
+            "name": "first_name",
+            "type": "text",
+            "required": false,
+            "checked": false,
+            "width": 299,
+            "height": 50
+          },
+          {
+            "name": "email",
+            "type": "email",
+            "required": true,
+            "checked": false,
+            "width": 299,
+            "height": 50
+          },
+          {
+            "name": "consent",
+            "type": "checkbox",
+            "required": true,
+            "checked": false,
+            "width": 22,
+            "height": 22
+          }
+        ]
+      }
+    },
+    {
+      "page": "advertising",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "advertising",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "Advertising enquiries do not buy editorial coverage, favoura",
+            "fits": true,
+            "height": 1099.703125,
+            "decoration": "none"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "page": "advertising",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "advertising",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "Advertising enquiries do not buy editorial coverage, favoura",
+            "fits": true,
+            "height": 1006.046875,
+            "decoration": "none"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "page": "contributors",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "contributors",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "Written and researched by Matt O’BrienMatt owns the research",
+            "fits": true,
+            "height": 222.75,
+            "decoration": "none"
+          },
+          {
+            "text": "Expert contributionA qualified contributor can write, co-aut",
+            "fits": true,
+            "height": 222.75,
+            "decoration": "none"
+          },
+          {
+            "text": "Primary-source verificationRegulatory status, approved uses,",
+            "fits": true,
+            "height": 222.75,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/contact"
+          }
+        ]
+      }
+    },
+    {
+      "page": "contributors",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "contributors",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "Written and researched by Matt O’BrienMatt owns the research",
+            "fits": true,
+            "height": 222.75,
+            "decoration": "none"
+          },
+          {
+            "text": "Expert contributionA qualified contributor can write, co-aut",
+            "fits": true,
+            "height": 222.75,
+            "decoration": "none"
+          },
+          {
+            "text": "Primary-source verificationRegulatory status, approved uses,",
+            "fits": true,
+            "height": 222.75,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/contact"
+          }
+        ]
+      }
+    },
+    {
+      "page": "media",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "media",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "PressJournalist or producer?Use the dedicated Press Centre f",
+            "fits": true,
+            "height": 262.515625,
+            "decoration": "none"
+          },
+          {
+            "text": "ResourcesPrintable preparation toolsFree checklists for trea",
+            "fits": true,
+            "height": 262.515625,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/press-centre"
+          },
+          {
+            "height": 48.390625,
+            "href": "/downloads-resources"
+          }
+        ]
+      }
+    },
+    {
+      "page": "media",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "media",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "PressJournalist or producer?Use the dedicated Press Centre f",
+            "fits": true,
+            "height": 259.515625,
+            "decoration": "none"
+          },
+          {
+            "text": "ResourcesPrintable preparation toolsFree checklists for trea",
+            "fits": true,
+            "height": 259.515625,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/press-centre"
+          },
+          {
+            "height": 48.390625,
+            "href": "/downloads-resources"
+          }
+        ]
+      }
+    },
+    {
+      "page": "press",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "press",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "About Shift Some TimberAn evidence-led UK weight-management ",
+            "fits": true,
+            "height": 206,
+            "decoration": "none"
+          },
+          {
+            "text": "TopicsGLP-1/GIP medicines, future medicines, NHS pathways, b",
+            "fits": true,
+            "height": 206,
+            "decoration": "none"
+          },
+          {
+            "text": "Press contactUse the press route in the Contact Centre and w",
+            "fits": true,
+            "height": 206,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/contact?type=Press#contact-options"
+          }
+        ]
+      }
+    },
+    {
+      "page": "press",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "press",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "About Shift Some TimberAn evidence-led UK weight-management ",
+            "fits": true,
+            "height": 206,
+            "decoration": "none"
+          },
+          {
+            "text": "TopicsGLP-1/GIP medicines, future medicines, NHS pathways, b",
+            "fits": true,
+            "height": 206,
+            "decoration": "none"
+          },
+          {
+            "text": "Press contactUse the press route in the Contact Centre and w",
+            "fits": true,
+            "height": 206,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/contact?type=Press#contact-options"
+          }
+        ]
+      }
+    },
+    {
+      "page": "partners",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "partners",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "No logos for show.We are not filling this page with brands w",
+            "fits": true,
+            "height": 289.28125,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/clinical-governance"
+          },
+          {
+            "height": 48.390625,
+            "href": "/commercial-principles"
+          },
+          {
+            "height": 48.390625,
+            "href": "/affiliate-disclosure"
+          },
+          {
+            "height": 70.78125,
+            "href": "/partner-with-us"
+          }
+        ]
+      }
+    },
+    {
+      "page": "partners",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "partners",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "No logos for show.We are not filling this page with brands w",
+            "fits": true,
+            "height": 289.28125,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/clinical-governance"
+          },
+          {
+            "height": 48.390625,
+            "href": "/commercial-principles"
+          },
+          {
+            "height": 48.390625,
+            "href": "/affiliate-disclosure"
+          },
+          {
+            "height": 70.78125,
+            "href": "/partner-with-us"
+          }
+        ]
+      }
+    },
+    {
+      "page": "promise",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "promise",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "1. Evidence honestlyWe'll explain what the evidence supports",
+            "fits": true,
+            "height": 176.25,
+            "decoration": "none"
+          },
+          {
+            "text": "2. Uncertainty honestlyWhen evidence is emerging, incomplete",
+            "fits": true,
+            "height": 176.25,
+            "decoration": "none"
+          },
+          {
+            "text": "3. No profit-led treatment choiceWe won't tell you a treatme",
+            "fits": true,
+            "height": 176.25,
+            "decoration": "none"
+          },
+          {
+            "text": "4. Your informed decisionOur role is to help you understand ",
+            "fits": true,
+            "height": 176.25,
+            "decoration": "none"
+          },
+          {
+            "text": "5. Individual journeys matterThere is no moral hierarchy bet",
+            "fits": true,
+            "height": 176.25,
+            "decoration": "none"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "page": "promise",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "promise",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "1. Evidence honestlyWe'll explain what the evidence supports",
+            "fits": true,
+            "height": 176.25,
+            "decoration": "none"
+          },
+          {
+            "text": "2. Uncertainty honestlyWhen evidence is emerging, incomplete",
+            "fits": true,
+            "height": 176.25,
+            "decoration": "none"
+          },
+          {
+            "text": "3. No profit-led treatment choiceWe won't tell you a treatme",
+            "fits": true,
+            "height": 176.25,
+            "decoration": "none"
+          },
+          {
+            "text": "4. Your informed decisionOur role is to help you understand ",
+            "fits": true,
+            "height": 176.25,
+            "decoration": "none"
+          },
+          {
+            "text": "5. Individual journeys matterThere is no moral hierarchy bet",
+            "fits": true,
+            "height": 176.25,
+            "decoration": "none"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "page": "stock",
+      "query": false,
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "stock",
+        "width": 430,
+        "scrollWidth": 415,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 397,
+          "scroll": 379,
+          "width": 379
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "controls": [
+          {
+            "name": "first_name",
+            "type": "text",
+            "required": false,
+            "checked": false,
+            "width": 339,
+            "height": 50
+          },
+          {
+            "name": "email",
+            "type": "email",
+            "required": true,
+            "checked": false,
+            "width": 339,
+            "height": 50
+          },
+          {
+            "name": "consent",
+            "type": "checkbox",
+            "required": true,
+            "checked": false,
+            "width": 22,
+            "height": 22
+          }
+        ]
+      }
+    },
+    {
+      "page": "stock",
+      "query": true,
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "support-pages-20261031-v2",
+        "key": "stock",
+        "width": 430,
+        "scrollWidth": 415,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 397,
+          "scroll": 379,
+          "width": 379
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "controls": [
+          {
+            "name": "first_name",
+            "type": "text",
+            "required": false,
+            "checked": false,
+            "width": 339,
+            "height": 50
+          },
+          {
+            "name": "email",
+            "type": "email",
+            "required": true,
+            "checked": false,
+            "width": 339,
+            "height": 50
+          },
+          {
+            "name": "consent",
+            "type": "checkbox",
+            "required": true,
+            "checked": false,
+            "width": 22,
+            "height": 22
+          }
+        ]
+      }
+    }
+  ],
+  "verifiedAt": "2026-10-31T22:01:40.002Z"
+}
