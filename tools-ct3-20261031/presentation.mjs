@@ -22,6 +22,7 @@ ${r} *{box-sizing:border-box!important}
 ${r} .tool-layout,${r} .tool-content{display:block!important;max-width:none!important;width:100%!important;margin:0!important;padding:0!important;min-width:0!important;min-height:0!important;grid-auto-rows:auto!important}
 ${r} :is(h1,h2,h3,p,figure){margin:0!important}
 ${r} :is(h1,h2,h3,strong,p,a,span){-webkit-text-fill-color:currentColor!important}
+${r} :is(#feel-featured-tool,#calculators,#mot-2202a,#progress-2202b,#decision-tools-2202c) *{-webkit-text-fill-color:currentColor!important}
 ${r} .ct3-hero{position:relative!important;isolation:isolate!important;min-height:440px!important;padding:0!important;margin:0!important;overflow:hidden!important;background:#050505!important;border:0!important;border-radius:0!important}
 ${r} .ct3-photo{position:absolute!important;inset:0!important;margin:0!important;width:100%!important;height:100%!important;z-index:-2!important}
 ${r} .ct3-photo img{display:block!important;width:100%!important;height:100%!important;max-width:none!important;object-fit:cover!important;object-position:center 38%!important;border-radius:0!important;opacity:1!important;filter:none!important}
