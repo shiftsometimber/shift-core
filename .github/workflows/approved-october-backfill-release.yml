@@ -47,7 +47,7 @@ jobs:
           for(const id of ['2ed3de9a-f697-459a-9fb1-475e0b814764','8a7e03bb-7ced-421e-aba8-87bca1494ff2']){
             const r=await fetch('https://api.cloudflare.com/client/v4/accounts/'+process.env.CLOUDFLARE_ACCOUNT_ID+'/workers/workers/shift-core/versions/'+id+'?include=modules',{headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN},signal:AbortSignal.timeout(45000)});
             assert(r.ok);const d=await r.json();assert(d.success);assert.equal(d.result.id,id);
-            const modules=d.result.modules.filter(m=>/\\.(mjs|js)$/.test(m.name));assert.equal(modules.length,1);
+            const modules=d.result.modules.filter(m=>/\.(mjs|js)$/.test(m.name));assert.equal(modules.length,1);
             const bytes=Buffer.from(modules[0].content_base64,'base64');writeFileSync('october-release-proof/'+id+'.js',bytes);
             console.log(JSON.stringify({version:id,sha256:createHash('sha256').update(bytes).digest('hex'),metadata:d.result.metadata}));
           }
