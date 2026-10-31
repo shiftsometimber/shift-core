@@ -1,0 +1,358 @@
+{
+  "readOnly": true,
+  "source": "62b2c216bcd3a65a71d86790196eea859d3a64b8",
+  "capturedAt": "2026-10-31T21:00:49.943Z",
+  "routeCount": 915,
+  "owners": [
+    {
+      "path": "/downloads-resources",
+      "route": {
+        "id": "04beac1d0cc14ec1805fb160e8759d9e",
+        "pattern": "https://shiftsometimber.co.uk/downloads-resources",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/downloads-resources?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/downloads-resources/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/downloads-resources/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/downloads-resources.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/downloads-resources.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/assets/downloads-dr3-20261031/preparing-notes.webp",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    }
+  ],
+  "workers": [
+    {
+      "name": "shift-public-presentation-batch-20261022",
+      "versionId": "efd66f45-2fcb-41d9-8976-fb2ec9829911",
+      "deploymentId": "65563a98-9684-41e8-8f1e-20b1308410c1",
+      "main": "pending-pages-20261031/entry.mjs",
+      "modules": [
+        {
+          "name": "comparison-cp1/layout.mjs",
+          "bytes": 994
+        },
+        {
+          "name": "comparison-cp1/overlay.mjs",
+          "bytes": 1062
+        },
+        {
+          "name": "comparison-cp1/styles.mjs",
+          "bytes": 32043
+        },
+        {
+          "name": "health-hb2/layout.mjs",
+          "bytes": 1321
+        },
+        {
+          "name": "health-hb2/overlay.mjs",
+          "bytes": 1079
+        },
+        {
+          "name": "health-hb2/styles.mjs",
+          "bytes": 26189
+        },
+        {
+          "name": "hero-set-20261030/entry.mjs",
+          "bytes": 600
+        },
+        {
+          "name": "hero-set-20261030/payload.mjs",
+          "bytes": 39042
+        },
+        {
+          "name": "hero-set-20261030/runtime.mjs",
+          "bytes": 9762
+        },
+        {
+          "name": "knowledge-health-entry.mjs",
+          "bytes": 266
+        },
+        {
+          "name": "knowledge-health/client.mjs",
+          "bytes": 2540
+        },
+        {
+          "name": "knowledge-health/content.mjs",
+          "bytes": 54409
+        },
+        {
+          "name": "knowledge-health/evidence.mjs",
+          "bytes": 11569
+        },
+        {
+          "name": "knowledge-health/expansion-content.mjs",
+          "bytes": 97780
+        },
+        {
+          "name": "knowledge-health/production.mjs",
+          "bytes": 3726
+        },
+        {
+          "name": "knowledge-health/render.mjs",
+          "bytes": 22279
+        },
+        {
+          "name": "pending-pages-20261031/config.mjs",
+          "bytes": 983
+        },
+        {
+          "name": "pending-pages-20261031/entry.mjs",
+          "bytes": 220
+        },
+        {
+          "name": "pending-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "pending-pages-20261031/presentation.mjs",
+          "bytes": 25583
+        },
+        {
+          "name": "pending-pages-20261031/runtime.mjs",
+          "bytes": 5070
+        },
+        {
+          "name": "previews/public-presentation-batch/answer-depth.mjs",
+          "bytes": 35553
+        },
+        {
+          "name": "previews/public-presentation-batch/manifest.mjs",
+          "bytes": 20650
+        },
+        {
+          "name": "previews/public-presentation-batch/stopping-layout.mjs",
+          "bytes": 1073
+        },
+        {
+          "name": "previews/public-presentation-batch/stopping-style.mjs",
+          "bytes": 8263
+        },
+        {
+          "name": "previews/public-presentation-batch/style.mjs",
+          "bytes": 13197
+        },
+        {
+          "name": "previews/public-presentation-batch/worker.mjs",
+          "bytes": 4901
+        },
+        {
+          "name": "weight-mw1/layout.mjs",
+          "bytes": 1053
+        },
+        {
+          "name": "weight-mw1/overlay.mjs",
+          "bytes": 1048
+        },
+        {
+          "name": "weight-mw1/styles.mjs",
+          "bytes": 44834
+        }
+      ],
+      "bindingCount": 4
+    },
+    {
+      "name": "shift-core",
+      "versionId": "c7b38cb6-b667-4f71-9da4-6a3c0e623370",
+      "deploymentId": "f6d2c0e8-bd97-4180-b829-fd2009eedd28",
+      "main": "provider-causes-20261031/entry.mjs",
+      "modules": [
+        {
+          "name": "continuity-polish-20261031/entry.mjs",
+          "bytes": 256
+        },
+        {
+          "name": "continuity-polish-20261031/runtime.mjs",
+          "bytes": 15893
+        },
+        {
+          "name": "continuity-review-20261031/entry.mjs",
+          "bytes": 333
+        },
+        {
+          "name": "continuity-review-20261031/handoff.mjs",
+          "bytes": 10583
+        },
+        {
+          "name": "continuity-review-20261031/html.mjs",
+          "bytes": 18542
+        },
+        {
+          "name": "continuity-review-20261031/runtime.mjs",
+          "bytes": 4667
+        },
+        {
+          "name": "pending-pages-20261031/config.mjs",
+          "bytes": 983
+        },
+        {
+          "name": "pending-pages-20261031/entry.mjs",
+          "bytes": 526
+        },
+        {
+          "name": "pending-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "pending-pages-20261031/media.mjs",
+          "bytes": 442353
+        },
+        {
+          "name": "pending-pages-20261031/presentation.mjs",
+          "bytes": 25583
+        },
+        {
+          "name": "pending-pages-20261031/runtime.mjs",
+          "bytes": 5070
+        },
+        {
+          "name": "provider-causes-20261031/config.mjs",
+          "bytes": 1335
+        },
+        {
+          "name": "provider-causes-20261031/entry.mjs",
+          "bytes": 928
+        },
+        {
+          "name": "provider-causes-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "provider-causes-20261031/media.mjs",
+          "bytes": 146475
+        },
+        {
+          "name": "provider-causes-20261031/presentation.mjs",
+          "bytes": 4297
+        },
+        {
+          "name": "provider-causes-20261031/query-hero.mjs",
+          "bytes": 9768
+        },
+        {
+          "name": "provider-causes-20261031/query-payload.mjs",
+          "bytes": 19723
+        },
+        {
+          "name": "provider-causes-20261031/runtime.mjs",
+          "bytes": 4498
+        },
+        {
+          "name": "provider-causes-20261031/styles.mjs",
+          "bytes": 14876
+        },
+        {
+          "name": "selected-pages-20261031/config.mjs",
+          "bytes": 977
+        },
+        {
+          "name": "selected-pages-20261031/entry.mjs",
+          "bytes": 351
+        },
+        {
+          "name": "selected-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "selected-pages-20261031/media.mjs",
+          "bytes": 381765
+        },
+        {
+          "name": "selected-pages-20261031/presentation.mjs",
+          "bytes": 35535
+        },
+        {
+          "name": "selected-pages-20261031/runtime.mjs",
+          "bytes": 5707
+        },
+        {
+          "name": "tools-ct3-20261031/entry.mjs",
+          "bytes": 213
+        },
+        {
+          "name": "tools-ct3-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "tools-ct3-20261031/media.mjs",
+          "bytes": 166743
+        },
+        {
+          "name": "tools-ct3-20261031/presentation.mjs",
+          "bytes": 15801
+        },
+        {
+          "name": "tools-ct3-20261031/runtime.mjs",
+          "bytes": 3429
+        },
+        {
+          "name": "worker.js",
+          "bytes": 33694226
+        }
+      ],
+      "assets": {
+        "config": {
+          "html_handling": "auto-trailing-slash",
+          "not_found_handling": "none",
+          "run_worker_first": true,
+          "base_path": "/"
+        }
+      },
+      "bindingCount": 52
+    }
+  ],
+  "captures": [
+    {
+      "key": "downloads",
+      "status": 200,
+      "bytes": 56966
+    }
+  ]
+}
