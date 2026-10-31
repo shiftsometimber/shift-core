@@ -31,14 +31,14 @@ jobs:
           git fetch --no-tags origin main
           test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)"
           git merge-base --is-ancestor "$DISCOVERY_SOURCE" HEAD
-          test "$(git rev-parse HEAD:babylove/dynamic-public.mjs)" = "$(git rev-parse "$DISCOVERY_SOURCE":babylove/dynamic-public.mjs)"
-          test "$(git rev-parse HEAD:babylove/dynamic-public.test.mjs)" = "$(git rev-parse "$DISCOVERY_SOURCE":babylove/dynamic-public.test.mjs)"
           python3 - <<'PY'
           import os,subprocess
           source=os.environ['DISCOVERY_SOURCE']
           changed=set(subprocess.check_output(['git','diff','--name-only',source,'HEAD'],text=True).splitlines())
           expected={
             '.github/workflows/article-sitemap-release.yml',
+            'babylove/dynamic-public.mjs',
+            'babylove/dynamic-public.test.mjs',
             'release/bounded-discovery-release-gate-20261031.mjs',
             'shift-coach/release-contract.mjs',
           }

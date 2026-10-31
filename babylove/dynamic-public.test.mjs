@@ -2,8 +2,8 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {renderMarkdown,dynamicBabyLovePublicRoute,withDynamicBabyLoveDiscovery,articleModifiedDate} from './dynamic-public.mjs';
 
-function env(row){
- return {DB:{prepare(sql){return{args:[],bind(...v){this.args=v;return this},async first(){return sql.includes("a.status='published'")&&row?.status==='published'?row:null},async all(){return{results:row?.status==='published'?[row]:[]}}}}}};
+function env(row,queries=[]){
+ return {DB:{prepare(sql){queries.push(sql);return{args:[],bind(...v){this.args=v;return this},async first(){return sql.includes("a.status='published'")&&row?.status==='published'?row:null},async all(){return{results:row?.status==='published'?[row]:[]}}}}}};
 }
 const row={id:4,title:'NICE List vs Private Prices: Mounjaro Cost in the UK',slug:'mounjaro-cost-uk',category:'Knowledge',author:'SHIFT Team',status:'published',summary:'A useful summary',body:'# NICE List vs Private Prices: Mounjaro Cost in the UK\n\n![Title card](https://csuxjmfbwmkxiegfpljm.supabase.co/storage/v1/object/public/blog-images/organization-55073/title-card.jpeg)\n\n## Costs\n\n| Dose | Price |\n|---|---|\n| 2.5mg | £133 |\n\n<script>alert(1)</script>\n\n[Official](https://www.nice.org.uk/)',seo_title:'Mounjaro cost UK',publish_at:'2026-09-21T16:00:00Z',source_id:'876303'};
 
@@ -41,6 +41,16 @@ test('editorial updates preserve publication date and use the real later modific
  const xml=await (await withDynamicBabyLoveDiscovery(new Response('<urlset></urlset>'),new Request('https://shiftsometimber.co.uk/sitemap.xml'),env(revised))).text();assert.match(xml,/<lastmod>2026-10-03<\/lastmod>/);
 });
 
+
+test('Knowledge discovery is not restricted to receipt-joined articles',async()=>{
+ const queries=[];
+ const input=new Response('<main><div class="kh-grid kh-legacy"></div></main>',{headers:{'Content-Type':'text/html'}});
+ const out=await withDynamicBabyLoveDiscovery(input,new Request('https://shiftsometimber.co.uk/knowledge'),env(row,queries));
+ assert.match(await out.text(),/mounjaro-cost-uk/);
+ const discovery=queries.find(sql=>sql.includes('FROM knowledge_articles a')&&sql.includes('ORDER BY a.publish_at DESC'));
+ assert(discovery,'Published-article discovery query was not executed');
+ assert.doesNotMatch(discovery,/babylove_receipts/);
+});
 
 test('published articles are added to the canonical current Knowledge hub',async()=>{
  const input=new Response('<main data-shift-knowledge><div class="kh-grid kh-legacy"></div></main>',{headers:{'Content-Type':'text/html'}});
