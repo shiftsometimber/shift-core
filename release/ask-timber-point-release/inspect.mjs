@@ -13,12 +13,15 @@ const versionId=active.versions[0].version_id;
 const version=await api('/workers/workers/shift-core/versions/'+versionId+'?include=modules');
 const settings=await api('/workers/scripts/shift-core/settings');
 const versions=await api('/workers/scripts/shift-core/versions');
+const latestRows=versions.items??versions.versions??versions;
+const latest=await api('/workers/workers/shift-core/versions/'+latestRows[0].id+'?include=modules');
+const shape=rows=>Object.fromEntries([...new Set(rows.map(b=>b.type))].map(t=>[t,[...new Set(rows.filter(b=>b.type===t).flatMap(b=>Object.keys(b)))]]));
 const modules=version.modules??version.resources?.modules;
 assert(Array.isArray(modules),'Provider must return serving module bytes');
 const dir='evidence/ask-timber-point-release';mkdirSync(dir,{recursive:true});
 const sha=x=>createHash('sha256').update(x).digest('hex');
-const inventory={deploymentId:active.id,versionId,versionKeys:Object.keys(version),resourceKeys:Object.keys(version.resources??{}),runtime:version.resources?.script_runtime,latestUpload:(versions.items??versions.versions??versions)[0]?.id,settingsKeys:Object.keys(settings),bindingTypes:[...new Set((version.resources?.bindings??settings.bindings??[]).map(b=>b.type))],modules:[]};
+const inventory={versionBindingShapes:shape(version.bindings??[]),latestBindingShapes:shape(latest.bindings??[]),bindingsEqual:JSON.stringify(version.bindings)===JSON.stringify(latest.bindings),assetsEqual:JSON.stringify(version.assets)===JSON.stringify(latest.assets),assetsKeys:Object.keys(version.assets??{}),versionEnvKeys:Object.keys(version.env??{}),deploymentId:active.id,versionId,versionKeys:Object.keys(version),resourceKeys:Object.keys(version.resources??{}),runtime:version.resources?.script_runtime,latestUpload:(versions.items??versions.versions??versions)[0]?.id,settingsKeys:Object.keys(settings),bindingTypes:[...new Set((version.resources?.bindings??settings.bindings??[]).map(b=>b.type))],modules:[]};
 for(let i=0;i<modules.length;i++){const m=modules[i];assert(m.content_base64,'Module bytes absent');const content=Buffer.from(m.content_base64,'base64');writeFileSync(dir+'/module-'+i+'.bin',content);inventory.modules.push({name:m.name,keys:Object.keys(m),bytes:content.length,sha256:sha(content),index:i});}
 writeFileSync(dir+'/inspection.json',JSON.stringify(inventory,null,2));
-writeFileSync('/tmp/ask-timber-serving-metadata.json',JSON.stringify({active,version,settings,versions}));
+writeFileSync('/tmp/ask-timber-serving-metadata.json',JSON.stringify({active,version,settings,versions,latest}));
 console.log(JSON.stringify(inventory,null,2));
