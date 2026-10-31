@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {patchServingModule,sha,assertOwnedDeployment} from './patch.mjs';
+import {uploadPreservedAssets,verifyPreservedAssets} from '../../knowledge-health/release-assets.mjs';
 const dir='evidence/ask-timber-point-release';mkdirSync(dir,{recursive:true});
 const manifest=JSON.parse(readFileSync('release/ask-timber-point-release/patches.json'));
 const account=process.env.CLOUDFLARE_ACCOUNT_ID,token=process.env.CLOUDFLARE_API_TOKEN;
@@ -30,21 +31,15 @@ const expectedModules=version.modules.map(m=>({...m,...(m===originalModule?{cont
 const receipt={at:new Date().toISOString(),run:process.env.GITHUB_RUN_ID,source:manifest.candidate,releaseSource:git('rev-parse','HEAD'),originalDeploymentId:originalDeployment.id,originalVersionId,moduleProof:patched.proof,modulesPreserved:version.modules.length-1,customerDataAccess:false,databaseWrites:false,routeChanges:false,notificationsSent:false,stageOnly:true};
 const save=()=>writeFileSync(dir+'/release.json',JSON.stringify(receipt,null,2));save();
 const settingBefore=await api('/workers/scripts/shift-core/settings');
-// The multipart version endpoint can retain assets but inherits bindings from
-// latest only. Require latest to be the captured serving version under the
-// shared release lock, then recheck immediately before upload.
-const payload={keep_assets:true,usage_model:version.usage_model,main_module:version.main_module,compatibility_date:version.compatibility_date,compatibility_flags:version.compatibility_flags,modules:expectedModules,bindings:version.bindings.map(b=>({type:'inherit',name:b.name})),annotations:{'workers/message':'Ask Timber only; exact six source-proven edits; source '+manifest.candidate,'workers/tag':'ask-timber-'+process.env.GITHUB_RUN_ID}};
+// Use the repository's existing preserved-assets uploader and version-specific
+// binding inheritance. Assets stay in memory until attached to the staged version.
+const payload={main_module:version.main_module,compatibility_date:version.compatibility_date,compatibility_flags:version.compatibility_flags,modules:expectedModules,bindings:version.bindings.map(b=>({type:'inherit',name:b.name,version_id:originalVersionId})),annotations:{'workers/message':'Ask Timber only; exact six source-proven edits; source '+manifest.candidate,'workers/tag':'ask-timber-'+process.env.GITHUB_RUN_ID}};
 for(const field of ['assets','limits','placement'])if(version[field]!==undefined)payload[field]=version[field];
+const cf=(path,method='GET',body,bearer=token)=>api(path.replace('/accounts/'+account,''),{method,...(body?{body:body instanceof FormData?body:JSON.stringify(body)}:{}),headers:{Authorization:'Bearer '+bearer}});
+const preserved=await uploadPreservedAssets({cf,account,name:'shift-core',save:(name,value)=>{assert.equal(value.assetSource,'39499afc517ed9a83634fe9d145b737165c46530','Asset source must remain the accepted main snapshot');writeFileSync(dir+'/'+name+'.json',JSON.stringify(value,null,2));}});
+payload.assets={...version.assets,jwt:preserved.jwt};
 assert.equal((await current()).id,originalDeployment.id,'Serving deployment moved before staging');
-const versions=await api('/workers/scripts/shift-core/versions');const latest=[...(versions.items??versions)].sort((a,b)=>b.number-a.number)[0];let staged;
-if(latest.id===originalVersionId){
-const form=new FormData();form.set('metadata',new Blob([JSON.stringify({...payload,modules:undefined})],{type:'application/json'}));for(const m of expectedModules)form.set(m.name,new Blob([Buffer.from(m.content_base64,'base64')],{type:m.content_type}),m.name);
-assert.equal((await current()).id,originalDeployment.id,'Serving deployment moved immediately before upload');
-staged=await api('/workers/scripts/shift-core/versions',{method:'POST',body:form});
-}else{
- staged=await api('/workers/workers/shift-core/versions/'+latest.id);assert.match(staged.annotations?.['workers/tag']??'',/^ask-timber-\d+$/,'Unrelated unpromoted version must not be inherited');receipt.reusedStagedVersion=true;
-}
-assert(staged.id);receipt.stagedVersionId=staged.id;save();
+const staged=await api('/workers/workers/shift-core/versions?deploy=false',{method:'POST',body:JSON.stringify(payload)});assert(staged.id);receipt.stagedVersionId=staged.id;save();
 const stagedRead=await api('/workers/workers/shift-core/versions/'+staged.id+'?include=modules');
 assert.deepEqual(stagedRead.modules,expectedModules,'Provider-stored code differs');
 assert.deepEqual(stagedRead.bindings,version.bindings,'Serving bindings changed');
@@ -68,6 +63,7 @@ try{
  assert(ready,'New hand-off did not appear on live traffic');
  const urgent=await chat('I have severe chest pain and cannot breathe');assert.equal(urgent.mode,'safety');assert.equal(urgent.category,'medical_emergency');evidence.push({check:'urgent_safety_preserved',...urgent});
  assert.deepEqual(await assets(),beforeAssets,'Public chat assets changed');
+ await verifyPreservedAssets(preserved.checks);receipt.preservedLiveTextAssetCount=preserved.checks.length;
  assert.deepEqual(await api('/workers/scripts/shift-core/settings'),settingBefore,'Worker settings changed after promotion');
  assertOwnedDeployment(await current(),staged.id);
  receipt.liveVerified=true;receipt.checks=evidence;receipt.publicAssetsPreserved=beforeAssets;save();console.log('LIVE_VERIFIED '+JSON.stringify(receipt));
