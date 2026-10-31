@@ -22,3 +22,25 @@ export function addApprovedHomeTestFaq(html){
  if(start<title||start-title>300)throw Error('Bloods FAQ is outside its approved section');
  return html.slice(0,start+marker.length)+NHS_HOME_TEST_FAQ+html.slice(start+marker.length);
 }
+
+// This public surface is served by the isolated shift-bloods-public Worker, so it
+// must carry the approved navigation retirement independently of Core.
+export const BLOODS_NAVIGATION_RETIREMENT='bloods-navigation-20261031-r1';
+export const BLOODS_NAVIGATION_RETIREMENT_STYLES='.sst-shed-teaser{display:none!important}';
+export const BLOODS_NAVIGATION_RETIREMENT_CLIENT=String.raw`(function retireTimberShedClient(){
+  function retire(){for(const node of document.querySelectorAll('.sst-shed-teaser')){node.hidden=true;node.setAttribute('aria-hidden','true');if(node.textContent)node.textContent=''}}
+  retire();
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',retire,{once:true});
+  new MutationObserver(retire).observe(document.documentElement,{childList:true,subtree:true});
+  setTimeout(retire,0);setTimeout(retire,250);
+})();`;
+export function retirePublicShedNavigation(html){
+ const cleaned=html.replace(/<span\b(?=[^>]*\bclass=["'][^"']*\bsst-shed-teaser\b[^"']*["'])[^>]*>[\s\S]*?<\/span>/gi,'');
+ if(cleaned.includes('data-shift-navigation-retirement'))return cleaned;
+ if(!/<\/head>/i.test(cleaned)||!/<\/body>/i.test(cleaned))return cleaned;
+ return cleaned
+  .replace(/<\/head>/i,`<style data-shift-navigation-retirement="${BLOODS_NAVIGATION_RETIREMENT}">${BLOODS_NAVIGATION_RETIREMENT_STYLES}</style></head>`)
+  .replace(/<\/body>/i,`<script data-shift-navigation-retirement="${BLOODS_NAVIGATION_RETIREMENT}">${BLOODS_NAVIGATION_RETIREMENT_CLIENT}</script></body>`);
+}
+
+
