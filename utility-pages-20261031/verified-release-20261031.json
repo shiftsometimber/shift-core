@@ -1,0 +1,2548 @@
+{
+  "verified": true,
+  "source": "05261a966a7c02933b71e864cbb2dcae8f205e04",
+  "release": "utility-pages-20261031-v1",
+  "pages": [
+    {
+      "key": "commercial",
+      "path": "/commercial-principles",
+      "selected": "Delegated utility-page refresh"
+    },
+    {
+      "key": "reviews",
+      "path": "/how-we-review-products",
+      "selected": "Delegated utility-page refresh"
+    },
+    {
+      "key": "disclosure",
+      "path": "/affiliate-disclosure",
+      "selected": "Delegated utility-page refresh"
+    },
+    {
+      "key": "trees",
+      "path": "/decision-trees-explained",
+      "selected": "Delegated utility-page refresh"
+    },
+    {
+      "key": "finder",
+      "path": "/treatment-finder-methodology",
+      "selected": "Delegated utility-page refresh"
+    },
+    {
+      "key": "roadmap",
+      "path": "/roadmap-methodology",
+      "selected": "Delegated utility-page refresh"
+    },
+    {
+      "key": "mot",
+      "path": "/health-mot-methodology",
+      "selected": "Delegated utility-page refresh"
+    },
+    {
+      "key": "medication",
+      "path": "/medication-comparison-methodology",
+      "selected": "Delegated utility-page refresh"
+    }
+  ],
+  "workers": [
+    {
+      "name": "shift-public-presentation-batch-20261022",
+      "versionId": "c2e41256-eb0c-4420-8995-c2eb88645ba4",
+      "previousVersion": "e79d75a5-8e3b-474a-a432-c00eac500ed9",
+      "retainedModules": 45,
+      "refreshedOwnedModules": 0,
+      "bindingsPreserved": 4
+    },
+    {
+      "name": "shift-core",
+      "versionId": "efbc7301-1159-41c4-8a74-4e27c5f6463c",
+      "previousVersion": "89da9c4b-e136-4c5c-bf9e-aeb24d975255",
+      "retainedModules": 1,
+      "refreshedOwnedModules": 0,
+      "bindingsPreserved": 52
+    }
+  ],
+  "routeCount": 915,
+  "routesChanged": 0,
+  "checks": [
+    {
+      "path": "/commercial-principles",
+      "key": "commercial",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/commercial-principles?presentation=1",
+      "key": "commercial",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/how-we-review-products",
+      "key": "reviews",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/how-we-review-products?presentation=1",
+      "key": "reviews",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/affiliate-disclosure",
+      "key": "disclosure",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/affiliate-disclosure?presentation=1",
+      "key": "disclosure",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/decision-trees-explained",
+      "key": "trees",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/decision-trees-explained?presentation=1",
+      "key": "trees",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/treatment-finder-methodology",
+      "key": "finder",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/treatment-finder-methodology?presentation=1",
+      "key": "finder",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/roadmap-methodology",
+      "key": "roadmap",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/roadmap-methodology?presentation=1",
+      "key": "roadmap",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/health-mot-methodology",
+      "key": "mot",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/health-mot-methodology?presentation=1",
+      "key": "mot",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/medication-comparison-methodology",
+      "key": "medication",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/medication-comparison-methodology?presentation=1",
+      "key": "medication",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    }
+  ],
+  "protectedPages": [
+    "/tools/bmi",
+    "/tools/calories",
+    "/tools/healthy-weight",
+    "/tools/protein",
+    "/tools/waist-height",
+    "/tools/walking",
+    "/tools/water",
+    "/tools/steps",
+    "/tools/sleep",
+    "/tools/alcohol",
+    "/tools/weight-management-review",
+    "/how-are-you-feeling",
+    "/",
+    "/start-here",
+    "/programme",
+    "/shift-health",
+    "/knowledge",
+    "/explore-knowledge",
+    "/ask-timber",
+    "/treatment-centre",
+    "/member/dashboard",
+    "/mens-mental-health",
+    "/shift-for-work",
+    "/shift-health/stop-smoking",
+    "/tools",
+    "/tools?ct3=1",
+    "/weight-loss-support-for-men",
+    "/partner-with-us",
+    "/male-obesity",
+    "/compare-weight-loss-treatments",
+    "/clinic-gone-quiet",
+    "/about",
+    "/contact",
+    "/shift-newsroom",
+    "/life-back",
+    "/corporate-wellbeing",
+    "/guides/retatrutide-uk-guide",
+    "/husband-help",
+    "/my-timber-for-providers",
+    "/nhs-vs-private",
+    "/surgery-comparison-centre",
+    "/knowledge?presentation=1",
+    "/articles/stopping-glp1",
+    "/articles/food-noise-after-stopping-glp1",
+    "/member/life-back",
+    "/shift-newsroom/client.js",
+    "/shift-newsroom/compare.js",
+    "/provider-switch",
+    "/our-causes-partners",
+    "/downloads-resources",
+    "/downloads-resources?presentation=1",
+    "/family-discussion-guide",
+    "/family-discussion-guide?presentation=1",
+    "/community",
+    "/community?presentation=1",
+    "/faq",
+    "/help",
+    "/waiting-list-journey",
+    "/waiting-list-journey?presentation=1",
+    "/advertise-with-us",
+    "/expert-contributors",
+    "/media-centre",
+    "/press-centre",
+    "/trusted-partners",
+    "/shift-promise",
+    "/treatment-finder",
+    "/my-weight-loss-roadmap",
+    "/shift-health/health-mot",
+    "/editorial-standards"
+  ],
+  "calculatorPages": [
+    "/tools/bmi",
+    "/tools/calories",
+    "/tools/healthy-weight",
+    "/tools/protein",
+    "/tools/waist-height",
+    "/tools/walking",
+    "/tools/water",
+    "/tools/steps",
+    "/tools/sleep",
+    "/tools/alcohol",
+    "/tools/weight-management-review"
+  ],
+  "existingCodeAssetsPreserved": 215,
+  "photographs": [],
+  "browser": [
+    {
+      "page": "commercial",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "commercial",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1145.5,
+          "scroll": 1021,
+          "width": 1021
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "Evidence before revenueCommercial value does not override licensed indicati",
+            "fits": true,
+            "height": 133.25,
+            "decoration": "none"
+          },
+          {
+            "text": "No margin-led rankingFinder and comparison logic must not favour an option ",
+            "fits": true,
+            "height": 133.25,
+            "decoration": "none"
+          },
+          {
+            "text": "Relationships declaredRelevant provider, pharmacy, affiliate or commercial ",
+            "fits": true,
+            "height": 133.25,
+            "decoration": "none"
+          },
+          {
+            "text": "NHS stays on the tablePrivate treatment is not presented as automatically b",
+            "fits": true,
+            "height": 133.25,
+            "decoration": "none"
+          },
+          {
+            "text": "No fake urgencyNo invented scarcity, countdown pressure or made-up treatmen",
+            "fits": true,
+            "height": 133.25,
+            "decoration": "none"
+          },
+          {
+            "text": "Information stays independentEvidence pages are not quietly rewritten into ",
+            "fits": true,
+            "height": 133.25,
+            "decoration": "none"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "page": "commercial",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "commercial",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1024.5,
+          "scroll": 900,
+          "width": 900
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "Evidence before revenueCommercial value does not override licensed indicati",
+            "fits": true,
+            "height": 133.25,
+            "decoration": "none"
+          },
+          {
+            "text": "No margin-led rankingFinder and comparison logic must not favour an option ",
+            "fits": true,
+            "height": 133.25,
+            "decoration": "none"
+          },
+          {
+            "text": "Relationships declaredRelevant provider, pharmacy, affiliate or commercial ",
+            "fits": true,
+            "height": 133.25,
+            "decoration": "none"
+          },
+          {
+            "text": "NHS stays on the tablePrivate treatment is not presented as automatically b",
+            "fits": true,
+            "height": 133.25,
+            "decoration": "none"
+          },
+          {
+            "text": "No fake urgencyNo invented scarcity, countdown pressure or made-up treatmen",
+            "fits": true,
+            "height": 133.25,
+            "decoration": "none"
+          },
+          {
+            "text": "Information stays independentEvidence pages are not quietly rewritten into ",
+            "fits": true,
+            "height": 133.25,
+            "decoration": "none"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "page": "reviews",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "reviews",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1145.5,
+          "scroll": 1021,
+          "width": 1021
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [],
+        "links": []
+      }
+    },
+    {
+      "page": "reviews",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "reviews",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1024.5,
+          "scroll": 900,
+          "width": 900
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [],
+        "links": []
+      }
+    },
+    {
+      "page": "disclosure",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "disclosure",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1145.5,
+          "scroll": 1021,
+          "width": 1021
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [],
+        "links": []
+      }
+    },
+    {
+      "page": "disclosure",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "disclosure",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1024.5,
+          "scroll": 900,
+          "width": 900
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [],
+        "links": []
+      }
+    },
+    {
+      "page": "trees",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "trees",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1145.5,
+          "scroll": 1021,
+          "width": 1021
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "LifestyleAlways relevant, but may not be sufficient alone when appetite bio",
+            "fits": true,
+            "height": 133.25,
+            "decoration": "none"
+          },
+          {
+            "text": "NHSBecomes more relevant when BMI, comorbidities and cost/preferences make ",
+            "fits": true,
+            "height": 133.25,
+            "decoration": "none"
+          },
+          {
+            "text": "MedicationMoves up when appetite, food noise, repeated regain and higher BM",
+            "fits": true,
+            "height": 133.25,
+            "decoration": "none"
+          },
+          {
+            "text": "SurgeryMoves up mainly with higher BMI, significant weight-related disease ",
+            "fits": true,
+            "height": 133.25,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/treatment-finder"
+          }
+        ]
+      }
+    },
+    {
+      "page": "trees",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "trees",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1024.5,
+          "scroll": 900,
+          "width": 900
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "LifestyleAlways relevant, but may not be sufficient alone when appetite bio",
+            "fits": true,
+            "height": 854.984375,
+            "decoration": "none"
+          },
+          {
+            "text": "NHSBecomes more relevant when BMI, comorbidities and cost/preferences make ",
+            "fits": true,
+            "height": 854.984375,
+            "decoration": "none"
+          },
+          {
+            "text": "MedicationMoves up when appetite, food noise, repeated regain and higher BM",
+            "fits": true,
+            "height": 133.25,
+            "decoration": "none"
+          },
+          {
+            "text": "SurgeryMoves up mainly with higher BMI, significant weight-related disease ",
+            "fits": true,
+            "height": 133.25,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/treatment-finder"
+          }
+        ]
+      }
+    },
+    {
+      "page": "finder",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "finder",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1145.5,
+          "scroll": 1021,
+          "width": 1021
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "index": {
+          "count": 9,
+          "position": 110.328125
+        },
+        "cards": [
+          {
+            "text": "No hidden 'best treatment' answerThe engine is not designed to make Mounjar",
+            "fits": true,
+            "height": 115.59375,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/treatment-finder"
+          }
+        ]
+      }
+    },
+    {
+      "page": "finder",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "finder",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1024.5,
+          "scroll": 900,
+          "width": 900
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "index": {
+          "count": 9,
+          "position": 110.328125
+        },
+        "cards": [
+          {
+            "text": "No hidden 'best treatment' answerThe engine is not designed to make Mounjar",
+            "fits": true,
+            "height": 115.59375,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/treatment-finder"
+          }
+        ]
+      }
+    },
+    {
+      "page": "roadmap",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "roadmap",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1145.5,
+          "scroll": 1021,
+          "width": 1021
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "index": {
+          "count": 7,
+          "position": 109.53125
+        },
+        "cards": [
+          {
+            "text": "No prescribing logicThe roadmap never generates a dose, titration date, sur",
+            "fits": true,
+            "height": 115.59375,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/my-weight-loss-roadmap"
+          }
+        ]
+      }
+    },
+    {
+      "page": "roadmap",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "roadmap",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1024.5,
+          "scroll": 900,
+          "width": 900
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "index": {
+          "count": 7,
+          "position": 109.765625
+        },
+        "cards": [
+          {
+            "text": "No prescribing logicThe roadmap never generates a dose, titration date, sur",
+            "fits": true,
+            "height": 115.59375,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/my-weight-loss-roadmap"
+          }
+        ]
+      }
+    },
+    {
+      "page": "mot",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "mot",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1145.5,
+          "scroll": 1021,
+          "width": 1021
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "index": {
+          "count": 11,
+          "position": 110.328125
+        },
+        "cards": [
+          {
+            "text": "Adult BMI uses weight kg ÷ height metres². NICE classifies standard adult o",
+            "fits": true,
+            "height": 124.78125,
+            "decoration": "none"
+          },
+          {
+            "text": "What this tool will never doIt will not diagnose diabetes, hypertension, sl",
+            "fits": true,
+            "height": 141.1875,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/shift-health/health-mot"
+          }
+        ]
+      }
+    },
+    {
+      "page": "mot",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "mot",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1024.5,
+          "scroll": 900,
+          "width": 900
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "index": {
+          "count": 11,
+          "position": 109.6875
+        },
+        "cards": [
+          {
+            "text": "Adult BMI uses weight kg ÷ height metres². NICE classifies standard adult o",
+            "fits": true,
+            "height": 124.78125,
+            "decoration": "none"
+          },
+          {
+            "text": "What this tool will never doIt will not diagnose diabetes, hypertension, sl",
+            "fits": true,
+            "height": 141.1875,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/shift-health/health-mot"
+          }
+        ]
+      }
+    },
+    {
+      "page": "medication",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "medication",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1145.5,
+          "scroll": 1021,
+          "width": 1021
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "index": {
+          "count": 10,
+          "position": 109.765625
+        },
+        "cards": [
+          {
+            "text": "No automatic winner.A medicine can have stronger average weight-loss eviden",
+            "fits": true,
+            "height": 141.1875,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/compare-weight-loss-treatments"
+          }
+        ]
+      }
+    },
+    {
+      "page": "medication",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "medication",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 124.5,
+          "right": 1024.5,
+          "scroll": 900,
+          "width": 900
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "index": {
+          "count": 10,
+          "position": 110.125
+        },
+        "cards": [
+          {
+            "text": "No automatic winner.A medicine can have stronger average weight-loss eviden",
+            "fits": true,
+            "height": 141.1875,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/compare-weight-loss-treatments"
+          }
+        ]
+      }
+    },
+    {
+      "page": "commercial",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "commercial",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "Evidence before revenueCommercial value does not override licensed indicati",
+            "fits": true,
+            "height": 183.5,
+            "decoration": "none"
+          },
+          {
+            "text": "No margin-led rankingFinder and comparison logic must not favour an option ",
+            "fits": true,
+            "height": 183.5,
+            "decoration": "none"
+          },
+          {
+            "text": "Relationships declaredRelevant provider, pharmacy, affiliate or commercial ",
+            "fits": true,
+            "height": 183.5,
+            "decoration": "none"
+          },
+          {
+            "text": "NHS stays on the tablePrivate treatment is not presented as automatically b",
+            "fits": true,
+            "height": 183.5,
+            "decoration": "none"
+          },
+          {
+            "text": "No fake urgencyNo invented scarcity, countdown pressure or made-up treatmen",
+            "fits": true,
+            "height": 183.5,
+            "decoration": "none"
+          },
+          {
+            "text": "Information stays independentEvidence pages are not quietly rewritten into ",
+            "fits": true,
+            "height": 183.5,
+            "decoration": "none"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "page": "commercial",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "commercial",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "Evidence before revenueCommercial value does not override licensed indicati",
+            "fits": true,
+            "height": 183.5,
+            "decoration": "none"
+          },
+          {
+            "text": "No margin-led rankingFinder and comparison logic must not favour an option ",
+            "fits": true,
+            "height": 183.5,
+            "decoration": "none"
+          },
+          {
+            "text": "Relationships declaredRelevant provider, pharmacy, affiliate or commercial ",
+            "fits": true,
+            "height": 183.5,
+            "decoration": "none"
+          },
+          {
+            "text": "NHS stays on the tablePrivate treatment is not presented as automatically b",
+            "fits": true,
+            "height": 183.5,
+            "decoration": "none"
+          },
+          {
+            "text": "No fake urgencyNo invented scarcity, countdown pressure or made-up treatmen",
+            "fits": true,
+            "height": 183.5,
+            "decoration": "none"
+          },
+          {
+            "text": "Information stays independentEvidence pages are not quietly rewritten into ",
+            "fits": true,
+            "height": 183.5,
+            "decoration": "none"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "page": "reviews",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "reviews",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [],
+        "links": []
+      }
+    },
+    {
+      "page": "reviews",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "reviews",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [],
+        "links": []
+      }
+    },
+    {
+      "page": "disclosure",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "disclosure",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [],
+        "links": []
+      }
+    },
+    {
+      "page": "disclosure",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "disclosure",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [],
+        "links": []
+      }
+    },
+    {
+      "page": "trees",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "trees",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "LifestyleAlways relevant, but may not be sufficient alone when appetite bio",
+            "fits": true,
+            "height": 157.25,
+            "decoration": "none"
+          },
+          {
+            "text": "NHSBecomes more relevant when BMI, comorbidities and cost/preferences make ",
+            "fits": true,
+            "height": 157.25,
+            "decoration": "none"
+          },
+          {
+            "text": "MedicationMoves up when appetite, food noise, repeated regain and higher BM",
+            "fits": true,
+            "height": 181.25,
+            "decoration": "none"
+          },
+          {
+            "text": "SurgeryMoves up mainly with higher BMI, significant weight-related disease ",
+            "fits": true,
+            "height": 181.25,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/treatment-finder"
+          }
+        ]
+      }
+    },
+    {
+      "page": "trees",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "trees",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "LifestyleAlways relevant, but may not be sufficient alone when appetite bio",
+            "fits": true,
+            "height": 1738.359375,
+            "decoration": "none"
+          },
+          {
+            "text": "NHSBecomes more relevant when BMI, comorbidities and cost/preferences make ",
+            "fits": true,
+            "height": 1738.359375,
+            "decoration": "none"
+          },
+          {
+            "text": "MedicationMoves up when appetite, food noise, repeated regain and higher BM",
+            "fits": true,
+            "height": 181.25,
+            "decoration": "none"
+          },
+          {
+            "text": "SurgeryMoves up mainly with higher BMI, significant weight-related disease ",
+            "fits": true,
+            "height": 181.25,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/treatment-finder"
+          }
+        ]
+      }
+    },
+    {
+      "page": "finder",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "finder",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "index": {
+          "count": 9,
+          "position": 110.1875
+        },
+        "cards": [
+          {
+            "text": "No hidden 'best treatment' answerThe engine is not designed to make Mounjar",
+            "fits": true,
+            "height": 141.1875,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/treatment-finder"
+          }
+        ]
+      }
+    },
+    {
+      "page": "finder",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "finder",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "index": {
+          "count": 9,
+          "position": 110.1875
+        },
+        "cards": [
+          {
+            "text": "No hidden 'best treatment' answerThe engine is not designed to make Mounjar",
+            "fits": true,
+            "height": 141.1875,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/treatment-finder"
+          }
+        ]
+      }
+    },
+    {
+      "page": "roadmap",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "roadmap",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "index": {
+          "count": 7,
+          "position": 110.484375
+        },
+        "cards": [
+          {
+            "text": "No prescribing logicThe roadmap never generates a dose, titration date, sur",
+            "fits": true,
+            "height": 141.1875,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/my-weight-loss-roadmap"
+          }
+        ]
+      }
+    },
+    {
+      "page": "roadmap",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "roadmap",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "index": {
+          "count": 7,
+          "position": 110.484375
+        },
+        "cards": [
+          {
+            "text": "No prescribing logicThe roadmap never generates a dose, titration date, sur",
+            "fits": true,
+            "height": 141.1875,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/my-weight-loss-roadmap"
+          }
+        ]
+      }
+    },
+    {
+      "page": "mot",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "mot",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "index": {
+          "count": 11,
+          "position": 110.1875
+        },
+        "cards": [
+          {
+            "text": "Adult BMI uses weight kg ÷ height metres². NICE classifies standard adult o",
+            "fits": true,
+            "height": 150.375,
+            "decoration": "none"
+          },
+          {
+            "text": "What this tool will never doIt will not diagnose diabetes, hypertension, sl",
+            "fits": true,
+            "height": 166.78125,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/shift-health/health-mot"
+          }
+        ]
+      }
+    },
+    {
+      "page": "mot",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "mot",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "index": {
+          "count": 11,
+          "position": 110.46875
+        },
+        "cards": [
+          {
+            "text": "Adult BMI uses weight kg ÷ height metres². NICE classifies standard adult o",
+            "fits": true,
+            "height": 150.375,
+            "decoration": "none"
+          },
+          {
+            "text": "What this tool will never doIt will not diagnose diabetes, hypertension, sl",
+            "fits": true,
+            "height": 166.78125,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/shift-health/health-mot"
+          }
+        ]
+      }
+    },
+    {
+      "page": "medication",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "medication",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "index": {
+          "count": 10,
+          "position": 110.484375
+        },
+        "cards": [
+          {
+            "text": "No automatic winner.A medicine can have stronger average weight-loss eviden",
+            "fits": true,
+            "height": 166.78125,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/compare-weight-loss-treatments"
+          }
+        ]
+      }
+    },
+    {
+      "page": "medication",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "medication",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 24,
+          "right": 629,
+          "scroll": 605,
+          "width": 605
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "index": {
+          "count": 10,
+          "position": 109.765625
+        },
+        "cards": [
+          {
+            "text": "No automatic winner.A medicine can have stronger average weight-loss eviden",
+            "fits": true,
+            "height": 166.78125,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/compare-weight-loss-treatments"
+          }
+        ]
+      }
+    },
+    {
+      "page": "commercial",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "commercial",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "Evidence before revenueCommercial value does not override licensed indicati",
+            "fits": true,
+            "height": 201.5,
+            "decoration": "none"
+          },
+          {
+            "text": "No margin-led rankingFinder and comparison logic must not favour an option ",
+            "fits": true,
+            "height": 201.5,
+            "decoration": "none"
+          },
+          {
+            "text": "Relationships declaredRelevant provider, pharmacy, affiliate or commercial ",
+            "fits": true,
+            "height": 201.5,
+            "decoration": "none"
+          },
+          {
+            "text": "NHS stays on the tablePrivate treatment is not presented as automatically b",
+            "fits": true,
+            "height": 201.5,
+            "decoration": "none"
+          },
+          {
+            "text": "No fake urgencyNo invented scarcity, countdown pressure or made-up treatmen",
+            "fits": true,
+            "height": 201.5,
+            "decoration": "none"
+          },
+          {
+            "text": "Information stays independentEvidence pages are not quietly rewritten into ",
+            "fits": true,
+            "height": 201.5,
+            "decoration": "none"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "page": "commercial",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "commercial",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "Evidence before revenueCommercial value does not override licensed indicati",
+            "fits": true,
+            "height": 201.5,
+            "decoration": "none"
+          },
+          {
+            "text": "No margin-led rankingFinder and comparison logic must not favour an option ",
+            "fits": true,
+            "height": 201.5,
+            "decoration": "none"
+          },
+          {
+            "text": "Relationships declaredRelevant provider, pharmacy, affiliate or commercial ",
+            "fits": true,
+            "height": 201.5,
+            "decoration": "none"
+          },
+          {
+            "text": "NHS stays on the tablePrivate treatment is not presented as automatically b",
+            "fits": true,
+            "height": 201.5,
+            "decoration": "none"
+          },
+          {
+            "text": "No fake urgencyNo invented scarcity, countdown pressure or made-up treatmen",
+            "fits": true,
+            "height": 201.5,
+            "decoration": "none"
+          },
+          {
+            "text": "Information stays independentEvidence pages are not quietly rewritten into ",
+            "fits": true,
+            "height": 201.5,
+            "decoration": "none"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "page": "reviews",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "reviews",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [],
+        "links": []
+      }
+    },
+    {
+      "page": "reviews",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "reviews",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [],
+        "links": []
+      }
+    },
+    {
+      "page": "disclosure",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "disclosure",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [],
+        "links": []
+      }
+    },
+    {
+      "page": "disclosure",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "disclosure",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [],
+        "links": []
+      }
+    },
+    {
+      "page": "trees",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "trees",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "LifestyleAlways relevant, but may not be sufficient alone when appetite bio",
+            "fits": true,
+            "height": 175.25,
+            "decoration": "none"
+          },
+          {
+            "text": "NHSBecomes more relevant when BMI, comorbidities and cost/preferences make ",
+            "fits": true,
+            "height": 151.25,
+            "decoration": "none"
+          },
+          {
+            "text": "MedicationMoves up when appetite, food noise, repeated regain and higher BM",
+            "fits": true,
+            "height": 151.25,
+            "decoration": "none"
+          },
+          {
+            "text": "SurgeryMoves up mainly with higher BMI, significant weight-related disease ",
+            "fits": true,
+            "height": 175.25,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/treatment-finder"
+          }
+        ]
+      }
+    },
+    {
+      "page": "trees",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "trees",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "cards": [
+          {
+            "text": "LifestyleAlways relevant, but may not be sufficient alone when appetite bio",
+            "fits": true,
+            "height": 1128.65625,
+            "decoration": "none"
+          },
+          {
+            "text": "NHSBecomes more relevant when BMI, comorbidities and cost/preferences make ",
+            "fits": true,
+            "height": 151.25,
+            "decoration": "none"
+          },
+          {
+            "text": "MedicationMoves up when appetite, food noise, repeated regain and higher BM",
+            "fits": true,
+            "height": 151.25,
+            "decoration": "none"
+          },
+          {
+            "text": "SurgeryMoves up mainly with higher BMI, significant weight-related disease ",
+            "fits": true,
+            "height": 175.25,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/treatment-finder"
+          }
+        ]
+      }
+    },
+    {
+      "page": "finder",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "finder",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "index": {
+          "count": 9,
+          "position": 110.203125
+        },
+        "cards": [
+          {
+            "text": "No hidden 'best treatment' answerThe engine is not designed to make Mounjar",
+            "fits": true,
+            "height": 205.1875,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/treatment-finder"
+          }
+        ]
+      }
+    },
+    {
+      "page": "finder",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "finder",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "index": {
+          "count": 9,
+          "position": 110.203125
+        },
+        "cards": [
+          {
+            "text": "No hidden 'best treatment' answerThe engine is not designed to make Mounjar",
+            "fits": true,
+            "height": 205.1875,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/treatment-finder"
+          }
+        ]
+      }
+    },
+    {
+      "page": "roadmap",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "roadmap",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "index": {
+          "count": 7,
+          "position": 109.609375
+        },
+        "cards": [
+          {
+            "text": "No prescribing logicThe roadmap never generates a dose, titration date, sur",
+            "fits": true,
+            "height": 177.59375,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/my-weight-loss-roadmap"
+          }
+        ]
+      }
+    },
+    {
+      "page": "roadmap",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "roadmap",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "index": {
+          "count": 7,
+          "position": 109.609375
+        },
+        "cards": [
+          {
+            "text": "No prescribing logicThe roadmap never generates a dose, titration date, sur",
+            "fits": true,
+            "height": 177.59375,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/my-weight-loss-roadmap"
+          }
+        ]
+      }
+    },
+    {
+      "page": "mot",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "mot",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "index": {
+          "count": 11,
+          "position": 110.40625
+        },
+        "cards": [
+          {
+            "text": "Adult BMI uses weight kg ÷ height metres². NICE classifies standard adult o",
+            "fits": true,
+            "height": 258,
+            "decoration": "none"
+          },
+          {
+            "text": "What this tool will never doIt will not diagnose diabetes, hypertension, sl",
+            "fits": true,
+            "height": 253.1875,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/shift-health/health-mot"
+          }
+        ]
+      }
+    },
+    {
+      "page": "mot",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "mot",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "index": {
+          "count": 11,
+          "position": 110.296875
+        },
+        "cards": [
+          {
+            "text": "Adult BMI uses weight kg ÷ height metres². NICE classifies standard adult o",
+            "fits": true,
+            "height": 258,
+            "decoration": "none"
+          },
+          {
+            "text": "What this tool will never doIt will not diagnose diabetes, hypertension, sl",
+            "fits": true,
+            "height": 253.1875,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 48.390625,
+            "href": "/shift-health/health-mot"
+          }
+        ]
+      }
+    },
+    {
+      "page": "medication",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "medication",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "index": {
+          "count": 10,
+          "position": 110.046875
+        },
+        "cards": [
+          {
+            "text": "No automatic winner.A medicine can have stronger average weight-loss eviden",
+            "fits": true,
+            "height": 201.59375,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 70.78125,
+            "href": "/compare-weight-loss-treatments"
+          }
+        ]
+      }
+    },
+    {
+      "page": "medication",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "utility-pages-20261031-v1",
+        "key": "medication",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 295,
+          "scroll": 277,
+          "width": 277
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "index": {
+          "count": 10,
+          "position": 109.9375
+        },
+        "cards": [
+          {
+            "text": "No automatic winner.A medicine can have stronger average weight-loss eviden",
+            "fits": true,
+            "height": 201.59375,
+            "decoration": "none"
+          }
+        ],
+        "links": [
+          {
+            "height": 70.78125,
+            "href": "/compare-weight-loss-treatments"
+          }
+        ]
+      }
+    }
+  ],
+  "verifiedAt": "2026-10-31T22:21:51.965Z"
+}
