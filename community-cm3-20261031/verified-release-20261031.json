@@ -1,0 +1,760 @@
+{
+  "verified": true,
+  "source": "7116fe58a903fb956c03f9d79f9d4f2901cb37ee",
+  "release": "community-cm3-20261031-v1",
+  "pages": [
+    {
+      "key": "community",
+      "path": "/community",
+      "selected": "CM3"
+    }
+  ],
+  "workers": [
+    {
+      "name": "shift-core",
+      "versionId": "89901c7a-084f-4d92-92fa-a4c04a5458b8",
+      "previousVersion": "b0f14f5c-a50f-484e-ad86-b3db852a6db4",
+      "retainedModules": 45,
+      "refreshedOwnedModules": 0,
+      "bindingsPreserved": 52
+    }
+  ],
+  "routeCount": 915,
+  "routesChanged": 0,
+  "checks": [
+    {
+      "path": "/community",
+      "key": "community",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/community?presentation=1",
+      "key": "community",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    }
+  ],
+  "protectedPages": [
+    "/tools/bmi",
+    "/tools/calories",
+    "/tools/healthy-weight",
+    "/tools/protein",
+    "/tools/waist-height",
+    "/tools/walking",
+    "/tools/water",
+    "/tools/steps",
+    "/tools/sleep",
+    "/tools/alcohol",
+    "/tools/weight-management-review",
+    "/how-are-you-feeling",
+    "/",
+    "/start-here",
+    "/programme",
+    "/shift-health",
+    "/knowledge",
+    "/explore-knowledge",
+    "/ask-timber",
+    "/treatment-centre",
+    "/member/dashboard",
+    "/mens-mental-health",
+    "/shift-for-work",
+    "/shift-health/stop-smoking",
+    "/tools",
+    "/tools?ct3=1",
+    "/weight-loss-support-for-men",
+    "/partner-with-us",
+    "/male-obesity",
+    "/compare-weight-loss-treatments",
+    "/clinic-gone-quiet",
+    "/about",
+    "/contact",
+    "/shift-newsroom",
+    "/life-back",
+    "/corporate-wellbeing",
+    "/guides/retatrutide-uk-guide",
+    "/husband-help",
+    "/my-timber-for-providers",
+    "/nhs-vs-private",
+    "/surgery-comparison-centre",
+    "/knowledge?presentation=1",
+    "/articles/stopping-glp1",
+    "/articles/food-noise-after-stopping-glp1",
+    "/member/life-back",
+    "/shift-newsroom/client.js",
+    "/shift-newsroom/compare.js",
+    "/provider-switch",
+    "/our-causes-partners",
+    "/downloads-resources",
+    "/downloads-resources?presentation=1",
+    "/family-discussion-guide",
+    "/family-discussion-guide?presentation=1"
+  ],
+  "calculatorPages": [
+    "/tools/bmi",
+    "/tools/calories",
+    "/tools/healthy-weight",
+    "/tools/protein",
+    "/tools/waist-height",
+    "/tools/walking",
+    "/tools/water",
+    "/tools/steps",
+    "/tools/sleep",
+    "/tools/alcohol",
+    "/tools/weight-management-review"
+  ],
+  "existingCodeAssetsPreserved": 211,
+  "photographs": [
+    {
+      "path": "/assets/community-cm3-20261031/workshop.webp",
+      "sha256": "264d919e490b0960f186d6b8752061d171454e1eee3f7b11f2aa8c53cec29e4e"
+    }
+  ],
+  "browser": [
+    {
+      "page": "community",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "community-cm3-20261031-v1",
+        "key": "community",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "channels": [
+          {
+            "height": 44,
+            "href": "https://facebook.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on Facebook"
+          },
+          {
+            "height": 44,
+            "href": "https://instagram.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on Instagram"
+          },
+          {
+            "height": 44,
+            "href": "https://x.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on X"
+          }
+        ],
+        "stock": {
+          "height": 49.796875,
+          "href": "/waiting-list-journey",
+          "text": "Get stock updates"
+        },
+        "rows": [
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          }
+        ]
+      }
+    },
+    {
+      "page": "community",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "community-cm3-20261031-v1",
+        "key": "community",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "channels": [
+          {
+            "height": 44,
+            "href": "https://facebook.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on Facebook"
+          },
+          {
+            "height": 44,
+            "href": "https://instagram.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on Instagram"
+          },
+          {
+            "height": 44,
+            "href": "https://x.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on X"
+          }
+        ],
+        "stock": {
+          "height": 49.796875,
+          "href": "/waiting-list-journey",
+          "text": "Get stock updates"
+        },
+        "rows": [
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          }
+        ]
+      }
+    },
+    {
+      "page": "community",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "community-cm3-20261031-v1",
+        "key": "community",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "channels": [
+          {
+            "height": 44,
+            "href": "https://facebook.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on Facebook"
+          },
+          {
+            "height": 44,
+            "href": "https://instagram.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on Instagram"
+          },
+          {
+            "height": 44,
+            "href": "https://x.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on X"
+          }
+        ],
+        "stock": {
+          "height": 49.796875,
+          "href": "/waiting-list-journey",
+          "text": "Get stock updates"
+        },
+        "rows": [
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          }
+        ]
+      }
+    },
+    {
+      "page": "community",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "community-cm3-20261031-v1",
+        "key": "community",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "channels": [
+          {
+            "height": 44,
+            "href": "https://facebook.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on Facebook"
+          },
+          {
+            "height": 44,
+            "href": "https://instagram.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on Instagram"
+          },
+          {
+            "height": 44,
+            "href": "https://x.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on X"
+          }
+        ],
+        "stock": {
+          "height": 49.796875,
+          "href": "/waiting-list-journey",
+          "text": "Get stock updates"
+        },
+        "rows": [
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          }
+        ]
+      }
+    },
+    {
+      "page": "community",
+      "query": false,
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "community-cm3-20261031-v1",
+        "key": "community",
+        "width": 360,
+        "scrollWidth": 345,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "channels": [
+          {
+            "height": 44,
+            "href": "https://facebook.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on Facebook"
+          },
+          {
+            "height": 44,
+            "href": "https://instagram.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on Instagram"
+          },
+          {
+            "height": 44,
+            "href": "https://x.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on X"
+          }
+        ],
+        "stock": {
+          "height": 49.796875,
+          "href": "/waiting-list-journey",
+          "text": "Get stock updates"
+        },
+        "rows": [
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          }
+        ]
+      }
+    },
+    {
+      "page": "community",
+      "query": true,
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "community-cm3-20261031-v1",
+        "key": "community",
+        "width": 360,
+        "scrollWidth": 345,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "channels": [
+          {
+            "height": 44,
+            "href": "https://facebook.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on Facebook"
+          },
+          {
+            "height": 44,
+            "href": "https://instagram.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on Instagram"
+          },
+          {
+            "height": 44,
+            "href": "https://x.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on X"
+          }
+        ],
+        "stock": {
+          "height": 49.796875,
+          "href": "/waiting-list-journey",
+          "text": "Get stock updates"
+        },
+        "rows": [
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          }
+        ]
+      }
+    },
+    {
+      "page": "community",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "community-cm3-20261031-v1",
+        "key": "community",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "channels": [
+          {
+            "height": 44,
+            "href": "https://facebook.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on Facebook"
+          },
+          {
+            "height": 44,
+            "href": "https://instagram.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on Instagram"
+          },
+          {
+            "height": 44,
+            "href": "https://x.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on X"
+          }
+        ],
+        "stock": {
+          "height": 49.796875,
+          "href": "/waiting-list-journey",
+          "text": "Get stock updates"
+        },
+        "rows": [
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          }
+        ]
+      }
+    },
+    {
+      "page": "community",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "community-cm3-20261031-v1",
+        "key": "community",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "channels": [
+          {
+            "height": 44,
+            "href": "https://facebook.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on Facebook"
+          },
+          {
+            "height": 44,
+            "href": "https://instagram.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on Instagram"
+          },
+          {
+            "height": 44,
+            "href": "https://x.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on X"
+          }
+        ],
+        "stock": {
+          "height": 49.796875,
+          "href": "/waiting-list-journey",
+          "text": "Get stock updates"
+        },
+        "rows": [
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          }
+        ]
+      }
+    },
+    {
+      "page": "community",
+      "query": false,
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "community-cm3-20261031-v1",
+        "key": "community",
+        "width": 430,
+        "scrollWidth": 415,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "channels": [
+          {
+            "height": 44,
+            "href": "https://facebook.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on Facebook"
+          },
+          {
+            "height": 44,
+            "href": "https://instagram.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on Instagram"
+          },
+          {
+            "height": 44,
+            "href": "https://x.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on X"
+          }
+        ],
+        "stock": {
+          "height": 49.796875,
+          "href": "/waiting-list-journey",
+          "text": "Get stock updates"
+        },
+        "rows": [
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          }
+        ]
+      }
+    },
+    {
+      "page": "community",
+      "query": true,
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "community-cm3-20261031-v1",
+        "key": "community",
+        "width": 430,
+        "scrollWidth": 415,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "channels": [
+          {
+            "height": 44,
+            "href": "https://facebook.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on Facebook"
+          },
+          {
+            "height": 44,
+            "href": "https://instagram.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on Instagram"
+          },
+          {
+            "height": 44,
+            "href": "https://x.com/ShiftSomeTimber",
+            "target": "_blank",
+            "rel": "noreferrer noopener me",
+            "text": "Follow on X"
+          }
+        ],
+        "stock": {
+          "height": 49.796875,
+          "href": "/waiting-list-journey",
+          "text": "Get stock updates"
+        },
+        "rows": [
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          },
+          {
+            "fits": true,
+            "decoration": "none"
+          }
+        ]
+      }
+    }
+  ],
+  "verifiedAt": "2026-10-31T21:36:35.595Z"
+}
