@@ -3,14 +3,26 @@ import {execFileSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
 import {pathToFileURL} from 'node:url';
 
-export const DISCOVERY_SOURCE='578982aa05c000b2f3ae4d01aea53172e67972fd';
+export const DISCOVERY_SOURCE='6d878002af6cd68fe5f30edcd3c973cebc378b7a';
 export const DISCOVERY_PATHS=Object.freeze([
   'babylove/dynamic-public.mjs',
   'babylove/dynamic-public.test.mjs'
 ]);
+// The 31 October approved public-discovery merge is now the exact baseline.
+// The sole subsequent runtime delta is the reviewed, three-file sitemap repair.
+// Pin every byte of those three files to the already tested candidate commit;
+// no unrelated source, content or workflow modification is admitted.
+export const APPROVED_SITEMAP_REPAIR='20de801233fa45a34a3a30cfee8bbd245bd27e95';
+export const SITEMAP_REPAIR_PATHS=Object.freeze([
+  'public-seo-technical.mjs',
+  'scripts/verify-seo-closeout-live.mjs',
+  'tests/public-seo-technical.test.mjs'
+]);
 export const RELEASE_TAIL=Object.freeze([
-  {status:'A',path:'release/bounded-discovery-release-gate-20261031.mjs'},
-  {status:'M',path:'shift-coach/release-contract.mjs'}
+  {status:'M',path:'public-seo-technical.mjs'},
+  {status:'M',path:'release/bounded-discovery-release-gate-20261031.mjs'},
+  {status:'M',path:'scripts/verify-seo-closeout-live.mjs'},
+  {status:'M',path:'tests/public-seo-technical.test.mjs'}
 ]);
 
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8',maxBuffer:64*1024*1024}).trim();
@@ -51,7 +63,11 @@ export function verifyBoundedDiscoveryRelease(){
     assert(['A','M'].includes(status),'Deletion or unsupported release change rejected');
     return {status,path};
   }).sort((a,b)=>a.path.localeCompare(b.path));
-  assert.deepEqual(changes,[...RELEASE_TAIL].sort((a,b)=>a.path.localeCompare(b.path)),'Only the bounded release-gate repair may follow the reviewed discovery source');
+  assert.deepEqual(changes,[...RELEASE_TAIL].sort((a,b)=>a.path.localeCompare(b.path)),'Only the approved sitemap repair and its exact release qualification may follow the reviewed 31 October source');
+  git('merge-base','--is-ancestor',DISCOVERY_SOURCE,APPROVED_SITEMAP_REPAIR);
+  git('merge-base','--is-ancestor',APPROVED_SITEMAP_REPAIR,head);
+  for(const path of SITEMAP_REPAIR_PATHS)
+    assert.equal(git('rev-parse','HEAD:'+path),git('rev-parse',APPROVED_SITEMAP_REPAIR+':'+path),'Reviewed sitemap repair changed after validation: '+path);
   for(const path of DISCOVERY_PATHS)assert.equal(git('rev-parse','HEAD:'+path),git('rev-parse',DISCOVERY_SOURCE+':'+path),'Reviewed discovery source changed after approval');
   const manifest=JSON.parse(readFileSync(new URL('../shift-coach/release-manifest.json',import.meta.url),'utf8'));
   assertLaunchDecisions(manifest);
