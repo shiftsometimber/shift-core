@@ -1,0 +1,30 @@
+name: Read-only approved page mobile audit
+on:
+  push:
+    branches: [release/provider-causes-20261031]
+    paths: ['provider-causes-20261031/**', '.github/workflows/approved-mobile-audit-20261031.yml']
+permissions:
+  contents: read
+concurrency:
+  group: approved-mobile-read-only-audit
+  cancel-in-progress: false
+jobs:
+  audit:
+    if: contains(github.event.head_commit.message, '[audit only]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Audit current public pages without writes
+        run: |
+          npm install --prefix selected-pages-tools --no-save --ignore-scripts --no-audit --no-fund playwright@1.56.1
+          node provider-causes-20261031/audit-live.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: approved-mobile-audit-${{ github.run_id }}
+          path: provider-causes-audit-evidence/
+          retention-days: 90

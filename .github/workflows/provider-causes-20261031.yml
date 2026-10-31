@@ -10,6 +10,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   selected-pages:
+    if: "!contains(github.event.head_commit.message, '[audit only]')"
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
