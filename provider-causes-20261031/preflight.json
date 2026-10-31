@@ -1,0 +1,293 @@
+{
+  "readOnly": true,
+  "source": "a52ce02a967310b6a281d968155457f6b311c5a1",
+  "capturedAt": "2026-10-31T20:25:50.363Z",
+  "routeCount": 915,
+  "owners": [
+    {
+      "path": "/provider-switch",
+      "route": {
+        "id": "a30f99b05a334b68b0dc289098c9a1b1",
+        "pattern": "shiftsometimber.co.uk/provider-switch",
+        "script": "shift-provider-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/provider-switch?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/provider-switch/",
+      "route": {
+        "id": "9831f365199a4200b0acc8dfb6b70f5f",
+        "pattern": "shiftsometimber.co.uk/provider-switch/",
+        "script": "shift-provider-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/provider-switch/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/provider-switch.html",
+      "route": {
+        "id": "0d67ae320889495ab3811fa84b28c22d",
+        "pattern": "shiftsometimber.co.uk/provider-switch.html",
+        "script": "shift-provider-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/provider-switch.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/our-causes-partners",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/our-causes-partners?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/our-causes-partners/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/our-causes-partners/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/our-causes-partners.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/our-causes-partners.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/assets/provider-causes-20261031/provider-library.webp",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    }
+  ],
+  "workers": [
+    {
+      "name": "shift-provider-presentation-20261022",
+      "versionId": "86ef0591-d721-4dcd-bf14-339f73426da2",
+      "deploymentId": "5d7227e0-52de-456d-95d8-93584ca28950",
+      "main": "provider-p1/overlay.mjs",
+      "modules": [
+        {
+          "name": "hero-set-20261030/entry.mjs",
+          "bytes": 268
+        },
+        {
+          "name": "hero-set-20261030/payload.mjs",
+          "bytes": 39042
+        },
+        {
+          "name": "hero-set-20261030/runtime.mjs",
+          "bytes": 9762
+        },
+        {
+          "name": "previews/provider-presentation/style.mjs",
+          "bytes": 8374
+        },
+        {
+          "name": "previews/provider-presentation/worker.mjs",
+          "bytes": 3423
+        },
+        {
+          "name": "provider-p1/layout.mjs",
+          "bytes": 887
+        },
+        {
+          "name": "provider-p1/overlay.mjs",
+          "bytes": 1052
+        },
+        {
+          "name": "provider-p1/styles.mjs",
+          "bytes": 23203
+        }
+      ],
+      "bindingCount": 1
+    },
+    {
+      "name": "shift-core",
+      "versionId": "d424405b-3def-462e-87e0-0ad616a45604",
+      "deploymentId": "d74b5e73-da09-496f-8ff9-2e9cc23d8e01",
+      "main": "pending-pages-20261031/entry.mjs",
+      "modules": [
+        {
+          "name": "continuity-polish-20261031/entry.mjs",
+          "bytes": 256
+        },
+        {
+          "name": "continuity-polish-20261031/runtime.mjs",
+          "bytes": 15893
+        },
+        {
+          "name": "continuity-review-20261031/entry.mjs",
+          "bytes": 333
+        },
+        {
+          "name": "continuity-review-20261031/handoff.mjs",
+          "bytes": 10583
+        },
+        {
+          "name": "continuity-review-20261031/html.mjs",
+          "bytes": 18542
+        },
+        {
+          "name": "continuity-review-20261031/runtime.mjs",
+          "bytes": 4667
+        },
+        {
+          "name": "pending-pages-20261031/config.mjs",
+          "bytes": 983
+        },
+        {
+          "name": "pending-pages-20261031/entry.mjs",
+          "bytes": 526
+        },
+        {
+          "name": "pending-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "pending-pages-20261031/media.mjs",
+          "bytes": 442353
+        },
+        {
+          "name": "pending-pages-20261031/presentation.mjs",
+          "bytes": 25583
+        },
+        {
+          "name": "pending-pages-20261031/runtime.mjs",
+          "bytes": 5070
+        },
+        {
+          "name": "selected-pages-20261031/config.mjs",
+          "bytes": 977
+        },
+        {
+          "name": "selected-pages-20261031/entry.mjs",
+          "bytes": 351
+        },
+        {
+          "name": "selected-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "selected-pages-20261031/media.mjs",
+          "bytes": 381765
+        },
+        {
+          "name": "selected-pages-20261031/presentation.mjs",
+          "bytes": 35535
+        },
+        {
+          "name": "selected-pages-20261031/runtime.mjs",
+          "bytes": 5707
+        },
+        {
+          "name": "tools-ct3-20261031/entry.mjs",
+          "bytes": 213
+        },
+        {
+          "name": "tools-ct3-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "tools-ct3-20261031/media.mjs",
+          "bytes": 166743
+        },
+        {
+          "name": "tools-ct3-20261031/presentation.mjs",
+          "bytes": 15801
+        },
+        {
+          "name": "tools-ct3-20261031/runtime.mjs",
+          "bytes": 3429
+        },
+        {
+          "name": "worker.js",
+          "bytes": 33694226
+        }
+      ],
+      "assets": {
+        "config": {
+          "html_handling": "auto-trailing-slash",
+          "not_found_handling": "none",
+          "run_worker_first": true,
+          "base_path": "/"
+        }
+      },
+      "bindingCount": 52
+    }
+  ],
+  "captures": [
+    {
+      "key": "provider",
+      "status": 200,
+      "bytes": 123264
+    },
+    {
+      "key": "causes",
+      "status": 200,
+      "bytes": 64872
+    }
+  ]
+}
