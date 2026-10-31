@@ -3,6 +3,9 @@ on:
   push:
     branches: [fix/ticker-placement-20261031]
     paths: [.github/workflows/ticker-placement-20261031.yml]
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
 permissions:
   contents: read
 jobs:
@@ -26,6 +29,26 @@ jobs:
           const r=await get(root+'/content/v2');let files=[];if(r.headers.get('content-type').includes('multipart')){for(const[k,v]of await r.formData())if(typeof v!=='string')files.push({name:k,content:await v.text()})}else files=[{name:'worker.mjs',content:await r.text()}];
           fs.mkdirSync('ticker-evidence');fs.writeFileSync('ticker-evidence/source.json',JSON.stringify(files));fs.writeFileSync('ticker-evidence/settings.json',JSON.stringify(settings));
           console.log(JSON.stringify({settingsKeys:Object.keys(settings),bindings:(settings.bindings||[]).map(x=>({name:x.name,type:x.type})),files:files.map(x=>({name:x.name,bytes:x.content.length,sha256:createHash('sha256').update(x.content).digest('hex'),start:x.content.slice(0,500),end:x.content.slice(-1000),matches:['function bootTicker','const start = async','Owner-selected lead'].map(s=>({s,index:x.content.indexOf(s)}))}))}));
+          JS
+      - name: Test exact client, deploy scoped module and verify or restore
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';import {patchTickerClient,testTickerClient} from './release/ticker-placement-20261031.mjs';
+          const origin='https://shiftsometimber.co.uk',api='https://api.cloudflare.com/client/v4',root='/accounts/9e5386dcf455be34c582d93f8bfc79e6/workers/scripts/shift-latest-news-ticker-20261024',zone='/zones/66ec3268950adcfc837b7b8b2f8356ed/workers/routes',hash=s=>createHash('sha256').update(s).digest('hex');
+          async function cf(p,opts={}){const r=await fetch(api+p,{...opts,headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN,...opts.headers},signal:AbortSignal.timeout(30000)});assert(r.ok,'Cloudflare HTTP '+r.status);return r}
+          async function json(p){return(await(await cf(p)).json()).result}
+          async function content(){const r=await cf(root+'/content/v2');if(r.headers.get('content-type').includes('multipart')){const f=await r.formData();return await f.get('worker.mjs').text()}return r.text()}
+          const files=JSON.parse(fs.readFileSync('ticker-evidence/source.json')),settings=JSON.parse(fs.readFileSync('ticker-evidence/settings.json'));assert.equal(files.length,1);assert.equal(files[0].name,'worker.mjs');const old=files[0].content;assert.equal(hash(old),'7a694d4ebec6940fdb4677442b7b57ec8b2c2b9a721739da2be678049f826db4');
+          assert.equal(settings.bindings.length,1);assert.equal(settings.bindings[0].name,'CORE');assert.equal(settings.bindings[0].type,'service');
+          const match=/^const body=("(?:\\.|[^"\\])*");/.exec(old);assert(match,'Exact ticker asset embedding required');const body=JSON.parse(match[1]);const tests=testTickerClient(body),nextBody=patchTickerClient(body),next=old.replace(match[0],'const body='+JSON.stringify(nextBody)+';');assert.equal(next.slice(next.indexOf(';')+1),old.slice(match[0].length),'Runtime outside ticker body preserved');
+          fs.writeFileSync('ticker-evidence/tests.json',JSON.stringify(tests));fs.writeFileSync('ticker-evidence/candidate.mjs',next);
+          const before={routes:await json(zone),deployments:await json(root+'/deployments'),settings:await json(root+'/settings')};fs.writeFileSync('ticker-evidence/before.json',JSON.stringify(before));
+          assert.equal(await content(),old,'Concurrent ticker source changed');assert.deepEqual(await json(root+'/settings'),settings);const home=await(await fetch(origin+'/')).text();
+          const metadata={main_module:'worker.mjs',compatibility_date:settings.compatibility_date,compatibility_flags:settings.compatibility_flags,bindings:settings.bindings,placement:settings.placement,tags:settings.tags,logpush:settings.logpush,tail_consumers:settings.tail_consumers};
+          async function upload(source){const f=new FormData();f.append('metadata',JSON.stringify(metadata));f.append('worker.mjs',new File([source],'worker.mjs',{type:'application/javascript+module'}));const j=await(await cf(root,{method:'PUT',body:f})).json();assert(j.success);return j.result}
+          assert.deepEqual(await json(root+'/deployments'),before.deployments);assert.deepEqual(await json(zone),before.routes);let uploaded=false;
+          try{const result=await upload(next);uploaded=true;fs.writeFileSync('ticker-evidence/upload.json',JSON.stringify(result));let ok=false;for(let i=0;i<40;i++){const r=await fetch(origin+'/assets/public-news-ticker-v1.js',{headers:{'Cache-Control':'no-cache'}});if(r.ok&&await r.text()===nextBody){ok=true;break}await new Promise(r=>setTimeout(r,1000))}assert(ok,'Ticker asset propagation failed');assert.equal(await content(),next);assert.deepEqual(await json(zone),before.routes);assert.equal(await(await fetch(origin+'/')).text(),home,'Homepage bytes changed');fs.writeFileSync('ticker-evidence/verified.json',JSON.stringify({pass:true,source:process.env.GITHUB_SHA,tests,homepagePreserved:true,routesPreserved:true,at:new Date().toISOString()}));console.log('DEPLOYED_VERIFIED '+process.env.GITHUB_SHA)}
+          catch(e){if(uploaded){assert.equal(await content(),next,'Concurrent owner change prevents rollback');await upload(old);assert.equal(await content(),old);fs.writeFileSync('ticker-evidence/rollback.json',JSON.stringify({restored:true,error:String(e)}))}throw e}
           JS
       - uses: actions/upload-artifact@v4
         if: always()
