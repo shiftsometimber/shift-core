@@ -67,8 +67,8 @@ export async function shopPageRoutes(request,env,fetchPublic=globalThis.fetch){
  if(!target)return htmlResponse(shell('Shop','<main id="mtShopMain"><h1>That page is unavailable.</h1><p><a href="'+shopBase+'">Back to Shop</a></p></main>'),404,head);
  try{
   const response=await fetchPublic(new Request(target,{headers:{Accept:'text/html'},redirect:'error',signal:AbortSignal.timeout(12000)}));
-  if(!response.ok||!response.headers.get('Content-Type')?.includes('text/html'))throw Error('Catalogue unavailable');
+  if(!response.ok||!response.headers.get('Content-Type')?.includes('text/html'))throw Error('Catalogue response '+response.status+' '+(response.headers.get('Content-Type')||'missing type'));
   const source=await response.text();if(source.length>2000000)throw Error('Catalogue too large');
   return htmlResponse(projectShopDocument(source,target),200,head);
- }catch{return htmlResponse(shell('Shop','<main id="mtShopMain"><h1>The range could not load.</h1><p>Your basket has not changed.</p><p><a href="'+escape(url.pathname+url.search)+'">Try again</a> · <a href="'+shopBase+'">Back to Shop</a></p></main>'),503,head);}
+ }catch(error){const response=htmlResponse(shell('Shop','<main id="mtShopMain"><h1>The range could not load.</h1><p>Your basket has not changed.</p><p><a href="'+escape(url.pathname+url.search)+'">Try again</a> · <a href="'+shopBase+'">Back to Shop</a></p></main>'),503,head);response.headers.set('X-My-Timber-Catalogue-Read',encodeURIComponent(String(error?.message||error?.name||'unavailable').slice(0,160)));return response;}
 }
