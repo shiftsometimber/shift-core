@@ -70,17 +70,11 @@ export function publicNewsIndexability(html){
  return html.replace(/<meta\b(?=[^>]*\bname\s*=\s*["'](?:robots|googlebot|bingbot)["'])[^>]*>/gi,'')
   .replace(/<head>/i,'<head><meta name="robots" content="index,follow">');
 }
-// Retain independently edited SEO titles, while repairing the former fixed-width
-// truncation of an otherwise identical approved headline. No stored copy changes.
-export function completeNewsTitle(seoTitle,headline){
- const full=String(headline||'').trim(),title=String(seoTitle||full).trim();
- return (title.length===70&&full.length>70&&full.startsWith(title)?full:title).slice(0,160);
-}
 function detailHead(html,row,request){
  html=publicNewsIndexability(html);
- const content=parse(row.content_package_json,{}),seo=content.seo||{},title=completeNewsTitle(seo.title,content.headline||row.headline),description=String(seo.description||content.standfirst||content.what_changed||"").slice(0,160),canonical=new URL(request.url);canonical.search="";canonical.hash="";
+ const content=parse(row.content_package_json,{}),seo=content.seo||{},title=String(seo.title||content.headline||row.headline).slice(0,70),description=String(seo.description||content.standfirst||content.what_changed||"").slice(0,160),canonical=new URL(request.url);canonical.search="";canonical.hash="";
  const organization={"@type":"Organization","@id":"https://shiftsometimber.co.uk/#organization",name:"Shift Some Timber",url:"https://shiftsometimber.co.uk/",logo:{"@type":"ImageObject",url:"https://shiftsometimber.co.uk/assets/shift-wordmark.png"}};
- const image=String(seo.image||"/assets/og-default.jpg"),absoluteImage=image.startsWith("http")?image:"https://shiftsometimber.co.uk/"+image.replace(/^\//,""),schema={"@context":"https://schema.org","@type":"Article",headline:String(content.headline||row.headline||title).slice(0,160),description,image:[absoluteImage],datePublished:publishedAt(row),dateModified:seo.dateModified||row.updated_at||publishedAt(row),author:{...organization,name:seo.author||"SHIFT Newsroom"},publisher:organization,mainEntityOfPage:canonical.href};
+ const image=String(seo.image||"/assets/og-default.jpg"),absoluteImage=image.startsWith("http")?image:"https://shiftsometimber.co.uk/"+image.replace(/^\//,""),schema={"@context":"https://schema.org","@type":"Article",headline:title,description,image:[absoluteImage],datePublished:publishedAt(row),dateModified:seo.dateModified||row.updated_at||publishedAt(row),author:{...organization,name:seo.author||"SHIFT Newsroom"},publisher:organization,mainEntityOfPage:canonical.href};
  html=html.replace(/<title>[\s\S]*?<\/title>/i,"").replace(/<meta\s+name=["']description["'][^>]*>/gi,"").replace(/<link\s+rel=["']canonical["'][^>]*>/gi,"").replace(/<meta\s+(?:property|name)=["'](?:og:|twitter:)[^>]*>/gi,"").replace(/<script\s+type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi,"");
  const tags='<title>'+esc(title)+'</title><meta name="description" content="'+esc(description)+'"><link rel="canonical" href="'+esc(canonical.href)+'"><meta property="og:type" content="article"><meta property="og:title" content="'+esc(title)+'"><meta property="og:description" content="'+esc(description)+'"><meta property="og:url" content="'+esc(canonical.href)+'"><meta property="og:image" content="'+esc(absoluteImage)+'"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="'+esc(title)+'"><meta name="twitter:description" content="'+esc(description)+'"><meta name="twitter:image" content="'+esc(absoluteImage)+'"><script type="application/ld+json">'+JSON.stringify(schema).replace(/<\//g,"<\\/")+'</script>';
  return html.replace(/<head>/i,"<head>"+tags);
