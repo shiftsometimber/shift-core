@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {transform,mainHTML,byClass,version} from './runtime.mjs';
 import {bounds,withoutTicker} from './html.mjs';
 export const scripts=s=>[...s.matchAll(/<script\b[^>]*>[\s\S]*?<\/script>/gi)].map(x=>x[0]);
-const strip=s=>s.replace(/<style data-approved-page-style="[^"]+">[\s\S]*?<\/style>/g,'');
+const strip=s=>s.replace(/<script data-quality-bridge-placement>[\s\S]*?<\/script>/g,'').replace(/<style data-approved-page-style="[^"]+">[\s\S]*?<\/style>/g,'');
 const plain=s=>s.replace(/<svg\b[\s\S]*?<\/svg>/g,'').replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim();
 export function originalText(source){
  let s=source;const oldIndex=byClass(s,'ut-index-frame');if(oldIndex)s=s.replace(oldIndex.html,'');
@@ -11,7 +11,7 @@ export function originalText(source){
 }
 export function check(before,after,key){
  const old=mainHTML(before),now=mainHTML(after);assert(old&&now);assert(now.includes('data-approved-release="'+version+'"'));assert.equal((now.match(/<h1\b/g)||[]).length,1);
- assert.deepEqual(scripts(before),scripts(after),'All scripts unchanged');assert.equal(strip(after.replace(now,'')),strip(withoutTicker(before.replace(old,''))),'Shared shell and metadata unchanged');
+ assert.deepEqual(scripts(before),scripts(after).filter(s=>!s.startsWith('<script data-quality-bridge-placement>')),'Every original script unchanged');assert.equal((after.match(/<script data-quality-bridge-placement>/g)||[]).length,1,'One scoped bridge placement script');assert.equal(strip(after.replace(now,'')),strip(withoutTicker(before.replace(old,''))),'Shared shell and metadata unchanged');
  assert.equal(originalText(now),originalText(old),'Every original text passage retained in order');
  const oldIndex=byClass(old,'ut-index-frame'),content=oldIndex?old.replace(oldIndex.html,''):old;
  for(const a of content.matchAll(/<a\b[^>]*>[\s\S]*?<\/a>/g))assert(now.includes(a[0]),'Original link and attributes retained '+a[0]);

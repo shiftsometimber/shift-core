@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {mainPages as pages,release} from './config.mjs';
 export async function browserCheck({headers={},dir='quality-repair-evidence',label='candidate',responses=null}={}){
- const {chromium}=await import('../selected-pages-tools/node_modules/playwright/index.mjs'),browser=await chromium.launch({headless:true,channel:'chrome',args:['--no-sandbox']}),results=[];
+ const {chromium}=await import('../selected-pages-tools/node_modules/playwright/index.mjs'),browser=await chromium.launch({headless:true,channel:'chrome',args:['--no-sandbox']}),results=[],contentIssues=[];
  try{for(const viewport of [{width:1440,height:1100},{width:768,height:1024},{width:390,height:844}]){
   const context=await browser.newContext({viewport,extraHTTPHeaders:headers,serviceWorkers:'block',reducedMotion:'reduce'}),blockedWrites=[];
   await context.addInitScript(()=>localStorage.setItem('sstConsentV3',JSON.stringify({necessary:true,analytics:false,marketing:false,acquisition:false,updatedAt:new Date().toISOString()})));
@@ -19,7 +19,7 @@ export async function browserCheck({headers={},dir='quality-repair-evidence',lab
    const content=await page.evaluate(()=>{
     const rgb=s=>(s.match(/[\d.]+/g)||[]).map(Number),lum=a=>a.slice(0,3).map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((s,v,i)=>s+v*[.2126,.7152,.0722][i],0);
     return [...document.querySelectorAll('main p,main li,main h1,main h2,main h3,main strong,main td,main th,main span')].filter(e=>[...e.childNodes].some(n=>n.nodeType===3&&n.textContent.trim())&&e.getClientRects().length&&getComputedStyle(e).visibility!=='hidden').map(e=>{let bg=[255,255,255];for(let p=e;p;p=p.parentElement){const c=rgb(getComputedStyle(p).backgroundColor);if(c.length===3||c[3]>=.95){bg=c;break;}}const c=rgb(getComputedStyle(e).color),a=lum(c),b=lum(bg),r=e.getBoundingClientRect();return {text:e.textContent.trim().slice(0,90),ratio:(Math.max(a,b)+.05)/(Math.min(a,b)+.05),outside:r.left<-.5||r.right>innerWidth+.5,clipped:e.scrollWidth>e.clientWidth+2};}).filter(e=>e.ratio<3||e.outside||e.clipped);
-   });fs.writeFileSync(stem+'-content.json',JSON.stringify(content,null,2));assert.equal(content.length,0,'Readable and unclipped text '+item.key+' '+JSON.stringify(content.slice(0,5)));
+   });fs.writeFileSync(stem+'-content.json',JSON.stringify(content,null,2));if(content.length)contentIssues.push({page:item.key,query,viewport,content});
    assert.equal(await page.locator('.qr-hero').count(),1);assert.equal(await page.locator('.qr-hero-copy').count(),1);assert.equal(await page.locator('main form').count(),0);
    if(item.key==='commercial')assert.equal(await page.locator('.principle-grid-v65>article').count(),6);
    if(item.key==='trees')assert.equal(await page.locator('.find-tree>.node').count(),4);
@@ -38,5 +38,5 @@ export async function browserCheck({headers={},dir='quality-repair-evidence',lab
   fs.writeFileSync(dir+'/'+label+'-blocked-writes-'+viewport.width+'.json',JSON.stringify({allMutationsAborted:true,blockedWrites},null,2));await context.close();
  }
  }finally{await browser.close();}
- fs.writeFileSync(dir+'/'+label+'-browser.json',JSON.stringify(results,null,2));return results;
+ fs.writeFileSync(dir+'/'+label+'-browser.json',JSON.stringify(results,null,2));fs.writeFileSync(dir+'/'+label+'-content-issues.json',JSON.stringify(contentIssues,null,2));assert.equal(contentIssues.length,0,'All text readable and unclipped '+JSON.stringify(contentIssues.slice(0,5)));return results;
 }
