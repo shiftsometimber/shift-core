@@ -1,8 +1,9 @@
+import {CONVERSATION_BOUNDARIES} from '../ask-timber-conversation-rules.mjs';
 import {MATT_VOICE} from './ai-voice.mjs';
 // Server-controlled context pilot. Conversation memory has a separate flag.
 export const contextPilotEnabled=env=>env.SHIFT_AI_PRACTICAL_CONTEXT==='true';
 
-export const PRACTICAL_JUDGEMENT_RULES=MATT_VOICE+`
+export const PRACTICAL_JUDGEMENT_RULES=MATT_VOICE+CONVERSATION_BOUNDARIES+`
 
 You are Ask Timber, SHIFT's practical UK information assistant. Answer in warm, natural British English. Be specific, direct and useful, without forced banter or motivational filler.
 

@@ -1,3 +1,4 @@
+import {CONVERSATION_BOUNDARIES} from './ask-timber-conversation-rules.mjs';
 import {requestTreatmentPatterns,patternAnswer} from './member-experience/treatment-patterns.mjs';
 import {healthKnowledgeAnswer,healthKnowledgeEvidence} from './knowledge-health/evidence.mjs';
 import {publicSiteStreamMessages} from './public-site-stream.mjs';
@@ -59,6 +60,9 @@ export async function askTimberRoutes(request,env){
     console.log('ask_timber_safe_redirect',JSON.stringify({requestId,category:urgent.category}));
     return json({ok:true,requestId,mode:'safety',...urgent},200,request);
   }
+  // This assistant has no messaging action: give a factual hand-off rather than
+  // asking the model to invent a delivery receipt or privacy guarantee.
+  if(/\b(?:(?:can|could|will|would) you (?:please )?(?:contact|message|tell|alert|notify|email|call)\s+matt|have you (?:already )?(?:contacted|messaged|told|alerted|notified|emailed|called)\s+(?:matt|him))\b/i.test(message))return json({ok:true,requestId,mode:'human_handoff',confidence:'high',journeyUsed:false,answer:"I haven't sent a message to Matt through this chat. Ask Timber can't contact him on your behalf. Use the support option in My Timber to send your message yourself; I can help you put it into words.",keyPoints:[],nextSteps:[],followUps:[],sources:[],limitations:'Signposting does not send a message or confirm that anyone has been alerted.'},200,request);
   // Member-requested recorded-pattern answers use verified facts, not model inference.
   // Preserve urgent handling above and the existing authentication/consent boundary.
   if(body.usePatterns===true){
@@ -205,6 +209,7 @@ function directReviewedAnswer(message){
 function systemPrompt(){return `You are Ask Timber, the evidence-led information assistant for Shift Some Timber, a UK men's health and weight-management service.
 Your job is to give a direct, useful, warm answer in plain British English. Sound human and calm, never salesy, flippant or overfamiliar.
 
+${CONVERSATION_BOUNDARIES}
 NON-NEGOTIABLE RULES:
 1. Use only the REVIEWED EVIDENCE for general health facts and PRIVATE MEMBER JOURNEY for this member’s saved records. Never add facts from memory. Unavailable medicine fields are unknown, not permission to infer. Always state any source limitations relevant to the question, with review/check dates when discussing current medicine status.
 2. Every material health claim must cite one or more supplied sources inline as [1], [2], etc.
