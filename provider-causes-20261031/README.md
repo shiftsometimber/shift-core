@@ -25,3 +25,53 @@ The combined release is deployed and verified. Production source 03565e2089ca539
 PS2 and Causes passed all 20 normal/query page/viewport checks at 1440, 768, 360, 390 and 430px, both staged and live, including actual category switching, detail dialogs/closing, phone control sizing, readable text, no horizontal overflow, decoded images and provider anchors. All 14 successful page/alias/query responses match exact approved candidates across 30 variants; existing redirects remain unchanged. The six missing tracking-query hero presentations are restored, using their previously approved designs, while the six normal canonical pages are preserved. The newer Knowledge layout is retained. All 47 protected pages/resources and 53 existing bindings are unchanged. All 915 routes remain unchanged; no route was added. All other current Worker modules and existing assets remain intact.
 
 Separate public browser verification confirmed PS2 at /provider-switch and the corrected Causes page at /our-causes-partners. Causes previously had dark text on black and unreadable category labels; these are now visibly readable in the live page. This completion covers the 32-page approved/revised set, not every URL on the entire website and not unselected homepage/header proposals. No signed-off item in this finite set remains pending. No forms, account actions, external communications or transactions were submitted during verification.
+
+## Page selection reconciliation — 31 October 2026
+
+User instruction: work on new pages, do not redo pages changed in the last 48 hours. This is a read-only selection reconciliation, not a new deployment or repeated mobile QA. Retain the completed release receipts and their existing acceptance evidence.
+
+Exclude all 32 routes in audit-paths.json from the next redesign selection:
+
+- `/about`
+- `/articles/testosterone-weight-men`
+- `/articles/wegovy-cost-uk`
+- `/clinic-gone-quiet`
+- `/compare-weight-loss-treatments`
+- `/contact`
+- `/corporate-wellbeing`
+- `/explore-knowledge`
+- `/guides/mens-health-mot-guide`
+- `/guides/retatrutide-uk-guide`
+- `/husband-help`
+- `/knowledge`
+- `/life-back`
+- `/male-obesity`
+- `/mens-weight-management`
+- `/my-timber-for-providers`
+- `/nhs-vs-private`
+- `/our-causes-partners`
+- `/partner-with-us`
+- `/provider-switch`
+- `/shift-for-work`
+- `/shift-health/erectile-dysfunction`
+- `/shift-health/fertility`
+- `/shift-health/health-mot`
+- `/shift-health/shift-measure`
+- `/shift-health/stop-smoking`
+- `/shift-newsroom`
+- `/surgery-comparison-centre`
+- `/tools`
+- `/treatment-centre/medicines-watch`
+- `/weight-loss-support-for-men`
+- `/work-with-us`
+
+Also exclude the 42 guide routes in knowledge-health/release-receipt-20261029.json (verified 29 October at 23:43 GMT), Ask Timber (that release and newer main commits on 31 October), and current Newsroom/editorial work. Content or discovery changes count as recent work even without a new hero. Main was inspected through 39499afc51, including current Ask Timber boundary work. No article or guide should be called untouched merely because its presentation marker is older.
+
+Good to Talk (/mens-mental-health) already has the approved mental hero; do not replace it with GTT1. GTT1 was only a newly generated alternative, never implemented or deployed, and the user has now explicitly directed us away from repeat work. How Are You Feeling also has an existing 22/23 October presentation; no new concept or implementation is approved.
+
+Next suitable presentation candidates checked live against the recent design release scope:
+
+- `/downloads-resources`: existing `20261022-public-presentation-v2`, title “Take better questions into the real conversation.” No membership in the recent 32-page redesign set or the 29 October Knowledge guide release. First proposed next page.
+- `/family-discussion-guide`: existing `20261022-public-presentation-v2`, title “Support helps. Food policing usually does not.” Same recent-scope exclusion comparison; subsequent candidate.
+
+These older markers describe the presentation observed; they do not establish that every byte of page content has been unchanged since that date. No production changes were made during this reconciliation. Check each proposed page against this exclusion evidence before making further concepts.
