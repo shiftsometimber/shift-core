@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import {readFileSync} from 'node:fs';
 import {renderMarkdown,dynamicBabyLovePublicRoute,withDynamicBabyLoveDiscovery,articleModifiedDate} from './dynamic-public.mjs';
 
 function env(row,queries=[]){
@@ -41,6 +42,11 @@ test('editorial updates preserve publication date and use the real later modific
  const xml=await (await withDynamicBabyLoveDiscovery(new Response('<urlset></urlset>'),new Request('https://shiftsometimber.co.uk/sitemap.xml'),env(revised))).text();assert.match(xml,/<lastmod>2026-10-03<\/lastmod>/);
 });
 
+
+test('the current Knowledge guide route composes published-article discovery before returning',()=>{
+ const worker=readFileSync(new URL('../worker-entry-v6.js',import.meta.url),'utf8');
+ assert.match(worker,/if\(guide\)return withDynamicBabyLoveDiscovery\(await withSharedFooter\([\s\S]*?request,env\);/);
+});
 
 test('Knowledge discovery is not restricted to receipt-joined articles',async()=>{
  const queries=[];
