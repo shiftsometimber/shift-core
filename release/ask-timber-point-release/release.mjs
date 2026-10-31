@@ -43,7 +43,9 @@ const staged=await api('/workers/workers/shift-core/versions?deploy=false',{meth
 const stagedRead=await api('/workers/workers/shift-core/versions/'+staged.id+'?include=modules');
 assert.deepEqual(stagedRead.modules,expectedModules,'Provider-stored code differs');
 assert.deepEqual(stagedRead.bindings,version.bindings,'Serving bindings changed');
-for(const field of ['main_module','compatibility_date','compatibility_flags','assets','migration_tag','usage_model'])assert.deepEqual(stagedRead[field],version[field],'Serving version configuration changed: '+field);
+for(const field of ['main_module','compatibility_date','compatibility_flags','assets','usage_model'])assert.deepEqual(stagedRead[field],version[field],'Serving version configuration changed: '+field);
+// Cloudflare documents migration_tag as absent until a version is deployed.
+assert.equal(stagedRead.migration_tag,undefined,'Staged version must not run a migration');assert.equal(payload.migrations,undefined);
 assert.equal((await current()).id,originalDeployment.id,'Serving deployment moved during staging');
 assert.deepEqual(await api('/workers/scripts/shift-core/settings'),settingBefore,'Worker settings changed during staging');
 receipt.stagingVerified=true;save();console.log('STAGING_VERIFIED '+JSON.stringify(receipt));
@@ -66,6 +68,7 @@ try{
  await verifyPreservedAssets(preserved.checks);receipt.preservedLiveTextAssetCount=preserved.checks.length;
  assert.deepEqual(await api('/workers/scripts/shift-core/settings'),settingBefore,'Worker settings changed after promotion');
  assertOwnedDeployment(await current(),staged.id);
+ const deployedRead=await api('/workers/workers/shift-core/versions/'+staged.id);assert.equal(deployedRead.migration_tag,version.migration_tag,'Existing migration tag must remain unchanged');
  receipt.liveVerified=true;receipt.checks=evidence;receipt.publicAssetsPreserved=beforeAssets;save();console.log('LIVE_VERIFIED '+JSON.stringify(receipt));
  if(promotionError)console.log('Promotion returned an error, but provider ownership and live traffic were independently verified.');
 }catch(error){
