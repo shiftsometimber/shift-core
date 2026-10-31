@@ -38,5 +38,17 @@ jobs:
           node --check shift-coach/worker.mjs
       - name: Check food capture and real diary compatibility
         run: node --test member-experience/tests/food-capture.test.mjs member-experience/tests/food-diary-london-date-20261015.test.mjs member-experience/tests/journey-portability.test.mjs
+      - name: Build the actual Worker without uploading or changing production
+        run: npx wrangler deploy --dry-run --config wrangler.jsonc --outdir "$RUNNER_TEMP/grub-worker-build"
       - name: Check existing member regression suite
         run: node --test --test-concurrency=2 member-experience/tests/*.test.mjs
+      - name: Diagnose the same CSV checks on the unchanged source base
+        if: failure()
+        shell: bash
+        run: |
+          set -euo pipefail
+          baseline="$RUNNER_TEMP/grub-capture-source-base"
+          git worktree add --detach "$baseline" 589a8ce131af1b5074b62328964f344d33043faf
+          ln -s "$GITHUB_WORKSPACE/node_modules" "$baseline/node_modules"
+          cd "$baseline"
+          node --test member-experience/tests/weight-import-mapping-ui.test.mjs
