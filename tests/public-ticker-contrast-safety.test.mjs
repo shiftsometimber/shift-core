@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {Script} from 'node:vm';
-import {contrastSafetyStyles,contrastSafetyVersion,contrastSafetyClient,withPublicTicker} from '../public-navigation-policy.mjs';
+import {contrastSafetyStyles,contrastSafetyVersion,contrastSafetyClient,removeRetiredShedTeasers,withPublicTicker} from '../public-navigation-policy.mjs';
 import {preserveReviewedContrastGuard,priorContrastSafetyClient} from '../member-experience/public-preservation.mjs';
 
 test('audited public contrast safety stays brand-only and covers the shared collision roots',()=>{
@@ -62,4 +62,19 @@ test('public preservation admits only the exact reviewed contrast-client repair'
   assert.throws(()=>preserveReviewedContrastGuard(page,Buffer.from('<html><body>Keep every byte.</body></html>'),{required:true}),/exactly one/);
   assert.deepEqual(preserveReviewedContrastGuard('/turnstile-auth-v1.js?v=timeout-20260912',Buffer.from('const untouched=true;')),Buffer.from('const untouched=true;'));
   assert.notDeepEqual(preserveReviewedContrastGuard(page,shell(priorContrastSafetyClient)),preserveReviewedContrastGuard(page,Buffer.from('<html><body><main>Changed.</main>'+tag(contrastSafetyClient)+'</body></html>'),{required:true}));
+});
+
+
+test('retired Timber Shed teaser is removed from public header, drawer and footer markup',async()=>{
+  const header='<span class="sst-shed-teaser" aria-label="The Timber Shed — coming soon">The Timber Shed <small>SOON</small></span>';
+  const drawer='<span class="sst-shed-teaser sst-shed-drawer" aria-label="The Timber Shed — coming soon">The Timber Shed <small>SOON</small></span>';
+  const footer='<span class="sst-shed-teaser sst-shed-footer" aria-label="The Timber Shed — coming soon">The Timber Shed <small>SOON</small></span>';
+  const html='<!doctype html><html><head><title>Work with us</title></head><body><header>'+header+'</header><nav>'+drawer+'</nav><main>Keep this public content.</main><footer>'+footer+'</footer></body></html>';
+  const request=new Request('https://shiftsometimber.co.uk/work-with-us');
+  const output=await withPublicTicker(request,new Response(html,{headers:{'Content-Type':'text/html; charset=utf-8'}}));
+  const body=await output.text();
+  assert.equal(removeRetiredShedTeasers(header),'');
+  assert.doesNotMatch(body,/sst-shed-teaser|The Timber Shed|>SOON</i);
+  assert.match(body,/<main>Keep this public content\.<\/main>/);
+  assert.equal(output.headers.get('X-Shift-Navigation-Policy'),'approved-20261031');
 });
