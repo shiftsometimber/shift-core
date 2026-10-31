@@ -39,8 +39,8 @@ jobs:
           git fetch --no-tags origin main
           test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)"
           actual="$(git diff --name-only HEAD^ HEAD | sort)"
-          expected="$(printf '%s\\n' '.github/workflows/bloods-navigation-retirement-release.yml' 'release/bloods-navigation-retirement-deploy.mjs' | sort)"
-          test "$actual" = "$expected"
+          test "$(printf '%s\n' "$actual" | sed '/^$/d' | wc -l | tr -d ' ')" = 1
+          printf '%s\n' "$actual" | grep -qx '.github/workflows/bloods-navigation-retirement-release.yml'
       - name: Install locked release toolchain
         run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Verify focused Bloods retirement policy
