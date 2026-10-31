@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
-import {routeOwner} from '../../knowledge-health/release-helpers.mjs';
+import {routeOwner,matches} from '../../knowledge-health/release-helpers.mjs';
 import {uploadPreservedAssets} from '../../knowledge-health/release-assets.mjs';
 import css from './styles.mjs';
 import {release,assetBase,ownAssets,mainHTML,transformHTML,invariantHTML} from './layout.mjs';
@@ -20,6 +20,19 @@ const sort=bs=>[...(bs||[])].sort((a,b)=>a.name.localeCompare(b.name));
 const states=[],promoted=[];let beforeRoutes;
 try{
  beforeRoutes=await routes();
+ if(process.env.SP1_INSPECT_ONLY==='1'){
+  const page=await get('/weight-loss-support-for-men');
+  const candidates=beforeRoutes.filter(r=>matches(r.pattern,'https://shiftsometimber.co.uk/weight-loss-support-for-men'));
+  const info=[];
+  for(const name of [...new Set(candidates.map(r=>r.script).filter(Boolean))]){
+   const deployment=await active(name),version=servingVersion(deployment);
+   const current=await cf('/accounts/'+account+'/workers/workers/'+name+'/versions/'+version+'?include=modules');
+   info.push({name,version,modules:current.modules.map(m=>({name:m.name,bytes:Buffer.from(m.content_base64,'base64').length,...(/(?:entry|overlay|runtime)\.mjs$/.test(m.name)&&Buffer.from(m.content_base64,'base64').length<16000?{code:Buffer.from(m.content_base64,'base64').toString('utf8')}:{} )})),bindings:(current.bindings||[]).map(b=>({name:b.name,type:b.type,service:b.service}))});
+  }
+  console.log('SP1_OWNERSHIP '+JSON.stringify({routes:candidates,publicHeaders:[...page.headers].filter(([k])=>k.startsWith('x-')),url:page.url,workers:info}));
+  process.exit(0);
+ }
+
  const serving=['/weight-loss-support-for-men'].map(p=>({path:p,route:routeOwner(beforeRoutes,'https://shiftsometimber.co.uk'+p)}));
  const owners=[...new Set(serving.map(s=>s.route?.script))];assert.equal(owners.length,1,'Page and assets need one existing serving owner');assert(owners[0],'Requested free-support route has no serving owner');
  const baseline=await get('/weight-loss-support-for-men'),candidate=transformHTML(baseline.html,css),checks=check(baseline.html,candidate);

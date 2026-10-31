@@ -1,4 +1,4 @@
-name: Free support SP1 presentation
+name: Free support SP1 ownership inspection
 on:
   push:
     branches: [design/support-sp1-20261031]
@@ -29,6 +29,7 @@ jobs:
       - name: Stage and verify Free support SP1
         run: node release/support-sp1-20261031/deploy.mjs
         env:
+          SP1_INSPECT_ONLY: '1'
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       - uses: actions/upload-artifact@v4
         if: always()
