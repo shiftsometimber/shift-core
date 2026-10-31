@@ -1,0 +1,38 @@
+name: Treatment comparison CP1 presentation
+on:
+  push:
+    branches: [design/comparison-cp1-20261031]
+    paths: ['release/comparison-cp1-20261031/**', '.github/workflows/comparison-cp1-20261031.yml']
+permissions:
+  contents: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Check CP1 source syntax
+        run: |
+          node --check release/comparison-cp1-20261031/layout.mjs
+          node --check release/comparison-cp1-20261031/styles.mjs
+          node --check release/comparison-cp1-20261031/overlay.mjs
+          node --check release/comparison-cp1-20261031/check.mjs
+          node --check release/comparison-cp1-20261031/deploy.mjs
+      - name: Install the locked asset hashing dependency
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Stage and verify Treatment comparison CP1
+        run: node release/comparison-cp1-20261031/deploy.mjs
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: comparison-cp1-${{ github.run_id }}
+          path: comparison-cp1-evidence/
+          retention-days: 90
