@@ -48,6 +48,11 @@ test('the current Knowledge guide route composes published-article discovery bef
  assert.match(worker,/if\(guide\)return withDynamicBabyLoveDiscovery\(await withSharedFooter\([\s\S]*?request,env\);/);
 });
 
+test('the outer Health Knowledge worker retains published-article discovery',()=>{
+ const worker=readFileSync(new URL('../shift-coach/worker.mjs',import.meta.url),'utf8');
+ assert.match(worker,/let response=await publicWorker\.fetch\(request,\.\.\.args\);[\s\S]*?response=await withDynamicBabyLoveDiscovery\(response,request,args\[0\]\);/);
+});
+
 test('Knowledge discovery is not restricted to receipt-joined articles',async()=>{
  const queries=[];
  const input=new Response('<main><div class="kh-grid kh-legacy"></div></main>',{headers:{'Content-Type':'text/html'}});
