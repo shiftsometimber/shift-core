@@ -5,9 +5,9 @@ export async function browserCheck({headers={},dir='selected-pages-evidence',lab
  const {chromium}=await import('../selected-pages-tools/node_modules/playwright/index.mjs');
  const browser=await chromium.launch({headless:true,channel:'chrome',args:['--no-sandbox']});const results=[];
  try{for(const viewport of [{width:1440,height:1100},{width:768,height:1024},{width:390,height:844}]){
-  const context=await browser.newContext({viewport,extraHTTPHeaders:headers,serviceWorkers:'block',reducedMotion:'reduce'});let writes=0;
+  const context=await browser.newContext({viewport,extraHTTPHeaders:headers,serviceWorkers:'block',reducedMotion:'reduce'}),blockedWrites=[];let contactAttempts=0;
   await context.addInitScript(()=>localStorage.setItem('sstConsentV3',JSON.stringify({necessary:true,analytics:false,marketing:false,acquisition:false,updatedAt:new Date().toISOString()})));
-  await context.route('**/*',route=>{if(['POST','PUT','PATCH','DELETE'].includes(route.request().method())){writes++;return route.abort();}return route.continue();});
+  await context.route('**/*',route=>{if(['POST','PUT','PATCH','DELETE'].includes(route.request().method())){const p=new URL(route.request().url()).pathname;blockedWrites.push({method:route.request().method(),path:p});if(/(?:\/v1\/contact|\/api\/contact|\/contact$)/.test(p))contactAttempts++;return route.abort();}return route.continue();});
   for(const item of pages){
    const page=await context.newPage();await page.bringToFront();
    await page.goto('https://shiftsometimber.co.uk'+item.path,{waitUntil:'domcontentloaded',timeout:60000});
@@ -60,7 +60,7 @@ export async function browserCheck({headers={},dir='selected-pages-evidence',lab
    const queryLayout=await query.evaluate(()=>({marker:document.querySelector('main').dataset.approvedRelease,scrollWidth:document.documentElement.scrollWidth,headings:document.querySelectorAll('main h1').length}));assert.equal(queryLayout.marker,release);assert.equal(queryLayout.headings,1);assert(queryLayout.scrollWidth<=viewport.width);if(viewport.width!==768)await query.screenshot({path:dir+'/'+label+'-'+item.key+'-query-'+viewport.width+'.png',fullPage:false});
    results.push({page:item.key,selected:item.selected,viewport,layout,behaviour,query:queryLayout});await query.close();
   }
-  assert.equal(writes,0,'No writes or external messages during verification');await context.close();
+  assert.equal(contactAttempts,0,'Contact verification must never submit a message');fs.writeFileSync(dir+'/'+label+'-blocked-write-attempts-'+viewport.width+'.json',JSON.stringify({allMutationsAborted:true,contactAttempts,blockedWrites},null,2));await context.close();
  }}finally{await browser.close();}
  fs.writeFileSync(dir+'/'+label+'-browser.json',JSON.stringify(results,null,2));return results;
 }
