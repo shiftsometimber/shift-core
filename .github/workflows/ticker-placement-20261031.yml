@@ -1,0 +1,38 @@
+name: Scoped ticker placement release
+on:
+  push:
+    branches: [fix/ticker-placement-20261031]
+    paths: [.github/workflows/ticker-placement-20261031.yml]
+permissions:
+  contents: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Inspect exact serving ticker source and ownership
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';
+          const base='https://api.cloudflare.com/client/v4',root='/accounts/9e5386dcf455be34c582d93f8bfc79e6/workers/scripts/shift-latest-news-ticker-20261024';
+          async function get(p){const r=await fetch(base+p,{headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN}});assert(r.ok);return r}
+          const settings=(await (await get(root+'/settings')).json()).result;
+          const r=await get(root+'/content/v2');let files=[];if(r.headers.get('content-type').includes('multipart')){for(const[k,v]of await r.formData())if(typeof v!=='string')files.push({name:k,content:await v.text()})}else files=[{name:'worker.mjs',content:await r.text()}];
+          fs.mkdirSync('ticker-evidence');fs.writeFileSync('ticker-evidence/source.json',JSON.stringify(files));fs.writeFileSync('ticker-evidence/settings.json',JSON.stringify(settings));
+          console.log(JSON.stringify({settingsKeys:Object.keys(settings),bindings:(settings.bindings||[]).map(x=>({name:x.name,type:x.type})),files:files.map(x=>({name:x.name,bytes:x.content.length,sha256:createHash('sha256').update(x.content).digest('hex'),start:x.content.slice(0,500),end:x.content.slice(-1000),matches:['function bootTicker','const start = async','Owner-selected lead'].map(s=>({s,index:x.content.indexOf(s)}))}))}));
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ticker-placement-${{ github.sha }}
+          path: ticker-evidence/
+          retention-days: 30
