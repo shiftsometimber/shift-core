@@ -20,12 +20,16 @@ const sort=bs=>[...(bs||[])].sort((a,b)=>a.name.localeCompare(b.name));
 const states=[],promoted=[];let beforeRoutes;
 try{
  beforeRoutes=await routes();
- // Prefer an exact canonical route over a scheme-qualified wildcard.
+ // Compare path specificity before optional scheme text. This preserves
+ // exact-path precedence without assuming every page uses an exact route.
  const matchingRoutes=beforeRoutes.filter(r=>matches(r.pattern,'https://shiftsometimber.co.uk/work-with-us'));
- const exactRoutes=matchingRoutes.filter(r=>r.pattern.replace(/^https?:\/\//,'')==='shiftsometimber.co.uk/work-with-us');
- assert.equal(exactRoutes.length,1,'Expected one exact work-with-us route; inspect any changed ownership');
- const serving=[{path:'/work-with-us',route:exactRoutes[0]}];
- console.log('WW1_SERVING '+JSON.stringify({selected:exactRoutes[0],matching:matchingRoutes}));
+ const rank=r=>{const normal=r.pattern.replace(/^https?:\/\//,''),slash=normal.indexOf('/'),host=normal.slice(0,slash),pathname=normal.slice(slash);return[pathname.replace(/\*/g,'').length,Number(!pathname.includes('*')),host.replace(/\*/g,'').length,Number(!host.includes('*')),Number(r.pattern.startsWith('https://'))];};
+ const compare=(a,b)=>{const x=rank(a),y=rank(b);for(let i=0;i<x.length;i++)if(x[i]!==y[i])return y[i]-x[i];return 0;};
+ matchingRoutes.sort(compare);
+ assert(matchingRoutes[0]?.script,'A serving Work With Us route is required');
+ if(matchingRoutes[1]&&compare(matchingRoutes[0],matchingRoutes[1])===0)assert.equal(matchingRoutes[0].script,matchingRoutes[1].script,'Ambiguous Work With Us ownership; inspect before release');
+ const serving=[{path:'/work-with-us',route:matchingRoutes[0]}];
+ console.log('WW1_SERVING '+JSON.stringify({selected:matchingRoutes[0],matching:matchingRoutes}));
  const owners=[...new Set(serving.map(s=>s.route?.script))];assert.equal(owners.length,1,'Page and assets need one existing serving owner');assert(owners[0],'Requested work-with-us route has no serving owner');
  const baseline=await get('/work-with-us'),candidate=transformHTML(baseline.html,css),checks=check(baseline.html,candidate);
  fs.writeFileSync(dir+'/before.html',baseline.html);fs.writeFileSync(dir+'/candidate.html',candidate);
