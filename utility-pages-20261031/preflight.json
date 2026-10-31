@@ -1,0 +1,914 @@
+{
+  "readOnly": true,
+  "source": "04a28be93e91584ef2e4a21bf058e4a3673064cf",
+  "capturedAt": "2026-10-31T22:12:12.792Z",
+  "routeCount": 915,
+  "owners": [
+    {
+      "path": "/commercial-principles",
+      "route": {
+        "id": "4e43d6bf93684b6cb96ca972b7419668",
+        "pattern": "https://shiftsometimber.co.uk/commercial-principles",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/commercial-principles?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/commercial-principles/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/commercial-principles/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/commercial-principles.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/commercial-principles.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/how-we-review-products",
+      "route": {
+        "id": "593352a2787c42db945da572e8b555cd",
+        "pattern": "https://shiftsometimber.co.uk/how-we-review-products",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/how-we-review-products?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/how-we-review-products/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/how-we-review-products/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/how-we-review-products.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/how-we-review-products.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/affiliate-disclosure",
+      "route": {
+        "id": "f8e1a166900540f9b293a837b186b98c",
+        "pattern": "https://shiftsometimber.co.uk/affiliate-disclosure",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/affiliate-disclosure?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/affiliate-disclosure/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/affiliate-disclosure/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/affiliate-disclosure.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/affiliate-disclosure.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/decision-trees-explained",
+      "route": {
+        "id": "077639a003974598a30d42e34bfd2d3d",
+        "pattern": "https://shiftsometimber.co.uk/decision-trees-explained",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/decision-trees-explained?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/decision-trees-explained/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/decision-trees-explained/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/decision-trees-explained.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/decision-trees-explained.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/treatment-finder-methodology",
+      "route": {
+        "id": "211623759e4940ceb736a199ce105013",
+        "pattern": "https://shiftsometimber.co.uk/treatment-finder-methodology",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/treatment-finder-methodology?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/treatment-finder-methodology/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/treatment-finder-methodology/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/treatment-finder-methodology.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/treatment-finder-methodology.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/roadmap-methodology",
+      "route": {
+        "id": "08fc657138a041c7957ef0eda8284596",
+        "pattern": "https://shiftsometimber.co.uk/roadmap-methodology",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/roadmap-methodology?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/roadmap-methodology/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/roadmap-methodology/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/roadmap-methodology.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/roadmap-methodology.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/health-mot-methodology",
+      "route": {
+        "id": "a602b164c9e84a27aa7e817fbfc9da57",
+        "pattern": "https://shiftsometimber.co.uk/health-mot-methodology",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/health-mot-methodology?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/health-mot-methodology/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/health-mot-methodology/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/health-mot-methodology.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/health-mot-methodology.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/medication-comparison-methodology",
+      "route": {
+        "id": "8721dcaac351462e84cb1275a8b98f6b",
+        "pattern": "https://shiftsometimber.co.uk/medication-comparison-methodology",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/medication-comparison-methodology?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/medication-comparison-methodology/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/medication-comparison-methodology/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/medication-comparison-methodology.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/medication-comparison-methodology.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    }
+  ],
+  "workers": [
+    {
+      "name": "shift-public-presentation-batch-20261022",
+      "versionId": "e79d75a5-8e3b-474a-a432-c00eac500ed9",
+      "deploymentId": "1cc3ea16-8632-4139-8c49-96cbd8b9732c",
+      "main": "support-pages-20261031/entry.mjs",
+      "modules": [
+        {
+          "name": "comparison-cp1/layout.mjs",
+          "bytes": 994
+        },
+        {
+          "name": "comparison-cp1/overlay.mjs",
+          "bytes": 1062
+        },
+        {
+          "name": "comparison-cp1/styles.mjs",
+          "bytes": 32043
+        },
+        {
+          "name": "downloads-dr3-20261031/config.mjs",
+          "bytes": 490
+        },
+        {
+          "name": "downloads-dr3-20261031/entry.mjs",
+          "bytes": 210
+        },
+        {
+          "name": "downloads-dr3-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "downloads-dr3-20261031/presentation.mjs",
+          "bytes": 8305
+        },
+        {
+          "name": "downloads-dr3-20261031/runtime.mjs",
+          "bytes": 3948
+        },
+        {
+          "name": "family-fd3-20261031/config.mjs",
+          "bytes": 493
+        },
+        {
+          "name": "family-fd3-20261031/entry.mjs",
+          "bytes": 214
+        },
+        {
+          "name": "family-fd3-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "family-fd3-20261031/presentation.mjs",
+          "bytes": 7722
+        },
+        {
+          "name": "family-fd3-20261031/runtime.mjs",
+          "bytes": 3288
+        },
+        {
+          "name": "health-hb2/layout.mjs",
+          "bytes": 1321
+        },
+        {
+          "name": "health-hb2/overlay.mjs",
+          "bytes": 1079
+        },
+        {
+          "name": "health-hb2/styles.mjs",
+          "bytes": 26189
+        },
+        {
+          "name": "hero-set-20261030/entry.mjs",
+          "bytes": 600
+        },
+        {
+          "name": "hero-set-20261030/payload.mjs",
+          "bytes": 39042
+        },
+        {
+          "name": "hero-set-20261030/runtime.mjs",
+          "bytes": 9762
+        },
+        {
+          "name": "knowledge-health-entry.mjs",
+          "bytes": 266
+        },
+        {
+          "name": "knowledge-health/client.mjs",
+          "bytes": 2540
+        },
+        {
+          "name": "knowledge-health/content.mjs",
+          "bytes": 54409
+        },
+        {
+          "name": "knowledge-health/evidence.mjs",
+          "bytes": 11569
+        },
+        {
+          "name": "knowledge-health/expansion-content.mjs",
+          "bytes": 97780
+        },
+        {
+          "name": "knowledge-health/production.mjs",
+          "bytes": 3726
+        },
+        {
+          "name": "knowledge-health/render.mjs",
+          "bytes": 22279
+        },
+        {
+          "name": "pending-pages-20261031/config.mjs",
+          "bytes": 983
+        },
+        {
+          "name": "pending-pages-20261031/entry.mjs",
+          "bytes": 220
+        },
+        {
+          "name": "pending-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "pending-pages-20261031/presentation.mjs",
+          "bytes": 25583
+        },
+        {
+          "name": "pending-pages-20261031/runtime.mjs",
+          "bytes": 5070
+        },
+        {
+          "name": "previews/public-presentation-batch/answer-depth.mjs",
+          "bytes": 35553
+        },
+        {
+          "name": "previews/public-presentation-batch/manifest.mjs",
+          "bytes": 20650
+        },
+        {
+          "name": "previews/public-presentation-batch/stopping-layout.mjs",
+          "bytes": 1073
+        },
+        {
+          "name": "previews/public-presentation-batch/stopping-style.mjs",
+          "bytes": 8263
+        },
+        {
+          "name": "previews/public-presentation-batch/style.mjs",
+          "bytes": 13197
+        },
+        {
+          "name": "previews/public-presentation-batch/worker.mjs",
+          "bytes": 4901
+        },
+        {
+          "name": "support-pages-20261031/config.mjs",
+          "bytes": 1161
+        },
+        {
+          "name": "support-pages-20261031/entry.mjs",
+          "bytes": 318
+        },
+        {
+          "name": "support-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "support-pages-20261031/presentation.mjs",
+          "bytes": 16635
+        },
+        {
+          "name": "support-pages-20261031/runtime.mjs",
+          "bytes": 4023
+        },
+        {
+          "name": "weight-mw1/layout.mjs",
+          "bytes": 1053
+        },
+        {
+          "name": "weight-mw1/overlay.mjs",
+          "bytes": 1048
+        },
+        {
+          "name": "weight-mw1/styles.mjs",
+          "bytes": 44834
+        }
+      ],
+      "bindingCount": 4
+    },
+    {
+      "name": "shift-core",
+      "versionId": "1517e488-aaf8-4f1f-a66a-83aee766e893",
+      "deploymentId": "75583181-c8de-433c-856f-c89958979e45",
+      "main": "support-pages-20261031/entry.mjs",
+      "modules": [
+        {
+          "name": "community-cm3-20261031/config.mjs",
+          "bytes": 443
+        },
+        {
+          "name": "community-cm3-20261031/entry.mjs",
+          "bytes": 310
+        },
+        {
+          "name": "community-cm3-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "community-cm3-20261031/media.mjs",
+          "bytes": 246856
+        },
+        {
+          "name": "community-cm3-20261031/presentation.mjs",
+          "bytes": 9788
+        },
+        {
+          "name": "community-cm3-20261031/runtime.mjs",
+          "bytes": 3870
+        },
+        {
+          "name": "continuity-polish-20261031/entry.mjs",
+          "bytes": 256
+        },
+        {
+          "name": "continuity-polish-20261031/runtime.mjs",
+          "bytes": 15893
+        },
+        {
+          "name": "continuity-review-20261031/entry.mjs",
+          "bytes": 333
+        },
+        {
+          "name": "continuity-review-20261031/handoff.mjs",
+          "bytes": 10583
+        },
+        {
+          "name": "continuity-review-20261031/html.mjs",
+          "bytes": 18542
+        },
+        {
+          "name": "continuity-review-20261031/runtime.mjs",
+          "bytes": 4667
+        },
+        {
+          "name": "downloads-dr3-20261031/config.mjs",
+          "bytes": 490
+        },
+        {
+          "name": "downloads-dr3-20261031/entry.mjs",
+          "bytes": 357
+        },
+        {
+          "name": "downloads-dr3-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "downloads-dr3-20261031/media.mjs",
+          "bytes": 105015
+        },
+        {
+          "name": "downloads-dr3-20261031/presentation.mjs",
+          "bytes": 8305
+        },
+        {
+          "name": "downloads-dr3-20261031/runtime.mjs",
+          "bytes": 3948
+        },
+        {
+          "name": "family-fd3-20261031/config.mjs",
+          "bytes": 493
+        },
+        {
+          "name": "family-fd3-20261031/entry.mjs",
+          "bytes": 373
+        },
+        {
+          "name": "family-fd3-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "family-fd3-20261031/media.mjs",
+          "bytes": 250912
+        },
+        {
+          "name": "family-fd3-20261031/presentation.mjs",
+          "bytes": 7722
+        },
+        {
+          "name": "family-fd3-20261031/runtime.mjs",
+          "bytes": 3288
+        },
+        {
+          "name": "pending-pages-20261031/config.mjs",
+          "bytes": 983
+        },
+        {
+          "name": "pending-pages-20261031/entry.mjs",
+          "bytes": 526
+        },
+        {
+          "name": "pending-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "pending-pages-20261031/media.mjs",
+          "bytes": 442353
+        },
+        {
+          "name": "pending-pages-20261031/presentation.mjs",
+          "bytes": 25583
+        },
+        {
+          "name": "pending-pages-20261031/runtime.mjs",
+          "bytes": 5070
+        },
+        {
+          "name": "provider-causes-20261031/config.mjs",
+          "bytes": 1335
+        },
+        {
+          "name": "provider-causes-20261031/entry.mjs",
+          "bytes": 928
+        },
+        {
+          "name": "provider-causes-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "provider-causes-20261031/media.mjs",
+          "bytes": 146475
+        },
+        {
+          "name": "provider-causes-20261031/presentation.mjs",
+          "bytes": 4297
+        },
+        {
+          "name": "provider-causes-20261031/query-hero.mjs",
+          "bytes": 9768
+        },
+        {
+          "name": "provider-causes-20261031/query-payload.mjs",
+          "bytes": 19723
+        },
+        {
+          "name": "provider-causes-20261031/runtime.mjs",
+          "bytes": 4498
+        },
+        {
+          "name": "provider-causes-20261031/styles.mjs",
+          "bytes": 14876
+        },
+        {
+          "name": "selected-pages-20261031/config.mjs",
+          "bytes": 977
+        },
+        {
+          "name": "selected-pages-20261031/entry.mjs",
+          "bytes": 351
+        },
+        {
+          "name": "selected-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "selected-pages-20261031/media.mjs",
+          "bytes": 381765
+        },
+        {
+          "name": "selected-pages-20261031/presentation.mjs",
+          "bytes": 35535
+        },
+        {
+          "name": "selected-pages-20261031/runtime.mjs",
+          "bytes": 5707
+        },
+        {
+          "name": "support-pages-20261031/config.mjs",
+          "bytes": 1161
+        },
+        {
+          "name": "support-pages-20261031/entry.mjs",
+          "bytes": 842
+        },
+        {
+          "name": "support-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "support-pages-20261031/presentation.mjs",
+          "bytes": 16635
+        },
+        {
+          "name": "support-pages-20261031/runtime.mjs",
+          "bytes": 4023
+        },
+        {
+          "name": "tools-ct3-20261031/entry.mjs",
+          "bytes": 213
+        },
+        {
+          "name": "tools-ct3-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "tools-ct3-20261031/media.mjs",
+          "bytes": 166743
+        },
+        {
+          "name": "tools-ct3-20261031/presentation.mjs",
+          "bytes": 15801
+        },
+        {
+          "name": "tools-ct3-20261031/runtime.mjs",
+          "bytes": 3429
+        },
+        {
+          "name": "worker.js",
+          "bytes": 33697546
+        }
+      ],
+      "assets": {
+        "config": {
+          "html_handling": "auto-trailing-slash",
+          "not_found_handling": "none",
+          "run_worker_first": true,
+          "base_path": "/"
+        }
+      },
+      "bindingCount": 52
+    }
+  ],
+  "captures": [
+    {
+      "key": "commercial",
+      "status": 200,
+      "bytes": 56098
+    },
+    {
+      "key": "reviews",
+      "status": 200,
+      "bytes": 56635
+    },
+    {
+      "key": "disclosure",
+      "status": 200,
+      "bytes": 56403
+    },
+    {
+      "key": "trees",
+      "status": 200,
+      "bytes": 57822
+    },
+    {
+      "key": "finder",
+      "status": 200,
+      "bytes": 59186
+    },
+    {
+      "key": "roadmap",
+      "status": 200,
+      "bytes": 57698
+    },
+    {
+      "key": "mot",
+      "status": 200,
+      "bytes": 60782
+    },
+    {
+      "key": "medication",
+      "status": 200,
+      "bytes": 59313
+    }
+  ]
+}
