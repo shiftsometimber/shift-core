@@ -26,9 +26,13 @@ const original=await pages(),root='/shift-health/blood-tests';assert(original[ro
 assert(!original[root].includes(NHS_HOME_TEST_FAQ));const expected=addApprovedHomeTestFaq(original[root]);assert.notEqual(expected,original[root]);writeFileSync(dir+'/pages-before.json',JSON.stringify(original));writeFileSync(dir+'/expected.html',expected);
 let owned=null;
 try{
- const upload=cli('versions','upload','--no-bundle');writeFileSync(dir+'/upload.log',upload);
- const ids=[...upload.matchAll(/(?:Worker )?Version ID:\s*([a-f0-9-]{36})/g)];assert.equal(ids.length,1);owned=ids[0][1];
- const staged=await version(owned);assert.deepEqual(staged.modules.map(m=>m.name).sort(),Object.keys(oldMap).sort());
+ const sr=await fetch('https://api.cloudflare.com/client/v4/accounts/'+process.env.CLOUDFLARE_ACCOUNT_ID+'/workers/scripts/shift-bloods-public/settings',{headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN},signal:AbortSignal.timeout(45000)});assert(sr.ok);const sj=await sr.json();assert(sj.success);const settings=sj.result;
+ const metadata={main_module:old.main_module,compatibility_date:settings.compatibility_date,compatibility_flags:settings.compatibility_flags||[],bindings:old.bindings.map(b=>({type:'inherit',name:b.name})),annotations:{'workers/message':'Exact owner-approved NHS Home Test FAQ; ordering closed'}};
+ for(const key of ['placement','limits','observability','logpush'])if(settings[key]!==undefined)metadata[key]=settings[key];
+ const form=new FormData();form.set('metadata',new Blob([JSON.stringify(metadata)],{type:'application/json'}),'metadata.json');for(const name of Object.keys(oldMap))form.set(name,new Blob([local(name)],{type:'application/javascript+module'}),name);
+ assert.equal(selected().id,before.id,'Bloods moved before upload');
+ const ur=await fetch('https://api.cloudflare.com/client/v4/accounts/'+process.env.CLOUDFLARE_ACCOUNT_ID+'/workers/scripts/shift-bloods-public/versions?bindings_inheritance=strict',{method:'POST',headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN},body:form,signal:AbortSignal.timeout(45000)});const uj=await ur.json();assert(ur.ok&&uj.success,'Bloods staged upload failed: '+JSON.stringify(uj.errors));owned=uj.result.id;assert.match(owned,/^[a-f0-9-]{36}$/);writeFileSync(dir+'/staged-version.json',JSON.stringify({version:owned,source:process.env.GITHUB_SHA}));
+ const staged=await version(owned);assert.deepEqual(staged.bindings,old.bindings);assert.equal(staged.compatibility_date,old.compatibility_date);assert.deepEqual(staged.modules.map(m=>m.name).sort(),Object.keys(oldMap).sort());
  for(const m of staged.modules)assert.equal(hash(Buffer.from(m.content_base64,'base64')),hash(Buffer.from(local(m.name))),m.name);
  assert.equal(selected().id,before.id,'Bloods moved during staging');
  writeFileSync(dir+'/promotion-intent.json',JSON.stringify({owned,previous:oldVersion,before:before.id}));
