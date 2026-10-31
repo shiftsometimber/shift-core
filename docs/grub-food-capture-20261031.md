@@ -126,19 +126,15 @@ documentation requires acceptance of the Meta licence and acceptable-use policy
 before the first normal model request. Verify any existing account acceptance
 before proposing a new acceptance action.
 
-Proposed pilot: at most 5 photo requests per member per UTC day, 50 across the
+Built-in allowances: at most 5 photo requests per member per UTC day, 50 across the
 service per UTC day and 500 across the service per UTC calendar month. Failed
 or timed-out calls still consume their reservation; no automatic inference
 retry occurs. Maximum model output is 400 tokens.
 
-Cloudflare listed $0.0485 per million input tokens and $0.676 per million
-output tokens on 31 October 2026. At the model's complete 128,000-token input
-context and 400 output tokens, 500 requests would be about $3.24 in model
-charges at those rates. This is a conservative token calculation, not a
-supplier quote, complete platform bill, monetary account cap or evidence that
-real food estimates are accurate. Proposed approval envelope: £5/month for
-the photo-inference pilot, with the hard call allowances above. No new cost
-or licence has been accepted.
+No new cost or licence has been accepted. The earlier proposed external
+photo pilot is not an active purchase request. Model deployment remains an
+infrastructure choice behind our shared Shift AI capability; existing text
+inference does not automatically authorise a new vision model or its terms.
 
 References:
 
@@ -152,13 +148,25 @@ References:
 
 ## Verification and remaining acceptance
 
-Local Node/SQLite: 34 checks passed, including the existing London calendar
+Local Node/SQLite: 48 checks passed, including the shared model boundary,
+generic research caching/throttling, verified citation IDs, existing London calendar
 boundary tests, authenticated saves, duplicate prevention, account separation,
 current consent, withdrawal during inference, portion scaling and usage caps.
-Hosted focused food/diary compatibility checks: 40/40 passed. The wider member suite currently passes 547/549; the two failures are the CSV historical-release qualification tests, which reject the registration tail at the current source head. No test has been removed, skipped or weakened. A baseline diagnostic checks the unchanged source base separately.
+First shared-engine hosted proof at commit
+`043fe6bb23ccda35a0635a780d69e8690001f037`: 74/74 focused food, research,
+privacy, real-diary and existing Ask Timber conversation checks passed. The
+actual Worker dry-run build passed. The wider member suite passed 561/563;
+the two failures are the CSV historical-release qualification tests, which
+reject the registration tail. Both reproduce on the unchanged pre-feature
+source base. No test has been removed, skipped or weakened. The workflow
+re-runs these checks on subsequent feature commits and includes the served
+form/adapter/research-route and untrusted-link checks.
 
-Provider calls in these checks use synthetic fixtures; no real member record
-or real model request is involved.
+Provider calls in automated regression checks use synthetic fixtures; no real
+member record or real model request is involved. A separate labelled public
+connectivity diagnostic queries PubMed for a fixed protein-review topic only.
+Its live result must be read separately; a runner/network outage is not model
+accuracy evidence or permission to use private wording in a public query.
 
 Browser QA uses a clearly labelled fictional harness. The actual served client
 completed packet lookup, a 40 g review, optional nutrient inclusion, draft
@@ -171,6 +179,10 @@ data handling against the current privacy information, test actual food
 recognition on consented non-personal samples, and check the photo picker on
 current iOS and Android installations. Photo results remain estimates.
 
-Phone-width QA: the 320 px frame has 305 px of document width after its scrollbar and 305 px of content width (no horizontal overflow). The 390 px interface and packet-to-save path were also inspected. This is not physical-device acceptance.
+Phone-width QA: research results have equal document/content widths at 320,
+390 and 430 px frames (305/305, 375/375 and 415/415 after scrollbars), with
+working research filter, original links, dates and keyboard navigation. The
+Grub 320 px frame and 390 px packet-to-save path were also inspected. These
+are fictional interface harnesses, not physical-device acceptance.
 
 Production promotion of the unchanged source base had already failed at run 41223877184 before this feature branch. This source preparation is not a production deployment or App Store release. The feature branch is retained at `feature/grub-food-capture-20261031`; main, live runtime and store state have not been changed.

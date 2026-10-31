@@ -31,7 +31,7 @@ export function researchReferences(payload,ids,checkedAt){
  }).slice(0,5);
 }
 function guidance(topic){
- const local=topic.foundation?foundationEvidence(topic.foundation).map(item=>({title:item.title,url:item.citation,evidenceType:'NHS information',reviewState:'source_checked',checkedAt:item.provenance[0].checkedAt,publishedAt:item.provenance[0].publisherReviewedAt,clinicalReview:false})):[];
+ const local=topic.foundation?foundationEvidence(topic.foundation).map(item=>({title:item.title,url:item.citation,evidenceType:'NHS information',reviewState:'source_checked',checkedAt:item.provenance[0].checkedAt,publishedAt:null,publisherReviewedAt:item.provenance[0].publisherReviewedAt,clinicalReview:false})):[];
  return [...(topic.guides||[]).map(([title,url,evidenceType])=>({title,url,evidenceType,reviewState:'source_checked',checkedAt:'2026-10-31',publishedAt:null,clinicalReview:false})),...local];
 }
 export async function shiftResearch(env,question,{type='all',signal}={}){

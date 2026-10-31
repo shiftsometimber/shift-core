@@ -19,13 +19,14 @@
   const safeUrl=value=>{try{const u=new URL(value);return u.protocol==='https:'&&!u.username&&!u.password?u.href:null}catch{return null}};
   const sources=(data.sources||[]).map(s=>{
     const label=research?(s.evidenceType||'Source reference'):(({verified:'Verified source',approved:'Reviewed source',source_checked:'Source checked',published_site:'Published SHIFT page',external_unreviewed:'External NHS information'})[s.reviewState]||'Source information');
-    const inside='<strong>['+esc(s.id)+'] '+esc(s.title)+'</strong><span>'+esc(label)+(s.publishedAt?' · '+esc(s.publishedAt):'')+'</span>'+(research?'<span>'+esc(s.publisher||'')+(s.pmid?' · PMID '+esc(s.pmid):'')+'</span><small>'+(s.checkedAt?'Index checked '+esc(s.checkedAt.slice(0,10))+'. ':'')+'Not clinically appraised by Shift.</small>':'');
+    const inside='<strong>['+esc(s.id)+'] '+esc(s.title)+'</strong><span>'+esc(label)+(s.publishedAt?' · '+esc(s.publishedAt):'')+'</span>'+(research?'<span>'+esc(s.publisher||'')+(s.pmid?' · PMID '+esc(s.pmid):'')+'</span><small>'+(s.checkedAt?(s.pmid?'Index checked ':'Source checked ')+esc(s.checkedAt.slice(0,10))+'. ':'')+'Not clinically appraised by Shift.</small>':'');
     const url=safeUrl(s.url);
-    return url?'<a class="at-source" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+inside+'</a>':'<div class="at-source">'+inside+'</div>';
+    const classes='at-source'+(research?' at-research-source':'');
+    return url?'<a class="'+classes+'" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+inside+'</a>':'<div class="'+classes+'">'+inside+'</div>';
   }).join('');
   output.innerHTML='<div class="at-answer-head"><h2>'+(research?'Research and sources.':'Here’s the straight answer.')+'</h2><span class="at-confidence">'+(research?'Source index':esc(data.confidence||'reviewed')+' confidence')+'</span></div>'+
    '<div class="at-copy">'+paragraphs(data.answer)+'</div>'+
-   ((data.keyPoints?.length||data.nextSteps?.length)?'<div class="at-panels"><section class="at-panel"><h3>What matters</h3>'+list(data.keyPoints)+'</section><section class="at-panel"><h3>What you can do next</h3>'+list(data.nextSteps)+'</section></div>':'')+
+   ((data.keyPoints?.length||data.nextSteps?.length)?'<div class="at-panels">'+(data.keyPoints?.length?'<section class="at-panel"><h3>What matters</h3>'+list(data.keyPoints)+'</section>':'')+(data.nextSteps?.length?'<section class="at-panel"><h3>What you can do next</h3>'+list(data.nextSteps)+'</section>':'')+'</div>':'')+
    (sources?'<section class="at-sources"><h3>'+(research?'Open the original sources':'What Timber used')+'</h3>'+sources+'</section>':'')+
    (research&&safeUrl(data.research?.searchUrl)?'<p><a href="'+esc(safeUrl(data.research.searchUrl))+'" target="_blank" rel="noopener noreferrer">Open this general topic in PubMed →</a></p>':'')+
    '<p class="at-limit">'+esc(data.limitations||'General information—not individual medical advice.')+'</p>'+

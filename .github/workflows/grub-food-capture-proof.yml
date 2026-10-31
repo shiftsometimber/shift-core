@@ -54,6 +54,9 @@ jobs:
         run: node --test member-experience/tests/food-capture.test.mjs member-experience/tests/food-diary-london-date-20261015.test.mjs member-experience/tests/journey-portability.test.mjs member-experience/tests/shift-ai-capabilities.test.mjs tests/shift-ai-research-route.test.mjs tests/ask-timber-conversation-boundaries.test.mjs tests/ask-timber-public.test.mjs
       - name: Build the actual Worker without uploading or changing production
         run: npx wrangler deploy --dry-run --config wrangler.jsonc --outdir "$RUNNER_TEMP/grub-worker-build"
+      - name: Check live public PubMed connectivity (diagnostic, no account or model)
+        continue-on-error: true
+        run: node preview/shift-ai-research/public-proof.mjs
       - name: Check existing member regression suite
         run: node --test --test-concurrency=2 member-experience/tests/*.test.mjs
       - name: Diagnose the same CSV checks on the unchanged source base
