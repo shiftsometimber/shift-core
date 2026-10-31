@@ -11,7 +11,7 @@ export function hero(key){
  if(key==='comparison')return `<section class="sp-hero sp-tc2" aria-labelledby="nhh-title-treatment-comparison"><div class="sp-copy">${head('COMPARE WEIGHT-LOSS TREATMENTS','Weight-loss treatment.<br>Compare the options.','Understand the different routes and their trade-offs without pretending one answer fits every man.','nhh-title-treatment-comparison')}<div class="sp-actions">${button('#mounjaro-vs-wegovy','Compare treatment options')}${link('#sp-questions','Prepare your questions')}</div><p class="sp-note">General information. A qualified prescriber decides individual suitability.</p></div><div class="sp-comparison-grid"><aside class="sp-panel" id="sp-questions"><h2>A better-informed conversation</h2><p>These prompts can help you get clear on what matters to you before comparing options.</p><dl><dt>What fits my routine?</dt><dd>Think about how each option might fit with your day-to-day life.</dd><dt>What are the trade-offs?</dt><dd>Consider the potential benefits and downsides for you.</dd><dt>What should I ask?</dt><dd>Use these comparisons to help shape your questions with a prescriber.</dd></dl></aside><nav class="sp-comparison-topics" aria-label="Choose a comparison"><h2>Choose a comparison</h2><p>Explore our guides to understand the key differences and what to think about.</p>${step('#mounjaro-vs-wegovy','Mounjaro versus Wegovy','Compare the key differences to consider.')}${step('#wegovy-pill-vs-foundayo','Wegovy pill versus Foundayo','Look at how these options differ in practice.')}${step('#tablets-vs-injections','Tablets versus injections','Explore the pros and cons of each approach.')}${step('#medication-versus-surgery','Medication versus surgery','Understand the main differences and trade-offs.')}${link('#how-this-comparison-is-governed','How this comparison is governed')}</nav></div></section>`;
  throw Error('Unsupported approved design '+key);
 }
-export const css=String.raw`
+const baseCSS=String.raw`
 MAIN{--sp-black:#050505;--sp-cream:#E7E3DA;--sp-ash:#707762;background:#050505!important;color:#E7E3DA!important;padding:0!important;margin:0!important;width:100%!important;max-width:none!important;font-family:Arial,Helvetica,sans-serif!important;overflow:clip}
 MAIN *{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif!important;-webkit-text-fill-color:currentColor!important}
 MAIN :is(h1,h2,h3,p,figure,blockquote){text-transform:none;letter-spacing:normal}
@@ -73,6 +73,9 @@ MAIN .partner-grid-v3b2{display:grid!important;grid-template-columns:repeat(3,mi
 MAIN .partner-card-v3b2{background:#10130d!important;border:1px solid #707762!important;color:#E7E3DA!important;padding:20px!important;border-radius:4px!important}
 MAIN .partner-card-v3b2 h3{color:#E7E3DA!important;font-size:20px!important;margin:0 0 10px!important}
 MAIN .partner-card-v3b2 p{color:#E7E3DA!important;font-size:15px!important;line-height:1.65!important;margin:0!important}
+MAIN .reading-layout>section:not(.sp-hero):not(.sp-benefits) :is(h2,h3,p,li,strong){color:#E7E3DA!important}
+MAIN .reading-layout>section:not(.sp-hero):not(.sp-benefits) p{font-size:16px!important;line-height:1.7!important}
+MAIN .reading-layout>section:not(.sp-hero):not(.sp-benefits) h2{font-size:29px!important;line-height:1.2!important;margin:0 0 18px!important}
 MAIN .download-note-v3b2{background:#15180f!important;color:#E7E3DA!important;border:1px solid #707762!important;padding:20px!important}
 MAIN .sp-emphasis{font-size:19px!important;font-weight:700!important;line-height:1.5!important;color:#b6c197!important;margin:-8px 0 20px!important}
 MAIN .sp-mo3 .sp-start-panel{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);background:#E7E3DA!important;color:#050505!important;border-radius:6px;overflow:hidden;margin-top:26px!important;padding:0!important;border:0!important}
@@ -84,6 +87,8 @@ MAIN .sp-step strong{display:block;font-size:19px!important;font-weight:800!impo
 MAIN .sp-step span span{display:block;font-size:15px!important;line-height:1.5!important;margin-top:5px;color:inherit!important}
 MAIN .sp-step>span:last-child{font-size:24px;flex-shrink:0}
 MAIN .sp-mo3 .sp-photo img{object-position:center}
+MAIN .sp-mo3 .sp-photo{position:relative;min-height:360px}
+MAIN .sp-mo3 .sp-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 MAIN .sp-extra{margin-top:10px}
 MAIN .mop-contents{max-width:1280px!important;margin:auto!important;padding:5px 32px 22px!important}
 MAIN .mop-wrap{max-width:none!important;margin:0!important;padding:0!important}
@@ -154,7 +159,7 @@ MAIN .continuity-links{max-width:1000px!important;margin:auto!important;padding:
  MAIN .sp-mo3 .sp-start-panel{grid-template-columns:1fr!important;margin-top:23px!important}
  MAIN .sp-start-copy{padding:22px}
  MAIN .sp-start-copy h2{font-size:27px!important}
- MAIN .sp-mo3 .sp-photo{height:280px}
+ MAIN .sp-mo3 .sp-photo{height:280px;min-height:0}
  MAIN .sp-mo3 .sp-photo img{object-position:center 42%}
  MAIN .sp-step{padding:17px 0}
  MAIN .sp-step strong{font-size:18px!important}
@@ -168,3 +173,12 @@ MAIN .continuity-links{max-width:1000px!important;margin:auto!important;padding:
  MAIN>.authority-next{margin-inline:20px!important}
 }
 `;
+const icons={walk:'<circle cx="14" cy="4" r="2"/><path d="m10 9 3-2 4 4 3 1M13 7l-2 7-5 7m5-7 5 2 1 5M10 9l-4 3H3"/>',food:'<path d="M5 2v7m3-7v7M2 2v7q3 4 6 0M5 12v10M16 2v20m0-20q-6 8 0 10"/>',list:'<circle cx="4" cy="5" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="19" r="1"/><path d="M9 5h12M9 12h12M9 19h12"/>',scales:'<path d="M12 2v19M7 21h10M3 6h18M6 6l-4 9h8zm12 0-4 9h8z"/>',pill:'<path d="M5 19a5 5 0 0 1 0-7l7-7a5 5 0 0 1 7 7l-7 7a5 5 0 0 1-7 0ZM8 9l7 7"/>',syringe:'<path d="m16 2 6 6m-3-3-3 3M4 17 15 6l5 5L9 22l-5-5Zm-2 5 4-4M9 12l3 3m1-7 3 3"/>',person:'<circle cx="12" cy="7" r="4"/><path d="M4 22v-3a8 8 0 0 1 16 0v3"/>',measure:'<ellipse cx="12" cy="7" rx="9" ry="4"/><path d="M3 7v9c0 5 18 5 18 0V7M7 11v4m5-3v4m5-5v4"/>',chat:'<path d="M3 3h18v13H10l-5 5v-5H3zM7 7h10M7 11h7"/>',calendar:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M7 2v5m10-5v5M3 10h18m-14 4h3m4 0h3m-10 4h3"/>',question:'<circle cx="12" cy="12" r="10"/><path d="M9 8a3 3 0 1 1 5 3c-2 1-2 2-2 3m0 3v1"/>'};
+const mask=name=>`url("data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">'+icons[name]+'</svg>')}")`;
+const rule=(selector,name)=>`MAIN ${selector}{--sp-icon:${mask(name)}}`;
+export const css=baseCSS+`
+MAIN .spp-features .continuity-grid>div::before{content:'';display:block;width:35px;height:35px;margin-bottom:13px;background:#a8b68d;mask:var(--sp-icon) center/contain no-repeat}
+MAIN :is(.sp-start-copy,.sp-comparison-topics) .sp-step::before{content:'';display:block;width:35px;height:35px;flex:0 0 35px;background:#a8b68d;mask:var(--sp-icon) center/contain no-repeat}
+MAIN .sp-start-copy .sp-step::before{background:#59624b}
+MAIN :is(.sp-start-copy,.sp-comparison-topics) .sp-step>span:first-of-type{flex:1}
+`+['walk','food','list'].map((name,i)=>rule('.spp-features .continuity-grid>div:nth-child('+(i+1)+')',name)).join('')+['scales','pill','syringe','person'].map((name,i)=>rule('.sp-comparison-topics .sp-step:nth-of-type('+(i+1)+')',name)).join('')+['measure','chat','walk'].map((name,i)=>rule('.sp-start-copy .sp-step:nth-of-type('+(i+1)+')',name)).join('');

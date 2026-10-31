@@ -15,6 +15,7 @@ export async function browserCheck({headers={},dir='pending-pages-evidence',labe
     await page.locator('main[data-approved-release]').waitFor({state:'visible',timeout:30000});
     await page.waitForLoadState('load',{timeout:45000});await page.evaluate(()=>document.fonts.ready);
     await page.locator('main .sp-photo img').evaluateAll(images=>Promise.all(images.map(i=>i.decode())));
+    await page.evaluate(()=>window.scrollTo(0,0));
     const layout=await page.evaluate(()=>{
      const m=document.querySelector('main'),h=m.querySelector('h1'),s=getComputedStyle(h),r=h.getBoundingClientRect();
      return {marker:m.dataset.approvedRelease,key:m.dataset.approvedPages,viewport:innerWidth,scrollWidth:document.documentElement.scrollWidth,headings:m.querySelectorAll('h1').length,background:getComputedStyle(m).backgroundColor,font:s.fontFamily,headingColour:s.color,headingFill:s.webkitTextFillColor,headingVisible:s.display!=='none'&&s.visibility==='visible'&&Number(s.opacity)>0&&r.height>0,ticker:!!document.querySelector('#shift-public-news'),images:[...m.querySelectorAll('.sp-photo img')].map(i=>({src:i.getAttribute('src'),complete:i.complete,width:i.naturalWidth})),panels:[...m.querySelectorAll('.sp-panel,.sp-start-panel,.sp-benefits')].map(e=>({className:e.className,background:getComputedStyle(e).backgroundColor,colour:getComputedStyle(e).color}))};
@@ -36,6 +37,7 @@ export async function browserCheck({headers={},dir='pending-pages-evidence',labe
     }
     if(item.key==='obesity'){
      assert.equal(await page.locator('.sp-start-panel .sp-step').count(),3);assert.equal(await page.locator('.mop-contents nav a').count(),6);
+     const panel=await page.locator('.sp-start-panel').boundingBox(),copy=await page.locator('.sp-start-copy').boundingBox();if(viewport.width>600)assert(panel.height-copy.height<5,'MO3 image must not create excess empty panel height');
      await page.locator('.sp-start-panel a[href="#measurements"]').click();behaviour.anchor=await page.locator('#measurements').evaluate(e=>({top:e.getBoundingClientRect().top,visible:getComputedStyle(e).display!=='none'}));
     }
     if(item.key==='comparison'){
