@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {transform,heroHTML,version,wrap} from './runtime.mjs';
+const response=await fetch('https://shiftsometimber.co.uk/clinic-gone-quiet',{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(30000)});
+assert.equal(response.status,200);const before=await response.text(),after=transform(before).html;
+const text=s=>s.replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,'').replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
+assert.equal(text(before),text(after),'Page wording changed');assert.equal(heroHTML(before),heroHTML(after),'Latest hero changed');
+const hrefs=s=>[...s.matchAll(/\bhref="([^"]+)"/g)].map(m=>m[1]);assert.deepEqual(hrefs(before),hrefs(after),'Links changed');
+assert.equal((after.match(/data-continuity-choice=/g)||[]).length,6);assert.equal((after.match(/class="cp-column"/g)||[]).length,2);assert.equal((after.match(/class="cp-icon"/g)||[]).length,6);
+assert.equal(after.slice(after.indexOf('</main>')),before.slice(before.indexOf('</main>')),'Footer or client source changed');assert.equal(transform(after).html,after,'Duplicate application');
+assert.equal(transform(before,'/life-back').html,before);
+const scheduled=()=>{};const original={scheduled,fetch:async()=>new Response(before,{headers:{'Content-Type':'text/html','ETag':'old'}})};
+const runtime=wrap(original);assert.equal(runtime.scheduled,scheduled);const head=await runtime.fetch(new Request('https://shiftsometimber.co.uk/clinic-gone-quiet',{method:'HEAD'}));assert.equal(await head.text(),'');assert.equal(head.headers.get('X-Shift-Continuity-Polish'),version);assert.equal(head.headers.get('ETag'),null);
+console.log('Verified exact wording, links, latest hero, footer, six routes, idempotence, scope, HEAD and retained lifecycle handler.');

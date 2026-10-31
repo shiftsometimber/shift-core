@@ -1,0 +1,35 @@
+name: Approved SHIFT Continuity design polish
+on:
+  push:
+    branches: [release/continuity-polish-20261031]
+    paths:
+      - 'continuity-polish-20261031/**'
+      - '.github/workflows/continuity-polish-release-20261031.yml'
+permissions:
+  contents: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Verify bounded Continuity changes
+        run: |
+          for file in continuity-polish-20261031/*.mjs; do node --check "$file"; done
+          node continuity-polish-20261031/check.mjs
+      - name: Preserve serving source and deploy approved Continuity design
+        run: node continuity-polish-20261031/deploy.mjs
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: continuity-polish-release-${{ github.run_id }}
+          path: continuity-polish-evidence/
+          retention-days: 90
