@@ -14,10 +14,11 @@ const receipt={phase,browser:engine,source:state.source,checkedAt:new Date().toI
 const browser=await ({chromium,webkit}[engine]).launch({headless:true});
 let context;
 try{
- context=await browser.newContext({viewport:{width:engine==='webkit'?390:1440,height:900},extraHTTPHeaders:headers});
+ context=await browser.newContext({serviceWorkers:'block',viewport:{width:engine==='webkit'?390:1440,height:900},extraHTTPHeaders:headers});
  const page=await context.newPage();page.on('pageerror',e=>receipt.errors.push(e.message));
  await page.route('**/*',r=>{if(!['GET','HEAD','OPTIONS'].includes(r.request().method())&&!(r.request().method()==='POST'&&new URL(r.request().url()).pathname==='/v1/privacy/export'&&r.request().postData()==='{}')){receipt.blockedPosts++;return r.abort();}return r.continue();});
- const get=async path=>{const r=await page.goto(origin+path,{waitUntil:'domcontentloaded',timeout:25000});const html=await r.text();return {status:r.status(),html,headers:r.headers()};};
+ await page.goto(origin+(phase==='before'?'/privacy':'/member/life-back/shop'),{waitUntil:'domcontentloaded',timeout:30000});
+ const get=async path=>page.evaluate(async path=>{const r=await fetch(path,{credentials:'include',cache:'no-store'});return {status:r.status,html:await r.text(),headers:Object.fromEntries(r.headers)};},path);
  const protectedPaths=['/','/clinic-gone-quiet','/shift-health','/start-here','/treatment-centre','/privacy','/account-deletion','/member/settings','/member/orders','/member/saved'];
  let baseline;
  if(phase!=='before')baseline=JSON.parse(readFileSync('production-before.json','utf8'));
@@ -42,7 +43,7 @@ try{
    if(path.includes('item=')){assert.match(r.html,/tm-detail-layout/);assert.match(r.html,/data-tm-colour="cream"/);}
    receipt.pages.push({path,status:r.status,sha256:digest(r.html)});
   }
-  await get('/member/life-back/shop');await page.waitForFunction(()=>document.body.dataset.memberSession==='signed-out',{timeout:15000});assert.equal(await page.locator('#mtShopChrome').count(),0);assert.equal(await page.locator('#mtShopMain').isVisible(),false);
+  await page.waitForFunction(()=>document.body.dataset.memberSession==='signed-out',{timeout:15000});assert.equal(await page.locator('#mtShopChrome').count(),0);assert.equal(await page.locator('#mtShopMain').isVisible(),false);
   for(const path of ['/assets/member-experience/programme-shop-navigation.mjs','/assets/member-experience/programme-shop.css','/assets/member-experience/programme-shop-basket.js','/assets/member-experience/programme-journey.mjs','/assets/member-experience/programme-journey.css','/assets/my-timber-layout.mjs','/my-timber-v11.js']){
    const r=await page.evaluate(async path=>{const r=await fetch(path,{cache:'no-store'});return {status:r.status,contentType:r.headers.get('Content-Type'),source:await r.text(),integration:r.headers.get('X-My-Timber-Layout-Integration')};},path);assert.equal(r.status,200,path);assert.match(r.contentType,/javascript|css/);
    if(path.endsWith('my-timber-layout.mjs'))assert.equal(r.integration,'approved-journey-applied');
@@ -50,6 +51,11 @@ try{
   }
   for(const path of ['/v1/life-back/journey','/v1/life-back','/v1/privacy/export','/v1/commerce/active-checkout']){
    const r=await page.evaluate(async path=>{const method=path==='/v1/privacy/export'?'POST':'GET';const r=await fetch(path,{method,cache:'no-store',credentials:'include',...(method==='POST'?{headers:{'Content-Type':'application/json'},body:'{}'}:{})});return {status:r.status,method};},path);assert([401,403].includes(r.status),path+' rejects signed-out access; got '+r.status);receipt.privateApis.push({path,status:r.status,method:r.method});
+  }
+  receipt.renderChecks=[];
+  for(const path of ['/member/dashboard','/member/dashboard?timber=support#today','/member/dashboard?timber=stuff#today','/member/grub','/member/fit','/member/life-back/journey','/member/life-back/shop']){
+   const view=await context.newPage();let identityRequests=0;view.on('pageerror',e=>receipt.errors.push(e.message));view.on('request',r=>{if(new URL(r.url()).pathname==='/v1/me')identityRequests++;});
+   try{const r=await view.goto(origin+path,{waitUntil:'domcontentloaded',timeout:30000});assert.equal(r.status(),200,path+' rendered response');await view.waitForFunction(()=>document.body.dataset.memberSession==='signed-out',{timeout:15000});assert.equal(await view.locator('#mtShopChrome').count(),0,'Signed-out app chrome');assert(identityRequests<=8,'Repeated identity requests: '+path);receipt.renderChecks.push({path,status:r.status(),domContentLoaded:true,signedOutProtection:true,identityRequests});}finally{await view.close();}
   }
   assert.deepEqual(receipt.errors.filter(e=>!baseline.errors.includes(e)),[],'New production console errors');
  }
