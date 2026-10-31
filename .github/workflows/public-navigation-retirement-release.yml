@@ -43,10 +43,10 @@ jobs:
           node --check public-navigation-policy.mjs
           node --test tests/public-ticker-contrast-safety.test.mjs tests/public-navigation-policy.test.mjs tests/public-ticker-preservation.test.mjs tests/timber-shed-public-teaser.test.mjs
           actual="$(git diff --name-only HEAD^ HEAD | sort)"
-          test "$(printf '%s\\n' "$actual" | sed '/^$/d' | wc -l | tr -d ' ')" = 3
-          printf '%s\\n' "$actual" | grep -qx '.github/workflows/public-navigation-retirement-release.yml'
-          printf '%s\\n' "$actual" | grep -qx 'tests/timber-shed-public-teaser.test.mjs'
-          printf '%s\\n' "$actual" | grep -qx 'timber-shed-public-teaser.mjs'
+          test "$(printf '%s\n' "$actual" | sed '/^$/d' | wc -l | tr -d ' ')" = 3
+          printf '%s\n' "$actual" | grep -qx '.github/workflows/public-navigation-retirement-release.yml'
+          printf '%s\n' "$actual" | grep -qx 'tests/timber-shed-public-teaser.test.mjs'
+          printf '%s\n' "$actual" | grep -qx 'timber-shed-public-teaser.mjs'
       - name: Capture rollback deployment and affected live pages
         run: |
           set -euo pipefail
