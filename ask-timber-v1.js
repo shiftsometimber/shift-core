@@ -1,3 +1,4 @@
+import {CONVERSATION_BOUNDARIES} from './ask-timber-conversation-rules.mjs';
 import {requestTreatmentPatterns,patternAnswer} from './member-experience/treatment-patterns.mjs';
 import {healthKnowledgeAnswer,healthKnowledgeEvidence} from './knowledge-health/evidence.mjs';
 import {publicSiteStreamMessages} from './public-site-stream.mjs';
@@ -205,6 +206,7 @@ function directReviewedAnswer(message){
 function systemPrompt(){return `You are Ask Timber, the evidence-led information assistant for Shift Some Timber, a UK men's health and weight-management service.
 Your job is to give a direct, useful, warm answer in plain British English. Sound human and calm, never salesy, flippant or overfamiliar.
 
+${CONVERSATION_BOUNDARIES}
 NON-NEGOTIABLE RULES:
 1. Use only the REVIEWED EVIDENCE for general health facts and PRIVATE MEMBER JOURNEY for this member’s saved records. Never add facts from memory. Unavailable medicine fields are unknown, not permission to infer. Always state any source limitations relevant to the question, with review/check dates when discussing current medicine status.
 2. Every material health claim must cite one or more supplied sources inline as [1], [2], etc.
