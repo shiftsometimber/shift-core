@@ -16,7 +16,7 @@ let context;
 try{
  context=await browser.newContext({viewport:{width:engine==='webkit'?390:1440,height:900},extraHTTPHeaders:headers});
  const page=await context.newPage();page.on('pageerror',e=>receipt.errors.push(e.message));
- await page.route('**/*',r=>{if(!['GET','HEAD','OPTIONS'].includes(r.request().method())){receipt.blockedPosts++;return r.abort();}return r.continue();});
+ await page.route('**/*',r=>{if(!['GET','HEAD','OPTIONS'].includes(r.request().method())&&!(r.request().method()==='POST'&&new URL(r.request().url()).pathname==='/v1/privacy/export'&&r.request().postData()==='{}')){receipt.blockedPosts++;return r.abort();}return r.continue();});
  const get=async path=>{const r=await page.goto(origin+path,{waitUntil:'domcontentloaded',timeout:25000});const html=await r.text();return {status:r.status(),html,headers:r.headers()};};
  const protectedPaths=['/','/clinic-gone-quiet','/shift-health','/start-here','/treatment-centre','/privacy','/account-deletion','/member/settings','/member/orders','/member/saved'];
  let baseline;
@@ -49,7 +49,7 @@ try{
    receipt.assets.push({path,status:r.status,sha256:digest(r.source),integration:r.integration});
   }
   for(const path of ['/v1/life-back/journey','/v1/life-back','/v1/privacy/export','/v1/commerce/active-checkout']){
-   const r=await page.evaluate(async path=>{const r=await fetch(path,{cache:'no-store',credentials:'include'});return {status:r.status};},path);assert([401,403].includes(r.status),path+' rejects signed-out access; got '+r.status);receipt.privateApis.push({path,status:r.status});
+   const r=await page.evaluate(async path=>{const method=path==='/v1/privacy/export'?'POST':'GET';const r=await fetch(path,{method,cache:'no-store',credentials:'include',...(method==='POST'?{headers:{'Content-Type':'application/json'},body:'{}'}:{})});return {status:r.status,method};},path);assert([401,403].includes(r.status),path+' rejects signed-out access; got '+r.status);receipt.privateApis.push({path,status:r.status,method:r.method});
   }
   assert.deepEqual(receipt.errors.filter(e=>!baseline.errors.includes(e)),[],'New production console errors');
  }
