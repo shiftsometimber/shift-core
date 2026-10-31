@@ -40,3 +40,14 @@ test('editorial updates preserve publication date and use the real later modific
  for(const updated_at of [null,'invalid','2020-01-01T00:00:00Z'])assert.equal(articleModifiedDate({...row,updated_at}),row.publish_at);
  const xml=await (await withDynamicBabyLoveDiscovery(new Response('<urlset></urlset>'),new Request('https://shiftsometimber.co.uk/sitemap.xml'),env(revised))).text();assert.match(xml,/<lastmod>2026-10-03<\/lastmod>/);
 });
+
+
+test('published articles are added to the canonical current Knowledge hub',async()=>{
+ const input=new Response('<main data-shift-knowledge><div class="kh-grid kh-legacy"></div></main>',{headers:{'Content-Type':'text/html'}});
+ const out=await withDynamicBabyLoveDiscovery(input,new Request('https://shiftsometimber.co.uk/knowledge'),env(row));
+ const html=await out.text();
+ assert.match(html,/data-kh-card/);
+ assert.match(html,/data-kh-topic="existing"/);
+ assert.match(html,/data-babylove-dynamic="mounjaro-cost-uk"/);
+ assert.match(html,/href="\/articles\/mounjaro-cost-uk"/);
+});
