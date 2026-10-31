@@ -1,0 +1,611 @@
+{
+  "readOnly": true,
+  "source": "1b1c43f1559b5df35e2bde8467922d49966c2253",
+  "capturedAt": "2026-10-31T19:39:27.245Z",
+  "routeCount": 915,
+  "owners": [
+    {
+      "path": "/weight-loss-support-for-men",
+      "route": {
+        "id": "1503485c054f4128846e7c275b434e9c",
+        "pattern": "shiftsometimber.co.uk/weight-loss-support-for-men",
+        "script": "shift-support-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/weight-loss-support-for-men?presentation=1",
+      "route": {
+        "id": "41cd4ea2bf484f498930c6c7e1671f24",
+        "pattern": "https://shiftsometimber.co.uk/weight-loss-support-for-men*",
+        "script": "shift-public-answers",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/weight-loss-support-for-men/",
+      "route": {
+        "id": "c041989cc80246aba0ddc971eab5eb7e",
+        "pattern": "shiftsometimber.co.uk/weight-loss-support-for-men/",
+        "script": "shift-support-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/weight-loss-support-for-men/?presentation=1",
+      "route": {
+        "id": "41cd4ea2bf484f498930c6c7e1671f24",
+        "pattern": "https://shiftsometimber.co.uk/weight-loss-support-for-men*",
+        "script": "shift-public-answers",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/weight-loss-support-for-men.html",
+      "route": {
+        "id": "50910f671add4c109610c6582b8a6a30",
+        "pattern": "shiftsometimber.co.uk/weight-loss-support-for-men.html",
+        "script": "shift-support-presentation-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/weight-loss-support-for-men.html?presentation=1",
+      "route": {
+        "id": "41cd4ea2bf484f498930c6c7e1671f24",
+        "pattern": "https://shiftsometimber.co.uk/weight-loss-support-for-men*",
+        "script": "shift-public-answers",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/partner-with-us",
+      "route": {
+        "id": "1e26521142f64b8ebe5d0044017e2569",
+        "pattern": "https://shiftsometimber.co.uk/partner-with-us",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/partner-with-us?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/partner-with-us/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/partner-with-us/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/partner-with-us.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/partner-with-us.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/male-obesity",
+      "route": {
+        "id": "682a26fb9b7e46218dbf894b2077c389",
+        "pattern": "shiftsometimber.co.uk/male-obesity",
+        "script": "shift-blog-publisher",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/male-obesity?presentation=1",
+      "route": {
+        "id": "e63ea3bebe944060afe865b9d2ad7b08",
+        "pattern": "shiftsometimber.co.uk/male-obesity*",
+        "script": "shift-blog-publisher",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/male-obesity/",
+      "route": {
+        "id": "1772df550e0948e3a1392039a5c94c02",
+        "pattern": "shiftsometimber.co.uk/male-obesity/",
+        "script": "shift-blog-publisher",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/male-obesity/?presentation=1",
+      "route": {
+        "id": "e63ea3bebe944060afe865b9d2ad7b08",
+        "pattern": "shiftsometimber.co.uk/male-obesity*",
+        "script": "shift-blog-publisher",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/male-obesity.html",
+      "route": {
+        "id": "7b8a0f03e77b44b1852f6dd9e5eed3e8",
+        "pattern": "shiftsometimber.co.uk/male-obesity.html",
+        "script": "shift-blog-publisher",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/male-obesity.html?presentation=1",
+      "route": {
+        "id": "e63ea3bebe944060afe865b9d2ad7b08",
+        "pattern": "shiftsometimber.co.uk/male-obesity*",
+        "script": "shift-blog-publisher",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/compare-weight-loss-treatments",
+      "route": {
+        "id": "3f4b6b16a33949d580f20aaaea22bc86",
+        "pattern": "https://shiftsometimber.co.uk/compare-weight-loss-treatments",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/compare-weight-loss-treatments?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/compare-weight-loss-treatments/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/compare-weight-loss-treatments/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/compare-weight-loss-treatments.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/compare-weight-loss-treatments.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/assets/pending-pages-20261031/partner-community.webp",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/assets/pending-pages-20261031/everyday-tea.webp",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    }
+  ],
+  "workers": [
+    {
+      "name": "shift-support-presentation-20261022",
+      "versionId": "6f0526ac-bca9-4894-b0ac-737f7c8f471d",
+      "deploymentId": "6c9d41d2-2d7b-4383-b498-e36cc9b4383e",
+      "main": "support-sp1/overlay.mjs",
+      "modules": [
+        {
+          "name": "hero-set-20261030/entry.mjs",
+          "bytes": 302
+        },
+        {
+          "name": "hero-set-20261030/payload.mjs",
+          "bytes": 39042
+        },
+        {
+          "name": "hero-set-20261030/runtime.mjs",
+          "bytes": 9762
+        },
+        {
+          "name": "previews/support-presentation/style.mjs",
+          "bytes": 9280
+        },
+        {
+          "name": "previews/support-presentation/worker.mjs",
+          "bytes": 3466
+        },
+        {
+          "name": "support-sp1/layout.mjs",
+          "bytes": 1424
+        },
+        {
+          "name": "support-sp1/overlay.mjs",
+          "bytes": 1061
+        },
+        {
+          "name": "support-sp1/styles.mjs",
+          "bytes": 27950
+        }
+      ],
+      "bindingCount": 1
+    },
+    {
+      "name": "shift-public-answers",
+      "versionId": "bcb84987-eb3d-4b7d-bfdd-c60dfc684e3f",
+      "deploymentId": "1a7a98d5-e593-4673-943a-d45ff896d88d",
+      "main": "hero-set-20261030/entry.mjs",
+      "modules": [
+        {
+          "name": "hero-set-20261030/entry.mjs",
+          "bytes": 390
+        },
+        {
+          "name": "hero-set-20261030/payload.mjs",
+          "bytes": 39042
+        },
+        {
+          "name": "hero-set-20261030/runtime.mjs",
+          "bytes": 9762
+        },
+        {
+          "name": "worker.mjs",
+          "bytes": 36869
+        }
+      ],
+      "bindingCount": 1
+    },
+    {
+      "name": "shift-public-presentation-batch-20261022",
+      "versionId": "b1471b70-9483-4b4b-8304-1897871c4eee",
+      "deploymentId": "0c7dd93e-fe4a-4fbb-9e9b-8ad6b7b64ab7",
+      "main": "health-hb2/overlay.mjs",
+      "modules": [
+        {
+          "name": "comparison-cp1/layout.mjs",
+          "bytes": 994
+        },
+        {
+          "name": "comparison-cp1/overlay.mjs",
+          "bytes": 1062
+        },
+        {
+          "name": "comparison-cp1/styles.mjs",
+          "bytes": 32043
+        },
+        {
+          "name": "health-hb2/layout.mjs",
+          "bytes": 1321
+        },
+        {
+          "name": "health-hb2/overlay.mjs",
+          "bytes": 1079
+        },
+        {
+          "name": "health-hb2/styles.mjs",
+          "bytes": 26189
+        },
+        {
+          "name": "hero-set-20261030/entry.mjs",
+          "bytes": 600
+        },
+        {
+          "name": "hero-set-20261030/payload.mjs",
+          "bytes": 39042
+        },
+        {
+          "name": "hero-set-20261030/runtime.mjs",
+          "bytes": 9762
+        },
+        {
+          "name": "knowledge-health-entry.mjs",
+          "bytes": 266
+        },
+        {
+          "name": "knowledge-health/client.mjs",
+          "bytes": 2540
+        },
+        {
+          "name": "knowledge-health/content.mjs",
+          "bytes": 54409
+        },
+        {
+          "name": "knowledge-health/evidence.mjs",
+          "bytes": 11569
+        },
+        {
+          "name": "knowledge-health/expansion-content.mjs",
+          "bytes": 97780
+        },
+        {
+          "name": "knowledge-health/production.mjs",
+          "bytes": 3726
+        },
+        {
+          "name": "knowledge-health/render.mjs",
+          "bytes": 22279
+        },
+        {
+          "name": "previews/public-presentation-batch/answer-depth.mjs",
+          "bytes": 35553
+        },
+        {
+          "name": "previews/public-presentation-batch/manifest.mjs",
+          "bytes": 20650
+        },
+        {
+          "name": "previews/public-presentation-batch/stopping-layout.mjs",
+          "bytes": 1073
+        },
+        {
+          "name": "previews/public-presentation-batch/stopping-style.mjs",
+          "bytes": 8263
+        },
+        {
+          "name": "previews/public-presentation-batch/style.mjs",
+          "bytes": 13197
+        },
+        {
+          "name": "previews/public-presentation-batch/worker.mjs",
+          "bytes": 4901
+        },
+        {
+          "name": "weight-mw1/layout.mjs",
+          "bytes": 1053
+        },
+        {
+          "name": "weight-mw1/overlay.mjs",
+          "bytes": 1048
+        },
+        {
+          "name": "weight-mw1/styles.mjs",
+          "bytes": 44834
+        }
+      ],
+      "bindingCount": 4
+    },
+    {
+      "name": "shift-core",
+      "versionId": "fcf162d2-1ca1-4dfe-b184-c9b112fe2d16",
+      "deploymentId": "c42d803d-c5b7-4877-8eb7-9aaf3b4f2438",
+      "main": "continuity-polish-20261031/entry.mjs",
+      "modules": [
+        {
+          "name": "continuity-polish-20261031/entry.mjs",
+          "bytes": 256
+        },
+        {
+          "name": "continuity-polish-20261031/runtime.mjs",
+          "bytes": 15893
+        },
+        {
+          "name": "continuity-review-20261031/entry.mjs",
+          "bytes": 333
+        },
+        {
+          "name": "continuity-review-20261031/handoff.mjs",
+          "bytes": 10583
+        },
+        {
+          "name": "continuity-review-20261031/html.mjs",
+          "bytes": 18542
+        },
+        {
+          "name": "continuity-review-20261031/runtime.mjs",
+          "bytes": 4667
+        },
+        {
+          "name": "selected-pages-20261031/config.mjs",
+          "bytes": 977
+        },
+        {
+          "name": "selected-pages-20261031/entry.mjs",
+          "bytes": 351
+        },
+        {
+          "name": "selected-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "selected-pages-20261031/media.mjs",
+          "bytes": 381765
+        },
+        {
+          "name": "selected-pages-20261031/presentation.mjs",
+          "bytes": 35535
+        },
+        {
+          "name": "selected-pages-20261031/runtime.mjs",
+          "bytes": 5707
+        },
+        {
+          "name": "tools-ct3-20261031/entry.mjs",
+          "bytes": 213
+        },
+        {
+          "name": "tools-ct3-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "tools-ct3-20261031/media.mjs",
+          "bytes": 166743
+        },
+        {
+          "name": "tools-ct3-20261031/presentation.mjs",
+          "bytes": 15801
+        },
+        {
+          "name": "tools-ct3-20261031/runtime.mjs",
+          "bytes": 3429
+        },
+        {
+          "name": "worker.js",
+          "bytes": 33694226
+        }
+      ],
+      "assets": {
+        "config": {
+          "html_handling": "auto-trailing-slash",
+          "not_found_handling": "none",
+          "run_worker_first": true,
+          "base_path": "/"
+        }
+      },
+      "bindingCount": 52
+    },
+    {
+      "name": "shift-blog-publisher",
+      "versionId": "c957d193-eab9-4ed8-92d5-b863c317dd4c",
+      "deploymentId": "1aea5cfc-2e94-4019-8bc7-702616b70241",
+      "main": "hero-set-20261030/entry.mjs",
+      "modules": [
+        {
+          "name": "hero-set-20261030/entry.mjs",
+          "bytes": 802
+        },
+        {
+          "name": "hero-set-20261030/payload.mjs",
+          "bytes": 39042
+        },
+        {
+          "name": "hero-set-20261030/runtime.mjs",
+          "bytes": 9762
+        },
+        {
+          "name": "knowledge-health-entry.mjs",
+          "bytes": 194
+        },
+        {
+          "name": "knowledge-health/client.mjs",
+          "bytes": 2540
+        },
+        {
+          "name": "knowledge-health/content.mjs",
+          "bytes": 54409
+        },
+        {
+          "name": "knowledge-health/evidence.mjs",
+          "bytes": 11569
+        },
+        {
+          "name": "knowledge-health/expansion-content.mjs",
+          "bytes": 97780
+        },
+        {
+          "name": "knowledge-health/production.mjs",
+          "bytes": 3726
+        },
+        {
+          "name": "knowledge-health/render.mjs",
+          "bytes": 22279
+        },
+        {
+          "name": "knowledge-k3/assets/bloods.webp",
+          "bytes": 42224
+        },
+        {
+          "name": "knowledge-k3/assets/hero.webp",
+          "bytes": 107818
+        },
+        {
+          "name": "knowledge-k3/assets/results.webp",
+          "bytes": 46140
+        },
+        {
+          "name": "knowledge-k3/assets/sleep.webp",
+          "bytes": 39952
+        },
+        {
+          "name": "knowledge-k3/layout.mjs",
+          "bytes": 5242
+        },
+        {
+          "name": "knowledge-k3/overlay.mjs",
+          "bytes": 1968
+        },
+        {
+          "name": "knowledge-k3/styles.mjs",
+          "bytes": 9415
+        },
+        {
+          "name": "worker.js",
+          "bytes": 2626510
+        }
+      ],
+      "bindingCount": 16
+    }
+  ],
+  "captures": [
+    {
+      "key": "support",
+      "status": 200,
+      "bytes": 142766
+    },
+    {
+      "key": "partner",
+      "status": 200,
+      "bytes": 74653
+    },
+    {
+      "key": "obesity",
+      "status": 200,
+      "bytes": 141546
+    },
+    {
+      "key": "comparison",
+      "status": 200,
+      "bytes": 114091
+    }
+  ]
+}
