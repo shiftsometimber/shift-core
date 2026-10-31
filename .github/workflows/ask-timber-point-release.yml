@@ -1,4 +1,4 @@
-name: Ask Timber serving-version inspection
+name: Ask Timber exact serving-version release
 on:
   push:
     branches: ['fix/ask-timber-live-patch-20261031']
@@ -10,17 +10,25 @@ concurrency:
 jobs:
   inspect:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     env:
       CLOUDFLARE_ACCOUNT_ID: '9e5386dcf455be34c582d93f8bfc79e6'
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      GITHUB_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-      - name: Read serving version and modules without mutation
-        run: node release/ask-timber-point-release/inspect.mjs
+      - run: npm ci --no-audit --no-fund
+      - name: Verify accepted source and patch/ownership regressions
+        run: node --test tests/ask-timber-point-release.test.mjs tests/ask-timber-conversation-boundaries.test.mjs tests/ai-practical-context.test.mjs tests/ai-fast-stream.test.mjs tests/ai-connected*.test.mjs tests/ask-timber-public.test.mjs tests/ask-timber-cors-v1.test.mjs ask-timber-multi-intent-gate.mjs
+      - name: Compile accepted source without deployment
+        run: npx wrangler deploy --dry-run --config wrangler.jsonc --outdir /tmp/ask-timber-point-build > /tmp/ask-timber-point-build.log 2>&1 || { tail -40 /tmp/ask-timber-point-build.log; exit 1; }
+      - name: Prove routes need no additions
+        run: python3 scripts/cloudflare-route-capacity.py check --intent content-only --report evidence/ask-timber-point-release/route-capacity.json
+      - name: Stage exact Ask Timber edits and preserve serving version configuration
+        run: node release/ask-timber-point-release/release.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
