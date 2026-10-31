@@ -19,6 +19,7 @@ export const SITEMAP_REPAIR_PATHS=Object.freeze([
   'tests/public-seo-technical.test.mjs'
 ]);
 export const RELEASE_TAIL=Object.freeze([
+  {status:'M',path:'.github/workflows/article-sitemap-release.yml'},
   {status:'M',path:'public-seo-technical.mjs'},
   {status:'M',path:'release/bounded-discovery-release-gate-20261031.mjs'},
   {status:'M',path:'scripts/verify-seo-closeout-live.mjs'},
