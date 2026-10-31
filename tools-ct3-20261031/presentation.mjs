@@ -23,7 +23,8 @@ ${r} .tool-layout,${r} .tool-content{display:block!important;max-width:none!impo
 ${r} :is(h1,h2,h3,p,figure){margin:0!important}
 ${r} :is(h1,h2,h3,strong,p,a,span){-webkit-text-fill-color:currentColor!important}
 ${r} :is(#feel-featured-tool,#calculators,#mot-2202a,#progress-2202b,#decision-tools-2202c) *{-webkit-text-fill-color:currentColor!important}
-${r} .ct3-hero{position:relative!important;isolation:isolate!important;min-height:440px!important;padding:0!important;margin:0!important;overflow:hidden!important;background:#050505!important;border:0!important;border-radius:0!important}
+${r} section::before,${r} section::after,${r} .ct3-photo::before,${r} .ct3-photo::after,${r} .ct3-copy::before,${r} .ct3-copy::after{display:none!important;content:none!important}
+${r} .ct3-hero{position:relative!important;isolation:isolate!important;z-index:0!important;opacity:1!important;visibility:visible!important;min-height:440px!important;padding:0!important;margin:0!important;overflow:hidden!important;background:#050505!important;border:0!important;border-radius:0!important}
 ${r} .ct3-photo{position:absolute!important;inset:0!important;margin:0!important;width:100%!important;height:100%!important;z-index:-2!important}
 ${r} .ct3-photo img{display:block!important;width:100%!important;height:100%!important;max-width:none!important;object-fit:cover!important;object-position:center 38%!important;border-radius:0!important;opacity:1!important;filter:none!important}
 ${r} .ct3-shade{position:absolute!important;inset:0!important;z-index:-1!important;background:linear-gradient(90deg,#050505 0%,#050505 31%,rgba(5,5,5,.96) 40%,rgba(5,5,5,.7) 49%,rgba(5,5,5,.08) 65%,transparent 75%)!important}
