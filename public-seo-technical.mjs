@@ -60,7 +60,15 @@ function repairNode(node,path){
  for(const key of Object.keys(result))if(result[key]&&typeof result[key]==='object')result[key]=repairNode(result[key],path);
  return result;
 }
+export const APPROVED_YELLOW_CARD_PATH='/medicine-news/yellow-card-reporting-update-october-2026';
+export const APPROVED_YELLOW_CARD_TITLE="Yellow Card reporting changes ahead of November’s medicines-safety week";
+export function restoreApprovedYellowCardTitle(html,path){
+ if(path!==APPROVED_YELLOW_CARD_PATH||!html.includes('<h1>'+APPROVED_YELLOW_CARD_TITLE+'</h1>'))return html;
+ const clipped=APPROVED_YELLOW_CARD_TITLE.slice(0,70);
+ return html.replace('<title>'+clipped+'</title>','<title>'+APPROVED_YELLOW_CARD_TITLE+'</title>').replace('property="og:title" content="'+clipped+'"','property="og:title" content="'+APPROVED_YELLOW_CARD_TITLE+'"').replace('name="twitter:title" content="'+clipped+'"','name="twitter:title" content="'+APPROVED_YELLOW_CARD_TITLE+'"');
+}
 export function repairTechnicalHtml(html,path){
+ html=restoreApprovedYellowCardTitle(html,path);
  html=addApprovedBloodsFaq(html,path);
  return html.replace(/(<script\b[^>]*\btype\s*=\s*["']application\/ld\+json["'][^>]*>)([\s\S]*?)(<\/script\s*>)/gi,(whole,open,json,close)=>{
   try{const original=JSON.parse(json),repaired=repairNode(original,path);return JSON.stringify(original)===JSON.stringify(repaired)?whole:open+JSON.stringify(repaired).replace(/</g,'\\u003c')+close;}catch{return whole;}
@@ -77,7 +85,7 @@ export async function withTechnicalSeo(response,request){
  if(request.method!=='GET'||response.status!==200||url.origin!==ORIGIN||path==='/'||path==='/start-here')return response;
  const sitemap=path==='/sitemap.xml';
  const html=response.headers.get('Content-Type')?.includes('text/html');
- if(!sitemap&&(!html||!(path===BLOODS_FAQ_PATH||logoPaths.has(path)||ARTICLE_IDENTITY_REPAIRS[path])))return response;
+ if(!sitemap&&(!html||!(path===APPROVED_YELLOW_CARD_PATH||path===BLOODS_FAQ_PATH||logoPaths.has(path)||ARTICLE_IDENTITY_REPAIRS[path])))return response;
  if(!sitemap&&/^\/(?:member|v1|api|hq|work|auth|checkout|treatment-order)(?:\/|$|-)/.test(path))return response;
  const original=await response.text(),updated=sitemap?repairTechnicalSitemap(original):repairTechnicalHtml(original,path);
  const headers=new Headers(response.headers);
