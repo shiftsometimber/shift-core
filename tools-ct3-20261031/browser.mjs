@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {tools} from './presentation.mjs';
+export async function browserCheck({headers={},dir='tools-ct3-evidence',label='candidate'}={}){
+ const {chromium}=await import('../tools-ct3-tools/node_modules/playwright/index.mjs');
+ const browser=await chromium.launch({headless:true,channel:'chrome',args:['--no-sandbox']});fs.mkdirSync(dir,{recursive:true});const results=[];
+ try{for(const viewport of [{width:1440,height:1100},{width:768,height:1024},{width:390,height:844}]){
+  const context=await browser.newContext({viewport,extraHTTPHeaders:headers,serviceWorkers:'block',reducedMotion:'reduce'}),page=await context.newPage();let contactRequests=0;
+  await page.route('**/v1/contact',route=>{contactRequests++;return route.abort();});
+  await page.goto('https://shiftsometimber.co.uk/tools',{waitUntil:'domcontentloaded',timeout:60000});
+  await page.locator('.ct3-photo img').waitFor({state:'visible'});await page.waitForFunction(()=>{const i=document.querySelector('.ct3-photo img');return i?.complete&&i.naturalWidth>0;},null,{timeout:30000});await page.waitForLoadState('load',{timeout:30000});
+  const cookie=page.getByRole('button',{name:'Necessary only',exact:true});if(await cookie.isVisible())await cookie.click();await page.evaluate(()=>document.fonts.ready);
+  const layout=await page.evaluate(()=>{const rect=s=>{const r=document.querySelector(s).getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,bottom:r.bottom};};const i=document.querySelector('.ct3-photo img');return {viewport:innerWidth,scrollWidth:document.documentElement.scrollWidth,background:getComputedStyle(document.querySelector('main')).backgroundColor,checkinBackground:getComputedStyle(document.querySelector('.ct3-checkin')).backgroundColor,checkinText:getComputedStyle(document.querySelector('.ct3-checkin h2')).color,imageLoaded:i.complete&&i.naturalWidth>0,headings:document.querySelectorAll('main h1').length,ticker:!!document.querySelector('#shift-public-news'),copy:rect('.ct3-copy'),photo:rect('.ct3-photo'),checkin:rect('.ct3-checkin'),grid:rect('#calculators'),cards:[...document.querySelectorAll('.ct3-tile')].map(x=>({title:x.querySelector('strong').textContent,href:x.getAttribute('href')}))};});
+  await page.screenshot({path:dir+'/'+label+'-'+viewport.width+'.png',fullPage:false});await page.screenshot({path:dir+'/'+label+'-full-'+viewport.width+'.png',fullPage:true});
+  assert.equal(layout.background,'rgb(5, 5, 5)');assert.equal(layout.checkinBackground,'rgb(16, 19, 13)');assert.equal(layout.checkinText,'rgb(231, 227, 218)');assert(layout.imageLoaded);assert.equal(layout.headings,1);assert.equal(layout.ticker,false);assert(layout.scrollWidth<=viewport.width,'No horizontal overflow '+viewport.width);assert.deepEqual(layout.cards,tools.map(({title,href})=>({title,href})));assert(layout.checkin.y<layout.grid.y);
+  if(viewport.width<=800)assert(layout.photo.y>=layout.copy.bottom-1,'Mobile photo follows its copy');
+  await page.getByRole('link',{name:'Choose a calculator',exact:true}).click();await page.waitForURL('**/tools#calculators');
+  await page.waitForFunction(()=>{const y=document.querySelector('#calculators').getBoundingClientRect().top;return y>=60&&y<260;},null,{timeout:10000});
+  const anchor=await page.locator('#calculators').evaluate(el=>({top:el.getBoundingClientRect().top,display:getComputedStyle(el).display}));assert(anchor.top>=60&&anchor.top<260,'Calculator anchor clears the shared header');
+  await page.getByRole('link',{name:/More Tool Guides/}).click();await page.waitForURL('**/tools#ct3-more-guides');
+  for(const name of ['Steps guide','Sleep guide','Alcohol units guide'])assert(await page.getByRole('link',{name,exact:true}).isVisible());
+  await page.locator('.ct3-checkin .ct3-button').click();await page.waitForURL('**/how-are-you-feeling');assert(await page.locator('main h1').isVisible());
+  await page.goBack({waitUntil:'domcontentloaded'});await page.locator('.ct3-tile[href="/tools/bmi"]').click();await page.waitForURL('**/tools/bmi');
+  const calculator={url:page.url(),heading:await page.locator('main h1').innerText(),inputs:await page.locator('main input,main select').count()};assert(calculator.inputs>0,'Existing BMI controls are reachable');assert.equal(contactRequests,0);
+  await page.goto('https://shiftsometimber.co.uk/tools?ct3=1',{waitUntil:'domcontentloaded',timeout:60000});await page.locator('.ct3-photo img').waitFor({state:'visible'});await page.waitForFunction(()=>{const i=document.querySelector('.ct3-photo img');return i?.complete&&i.naturalWidth>0;});
+  const query=await page.evaluate(()=>({version:document.querySelector('main').dataset.toolsCt3,background:getComputedStyle(document.querySelector('main')).backgroundColor,scrollWidth:document.documentElement.scrollWidth,headings:document.querySelectorAll('main h1').length,cards:document.querySelectorAll('.ct3-tile').length}));
+  await page.screenshot({path:dir+'/'+label+'-query-'+viewport.width+'.png',fullPage:false});assert.equal(query.version,'tools-ct3-20261031-v1');assert.equal(query.background,'rgb(5, 5, 5)');assert(query.scrollWidth<=viewport.width);assert.equal(query.headings,1);assert.equal(query.cards,8);
+  results.push({viewport,layout,anchor,moreGuidesReachable:true,checkinReachable:true,calculator,query,contactRequests});await context.close();
+ }}finally{await browser.close();}
+ fs.writeFileSync(dir+'/'+label+'-browser.json',JSON.stringify(results,null,2));return results;
+}

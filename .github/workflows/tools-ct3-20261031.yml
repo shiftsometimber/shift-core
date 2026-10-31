@@ -25,6 +25,7 @@ jobs:
       - name: Check and release selected CT3
         if: "!contains(github.event.head_commit.message, '[tools preflight]')"
         run: |
+          npm ci --ignore-scripts --no-audit --no-fund
           npm install --prefix tools-ct3-tools --no-save --ignore-scripts --no-audit --no-fund playwright@1.56.1
           node --check tools-ct3-20261031/runtime.mjs
           node --check tools-ct3-20261031/deploy.mjs
