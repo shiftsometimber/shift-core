@@ -1,5 +1,6 @@
 import {recordServiceJob} from '../hq-service-job-runs.mjs';
 import {withHealthKnowledgeWorker} from '../knowledge-health/production.mjs';
+import {withDynamicBabyLoveDiscovery} from '../babylove/dynamic-public.mjs';
 import {repairHomeSpeed} from '../home-speed-repair.mjs';
 import {withPublicResponsePolicyWorker} from '../public-response-policy.mjs';
 import {withRootShareWorker} from '../share-preview/metadata.mjs';
@@ -58,7 +59,8 @@ const composedWorker = {
 const publicWorker=withHealthKnowledgeWorker(withPublicResponsePolicyWorker(withRootShareWorker(withMaleObesity(composedWorker))));
 // Evaluate the already-approved CSS against the settled outer document.
 export default {...publicWorker,async fetch(request,...args){
- const response=await publicWorker.fetch(request,...args);
+ let response=await publicWorker.fetch(request,...args);
+ response=await withDynamicBabyLoveDiscovery(response,request,args[0]);
  if(request.method!=='GET'||new URL(request.url).pathname!=='/'||response.status!==200||!(response.headers.get('Content-Type')||'').includes('text/html'))return response;
  const before=await response.text(),after=repairHomeSpeed(before,'/',{final:true});
  if(after===before)return new Response(before,response);
