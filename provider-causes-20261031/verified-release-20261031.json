@@ -1,0 +1,783 @@
+{
+  "verified": true,
+  "source": "03565e2089ca5397cb1f754513a873cba959446e",
+  "release": "provider-causes-20261031-v1",
+  "pages": [
+    {
+      "key": "provider",
+      "path": "/provider-switch",
+      "selected": "PS2"
+    },
+    {
+      "key": "causes",
+      "path": "/our-causes-partners",
+      "selected": "Mobile repair"
+    },
+    {
+      "key": "query-corporate-wellbeing",
+      "path": "/corporate-wellbeing",
+      "selected": "Restore existing approved hero on tracking URLs"
+    },
+    {
+      "key": "query-retatrutide",
+      "path": "/guides/retatrutide-uk-guide",
+      "selected": "Restore existing approved hero on tracking URLs"
+    },
+    {
+      "key": "query-partner-support",
+      "path": "/husband-help",
+      "selected": "Restore existing approved hero on tracking URLs"
+    },
+    {
+      "key": "query-provider-pilot",
+      "path": "/my-timber-for-providers",
+      "selected": "Restore existing approved hero on tracking URLs"
+    },
+    {
+      "key": "query-nhs-private",
+      "path": "/nhs-vs-private",
+      "selected": "Restore existing approved hero on tracking URLs"
+    },
+    {
+      "key": "query-surgery-options",
+      "path": "/surgery-comparison-centre",
+      "selected": "Restore existing approved hero on tracking URLs"
+    }
+  ],
+  "workers": [
+    {
+      "name": "shift-provider-presentation-20261022",
+      "versionId": "8c7052b6-fcf1-41b9-ab44-9e6320452b95",
+      "previousVersion": "86ef0591-d721-4dcd-bf14-339f73426da2",
+      "retainedModules": 8,
+      "refreshedOwnedModules": 0,
+      "bindingsPreserved": 1
+    },
+    {
+      "name": "shift-core",
+      "versionId": "c7b38cb6-b667-4f71-9da4-6a3c0e623370",
+      "previousVersion": "d424405b-3def-462e-87e0-0ad616a45604",
+      "retainedModules": 24,
+      "refreshedOwnedModules": 0,
+      "bindingsPreserved": 52
+    }
+  ],
+  "routeCount": 915,
+  "routesChanged": 0,
+  "checks": [
+    {
+      "path": "/provider-switch",
+      "key": "provider",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/provider-switch?presentation=1",
+      "key": "provider",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/provider-switch/",
+      "key": "provider",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/provider-switch.html",
+      "key": "provider",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/our-causes-partners",
+      "key": "causes",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/our-causes-partners?presentation=1",
+      "key": "causes",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/our-causes-partners/",
+      "key": "causes",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/our-causes-partners/?presentation=1",
+      "key": "causes",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/corporate-wellbeing?presentation=1",
+      "key": "query-corporate-wellbeing",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/guides/retatrutide-uk-guide?presentation=1",
+      "key": "query-retatrutide",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/husband-help?presentation=1",
+      "key": "query-partner-support",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/my-timber-for-providers?presentation=1",
+      "key": "query-provider-pilot",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/nhs-vs-private?presentation=1",
+      "key": "query-nhs-private",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/surgery-comparison-centre?presentation=1",
+      "key": "query-surgery-options",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    }
+  ],
+  "protectedPages": [
+    "/tools/bmi",
+    "/tools/calories",
+    "/tools/healthy-weight",
+    "/tools/protein",
+    "/tools/waist-height",
+    "/tools/walking",
+    "/tools/water",
+    "/tools/steps",
+    "/tools/sleep",
+    "/tools/alcohol",
+    "/tools/weight-management-review",
+    "/how-are-you-feeling",
+    "/",
+    "/start-here",
+    "/programme",
+    "/shift-health",
+    "/knowledge",
+    "/explore-knowledge",
+    "/ask-timber",
+    "/treatment-centre",
+    "/member/dashboard",
+    "/mens-mental-health",
+    "/shift-for-work",
+    "/shift-health/stop-smoking",
+    "/tools",
+    "/tools?ct3=1",
+    "/weight-loss-support-for-men",
+    "/partner-with-us",
+    "/male-obesity",
+    "/compare-weight-loss-treatments",
+    "/clinic-gone-quiet",
+    "/about",
+    "/contact",
+    "/shift-newsroom",
+    "/life-back",
+    "/corporate-wellbeing",
+    "/guides/retatrutide-uk-guide",
+    "/husband-help",
+    "/my-timber-for-providers",
+    "/nhs-vs-private",
+    "/surgery-comparison-centre",
+    "/knowledge?presentation=1",
+    "/articles/stopping-glp1",
+    "/articles/food-noise-after-stopping-glp1",
+    "/member/life-back",
+    "/shift-newsroom/client.js",
+    "/shift-newsroom/compare.js"
+  ],
+  "calculatorPages": [
+    "/tools/bmi",
+    "/tools/calories",
+    "/tools/healthy-weight",
+    "/tools/protein",
+    "/tools/waist-height",
+    "/tools/walking",
+    "/tools/water",
+    "/tools/steps",
+    "/tools/sleep",
+    "/tools/alcohol",
+    "/tools/weight-management-review"
+  ],
+  "existingCodeAssetsPreserved": 211,
+  "photographs": [
+    {
+      "path": "/assets/provider-causes-20261031/provider-library.webp",
+      "sha256": "11ae3f5042fcacc456b1a295d195bed5e9e11931bb6d7da83341db04a1aca7c6"
+    }
+  ],
+  "browser": [
+    {
+      "page": "provider",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "provider-causes-20261031-v1",
+        "key": "provider",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "anchor": 110.375
+      }
+    },
+    {
+      "page": "provider",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "provider-causes-20261031-v1",
+        "key": "provider",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "anchor": 109.890625
+      }
+    },
+    {
+      "page": "causes",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "provider-causes-20261031-v1",
+        "key": "causes",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "categories": [
+          "01\nFood & body image\nEating disorders · body image\n→",
+          "02\nMental health & connection\nMental health · connection\n→",
+          "03\nDrugs & alcohol\nDrugs · alcohol · recovery\n→",
+          "04\nInjury & recovery\nInjury · rebuilding everyday life\n→",
+          "05\nPain & movement\nJoint pain · movement\n→"
+        ],
+        "independenceBoundary": "These are independent organisations. Signposting does not imply a partnership with or endorsement of SHIFT. Support availability varies by service and location; check directly with each organisation."
+      }
+    },
+    {
+      "page": "causes",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "provider-causes-20261031-v1",
+        "key": "causes",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "categories": [
+          "01\nFood & body image\nEating disorders · body image\n→",
+          "02\nMental health & connection\nMental health · connection\n→",
+          "03\nDrugs & alcohol\nDrugs · alcohol · recovery\n→",
+          "04\nInjury & recovery\nInjury · rebuilding everyday life\n→",
+          "05\nPain & movement\nJoint pain · movement\n→"
+        ],
+        "independenceBoundary": "These are independent organisations. Signposting does not imply a partnership with or endorsement of SHIFT. Support availability varies by service and location; check directly with each organisation."
+      }
+    },
+    {
+      "page": "provider",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "provider-causes-20261031-v1",
+        "key": "provider",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "anchor": 109.828125
+      }
+    },
+    {
+      "page": "provider",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "provider-causes-20261031-v1",
+        "key": "provider",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "anchor": 109.953125
+      }
+    },
+    {
+      "page": "causes",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "provider-causes-20261031-v1",
+        "key": "causes",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "categories": [
+          "01\nFood & body image\nEating disorders · body image",
+          "02\nMental health & connection\nMental health · connection",
+          "03\nDrugs & alcohol\nDrugs · alcohol · recovery",
+          "04\nInjury & recovery\nInjury · rebuilding everyday life",
+          "05\nPain & movement\nJoint pain · movement"
+        ],
+        "independenceBoundary": "These are independent organisations. Signposting does not imply a partnership with or endorsement of SHIFT. Support availability varies by service and location; check directly with each organisation."
+      }
+    },
+    {
+      "page": "causes",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "provider-causes-20261031-v1",
+        "key": "causes",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "categories": [
+          "01\nFood & body image\nEating disorders · body image",
+          "02\nMental health & connection\nMental health · connection",
+          "03\nDrugs & alcohol\nDrugs · alcohol · recovery",
+          "04\nInjury & recovery\nInjury · rebuilding everyday life",
+          "05\nPain & movement\nJoint pain · movement"
+        ],
+        "independenceBoundary": "These are independent organisations. Signposting does not imply a partnership with or endorsement of SHIFT. Support availability varies by service and location; check directly with each organisation."
+      }
+    },
+    {
+      "page": "provider",
+      "query": false,
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "provider-causes-20261031-v1",
+        "key": "provider",
+        "width": 360,
+        "scrollWidth": 345,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "anchor": 109.734375
+      }
+    },
+    {
+      "page": "provider",
+      "query": true,
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "provider-causes-20261031-v1",
+        "key": "provider",
+        "width": 360,
+        "scrollWidth": 345,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "anchor": 109.765625
+      }
+    },
+    {
+      "page": "causes",
+      "query": false,
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "provider-causes-20261031-v1",
+        "key": "causes",
+        "width": 360,
+        "scrollWidth": 345,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "categories": [
+          "01\nFood & body image\nEating disorders · body image",
+          "02\nMental health & connection\nMental health · connection",
+          "03\nDrugs & alcohol\nDrugs · alcohol · recovery",
+          "04\nInjury & recovery\nInjury · rebuilding everyday life",
+          "05\nPain & movement\nJoint pain · movement"
+        ],
+        "independenceBoundary": "These are independent organisations. Signposting does not imply a partnership with or endorsement of SHIFT. Support availability varies by service and location; check directly with each organisation."
+      }
+    },
+    {
+      "page": "causes",
+      "query": true,
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "provider-causes-20261031-v1",
+        "key": "causes",
+        "width": 360,
+        "scrollWidth": 345,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "categories": [
+          "01\nFood & body image\nEating disorders · body image",
+          "02\nMental health & connection\nMental health · connection",
+          "03\nDrugs & alcohol\nDrugs · alcohol · recovery",
+          "04\nInjury & recovery\nInjury · rebuilding everyday life",
+          "05\nPain & movement\nJoint pain · movement"
+        ],
+        "independenceBoundary": "These are independent organisations. Signposting does not imply a partnership with or endorsement of SHIFT. Support availability varies by service and location; check directly with each organisation."
+      }
+    },
+    {
+      "page": "provider",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "provider-causes-20261031-v1",
+        "key": "provider",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "anchor": 110.453125
+      }
+    },
+    {
+      "page": "provider",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "provider-causes-20261031-v1",
+        "key": "provider",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "anchor": 109.5625
+      }
+    },
+    {
+      "page": "causes",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "provider-causes-20261031-v1",
+        "key": "causes",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "categories": [
+          "01\nFood & body image\nEating disorders · body image",
+          "02\nMental health & connection\nMental health · connection",
+          "03\nDrugs & alcohol\nDrugs · alcohol · recovery",
+          "04\nInjury & recovery\nInjury · rebuilding everyday life",
+          "05\nPain & movement\nJoint pain · movement"
+        ],
+        "independenceBoundary": "These are independent organisations. Signposting does not imply a partnership with or endorsement of SHIFT. Support availability varies by service and location; check directly with each organisation."
+      }
+    },
+    {
+      "page": "causes",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "provider-causes-20261031-v1",
+        "key": "causes",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "categories": [
+          "01\nFood & body image\nEating disorders · body image",
+          "02\nMental health & connection\nMental health · connection",
+          "03\nDrugs & alcohol\nDrugs · alcohol · recovery",
+          "04\nInjury & recovery\nInjury · rebuilding everyday life",
+          "05\nPain & movement\nJoint pain · movement"
+        ],
+        "independenceBoundary": "These are independent organisations. Signposting does not imply a partnership with or endorsement of SHIFT. Support availability varies by service and location; check directly with each organisation."
+      }
+    },
+    {
+      "page": "provider",
+      "query": false,
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "provider-causes-20261031-v1",
+        "key": "provider",
+        "width": 430,
+        "scrollWidth": 415,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "anchor": 109.578125
+      }
+    },
+    {
+      "page": "provider",
+      "query": true,
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "provider-causes-20261031-v1",
+        "key": "provider",
+        "width": 430,
+        "scrollWidth": 415,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "anchor": 110.09375
+      }
+    },
+    {
+      "page": "causes",
+      "query": false,
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "provider-causes-20261031-v1",
+        "key": "causes",
+        "width": 430,
+        "scrollWidth": 415,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "categories": [
+          "01\nFood & body image\nEating disorders · body image",
+          "02\nMental health & connection\nMental health · connection",
+          "03\nDrugs & alcohol\nDrugs · alcohol · recovery",
+          "04\nInjury & recovery\nInjury · rebuilding everyday life",
+          "05\nPain & movement\nJoint pain · movement"
+        ],
+        "independenceBoundary": "These are independent organisations. Signposting does not imply a partnership with or endorsement of SHIFT. Support availability varies by service and location; check directly with each organisation."
+      }
+    },
+    {
+      "page": "causes",
+      "query": true,
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "provider-causes-20261031-v1",
+        "key": "causes",
+        "width": 430,
+        "scrollWidth": 415,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "categories": [
+          "01\nFood & body image\nEating disorders · body image",
+          "02\nMental health & connection\nMental health · connection",
+          "03\nDrugs & alcohol\nDrugs · alcohol · recovery",
+          "04\nInjury & recovery\nInjury · rebuilding everyday life",
+          "05\nPain & movement\nJoint pain · movement"
+        ],
+        "independenceBoundary": "These are independent organisations. Signposting does not imply a partnership with or endorsement of SHIFT. Support availability varies by service and location; check directly with each organisation."
+      }
+    }
+  ],
+  "verifiedAt": "2026-10-31T20:44:41.303Z"
+}
