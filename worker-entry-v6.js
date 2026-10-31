@@ -28,7 +28,7 @@ import {passportRoutes,appendPassportExport} from './health-passport/routes.mjs'
 import {passportAssets,withPassportPresentation} from './health-passport/presentation.mjs';
 import {withPublicShellContract,legacyAuthorityRedirects} from './public-shell-contract.mjs';
 import {withEditorialResources,STATS_PATH,RESOURCE_UPDATED} from './editorial-resources-v1.js';
-import {myTimberRedirect,publicTickerAsset,withPublicTicker} from './public-navigation-policy.mjs';
+import {myTimberRedirect,publicTickerAsset,withPublicTicker,withRetiredShedNavigation} from './public-navigation-policy.mjs';
 import {continuityPublicRoute,withPublicContinuity} from './public-continuity.mjs';
 import {publicHealthResponse} from './public-health-v1.js';
 import {renderShiftHealthDocument,healthSlugs} from './shift-health-public.mjs';
@@ -500,7 +500,7 @@ async function shiftHealthPublicResponse(request, slug='') {
   headers.delete('Content-Length');headers.delete('Content-Encoding');headers.delete('ETag');
   headers.set('Content-Type','text/html; charset=utf-8');
   headers.set('X-Shift-Health-Authority','server-rendered-git-v1');
-  return withNewsroomReading(new Response(request.method==='HEAD'?null:html,{status:200,headers}),request);
+  return withRetiredShedNavigation(request,await withNewsroomReading(new Response(request.method==='HEAD'?null:html,{status:200,headers}),request));
 }
 const PRIORITY_PUBLIC_PATHS = [
   "/treatment-centre/medicines-watch",
