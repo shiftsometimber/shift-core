@@ -1,0 +1,135 @@
+name: Release approved October backfill repairs
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/approved-october-backfill-release.yml]
+permissions:
+  contents: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  release:
+    if: github.actor_id == '315011648'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      OCTOBER_BASELINE_SOURCE: b73f057d917ae1b5aa5a8e240782348f1cd9d626
+      OCTOBER_BASELINE_VERSION: 2ed3de9a-f697-459a-9fb1-475e0b814764
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Require exact approved repair delta and current main
+        run: |
+          git fetch --no-tags origin main
+          test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)"
+          git merge-base --is-ancestor "$OCTOBER_BASELINE_SOURCE" HEAD
+          python3 - <<'PY'
+          import os,subprocess
+          changed=set(subprocess.check_output(['git','diff','--name-only',os.environ['OCTOBER_BASELINE_SOURCE'],'HEAD'],text=True).splitlines())
+          expected=set(["radar-integration-v1.js","radar-official-intake-v1.js","bloods-approved-faq-20261031.mjs","public-seo-technical.mjs","tests/radar-official-intake-v1.test.mjs","tests/bloods-approved-faq-20261031.test.mjs","tests/public-seo-technical.test.mjs",".github/workflows/approved-october-backfill-release.yml"])
+          assert changed==expected,(changed,expected)
+          pins={"radar-integration-v1.js":"b2506edb8e6e9f99147bba612d818eace7e3c18e","radar-official-intake-v1.js":"64c7e0d3a5c02d8bfbe61b6b33da9f19482d004a","bloods-approved-faq-20261031.mjs":"072c6ad2054c404e265b39ea6e75eca2918ccf7d","public-seo-technical.mjs":"ae9d5aaeb70a385af844770a04e7cff32044945f","tests/radar-official-intake-v1.test.mjs":"824962dc82e55ac57bae14dba9b2d1ef20bd4237","tests/bloods-approved-faq-20261031.test.mjs":"604976329f582fb7f651c68be8c63b1ab0e2d1c1","tests/public-seo-technical.test.mjs":"5a73793ad6d6befa7296146ddb8ae1df7657b48d"}
+          for path,sha in pins.items():assert subprocess.check_output(['git','rev-parse','HEAD:'+path],text=True).strip()==sha,path
+          PY
+      - name: Run approved repair regressions and retained build preservation checks
+        run: |
+          npm ci --no-audit --no-fund
+          node --check radar-integration-v1.js
+          node --check radar-official-intake-v1.js
+          node --check public-seo-technical.mjs
+          node --test tests/radar-official-intake-v1.test.mjs tests/bloods-approved-faq-20261031.test.mjs tests/public-seo-technical.test.mjs tests/radar-new-publication-email.test.mjs tests/radar-live-email-v1.test.mjs tests/radar-live-email-redirect-v1.test.mjs
+          node --test tests/canonical-runtime-build.test.mjs tests/independent-presentation-preservation.test.mjs
+      - name: Capture and qualify the latest verified runtime
+        id: capture
+        run: |
+          mkdir -p october-release-proof b1-runtime-release
+          npx wrangler deployments list --config wrangler.jsonc --json > deployment-before.json
+          cp deployment-before.json october-release-proof/
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {readFileSync,writeFileSync} from 'node:fs';
+          import {createHash} from 'node:crypto';
+          import {latestDeployment} from './release/runtime-rollback-guard.mjs';
+          const before=latestDeployment(JSON.parse(readFileSync('deployment-before.json')));
+          assert.equal(before.versions.length,1);
+          assert.equal(before.versions[0].version_id,process.env.OCTOBER_BASELINE_VERSION,'Serving runtime changed; reconcile before upload');
+          assert.equal(before.versions[0].percentage,100);
+          const clean=s=>s.replace(/<script\b[^>]*\bsrc=["']https:\/\/static.cloudflareinsights.com[^"']*["'][\s\S]*?<\/script>/gi,'').replace(/<script\b[^>]*>[\s\S]*?window\.__CF\$cv\$params[\s\S]*?<\/script>/gi,'');
+          const pages={};
+          for(const path of ['/','/about','/member-login']){
+            const r=await fetch('https://shiftsometimber.co.uk'+path,{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(20000)});
+            assert.equal(r.status,200,path);pages[path]=createHash('sha256').update(clean(await r.text())).digest('hex');
+          }
+          const br=await fetch('https://shiftsometimber.co.uk/shift-health/blood-tests',{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(20000)});assert.equal(br.status,200);
+          const bloods=clean(await br.text());
+          const {addApprovedBloodsFaq,BLOODS_FAQ_PATH,BLOODS_FAQ_QUESTION}=await import('./bloods-approved-faq-20261031.mjs');
+          assert(!bloods.includes(BLOODS_FAQ_QUESTION),'FAQ already published; reconcile before upload');
+          const expected=addApprovedBloodsFaq(bloods,BLOODS_FAQ_PATH);assert.notEqual(expected,bloods,'Current Bloods template no longer matches approved insertion');
+          writeFileSync('october-release-proof/bloods-before.html',bloods);writeFileSync('october-release-proof/bloods-expected.html',expected);
+          writeFileSync('october-release-proof/before.json',JSON.stringify(pages,null,2));
+          JS
+      - name: Promote the exact current source through the existing owned runtime helper
+        id: publish
+        run: |
+          git fetch --no-tags origin main
+          test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)"
+          node release/member-runtime-deploy.mjs
+      - name: Verify provider selection, exact bundle and unchanged public pages
+        run: |
+          npx wrangler deployments list --config wrangler.jsonc --json > october-release-proof/deployment-after.json
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {readFileSync,writeFileSync} from 'node:fs';
+          import {createHash} from 'node:crypto';
+          import {latestDeployment} from './release/runtime-rollback-guard.mjs';
+          const receipt=JSON.parse(readFileSync('b1-runtime-release/owned-runtime-deployment.json')),active=latestDeployment(JSON.parse(readFileSync('october-release-proof/deployment-after.json')));
+          assert.equal(receipt.source,process.env.GITHUB_SHA);assert.equal(active.id,receipt.deploymentId);assert.equal(active.versions.length,1);assert.equal(active.versions[0].version_id,receipt.versionId);assert.equal(active.versions[0].percentage,100);
+          const bundle=readFileSync('b1-runtime-release/staged-runtime/worker.js');
+          assert.equal(createHash('sha256').update(bundle).digest('hex'),receipt.buildSHA256);
+          assert(bundle.includes(Buffer.from('not_first_publication')));assert(bundle.includes(Buffer.from('publication_before_notification_policy')));assert(bundle.includes(Buffer.from('source_date_not_found')));assert(bundle.includes(Buffer.from('nhs-home-test-20261029')));
+          const clean=s=>s.replace(/<script\b[^>]*\bsrc=["']https:\/\/static.cloudflareinsights.com[^"']*["'][\s\S]*?<\/script>/gi,'').replace(/<script\b[^>]*>[\s\S]*?window\.__CF\$cv\$params[\s\S]*?<\/script>/gi,'');
+          const before=JSON.parse(readFileSync('october-release-proof/before.json')),after={};
+          for(const path of Object.keys(before)){
+            const r=await fetch('https://shiftsometimber.co.uk'+path,{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(20000)});
+            assert.equal(r.status,200,path);after[path]=createHash('sha256').update(clean(await r.text())).digest('hex');
+          }
+          assert.deepEqual(after,before,'Unrelated public pages changed');
+          const br=await fetch('https://shiftsometimber.co.uk/shift-health/blood-tests',{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(20000)});assert.equal(br.status,200);
+          const bloods=clean(await br.text());assert.equal(bloods,readFileSync('october-release-proof/bloods-expected.html','utf8'),'Only the exact approved FAQ/schema may change');
+          assert.equal((bloods.match(/data-shift-approved-faq="nhs-home-test-20261029"/g)||[]).length,1);
+          const sr=await fetch('https://shiftsometimber.co.uk/sitemap.xml',{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(20000)});assert.equal(sr.status,200);
+          const sitemap=await sr.text();writeFileSync('october-release-proof/sitemap-after.xml',sitemap);
+          const {repairTechnicalSitemap}=await import('./public-seo-technical.mjs');
+          assert.equal(repairTechnicalSitemap(sitemap),sitemap,'Sitemap must already satisfy the retained exclusions and verified owners');
+          const locs=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1]);
+          assert.equal(locs.filter(x=>x.endsWith('/medicine-news/uk-archive-pharmacy-cholesterol-pilot-england')).length,1);
+          writeFileSync('october-release-proof/bloods-after.html',bloods);
+          writeFileSync('october-release-proof/verification.json',JSON.stringify({verified:true,source:receipt.source,version:receipt.versionId,buildSHA256:receipt.buildSHA256,publicPages:after,noRealTestEmail:true},null,2));
+          JS
+      - name: Restore only this owned runtime if verification fails
+        if: ${{ failure() && steps.capture.outcome == 'success' }}
+        run: |
+          if test -s b1-runtime-release/promotion-intent.json; then
+            node release/member-details-rollback.mjs
+          fi
+      - name: Retain source, deployment and rollback evidence
+        if: always()
+        run: |
+          mkdir -p october-release-proof
+          git rev-parse HEAD > october-release-proof/commit.txt
+          cp -r b1-runtime-release october-release-proof/ 2>/dev/null || true
+          find october-release-proof -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > october-release-proof/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: approved-october-backfill-live-${{ github.sha }}
+          path: october-release-proof/
+          retention-days: 30

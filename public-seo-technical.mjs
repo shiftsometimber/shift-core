@@ -1,10 +1,12 @@
+import {BLOODS_FAQ_PATH,addApprovedBloodsFaq} from './bloods-approved-faq-20261031.mjs';
 import {ARTICLE_IDENTITY_REPAIRS,NOINDEX_SITEMAP_PATHS,LOGO_ARTICLE_PATHS} from './public-seo-technical-data.mjs';
 const ORIGIN='https://shiftsometimber.co.uk';
-// Only the 33 previously excluded articles individually verified public, published,
+// Only the 34 previously excluded articles individually verified public, published,
 // sitemap-approved, HTTP 200 and indexable on 31 October 2026. Retain the
 // historical exclusion record; the Reta safety briefing was approved and
 // published on 10 October (GitHub PR #1311), superseding its older hold.
 export const VERIFIED_REOPENED_NEWSROOM_PATHS=Object.freeze([
+  "/medicine-news/uk-archive-pharmacy-cholesterol-pilot-england",
   "/medicine-news/asthma-reliever-overuse-mhra-reminder",
   "/medicine-news/cagrilintide-bone-metabolism",
   "/medicine-news/cagrilintide-research-study",
@@ -59,6 +61,7 @@ function repairNode(node,path){
  return result;
 }
 export function repairTechnicalHtml(html,path){
+ html=addApprovedBloodsFaq(html,path);
  return html.replace(/(<script\b[^>]*\btype\s*=\s*["']application\/ld\+json["'][^>]*>)([\s\S]*?)(<\/script\s*>)/gi,(whole,open,json,close)=>{
   try{const original=JSON.parse(json),repaired=repairNode(original,path);return JSON.stringify(original)===JSON.stringify(repaired)?whole:open+JSON.stringify(repaired).replace(/</g,'\\u003c')+close;}catch{return whole;}
  });
@@ -74,7 +77,7 @@ export async function withTechnicalSeo(response,request){
  if(request.method!=='GET'||response.status!==200||url.origin!==ORIGIN||path==='/'||path==='/start-here')return response;
  const sitemap=path==='/sitemap.xml';
  const html=response.headers.get('Content-Type')?.includes('text/html');
- if(!sitemap&&(!html||!(logoPaths.has(path)||ARTICLE_IDENTITY_REPAIRS[path])))return response;
+ if(!sitemap&&(!html||!(path===BLOODS_FAQ_PATH||logoPaths.has(path)||ARTICLE_IDENTITY_REPAIRS[path])))return response;
  if(!sitemap&&/^\/(?:member|v1|api|hq|work|auth|checkout|treatment-order)(?:\/|$|-)/.test(path))return response;
  const original=await response.text(),updated=sitemap?repairTechnicalSitemap(original):repairTechnicalHtml(original,path);
  const headers=new Headers(response.headers);

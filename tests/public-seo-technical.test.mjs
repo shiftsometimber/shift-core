@@ -20,10 +20,10 @@ test('publisher logos, real article images, FAQs and malformed JSON remain untou
  }
  assert.equal(repairTechnicalHtml('<script type="application/ld+json">{broken}</script>','/mental-health/feeling-low'),'<script type="application/ld+json">{broken}</script>');
 });
-test('sitemap only restores the 33 independently verified published indexable newsroom owners',()=>{
+test('sitemap only restores the 34 independently verified published indexable newsroom owners',()=>{
  assert.equal(NOINDEX_SITEMAP_PATHS.length,164);assert.equal(new Set(NOINDEX_SITEMAP_PATHS).size,164);
- assert.equal(VERIFIED_REOPENED_NEWSROOM_PATHS.length,33);
- assert.equal(new Set(VERIFIED_REOPENED_NEWSROOM_PATHS).size,33);
+ assert.equal(VERIFIED_REOPENED_NEWSROOM_PATHS.length,34);
+ assert.equal(new Set(VERIFIED_REOPENED_NEWSROOM_PATHS).size,34);
  for(const path of VERIFIED_REOPENED_NEWSROOM_PATHS){
   assert(NOINDEX_SITEMAP_PATHS.includes(path),'Recovered URL must originate in prior exclusion list');
   assert.match(path,/^\/medicine-news\/[a-z0-9-]+$/);
@@ -41,7 +41,7 @@ test('sitemap only restores the 33 independently verified published indexable ne
  assert.equal(repairTechnicalSitemap(after),after);
  assert(after.includes('<loc>'+origin+quarantined+'</loc>'));
  const originalExcluded=NOINDEX_SITEMAP_PATHS.filter(path=>!VERIFIED_REOPENED_NEWSROOM_PATHS.includes(path));
- assert.equal(originalExcluded.length,131);
+ assert.equal(originalExcluded.length,130);
  for(const path of originalExcluded)assert(!after.includes('<loc>'+origin+path+'</loc>'),path);
 });
 
