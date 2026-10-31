@@ -1,5 +1,45 @@
 import {ARTICLE_IDENTITY_REPAIRS,NOINDEX_SITEMAP_PATHS,LOGO_ARTICLE_PATHS} from './public-seo-technical-data.mjs';
 const ORIGIN='https://shiftsometimber.co.uk';
+// Only the 33 previously excluded articles individually verified public, published,
+// sitemap-approved, HTTP 200 and indexable on 31 October 2026. Retain the
+// historical exclusion record; the Reta safety briefing was approved and
+// published on 10 October (GitHub PR #1311), superseding its older hold.
+export const VERIFIED_REOPENED_NEWSROOM_PATHS=Object.freeze([
+  "/medicine-news/asthma-reliever-overuse-mhra-reminder",
+  "/medicine-news/cagrilintide-bone-metabolism",
+  "/medicine-news/cagrilintide-research-study",
+  "/medicine-news/domperidone-phaeochromocytoma-mhra-warning-2026",
+  "/medicine-news/glp-1-receptor-agonists-dermatologic-comorbidities",
+  "/medicine-news/glp-1-receptor-agonists-in-dermatology",
+  "/medicine-news/glp-1-receptor-agonists-type-2-diabetes-outcomes",
+  "/medicine-news/grabs-trial",
+  "/medicine-news/high-potency-incretin-therapy-risks",
+  "/medicine-news/isotretinoin-prescribing-safeguards-january-2026",
+  "/medicine-news/ixchiq-2025-pause-superseded-2026-review",
+  "/medicine-news/ixchiq-uk-restrictions-safety-review-2026",
+  "/medicine-news/mesalazine-intracranial-hypertension-mhra-warning",
+  "/medicine-news/obesity-driven-heart-failure-research",
+  "/medicine-news/oral-semaglutide-weight-loss-research-study",
+  "/medicine-news/pediatric-obesity-trial-ly900040",
+  "/medicine-news/retatrutide-fakes-research-is-not-a-treatment-offer",
+  "/medicine-news/rsv-vaccines-small-gbs-risk-mhra-context",
+  "/medicine-news/semaglutide-ageing",
+  "/medicine-news/semaglutide-naion-risk",
+  "/medicine-news/tirzepatide-atrial-fibrillation",
+  "/medicine-news/tirzepatide-binge-eating-disorder-trial",
+  "/medicine-news/tirzepatide-obesity-endometrial-cancer-trial",
+  "/medicine-news/ubt251-injection-phase-1a-1b-trials",
+  "/medicine-news/uk-archive-bowel-screening-fifties-england",
+  "/medicine-news/uk-archive-foundayo-orforglipron-mhra-approval",
+  "/medicine-news/uk-archive-nhs-mounjaro-access-england-2026",
+  "/medicine-news/uk-archive-nice-support-after-weight-loss-treatment",
+  "/medicine-news/uk-archive-northern-ireland-health-survey-weight-mental-health",
+  "/medicine-news/uk-archive-paxd-pramipexole-depression-uk-trial",
+  "/medicine-news/uk-archive-samh-nook-aberdeen-glasgow-mental-health",
+  "/medicine-news/uk-archive-scottish-health-survey-weight-wellbeing-2024",
+  "/medicine-news/uk-archive-young-adults-mental-health-work-report",
+]);
+const recovered=new Set(VERIFIED_REOPENED_NEWSROOM_PATHS);
 const excluded=new Set(NOINDEX_SITEMAP_PATHS);
 const articleTypes=new Set(['Article','BlogPosting','NewsArticle']);
 const logoPaths=new Set(LOGO_ARTICLE_PATHS);
@@ -26,7 +66,7 @@ export function repairTechnicalHtml(html,path){
 export function repairTechnicalSitemap(xml){
  return xml.replace(/<url\b[^>]*>[\s\S]*?<\/url\s*>/gi,node=>{
   const loc=node.match(/<loc>([^<]+)<\/loc>/i)?.[1];
-  try{const u=new URL(loc);return u.origin===ORIGIN&&excluded.has(u.pathname)?'':node;}catch{return node;}
+  try{const u=new URL(loc);return u.origin===ORIGIN&&excluded.has(u.pathname)&&!recovered.has(u.pathname)?'':node;}catch{return node;}
  });
 }
 export async function withTechnicalSeo(response,request){
