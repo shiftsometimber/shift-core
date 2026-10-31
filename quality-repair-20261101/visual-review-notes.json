@@ -16,10 +16,13 @@
     "Distinct commercial and advertising statements",
     "Visible illustrative-image captions"
   ],
-  "status": "Visual review passed; production verification pending",
+  "status": "Complete: deployed and verified on production; 84 live browser checks passed",
   "finalReviewedSource": "7134baf5e9ea781523adf7b1cdc00254978914d7",
   "finalWorkflowRun": 41252014439,
   "finalArtifact": 13061756149,
   "finalBrowserChecks": 84,
-  "finalContentIssues": 0
+  "finalContentIssues": 0,
+  "productionSource": "4efff9f30e05dd8a94ac559dd2f530a37c457074",
+  "productionWorkflowRun": 41252434222,
+  "productionArtifact": 13062485139
 }
