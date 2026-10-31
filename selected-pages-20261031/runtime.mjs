@@ -1,12 +1,27 @@
 import {hero,css,continuityStrip} from './presentation.mjs';
 import {release,identify,assets} from './config.mjs';
-import {byClass,byId,mainHTML,withoutTicker} from './html.mjs';
+import {bounds,byClass,byId,mainHTML,withoutTicker} from './html.mjs';
 export {mainHTML,byClass,byId};
 export {release as version};
 function required(s,c){const b=byClass(s,c);if(!b)throw Error('Selected page boundary missing: '+c);return b;}
+export function normalise(html,key){
+ if(!['continuity','life-back'].includes(key))return html;
+ const main=mainHTML(html);if(!main||byClass(main,'nhh-hero'))return html;
+ const kicker=required(main,'continuity-kicker'),title=bounds(main,(_t,n)=>n==='h1');if(!title)throw Error('Legacy heading missing');
+ const open=main.slice(0,main.indexOf('>')+1),body=main.slice(title.end,main.lastIndexOf('</main>'));
+ const firstSection=bounds(body,(_t,n)=>n==='section');if(!firstSection)throw Error('Legacy content section missing');
+ const context=body.slice(0,firstSection.start),sections=body.slice(firstSection.start);
+ const target=key==='continuity'?'First decide what you need help with':'How Life Back works';
+ let remaining=sections,offset=0,needs;
+ while(remaining){const block=bounds(remaining,(_t,n)=>n==='section');if(!block)break;const heading=bounds(block.html,(_t,n)=>n==='h2');if(heading?.html.includes(target)){needs={...block,start:offset+block.start,end:offset+block.end};break;}offset+=block.end;remaining=remaining.slice(block.end);}
+ if(!needs)throw Error('Legacy help section missing '+key);
+ const prefix=key==='continuity'?'qpp':'lbp',reading=sections.slice(0,needs.start)+sections.slice(needs.end);
+ const structured=open+'<section class="nhh-hero">'+kicker.html+title.html+'</section><section class="nhh-context">'+context+'</section><div class="'+prefix+'-needs"><div class="'+prefix+'-wrap">'+needs.html+'</div></div><div class="'+prefix+'-reading">'+reading+'</div></main>';
+ return html.replace(main,structured);
+}
 export function transform(html,key){
  if(html.includes('data-approved-release="'+release+'"'))return html;
- const old=mainHTML(html);if(!old)throw Error('Page main missing');
+ html=normalise(html,key);const old=mainHTML(html);if(!old)throw Error('Page main missing');
  let main=old;
  if(key==='contact'){
   const h=required(main,'ct-hero'),f=required(main,'ct-form-card'),d=required(main,'ct-details'),s=required(main,'ct-safety');
