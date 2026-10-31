@@ -42,11 +42,10 @@ jobs:
         run: |
           node --check public-navigation-policy.mjs
           node --test tests/public-ticker-contrast-safety.test.mjs tests/public-navigation-policy.test.mjs tests/public-ticker-preservation.test.mjs tests/timber-shed-public-teaser.test.mjs
+          git merge-base --is-ancestor 560c6f85d06974c8960dab93c8b7ae49dbe0511f HEAD
           actual="$(git diff --name-only HEAD^ HEAD | sort)"
-          test "$(printf '%s\n' "$actual" | sed '/^$/d' | wc -l | tr -d ' ')" = 3
+          test "$(printf '%s\n' "$actual" | sed '/^$/d' | wc -l | tr -d ' ')" = 1
           printf '%s\n' "$actual" | grep -qx '.github/workflows/public-navigation-retirement-release.yml'
-          printf '%s\n' "$actual" | grep -qx 'tests/timber-shed-public-teaser.test.mjs'
-          printf '%s\n' "$actual" | grep -qx 'timber-shed-public-teaser.mjs'
       - name: Capture rollback deployment and affected live pages
         run: |
           set -euo pipefail
@@ -70,6 +69,9 @@ jobs:
             ! grep -Eqi 'sst-shed-teaser|The Timber Shed[^<]{0,20}SOON' "${body}"
             ! grep -Eqi '<meta[^>]+(?:name=["'"'"']robots["'"'"'][^>]+content=["'"'"'][^"'"'"']*noindex|content=["'"'"'][^"'"'"']*noindex[^"'"'"']*["'"'"'][^>]+name=["'"'"']robots)' "${body}"
             grep -Eqi '<link[^>]+rel=["'"'"']canonical["'"'"']' "${body}"
+          done
+          for path in work-with-us knowledge; do
+            headers="navigation-retirement-evidence/after-${path//\//-}.headers"
             grep -Eqi '^x-shift-navigation-policy: approved-20261031' "${headers}"
           done
           for path in work-with-us shift-health/blood-tests; do
