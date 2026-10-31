@@ -1,0 +1,665 @@
+{
+  "verified": true,
+  "source": "dde0321c0efba5c736d1429caf328ff451f4b361",
+  "release": "downloads-dr3-20261031-v2",
+  "pages": [
+    {
+      "key": "downloads",
+      "path": "/downloads-resources",
+      "selected": "DR3"
+    }
+  ],
+  "workers": [
+    {
+      "name": "shift-public-presentation-batch-20261022",
+      "versionId": "6f5383f9-dbda-4482-b129-f793afe62051",
+      "previousVersion": "b9ac8ee8-9ec1-4031-9585-f2c1d90d2aaa",
+      "retainedModules": 32,
+      "refreshedOwnedModules": 3,
+      "bindingsPreserved": 4
+    },
+    {
+      "name": "shift-core",
+      "versionId": "372c1d85-a828-456d-be20-b4379717398c",
+      "previousVersion": "d3ea7cd7-6aa4-4240-8fb3-3c20f70e7aac",
+      "retainedModules": 36,
+      "refreshedOwnedModules": 3,
+      "bindingsPreserved": 52
+    }
+  ],
+  "routeCount": 915,
+  "routesChanged": 0,
+  "checks": [
+    {
+      "path": "/downloads-resources",
+      "key": "downloads",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/downloads-resources?presentation=1",
+      "key": "downloads",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    }
+  ],
+  "protectedPages": [
+    "/tools/bmi",
+    "/tools/calories",
+    "/tools/healthy-weight",
+    "/tools/protein",
+    "/tools/waist-height",
+    "/tools/walking",
+    "/tools/water",
+    "/tools/steps",
+    "/tools/sleep",
+    "/tools/alcohol",
+    "/tools/weight-management-review",
+    "/how-are-you-feeling",
+    "/",
+    "/start-here",
+    "/programme",
+    "/shift-health",
+    "/knowledge",
+    "/explore-knowledge",
+    "/ask-timber",
+    "/treatment-centre",
+    "/member/dashboard",
+    "/mens-mental-health",
+    "/shift-for-work",
+    "/shift-health/stop-smoking",
+    "/tools",
+    "/tools?ct3=1",
+    "/weight-loss-support-for-men",
+    "/partner-with-us",
+    "/male-obesity",
+    "/compare-weight-loss-treatments",
+    "/clinic-gone-quiet",
+    "/about",
+    "/contact",
+    "/shift-newsroom",
+    "/life-back",
+    "/corporate-wellbeing",
+    "/guides/retatrutide-uk-guide",
+    "/husband-help",
+    "/my-timber-for-providers",
+    "/nhs-vs-private",
+    "/surgery-comparison-centre",
+    "/knowledge?presentation=1",
+    "/articles/stopping-glp1",
+    "/articles/food-noise-after-stopping-glp1",
+    "/member/life-back",
+    "/shift-newsroom/client.js",
+    "/shift-newsroom/compare.js",
+    "/provider-switch",
+    "/our-causes-partners",
+    "/family-discussion-guide"
+  ],
+  "calculatorPages": [
+    "/tools/bmi",
+    "/tools/calories",
+    "/tools/healthy-weight",
+    "/tools/protein",
+    "/tools/waist-height",
+    "/tools/walking",
+    "/tools/water",
+    "/tools/steps",
+    "/tools/sleep",
+    "/tools/alcohol",
+    "/tools/weight-management-review"
+  ],
+  "existingCodeAssetsPreserved": 211,
+  "photographs": [
+    {
+      "path": "/assets/downloads-dr3-20261031/preparing-notes.webp",
+      "sha256": "bb02fce7284aeebc4d56fe75421673c49a5ebeb9868ad456608eedd857d733c4"
+    }
+  ],
+  "browser": [
+    {
+      "page": "downloads",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "downloads-dr3-20261031-v2",
+        "key": "downloads",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "resources": [
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/gp-appointment-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/weight-loss-medication-questions"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/bariatric-surgery-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/private-provider-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/overseas-surgery-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/maintenance-plan-template"
+          }
+        ]
+      }
+    },
+    {
+      "page": "downloads",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "downloads-dr3-20261031-v2",
+        "key": "downloads",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "resources": [
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/gp-appointment-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/weight-loss-medication-questions"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/bariatric-surgery-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/private-provider-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/overseas-surgery-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/maintenance-plan-template"
+          }
+        ]
+      }
+    },
+    {
+      "page": "downloads",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "downloads-dr3-20261031-v2",
+        "key": "downloads",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "resources": [
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/gp-appointment-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/weight-loss-medication-questions"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/bariatric-surgery-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/private-provider-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/overseas-surgery-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/maintenance-plan-template"
+          }
+        ]
+      }
+    },
+    {
+      "page": "downloads",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "downloads-dr3-20261031-v2",
+        "key": "downloads",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "resources": [
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/gp-appointment-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/weight-loss-medication-questions"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/bariatric-surgery-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/private-provider-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/overseas-surgery-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/maintenance-plan-template"
+          }
+        ]
+      }
+    },
+    {
+      "page": "downloads",
+      "query": false,
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "downloads-dr3-20261031-v2",
+        "key": "downloads",
+        "width": 360,
+        "scrollWidth": 345,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "resources": [
+          {
+            "height": 58,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/gp-appointment-checklist"
+          },
+          {
+            "height": 58,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/weight-loss-medication-questions"
+          },
+          {
+            "height": 58,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/bariatric-surgery-checklist"
+          },
+          {
+            "height": 58,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/private-provider-checklist"
+          },
+          {
+            "height": 58,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/overseas-surgery-checklist"
+          },
+          {
+            "height": 58,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/maintenance-plan-template"
+          }
+        ]
+      }
+    },
+    {
+      "page": "downloads",
+      "query": true,
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "downloads-dr3-20261031-v2",
+        "key": "downloads",
+        "width": 360,
+        "scrollWidth": 345,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "resources": [
+          {
+            "height": 58,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/gp-appointment-checklist"
+          },
+          {
+            "height": 58,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/weight-loss-medication-questions"
+          },
+          {
+            "height": 58,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/bariatric-surgery-checklist"
+          },
+          {
+            "height": 58,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/private-provider-checklist"
+          },
+          {
+            "height": 58,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/overseas-surgery-checklist"
+          },
+          {
+            "height": 58,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/maintenance-plan-template"
+          }
+        ]
+      }
+    },
+    {
+      "page": "downloads",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "downloads-dr3-20261031-v2",
+        "key": "downloads",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "resources": [
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/gp-appointment-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/weight-loss-medication-questions"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/bariatric-surgery-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/private-provider-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/overseas-surgery-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/maintenance-plan-template"
+          }
+        ]
+      }
+    },
+    {
+      "page": "downloads",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "downloads-dr3-20261031-v2",
+        "key": "downloads",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "resources": [
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/gp-appointment-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/weight-loss-medication-questions"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/bariatric-surgery-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/private-provider-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/overseas-surgery-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/maintenance-plan-template"
+          }
+        ]
+      }
+    },
+    {
+      "page": "downloads",
+      "query": false,
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "downloads-dr3-20261031-v2",
+        "key": "downloads",
+        "width": 430,
+        "scrollWidth": 415,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "resources": [
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/gp-appointment-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/weight-loss-medication-questions"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/bariatric-surgery-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/private-provider-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/overseas-surgery-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/maintenance-plan-template"
+          }
+        ]
+      }
+    },
+    {
+      "page": "downloads",
+      "query": true,
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "downloads-dr3-20261031-v2",
+        "key": "downloads",
+        "width": 430,
+        "scrollWidth": 415,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "ticker": false
+      },
+      "behaviour": {
+        "resources": [
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/gp-appointment-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/weight-loss-medication-questions"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/bariatric-surgery-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/private-provider-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/overseas-surgery-checklist"
+          },
+          {
+            "height": 44,
+            "colour": "rgb(5, 5, 5)",
+            "href": "/downloads/maintenance-plan-template"
+          }
+        ]
+      }
+    }
+  ],
+  "verifiedAt": "2026-10-31T21:13:16.353Z"
+}
