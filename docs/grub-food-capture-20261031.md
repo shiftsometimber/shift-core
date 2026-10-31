@@ -71,6 +71,8 @@ date range independently of the 365-entry diary and 12-entry AI display limits.
 Actual recorded zeros count; unknown amounts remain absent. Planned meals and
 separately entered daily progress totals are never added to food-log amounts.
 There is no duplicate write to progress, plans or AI memory.
+Counts, amounts and recent foods are read in one SQLite statement snapshot, so
+a concurrent deletion cannot pair an earlier count with a different food list.
 
 The existing diary API returns this read model. Connected Today context and
 the shared member journey expose the same model to Shift AI and Ask Timber.
@@ -252,7 +254,7 @@ were superseded by this recovered check. The UUID shim exists only in the
 local QA fixture; it is not a production code change. This is logging/interface
 acceptance, not real-food recognition accuracy or installed-device acceptance.
 
-Exact-runtime CI:
+Hosted logging proof before the final single-statement snapshot refinement:
 https://github.com/shiftsometimber/shift-core/actions/runs/41249840429
 Focused: 136 passed, zero failed, one existing opt-in real-model practical
 evaluation skipped. Actual Worker dry-run build passed. Wider member suite:
@@ -261,3 +263,8 @@ failures. Both still reproduce on the unchanged pre-feature source. The original
 network-free UI asset guard now passes unchanged; food summaries have their
 own private read-only asset. Production deployment and photo-model activation
 remain outstanding.
+
+The final snapshot refinement passed 52 local food/capture/date checks,
+including a deletion deliberately interleaved with a log read. Its source
+revision is rechecked by the same branch workflow; the browser interface and
+its accepted save/delete behaviour are unchanged by that query refinement.

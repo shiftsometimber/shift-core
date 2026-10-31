@@ -49,6 +49,12 @@ test('simultaneous retries acknowledge one save and produce one contribution to 
  const e=await fixture(t),entry={operationId:'simultaneous-food-operation',on:today(),food:'One confirmed meal',proteinG:18};
  const responses=await Promise.all([journeyPortabilityRoutes(req(entry),e),journeyPortabilityRoutes(req(entry),e)]);assert.deepEqual(responses.map(r=>r.status).sort(),[200,201]);const log=await readFoodLog(e.DB,1);assert.equal(log.today.entryCount,1);assert.equal(log.today.nutrition.proteinG.total,18);
 });
+test('a concurrent deletion cannot pair old totals with a different recent-food list',async t=>{
+ const e=await fixture(t);add(e,'concurrent-delete',today(),'One snapshot meal',{proteinG:18});let changed=false;
+ e.onRead=query=>{if(!changed&&query.includes('GROUP BY recorded_on')){changed=true;e.sql.exec("DELETE FROM member_food_entries WHERE user_id=1");}};
+ const snapshot=await readFoodLog(e.DB,1);assert.equal(snapshot.today.entryCount,1);assert.equal(snapshot.recent.length,1);assert.equal(snapshot.recent[0].food,'One snapshot meal');assert.equal(snapshot.today.nutrition.proteinG.total,18);
+ const next=await readFoodLog(e.DB,1);assert.equal(next.today.entryCount,0);assert.deepEqual(next.recent,[]);
+});
 test('full-range totals remain exact beyond the diary and AI recent-record display limits',async t=>{
  const e=await fixture(t),date=today();e.sql.exec('BEGIN');for(let i=0;i<400;i++)add(e,'many-'+i,date,'Synthetic entry '+i,{proteinG:1});e.sql.exec('COMMIT');
  const response=await(await journeyPortabilityRoutes(req(),e)).json();assert.equal(response.entries.length,365);assert.equal(response.historyMayBeLimited,true);assert.equal(response.foodLog.today.entryCount,400);assert.equal(response.foodLog.today.nutrition.proteinG.total,400);assert.equal(response.foodLog.recent.length,12);assert.equal(response.foodLog.recentMayBeLimited,true);

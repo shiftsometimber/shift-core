@@ -7,6 +7,7 @@ const clean=value=>String(value??'').replace(/[\u0000-\u001f\u007f]/g,' ').trim(
 const emptyPeriod=(from,to)=>({from,to,entryCount:0,loggedDays:0,estimatedEntries:0,nutrition:{},completeDay:false});
 const valid=(key,max)=>`json_type(body_json,'$.${key}') IN ('integer','real') AND json_extract(body_json,'$.${key}') BETWEEN 0 AND ${max}`;
 const amounts=fields.map(([key,max])=>`SUM(CASE WHEN ${valid(key,max)} THEN json_extract(body_json,'$.${key}') ELSE 0 END) AS ${key}_total,SUM(CASE WHEN ${valid(key,max)} THEN 1 ELSE 0 END) AS ${key}_count`).join(',');
+const metrics=['entry_count','estimated_count',...fields.flatMap(([key])=>[key+'_total',key+'_count'])];
 
 async function permission(DB,userId){
  const consent=await DB.prepare("SELECT id,granted FROM consents WHERE user_id=? AND consent_type='my_shift_health_tracking' ORDER BY id DESC LIMIT 1").bind(userId).first();
@@ -33,9 +34,11 @@ export async function readFoodLog(DB,userId,{now=new Date()}={}){
   if(exists){
    // Aggregate the full date range, independently of the diary's 365-entry
    // display limit. Missing amounts remain unknown; a real recorded zero counts.
-   const rows=(await DB.prepare(`SELECT recorded_on,COUNT(*) AS entry_count,SUM(CASE WHEN json_extract(body_json,'$.nutritionSource')='member_confirmed_estimate' THEN 1 ELSE 0 END) AS estimated_count,${amounts} FROM member_food_entries WHERE user_id=? AND recorded_on BETWEEN ? AND ? GROUP BY recorded_on ORDER BY recorded_on`).bind(userId,since,date).all()).results||[];
-   for(const row of rows){addDay(last7Days,row);if(row.recorded_on===date)addDay(today,row);}
-   const records=(await DB.prepare('SELECT id,recorded_on,body_json FROM member_food_entries WHERE user_id=? AND recorded_on BETWEEN ? AND ? ORDER BY recorded_on DESC,created_at DESC,id DESC LIMIT 12').bind(userId,since,date).all()).results||[];
+   // Counts, amounts and recent entries share one SQLite statement snapshot.
+   // A concurrent save/delete cannot leave a count paired with a different list.
+   const snapshot=(await DB.prepare(`WITH recorded AS (SELECT id,recorded_on,body_json,created_at FROM member_food_entries WHERE user_id=? AND recorded_on BETWEEN ? AND ?),daily AS (SELECT recorded_on,COUNT(*) AS entry_count,SUM(CASE WHEN json_extract(body_json,'$.nutritionSource')='member_confirmed_estimate' THEN 1 ELSE 0 END) AS estimated_count,${amounts} FROM recorded GROUP BY recorded_on),recent AS (SELECT id,recorded_on,body_json,created_at FROM recorded ORDER BY recorded_on DESC,created_at DESC,id DESC LIMIT 12) SELECT 'day' AS kind,NULL AS id,recorded_on,NULL AS body_json,NULL AS created_at,${metrics.join(',')} FROM daily UNION ALL SELECT 'entry' AS kind,id,recorded_on,body_json,created_at,${metrics.map(()=>'NULL').join(',')} FROM recent ORDER BY kind,recorded_on DESC,created_at DESC,id DESC`).bind(userId,since,date).all()).results||[];
+   for(const row of snapshot.filter(row=>row.kind==='day')){addDay(last7Days,row);if(row.recorded_on===date)addDay(today,row);}
+   const records=snapshot.filter(row=>row.kind==='entry');
    recent=records.map(row=>{const value=JSON.parse(row.body_json),nutrition=foodNutrition(value);return {id:row.id,on:row.recorded_on,food:clean(value.food),...nutrition,state:'confirmed_eaten'};});
   }
   const current=await permission(DB,userId);
