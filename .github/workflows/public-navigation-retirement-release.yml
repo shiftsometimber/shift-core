@@ -5,6 +5,8 @@ on:
     paths:
       - 'public-navigation-policy.mjs'
       - 'tests/public-ticker-contrast-safety.test.mjs'
+      - 'timber-shed-public-teaser.mjs'
+      - 'tests/timber-shed-public-teaser.test.mjs'
       - '.github/workflows/public-navigation-retirement-release.yml'
 
 permissions:
@@ -39,12 +41,12 @@ jobs:
       - name: Verify focused navigation policy and retained public contracts
         run: |
           node --check public-navigation-policy.mjs
-          node --test tests/public-ticker-contrast-safety.test.mjs tests/public-navigation-policy.test.mjs tests/public-ticker-preservation.test.mjs
-          git merge-base --is-ancestor 67e0e12340d80deaad05413bc7602c8d6cf51393 HEAD
-          actual="$(git diff --name-only 39499afc517ed9a83634fe9d145b737165c46530 67e0e12340d80deaad05413bc7602c8d6cf51393 | sort)"
-          test "$(printf '%s\n' "$actual" | sed '/^$/d' | wc -l | tr -d ' ')" = 2
-          printf '%s\n' "$actual" | grep -qx 'public-navigation-policy.mjs'
-          printf '%s\n' "$actual" | grep -qx 'tests/public-ticker-contrast-safety.test.mjs'
+          node --test tests/public-ticker-contrast-safety.test.mjs tests/public-navigation-policy.test.mjs tests/public-ticker-preservation.test.mjs tests/timber-shed-public-teaser.test.mjs
+          actual="$(git diff --name-only HEAD^ HEAD | sort)"
+          test "$(printf '%s\\n' "$actual" | sed '/^$/d' | wc -l | tr -d ' ')" = 3
+          printf '%s\\n' "$actual" | grep -qx '.github/workflows/public-navigation-retirement-release.yml'
+          printf '%s\\n' "$actual" | grep -qx 'tests/timber-shed-public-teaser.test.mjs'
+          printf '%s\\n' "$actual" | grep -qx 'timber-shed-public-teaser.mjs'
       - name: Capture rollback deployment and affected live pages
         run: |
           set -euo pipefail
