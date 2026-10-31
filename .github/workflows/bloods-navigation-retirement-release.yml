@@ -38,9 +38,12 @@ jobs:
           set -euo pipefail
           git fetch --no-tags origin main
           test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)"
-          actual="$(git diff --name-only HEAD^ HEAD | sort)"
-          test "$(printf '%s\n' "$actual" | sed '/^$/d' | wc -l | tr -d ' ')" = 1
-          printf '%s\n' "$actual" | grep -qx '.github/workflows/bloods-navigation-retirement-release.yml'
+          python3 - <<'PY'
+          import subprocess
+          actual=set(subprocess.check_output(['git','diff','--name-only','HEAD^','HEAD'],text=True).splitlines())
+          expected={'.github/workflows/bloods-navigation-retirement-release.yml','release/bloods-navigation-retirement-deploy.mjs'}
+          assert actual==expected,(actual,expected)
+          PY
       - name: Install locked release toolchain
         run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Verify focused Bloods retirement policy
