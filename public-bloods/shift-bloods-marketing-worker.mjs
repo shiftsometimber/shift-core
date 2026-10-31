@@ -1,5 +1,5 @@
 import {withArticleResponsePolicy} from './public-response-policy.mjs';
-import {isPublicBloodsRequest,addBloodsEntry,addApprovedHomeTestFaq,BLOODS_ENTRY_STYLE,INDEXABLE_BLOODS_PATHS} from './shift-bloods-public.mjs';
+import {isPublicBloodsRequest,addBloodsEntry,addApprovedHomeTestFaq,BLOODS_ENTRY_STYLE,INDEXABLE_BLOODS_PATHS,retirePublicShedNavigation} from './shift-bloods-public.mjs';
 const HEALTH_PATHS=new Set(['/shift-health','/shift-health/','/shift-health.html']);
 const APPROVED_PAGES_ORIGINS=new Set(['https://projectshift.pages.dev','https://88265868.projectshift.pages.dev']);
 export async function marketingResponse(request,env={},fetcher=fetch){
@@ -25,7 +25,10 @@ export async function marketingResponse(request,env={},fetcher=fetch){
   if(!html.includes('<section class="wrap intro"'))return new Response(request.method==='HEAD'?null:html,{status:response.status,headers});
   html=addBloodsEntry(html).replace('</head>','<style data-shift-bloods-entry>'+BLOODS_ENTRY_STYLE+'</style></head>');
  }
+ html=retirePublicShedNavigation(html);
+ headers.set('X-Shift-Navigation-Policy','approved-20261031');
  headers.set('Content-Type','text/html; charset=utf-8');
  return new Response(request.method==='HEAD'?null:html,{status:200,headers});
 }
 export default {fetch(request,env){return marketingResponse(request,env).then(withArticleResponsePolicy);}};
+
