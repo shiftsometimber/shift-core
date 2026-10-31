@@ -1,0 +1,22 @@
+{
+  "assets": [
+    "/assets/downloads-dr3-20261031/preparing-notes.webp",
+    "/assets/family-fd3-20261031/family-walk.webp",
+    "/assets/community-cm3-20261031/workshop.webp",
+    "/assets/provider-causes-20261031/provider-library.webp",
+    "/assets/pending-pages-20261031/partner-community.webp",
+    "/assets/pending-pages-20261031/everyday-tea.webp",
+    "/assets/approved-pages-20261031/life-back-mosaic.webp",
+    "/assets/approved-pages-20261031/continuity-notebook.webp"
+  ],
+  "modules": [
+    "restore-downloads-0.mjs",
+    "restore-family-0.mjs",
+    "restore-community-0.mjs",
+    "restore-provider-0.mjs",
+    "restore-pending-0.mjs",
+    "restore-pending-1.mjs",
+    "restore-selected-0.mjs",
+    "restore-selected-1.mjs"
+  ]
+}

@@ -17,5 +17,7 @@ export const mainPages=[
 ].map(p=>({...p,selected:'Quality correction under delegated design and deployment authority',aliases:[p.path,p.path+'/',p.path+'.html']}));
 export const pages=mainPages;
 export const paths=pages.flatMap(p=>p.aliases.flatMap(a=>[a,a+'?presentation=1']));
-export const assets=['mot','roadmap','research','contributors','media','partners','promise'].map(k=>'/assets/quality-repair-20261101/'+k+'.webp');
+export const restoredAssets=["/assets/downloads-dr3-20261031/preparing-notes.webp", "/assets/family-fd3-20261031/family-walk.webp", "/assets/community-cm3-20261031/workshop.webp", "/assets/provider-causes-20261031/provider-library.webp", "/assets/pending-pages-20261031/partner-community.webp", "/assets/pending-pages-20261031/everyday-tea.webp", "/assets/approved-pages-20261031/life-back-mosaic.webp", "/assets/approved-pages-20261031/continuity-notebook.webp"];
+export const assetModules=["restore-downloads-0.mjs", "restore-family-0.mjs", "restore-community-0.mjs", "restore-provider-0.mjs", "restore-pending-0.mjs", "restore-pending-1.mjs", "restore-selected-0.mjs", "restore-selected-1.mjs", "photo-mot.mjs", "photo-roadmap.mjs", "photo-research.mjs", "photo-contributors.mjs", "photo-media.mjs", "photo-partners.mjs", "photo-promise.mjs"];
+export const assets=['mot','roadmap','research','contributors','media','partners','promise'].map(k=>'/assets/quality-repair-20261101/'+k+'.webp').concat(restoredAssets);
 export const identify=pathname=>pages.find(p=>p.aliases.includes(pathname));
