@@ -157,12 +157,22 @@ export function publicTickerAsset(request) {
 export function removeRetiredShedTeasers(html) {
   return html.replace(/<span\b(?=[^>]*\bclass=["'][^"']*\bsst-shed-teaser\b[^"']*["'])[^>]*>[\s\S]*?<\/span>/gi, '');
 }
+export const navigationSafetyVersion='public-navigation-20261031-r2';
+export const navigationSafetyStyles='.sst-shed-teaser{display:none!important}';
+export const navigationSafetyClient=String.raw`(function retireTimberShedClient(){
+  function remove(){document.querySelectorAll('.sst-shed-teaser').forEach(node=>node.remove())}
+  remove();
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',remove,{once:true});
+  new MutationObserver(remove).observe(document.documentElement,{childList:true,subtree:true});
+  setTimeout(remove,0);setTimeout(remove,250);
+})();`;
 export async function withPublicTicker(request, response) {
   if (!response.ok || !['GET','HEAD'].includes(request.method) || !/text\/html/i.test(response.headers.get('Content-Type') || '')) return response;
   const source = await response.text();
   if (!/<\/head>/i.test(source) || !/<\/body>/i.test(source)) return new Response(request.method === 'HEAD' ? null : source, response);
   const navigationSource = removeRetiredShedTeasers(source);
-  const contrastSource=repairServiceBridgePaint(navigationSource.includes('data-shift-public-contrast')?navigationSource:navigationSource.replace(/<\/head>/i,`<style data-shift-public-contrast="${contrastSafetyVersion}">${contrastSafetyStyles}</style></head>`));
+  const navigationGuarded=navigationSource.includes('data-shift-navigation-retirement')?navigationSource:navigationSource.replace(/<\/head>/i,`<style data-shift-navigation-retirement="${navigationSafetyVersion}">${navigationSafetyStyles}</style></head>`).replace(/<\/body>/i,`<script data-shift-navigation-retirement="${navigationSafetyVersion}">${navigationSafetyClient}</script></body>`);
+  const contrastSource=repairServiceBridgePaint(navigationGuarded.includes('data-shift-public-contrast')?navigationGuarded:navigationGuarded.replace(/<\/head>/i,`<style data-shift-public-contrast="${contrastSafetyVersion}">${contrastSafetyStyles}</style></head>`));
   const guardedSource=contrastSource.includes('data-shift-contrast-guard')?contrastSource:contrastSource.replace(/<\/body>/i,`<script data-shift-contrast-guard="${contrastSafetyVersion}">${contrastSafetyClient}</script></body>`);
   const enabled = tickerAllowed(new URL(request.url).pathname);
   let html = guardedSource

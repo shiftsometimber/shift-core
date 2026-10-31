@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {Script} from 'node:vm';
-import {contrastSafetyStyles,contrastSafetyVersion,contrastSafetyClient,removeRetiredShedTeasers,withPublicTicker} from '../public-navigation-policy.mjs';
+import {contrastSafetyStyles,contrastSafetyVersion,contrastSafetyClient,navigationSafetyClient,navigationSafetyVersion,removeRetiredShedTeasers,withPublicTicker} from '../public-navigation-policy.mjs';
 import {preserveReviewedContrastGuard,priorContrastSafetyClient} from '../member-experience/public-preservation.mjs';
 
 test('audited public contrast safety stays brand-only and covers the shared collision roots',()=>{
@@ -77,4 +77,20 @@ test('retired Timber Shed teaser is removed from public header, drawer and foote
   assert.doesNotMatch(body,/sst-shed-teaser|The Timber Shed|>SOON</i);
   assert.match(body,/<main>Keep this public content\.<\/main>/);
   assert.equal(output.headers.get('X-Shift-Navigation-Policy'),'approved-20261031');
+});
+
+
+test('retired teaser stays absent after legacy client bundles mutate the rendered shell',async()=>{
+  new Script(navigationSafetyClient);
+  const html='<!doctype html><html><head><title>Work with us</title></head><body><header></header><main>Keep this public content.</main><footer></footer></body></html>';
+  const request=new Request('https://shiftsometimber.co.uk/work-with-us');
+  const once=await(await withPublicTicker(request,new Response(html,{headers:{'Content-Type':'text/html; charset=utf-8'}}))).text();
+  const twice=await(await withPublicTicker(request,new Response(once,{headers:{'Content-Type':'text/html; charset=utf-8'}}))).text();
+  assert.equal((once.match(/data-shift-navigation-retirement/g)||[]).length,2);
+  assert.equal((twice.match(/data-shift-navigation-retirement/g)||[]).length,2);
+  assert.match(once,new RegExp(navigationSafetyVersion));
+  assert.match(once,/\.sst-shed-teaser\{display:none!important\}/);
+  assert.match(once,/MutationObserver\(remove\)/);
+  assert.match(once,/querySelectorAll\('\.sst-shed-teaser'\)/);
+  assert.match(once,/<main>Keep this public content\.<\/main>/);
 });
