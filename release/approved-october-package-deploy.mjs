@@ -1,4 +1,4 @@
-import {stageSelectedTools,verifyToolsPackage} from './selected-tools-preservation-20261031.mjs';
+import {uploadSelectedTools,verifyToolsPackage} from './selected-tools-preservation-20261031.mjs';
 import {captureIndependentPresentation} from './independent-presentation-preservation.mjs';
 import {canonicalRuntime,uploadedVersion,digest} from './canonical-runtime-build.mjs';
 import {ensureQueryRedaction} from './query-log-redaction.mjs';
@@ -26,14 +26,14 @@ cli('deploy','--dry-run','--outdir','b1-runtime-release/staged-runtime');
 const built=canonicalRuntime(readFileSync('b1-runtime-release/staged-runtime/worker.js','utf8'));
 writeFileSync('b1-runtime-release/staged-runtime/worker.js',built.bundle);
 writeFileSync('b1-runtime-release/canonical-build.json',JSON.stringify({...built,bundle:undefined},null,2));
-const entry=await stageSelectedTools(built);
-const output=execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js','versions','upload',entry,'--no-bundle','--config','october-package.wrangler.jsonc'],{encoding:'utf8',maxBuffer:4e6});
+const output=await uploadSelectedTools(built);
 writeFileSync('b1-runtime-release/runtime-upload.log',output);
 const versionId=uploadedVersion(output);
 writeFileSync('b1-runtime-release/staged-version.json',JSON.stringify({versionId,source:process.env.GITHUB_SHA,buildSHA256:built.buildSHA256}));
 const response=await fetch('https://api.cloudflare.com/client/v4/accounts/'+process.env.CLOUDFLARE_ACCOUNT_ID+'/workers/workers/shift-core/versions/'+versionId+'?include=modules',{headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN},signal:AbortSignal.timeout(45000)});
 assert(response.ok,'Cannot authenticate uploaded version');const staged=await response.json();assert(staged.success);assert.equal(staged.result.id,versionId);
 verifyToolsPackage(staged.result,built.buildSHA256);
+const captured=JSON.parse(readFileSync('b1-runtime-release/selected-tools-before.json'));assert.deepEqual(staged.result.bindings,captured.bindings,'Core bindings changed');assert.equal(staged.result.compatibility_date,captured.compatibility_date);assert.deepEqual(staged.result.compatibility_flags,captured.compatibility_flags);
 assert.equal(latestDeployment(JSON.parse(cli('deployments','list','--json'))).id,before.id,'Runtime moved during staging');
 // A durable intent permits reconciliation if the CLI exits after changing traffic.
 writeFileSync('b1-runtime-release/promotion-intent.json',JSON.stringify({versionId,previousDeploymentId:before.id,source:process.env.GITHUB_SHA,run:process.env.GITHUB_RUN_ID}));

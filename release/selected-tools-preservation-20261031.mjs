@@ -12,13 +12,16 @@ export function verifyToolsPackage(data,baseHash='8f1f2555ad077efed4abb75be68155
  for(const m of data.modules)assert.equal(hash(Buffer.from(m.content_base64,'base64')),pins[m.name],m.name);
  return true;
 }
-export async function stageSelectedTools(built){
+export async function uploadSelectedTools(built){
  const r=await fetch('https://api.cloudflare.com/client/v4/accounts/'+process.env.CLOUDFLARE_ACCOUNT_ID+'/workers/workers/shift-core/versions/'+TOOLS_VERSION+'?include=modules',{headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN},signal:AbortSignal.timeout(45000)});
  assert(r.ok);const d=await r.json();assert(d.success);verifyToolsPackage(d.result);
  writeFileSync('b1-runtime-release/selected-tools-before.json',JSON.stringify(d.result));
  for(const m of d.result.modules.filter(m=>m.name!=='worker.js')){const path='b1-runtime-release/staged-runtime/'+m.name;mkdirSync(dirname(path),{recursive:true});writeFileSync(path,Buffer.from(m.content_base64,'base64'));}
- const config=readFileSync('wrangler.jsonc','utf8').replace('"main": "shift-coach/worker.mjs"','"main": "b1-runtime-release/staged-runtime/tools-ct3-20261031/entry.mjs", "base_dir": "b1-runtime-release/staged-runtime", "find_additional_modules": true, "rules": [{"type":"ESModule","globs":["**/*.js","**/*.mjs"],"fallthrough":true}]');
- assert.notEqual(config,readFileSync('wrangler.jsonc','utf8'));
- writeFileSync('october-package.wrangler.jsonc',config);
- return 'b1-runtime-release/staged-runtime/tools-ct3-20261031/entry.mjs';
+ const sr=await fetch('https://api.cloudflare.com/client/v4/accounts/'+process.env.CLOUDFLARE_ACCOUNT_ID+'/workers/scripts/shift-core/settings',{headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN},signal:AbortSignal.timeout(45000)});assert(sr.ok);const sj=await sr.json();assert(sj.success);const settings=sj.result;
+ const metadata={main_module:d.result.main_module,compatibility_date:settings.compatibility_date,compatibility_flags:settings.compatibility_flags||[],bindings:d.result.bindings.map(b=>({type:'inherit',name:b.name})),keep_assets:true,annotations:{'workers/message':'Approved October evidence repair; selected CT3 package preserved','workers/tag':'october-'+process.env.GITHUB_SHA.slice(0,12)}};
+ for(const key of ['placement','limits','observability','logpush'])if(settings[key]!==undefined)metadata[key]=settings[key];
+ const form=new FormData();form.set('metadata',new Blob([JSON.stringify(metadata)],{type:'application/json'}),'metadata.json');
+ for(const m of d.result.modules)form.set(m.name,new Blob([m.name==='worker.js'?built.bundle:Buffer.from(m.content_base64,'base64')],{type:'application/javascript+module'}),m.name);
+ const ur=await fetch('https://api.cloudflare.com/client/v4/accounts/'+process.env.CLOUDFLARE_ACCOUNT_ID+'/workers/scripts/shift-core/versions?bindings_inheritance=strict',{method:'POST',headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN},body:form,signal:AbortSignal.timeout(45000)});const uj=await ur.json();assert(ur.ok&&uj.success,'Native staged upload failed: '+JSON.stringify(uj.errors));assert.match(uj.result.id,/^[a-f0-9-]{36}$/);
+ return 'Worker Version ID: '+uj.result.id;
 }
