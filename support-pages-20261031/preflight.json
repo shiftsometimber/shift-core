@@ -1,0 +1,892 @@
+{
+  "readOnly": true,
+  "source": "43266084b027d87bd1c456fdc79de66933a0ebbc",
+  "capturedAt": "2026-10-31T21:44:25.982Z",
+  "routeCount": 915,
+  "owners": [
+    {
+      "path": "/waiting-list-journey",
+      "route": {
+        "id": "a415920122fe4d9896ca26275c161445",
+        "pattern": "https://shiftsometimber.co.uk/waiting-list-journey",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/waiting-list-journey?presentation=1",
+      "route": {
+        "id": "69f43a4edf6d413eaee3a2f5d90aefb0",
+        "pattern": "shiftsometimber.co.uk/waiting-list*",
+        "script": "shift-seo-followup-v3-20261024",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/waiting-list-journey/",
+      "route": {
+        "id": "69f43a4edf6d413eaee3a2f5d90aefb0",
+        "pattern": "shiftsometimber.co.uk/waiting-list*",
+        "script": "shift-seo-followup-v3-20261024",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/waiting-list-journey/?presentation=1",
+      "route": {
+        "id": "69f43a4edf6d413eaee3a2f5d90aefb0",
+        "pattern": "shiftsometimber.co.uk/waiting-list*",
+        "script": "shift-seo-followup-v3-20261024",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/waiting-list-journey.html",
+      "route": {
+        "id": "69f43a4edf6d413eaee3a2f5d90aefb0",
+        "pattern": "shiftsometimber.co.uk/waiting-list*",
+        "script": "shift-seo-followup-v3-20261024",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/waiting-list-journey.html?presentation=1",
+      "route": {
+        "id": "69f43a4edf6d413eaee3a2f5d90aefb0",
+        "pattern": "shiftsometimber.co.uk/waiting-list*",
+        "script": "shift-seo-followup-v3-20261024",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/advertise-with-us",
+      "route": {
+        "id": "45a71c26910144b79869c85b0c75a6d1",
+        "pattern": "https://shiftsometimber.co.uk/advertise-with-us",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/advertise-with-us?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/advertise-with-us/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/advertise-with-us/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/advertise-with-us.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/advertise-with-us.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/expert-contributors",
+      "route": {
+        "id": "111e9ace205047adb278042311596fac",
+        "pattern": "https://shiftsometimber.co.uk/expert-contributors",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/expert-contributors?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/expert-contributors/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/expert-contributors/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/expert-contributors.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/expert-contributors.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/media-centre",
+      "route": {
+        "id": "ef6fc15eae194f4784835c2b302b9405",
+        "pattern": "https://shiftsometimber.co.uk/media-centre",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/media-centre?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/media-centre/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/media-centre/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/media-centre.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/media-centre.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/press-centre",
+      "route": {
+        "id": "8bd135d95a06433cae729165fb2462f8",
+        "pattern": "https://shiftsometimber.co.uk/press-centre",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/press-centre?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/press-centre/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/press-centre/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/press-centre.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/press-centre.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/trusted-partners",
+      "route": {
+        "id": "37401fc311704ab19846fdc09577abc6",
+        "pattern": "https://shiftsometimber.co.uk/trusted-partners",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/trusted-partners?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/trusted-partners/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/trusted-partners/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/trusted-partners.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/trusted-partners.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-promise",
+      "route": {
+        "id": "9cc1f1633b1f437e934be9a391c44a4f",
+        "pattern": "https://shiftsometimber.co.uk/shift-promise",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-promise?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-promise/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-promise/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-promise.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/shift-promise.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    }
+  ],
+  "workers": [
+    {
+      "name": "shift-public-presentation-batch-20261022",
+      "versionId": "3a331c2f-2edb-4ed9-a529-ec25d6063dea",
+      "deploymentId": "47f11d77-3a51-4d5d-8649-aab787bbe931",
+      "main": "family-fd3-20261031/entry.mjs",
+      "modules": [
+        {
+          "name": "comparison-cp1/layout.mjs",
+          "bytes": 994
+        },
+        {
+          "name": "comparison-cp1/overlay.mjs",
+          "bytes": 1062
+        },
+        {
+          "name": "comparison-cp1/styles.mjs",
+          "bytes": 32043
+        },
+        {
+          "name": "downloads-dr3-20261031/config.mjs",
+          "bytes": 490
+        },
+        {
+          "name": "downloads-dr3-20261031/entry.mjs",
+          "bytes": 210
+        },
+        {
+          "name": "downloads-dr3-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "downloads-dr3-20261031/presentation.mjs",
+          "bytes": 8305
+        },
+        {
+          "name": "downloads-dr3-20261031/runtime.mjs",
+          "bytes": 3948
+        },
+        {
+          "name": "family-fd3-20261031/config.mjs",
+          "bytes": 493
+        },
+        {
+          "name": "family-fd3-20261031/entry.mjs",
+          "bytes": 214
+        },
+        {
+          "name": "family-fd3-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "family-fd3-20261031/presentation.mjs",
+          "bytes": 7722
+        },
+        {
+          "name": "family-fd3-20261031/runtime.mjs",
+          "bytes": 3288
+        },
+        {
+          "name": "health-hb2/layout.mjs",
+          "bytes": 1321
+        },
+        {
+          "name": "health-hb2/overlay.mjs",
+          "bytes": 1079
+        },
+        {
+          "name": "health-hb2/styles.mjs",
+          "bytes": 26189
+        },
+        {
+          "name": "hero-set-20261030/entry.mjs",
+          "bytes": 600
+        },
+        {
+          "name": "hero-set-20261030/payload.mjs",
+          "bytes": 39042
+        },
+        {
+          "name": "hero-set-20261030/runtime.mjs",
+          "bytes": 9762
+        },
+        {
+          "name": "knowledge-health-entry.mjs",
+          "bytes": 266
+        },
+        {
+          "name": "knowledge-health/client.mjs",
+          "bytes": 2540
+        },
+        {
+          "name": "knowledge-health/content.mjs",
+          "bytes": 54409
+        },
+        {
+          "name": "knowledge-health/evidence.mjs",
+          "bytes": 11569
+        },
+        {
+          "name": "knowledge-health/expansion-content.mjs",
+          "bytes": 97780
+        },
+        {
+          "name": "knowledge-health/production.mjs",
+          "bytes": 3726
+        },
+        {
+          "name": "knowledge-health/render.mjs",
+          "bytes": 22279
+        },
+        {
+          "name": "pending-pages-20261031/config.mjs",
+          "bytes": 983
+        },
+        {
+          "name": "pending-pages-20261031/entry.mjs",
+          "bytes": 220
+        },
+        {
+          "name": "pending-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "pending-pages-20261031/presentation.mjs",
+          "bytes": 25583
+        },
+        {
+          "name": "pending-pages-20261031/runtime.mjs",
+          "bytes": 5070
+        },
+        {
+          "name": "previews/public-presentation-batch/answer-depth.mjs",
+          "bytes": 35553
+        },
+        {
+          "name": "previews/public-presentation-batch/manifest.mjs",
+          "bytes": 20650
+        },
+        {
+          "name": "previews/public-presentation-batch/stopping-layout.mjs",
+          "bytes": 1073
+        },
+        {
+          "name": "previews/public-presentation-batch/stopping-style.mjs",
+          "bytes": 8263
+        },
+        {
+          "name": "previews/public-presentation-batch/style.mjs",
+          "bytes": 13197
+        },
+        {
+          "name": "previews/public-presentation-batch/worker.mjs",
+          "bytes": 4901
+        },
+        {
+          "name": "weight-mw1/layout.mjs",
+          "bytes": 1053
+        },
+        {
+          "name": "weight-mw1/overlay.mjs",
+          "bytes": 1048
+        },
+        {
+          "name": "weight-mw1/styles.mjs",
+          "bytes": 44834
+        }
+      ],
+      "bindingCount": 4
+    },
+    {
+      "name": "shift-seo-followup-v3-20261024",
+      "versionId": "17dac83a-8ce0-4de2-8660-92b8e6b3d405",
+      "deploymentId": "385136fe-1db2-4c49-9bb5-d5977c25c50e",
+      "main": "selected-pages-20261031/entry.mjs",
+      "modules": [
+        {
+          "name": "knowledge-health-entry.mjs",
+          "bytes": 256
+        },
+        {
+          "name": "knowledge-health/client.mjs",
+          "bytes": 2540
+        },
+        {
+          "name": "knowledge-health/content.mjs",
+          "bytes": 54409
+        },
+        {
+          "name": "knowledge-health/evidence.mjs",
+          "bytes": 11569
+        },
+        {
+          "name": "knowledge-health/expansion-content.mjs",
+          "bytes": 97780
+        },
+        {
+          "name": "knowledge-health/production.mjs",
+          "bytes": 3726
+        },
+        {
+          "name": "knowledge-health/render.mjs",
+          "bytes": 22279
+        },
+        {
+          "name": "release/seo-followup-20261024/worker.mjs",
+          "bytes": 2066
+        },
+        {
+          "name": "selected-pages-20261031/config.mjs",
+          "bytes": 977
+        },
+        {
+          "name": "selected-pages-20261031/entry.mjs",
+          "bytes": 262
+        },
+        {
+          "name": "selected-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "selected-pages-20261031/presentation.mjs",
+          "bytes": 35535
+        },
+        {
+          "name": "selected-pages-20261031/runtime.mjs",
+          "bytes": 5707
+        },
+        {
+          "name": "work-w2-20261030/entry.mjs",
+          "bytes": 209
+        },
+        {
+          "name": "work-w2-20261030/media.mjs",
+          "bytes": 99771
+        },
+        {
+          "name": "work-w2-20261030/presentation.mjs",
+          "bytes": 9991
+        },
+        {
+          "name": "work-w2-20261030/runtime.mjs",
+          "bytes": 4207
+        }
+      ],
+      "bindingCount": 4
+    },
+    {
+      "name": "shift-core",
+      "versionId": "89901c7a-084f-4d92-92fa-a4c04a5458b8",
+      "deploymentId": "f58cda8c-0634-474f-a76a-1bce862b770a",
+      "main": "community-cm3-20261031/entry.mjs",
+      "modules": [
+        {
+          "name": "community-cm3-20261031/config.mjs",
+          "bytes": 443
+        },
+        {
+          "name": "community-cm3-20261031/entry.mjs",
+          "bytes": 310
+        },
+        {
+          "name": "community-cm3-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "community-cm3-20261031/media.mjs",
+          "bytes": 246856
+        },
+        {
+          "name": "community-cm3-20261031/presentation.mjs",
+          "bytes": 9788
+        },
+        {
+          "name": "community-cm3-20261031/runtime.mjs",
+          "bytes": 3870
+        },
+        {
+          "name": "continuity-polish-20261031/entry.mjs",
+          "bytes": 256
+        },
+        {
+          "name": "continuity-polish-20261031/runtime.mjs",
+          "bytes": 15893
+        },
+        {
+          "name": "continuity-review-20261031/entry.mjs",
+          "bytes": 333
+        },
+        {
+          "name": "continuity-review-20261031/handoff.mjs",
+          "bytes": 10583
+        },
+        {
+          "name": "continuity-review-20261031/html.mjs",
+          "bytes": 18542
+        },
+        {
+          "name": "continuity-review-20261031/runtime.mjs",
+          "bytes": 4667
+        },
+        {
+          "name": "downloads-dr3-20261031/config.mjs",
+          "bytes": 490
+        },
+        {
+          "name": "downloads-dr3-20261031/entry.mjs",
+          "bytes": 357
+        },
+        {
+          "name": "downloads-dr3-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "downloads-dr3-20261031/media.mjs",
+          "bytes": 105015
+        },
+        {
+          "name": "downloads-dr3-20261031/presentation.mjs",
+          "bytes": 8305
+        },
+        {
+          "name": "downloads-dr3-20261031/runtime.mjs",
+          "bytes": 3948
+        },
+        {
+          "name": "family-fd3-20261031/config.mjs",
+          "bytes": 493
+        },
+        {
+          "name": "family-fd3-20261031/entry.mjs",
+          "bytes": 373
+        },
+        {
+          "name": "family-fd3-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "family-fd3-20261031/media.mjs",
+          "bytes": 250912
+        },
+        {
+          "name": "family-fd3-20261031/presentation.mjs",
+          "bytes": 7722
+        },
+        {
+          "name": "family-fd3-20261031/runtime.mjs",
+          "bytes": 3288
+        },
+        {
+          "name": "pending-pages-20261031/config.mjs",
+          "bytes": 983
+        },
+        {
+          "name": "pending-pages-20261031/entry.mjs",
+          "bytes": 526
+        },
+        {
+          "name": "pending-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "pending-pages-20261031/media.mjs",
+          "bytes": 442353
+        },
+        {
+          "name": "pending-pages-20261031/presentation.mjs",
+          "bytes": 25583
+        },
+        {
+          "name": "pending-pages-20261031/runtime.mjs",
+          "bytes": 5070
+        },
+        {
+          "name": "provider-causes-20261031/config.mjs",
+          "bytes": 1335
+        },
+        {
+          "name": "provider-causes-20261031/entry.mjs",
+          "bytes": 928
+        },
+        {
+          "name": "provider-causes-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "provider-causes-20261031/media.mjs",
+          "bytes": 146475
+        },
+        {
+          "name": "provider-causes-20261031/presentation.mjs",
+          "bytes": 4297
+        },
+        {
+          "name": "provider-causes-20261031/query-hero.mjs",
+          "bytes": 9768
+        },
+        {
+          "name": "provider-causes-20261031/query-payload.mjs",
+          "bytes": 19723
+        },
+        {
+          "name": "provider-causes-20261031/runtime.mjs",
+          "bytes": 4498
+        },
+        {
+          "name": "provider-causes-20261031/styles.mjs",
+          "bytes": 14876
+        },
+        {
+          "name": "selected-pages-20261031/config.mjs",
+          "bytes": 977
+        },
+        {
+          "name": "selected-pages-20261031/entry.mjs",
+          "bytes": 351
+        },
+        {
+          "name": "selected-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "selected-pages-20261031/media.mjs",
+          "bytes": 381765
+        },
+        {
+          "name": "selected-pages-20261031/presentation.mjs",
+          "bytes": 35535
+        },
+        {
+          "name": "selected-pages-20261031/runtime.mjs",
+          "bytes": 5707
+        },
+        {
+          "name": "tools-ct3-20261031/entry.mjs",
+          "bytes": 213
+        },
+        {
+          "name": "tools-ct3-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "tools-ct3-20261031/media.mjs",
+          "bytes": 166743
+        },
+        {
+          "name": "tools-ct3-20261031/presentation.mjs",
+          "bytes": 15801
+        },
+        {
+          "name": "tools-ct3-20261031/runtime.mjs",
+          "bytes": 3429
+        },
+        {
+          "name": "worker.js",
+          "bytes": 33697546
+        }
+      ],
+      "assets": {
+        "config": {
+          "html_handling": "auto-trailing-slash",
+          "not_found_handling": "none",
+          "run_worker_first": true,
+          "base_path": "/"
+        }
+      },
+      "bindingCount": 52
+    }
+  ],
+  "captures": [
+    {
+      "key": "stock",
+      "status": 200,
+      "bytes": 56121
+    },
+    {
+      "key": "advertising",
+      "status": 200,
+      "bytes": 55887
+    },
+    {
+      "key": "contributors",
+      "status": 200,
+      "bytes": 57213
+    },
+    {
+      "key": "media",
+      "status": 200,
+      "bytes": 55398
+    },
+    {
+      "key": "press",
+      "status": 200,
+      "bytes": 57877
+    },
+    {
+      "key": "partners",
+      "status": 200,
+      "bytes": 56612
+    },
+    {
+      "key": "promise",
+      "status": 200,
+      "bytes": 55919
+    }
+  ]
+}
