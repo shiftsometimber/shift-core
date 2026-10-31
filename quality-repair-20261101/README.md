@@ -13,3 +13,7 @@ Status: implementation complete; staged visual review pending.
 Eight selected-page hero assets were returning 404 on the current consolidated Core version. Their exact original bytes have been recovered from the selected release source commits and are restored at the existing URLs. Their pages and layouts are unchanged.
 
 Core now uses Durable Object migration tag v1-site-content-state. This presentation-only release carries the actual current tag forward with an empty migration step list, alongside all actual modules and bindings.
+
+## Preview method
+
+Cloudflare disallows a multi-version traffic split on versions carrying Durable Object migration metadata, including this empty no-op retention. For this current Core, review uses the exact candidate HTML and image bytes in a browser, with original live scripts and styles. Runtime wrapper responses, protected resources and staged module bytes are checked independently. No production deployment is changed for this preview. Once visual review passes, each owner is promoted directly to its single version and the full live edge and browser checks run before completion.
