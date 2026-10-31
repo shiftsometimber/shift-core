@@ -2,7 +2,6 @@ import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
 import {pathToFileURL} from 'node:url';
-import {assertLaunchDecisions} from '../shift-coach/release-contract.mjs';
 
 export const DISCOVERY_SOURCE='578982aa05c000b2f3ae4d01aea53172e67972fd';
 export const DISCOVERY_PATHS=Object.freeze([
@@ -10,11 +9,32 @@ export const DISCOVERY_PATHS=Object.freeze([
   'babylove/dynamic-public.test.mjs'
 ]);
 export const RELEASE_TAIL=Object.freeze([
-  {status:'M',path:'.github/workflows/cloudflare-production-promote.yml'},
-  {status:'A',path:'release/bounded-discovery-release-gate-20261031.mjs'}
+  {status:'A',path:'release/bounded-discovery-release-gate-20261031.mjs'},
+  {status:'M',path:'shift-coach/release-contract.mjs'}
 ]);
 
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8',maxBuffer:64*1024*1024}).trim();
+
+export function assertLaunchDecisions(manifest){
+  const receipt=(key)=>{
+    const decision=manifest.decisions?.[key];
+    assert.equal(decision?.approved,true,'Launch decision not approved: '+key);
+    for(const field of ['decidedBy','decidedAt','evidence'])assert.equal(typeof decision[field]==='string'&&Boolean(decision[field].trim()),true,'Decision evidence absent: '+key+'.'+field);
+    return decision;
+  };
+  for(const key of ['boundedScope','privacyAssessment','intendedPurpose','productionLaunch'])receipt(key);
+  if(manifest.decisions?.independentAcceptance?.approved===true)receipt('independentAcceptance');
+  else{
+    const owner=receipt('ownerAcceptance');
+    assert.equal(owner.engineeringVerified,true,'Owner acceptance needs engineering verification');
+    assert.equal(owner.independentReviewCompleted,false,'Do not present owner acceptance as independent review');
+    assert.match(owner.applicationCommit||'',/^[a-f0-9]{40}$/,'Owner acceptance source required');
+    assert.equal(owner.applicationCommit,manifest.applicationCommit,'Owner acceptance does not cover this payload');
+    assert.equal(typeof owner.verificationEvidence==='string'&&Boolean(owner.verificationEvidence.trim()),true,'Owner verification evidence absent');
+  }
+  assert.equal(manifest.completeV2,false,'This contract covers the bounded in-app coach; full v2 needs its own evidence');
+  return true;
+}
 
 export function verifyBoundedDiscoveryRelease(){
   const head=git('rev-parse','HEAD');

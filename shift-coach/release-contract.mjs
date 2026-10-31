@@ -243,4 +243,10 @@ function verifyCoachingReleaseOriginal({requireLaunch=false}={}){
  return {...proof,completeV2:false,productionLaunchApproved:manifest.decisions.productionLaunch.approved,requireLaunch};
  });
 }
-if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href)console.log(JSON.stringify(verifyCoachingRelease({requireLaunch:process.argv.includes('--require-launch')})));
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
+ const requireLaunch=process.argv.includes('--require-launch');
+ if(requireLaunch){
+  const {verifyBoundedDiscoveryRelease}=await import('../release/bounded-discovery-release-gate-20261031.mjs');
+  console.log(JSON.stringify(verifyBoundedDiscoveryRelease()));
+ }else console.log(JSON.stringify(verifyCoachingRelease({requireLaunch:false})));
+}
