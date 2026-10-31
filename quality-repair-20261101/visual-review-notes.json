@@ -1,0 +1,20 @@
+{
+  "reviewedSource": "4b218033ea2b08774bad02731a59fb3e752e3916",
+  "workflowRun": 41251128032,
+  "artifact": 13061511570,
+  "browserChecks": 84,
+  "manualViews": [
+    "Fourteen desktop overview screenshots",
+    "Fourteen phone overview screenshots",
+    "Fourteen complete phone page layouts"
+  ],
+  "findingsResolvedInNextPreview": [
+    "Health MOT photo headroom and removal of background books",
+    "Isolated half rows on longer pages",
+    "Duplicate decorative numbering on Promise cards",
+    "Distinct graphics for Finder and decision trees",
+    "Distinct commercial and advertising statements",
+    "Visible illustrative-image captions"
+  ],
+  "status": "Final refinement preview pending"
+}
