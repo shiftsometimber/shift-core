@@ -6,7 +6,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: cloudflare-production-promote
+  group: ${{ contains(github.event.head_commit.message, '[pages preflight]') && 'family-fd3-read-only-preflight' || 'cloudflare-production-promote' }}
   cancel-in-progress: false
 jobs:
   selected-pages:
