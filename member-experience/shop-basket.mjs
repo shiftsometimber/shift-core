@@ -35,7 +35,7 @@ export async function memberBasketRoutes(request,env,fetchPublic=globalThis.fetc
   if(env.MEMBER_EXPERIENCE_V1_ENABLED!=='true'||new URL(request.url).pathname!==memberBasketAsset||!['GET','HEAD'].includes(request.method))return null;
   const headers={'Content-Type':'text/javascript; charset=utf-8','Cache-Control':'no-store, private','X-Content-Type-Options':'nosniff'};
   try{
-    const response=await fetchPublic(new Request('https://shiftsometimber.co.uk/assets/shift-purchase-basket-v1.js',{headers:{Accept:'text/javascript'},redirect:'error',signal:AbortSignal.timeout(12000)}));
+    const response=await fetchPublic(new Request('https://shiftsometimber.co.uk/assets/shift-purchase-basket-v1.js',{headers:{Accept:'text/javascript'},redirect:'manual',signal:AbortSignal.timeout(12000)}));
     if(!response.ok||!/(?:javascript|ecmascript)/i.test(response.headers.get('Content-Type')||''))throw Error('Shared basket unavailable');
     const source=await response.text();if(source.length>512000)throw Error('Basket asset exceeded its boundary');
     const script=bindMemberBasket(source);

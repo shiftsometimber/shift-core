@@ -52,7 +52,7 @@ test('approved recovery delta preserves unrelated layout and bootstraps settings
 
 test('public catalogue service reads preserve owner selection and refuse credentials, foreign origins and writes',async()=>{
  const {shopCatalogueReader}=await import('../shop-catalogue-reader.mjs');
- const seen=[],env=Object.fromEntries(['MY_TIMBER_PUBLIC_TESTING','MY_TIMBER_PUBLIC_NUTRITION','MY_TIMBER_PUBLIC_KIT'].map(name=>[name,{fetch:async request=>{seen.push({name,path:new URL(request.url).pathname,headers:[...request.headers]});return new Response('CURRENT_PUBLIC_OWNER');}}]));
+ const seen=[],env=Object.fromEntries(['MY_TIMBER_PUBLIC_TESTING','MY_TIMBER_PUBLIC_NUTRITION','MY_TIMBER_PUBLIC_KIT'].map(name=>[name,{fetch:async request=>{assert.equal(request.redirect,'manual');seen.push({name,path:new URL(request.url).pathname,headers:[...request.headers]});return new Response('CURRENT_PUBLIC_OWNER');}}]));
  const read=shopCatalogueReader(env);
  for(const [path,key]of [['/shift-health/testing','TESTING'],['/shift-health/testing/vitamin-d','TESTING'],['/assets/shift-purchase-basket-v1.js','TESTING'],['/shift-health/supplements-nutrition','NUTRITION'],['/shop?item=heavyweight-tee&colour=cream','KIT']]){assert.equal(await(await read(req(path,{headers:{Accept:'text/html'}}))).text(),'CURRENT_PUBLIC_OWNER');assert.equal(seen.at(-1).name,'MY_TIMBER_PUBLIC_'+key);assert.deepEqual(seen.at(-1).headers,[['accept','text/html']]);}
  for(const request of [req('/shop',{method:'POST'}),req('/shop',{headers:{Cookie:'private'}}),req('/shop',{headers:{Authorization:'private'}}),new Request('https://foreign.invalid/shop'),req('/v1/checkout')])await assert.rejects(read(request));

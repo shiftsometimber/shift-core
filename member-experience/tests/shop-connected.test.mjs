@@ -31,10 +31,10 @@ test('catalogue projection retains stock/price/functional controls, rewrites bro
 });
 test('public projection never forwards member credentials; private response does not copy public cache or cookies',async()=>{
  let read;const response=await shopPageRoutes(req(shopBase+'/nutrition?product=creatine',{headers:{Cookie:'private-session=secret',Authorization:'Bearer private','X-Account':'secret',Referer:origin+'/member/dashboard'}}),env,async r=>{read=r;return new Response(fixture,{headers:{'Content-Type':'text/html','Set-Cookie':'public=unwanted','Cache-Control':'public,max-age=1000'}});});
- assert.equal(read.url,origin+'/shift-health/supplements-nutrition?product=creatine');assert.equal(read.method,'GET');assert.equal(read.redirect,'error');assert.deepEqual([...read.headers.keys()],['accept']);assert.equal(response.headers.get('Set-Cookie'),null);assert.equal(response.headers.get('Cache-Control'),'no-store, private');
+ assert.equal(read.url,origin+'/shift-health/supplements-nutrition?product=creatine');assert.equal(read.method,'GET');assert.equal(read.redirect,'manual');assert.deepEqual([...read.headers.keys()],['accept']);assert.equal(response.headers.get('Set-Cookie'),null);assert.equal(response.headers.get('Cache-Control'),'no-store, private');
 });
 test('unavailable, redirected, oversized or unrecognised catalogue fails closed with recovery',async()=>{
- for(const fetcher of [async()=>new Response('',{status:404}),async()=>{throw Error('network')},async()=>new Response('<main>Changed</main>',{headers:{'Content-Type':'text/html'}}),async()=>new Response('x'.repeat(2000001),{headers:{'Content-Type':'text/html'}})]){
+ for(const fetcher of [async()=>new Response('',{status:302,headers:{Location:'https://foreign.invalid/shop'}}),async()=>new Response('',{status:307,headers:{Location:'/v1/checkout'}}),async()=>new Response('',{status:404}),async()=>{throw Error('network')},async()=>new Response('<main>Changed</main>',{headers:{'Content-Type':'text/html'}}),async()=>new Response('x'.repeat(2000001),{headers:{'Content-Type':'text/html'}})]){
   const response=await shopPageRoutes(req(shopBase+'/testing'),env,fetcher);assert.equal(response.status,503);assert.match(await response.text(),/Your basket has not changed/);
  }
 });
