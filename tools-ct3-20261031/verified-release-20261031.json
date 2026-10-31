@@ -1,0 +1,460 @@
+{
+  "verified": true,
+  "source": "3fe29955936f9db091f035dae463dba6bcbc25ed",
+  "release": "tools-ct3-20261031-v1",
+  "page": "/tools",
+  "selected": "CT3",
+  "workers": [
+    {
+      "name": "shift-tools-presentation-20261022",
+      "versionId": "560c1a47-2a7c-409f-8e34-91935c0610b4",
+      "previousVersion": "b87c8bf6-566e-4abb-9d29-bf9ae6300052",
+      "retainedModules": 2,
+      "bindingsPreserved": 1
+    },
+    {
+      "name": "shift-core",
+      "versionId": "26b6d98d-5894-4bc2-bac9-c4f95cfdb583",
+      "previousVersion": "2f22b971-fc1d-4d15-a322-738619153416",
+      "retainedModules": 1,
+      "bindingsPreserved": 52
+    }
+  ],
+  "routeCount": 915,
+  "routesChanged": 0,
+  "checks": [
+    {
+      "path": "/tools",
+      "oneHeading": true,
+      "sharedShellPreserved": true,
+      "scriptsPreserved": true,
+      "remainingContentPreserved": true,
+      "existingDestinationsPreserved": true,
+      "selectedTools": 8,
+      "noTicker": true,
+      "idempotent": true
+    },
+    {
+      "path": "/tools/",
+      "oneHeading": true,
+      "sharedShellPreserved": true,
+      "scriptsPreserved": true,
+      "remainingContentPreserved": true,
+      "existingDestinationsPreserved": true,
+      "selectedTools": 8,
+      "noTicker": true,
+      "idempotent": true
+    },
+    {
+      "path": "/tools.html",
+      "oneHeading": true,
+      "sharedShellPreserved": true,
+      "scriptsPreserved": true,
+      "remainingContentPreserved": true,
+      "existingDestinationsPreserved": true,
+      "selectedTools": 8,
+      "noTicker": true,
+      "idempotent": true
+    },
+    {
+      "path": "/tools?ct3=1",
+      "oneHeading": true,
+      "sharedShellPreserved": true,
+      "scriptsPreserved": true,
+      "remainingContentPreserved": true,
+      "existingDestinationsPreserved": true,
+      "selectedTools": 8,
+      "noTicker": true,
+      "idempotent": true
+    }
+  ],
+  "protectedPages": [
+    "/tools/bmi",
+    "/tools/calories",
+    "/tools/healthy-weight",
+    "/tools/protein",
+    "/tools/waist-height",
+    "/tools/walking",
+    "/tools/water",
+    "/tools/steps",
+    "/tools/sleep",
+    "/tools/alcohol",
+    "/tools/weight-management-review",
+    "/how-are-you-feeling",
+    "/",
+    "/start-here",
+    "/programme",
+    "/shift-health",
+    "/knowledge",
+    "/explore-knowledge",
+    "/ask-timber",
+    "/treatment-centre",
+    "/member/dashboard",
+    "/mens-mental-health",
+    "/shift-for-work",
+    "/shift-health/stop-smoking"
+  ],
+  "calculatorPages": [
+    "/tools/bmi",
+    "/tools/calories",
+    "/tools/healthy-weight",
+    "/tools/protein",
+    "/tools/waist-height",
+    "/tools/walking",
+    "/tools/water",
+    "/tools/steps",
+    "/tools/sleep",
+    "/tools/alcohol",
+    "/tools/weight-management-review"
+  ],
+  "existingCodeAssetsPreserved": 196,
+  "photographSHA256": "57d0f67319af5df93793705af75b6d4dcf4e24cda05f2bbbbdeaf5815834fefc",
+  "browser": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "layout": {
+        "viewport": 1440,
+        "scrollWidth": 1425,
+        "background": "rgb(5, 5, 5)",
+        "checkinBackground": "rgb(16, 19, 13)",
+        "checkinText": "rgb(231, 227, 218)",
+        "imageLoaded": true,
+        "headings": 1,
+        "ticker": false,
+        "copy": {
+          "x": 0,
+          "y": 76,
+          "width": 1425,
+          "height": 365.4375,
+          "bottom": 441.4375
+        },
+        "photo": {
+          "x": 0,
+          "y": 76,
+          "width": 1425,
+          "height": 440,
+          "bottom": 516
+        },
+        "checkin": {
+          "x": 40,
+          "y": 516,
+          "width": 1345,
+          "height": 126,
+          "bottom": 642
+        },
+        "grid": {
+          "x": 40,
+          "y": 672,
+          "width": 1345,
+          "height": 391.890625,
+          "bottom": 1063.890625
+        },
+        "cards": [
+          {
+            "title": "BMI Calculator",
+            "href": "/tools/bmi"
+          },
+          {
+            "title": "Calorie Calculator",
+            "href": "/tools/calories"
+          },
+          {
+            "title": "Healthy Weight Range",
+            "href": "/tools/healthy-weight"
+          },
+          {
+            "title": "Protein Calculator",
+            "href": "/tools/protein"
+          },
+          {
+            "title": "Waist-to-Height",
+            "href": "/tools/waist-height"
+          },
+          {
+            "title": "Walking Calculator",
+            "href": "/tools/walking"
+          },
+          {
+            "title": "Water Calculator",
+            "href": "/tools/water"
+          },
+          {
+            "title": "More Tool Guides",
+            "href": "#ct3-more-guides"
+          }
+        ]
+      },
+      "textFill": "rgb(231, 227, 218)",
+      "anchor": {
+        "top": 108,
+        "display": "block"
+      },
+      "moreGuidesReachable": true,
+      "checkinReachable": true,
+      "calculator": {
+        "url": "https://shiftsometimber.co.uk/tools/bmi",
+        "heading": "One useful number. Not the whole verdict.",
+        "inputs": 6
+      },
+      "query": {
+        "version": "tools-ct3-20261031-v1",
+        "background": "rgb(5, 5, 5)",
+        "scrollWidth": 1425,
+        "scrollY": 0,
+        "headings": 1,
+        "cards": 8,
+        "photo": {
+          "top": 76,
+          "height": 440,
+          "width": 1425,
+          "opacity": "1"
+        },
+        "textFill": "rgb(231, 227, 218)"
+      },
+      "contactRequests": 0
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "layout": {
+        "viewport": 768,
+        "scrollWidth": 753,
+        "background": "rgb(5, 5, 5)",
+        "checkinBackground": "rgb(16, 19, 13)",
+        "checkinText": "rgb(231, 227, 218)",
+        "imageLoaded": true,
+        "headings": 1,
+        "ticker": false,
+        "copy": {
+          "x": 0,
+          "y": 64,
+          "width": 753,
+          "height": 300.46875,
+          "bottom": 364.46875
+        },
+        "photo": {
+          "x": 0,
+          "y": 364.46875,
+          "width": 753,
+          "height": 418.328125,
+          "bottom": 782.796875
+        },
+        "checkin": {
+          "x": 20,
+          "y": 802.796875,
+          "width": 713,
+          "height": 102.546875,
+          "bottom": 905.34375
+        },
+        "grid": {
+          "x": 20,
+          "y": 931.34375,
+          "width": 713,
+          "height": 668.296875,
+          "bottom": 1599.640625
+        },
+        "cards": [
+          {
+            "title": "BMI Calculator",
+            "href": "/tools/bmi"
+          },
+          {
+            "title": "Calorie Calculator",
+            "href": "/tools/calories"
+          },
+          {
+            "title": "Healthy Weight Range",
+            "href": "/tools/healthy-weight"
+          },
+          {
+            "title": "Protein Calculator",
+            "href": "/tools/protein"
+          },
+          {
+            "title": "Waist-to-Height",
+            "href": "/tools/waist-height"
+          },
+          {
+            "title": "Walking Calculator",
+            "href": "/tools/walking"
+          },
+          {
+            "title": "Water Calculator",
+            "href": "/tools/water"
+          },
+          {
+            "title": "More Tool Guides",
+            "href": "#ct3-more-guides"
+          }
+        ]
+      },
+      "textFill": "rgb(231, 227, 218)",
+      "anchor": {
+        "top": 108.34375,
+        "display": "block"
+      },
+      "moreGuidesReachable": true,
+      "checkinReachable": true,
+      "calculator": {
+        "url": "https://shiftsometimber.co.uk/tools/bmi",
+        "heading": "One useful number. Not the whole verdict.",
+        "inputs": 6
+      },
+      "query": {
+        "version": "tools-ct3-20261031-v1",
+        "background": "rgb(5, 5, 5)",
+        "scrollWidth": 753,
+        "scrollY": 0,
+        "headings": 1,
+        "cards": 8,
+        "photo": {
+          "top": 364.46875,
+          "height": 418.328125,
+          "width": 753,
+          "opacity": "1"
+        },
+        "textFill": "rgb(231, 227, 218)"
+      },
+      "contactRequests": 0
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "viewport": 390,
+        "scrollWidth": 375,
+        "background": "rgb(5, 5, 5)",
+        "checkinBackground": "rgb(16, 19, 13)",
+        "checkinText": "rgb(231, 227, 218)",
+        "imageLoaded": true,
+        "headings": 1,
+        "ticker": false,
+        "copy": {
+          "x": 0,
+          "y": 64,
+          "width": 375,
+          "height": 313.90625,
+          "bottom": 377.90625
+        },
+        "photo": {
+          "x": 0,
+          "y": 377.90625,
+          "width": 375,
+          "height": 241.921875,
+          "bottom": 619.828125
+        },
+        "checkin": {
+          "x": 20,
+          "y": 639.828125,
+          "width": 335,
+          "height": 221.78125,
+          "bottom": 861.609375
+        },
+        "grid": {
+          "x": 20,
+          "y": 887.609375,
+          "width": 335,
+          "height": 960.296875,
+          "bottom": 1847.90625
+        },
+        "cards": [
+          {
+            "title": "BMI Calculator",
+            "href": "/tools/bmi"
+          },
+          {
+            "title": "Calorie Calculator",
+            "href": "/tools/calories"
+          },
+          {
+            "title": "Healthy Weight Range",
+            "href": "/tools/healthy-weight"
+          },
+          {
+            "title": "Protein Calculator",
+            "href": "/tools/protein"
+          },
+          {
+            "title": "Waist-to-Height",
+            "href": "/tools/waist-height"
+          },
+          {
+            "title": "Walking Calculator",
+            "href": "/tools/walking"
+          },
+          {
+            "title": "Water Calculator",
+            "href": "/tools/water"
+          },
+          {
+            "title": "More Tool Guides",
+            "href": "#ct3-more-guides"
+          }
+        ]
+      },
+      "textFill": "rgb(231, 227, 218)",
+      "anchor": {
+        "top": 107.609375,
+        "display": "block"
+      },
+      "moreGuidesReachable": true,
+      "checkinReachable": true,
+      "calculator": {
+        "url": "https://shiftsometimber.co.uk/tools/bmi",
+        "heading": "One useful number. Not the whole verdict.",
+        "inputs": 6
+      },
+      "query": {
+        "version": "tools-ct3-20261031-v1",
+        "background": "rgb(5, 5, 5)",
+        "scrollWidth": 375,
+        "scrollY": 0,
+        "headings": 1,
+        "cards": 8,
+        "photo": {
+          "top": 377.90625,
+          "height": 241.921875,
+          "width": 375,
+          "opacity": "1"
+        },
+        "textFill": "rgb(231, 227, 218)"
+      },
+      "contactRequests": 0
+    }
+  ],
+  "verifiedAt": "2026-10-31T11:58:21.738Z",
+  "existingAssetPreservation": {
+    "assetSource": "6d878002af6cd68fe5f30edcd3c973cebc378b7a",
+    "files": 5701,
+    "uploaded": 0,
+    "preservedLiveTextAssets": 102
+  },
+  "workflow": {
+    "runId": 41198883234,
+    "url": "https://github.com/shiftsometimber/shift-core/actions/runs/41198883234",
+    "artifactId": 13042240362,
+    "artifactName": "tools-ct3-41198883234",
+    "rawReceipt": "receipt.json",
+    "paintDiagnostics": "live-query-diagnostic-390.json"
+  },
+  "ordinaryBrowserReview": {
+    "url": "https://shiftsometimber.co.uk/tools",
+    "version": "tools-ct3-20261031-v1",
+    "viewport": 1363,
+    "scrollWidth": 1348,
+    "headings": 1,
+    "toolCards": 8,
+    "imageLoaded": true,
+    "noTicker": true,
+    "checkinTextVisuallyCream": true,
+    "screenshot": "shift-tools-ct3-live-1793447955819.jpg",
+    "reviewedAt": "2026-10-31T12:00:35.068Z"
+  }
+}
