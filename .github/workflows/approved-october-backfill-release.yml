@@ -50,6 +50,21 @@ jobs:
           node --test public-bloods/approved-faq.test.mjs tests/public-seo-approved-title.test.mjs
           node --check release/approved-october-package-deploy.mjs
           node --check release/approved-bloods-faq-deploy.mjs
+      - name: Capture the existing shared ticker asset owner without changing traffic
+        run: |
+          mkdir -p october-release-proof
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';import {writeFileSync} from 'node:fs';
+          const account=process.env.CLOUDFLARE_ACCOUNT_ID,token=process.env.CLOUDFLARE_API_TOKEN;
+          const api=async(path)=>{const r=await fetch('https://api.cloudflare.com/client/v4'+path,{headers:{Authorization:'Bearer '+token},signal:AbortSignal.timeout(45000)});const d=await r.json();assert(r.ok&&d.success);return d.result;};
+          const routes=await api('/zones/66ec3268950adcfc837b7b8b2f8356ed/workers/routes'),matches=routes.filter(r=>r.pattern.includes('public-news-ticker-v1'));
+          assert(matches.length>0,'Shared ticker route owner must be explicit');writeFileSync('october-release-proof/ticker-routes.json',JSON.stringify(matches));console.log(JSON.stringify({tickerRoutes:matches}));
+          const names=[...new Set(matches.map(r=>r.script))];assert.equal(names.length,1);assert(names[0]);const name=names[0];
+          const list=await api('/accounts/'+account+'/workers/scripts/'+name+'/deployments'),before=[...list.deployments].sort((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];assert.equal(before.versions.length,1);assert.equal(before.versions[0].percentage,100);
+          const version=await api('/accounts/'+account+'/workers/workers/'+name+'/versions/'+before.versions[0].version_id+'?include=modules');
+          writeFileSync('october-release-proof/ticker-owner.json',JSON.stringify({name,before,version}));console.log(JSON.stringify({tickerOwner:name,version:version.id,main:version.main_module,modules:version.modules.map(m=>({name:m.name,length:m.content_base64.length}))}));
+          JS
+          exit 1 # Read-only owner capture: no upload or publication in this qualification.
       - name: Capture and qualify the latest verified runtime
         id: capture
         run: |
