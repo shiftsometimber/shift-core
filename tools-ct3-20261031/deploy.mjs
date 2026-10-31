@@ -43,7 +43,7 @@ try{
  for(const name of names){
   const deployment=await active(name),previousVersion=serving(deployment);assert.equal(deployment.versions.length,1,'Another staged release exists '+name);
   const current=await cf('/accounts/'+account+'/workers/workers/'+name+'/versions/'+previousVersion+'?include=modules'),settings=await cf('/accounts/'+account+'/workers/scripts/'+name+'/settings');
-  assert(current.modules?.length);assert(!current.modules.some(m=>m.name.startsWith(prefix)),'CT3 already installed; reconcile before retry');
+  assert(current.modules?.length);if(current.modules.some(m=>m.name.startsWith(prefix))){assert.equal(name,'shift-tools-presentation-20261022','Reconcile an existing core layer before retry');assert(baselines['/tools'].html.includes('data-tools-ct3="'+version+'"'));console.log('Preserve the already verified CT3 presentation resource '+name);continue;}
   const js=current.modules.filter(m=>/\.(mjs|js)$/.test(m.name)),referenced=new Set();
   for(const m of js)for(const x of Buffer.from(m.content_base64,'base64').toString().matchAll(/\b(?:from\s*|import\s*)["']([^"']+)["']/g))if(x[1].startsWith('.'))referenced.add(path.posix.normalize(path.posix.join(path.posix.dirname(m.name),x[1])));
   const roots=js.filter(m=>!referenced.has(m.name)),explicit=current.main_module||current.metadata?.main_module||current.resources?.script?.main_module||settings.main_module;

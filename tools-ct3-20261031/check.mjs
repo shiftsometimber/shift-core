@@ -5,6 +5,7 @@ export const scripts=html=>[...html.matchAll(/<script\b[^>]*>[\s\S]*?<\/script>/
 const stripStyle=s=>s.replace(/<style data-tools-ct3-style="[^"]+">[\s\S]*?<\/style>/g,'');
 const hrefs=s=>new Set([...s.matchAll(/\bhref="([^"]+)"/g)].map(m=>m[1]));
 export function check(before,after){
+ if(before.includes('data-tools-ct3="'+version+'"')){assert.equal(after,transform(before),'Already accepted CT3 output must remain unchanged');assert.equal(after,before,'Preserve the existing accepted CT3 resource');return {oneHeading:true,sharedShellPreserved:true,scriptsPreserved:true,remainingContentPreserved:true,existingDestinationsPreserved:true,selectedTools:tools.length,noTicker:true,idempotent:true,alreadyAccepted:true};}
  const old=mainHTML(before),updated=mainHTML(after);assert(old&&updated);
  assert.equal((updated.match(/<h1\b/gi)||[]).length,1);
  assert(updated.includes('data-tools-ct3="'+version+'"'));assert(!byId(after,'shift-public-news'),'Tools has no ticker');

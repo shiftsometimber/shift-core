@@ -12,3 +12,5 @@ test('Only owned Tools reads are changed; calculators, other pages and writes pa
  const head=await worker.fetch(new Request('https://shiftsometimber.co.uk/tools',{method:'HEAD'}));assert.equal(await head.text(),'');assert.equal(head.headers.get('X-Shift-Tools-CT3'),version);
  const img=await worker.fetch(new Request('https://shiftsometimber.co.uk'+photoPath));assert.equal(img.headers.get('Content-Type'),'image/webp');assert.deepEqual([...new Uint8Array(await img.arrayBuffer())],[1,2,3]);
 });
+
+test('A verified CT3 resource is retained exactly during a query-owner repair',()=>{const accepted=transform(fixture());assert(check(accepted,accepted).alreadyAccepted);assert.throws(()=>check(accepted,accepted.replace('Choose your tool','Changed title')),/unchanged/);});
