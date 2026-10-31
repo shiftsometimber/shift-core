@@ -1,3 +1,4 @@
+import {foodCaptureRoutes} from '../member-experience/food-capture.mjs';
 import {recordServiceJob} from '../hq-service-job-runs.mjs';
 import {withHealthKnowledgeWorker} from '../knowledge-health/production.mjs';
 import {withDynamicBabyLoveDiscovery} from '../babylove/dynamic-public.mjs';
@@ -30,6 +31,7 @@ import {withFitActiveEdit} from './fit-active-edit.mjs';
 const composedWorker = {
  ...core,
  async fetch(request,env,ctx){
+  const capture=await foodCaptureRoutes(request,env);if(capture)return capture;
   const tablet=await tabletRoutineRoutes(request,env);if(tablet)return tablet;
   const discovery=discoveryRoute(request);if(discovery)return discovery;
   const worksheet=worksheetRoute(request);if(worksheet)return worksheet;

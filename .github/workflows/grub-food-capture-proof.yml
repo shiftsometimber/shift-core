@@ -1,0 +1,38 @@
+name: Grub food capture proof
+on:
+  push:
+    branches: ['feature/grub-food-capture-20261031']
+  pull_request:
+    paths:
+      - 'member-experience/food-capture*.mjs'
+      - 'member-experience/food-entry-nutrition.mjs'
+      - 'member-experience/food-diary-client.mjs'
+      - 'member-experience/journey-portability.mjs'
+      - 'member-experience/tests/food-capture.test.mjs'
+      - '.github/workflows/grub-food-capture-proof.yml'
+permissions:
+  contents: read
+concurrency:
+  group: grub-food-capture-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  member-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Check changed JavaScript
+        run: |
+          node --check member-experience/food-capture.mjs
+          node --check member-experience/food-capture-client.mjs
+          node --check member-experience/food-entry-nutrition.mjs
+          node --check member-experience/food-diary-client.mjs
+          node --check member-experience/journey-portability.mjs
+          node --check shift-coach/worker.mjs
+      - name: Check food capture and real diary compatibility
+        run: node --test member-experience/tests/food-capture.test.mjs member-experience/tests/food-diary-london-date-20261015.test.mjs member-experience/tests/journey-portability.test.mjs
+      - name: Check existing member regression suite
+        run: node --test --test-concurrency=2 member-experience/tests/*.test.mjs
