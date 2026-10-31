@@ -2,10 +2,10 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {writeFileSync,mkdirSync,readFileSync} from 'node:fs';
 import {dirname} from 'node:path';
-export const TOOLS_VERSION='d37b9b55-0540-4e06-906f-0156003ae604';
+export const TOOLS_VERSION='be24dcbf-55db-407a-acea-331773fe4d08';
 export const TOOLS_PINS={"tools-ct3-20261031/entry.mjs":"326dcd87165e7d23f057219c014a8f9bca07d8fb8a4254edfb005e5e66d3527d","tools-ct3-20261031/html.mjs":"efb7081f50337295361cb96d6b05f5f7d7d03df773f625609299ca4e86297146","tools-ct3-20261031/media.mjs":"70320207a2f9af8e5577146c1aa29b142a67f83af4bfb9149f4465d3e7757c23","tools-ct3-20261031/presentation.mjs":"a834b85d8d1cf084a8a83c66046400834ad6303788eb8287a14ab72d54862bdf","tools-ct3-20261031/runtime.mjs":"c6b9c05c7ca7f13bc2cfb0033120fee9b8b42c77761e56b75be2d44ee297b673"};
 export const hash=b=>createHash('sha256').update(b).digest('hex');
-export function verifyToolsPackage(data,baseHash='5b1265b9ffe806d95b39a7fc7c98b41bf30eb70691aff71e032909a30b651f79'){
+export function verifyToolsPackage(data,baseHash='367787cc175181909f1f64453a2d28a741e0fcb25e28ec0140a2b6f2834e2e04'){
  assert.equal(data.main_module,'tools-ct3-20261031/entry.mjs');
  const pins={...TOOLS_PINS,'worker.js':baseHash};
  assert.deepEqual(data.modules.map(m=>m.name).sort(),Object.keys(pins).sort(),'Unexpected package module');
