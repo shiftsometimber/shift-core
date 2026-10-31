@@ -36,10 +36,15 @@ const settingBefore=await api('/workers/scripts/shift-core/settings');
 const payload={keep_assets:true,usage_model:version.usage_model,main_module:version.main_module,compatibility_date:version.compatibility_date,compatibility_flags:version.compatibility_flags,modules:expectedModules,bindings:version.bindings.map(b=>({type:'inherit',name:b.name})),annotations:{'workers/message':'Ask Timber only; exact six source-proven edits; source '+manifest.candidate,'workers/tag':'ask-timber-'+process.env.GITHUB_RUN_ID}};
 for(const field of ['assets','limits','placement'])if(version[field]!==undefined)payload[field]=version[field];
 assert.equal((await current()).id,originalDeployment.id,'Serving deployment moved before staging');
-const versions=await api('/workers/scripts/shift-core/versions');const latest=[...(versions.items??versions)].sort((a,b)=>b.number-a.number)[0];assert.equal(latest.id,originalVersionId,'Latest upload must be the captured serving version to retain assets and secrets');
+const versions=await api('/workers/scripts/shift-core/versions');const latest=[...(versions.items??versions)].sort((a,b)=>b.number-a.number)[0];let staged;
+if(latest.id===originalVersionId){
 const form=new FormData();form.set('metadata',new Blob([JSON.stringify({...payload,modules:undefined})],{type:'application/json'}));for(const m of expectedModules)form.set(m.name,new Blob([Buffer.from(m.content_base64,'base64')],{type:m.content_type}),m.name);
 assert.equal((await current()).id,originalDeployment.id,'Serving deployment moved immediately before upload');
-const staged=await api('/workers/scripts/shift-core/versions',{method:'POST',body:form});assert(staged.id);receipt.stagedVersionId=staged.id;save();
+staged=await api('/workers/scripts/shift-core/versions',{method:'POST',body:form});
+}else{
+ staged=await api('/workers/workers/shift-core/versions/'+latest.id);assert.match(staged.annotations?.['workers/tag']??'',/^ask-timber-\d+$/,'Unrelated unpromoted version must not be inherited');receipt.reusedStagedVersion=true;
+}
+assert(staged.id);receipt.stagedVersionId=staged.id;save();
 const stagedRead=await api('/workers/workers/shift-core/versions/'+staged.id+'?include=modules');
 assert.deepEqual(stagedRead.modules,expectedModules,'Provider-stored code differs');
 assert.deepEqual(stagedRead.bindings,version.bindings,'Serving bindings changed');
