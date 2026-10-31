@@ -17,7 +17,7 @@ jobs:
       CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       OCTOBER_BASELINE_SOURCE: b73f057d917ae1b5aa5a8e240782348f1cd9d626
-      OCTOBER_BASELINE_VERSION: 8a7e03bb-7ced-421e-aba8-87bca1494ff2
+      OCTOBER_BASELINE_VERSION: d37b9b55-0540-4e06-906f-0156003ae604
     steps:
       - uses: actions/checkout@v4
         with:
@@ -34,9 +34,9 @@ jobs:
           python3 - <<'PY'
           import os,subprocess
           changed=set(subprocess.check_output(['git','diff','--name-only',os.environ['OCTOBER_BASELINE_SOURCE'],'HEAD'],text=True).splitlines())
-          expected=set(["bloods-approved-faq-20261031.mjs","public-bloods/approved-faq.test.mjs","public-bloods/public-response-policy.mjs","public-bloods/shift-bloods-marketing-worker.mjs","public-bloods/shift-bloods-public.mjs","public-bloods/wrangler.jsonc","public-seo-technical.mjs","radar-integration-v1.js","radar-official-intake-v1.js","release/approved-bloods-faq-deploy.mjs","release/approved-october-package-deploy.mjs","release/selected-tools-preservation-20261031.mjs","tests/bloods-approved-faq-20261031.test.mjs","tests/public-seo-technical.test.mjs","tests/radar-official-intake-v1.test.mjs",".github/workflows/approved-october-backfill-release.yml"])
+          expected=set(["bloods-approved-faq-20261031.mjs","public-bloods/approved-faq.test.mjs","public-bloods/public-response-policy.mjs","public-bloods/shift-bloods-marketing-worker.mjs","public-bloods/shift-bloods-public.mjs","public-bloods/wrangler.jsonc","public-seo-technical.mjs","radar-integration-v1.js","radar-official-intake-v1.js","release/approved-bloods-faq-deploy.mjs","release/approved-october-package-deploy.mjs","release/selected-tools-preservation-20261031.mjs","tests/bloods-approved-faq-20261031.test.mjs","tests/public-seo-approved-title.test.mjs","tests/public-seo-technical.test.mjs","tests/radar-official-intake-v1.test.mjs",".github/workflows/approved-october-backfill-release.yml"])
           assert changed==expected,(changed,expected)
-          pins={"bloods-approved-faq-20261031.mjs":"2289f9a938e10e8161f4642d8a4e3fa6e05cdcff","public-bloods/approved-faq.test.mjs":"b8b16b4f9401db0e68ae9a45fa6bb45323edf6d6","public-bloods/public-response-policy.mjs":"1b171a2d6c5892ddb28caadd88305e9a4eb489cd","public-bloods/shift-bloods-marketing-worker.mjs":"5121833775c2de240f1791ff2cdaa9bb09d31f18","public-bloods/shift-bloods-public.mjs":"b06d5fcd129b07db8b491dcf1dfaa442c7724a25","public-bloods/wrangler.jsonc":"e96ab0c671770b5275d55cde0575ee0f4d6a5483","public-seo-technical.mjs":"8b947984fe76b5a2c803e7676d4e30aa5ca0bd01","radar-integration-v1.js":"b52451478f4f17278887884ae56b1bceb9590514","radar-official-intake-v1.js":"409c0acf8f7d5debc00689c4dc6d241e4f6d1267","release/approved-bloods-faq-deploy.mjs":"92aadf0f14a177b5d3417d67d6c4d0aa8629efb7","release/approved-october-package-deploy.mjs":"cf3ee8a8d8361006eac6caa3f8b1218e8e09ce90","release/selected-tools-preservation-20261031.mjs":"d5f9a66f92551e3505d78f7119cdfa1db3b05798","tests/bloods-approved-faq-20261031.test.mjs":"e8867a2f7909f5e75cb66fa5547167c8529b5a80","tests/public-seo-technical.test.mjs":"cf8d0b6fd40bf505ccb1e70710bc368e3fb70494","tests/radar-official-intake-v1.test.mjs":"39f0108c41a3be9f2de553f156f7950952f71a9b"}
+          pins={"bloods-approved-faq-20261031.mjs":"2289f9a938e10e8161f4642d8a4e3fa6e05cdcff","public-bloods/approved-faq.test.mjs":"b8b16b4f9401db0e68ae9a45fa6bb45323edf6d6","public-bloods/public-response-policy.mjs":"1b171a2d6c5892ddb28caadd88305e9a4eb489cd","public-bloods/shift-bloods-marketing-worker.mjs":"5121833775c2de240f1791ff2cdaa9bb09d31f18","public-bloods/shift-bloods-public.mjs":"b06d5fcd129b07db8b491dcf1dfaa442c7724a25","public-bloods/wrangler.jsonc":"e96ab0c671770b5275d55cde0575ee0f4d6a5483","public-seo-technical.mjs":"6442b77b1681df09af7bc7c6732d998413f0ee6a","radar-integration-v1.js":"b52451478f4f17278887884ae56b1bceb9590514","radar-official-intake-v1.js":"409c0acf8f7d5debc00689c4dc6d241e4f6d1267","release/approved-bloods-faq-deploy.mjs":"92aadf0f14a177b5d3417d67d6c4d0aa8629efb7","release/approved-october-package-deploy.mjs":"cf3ee8a8d8361006eac6caa3f8b1218e8e09ce90","release/selected-tools-preservation-20261031.mjs":"c967f3626bb53e9192794b2562ab2f82d1627379","tests/bloods-approved-faq-20261031.test.mjs":"e8867a2f7909f5e75cb66fa5547167c8529b5a80","tests/public-seo-approved-title.test.mjs":"046133afd63a7b6f5193ecfb11a810265de77b7b","tests/public-seo-technical.test.mjs":"cf8d0b6fd40bf505ccb1e70710bc368e3fb70494","tests/radar-official-intake-v1.test.mjs":"39f0108c41a3be9f2de553f156f7950952f71a9b"}
           for path,sha in pins.items():assert subprocess.check_output(['git','rev-parse','HEAD:'+path],text=True).strip()==sha,path
           PY
       - name: Run approved repair regressions and retained build preservation checks
@@ -47,7 +47,7 @@ jobs:
           node --check public-seo-technical.mjs
           node --test tests/radar-official-intake-v1.test.mjs tests/bloods-approved-faq-20261031.test.mjs tests/public-seo-technical.test.mjs tests/radar-new-publication-email.test.mjs tests/radar-live-email-v1.test.mjs tests/radar-live-email-redirect-v1.test.mjs
           node --test tests/canonical-runtime-build.test.mjs tests/independent-presentation-preservation.test.mjs
-          node --test public-bloods/approved-faq.test.mjs
+          node --test public-bloods/approved-faq.test.mjs tests/public-seo-approved-title.test.mjs
           node --check release/approved-october-package-deploy.mjs
           node --check release/approved-bloods-faq-deploy.mjs
       - name: Capture and qualify the latest verified runtime
@@ -71,6 +71,7 @@ jobs:
             const r=await fetch('https://shiftsometimber.co.uk'+path,{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(20000)});
             assert.equal(r.status,200,path);pages[path]=createHash('sha256').update(clean(await r.text())).digest('hex');
           }
+          const yr=await fetch('https://shiftsometimber.co.uk/medicine-news/yellow-card-reporting-update-october-2026',{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(20000)});assert.equal(yr.status,200);const original=clean(await yr.text());const {restoreApprovedYellowCardTitle,APPROVED_YELLOW_CARD_PATH}=await import('./public-seo-technical.mjs');const expected=restoreApprovedYellowCardTitle(original,APPROVED_YELLOW_CARD_PATH);assert.notEqual(expected,original,'The approved full-title repair must be necessary before upload');writeFileSync('october-release-proof/yellow-before.html',original);writeFileSync('october-release-proof/yellow-expected.html',expected);
           writeFileSync('october-release-proof/before.json',JSON.stringify(pages,null,2));
           JS
       - name: Promote the exact current source through the existing owned runtime helper
@@ -106,11 +107,16 @@ jobs:
           assert.equal(repairTechnicalSitemap(sitemap),sitemap,'Sitemap must already satisfy the retained exclusions and verified owners');
           const locs=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1]);
           assert.equal(locs.filter(x=>x.endsWith('/medicine-news/uk-archive-pharmacy-cholesterol-pilot-england')).length,1);
+          const yr=await fetch('https://shiftsometimber.co.uk/medicine-news/yellow-card-reporting-update-october-2026',{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(20000)});assert.equal(yr.status,200);const yellow=clean(await yr.text());assert.equal(yellow,readFileSync('october-release-proof/yellow-expected.html','utf8'),'Only the three approved metadata title restorations may change');writeFileSync('october-release-proof/yellow-after.html',yellow);
           writeFileSync('october-release-proof/verification.json',JSON.stringify({verified:true,source:receipt.source,version:receipt.versionId,buildSHA256:receipt.buildSHA256,publicPages:after,noRealTestEmail:true},null,2));
           JS
-      - name: Publish and verify the exact FAQ through its current Bloods owner
+      - name: Retain the already verified Bloods FAQ without another upload
         if: steps.verifycore.outcome == 'success'
-        run: node release/approved-bloods-faq-deploy.mjs
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';import {writeFileSync} from 'node:fs';import {NHS_HOME_TEST_FAQ} from './public-bloods/shift-bloods-public.mjs';
+          const r=await fetch('https://shiftsometimber.co.uk/shift-health/blood-tests',{signal:AbortSignal.timeout(20000)});assert.equal(r.status,200);const s=await r.text();assert.equal(s.split(NHS_HOME_TEST_FAQ).length,2);assert(s.includes('Ordering is closed and no payment can be taken.'));writeFileSync('october-release-proof/bloods-retained.json',JSON.stringify({verified:true,unchangedOwner:true,noUpload:true}));
+          JS
       - name: Restore only this owned runtime if verification fails
         if: ${{ failure() && steps.capture.outcome == 'success' && steps.verifycore.outcome != 'success' }}
         run: |
