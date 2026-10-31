@@ -1,0 +1,1210 @@
+{
+  "verified": true,
+  "productionPublished": false,
+  "source": "c6a1eda5d0469fdd95ae28a0c8680e1c7f3ea9a3",
+  "workers": [
+    {
+      "name": "shift-about-presentation-20261022",
+      "versionId": "4ac7fad5-b2d9-4ae8-a79b-b0b98bfd185c",
+      "previousVersion": "10ef7c2e-6634-4191-ba3e-1e75b6c74631"
+    },
+    {
+      "name": "shift-contact-presentation-20261022",
+      "versionId": "337617c2-3713-4504-a25d-506526e8f082",
+      "previousVersion": "4b57735c-8423-4598-be99-d12bc9aed3f3"
+    },
+    {
+      "name": "shift-seo-followup-v3-20261024",
+      "versionId": "673a1e12-87b4-4b72-ba45-d6bc4a275da2",
+      "previousVersion": "6760bc8f-d298-4417-ac07-db0c832a6a23"
+    },
+    {
+      "name": "shift-newsroom-presentation-20261022",
+      "versionId": "a49ea51b-26c9-4427-8ea6-ea7d22aa21d4",
+      "previousVersion": "5aa9b8ea-4ed9-4c84-b3a6-ebcd6628d97b"
+    },
+    {
+      "name": "shift-quiet-presentation-20261022",
+      "versionId": "48fb631c-2665-4b4e-8c03-00763e8587b3",
+      "previousVersion": "a3703f25-6b9f-4e8e-b905-7804369ec52e"
+    },
+    {
+      "name": "shift-core",
+      "versionId": "6eab86a1-c15b-42bb-adba-df2027a6c2d2",
+      "previousVersion": "52e6c556-0fb9-4214-af8e-f45cb07b06a0"
+    },
+    {
+      "name": "shift-life-presentation-20261022",
+      "versionId": "7f2c5fd6-6364-4e7e-95a2-f95b249973a2",
+      "previousVersion": "7f572aaf-bfe8-46be-a44b-c39247d177fd"
+    }
+  ],
+  "checks": [
+    {
+      "path": "/about",
+      "key": "about",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    },
+    {
+      "path": "/about?presentation=1",
+      "key": "about",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    },
+    {
+      "path": "/about/",
+      "key": "about",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    },
+    {
+      "path": "/about/?presentation=1",
+      "key": "about",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    },
+    {
+      "path": "/about.html",
+      "key": "about",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    },
+    {
+      "path": "/about.html?presentation=1",
+      "key": "about",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    },
+    {
+      "path": "/contact",
+      "key": "contact",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    },
+    {
+      "path": "/contact?presentation=1",
+      "key": "contact",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    },
+    {
+      "path": "/contact/",
+      "key": "contact",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    },
+    {
+      "path": "/contact/?presentation=1",
+      "key": "contact",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    },
+    {
+      "path": "/contact.html",
+      "key": "contact",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    },
+    {
+      "path": "/contact.html?presentation=1",
+      "key": "contact",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    },
+    {
+      "path": "/shift-newsroom",
+      "key": "newsroom",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    },
+    {
+      "path": "/shift-newsroom?presentation=1",
+      "key": "newsroom",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    },
+    {
+      "path": "/shift-newsroom/",
+      "key": "newsroom",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    },
+    {
+      "path": "/shift-newsroom/?presentation=1",
+      "key": "newsroom",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    },
+    {
+      "path": "/shift-newsroom.html",
+      "key": "newsroom",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    },
+    {
+      "path": "/shift-newsroom.html?presentation=1",
+      "key": "newsroom",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    },
+    {
+      "path": "/clinic-gone-quiet",
+      "key": "continuity",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    },
+    {
+      "path": "/clinic-gone-quiet?presentation=1",
+      "key": "continuity",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    },
+    {
+      "path": "/clinic-gone-quiet/",
+      "key": "continuity",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    },
+    {
+      "path": "/clinic-gone-quiet.html",
+      "key": "continuity",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    },
+    {
+      "path": "/life-back",
+      "key": "life-back",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    },
+    {
+      "path": "/life-back?presentation=1",
+      "key": "life-back",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    },
+    {
+      "path": "/life-back/",
+      "key": "life-back",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    },
+    {
+      "path": "/life-back.html",
+      "key": "life-back",
+      "oneHeading": true,
+      "shellPreserved": true,
+      "scriptsPreserved": true,
+      "contentPreserved": true,
+      "linksPreserved": true,
+      "idempotent": true
+    }
+  ],
+  "browser": [
+    {
+      "page": "about",
+      "selected": "MS1",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "layout": {
+        "marker": "selected-pages-20261031-v1",
+        "key": "about",
+        "viewport": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [],
+        "styles": [
+          {
+            "className": "sp-letter",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ],
+        "formControls": []
+      },
+      "behaviour": {
+        "story": {
+          "top": 109.75,
+          "text": "It wasn't just my weight."
+        }
+      },
+      "query": {
+        "marker": "selected-pages-20261031-v1",
+        "scrollWidth": 1425,
+        "headings": 1
+      }
+    },
+    {
+      "page": "contact",
+      "selected": "CO1",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "layout": {
+        "marker": "selected-pages-20261031-v1",
+        "key": "contact",
+        "viewport": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [],
+        "styles": [
+          {
+            "className": "ct-form-card",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ],
+        "formControls": [
+          {
+            "id": "ct-name",
+            "name": "name",
+            "background": "rgb(240, 236, 228)",
+            "colour": "rgb(5, 5, 5)"
+          },
+          {
+            "id": "ct-email",
+            "name": "email",
+            "background": "rgb(240, 236, 228)",
+            "colour": "rgb(5, 5, 5)"
+          },
+          {
+            "id": "ct-subject",
+            "name": "subject",
+            "background": "rgb(240, 236, 228)",
+            "colour": "rgb(5, 5, 5)"
+          },
+          {
+            "id": "ct-message",
+            "name": "message",
+            "background": "rgb(240, 236, 228)",
+            "colour": "rgb(5, 5, 5)"
+          },
+          {
+            "id": "",
+            "name": "privacy",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "invalidEmailRejected": true,
+        "formPosition": {
+          "intro": {
+            "x": 144.5,
+            "y": 120,
+            "width": 540,
+            "height": 670.859375
+          },
+          "form": {
+            "x": 740.5,
+            "y": 120,
+            "width": 540,
+            "height": 656.90625
+          }
+        },
+        "formNotSubmitted": true
+      },
+      "query": {
+        "marker": "selected-pages-20261031-v1",
+        "scrollWidth": 1425,
+        "headings": 1
+      }
+    },
+    {
+      "page": "newsroom",
+      "selected": "NR3",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "layout": {
+        "marker": "selected-pages-20261031-v1",
+        "key": "newsroom",
+        "viewport": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": true,
+        "images": [],
+        "styles": [
+          {
+            "className": "nr-story",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          },
+          {
+            "className": "nr-story",
+            "background": "rgb(5, 5, 5)",
+            "colour": "rgb(231, 227, 218)"
+          },
+          {
+            "className": "nr-story",
+            "background": "rgb(5, 5, 5)",
+            "colour": "rgb(231, 227, 218)"
+          }
+        ],
+        "formControls": [
+          {
+            "id": "",
+            "name": "q",
+            "background": "rgb(12, 14, 10)",
+            "colour": "rgb(231, 227, 218)"
+          },
+          {
+            "id": "news-sort",
+            "name": "sort",
+            "background": "rgb(12, 14, 10)",
+            "colour": "rgb(231, 227, 218)"
+          },
+          {
+            "id": "news-medicine",
+            "name": "medicine",
+            "background": "rgb(12, 14, 10)",
+            "colour": "rgb(231, 227, 218)"
+          },
+          {
+            "id": "news-topic",
+            "name": "topic",
+            "background": "rgb(12, 14, 10)",
+            "colour": "rgb(231, 227, 218)"
+          },
+          {
+            "id": "news-region",
+            "name": "region",
+            "background": "rgb(12, 14, 10)",
+            "colour": "rgb(231, 227, 218)"
+          }
+        ]
+      },
+      "behaviour": {
+        "initialStories": 12,
+        "mixedGrid": true,
+        "searchResults": 1,
+        "sortWorks": true,
+        "moreStories": 24,
+        "refineWorks": true
+      },
+      "query": {
+        "marker": "selected-pages-20261031-v1",
+        "scrollWidth": 1425,
+        "headings": 1
+      }
+    },
+    {
+      "page": "continuity",
+      "selected": "CY3",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "layout": {
+        "marker": "selected-pages-20261031-v1",
+        "key": "continuity",
+        "viewport": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": true,
+        "images": [
+          {
+            "src": "/assets/approved-pages-20261031/continuity-notebook.webp",
+            "complete": true,
+            "width": 1774
+          }
+        ],
+        "styles": [],
+        "formControls": []
+      },
+      "behaviour": {
+        "routes": {
+          "top": 100.09375,
+          "text": "\n  START WITH WHERE YOU ARE\n  What\u2019s changed for you?\n  Choose the bit that needs a hand. You can read the next step here before signing in.\n  \n   My clinic isn\u2019t replying.\n    First, separate a health concern from an order problem.\n    For an order: gather your reference and ask which stage has been reached: assessment, prescribing, dispensing or delivery. Payment taken, prescription approved and parcel dispatched are different stages.\n    For a medicine question or supply gap: contact the responsible prescriber or pharmacist for individual advice. Tell them what you take, when you last took it and how much is left. Do not guess at dose changes or use somebody else\u2019s prescription.\n    NHS help when prescribed medicine runs out does not guarantee emergency supply of a particular medicine or transfer of private treatment to the NHS.\n    Keep a dated copy of your messages. If a service response is overdue, follow its complaints process while seeking any clinical advice separately.\n    Use the contact prompt below \u2192\n   \n   I\u2019m changing provider.\n    Keep your existing My Timber account. Gather the treatment information and records you already have, plus the question you most need answered.\n    A new clinician decides what assessment is needed and whether they can take over your treatment. An existing prescription or dose is not a guarantee of acceptance.\n    Prepare for changing provider \u2192\n   \n   Treatment is changing or ending.\n    Ask your prescribing service for the clinical plan and follow-up arrangements.\n    Alongside that, choose one everyday thing you want to keep steady: a meal routine, movement that suits you or something you want to get back to. Our coming-off guide can help you prepare that conversation.\n    Read the coming-off guide \u2192\n    Already stopped? My Timber has a free 12-week starting pathway for everyday food, movement and check-ins. The practical tools remain available afterwards.\n    Open the 12-week starting pathway \u2192\n   \n   Money is making this difficult.\n    You can keep using free My Timber without buying treatment.\n    Tell your provider what you can manage and ask about your options and any cancellation terms. NHS prescribing has its own eligibility and assessment; it does not automatically replace a private prescription.\n    Open free everyday support \u2192\n   \n   My appetite or confidence has changed.\n    Start with what is happening in your day. Getting home hungry? Constantly worrying about the scales? Not feeling like yourself despite the changes?\n    Use the food-noise guide, Life Back or Good to Talk to find an appropriate next step. Persistent symptoms, significant distress or eating concerns deserve professional support.\n    Find support through Good to Talk \u2192\n   \n   I\u2019ve been away. Help me pick things up.\n    No guilt. No need to explain the gap.\n    Open the same account, look at what helped before and choose one thing that fits now. You do not have to catch up on everything.\n    Pick up in My Timber \u2192\n   \n  \n "
+        },
+        "currentReviewRetained": true
+      },
+      "query": {
+        "marker": "selected-pages-20261031-v1",
+        "scrollWidth": 1425,
+        "headings": 1
+      }
+    },
+    {
+      "page": "life-back",
+      "selected": "LB2",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "layout": {
+        "marker": "selected-pages-20261031-v1",
+        "key": "life-back",
+        "viewport": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [
+          {
+            "src": "/assets/approved-pages-20261031/life-back-mosaic.webp",
+            "complete": true,
+            "width": 1254
+          }
+        ],
+        "styles": [
+          {
+            "className": "lbp-needs",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ],
+        "formControls": []
+      },
+      "behaviour": {
+        "memberDestination": "/member/life-back",
+        "steps": 3
+      },
+      "query": {
+        "marker": "selected-pages-20261031-v1",
+        "scrollWidth": 1425,
+        "headings": 1
+      }
+    },
+    {
+      "page": "about",
+      "selected": "MS1",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "layout": {
+        "marker": "selected-pages-20261031-v1",
+        "key": "about",
+        "viewport": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [],
+        "styles": [
+          {
+            "className": "sp-letter",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ],
+        "formControls": []
+      },
+      "behaviour": {
+        "story": {
+          "top": 109.734375,
+          "text": "It wasn't just my weight."
+        }
+      },
+      "query": {
+        "marker": "selected-pages-20261031-v1",
+        "scrollWidth": 753,
+        "headings": 1
+      }
+    },
+    {
+      "page": "contact",
+      "selected": "CO1",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "layout": {
+        "marker": "selected-pages-20261031-v1",
+        "key": "contact",
+        "viewport": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [],
+        "styles": [
+          {
+            "className": "ct-form-card",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ],
+        "formControls": [
+          {
+            "id": "ct-name",
+            "name": "name",
+            "background": "rgb(240, 236, 228)",
+            "colour": "rgb(5, 5, 5)"
+          },
+          {
+            "id": "ct-email",
+            "name": "email",
+            "background": "rgb(240, 236, 228)",
+            "colour": "rgb(5, 5, 5)"
+          },
+          {
+            "id": "ct-subject",
+            "name": "subject",
+            "background": "rgb(240, 236, 228)",
+            "colour": "rgb(5, 5, 5)"
+          },
+          {
+            "id": "ct-message",
+            "name": "message",
+            "background": "rgb(240, 236, 228)",
+            "colour": "rgb(5, 5, 5)"
+          },
+          {
+            "id": "",
+            "name": "privacy",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "invalidEmailRejected": true,
+        "formPosition": {
+          "intro": {
+            "x": 24,
+            "y": 92,
+            "width": 338.5,
+            "height": 724.828125
+          },
+          "form": {
+            "x": 390.5,
+            "y": 92,
+            "width": 338.5,
+            "height": 692.90625
+          }
+        },
+        "formNotSubmitted": true
+      },
+      "query": {
+        "marker": "selected-pages-20261031-v1",
+        "scrollWidth": 753,
+        "headings": 1
+      }
+    },
+    {
+      "page": "newsroom",
+      "selected": "NR3",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "layout": {
+        "marker": "selected-pages-20261031-v1",
+        "key": "newsroom",
+        "viewport": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": true,
+        "images": [],
+        "styles": [
+          {
+            "className": "nr-story",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          },
+          {
+            "className": "nr-story",
+            "background": "rgb(5, 5, 5)",
+            "colour": "rgb(231, 227, 218)"
+          },
+          {
+            "className": "nr-story",
+            "background": "rgb(5, 5, 5)",
+            "colour": "rgb(231, 227, 218)"
+          }
+        ],
+        "formControls": [
+          {
+            "id": "",
+            "name": "q",
+            "background": "rgb(12, 14, 10)",
+            "colour": "rgb(231, 227, 218)"
+          },
+          {
+            "id": "news-sort",
+            "name": "sort",
+            "background": "rgb(12, 14, 10)",
+            "colour": "rgb(231, 227, 218)"
+          },
+          {
+            "id": "news-medicine",
+            "name": "medicine",
+            "background": "rgb(12, 14, 10)",
+            "colour": "rgb(231, 227, 218)"
+          },
+          {
+            "id": "news-topic",
+            "name": "topic",
+            "background": "rgb(12, 14, 10)",
+            "colour": "rgb(231, 227, 218)"
+          },
+          {
+            "id": "news-region",
+            "name": "region",
+            "background": "rgb(12, 14, 10)",
+            "colour": "rgb(231, 227, 218)"
+          }
+        ]
+      },
+      "behaviour": {
+        "initialStories": 12,
+        "mixedGrid": true,
+        "searchResults": 1,
+        "sortWorks": true,
+        "moreStories": 24,
+        "refineWorks": true
+      },
+      "query": {
+        "marker": "selected-pages-20261031-v1",
+        "scrollWidth": 753,
+        "headings": 1
+      }
+    },
+    {
+      "page": "continuity",
+      "selected": "CY3",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "layout": {
+        "marker": "selected-pages-20261031-v1",
+        "key": "continuity",
+        "viewport": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": true,
+        "images": [
+          {
+            "src": "/assets/approved-pages-20261031/continuity-notebook.webp",
+            "complete": true,
+            "width": 1774
+          }
+        ],
+        "styles": [],
+        "formControls": []
+      },
+      "behaviour": {
+        "routes": {
+          "top": 100.34375,
+          "text": "\n  START WITH WHERE YOU ARE\n  What\u2019s changed for you?\n  Choose the bit that needs a hand. You can read the next step here before signing in.\n  \n   My clinic isn\u2019t replying.\n    First, separate a health concern from an order problem.\n    For an order: gather your reference and ask which stage has been reached: assessment, prescribing, dispensing or delivery. Payment taken, prescription approved and parcel dispatched are different stages.\n    For a medicine question or supply gap: contact the responsible prescriber or pharmacist for individual advice. Tell them what you take, when you last took it and how much is left. Do not guess at dose changes or use somebody else\u2019s prescription.\n    NHS help when prescribed medicine runs out does not guarantee emergency supply of a particular medicine or transfer of private treatment to the NHS.\n    Keep a dated copy of your messages. If a service response is overdue, follow its complaints process while seeking any clinical advice separately.\n    Use the contact prompt below \u2192\n   \n   I\u2019m changing provider.\n    Keep your existing My Timber account. Gather the treatment information and records you already have, plus the question you most need answered.\n    A new clinician decides what assessment is needed and whether they can take over your treatment. An existing prescription or dose is not a guarantee of acceptance.\n    Prepare for changing provider \u2192\n   \n   Treatment is changing or ending.\n    Ask your prescribing service for the clinical plan and follow-up arrangements.\n    Alongside that, choose one everyday thing you want to keep steady: a meal routine, movement that suits you or something you want to get back to. Our coming-off guide can help you prepare that conversation.\n    Read the coming-off guide \u2192\n    Already stopped? My Timber has a free 12-week starting pathway for everyday food, movement and check-ins. The practical tools remain available afterwards.\n    Open the 12-week starting pathway \u2192\n   \n   Money is making this difficult.\n    You can keep using free My Timber without buying treatment.\n    Tell your provider what you can manage and ask about your options and any cancellation terms. NHS prescribing has its own eligibility and assessment; it does not automatically replace a private prescription.\n    Open free everyday support \u2192\n   \n   My appetite or confidence has changed.\n    Start with what is happening in your day. Getting home hungry? Constantly worrying about the scales? Not feeling like yourself despite the changes?\n    Use the food-noise guide, Life Back or Good to Talk to find an appropriate next step. Persistent symptoms, significant distress or eating concerns deserve professional support.\n    Find support through Good to Talk \u2192\n   \n   I\u2019ve been away. Help me pick things up.\n    No guilt. No need to explain the gap.\n    Open the same account, look at what helped before and choose one thing that fits now. You do not have to catch up on everything.\n    Pick up in My Timber \u2192\n   \n  \n "
+        },
+        "currentReviewRetained": true
+      },
+      "query": {
+        "marker": "selected-pages-20261031-v1",
+        "scrollWidth": 753,
+        "headings": 1
+      }
+    },
+    {
+      "page": "life-back",
+      "selected": "LB2",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "layout": {
+        "marker": "selected-pages-20261031-v1",
+        "key": "life-back",
+        "viewport": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [
+          {
+            "src": "/assets/approved-pages-20261031/life-back-mosaic.webp",
+            "complete": true,
+            "width": 1254
+          }
+        ],
+        "styles": [
+          {
+            "className": "lbp-needs",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ],
+        "formControls": []
+      },
+      "behaviour": {
+        "memberDestination": "/member/life-back",
+        "steps": 3
+      },
+      "query": {
+        "marker": "selected-pages-20261031-v1",
+        "scrollWidth": 753,
+        "headings": 1
+      }
+    },
+    {
+      "page": "about",
+      "selected": "MS1",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "marker": "selected-pages-20261031-v1",
+        "key": "about",
+        "viewport": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [],
+        "styles": [
+          {
+            "className": "sp-letter",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ],
+        "formControls": []
+      },
+      "behaviour": {
+        "story": {
+          "top": 110.171875,
+          "text": "It wasn't just my weight."
+        }
+      },
+      "query": {
+        "marker": "selected-pages-20261031-v1",
+        "scrollWidth": 375,
+        "headings": 1
+      }
+    },
+    {
+      "page": "contact",
+      "selected": "CO1",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "marker": "selected-pages-20261031-v1",
+        "key": "contact",
+        "viewport": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [],
+        "styles": [
+          {
+            "className": "ct-form-card",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ],
+        "formControls": [
+          {
+            "id": "ct-name",
+            "name": "name",
+            "background": "rgb(240, 236, 228)",
+            "colour": "rgb(5, 5, 5)"
+          },
+          {
+            "id": "ct-email",
+            "name": "email",
+            "background": "rgb(240, 236, 228)",
+            "colour": "rgb(5, 5, 5)"
+          },
+          {
+            "id": "ct-subject",
+            "name": "subject",
+            "background": "rgb(240, 236, 228)",
+            "colour": "rgb(5, 5, 5)"
+          },
+          {
+            "id": "ct-message",
+            "name": "message",
+            "background": "rgb(240, 236, 228)",
+            "colour": "rgb(5, 5, 5)"
+          },
+          {
+            "id": "",
+            "name": "privacy",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ]
+      },
+      "behaviour": {
+        "invalidEmailRejected": true,
+        "formPosition": {
+          "intro": {
+            "x": 20,
+            "y": -143,
+            "width": 335,
+            "height": 684.4375
+          },
+          "form": {
+            "x": 20,
+            "y": 566.4375,
+            "width": 335,
+            "height": 686.90625
+          }
+        },
+        "formNotSubmitted": true
+      },
+      "query": {
+        "marker": "selected-pages-20261031-v1",
+        "scrollWidth": 375,
+        "headings": 1
+      }
+    },
+    {
+      "page": "newsroom",
+      "selected": "NR3",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "marker": "selected-pages-20261031-v1",
+        "key": "newsroom",
+        "viewport": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": true,
+        "images": [],
+        "styles": [
+          {
+            "className": "nr-story",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          },
+          {
+            "className": "nr-story",
+            "background": "rgb(5, 5, 5)",
+            "colour": "rgb(231, 227, 218)"
+          },
+          {
+            "className": "nr-story",
+            "background": "rgb(5, 5, 5)",
+            "colour": "rgb(231, 227, 218)"
+          }
+        ],
+        "formControls": [
+          {
+            "id": "",
+            "name": "q",
+            "background": "rgb(12, 14, 10)",
+            "colour": "rgb(231, 227, 218)"
+          },
+          {
+            "id": "news-sort",
+            "name": "sort",
+            "background": "rgb(12, 14, 10)",
+            "colour": "rgb(231, 227, 218)"
+          },
+          {
+            "id": "news-medicine",
+            "name": "medicine",
+            "background": "rgb(12, 14, 10)",
+            "colour": "rgb(231, 227, 218)"
+          },
+          {
+            "id": "news-topic",
+            "name": "topic",
+            "background": "rgb(12, 14, 10)",
+            "colour": "rgb(231, 227, 218)"
+          },
+          {
+            "id": "news-region",
+            "name": "region",
+            "background": "rgb(12, 14, 10)",
+            "colour": "rgb(231, 227, 218)"
+          }
+        ]
+      },
+      "behaviour": {
+        "initialStories": 12,
+        "searchResults": 1,
+        "sortWorks": true,
+        "moreStories": 24,
+        "refineWorks": true
+      },
+      "query": {
+        "marker": "selected-pages-20261031-v1",
+        "scrollWidth": 375,
+        "headings": 1
+      }
+    },
+    {
+      "page": "continuity",
+      "selected": "CY3",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "marker": "selected-pages-20261031-v1",
+        "key": "continuity",
+        "viewport": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": true,
+        "images": [
+          {
+            "src": "/assets/approved-pages-20261031/continuity-notebook.webp",
+            "complete": true,
+            "width": 1774
+          }
+        ],
+        "styles": [],
+        "formControls": []
+      },
+      "behaviour": {
+        "routes": {
+          "top": 100.140625,
+          "text": "\n  START WITH WHERE YOU ARE\n  What\u2019s changed for you?\n  Choose the bit that needs a hand. You can read the next step here before signing in.\n  \n   My clinic isn\u2019t replying.\n    First, separate a health concern from an order problem.\n    For an order: gather your reference and ask which stage has been reached: assessment, prescribing, dispensing or delivery. Payment taken, prescription approved and parcel dispatched are different stages.\n    For a medicine question or supply gap: contact the responsible prescriber or pharmacist for individual advice. Tell them what you take, when you last took it and how much is left. Do not guess at dose changes or use somebody else\u2019s prescription.\n    NHS help when prescribed medicine runs out does not guarantee emergency supply of a particular medicine or transfer of private treatment to the NHS.\n    Keep a dated copy of your messages. If a service response is overdue, follow its complaints process while seeking any clinical advice separately.\n    Use the contact prompt below \u2192\n   \n   I\u2019m changing provider.\n    Keep your existing My Timber account. Gather the treatment information and records you already have, plus the question you most need answered.\n    A new clinician decides what assessment is needed and whether they can take over your treatment. An existing prescription or dose is not a guarantee of acceptance.\n    Prepare for changing provider \u2192\n   \n   Treatment is changing or ending.\n    Ask your prescribing service for the clinical plan and follow-up arrangements.\n    Alongside that, choose one everyday thing you want to keep steady: a meal routine, movement that suits you or something you want to get back to. Our coming-off guide can help you prepare that conversation.\n    Read the coming-off guide \u2192\n    Already stopped? My Timber has a free 12-week starting pathway for everyday food, movement and check-ins. The practical tools remain available afterwards.\n    Open the 12-week starting pathway \u2192\n   \n   Money is making this difficult.\n    You can keep using free My Timber without buying treatment.\n    Tell your provider what you can manage and ask about your options and any cancellation terms. NHS prescribing has its own eligibility and assessment; it does not automatically replace a private prescription.\n    Open free everyday support \u2192\n   \n   My appetite or confidence has changed.\n    Start with what is happening in your day. Getting home hungry? Constantly worrying about the scales? Not feeling like yourself despite the changes?\n    Use the food-noise guide, Life Back or Good to Talk to find an appropriate next step. Persistent symptoms, significant distress or eating concerns deserve professional support.\n    Find support through Good to Talk \u2192\n   \n   I\u2019ve been away. Help me pick things up.\n    No guilt. No need to explain the gap.\n    Open the same account, look at what helped before and choose one thing that fits now. You do not have to catch up on everything.\n    Pick up in My Timber \u2192\n   \n  \n "
+        },
+        "currentReviewRetained": true
+      },
+      "query": {
+        "marker": "selected-pages-20261031-v1",
+        "scrollWidth": 375,
+        "headings": 1
+      }
+    },
+    {
+      "page": "life-back",
+      "selected": "LB2",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "marker": "selected-pages-20261031-v1",
+        "key": "life-back",
+        "viewport": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "background": "rgb(5, 5, 5)",
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "headingFill": "rgb(231, 227, 218)",
+        "headingVisible": true,
+        "ticker": false,
+        "images": [
+          {
+            "src": "/assets/approved-pages-20261031/life-back-mosaic.webp",
+            "complete": true,
+            "width": 1254
+          }
+        ],
+        "styles": [
+          {
+            "className": "lbp-needs",
+            "background": "rgb(231, 227, 218)",
+            "colour": "rgb(5, 5, 5)"
+          }
+        ],
+        "formControls": []
+      },
+      "behaviour": {
+        "memberDestination": "/member/life-back",
+        "steps": 3
+      },
+      "query": {
+        "marker": "selected-pages-20261031-v1",
+        "scrollWidth": 375,
+        "headings": 1
+      }
+    }
+  ],
+  "workflow": {
+    "runId": 41229068694,
+    "jobId": 124619237527,
+    "artifactId": 13052693829,
+    "url": "https://github.com/shiftsometimber/shift-core/actions/runs/41229068694"
+  },
+  "visualReview": {
+    "desktop": [
+      "MS1 About",
+      "CO1 Contact",
+      "NR3 Newsroom",
+      "CY3 Continuity with current review",
+      "LB2 Life Back"
+    ],
+    "mobile": "All five reviewed; no clipping or horizontal overflow; Contact row spacing corrected",
+    "reviewedAt": "2026-10-31T18:28:57.380105+00:00"
+  }
+}
