@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {Script} from 'node:vm';
-import {contrastSafetyStyles,contrastSafetyVersion,contrastSafetyClient,navigationSafetyClient,navigationSafetyVersion,removeRetiredShedTeasers,withPublicTicker} from '../public-navigation-policy.mjs';
+import {contrastSafetyStyles,contrastSafetyVersion,contrastSafetyClient,navigationSafetyClient,navigationSafetyVersion,removeRetiredShedTeasers,withPublicTicker,withRetiredShedNavigation} from '../public-navigation-policy.mjs';
 import {preserveReviewedContrastGuard,priorContrastSafetyClient} from '../member-experience/public-preservation.mjs';
 
 test('audited public contrast safety stays brand-only and covers the shared collision roots',()=>{
@@ -98,4 +98,19 @@ test('retired teaser stays absent after legacy client bundles mutate the rendere
   assert.match(once,/node\.textContent=''/);
   assert.doesNotMatch(once,/node\.remove\(\)/);
   assert.match(once,/<main>Keep this public content\.<\/main>/);
+});
+
+
+test('dedicated SHIFT Health responses receive retirement guard without a ticker',async()=>{
+  const teaser='<span class="sst-shed-teaser">The Timber Shed <small>SOON</small></span>';
+  const html='<!doctype html><html><head><title>SHIFT Bloods</title></head><body><header>'+teaser+'</header><main>Blood tests</main><footer>'+teaser+'</footer></body></html>';
+  const request=new Request('https://shiftsometimber.co.uk/shift-health/blood-tests');
+  const response=await withRetiredShedNavigation(request,new Response(html,{headers:{'Content-Type':'text/html; charset=utf-8','ETag':'old'} }));
+  const body=await response.text();
+  assert.doesNotMatch(body,/<span\\b[^>]*\\bsst-shed-teaser\\b/i);
+  assert.doesNotMatch(body,/The Timber Shed|>SOON</i);
+  assert.equal((body.match(/data-shift-navigation-retirement/g)||[]).length,2);
+  assert.doesNotMatch(body,/id="shift-public-news"/);
+  assert.equal(response.headers.get('X-Shift-Navigation-Policy'),'approved-20261031');
+  assert.equal(response.headers.get('ETag'),null);
 });
