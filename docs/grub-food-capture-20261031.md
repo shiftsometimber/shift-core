@@ -230,11 +230,34 @@ are fictional interface harnesses, not physical-device acceptance.
 
 Production promotion of the unchanged source base had already failed at run 41223877184 before this feature branch. This source preparation is not a production deployment or App Store release. The feature branch is retained at `feature/grub-food-capture-20261031`; main, live runtime and store state have not been changed.
 
-Logging browser check: the real local API/SQLite fixture rendered two saved
-entries, 300 kcal and 18 g protein with one missing amount, and the actual diary
-loaded those records. The save click could not proceed in the HTTP-only QA
-origin because crypto.randomUUID is unavailable there. A QA-only shim was
-prepared and the preview restarted; the local environment then disconnected
-before the save/deletion flow could be rechecked. This is not live or installed-
-device acceptance. The authenticated save/delete/shared-brain route checks above
-are separate automated evidence. No real member record or model call was used.
+Logging acceptance completed against runtime commit
+`e536fe81d11b3d2791e92b855c6c7ce72161236a` on 31 October 2026,
+Europe/London. The recovered local preview used the actual authenticated food
+routes, real SQLite storage and shared journey/fact functions with clearly
+labelled fictional accounts; no model or real member record was used.
+
+- Initial log: two entries; one known 300 kcal / 18 g protein amount.
+- Saving a third entry with 200 kcal / 12 g protein produced three entries and
+  500 kcal / 30 g in Today, Journey and the shared AI context, with explicit
+  coverage of two out of three entries.
+- Deleting that entry returned the counts and totals to two / 300 / 18.
+- A second open tab updated on both save and deletion without reloading it.
+- Switching to a second fictional account showed only its one entry and 40 g
+  protein; switching back restored the first account's two-entry view.
+- Expanded summaries fit 320, 390 and 430 px frames without horizontal
+  overflow (305/305, 375/375 and 415/415 document/content widths).
+
+The initial HTTP-only preview's UUID limitation and environment interruption
+were superseded by this recovered check. The UUID shim exists only in the
+local QA fixture; it is not a production code change. This is logging/interface
+acceptance, not real-food recognition accuracy or installed-device acceptance.
+
+Exact-runtime CI:
+https://github.com/shiftsometimber/shift-core/actions/runs/41249840429
+Focused: 136 passed, zero failed, one existing opt-in real-model practical
+evaluation skipped. Actual Worker dry-run build passed. Wider member suite:
+579/581 passed, with only the two existing CSV historical-release qualification
+failures. Both still reproduce on the unchanged pre-feature source. The original
+network-free UI asset guard now passes unchanged; food summaries have their
+own private read-only asset. Production deployment and photo-model activation
+remain outstanding.
