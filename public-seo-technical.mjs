@@ -50,6 +50,7 @@ function repairNode(node,path){
  if(!node||typeof node!=='object')return node;
  const result={...node};
  if(articleTypes.has(result['@type'])){
+  if(path===APPROVED_YELLOW_CARD_PATH&&result.mainEntityOfPage===ORIGIN+path&&result.headline===APPROVED_YELLOW_CARD_TITLE.slice(0,70))result.headline=APPROVED_YELLOW_CARD_TITLE;
   const identity=ARTICLE_IDENTITY_REPAIRS[path];
   if(identity&&result.mainEntityOfPage===ORIGIN+'/knowledge'){
    result.headline=identity.headline;result.description=identity.description;result.mainEntityOfPage=identity.canonical;

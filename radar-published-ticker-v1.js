@@ -68,7 +68,7 @@ export async function latestPublishedEditionItems(rows,pending=new Map(),now=Dat
   if(!Number.isFinite(at)||at>now+60000||!verification.verified||!Array.isArray(evidence)||!evidence.some(e=>!e.discovery_only&&[1,2,3].includes(Number(e.source_tier)))||!pkg.headline||!pkg.article_markdown||!pkg.destinations?.includes('medicine_news')||!pkg.destinations.some(d=>['ticker_knowledge','ticker_treatments'].includes(d)))continue;
   let url;try{url=new URL(pkg.seo?.canonical)}catch{continue}
   if(url.origin!=='https://shiftsometimber.co.uk'||url.search||url.hash||!/^\/medicine-news\/[a-z0-9]+(?:-[a-z0-9]+)*$/.test(url.pathname)||String(pkg.seo?.slug||'').replace(/^\/+/,'')!==url.pathname.slice(1)||!radarJobMatchesEvent(row,row))continue;
-  seen.add(row.id);items.push({id:row.id,headline:pkg.headline,url:url.pathname,published_at:new Date(at).toISOString(),source_published_at:pkg.retrospective_review?.source_publication_date||evidence[0]?.source_date||null});
+  seen.add(row.id);items.push({id:row.id,headline:pkg.headline,ticker_line:pkg.ticker_line||pkg.headline,url:url.pathname,published_at:new Date(at).toISOString(),source_published_at:pkg.retrospective_review?.source_publication_date||evidence[0]?.source_date||null});
   if(items.length===7)break;
  }
  return items;
