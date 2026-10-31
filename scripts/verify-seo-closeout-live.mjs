@@ -41,7 +41,9 @@ for(let start=0;start<newsPaths.length;start+=12){
     // the remaining 131 historical exclusions continue to be absent from the sitemap.
     if(reopenedNews.has(path)){
       if(/noindex/i.test(response.headers.get('x-robots-tag')||'')||/<meta\b(?=[^>]*name=["'](?:robots|googlebot|bingbot)["'])(?=[^>]*content=["'][^"']*noindex)[^>]*>/i.test(text))newsroomFailures.push(`${path}: noindex unexpectedly returned`);
-      if(!/<link\b(?=[^>]*rel=["']canonical["'])[^>]*>/i.test(text)||!text.includes('href="'+origin+path+'"'))newsroomFailures.push(`${path}: canonical mismatch`);
+      const canonicalTags=[...text.matchAll(/<link\b(?=[^>]*rel=["']canonical["'])[^>]*>/gi)].map(match=>match[0]);
+      const actualCanonical=canonicalTags[0]?.match(/\bhref=["']([^"']+)["']/i)?.[1];
+      if(canonicalTags.length!==1||actualCanonical!==origin+path)newsroomFailures.push(`${path}: canonical mismatch`);
       if(response.headers.get('x-shift-newsroom-renderer')!=='radar-ssr-v1')newsroomFailures.push(`${path}: renderer missing`);
     }
     const orgs=records.flatMap(organizations);
