@@ -20,7 +20,7 @@ export async function browserCheck({headers={},dir='family-fd3-evidence',label='
    const behaviour={};
    assert.equal(await page.locator('.fd-row').count(),4);assert.equal(await page.locator('.fd-row li').count(),5);
    assert.equal(await page.locator('.fd-photo img').evaluate(i=>i.complete&&i.naturalWidth>0),true);
-   const planners=await page.getByRole('link',{name:'Use my personalised family planner',exact:true}).evaluateAll(es=>es.map(e=>({height:e.getBoundingClientRect().height,href:e.getAttribute('href')})));assert.equal(planners.length,2);assert(planners.every(x=>x.height>=48&&x.href==='/my-weight-loss-roadmap#tab-family'));
+   const planners=await page.locator('.fd-primary-action a,.fd-planner a').evaluateAll(es=>es.map(e=>({height:e.getBoundingClientRect().height,href:e.getAttribute('href'),text:e.textContent.trim()})));assert.equal(planners.length,2);assert(planners.every(x=>x.height>=48&&x.href==='/my-weight-loss-roadmap#tab-family'&&x.text==='Use my personalised family planner'));
    assert.equal(await page.locator('.sourcebox a').count(),2);assert((await page.locator('.byline-v12').innerText()).includes('Matt O’Brien'));
    const sections=await page.locator('.fd-row').evaluateAll(es=>es.map(e=>{const r=e.getBoundingClientRect(),c=e.querySelector('.fd-content').getBoundingClientRect();return {fits:c.bottom<=r.bottom,decoration:getComputedStyle(e,'::before').content};}));assert(sections.every(s=>s.fits&&s.decoration==='none'));
    if(viewport.width<=600){const a=await page.locator('.fd-copy').boundingBox(),b=await page.locator('.fd-photo').boundingBox();assert(b.y>=a.y+a.height,'Mobile photo follows copy and planner action');}
