@@ -7,6 +7,7 @@ import {shopPageRoutes} from './shop-routes.mjs';
 import {shopNavigationAsset,withShopNavigation} from './shop-navigation.mjs';
 import {memberBasketRoutes} from './shop-basket.mjs';
 import {withJourneyShopAssets} from './journey-shop-assets.mjs';
+import {shopCatalogueReader} from './shop-catalogue-reader.mjs';
 
 const origins=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk']);
 const release='journey-shop-20261031-v1';
@@ -53,7 +54,7 @@ export function wrapJourneyShopService(original){return {
    return cors(request,mark(await journeyDataRoutes(request,env)));
   }
   if(path==='/v1/life-back'&&await isJourneyWrite(request))return cors(request,mark(await lifeBackRoutes(request,env)));
-  const owned=journeyPageRoutes(request,env)||shopNavigationAsset(request)||await memberBasketRoutes(request,env)||await shopPageRoutes(request,env);
+  const owned=journeyPageRoutes(request,env)||shopNavigationAsset(request)||await memberBasketRoutes(request,env,shopCatalogueReader(env))||await shopPageRoutes(request,env,shopCatalogueReader(env));
   if(owned)return mark(await withShopNavigation(request,owned,env));
   const response=await original.fetch(request,env,ctx);
   return withShopNavigation(request,await withJourneyShopAssets(request,response),env);

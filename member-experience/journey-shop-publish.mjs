@@ -41,6 +41,9 @@ async function verifyVersion(s){
 async function stage(){
  if(!state.routes){state.routes=await routes();save();}
  assert.deepEqual(await routes(),state.routes,'Concurrent route changes require reconciliation');
+ const routeOwner=path=>{const target='shiftsometimber.co.uk'+path;const matches=state.routes.filter(r=>new RegExp('^'+r.pattern.replace(/^https?:\/\//,'').split('*').map(part=>part.replace(/[{}.*+?^$()|[\]\\]/g,'\\$&')).join('.*')+'$').test(target)).sort((a,b)=>b.pattern.replace(/^https?:\/\//,'').replaceAll('*','').length-a.pattern.replace(/^https?:\/\//,'').replaceAll('*','').length);return matches[0]?.script;};
+ for(const [path,owner]of [['/shift-health/testing','shift-health-nutrition-20261027'],['/shift-health/testing/vitamin-d','shift-health-nutrition-20261027'],['/assets/shift-purchase-basket-v1.js','shift-health-nutrition-20261027'],['/shift-health/supplements-nutrition','shift-health-heroes-20261029'],['/shop','shift-timber-mill-presentation-20261021']])assert.equal(routeOwner(path),owner,'Current catalogue owner changed: '+path);
+
  for(let i=0;i<names.length;i++){
   const name=names[i];let s=state.owners.find(s=>s.name===name);
   if(s?.versionId){await verifyVersion(s);console.log('STAGED_VERSION_REUSED',name,s.versionId);continue;}
@@ -57,8 +60,10 @@ async function stage(){
   const entry='import original from "../'+oldMain+'";\nexport * from "../'+oldMain+'";\nimport {'+factory+'} from "./'+kind+'.mjs";\nexport default '+factory+'(original);\n';
   const additions=[{name:prefix+kind+'.mjs',content_type:'application/javascript+module',content_base64:bundle.toString('base64')},{name:prefix+'entry.mjs',content_type:'application/javascript+module',content_base64:Buffer.from(entry).toString('base64')}];
   const modules=[...current.modules,...additions];assert.equal(new Set(modules.map(m=>m.name)).size,modules.length);
-  const runtime=current.resources?.script_runtime||{},bindings=current.bindings||settings.bindings;
-  const metadata={main_module:prefix+'entry.mjs',compatibility_date:current.compatibility_date||runtime.compatibility_date||settings.compatibility_date,compatibility_flags:current.compatibility_flags||runtime.compatibility_flags||settings.compatibility_flags||[],bindings:bindings.map(b=>({type:'inherit',name:b.name})),keep_assets:true,annotations:{'workers/message':'Matt-approved Journey/Shop '+source.commit+'; current baseline retained','workers/tag':'journey-shop-'+source.commit.slice(0,12)}};
+  const runtime=current.resources?.script_runtime||{},priorBindings=current.bindings||settings.bindings;
+  const additionsBindings=i===0?[{name:'MY_TIMBER_PUBLIC_TESTING',type:'service',service:'shift-health-nutrition-20261027',environment:'production'},{name:'MY_TIMBER_PUBLIC_NUTRITION',type:'service',service:'shift-health-heroes-20261029',environment:'production'},{name:'MY_TIMBER_PUBLIC_KIT',type:'service',service:'shift-timber-mill-presentation-20261021',environment:'production'}]:[];
+  assert(additionsBindings.every(b=>!priorBindings.some(old=>old.name===b.name)),'Catalogue binding collision');const bindings=[...priorBindings,...additionsBindings];
+  const metadata={main_module:prefix+'entry.mjs',compatibility_date:current.compatibility_date||runtime.compatibility_date||settings.compatibility_date,compatibility_flags:current.compatibility_flags||runtime.compatibility_flags||settings.compatibility_flags||[],bindings:[...priorBindings.map(b=>({type:'inherit',name:b.name})),...additionsBindings],keep_assets:true,annotations:{'workers/message':'Matt-approved Journey/Shop '+source.commit+'; current baseline retained','workers/tag':'journey-shop-'+source.commit.slice(0,12)}};
   for(const key of ['usage_model','limits','placement','cache_options','observability','tail_consumers','logpush']){const v=current[key]??runtime[key]??settings[key];if(v!==undefined)metadata[key]=v;}
   s={name,previousVersion,baselineDeployment:deployment.id,currentDeployment:deployment.id,oldMain,mainModule:metadata.main_module,bindings,moduleHashes:hashes(modules),retainedModules:current.modules.length,bundleSHA256:digest(bundle),compatibilityDate:metadata.compatibility_date,compatibilityFlags:metadata.compatibility_flags,assets:current.assets??runtime.assets??settings.assets,schedules:await cf(endpoint(name)+'/schedules'),uploadAttempted:true,uploadAt:new Date().toISOString()};
   state.owners.push(s);save();assert.equal((await active(name)).id,deployment.id,'Serving baseline advanced before upload');

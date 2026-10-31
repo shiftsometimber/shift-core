@@ -49,3 +49,12 @@ test('approved recovery delta preserves unrelated layout and bootstraps settings
  assert.equal(updateApprovedJourneyNavigation('new unrelated owner source').source,'new unrelated owner source');new vm.Script(shopBootRuntime);new vm.Script(updated.source);
  const response=await withJourneyShopAssets(req('/my-timber-v11.js'),new Response('window.existingOwner=true;',{headers:{'Content-Type':'text/javascript'}}));const s=await response.text();assert.ok(s.startsWith('window.existingOwner=true;'));assert.ok(s.includes('orders|saved|plans|settings'));assert.equal((s.match(/Approved My Timber Journey\/Shop loader/g)||[]).length,1);new vm.Script(s);
 });
+
+test('public catalogue service reads preserve owner selection and refuse credentials, foreign origins and writes',async()=>{
+ const {shopCatalogueReader}=await import('../shop-catalogue-reader.mjs');
+ const seen=[],env=Object.fromEntries(['MY_TIMBER_PUBLIC_TESTING','MY_TIMBER_PUBLIC_NUTRITION','MY_TIMBER_PUBLIC_KIT'].map(name=>[name,{fetch:async request=>{seen.push({name,path:new URL(request.url).pathname,headers:[...request.headers]});return new Response('CURRENT_PUBLIC_OWNER');}}]));
+ const read=shopCatalogueReader(env);
+ for(const [path,key]of [['/shift-health/testing','TESTING'],['/shift-health/testing/vitamin-d','TESTING'],['/assets/shift-purchase-basket-v1.js','TESTING'],['/shift-health/supplements-nutrition','NUTRITION'],['/shop?item=heavyweight-tee&colour=cream','KIT']]){assert.equal(await(await read(req(path,{headers:{Accept:'text/html'}}))).text(),'CURRENT_PUBLIC_OWNER');assert.equal(seen.at(-1).name,'MY_TIMBER_PUBLIC_'+key);assert.deepEqual(seen.at(-1).headers,[['accept','text/html']]);}
+ for(const request of [req('/shop',{method:'POST'}),req('/shop',{headers:{Cookie:'private'}}),req('/shop',{headers:{Authorization:'private'}}),new Request('https://foreign.invalid/shop'),req('/v1/checkout')])await assert.rejects(read(request));
+ await assert.rejects(shopCatalogueReader({})(req('/shop')));
+});

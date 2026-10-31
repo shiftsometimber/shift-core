@@ -6,68 +6,69 @@
   },
   "sourceFiles": {
     "member-experience/journey-shop-release.mjs": {
-      "gitBlob": "7a3d6e32783c5939456cd86118a6e81111e5b3a1",
-      "sha256": "097d5b1b5f4a865c81c471be186b0a970dad8e4b950277a9b5ce8dff1afa7044",
-      "bytes": 3518,
-      "endsNewline": true
+      "gitBlob": "44f2f810d3522568af049554c98c0bb04e1f428d",
+      "sha256": "3cc6719744958298c4f6b2e0e43c0afe84b691331712f45c76f08766a79ebfe6",
+      "bytes": 3633
     },
     "member-experience/shop-document-release.mjs": {
       "gitBlob": "898a2e38aee94ae54bdbd4fc80d656c1b05b3f51",
       "sha256": "d4cf5cc9139ad55eaed5042b6d6ab8fd83fe1e3a1e9fcd66cd8c49ccda8383b3",
-      "bytes": 543,
-      "endsNewline": true
+      "bytes": 543
     },
     "member-experience/journey-shop-assets.mjs": {
       "gitBlob": "eb2df081a0a25ca7ca92776a337caaa34319792e",
       "sha256": "8af1fb7356e6f8366c3bd7a4ed98e2389c95bcd5bf3298a933426ca832b210aa",
-      "bytes": 5235,
-      "endsNewline": true
+      "bytes": 5235
     },
     "member-experience/tests/journey-shop-release.test.mjs": {
-      "gitBlob": "58c8508ea8e4bf18758557b6287cb18d353f0805",
-      "sha256": "acc8adcccd6ef09daae7ba233a38a13cef061e6cb665e1db38b4921b5ae34710",
-      "bytes": 6246,
-      "endsNewline": true
+      "gitBlob": "da53fdc996fd59b09450a440fb4f37985cca8e4c",
+      "sha256": "57f2bbc37f4f3e3bc8a381ab1e33d70f34523fd5538d36ad829ed2b9a989194e",
+      "bytes": 7572
     },
     "member-experience/tests/shop-connected-browser.mjs": {
       "gitBlob": "f2ce9921a29a474e6f07393b766bd8a953d0ff09",
       "sha256": "e15f6e96bda2429a9b7d4ef9474fa35f3415b942de10178544ae6267b3e181aa",
-      "bytes": 22238,
-      "endsNewline": true
+      "bytes": 22238
     },
     "member-experience/shop-navigation-client.mjs": {
       "gitBlob": "588b5c935765dc4dd4c4a4e5d84119c3fe5181b2",
       "sha256": "94821ce6d5a389f6be6deaffc6dea98324095929a3844dcf345f96d98dd32fa4",
-      "bytes": 7471,
-      "endsNewline": true
+      "bytes": 7471
     },
     "member-experience/journey-shop-build.mjs": {
       "gitBlob": "24571dadcc7d16b3be718b377a545c0f58dc9d60",
       "sha256": "cff2090710f1601f07235b5fa905d719fb5c04b731276fd1bdcca15b8d039cdd",
-      "bytes": 2368,
-      "endsNewline": true
+      "bytes": 2368
     },
     "member-experience/journey-shop-publish.mjs": {
-      "gitBlob": "0f72ea845f9223b617ac1a407922fa09ee62b184",
-      "sha256": "9f4145d784255ee12c96371ff4f75d4189dd4df53b2ae75fc5936e636425a13f",
-      "bytes": 9831,
-      "endsNewline": true
+      "gitBlob": "f0ec5f34ffb3b108b5e897aebcae53e95dfd4c51",
+      "sha256": "3e5c487f45218d3537239e62516155164c641bf076c2fa25ddfeed23dc29b961",
+      "bytes": 11278
     },
     "member-experience/tests/fixtures/journey-shop-live-layout-20261031.txt": {
       "gitBlob": "49314a1fbf4c265fa0d718fff090756cc9539508",
       "sha256": "cf2fea148c1a2949dbbb6097ee6ed5e270149e8a4796cddc0e526d9fdc261f40",
-      "bytes": 167960,
-      "endsNewline": true
+      "bytes": 167960
+    },
+    "member-experience/shop-catalogue-reader.mjs": {
+      "gitBlob": "2a596472aaa8a541355eb27b5bb720e5a72416eb",
+      "sha256": "339669265ae932a4d9f086762a2dd85df24e1b10cae6a7a90eef8d6c7b58901d",
+      "bytes": 1258
+    },
+    "member-experience/tests/journey-shop-production-check.mjs": {
+      "gitBlob": "8911269a788d7a484ba64d5d0c4b0acce1508cc5",
+      "sha256": "11543c51e81fcd50d0ee0d44f155f8928ed568bb17875c594d9e4bb38be6add3",
+      "bytes": 6518
     }
   },
   "sourceTests": {
-    "passed": 27,
+    "passed": 28,
     "failed": 0
   },
   "browser": {
     "chromium": {
       "kind": "MY_TIMBER_SHOP_OFFLINE_BROWSER_ACCEPTANCE",
-      "at": "2026-10-31T22:56:55.937Z",
+      "at": "2026-10-31T23:11:10.173Z",
       "browser": "chromium",
       "nativeScriptSha256": [],
       "live": false,
@@ -237,7 +238,7 @@
     },
     "webkit-native": {
       "kind": "MY_TIMBER_SHOP_OFFLINE_BROWSER_ACCEPTANCE",
-      "at": "2026-10-31T22:57:10.821Z",
+      "at": "2026-10-31T23:11:24.756Z",
       "browser": "webkit",
       "nativeScriptSha256": [
         "00fe5e04f7e1ab9f757ba0106a95b6622314748f388ee17b40c2961f3958e88b",
@@ -410,7 +411,7 @@
     }
   },
   "build": {
-    "at": "2026-10-31T23:02:11.236Z",
+    "at": "2026-10-31T23:10:55.555Z",
     "esbuildVersion": "0.28.1",
     "externalServingModule": "support-service-prior.mjs",
     "overrides": {
@@ -421,8 +422,8 @@
     },
     "bundles": {
       "programme": {
-        "sha256": "ca1552ffc9109fe5fd08fbc57041660d9c1b595ac5060d27432ae1085f98cecd",
-        "bytes": 7079589,
+        "sha256": "008147eee86a9e04b5890786da045f74271c2727e691025e6c07f003ea5502b3",
+        "bytes": 7080199,
         "inputs": {
           "scoped-source/member-state-fast-v1.js": {
             "bytes": 6158,
@@ -1482,8 +1483,14 @@
             "format": "esm",
             "canonicalSourceSHA256": "8af1fb7356e6f8366c3bd7a4ed98e2389c95bcd5bf3298a933426ca832b210aa"
           },
+          "scoped-source/member-experience/shop-catalogue-reader.mjs": {
+            "bytes": 1258,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "339669265ae932a4d9f086762a2dd85df24e1b10cae6a7a90eef8d6c7b58901d"
+          },
           "scoped-source/member-experience/journey-shop-release.mjs": {
-            "bytes": 3518,
+            "bytes": 3633,
             "imports": [
               {
                 "path": "scoped-source/member-experience/journey-data.mjs",
@@ -1519,10 +1526,15 @@
                 "path": "scoped-source/member-experience/journey-shop-assets.mjs",
                 "kind": "import-statement",
                 "original": "./journey-shop-assets.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/shop-catalogue-reader.mjs",
+                "kind": "import-statement",
+                "original": "./shop-catalogue-reader.mjs"
               }
             ],
             "format": "esm",
-            "canonicalSourceSHA256": "097d5b1b5f4a865c81c471be186b0a970dad8e4b950277a9b5ce8dff1afa7044"
+            "canonicalSourceSHA256": "3cc6719744958298c4f6b2e0e43c0afe84b691331712f45c76f08766a79ebfe6"
           },
           "scoped-source/journey-shop-programme-factory.mjs": {
             "bytes": 84,
@@ -1687,5 +1699,22 @@
     "Synthetic sessions and isolated databases do not prove ordinary production login.",
     "WebKit compatibility is not physical iPhone acceptance."
   ],
-  "apple": "Build 1.0.0 (8), review notes, privacy declaration, messages and release settings untouched."
+  "apple": "Build 1.0.0 (8), review notes, privacy declaration, messages and release settings untouched.",
+  "catalogueReads": {
+    "mode": "Existing same-account service bindings",
+    "originalBindings": "Inherited unchanged",
+    "newReadOnlyBindings": [
+      "MY_TIMBER_PUBLIC_TESTING",
+      "MY_TIMBER_PUBLIC_NUTRITION",
+      "MY_TIMBER_PUBLIC_KIT"
+    ],
+    "credentialForwarding": false
+  },
+  "rejectedCandidates": [
+    {
+      "source": "e44ca066098ebee8767f5deff48839558c0aebf3",
+      "reason": "Testing range returned 503 during fresh zero-traffic acceptance. Both candidates retired; baseline remained at 100% throughout.",
+      "ordinaryTrafficPercent": 0
+    }
+  ]
 }
