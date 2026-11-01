@@ -1,20 +1,33 @@
 {
   "state": "LIVE_AND_VERIFIED",
-  "at": "2026-11-01T08:50:09.235Z",
-  "source": "941bebe0d8ab21e8ba5f1ac972981da8daa3606f",
+  "at": "2026-11-01T09:02:05.469Z",
+  "source": "3195018951f5188094ae3ef032b1d496269f7dee",
   "worker": "shift-programme-member-20261023",
-  "versionId": "837eb6c0-09d4-4c1c-9a9d-2f841a4e00f0",
-  "deploymentId": "5b1a04fc-b871-4714-9169-152787b9d7e6",
-  "rollbackVersion": "ebbc0b1b-7e78-41a1-913f-161a77c241a5",
-  "bundleSHA256": "add6646d2d2e4d17769c6c7635d980883fc256b77fd0b625068ad9fb655c0abb",
+  "versionId": "742bfb7e-7743-4cbc-84d5-187177488ce9",
+  "deploymentId": "0d7e4ed6-2be3-4b4a-bf68-ca64d7bb3804",
+  "rollbackVersion": "837eb6c0-09d4-4c1c-9a9d-2f841a4e00f0",
+  "bundleSHA256": "f4c0a6e6de80d123a94c1d709891c2106a279ea844baead7ec4a0424e8072321",
   "resolved": [
     "Shop category emoji arrows remain removed",
     "Figure uses a changing clipped filled area, not opacity or colour changes",
     "Guide opens and reopens at Day 1; Play restarts from Day 1 at the end",
     "Guide date is restored when returning to Journey, including cancelling a dated entry; new-record dates remain unchanged",
     "Pointer, wheel, range, keyboard, day buttons and Play keep the figure and chart synchronised",
-    "All seven day buttons visible without horizontal scrolling; Day 7 directly selectable; touch targets at least 44 by 44 CSS pixels"
+    "All seven day buttons visible without horizontal scrolling; Day 7 directly selectable; touch targets at least 44 by 44 CSS pixels",
+    "Existing SHIFT S mark restored beside My Timber in shared member header; 30px mark, 10px gap, unchanged header height and navigation"
   ],
+  "brandMark": {
+    "path": "/assets/favicon-shift-s-20261020.png",
+    "status": 200,
+    "contentType": "image/png",
+    "sha256": "97f754538a660372c62cf5a36c003b3082e672fa2a9de97d0fe4f1f288b56682",
+    "displaySize": 30,
+    "nameGap": 10,
+    "existingAssetReused": true,
+    "decorativeEmptyAlt": true,
+    "sharedAcrossMemberPages": true,
+    "nativeBuild8ScriptsIncludedInCompatibilityChecks": true
+  },
   "dayButtonLayout": {
     "sevenColumnsWhenTheyFit": true,
     "fourThenThreeBelow375px": true,
@@ -37,7 +50,7 @@
   "chromiumIsolatedChecks": 34,
   "webkitNativeIsolatedChecks": 34,
   "productionPagesPerEngine": 24,
-  "productionAssetsPerEngine": 10,
+  "productionAssetsPerEngine": 11,
   "newConsoleErrors": 0,
   "sixWeekProgrammePreserved": true,
   "privateApis": [
@@ -63,5 +76,6 @@
     }
   ],
   "ordinaryProductionJourneyPersistence": "NOT VERIFIED; authorised test session signed out",
-  "physicalInstalledPwaAndNative": "NOT VERIFIED"
+  "physicalInstalledPwaAndNative": "NOT VERIFIED",
+  "documentsCandidatePublished": false
 }

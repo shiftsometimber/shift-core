@@ -1,7 +1,7 @@
 {
   "state": "PUBLISHED_AND_PRODUCTION_VERIFIED_AUTHENTICATED_PERSISTENCE_PENDING",
   "fullyComplete": false,
-  "verifiedAtUtc": "2026-11-01T08:50:09.235Z",
+  "verifiedAtUtc": "2026-11-01T09:02:05.469Z",
   "origin": "https://shiftsometimber.co.uk",
   "approvedNavigation": {
     "top": [
@@ -16,8 +16,8 @@
       "More"
     ]
   },
-  "runtimeSource": "941bebe0d8ab21e8ba5f1ac972981da8daa3606f",
-  "verificationSource": "941bebe0d8ab21e8ba5f1ac972981da8daa3606f",
+  "runtimeSource": "3195018951f5188094ae3ef032b1d496269f7dee",
+  "verificationSource": "3195018951f5188094ae3ef032b1d496269f7dee",
   "sourceBranch": "work/my-timber-shop-connected-20261029",
   "predecessors": {
     "journey": "a67f1b3f1bdd51ca2b93997fa796a1e1202b390b",
@@ -45,9 +45,9 @@
       "bytes": 7612
     },
     "member-experience/tests/shop-connected-browser.mjs": {
-      "gitBlob": "4f11a99e9aabee6da180910fe67a0d52617e9ab6",
-      "sha256": "a906b6ea33232ad37c83502974c829f63c6991b3cc0be12bf4f0a133f6a1be7b",
-      "bytes": 29695
+      "gitBlob": "50f7c065cb33ccf26c5d82d32871bb52eb6a8e2b",
+      "sha256": "3ef8b80cd0ef4b6ae42be0bfef8b3357ef024426d70433d9129d8c45fb5fecc5",
+      "bytes": 31708
     },
     "member-experience/shop-navigation-client.mjs": {
       "gitBlob": "588b5c935765dc4dd4c4a4e5d84119c3fe5181b2",
@@ -75,9 +75,9 @@
       "bytes": 1291
     },
     "member-experience/tests/journey-shop-production-check.mjs": {
-      "gitBlob": "06bdaa482d5c5ace63c6546281633ce2aa6bef81",
-      "sha256": "1eb044dca0b31043b817632c362369a50244703cf7110dc3cbbdb61882885de3",
-      "bytes": 9487
+      "gitBlob": "54a6a2ecb2c18325d47703661111a7fb94de2e5e",
+      "sha256": "b893d51ec46f6ebcfad07c6cbc5fffefacf09fe94d55f1924756bf61745b00c6",
+      "bytes": 10941
     },
     "member-experience/shop-basket.mjs": {
       "gitBlob": "4b97e407f8a6f18da40fec031d4520a65dd2e169",
@@ -123,17 +123,32 @@
       "gitBlob": "b6fd3e7216a9a14b7f0be39ca527f5a31b3ed665",
       "sha256": "4678b2ba872fc6df32af34aafea428df497eea386deeb5d80fa289365414fba8",
       "bytes": 11351
+    },
+    "member-experience/shop-navigation.mjs": {
+      "gitBlob": "920e04fa03985d16b414f413736ed672b4226daa",
+      "sha256": "6a37f61b1b26fb12af0e980b3c68f8deccf9d5ac274c81492374d1539230cd65",
+      "bytes": 11227
+    },
+    "member-experience/brand-mark-release-20261101.mjs": {
+      "gitBlob": "b195c0f7971d522aa99d79af59676d714a0f12e6",
+      "sha256": "c5b44008c1ac8637d9a9d2557aacde69907b922f285823c7d1a0aa12ae9b008d",
+      "bytes": 11326
+    },
+    "member-experience/tests/fixtures/shift-s-20261020.png": {
+      "gitBlob": "1d676a6f5a3beeb79b254ea5d5b7af817e5c9adc",
+      "sha256": "97f754538a660372c62cf5a36c003b3082e672fa2a9de97d0fe4f1f288b56682",
+      "bytes": 1709
     }
   },
   "sourceChecks": {
     "passed": 28,
     "failed": 0,
-    "log": "day-buttons-source-20261101.log"
+    "log": "brand-mark-source-20261101.log"
   },
   "isolatedAcceptance": {
     "chromium": {
       "kind": "MY_TIMBER_SHOP_OFFLINE_BROWSER_ACCEPTANCE",
-      "at": "2026-11-01T08:48:42.590Z",
+      "at": "2026-11-01T09:00:36.396Z",
       "browser": "chromium",
       "nativeScriptSha256": [
         "00fe5e04f7e1ab9f757ba0106a95b6622314748f388ee17b40c2961f3958e88b",
@@ -326,7 +341,7 @@
     },
     "webkitWithExactBuild8Scripts": {
       "kind": "MY_TIMBER_SHOP_OFFLINE_BROWSER_ACCEPTANCE",
-      "at": "2026-11-01T08:49:07.279Z",
+      "at": "2026-11-01T09:01:02.387Z",
       "browser": "webkit",
       "nativeScriptSha256": [
         "00fe5e04f7e1ab9f757ba0106a95b6622314748f388ee17b40c2961f3958e88b",
@@ -519,7 +534,7 @@
     }
   },
   "build": {
-    "at": "2026-11-01T08:45:46.848Z",
+    "at": "2026-11-01T08:57:31.182Z",
     "esbuildVersion": "0.28.1",
     "externalServingModule": "support-service-prior.mjs",
     "overrides": {
@@ -530,8 +545,8 @@
     },
     "bundles": {
       "programme": {
-        "sha256": "add6646d2d2e4d17769c6c7635d980883fc256b77fd0b625068ad9fb655c0abb",
-        "bytes": 7082063,
+        "sha256": "f4c0a6e6de80d123a94c1d709891c2106a279ea844baead7ec4a0424e8072321",
+        "bytes": 7082358,
         "inputs": {
           "scoped-source/member-state-fast-v1.js": {
             "bytes": 6158,
@@ -1545,7 +1560,7 @@
             "canonicalSourceSHA256": "94821ce6d5a389f6be6deaffc6dea98324095929a3844dcf345f96d98dd32fa4"
           },
           "scoped-source/member-experience/shop-navigation.mjs": {
-            "bytes": 10932,
+            "bytes": 11227,
             "imports": [
               {
                 "path": "scoped-source/member-experience/shop-navigation-client.mjs",
@@ -1554,7 +1569,7 @@
               }
             ],
             "format": "esm",
-            "canonicalSourceSHA256": "9bf9d73438d076e8f7d1957f907eb56f501bfdc904b7ba230dd44fda5e8acbb2"
+            "canonicalSourceSHA256": "6a37f61b1b26fb12af0e980b3c68f8deccf9d5ac274c81492374d1539230cd65"
           },
           "scoped-source/member-experience/shop-routes.mjs": {
             "bytes": 8073,
@@ -1659,8 +1674,8 @@
         }
       },
       "documents": {
-        "sha256": "4e8e63f984a5a266aee61fa6d76fcca2a9d4050d433c23d1f945bc5647ed1841",
-        "bytes": 16617,
+        "sha256": "60172c52124dd461cfcbda6c5ac233a642e2b3d13d967fb3a429b3dff814afcd",
+        "bytes": 16912,
         "inputs": {
           "scoped-source/member-experience/shop-navigation-client.mjs": {
             "bytes": 7471,
@@ -1669,7 +1684,7 @@
             "canonicalSourceSHA256": "94821ce6d5a389f6be6deaffc6dea98324095929a3844dcf345f96d98dd32fa4"
           },
           "scoped-source/member-experience/shop-navigation.mjs": {
-            "bytes": 10932,
+            "bytes": 11227,
             "imports": [
               {
                 "path": "scoped-source/member-experience/shop-navigation-client.mjs",
@@ -1678,7 +1693,7 @@
               }
             ],
             "format": "esm",
-            "canonicalSourceSHA256": "9bf9d73438d076e8f7d1957f907eb56f501bfdc904b7ba230dd44fda5e8acbb2"
+            "canonicalSourceSHA256": "6a37f61b1b26fb12af0e980b3c68f8deccf9d5ac274c81492374d1539230cd65"
           },
           "scoped-source/member-experience/shop-document-release.mjs": {
             "bytes": 543,
@@ -1782,8 +1797,8 @@
     "chromium": {
       "phase": "live",
       "browser": "chromium",
-      "source": "941bebe0d8ab21e8ba5f1ac972981da8daa3606f",
-      "checkedAt": "2026-11-01T08:49:32.785Z",
+      "source": "3195018951f5188094ae3ef032b1d496269f7dee",
+      "checkedAt": "2026-11-01T09:01:28.472Z",
       "productionWrites": 0,
       "pages": [
         {
@@ -1913,13 +1928,13 @@
         {
           "path": "/assets/member-experience/programme-shop-navigation.mjs",
           "status": 200,
-          "sha256": "e5dbeafe9fb8c10f1d636661556f0f9aaebfada57cad5c2b1ee8087ef89d8c4b",
+          "sha256": "6ba78f8c4d5a354dd0dc67c6a19c0c8e7472202bd8c5716c917ed322d06f05a2",
           "integration": null
         },
         {
           "path": "/assets/member-experience/programme-shop.css",
           "status": 200,
-          "sha256": "277c614059127a203da15a8982f601a9679f5f30b04ddc474e52275b28ef9930",
+          "sha256": "ebffd96740a75970fc92567ba5dab2e4f6defe8118f2ca88aa01745f29305d2c",
           "integration": null
         },
         {
@@ -1998,6 +2013,12 @@
           "sha256": "91fc1d0494674890a4003935ed5774cd64f0cd5f698cd94ded0d47995f9c1314"
         }
       ],
+      "brandMark": {
+        "path": "/assets/favicon-shift-s-20261020.png",
+        "status": 200,
+        "contentType": "image/png",
+        "sha256": "97f754538a660372c62cf5a36c003b3082e672fa2a9de97d0fe4f1f288b56682"
+      },
       "renderChecks": [
         {
           "path": "/member/dashboard",
@@ -2050,13 +2071,13 @@
         }
       ],
       "verified": true,
-      "finishedAt": "2026-11-01T08:49:49.631Z"
+      "finishedAt": "2026-11-01T09:01:48.152Z"
     },
     "webkit": {
       "phase": "live",
       "browser": "webkit",
-      "source": "941bebe0d8ab21e8ba5f1ac972981da8daa3606f",
-      "checkedAt": "2026-11-01T08:49:49.820Z",
+      "source": "3195018951f5188094ae3ef032b1d496269f7dee",
+      "checkedAt": "2026-11-01T09:01:48.336Z",
       "productionWrites": 0,
       "pages": [
         {
@@ -2186,13 +2207,13 @@
         {
           "path": "/assets/member-experience/programme-shop-navigation.mjs",
           "status": 200,
-          "sha256": "e5dbeafe9fb8c10f1d636661556f0f9aaebfada57cad5c2b1ee8087ef89d8c4b",
+          "sha256": "6ba78f8c4d5a354dd0dc67c6a19c0c8e7472202bd8c5716c917ed322d06f05a2",
           "integration": null
         },
         {
           "path": "/assets/member-experience/programme-shop.css",
           "status": 200,
-          "sha256": "277c614059127a203da15a8982f601a9679f5f30b04ddc474e52275b28ef9930",
+          "sha256": "ebffd96740a75970fc92567ba5dab2e4f6defe8118f2ca88aa01745f29305d2c",
           "integration": null
         },
         {
@@ -2271,6 +2292,12 @@
           "sha256": "91fc1d0494674890a4003935ed5774cd64f0cd5f698cd94ded0d47995f9c1314"
         }
       ],
+      "brandMark": {
+        "path": "/assets/favicon-shift-s-20261020.png",
+        "status": 200,
+        "contentType": "image/png",
+        "sha256": "97f754538a660372c62cf5a36c003b3082e672fa2a9de97d0fe4f1f288b56682"
+      },
       "renderChecks": [
         {
           "path": "/member/dashboard",
@@ -2323,17 +2350,17 @@
         }
       ],
       "verified": true,
-      "finishedAt": "2026-11-01T08:50:09.235Z"
+      "finishedAt": "2026-11-01T09:02:05.469Z"
     }
   },
   "preservation": {
-    "runtimeSource": "941bebe0d8ab21e8ba5f1ac972981da8daa3606f",
+    "runtimeSource": "3195018951f5188094ae3ef032b1d496269f7dee",
     "owners": [
       {
         "name": "shift-programme-member-20261023",
-        "versionId": "837eb6c0-09d4-4c1c-9a9d-2f841a4e00f0",
-        "deploymentId": "5b1a04fc-b871-4714-9169-152787b9d7e6",
-        "rollbackVersion": "ebbc0b1b-7e78-41a1-913f-161a77c241a5",
+        "versionId": "742bfb7e-7743-4cbc-84d5-187177488ce9",
+        "deploymentId": "0d7e4ed6-2be3-4b4a-bf68-ca64d7bb3804",
+        "rollbackVersion": "837eb6c0-09d4-4c1c-9a9d-2f841a4e00f0",
         "rollbackVerified": true,
         "originalModulesPreserved": 13,
         "originalBindingsPreserved": 4,
@@ -2380,7 +2407,7 @@
     "productionMemberWrites": 0,
     "routeCount": 915,
     "verified": true,
-    "verifiedAt": "2026-11-01T08:50:09.235Z"
+    "verifiedAt": "2026-11-01T09:02:05.469Z"
   },
   "authenticatedJourneyPersistence": {
     "isolatedIntegratedHandlers": "PASSED: synthetic accounts, isolated SQLite, all six record kinds, refresh, corrections, deletion, Snapshot safeguards and account isolation",
@@ -2426,12 +2453,12 @@
   "receiptUrl": "https://github.com/shiftsometimber/shift-core/blob/work/my-timber-shop-connected-20261029/member-experience/journey-shop-release-20261031/verification.json",
   "uiCorrections": {
     "state": "LIVE_AND_VERIFIED",
-    "at": "2026-11-01T08:50:09.235Z",
-    "source": "941bebe0d8ab21e8ba5f1ac972981da8daa3606f",
+    "at": "2026-11-01T09:02:05.469Z",
+    "source": "3195018951f5188094ae3ef032b1d496269f7dee",
     "worker": "shift-programme-member-20261023",
-    "versionId": "837eb6c0-09d4-4c1c-9a9d-2f841a4e00f0",
-    "deploymentId": "5b1a04fc-b871-4714-9169-152787b9d7e6",
-    "rollbackVersion": "ebbc0b1b-7e78-41a1-913f-161a77c241a5",
+    "versionId": "742bfb7e-7743-4cbc-84d5-187177488ce9",
+    "deploymentId": "0d7e4ed6-2be3-4b4a-bf68-ca64d7bb3804",
+    "rollbackVersion": "837eb6c0-09d4-4c1c-9a9d-2f841a4e00f0",
     "changedServingModules": [
       "journey-shop-release-20261031/programme.mjs"
     ],
@@ -2457,18 +2484,19 @@
       "urgent-phone-link.mjs": "2959b38f5259960d18af0cdef8cbeb17f5063048a0e000bf1e229499629a2a04",
       "worker.mjs": "a8e356b3eb5f991473bb3c9e0971407fdac5c4b5840d625f7cbc95da72e8fc95"
     },
-    "bundleSHA256": "add6646d2d2e4d17769c6c7635d980883fc256b77fd0b625068ad9fb655c0abb",
-    "baselineVerifiedAt": "2026-11-01T08:45:57.738Z",
-    "zeroVerifiedAt": "2026-11-01T08:47:52.525Z",
-    "candidateAcceptanceAt": "2026-11-01T08:49:11.685Z",
-    "liveVerifiedAt": "2026-11-01T08:49:28.475Z",
+    "bundleSHA256": "f4c0a6e6de80d123a94c1d709891c2106a279ea844baead7ec4a0424e8072321",
+    "baselineVerifiedAt": "2026-11-01T08:57:42.706Z",
+    "zeroVerifiedAt": "2026-11-01T08:59:42.369Z",
+    "candidateAcceptanceAt": "2026-11-01T09:01:07.265Z",
+    "liveVerifiedAt": "2026-11-01T09:01:24.056Z",
     "resolved": [
       "Shop category emoji arrows remain removed",
       "Figure uses a changing clipped filled area, not opacity or colour changes",
       "Guide opens and reopens at Day 1; Play restarts from Day 1 at the end",
       "Guide date is restored when returning to Journey, including cancelling a dated entry; new-record dates remain unchanged",
       "Pointer, wheel, range, keyboard, day buttons and Play keep the figure and chart synchronised",
-      "All seven day buttons visible without horizontal scrolling; Day 7 directly selectable; touch targets at least 44 by 44 CSS pixels"
+      "All seven day buttons visible without horizontal scrolling; Day 7 directly selectable; touch targets at least 44 by 44 CSS pixels",
+      "Existing SHIFT S mark restored beside My Timber in shared member header; 30px mark, 10px gap, unchanged header height and navigation"
     ],
     "educationalBoundary": "Symbolic illustration, not measured medicine level, anatomical flow, personal symptom prediction or a dosing tool",
     "sourceCheck": {
@@ -2478,13 +2506,16 @@
       "exampleCurveIsNotSourceData": true
     },
     "servedInputs": {
-      "at": "2026-11-01T08:48:15.767349+00:00",
-      "source": "941bebe0d8ab21e8ba5f1ac972981da8daa3606f",
+      "at": "2026-11-01T09:00:09.411571+00:00",
+      "source": "3195018951f5188094ae3ef032b1d496269f7dee",
       "sha256": {
-        "day-buttons-candidate-shop.html": "aa6ca88a8d7a9b3429abab9943ae9f26f6b461ffa0ae2b082ad4b8550cae2eac",
-        "day-buttons-candidate-journey.mjs": "71f80867a0e8111774c763de85a80c24096964309e3f69cc3c5e811e30982b13",
-        "day-buttons-candidate-journey.css": "03368124f96fd2af3cdf8b91e30bd2f23aa3fb008b48b8c7ce2c2354dd9edce0",
-        "scoped-source/member-experience/tests/shop-connected-browser.mjs": "a906b6ea33232ad37c83502974c829f63c6991b3cc0be12bf4f0a133f6a1be7b"
+        "brand-mark-candidate-shop.html": "aa6ca88a8d7a9b3429abab9943ae9f26f6b461ffa0ae2b082ad4b8550cae2eac",
+        "brand-mark-candidate-journey.mjs": "71f80867a0e8111774c763de85a80c24096964309e3f69cc3c5e811e30982b13",
+        "brand-mark-candidate-journey.css": "03368124f96fd2af3cdf8b91e30bd2f23aa3fb008b48b8c7ce2c2354dd9edce0",
+        "brand-mark-candidate-navigation.mjs": "6ba78f8c4d5a354dd0dc67c6a19c0c8e7472202bd8c5716c917ed322d06f05a2",
+        "brand-mark-candidate-shop.css": "ebffd96740a75970fc92567ba5dab2e4f6defe8118f2ca88aa01745f29305d2c",
+        "brand-mark-candidate-shift-s.png": "97f754538a660372c62cf5a36c003b3082e672fa2a9de97d0fe4f1f288b56682",
+        "scoped-source/member-experience/tests/shop-connected-browser.mjs": "3ef8b80cd0ef4b6ae42be0bfef8b3357ef024426d70433d9129d8c45fb5fecc5"
       }
     },
     "preservedFirstSixWeeksEntry": "first-six-weeks-20261101/entry.mjs",
@@ -2536,6 +2567,28 @@
       "allButtonsVisibleAndUnobscured": true,
       "day7SelectedByPointerWithoutAutomaticScroll": true,
       "stylesheetCapturedFromServedCandidateAndMatchesLive": true
+    },
+    "brandMark": {
+      "path": "/assets/favicon-shift-s-20261020.png",
+      "status": 200,
+      "contentType": "image/png",
+      "sha256": "97f754538a660372c62cf5a36c003b3082e672fa2a9de97d0fe4f1f288b56682",
+      "displaySize": 30,
+      "nameGap": 10,
+      "existingAssetReused": true,
+      "decorativeEmptyAlt": true,
+      "sharedAcrossMemberPages": true,
+      "nativeBuild8ScriptsIncludedInCompatibilityChecks": true
     }
+  },
+  "buildPublicationScope": {
+    "resolution": "Publish only the programme-owned shared navigation assets; dashboard wrapper only injects their existing URLs",
+    "publishedFactories": [
+      "programme"
+    ],
+    "documentsCandidatePublished": false,
+    "documentsVersionPreserved": "459dd83d-9ade-461f-997a-6e11a4d7d3ff",
+    "documentsCandidateSHA256": "60172c52124dd461cfcbda6c5ac233a642e2b3d13d967fb3a429b3dff814afcd",
+    "priorServingDocumentsFactorySHA256": "4e8e63f984a5a266aee61fa6d76fcca2a9d4050d433c23d1f945bc5647ed1841"
   }
 }
