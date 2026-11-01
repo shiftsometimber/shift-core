@@ -57,6 +57,7 @@ try{
    const r=await page.evaluate(async path=>{const r=await fetch(path,{cache:'no-store'});return {status:r.status,contentType:r.headers.get('Content-Type'),source:await r.text(),integration:r.headers.get('X-My-Timber-Layout-Integration')};},path);assert.equal(r.status,200,path);assert.match(r.contentType,/javascript|css/);
    if(path.endsWith('my-timber-layout.mjs'))assert.equal(r.integration,'approved-journey-applied');
    if(process.env.MY_TIMBER_CAPTURE_SERVED&&path.endsWith('programme-journey.mjs'))writeFileSync(process.env.MY_TIMBER_CAPTURE_SERVED+'-journey.mjs',r.source);
+   if(process.env.MY_TIMBER_CAPTURE_SERVED&&path.endsWith('programme-journey.css'))writeFileSync(process.env.MY_TIMBER_CAPTURE_SERVED+'-journey.css',r.source);
    receipt.assets.push({path,status:r.status,sha256:digest(r.source),integration:r.integration});
   }
   for(const path of ['/v1/life-back/journey','/v1/life-back','/v1/privacy/export','/v1/commerce/active-checkout']){
