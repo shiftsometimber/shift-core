@@ -1,0 +1,47 @@
+{
+  "protectedObservations": [
+    {
+      "path": "/faq",
+      "decision": "Protected; already redesigned or recently expanded",
+      "observedMarkers": [
+        "20261022-public-presentation-v2"
+      ],
+      "mainAttributes": {
+        "class": "page-template template-article-guide-blog massp",
+        "id": "main-content",
+        "data-batch-release": "20261022-public-presentation-v2"
+      }
+    },
+    {
+      "path": "/help",
+      "decision": "Protected; already redesigned or recently expanded",
+      "observedMarkers": [],
+      "mainAttributes": {
+        "class": "hg",
+        "id": "main-content",
+        "data-help-version": "20261021-guided-v1"
+      }
+    },
+    {
+      "path": "/work-with-us",
+      "decision": "Protected; already redesigned or recently expanded",
+      "observedMarkers": [
+        "20261022-work-with-us-live-v1",
+        "hero-set-20261030-v1",
+        "smoking",
+        "work-with-us"
+      ],
+      "mainAttributes": {
+        "data-work-ww1": "work-ww1-20261031",
+        "class": "work-with-shift wwp",
+        "id": "main-content",
+        "data-work-preview": "20261022-work-with-us-preview-v1",
+        "data-work-release": "20261022-work-with-us-live-v1"
+      }
+    }
+  ],
+  "alsoProtected": "All fourteen pages completed in quality-repair-20261101 and the earlier selected releases",
+  "holds": [
+    "Homepage F1 and header proposals"
+  ]
+}

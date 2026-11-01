@@ -1,0 +1,40 @@
+{
+  "method": "Built-in image generation; unique illustrative image per page",
+  "images": [
+    {
+      "page": "editorial",
+      "source": "exec-ff4aa960-8e48-4c3d-8efe-35aa25cd5c36.png",
+      "asset": "/assets/remaining-pages-20261101/editorial.webp",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "bytes": 113384
+    },
+    {
+      "page": "reviews",
+      "source": "exec-4f3bafde-246b-404d-9071-3b0dad528643.png",
+      "asset": "/assets/remaining-pages-20261101/reviews.webp",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "bytes": 139020
+    },
+    {
+      "page": "lifestyle",
+      "source": "exec-a8a58fd9-acdf-4ac3-adbf-91d7f165f4cf.png",
+      "asset": "/assets/remaining-pages-20261101/lifestyle.webp",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "bytes": 227228
+    }
+  ],
+  "briefs": {
+    "editorial": "British South Asian woman checking published sources on an iPad at a modest desk; no clinical uniform, named reviewer, logos or legible text.",
+    "reviews": "Stocky Black British man checking unbranded walking shoes at a local leisure-centre entrance; everyday kit rather than a fitness-model image.",
+    "lifestyle": "Older bald British man with a larger belly tending a community allotment; ordinary daily movement, no exercise demonstration."
+  }
+}
