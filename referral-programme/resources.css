@@ -3,3 +3,5 @@
 #main-content.resources-page .print-value{display:none} @media print{body>header,body>footer,#shift-site-header,#sst-footer-c,.sst-service-bridge,#askTimberLaunch,#sstCookieSettings{display:none!important}}
 
 #main-content.sr-page.resources-page .hero::before,#main-content.sr-page.resources-page .hero::after{display:none!important}#main-content.sr-page.resources-page .item{border:0!important;border-top:1px solid var(--green)!important;border-radius:0!important;background:transparent!important}#main-content.sr-page.resources-page .top{padding-top:0!important}#main-content.sr-page.resources-page .hero{padding:0!important;margin:0!important}#main-content.sr-page.resources-page .hero .photo{align-self:center!important}
+
+#main-content.sr-page.resources-page .strip,#main-content.sr-page.resources-page .green{font-size:19px!important;font-weight:700!important}
