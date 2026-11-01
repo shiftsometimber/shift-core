@@ -82,9 +82,13 @@ const DB={prepare(sql){return{args:[],bind(...args){this.args=args;return this;}
 const beforeFile='babylove/.article-1509-before.mjs';writeFileSync(beforeFile,oldSource);
 const oldRenderer=await import(pathToFileURL(process.cwd()+'/'+beforeFile).href),newRenderer=await import(pathToFileURL(process.cwd()+'/'+renderer).href);
 rmSync(beforeFile);
-const dated=await query("SELECT a.slug,b.source_id FROM knowledge_articles a JOIN babylove_receipts b ON b.slug=a.slug WHERE a.status='published' AND date(a.publish_at)='2026-10-30' ORDER BY a.publish_at DESC");
-const direct=dated.find(r=>r.source_id==='shift-contributor'),vendor=dated.find(r=>r.source_id!=='shift-contributor');
-assert(direct&&vendor,'Both known 30 October publication sources are required');
+const dated=await query("SELECT a.slug,b.source_id,a.publish_at FROM knowledge_articles a JOIN babylove_receipts b ON b.slug=a.slug WHERE a.status='published' AND a.publish_at IS NOT NULL AND julianday(a.publish_at)<=julianday('now') ORDER BY a.publish_at DESC LIMIT 100");
+save('publication-samples',dated);
+const preferred=dated.filter(r=>String(r.publish_at).startsWith('2026-10-30'));
+const direct=preferred.find(r=>r.source_id==='shift-contributor')||dated.find(r=>r.source_id==='shift-contributor');
+const vendor=preferred.find(r=>r.source_id!=='shift-contributor')||dated.find(r=>r.source_id!=='shift-contributor');
+assert(direct&&vendor,'Both authenticated publication sources are required: '+JSON.stringify(dated));
+console.log('AUTHENTICATED_SOURCE_EXAMPLES '+JSON.stringify({direct,vendor}));
 const editorial=await query("SELECT a.slug FROM knowledge_articles a JOIN knowledge_editorial_releases r ON r.article_id=a.id AND r.slug=a.slug WHERE a.status='published' AND r.state IN ('published','verified') ORDER BY a.publish_at DESC LIMIT 1");
 const slugs=[...new Set(['glp-1-weight-regain',vendor.slug,direct.slug,...editorial.map(r=>r.slug)])];
 const articleBefore={},expectedArticles={},sourceProof={};
