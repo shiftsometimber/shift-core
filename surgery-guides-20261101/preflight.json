@@ -1,0 +1,1023 @@
+{
+  "readOnly": true,
+  "source": "5eaf8cb15163181660a29942b5812c421c60974b",
+  "capturedAt": "2026-11-01T15:34:33.274Z",
+  "routeCount": 915,
+  "owners": [
+    {
+      "path": "/comparisons/surgery/balloon-vs-esg",
+      "route": {
+        "id": "82a1ace5b8b7444584c956f51500772f",
+        "pattern": "https://shiftsometimber.co.uk/comparisons/surgery/balloon-vs-esg",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/balloon-vs-esg?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/balloon-vs-esg/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/balloon-vs-esg/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/balloon-vs-esg.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/balloon-vs-esg.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/balloon-vs-sleeve",
+      "route": {
+        "id": "ceb14035d8d240a08bf16f2d74ba2daa",
+        "pattern": "https://shiftsometimber.co.uk/comparisons/surgery/balloon-vs-sleeve",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/balloon-vs-sleeve?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/balloon-vs-sleeve/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/balloon-vs-sleeve/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/balloon-vs-sleeve.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/balloon-vs-sleeve.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/esg-vs-gastric-sleeve",
+      "route": {
+        "id": "3bce5da337bf4211887288ed2c4b889c",
+        "pattern": "https://shiftsometimber.co.uk/comparisons/surgery/esg-vs-gastric-sleeve",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/esg-vs-gastric-sleeve?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/esg-vs-gastric-sleeve/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/esg-vs-gastric-sleeve/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/esg-vs-gastric-sleeve.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/esg-vs-gastric-sleeve.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/gastric-band-vs-bypass",
+      "route": {
+        "id": "dbc368ffcb494c159b780385a85158f4",
+        "pattern": "https://shiftsometimber.co.uk/comparisons/surgery/gastric-band-vs-bypass",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/gastric-band-vs-bypass?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/gastric-band-vs-bypass/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/gastric-band-vs-bypass/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/gastric-band-vs-bypass.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/gastric-band-vs-bypass.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/gastric-bypass-vs-mini-bypass",
+      "route": {
+        "id": "a1dc7039994d44f391e09b84d6c27f30",
+        "pattern": "https://shiftsometimber.co.uk/comparisons/surgery/gastric-bypass-vs-mini-bypass",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/gastric-bypass-vs-mini-bypass?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/gastric-bypass-vs-mini-bypass/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/gastric-bypass-vs-mini-bypass/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/gastric-bypass-vs-mini-bypass.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/gastric-bypass-vs-mini-bypass.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/sleeve-vs-gastric-bypass",
+      "route": {
+        "id": "631771e1f1174307b36644f09f0b7d60",
+        "pattern": "https://shiftsometimber.co.uk/comparisons/surgery/sleeve-vs-gastric-bypass",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/sleeve-vs-gastric-bypass?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/sleeve-vs-gastric-bypass/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/sleeve-vs-gastric-bypass/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/sleeve-vs-gastric-bypass.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/sleeve-vs-gastric-bypass.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/sleeve-vs-mini-bypass",
+      "route": {
+        "id": "6ff240d280214b1ca4af9008bf91b543",
+        "pattern": "https://shiftsometimber.co.uk/comparisons/surgery/sleeve-vs-mini-bypass",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/sleeve-vs-mini-bypass?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/sleeve-vs-mini-bypass/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/sleeve-vs-mini-bypass/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/sleeve-vs-mini-bypass.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/surgery/sleeve-vs-mini-bypass.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    }
+  ],
+  "workers": [
+    {
+      "name": "shift-public-presentation-batch-20261022",
+      "versionId": "53256048-729d-4d2a-b699-ea72f6bbccaa",
+      "deploymentId": "51a54f93-82fd-449b-b252-bdd2b90b4d9e",
+      "main": "nhs-guides-20261101/entry.mjs",
+      "modules": [
+        {
+          "name": "comparison-cp1/layout.mjs",
+          "bytes": 994
+        },
+        {
+          "name": "comparison-cp1/overlay.mjs",
+          "bytes": 1062
+        },
+        {
+          "name": "comparison-cp1/styles.mjs",
+          "bytes": 32043
+        },
+        {
+          "name": "decision-pages-20261101/config.mjs",
+          "bytes": 1832
+        },
+        {
+          "name": "decision-pages-20261101/entry.mjs",
+          "bytes": 357
+        },
+        {
+          "name": "decision-pages-20261101/graphics.mjs",
+          "bytes": 2434
+        },
+        {
+          "name": "decision-pages-20261101/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "decision-pages-20261101/presentation.mjs",
+          "bytes": 36212
+        },
+        {
+          "name": "decision-pages-20261101/runtime.mjs",
+          "bytes": 4379
+        },
+        {
+          "name": "downloads-dr3-20261031/config.mjs",
+          "bytes": 490
+        },
+        {
+          "name": "downloads-dr3-20261031/entry.mjs",
+          "bytes": 210
+        },
+        {
+          "name": "downloads-dr3-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "downloads-dr3-20261031/presentation.mjs",
+          "bytes": 8305
+        },
+        {
+          "name": "downloads-dr3-20261031/runtime.mjs",
+          "bytes": 3948
+        },
+        {
+          "name": "family-fd3-20261031/config.mjs",
+          "bytes": 493
+        },
+        {
+          "name": "family-fd3-20261031/entry.mjs",
+          "bytes": 214
+        },
+        {
+          "name": "family-fd3-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "family-fd3-20261031/presentation.mjs",
+          "bytes": 7722
+        },
+        {
+          "name": "family-fd3-20261031/runtime.mjs",
+          "bytes": 3288
+        },
+        {
+          "name": "health-hb2/layout.mjs",
+          "bytes": 1321
+        },
+        {
+          "name": "health-hb2/overlay.mjs",
+          "bytes": 1079
+        },
+        {
+          "name": "health-hb2/styles.mjs",
+          "bytes": 26189
+        },
+        {
+          "name": "hero-set-20261030/entry.mjs",
+          "bytes": 600
+        },
+        {
+          "name": "hero-set-20261030/payload.mjs",
+          "bytes": 39042
+        },
+        {
+          "name": "hero-set-20261030/runtime.mjs",
+          "bytes": 9762
+        },
+        {
+          "name": "knowledge-health-entry.mjs",
+          "bytes": 266
+        },
+        {
+          "name": "knowledge-health/client.mjs",
+          "bytes": 2540
+        },
+        {
+          "name": "knowledge-health/content.mjs",
+          "bytes": 54409
+        },
+        {
+          "name": "knowledge-health/evidence.mjs",
+          "bytes": 11569
+        },
+        {
+          "name": "knowledge-health/expansion-content.mjs",
+          "bytes": 97780
+        },
+        {
+          "name": "knowledge-health/production.mjs",
+          "bytes": 3726
+        },
+        {
+          "name": "knowledge-health/render.mjs",
+          "bytes": 22279
+        },
+        {
+          "name": "lifestyle-guides-20261101/config.mjs",
+          "bytes": 2433
+        },
+        {
+          "name": "lifestyle-guides-20261101/entry.mjs",
+          "bytes": 526
+        },
+        {
+          "name": "lifestyle-guides-20261101/graphics.mjs",
+          "bytes": 1565
+        },
+        {
+          "name": "lifestyle-guides-20261101/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "lifestyle-guides-20261101/presentation.mjs",
+          "bytes": 50026
+        },
+        {
+          "name": "lifestyle-guides-20261101/runtime.mjs",
+          "bytes": 9640
+        },
+        {
+          "name": "nhs-guides-20261101/config.mjs",
+          "bytes": 2510
+        },
+        {
+          "name": "nhs-guides-20261101/entry.mjs",
+          "bytes": 565
+        },
+        {
+          "name": "nhs-guides-20261101/graphics.mjs",
+          "bytes": 2271
+        },
+        {
+          "name": "nhs-guides-20261101/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "nhs-guides-20261101/presentation.mjs",
+          "bytes": 55803
+        },
+        {
+          "name": "nhs-guides-20261101/runtime.mjs",
+          "bytes": 9641
+        },
+        {
+          "name": "pending-pages-20261031/config.mjs",
+          "bytes": 983
+        },
+        {
+          "name": "pending-pages-20261031/entry.mjs",
+          "bytes": 220
+        },
+        {
+          "name": "pending-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "pending-pages-20261031/presentation.mjs",
+          "bytes": 25583
+        },
+        {
+          "name": "pending-pages-20261031/runtime.mjs",
+          "bytes": 5070
+        },
+        {
+          "name": "previews/public-presentation-batch/answer-depth.mjs",
+          "bytes": 35553
+        },
+        {
+          "name": "previews/public-presentation-batch/manifest.mjs",
+          "bytes": 20650
+        },
+        {
+          "name": "previews/public-presentation-batch/stopping-layout.mjs",
+          "bytes": 1073
+        },
+        {
+          "name": "previews/public-presentation-batch/stopping-style.mjs",
+          "bytes": 8263
+        },
+        {
+          "name": "previews/public-presentation-batch/style.mjs",
+          "bytes": 13197
+        },
+        {
+          "name": "previews/public-presentation-batch/worker.mjs",
+          "bytes": 4901
+        },
+        {
+          "name": "quality-repair-20261101/config.mjs",
+          "bytes": 2579
+        },
+        {
+          "name": "quality-repair-20261101/entry.mjs",
+          "bytes": 521
+        },
+        {
+          "name": "quality-repair-20261101/graphics.mjs",
+          "bytes": 2800
+        },
+        {
+          "name": "quality-repair-20261101/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "quality-repair-20261101/presentation.mjs",
+          "bytes": 25897
+        },
+        {
+          "name": "quality-repair-20261101/runtime.mjs",
+          "bytes": 8379
+        },
+        {
+          "name": "remaining-pages-20261101/config.mjs",
+          "bytes": 3422
+        },
+        {
+          "name": "remaining-pages-20261101/entry.mjs",
+          "bytes": 619
+        },
+        {
+          "name": "remaining-pages-20261101/graphics.mjs",
+          "bytes": 4206
+        },
+        {
+          "name": "remaining-pages-20261101/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "remaining-pages-20261101/presentation.mjs",
+          "bytes": 45075
+        },
+        {
+          "name": "remaining-pages-20261101/runtime.mjs",
+          "bytes": 9447
+        },
+        {
+          "name": "support-pages-20261031/config.mjs",
+          "bytes": 1161
+        },
+        {
+          "name": "support-pages-20261031/entry.mjs",
+          "bytes": 318
+        },
+        {
+          "name": "support-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "support-pages-20261031/presentation.mjs",
+          "bytes": 16635
+        },
+        {
+          "name": "support-pages-20261031/runtime.mjs",
+          "bytes": 4023
+        },
+        {
+          "name": "utility-pages-20261031/config.mjs",
+          "bytes": 1055
+        },
+        {
+          "name": "utility-pages-20261031/entry.mjs",
+          "bytes": 408
+        },
+        {
+          "name": "utility-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "utility-pages-20261031/presentation.mjs",
+          "bytes": 24334
+        },
+        {
+          "name": "utility-pages-20261031/runtime.mjs",
+          "bytes": 3274
+        },
+        {
+          "name": "weight-mw1/layout.mjs",
+          "bytes": 1053
+        },
+        {
+          "name": "weight-mw1/overlay.mjs",
+          "bytes": 1048
+        },
+        {
+          "name": "weight-mw1/styles.mjs",
+          "bytes": 44834
+        }
+      ],
+      "bindingCount": 4
+    },
+    {
+      "name": "shift-core",
+      "versionId": "713c4b9d-29b5-4351-a357-13c7a3b538e3",
+      "deploymentId": "71593a5c-16f2-4ea1-8dda-80ff3ca5d1b5",
+      "main": "referral-programme/entry.mjs",
+      "modules": [
+        {
+          "name": "decision-pages-20261101/config.mjs",
+          "bytes": 1832
+        },
+        {
+          "name": "decision-pages-20261101/entry.mjs",
+          "bytes": 1138
+        },
+        {
+          "name": "decision-pages-20261101/graphics.mjs",
+          "bytes": 2434
+        },
+        {
+          "name": "decision-pages-20261101/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "decision-pages-20261101/presentation.mjs",
+          "bytes": 36212
+        },
+        {
+          "name": "decision-pages-20261101/runtime.mjs",
+          "bytes": 4379
+        },
+        {
+          "name": "first-paint-utilities-20261101/documents.mjs",
+          "bytes": 25730
+        },
+        {
+          "name": "first-paint-utilities-20261101/entry.mjs",
+          "bytes": 226
+        },
+        {
+          "name": "lifestyle-guides-20261101/config.mjs",
+          "bytes": 2433
+        },
+        {
+          "name": "lifestyle-guides-20261101/entry.mjs",
+          "bytes": 1979
+        },
+        {
+          "name": "lifestyle-guides-20261101/graphics.mjs",
+          "bytes": 1565
+        },
+        {
+          "name": "lifestyle-guides-20261101/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "lifestyle-guides-20261101/presentation.mjs",
+          "bytes": 50026
+        },
+        {
+          "name": "lifestyle-guides-20261101/runtime.mjs",
+          "bytes": 9640
+        },
+        {
+          "name": "nhs-guides-20261101/config.mjs",
+          "bytes": 2510
+        },
+        {
+          "name": "nhs-guides-20261101/entry.mjs",
+          "bytes": 2158
+        },
+        {
+          "name": "nhs-guides-20261101/graphics.mjs",
+          "bytes": 2271
+        },
+        {
+          "name": "nhs-guides-20261101/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "nhs-guides-20261101/presentation.mjs",
+          "bytes": 55803
+        },
+        {
+          "name": "nhs-guides-20261101/runtime.mjs",
+          "bytes": 9641
+        },
+        {
+          "name": "public-image-repair/delivery.mjs",
+          "bytes": 1082
+        },
+        {
+          "name": "public-image-repair/entry.mjs",
+          "bytes": 221
+        },
+        {
+          "name": "public-image-repair/tools-image.mjs",
+          "bytes": 166820
+        },
+        {
+          "name": "quality-repair-20261101/config.mjs",
+          "bytes": 2579
+        },
+        {
+          "name": "quality-repair-20261101/entry.mjs",
+          "bytes": 2057
+        },
+        {
+          "name": "quality-repair-20261101/graphics.mjs",
+          "bytes": 2800
+        },
+        {
+          "name": "quality-repair-20261101/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "quality-repair-20261101/media.mjs",
+          "bytes": 795
+        },
+        {
+          "name": "quality-repair-20261101/photo-contributors.mjs",
+          "bytes": 158583
+        },
+        {
+          "name": "quality-repair-20261101/photo-media.mjs",
+          "bytes": 163699
+        },
+        {
+          "name": "quality-repair-20261101/photo-mot.mjs",
+          "bytes": 125399
+        },
+        {
+          "name": "quality-repair-20261101/photo-partners.mjs",
+          "bytes": 241951
+        },
+        {
+          "name": "quality-repair-20261101/photo-promise.mjs",
+          "bytes": 205143
+        },
+        {
+          "name": "quality-repair-20261101/photo-research.mjs",
+          "bytes": 154699
+        },
+        {
+          "name": "quality-repair-20261101/photo-roadmap.mjs",
+          "bytes": 242115
+        },
+        {
+          "name": "quality-repair-20261101/presentation.mjs",
+          "bytes": 25897
+        },
+        {
+          "name": "quality-repair-20261101/restore-community-0.mjs",
+          "bytes": 246727
+        },
+        {
+          "name": "quality-repair-20261101/restore-downloads-0.mjs",
+          "bytes": 104879
+        },
+        {
+          "name": "quality-repair-20261101/restore-family-0.mjs",
+          "bytes": 250783
+        },
+        {
+          "name": "quality-repair-20261101/restore-pending-0.mjs",
+          "bytes": 166195
+        },
+        {
+          "name": "quality-repair-20261101/restore-pending-1.mjs",
+          "bytes": 275907
+        },
+        {
+          "name": "quality-repair-20261101/restore-provider-0.mjs",
+          "bytes": 146399
+        },
+        {
+          "name": "quality-repair-20261101/restore-selected-0.mjs",
+          "bytes": 282247
+        },
+        {
+          "name": "quality-repair-20261101/restore-selected-1.mjs",
+          "bytes": 99335
+        },
+        {
+          "name": "quality-repair-20261101/restored-media.mjs",
+          "bytes": 1070
+        },
+        {
+          "name": "quality-repair-20261101/runtime.mjs",
+          "bytes": 8379
+        },
+        {
+          "name": "referral-programme/assets.mjs",
+          "bytes": 28203
+        },
+        {
+          "name": "referral-programme/delivery.mjs",
+          "bytes": 2705
+        },
+        {
+          "name": "referral-programme/entry.mjs",
+          "bytes": 209
+        },
+        {
+          "name": "referral-programme/pages.mjs",
+          "bytes": 8873
+        },
+        {
+          "name": "referral-programme/programme-weeks.mjs",
+          "bytes": 4171
+        },
+        {
+          "name": "referral-programme/referrer-content.mjs",
+          "bytes": 11248
+        },
+        {
+          "name": "remaining-pages-20261101/config.mjs",
+          "bytes": 3422
+        },
+        {
+          "name": "remaining-pages-20261101/entry.mjs",
+          "bytes": 4301
+        },
+        {
+          "name": "remaining-pages-20261101/graphics.mjs",
+          "bytes": 4206
+        },
+        {
+          "name": "remaining-pages-20261101/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "remaining-pages-20261101/media.mjs",
+          "bytes": 393
+        },
+        {
+          "name": "remaining-pages-20261101/photo-editorial.mjs",
+          "bytes": 151199
+        },
+        {
+          "name": "remaining-pages-20261101/photo-lifestyle.mjs",
+          "bytes": 302991
+        },
+        {
+          "name": "remaining-pages-20261101/photo-reviews.mjs",
+          "bytes": 185379
+        },
+        {
+          "name": "remaining-pages-20261101/presentation.mjs",
+          "bytes": 45075
+        },
+        {
+          "name": "remaining-pages-20261101/runtime.mjs",
+          "bytes": 9447
+        },
+        {
+          "name": "worker.js",
+          "bytes": 33697619
+        }
+      ],
+      "assets": {
+        "config": {
+          "html_handling": "auto-trailing-slash",
+          "not_found_handling": "none",
+          "run_worker_first": true,
+          "base_path": "/"
+        }
+      },
+      "bindingCount": 52
+    }
+  ],
+  "captures": [
+    {
+      "key": "balloon-vs-esg",
+      "status": 200,
+      "bytes": 62755
+    },
+    {
+      "key": "balloon-vs-sleeve",
+      "status": 200,
+      "bytes": 62595
+    },
+    {
+      "key": "esg-vs-gastric-sleeve",
+      "status": 200,
+      "bytes": 62650
+    },
+    {
+      "key": "gastric-band-vs-bypass",
+      "status": 200,
+      "bytes": 62661
+    },
+    {
+      "key": "gastric-bypass-vs-mini-bypass",
+      "status": 200,
+      "bytes": 62760
+    },
+    {
+      "key": "sleeve-vs-gastric-bypass",
+      "status": 200,
+      "bytes": 62840
+    },
+    {
+      "key": "sleeve-vs-mini-bypass",
+      "status": 200,
+      "bytes": 62509
+    }
+  ]
+}

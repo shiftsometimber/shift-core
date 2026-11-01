@@ -1,0 +1,43 @@
+{
+  "visualReviewPassed": true,
+  "reviewedSource": "5eaf8cb15163181660a29942b5812c421c60974b",
+  "browserChecks": 42,
+  "pages": [
+    "balloon-vs-esg",
+    "balloon-vs-sleeve",
+    "esg-vs-gastric-sleeve",
+    "gastric-band-vs-bypass",
+    "gastric-bypass-vs-mini-bypass",
+    "sleeve-vs-gastric-bypass",
+    "sleeve-vs-mini-bypass"
+  ],
+  "viewports": [
+    1440,
+    768,
+    390
+  ],
+  "evidence": [
+    {
+      "source": "5eaf8cb15163181660a29942b5812c421c60974b",
+      "run": 41321864957,
+      "artifact": 13088774352,
+      "cases": 42,
+      "scope": "Complete responsive, source-preservation, section-index and horizontal-table review"
+    }
+  ],
+  "manualReview": "Inspected all seven desktop, tablet and phone header/layout screenshots and a representative full desktop page through cautions, table, trade-offs, questions, sources, service panel and footer. No clipped text or contrast issues. Mobile tables intentionally scroll sideways, with a visible swipe hint and verified scrolling. Existing gastric-band-vs-sleeve design and its two photographs excluded and protected.",
+  "moduleHashes": {
+    "config.mjs": "2bb7e3cc98fb245061ea23bcaca7ae2c965220169f50bd8256278607374ee509",
+    "runtime.mjs": "3e4628c9cd813695cb5bc0675bf4307bb08790b873673de4d829b309b61ecf27",
+    "presentation.mjs": "29213daf6c1d8167545fce7fe8c3aa7fd6f304242a670798c69bac7a0f4ad5ff",
+    "graphics.mjs": "1e27218a24f33bf826ab84be9c754e074144855a3a41d8a5419e6d07e70c4a6c",
+    "html.mjs": "efb7081f50337295361cb96d6b05f5f7d7d03df773f625609299ca4e86297146",
+    "browser.mjs": "d33d42a35a3094d9ed2ed5dcde37f0fb681cbff83e13c7d624dd84bbad20e56a",
+    "check.mjs": "0259f5b3d2459c71834aaafb155099929ac4fe29a00eb8155278789e8550514e",
+    "deploy.mjs": "92cfa327dc75c6e7f3e7a96429ed8398efc93da5fd9d68fc710f956eb3da30d4",
+    "capture.mjs": "291e70e885bf2ce8222c61c7bfcd933490d85483eb3846a8373423d8f7d6477e",
+    "route-owner.mjs": "35d4ad17759b7926b46fe76631c1fcf614c8251c28c5d50e6c0211360af30305",
+    "release-state.mjs": "b7a21d4dd04b7ab21d15b063fecdb8bf95ca1741bc4861d019872983f9143630",
+    "media.mjs": "f05ae5a3b3af2d818d07ed249b3b54516faea7d2e38d0e0835b6ba3e98e2ee66"
+  }
+}
