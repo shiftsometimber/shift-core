@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {mkdirSync,readFileSync,writeFileSync,rmSync,existsSync} from 'node:fs';
 import {pathToFileURL} from 'node:url';
-import {deriveArticlePatch,applyArticlePatch,sha} from './patch.mjs';
+import {deriveArticlePatch,applyArticlePatch,expectedRenderedDocument,sha} from './patch.mjs';
 import {runtimeRollbackDecision} from '../runtime-rollback-guard.mjs';
 import images from '../../public-image-repair/manifest.json' with {type:'json'};
 
@@ -112,10 +112,10 @@ for(const slug of slugs){
   continue;
  }
  const row=await newRenderer.dynamicBabyLovePublication({DB},slug);assert(row,'Published authenticated article unavailable: '+slug);
- const oldBody=oldRenderer.renderMarkdown(row.body,row.title,row.slug),newBody=newRenderer.renderMarkdown(row.body,row.title,row.slug);
- const r=await get('/articles/'+slug);assert(r.text.includes(oldBody),'Live body does not match the authenticated published preimage: '+slug);
- assert.equal(r.text.split(oldBody).length,2,'One published article body required');
- articleBefore[slug]=r;expectedArticles[slug]=r.text.replace(oldBody,()=>newBody);
+ const r=await get('/articles/'+slug);
+ const expected=expectedRenderedDocument(r.text,row.body,oldRenderer.renderMarkdown,newRenderer.renderMarkdown,row.title,row.slug);
+ save('render-delta-'+slug,{replacements:expected.replacements,beforeHTML:sha(r.text),expectedHTML:sha(expected.html)});
+ articleBefore[slug]=r;expectedArticles[slug]=expected.html;
  sourceProof[slug]={sourceId:row.source_id,editorial:!!row.editorial,expected:newRenderer.articleSource(row),publishedAt:row.publish_at,updatedAt:row.updated_at,bodySHA256:sha(row.body)};
 }
 console.log('AUTHENTICATED_SOURCE_EXAMPLES '+JSON.stringify({direct:{slug:directSlug,...sourceProof[directSlug]},vendor}));

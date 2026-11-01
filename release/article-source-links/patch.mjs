@@ -32,3 +32,27 @@ export function applyArticlePatch(bytes,patch){
  assert.equal(code.replace(patch.newText,()=>patch.oldText),before,'Serving patch must have an exact byte inverse');
  return {code,proof:{beforeSHA256:sha(bytes),afterSHA256:sha(code),exactInverse:true,oldArticleSHA256:sha(patch.oldText),newArticleSHA256:sha(patch.newText)}};
 }
+
+// Preserve the final serving shell and all existing HTML transformations.
+// Admit only complete changed link/image atoms from the authenticated Markdown,
+// and require those atoms to explain the renderer's entire body difference.
+export function expectedRenderedDocument(html,body,beforeRender,afterRender,title='',slug=''){
+ const before=beforeRender(body,title,slug),after=afterRender(body,title,slug);
+ if(before===after)return {html,replacements:[]};
+ const atom=fn=>token=>fn(token,'',slug).replace(/^<p>|<\/p>$/g,'');
+ const oldAtom=atom(beforeRender),newAtom=atom(afterRender),changes=new Map();
+ for(const m of body.matchAll(/!?\[([^\]]*)\]\((https?:\/\/(?:[^\s()]|\([^()\s]*\))+|\/[^\s)]*|#[a-z0-9_-]+)\)/gi)){
+  const oldText=oldAtom(m[0]),newText=newAtom(m[0]);
+  if(oldText!==newText)changes.set(oldText,newText);
+ }
+ assert(changes.size,'Renderer changes must be explained by complete source link/image atoms');
+ let projected=before,expected=html;const replacements=[];
+ for(const [oldText,newText]of changes){
+  const sourceCount=before.split(oldText).length-1,liveCount=html.split(oldText).length-1;
+  assert(sourceCount>0&&liveCount===sourceCount,'The exact source link/image occurrences must match the actual live document');
+  projected=projected.replaceAll(oldText,()=>newText);expected=expected.replaceAll(oldText,()=>newText);
+  replacements.push({beforeSHA256:sha(oldText),afterSHA256:sha(newText),occurrences:liveCount});
+ }
+ assert.equal(sha(projected),sha(after),'Link/image changes must explain every changed rendered body byte');
+ return {html:expected,replacements};
+}
