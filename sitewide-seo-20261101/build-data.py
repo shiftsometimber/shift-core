@@ -61,6 +61,10 @@ for r in eligible:
   ]
   spec['body']=[{'before':a,'after':b} for a,b in zip(before,after)]
   spec['modifiedAt']='2026-11-01'
+ html=(capture/'html'/r['file']).read_text()
+ bylines=[p for p in re.findall(r'<p\b[^>]*>[\s\S]*?</p>',html) if 'sst-article-meta' in p and p.endswith('SHIFT Team</p>') and '<a ' not in p]
+ if len(bylines)==1:
+  old=bylines[0];spec['byline']={'before':old,'after':old.replace('SHIFT Team</p>','<a href="/authors/shift-some-timber-editorial-team" rel="author">SHIFT Team</a></p>')}
  pages[path]=spec
 assert all(p in pages for p in titles)
 def nodes(v):
