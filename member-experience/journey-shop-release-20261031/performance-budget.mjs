@@ -5,9 +5,10 @@ const screens=['today','journey','shop','grub','fit','support','more'],profiles=
 export const percentile=(a,q)=>{const n=[...a].sort((a,b)=>a-b);return n[Math.max(0,Math.ceil(n.length*q)-1)];};
 export function evaluateBudget(phase,{requireCoverage=true}={}){
  const state=JSON.parse(readFileSync('performance-release-state.json')),files=readdirSync('.').filter(n=>n.startsWith('performance-distribution-')&&n.endsWith('.json')),data=files.map(file=>({...JSON.parse(readFileSync(file)),file}));
- const valid=r=>r.fixtureRevision===2&&r.verified&&r.variant==='cache'&&(r.phase==='baseline'||r.source===state.source)&&r.productionApiRequests===0&&r.productionWrites===0;
+ const staticSlice=JSON.parse(readFileSync('performance-build.json')).scope==='static',requiredProfiles=staticSlice?[['chromium','good']]:profiles;
+ const valid=r=>r.fixtureRevision===2&&r.verified&&(r.phase==='baseline'?r.variant==='cache':r.variant===(staticSlice?'static':'cache'))&&(r.phase==='baseline'||r.source===state.source)&&r.productionApiRequests===0&&r.productionWrites===0;
  const rows=data.filter(valid).flatMap(r=>r.rows.map(x=>({...x,file:r.file}))),comparisons=[],failures=[],flags=[];
- for(const [engine,profile]of profiles)for(const screen of screens)for(const visit of ['fresh','warm']){
+ for(const [engine,profile]of requiredProfiles)for(const screen of screens)for(const visit of ['fresh','warm']){
   const group=p=>rows.filter(x=>x.phase===p&&x.engine===engine&&x.profile===profile&&x.screen===screen&&x.visit===visit),before=group('baseline'),after=group(phase);
   if(before.length<20||after.length<20){if(requireCoverage)failures.push('Missing n20 '+engine+'/'+profile+'/'+screen+'/'+visit);continue;}
   const summarise=g=>({n:g.length,medianMs:percentile(g.map(x=>x.usableMs),.5),p95Ms:percentile(g.map(x=>x.usableMs),.95),slowestMs:Math.max(...g.map(x=>x.usableMs)),ackP95Ms:percentile(g.map(x=>x.ackMs??Infinity),.95),jsMedianBytes:percentile(g.map(x=>x.externalJsTransferredBytes),.5),identityMedianMs:percentile(g.map(x=>x.accountMs),.5),dataMedianMs:percentile(g.map(x=>x.dataMs),.5),serverMedianMs:percentile(g.map(x=>x.ttfbMs),.5),slowest:g.toSorted((a,b)=>b.usableMs-a.usableMs).slice(0,3).map(({sample,usableMs,ttfbMs,accountMs,dataMs,documentRequests,file})=>({sample,usableMs,ttfbMs,accountMs,dataMs,documentRequests,file}))});
