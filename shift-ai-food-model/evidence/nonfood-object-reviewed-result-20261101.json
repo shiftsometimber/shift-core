@@ -1,0 +1,61 @@
+{
+  "status": "PROVISIONAL_DEVELOPMENT_RESULT_ONLY",
+  "candidate": "shift-spatial-ensemble-15",
+  "reviewed_photos": 100,
+  "clear_nonfood": 93,
+  "uncertain": 7,
+  "contains_food_or_drink": 0,
+  "false_food_suggestions": 4,
+  "false_food_suggestion_fraction_on_provisional_clear_subset": 0.043010752688172046,
+  "gate_accepts_on_clear_subset": 10,
+  "errors": [
+    {
+      "image_id": "001a995c1e25d892",
+      "gate_accept": true,
+      "food_suggestion": true,
+      "items": [
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "0217ef254d8bf5cd",
+      "gate_accept": true,
+      "food_suggestion": true,
+      "items": [
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "03df40e50dfc9098",
+      "gate_accept": true,
+      "food_suggestion": true,
+      "items": [
+        "pizza"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "044c70c9fa3dbe80",
+      "gate_accept": true,
+      "food_suggestion": true,
+      "items": [
+        "pizza",
+        "berry"
+      ],
+      "unavailable": false
+    }
+  ],
+  "independent_human_review": false,
+  "production_ready": false,
+  "thresholds_changed": false,
+  "training_on_candidates": false,
+  "limitations": [
+    "Assistant contact-sheet adjudication, not independent human ground truth",
+    "Vehicle-dominated non-random cohort; does not establish general non-food robustness",
+    "Uncertain images excluded from denominator and retained in review",
+    "Not a blind UK acceptance test; 99.99% target unverified"
+  ],
+  "next_engineering_priority": "Build a separate diverse, visually verified training split of hard non-food examples; retain these images as development evaluation only."
+}
