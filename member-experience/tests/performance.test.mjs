@@ -1,3 +1,4 @@
+import{gzipSync}from'node:zlib';
 import test from'node:test';import assert from'node:assert/strict';
 import{wrapMemberPerformance,augmentPerformanceDocument}from'../performance-delivery.mjs';
 import{performanceRuntime}from'../performance-client.mjs';
@@ -18,3 +19,10 @@ test('original member document remains private; one bootstrap precedes every mem
 test('disabled feature flags cannot activate the transport or static assets',async()=>{
  const expected=new Response('old'),original={fetch:()=>expected};assert.equal(await wrapMemberPerformance(original,{},{} ,'core').fetch(new Request('https://shiftsometimber.co.uk/member/fit'),{},{}),expected);
 });
+test('compressed upstream member HTML is decoded before augmentation and remains private',async()=>{
+ const html='<!doctype html><html><head></head><body><main>Existing approved content</main></body></html>',response=new Response(gzipSync(Buffer.from(html)),{headers:{'Content-Type':'text/html','Content-Encoding':'gzip','Cache-Control':'public'}}),wrapped=wrapMemberPerformance({fetch:async()=>response},{},{},'programme');
+ const result=await wrapped.fetch(new Request('https://shiftsometimber.co.uk/member/fit'),{MEMBER_EXPERIENCE_V1_ENABLED:'true'},{});const body=await result.text();assert.match(body,/data-mt-performance/);assert.match(body,/Existing approved content/);assert.equal(result.headers.get('Content-Encoding'),null);assert.match(result.headers.get('Cache-Control'),/private/);
+});
+
+test('core member responses pass through without another HTML read or re-encoding',async()=>{const response=new Response('original encoded stream',{headers:{'Content-Encoding':'gzip','Content-Type':'text/html','Cache-Control':'no-store, private'}}),wrapped=wrapMemberPerformance({fetch:async()=>response},{},{},'core');assert.equal(await wrapped.fetch(new Request('https://shiftsometimber.co.uk/member/dashboard'),{MEMBER_EXPERIENCE_V1_ENABLED:'true'},{}),response);});
+

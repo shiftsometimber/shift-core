@@ -1,6 +1,6 @@
 {
-  "at": "2026-11-01T21:02:28.159Z",
-  "bundleSHA256": "d7e1d8f59b080ea5d619f0b3f719ffed029209340381c7e6918ed8acd3b193ed",
+  "at": "2026-11-01T21:12:47.174Z",
+  "bundleSHA256": "ef1c45a65846467c7274bb2b161e3a11212c9739ac847b56a49beaae025a7516",
   "assetsSHA256": "652cc37848282e3f38f21b08e70ce2d13aee426a723baa5767b38cfa9eb2fdb0",
   "publicSourcesSHA256": "17ed9150cece1c044d9223dd0b04d0545332198d3948e05dc2508116217ee925",
   "staticAssets": {
@@ -382,6 +382,6 @@
   "sourceInputs": {
     "scoped-source/member-experience/performance-client.mjs": "62282239da15b1b61082462c9acd5b4e98eed7f4f2db096025f2be4947de71d6",
     "scoped-source/member-experience/performance-monitor.mjs": "b1abbf94451cfe4545738dc5b558022266a5ba33553380558a0d0e255f1c009d",
-    "scoped-source/member-experience/performance-delivery.mjs": "b3d7bbc46d86c9b904653bdd077cafeebc8df7ea0d5ff8cac87d846bf585f64f"
+    "scoped-source/member-experience/performance-delivery.mjs": "209bc071bf95283d4340e43f8208a812043290fd8017672d078742d3b92bc8ef"
   }
 }

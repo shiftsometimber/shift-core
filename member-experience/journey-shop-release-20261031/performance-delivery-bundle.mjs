@@ -662,6 +662,13 @@ function realUserPerformanceClient() {
 var performanceMonitorRuntime = "(" + realUserPerformanceClient.toString() + ")();";
 
 // scoped-source/member-experience/performance-delivery.mjs
+async function performanceDocumentText(response) {
+  let body = new Uint8Array(await response.arrayBuffer());
+  for (let depth = 0; depth < 2 && body[0] === 31 && body[1] === 139; depth++) body = new Uint8Array(await new Response(new Blob([body]).stream().pipeThrough(new DecompressionStream("gzip"))).arrayBuffer());
+  const text = new TextDecoder("utf-8", { fatal: true }).decode(body);
+  if (!/<!doctype html>/i.test(text)) throw Error("Member document is not decoded HTML");
+  return text;
+}
 function augmentPerformanceDocument(html, assets = {}, stage = "cache") {
   if (stage === "server") return html;
   if (html.includes('data-mt-performance="20261101"')) return html;
@@ -692,7 +699,7 @@ function wrapMemberPerformance(original, templates, assets, kind) {
       if (request.headers.get("If-None-Match") === headers.ETag) return new Response(null, { status: 304, headers });
       return new Response(request.method === "HEAD" ? null : asset.body, { headers });
     }
-    if (request.method !== "GET" || !finite.test(u.pathname)) return original.fetch(request, env, ctx);
+    if (kind === "core" || request.method !== "GET" || !finite.test(u.pathname)) return original.fetch(request, env, ctx);
     const t = performance.now(), key = u.pathname + u.search, template = templates[key], upstream = [];
     let response;
     if (request.method === "GET" && template && template.owner === kind && request.headers.get("X-My-Timber-Profile-Original") !== "1") {
@@ -709,7 +716,7 @@ function wrapMemberPerformance(original, templates, assets, kind) {
       response = await original.fetch(new Request(request, { headers: upstreamHeaders }), timed, ctx);
     }
     if (request.method !== "GET" || !finite.test(u.pathname) || !response.ok || !response.headers.get("Content-Type")?.includes("text/html")) return response;
-    const fetchMs = performance.now() - t, renderAt = performance.now(), html = augmentPerformanceDocument(await response.text(), experimental ? {} : assets, stage), h = new Headers(response.headers);
+    const fetchMs = performance.now() - t, renderAt = performance.now(), html = augmentPerformanceDocument(await performanceDocumentText(response), experimental ? {} : assets, stage), h = new Headers(response.headers);
     for (const k of ["Content-Length", "Content-Encoding", "ETag", "Last-Modified"]) h.delete(k);
     h.set("Cache-Control", "no-store, private");
     h.append("Vary", "Cookie");
@@ -720,5 +727,6 @@ function wrapMemberPerformance(original, templates, assets, kind) {
 }
 export {
   augmentPerformanceDocument,
+  performanceDocumentText,
   wrapMemberPerformance
 };
