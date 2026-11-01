@@ -13,3 +13,30 @@ Local checks cover full text in its original order, every original link/attribut
 Preview uses exact candidate HTML and assets with the current live scripts and styles, without changing ordinary traffic. Desktop, tablet and phone checks cover both ordinary and query URLs (144 browser cases). Six resources also receive real print-media/PDF checks. Manual visual review of all twenty-four pages is required before the reviewed module hashes are allowed into production. Production is followed by the same live checks and protected-resource verification.
 
 Preview 41288062191 stopped before browser review because the protected member dashboard gained its separate programme-first-six-weeks script during preparation. No page in this batch was published. The next preview recaptures the current production baseline and keeps the same strict protected-content and script checks.
+
+## Pages in this release
+
+- [/decision-centre-methodology](https://shiftsometimber.co.uk/decision-centre-methodology)
+- [/decision-readiness-methodology](https://shiftsometimber.co.uk/decision-readiness-methodology)
+- [/lifestyle-treatment-methodology](https://shiftsometimber.co.uk/lifestyle-treatment-methodology)
+- [/nhs-private-methodology](https://shiftsometimber.co.uk/nhs-private-methodology)
+- [/progress-centre-methodology](https://shiftsometimber.co.uk/progress-centre-methodology)
+- [/surgery-comparison-methodology](https://shiftsometimber.co.uk/surgery-comparison-methodology)
+- [/uk-europe-methodology](https://shiftsometimber.co.uk/uk-europe-methodology)
+- [/universal-comparison-methodology](https://shiftsometimber.co.uk/universal-comparison-methodology)
+- [/clinical-governance](https://shiftsometimber.co.uk/clinical-governance)
+- [/editorial-standards](https://shiftsometimber.co.uk/editorial-standards)
+- [/medical-disclaimer](https://shiftsometimber.co.uk/medical-disclaimer)
+- [/privacy-centre](https://shiftsometimber.co.uk/privacy-centre)
+- [/data-governance](https://shiftsometimber.co.uk/data-governance)
+- [/dpia-summary](https://shiftsometimber.co.uk/dpia-summary)
+- [/product-reviews](https://shiftsometimber.co.uk/product-reviews)
+- [/authors/matt-obrien](https://shiftsometimber.co.uk/authors/matt-obrien)
+- [/accessibility](https://shiftsometimber.co.uk/accessibility)
+- [/complaints](https://shiftsometimber.co.uk/complaints)
+- [/downloads/gp-appointment-checklist](https://shiftsometimber.co.uk/downloads/gp-appointment-checklist)
+- [/downloads/weight-loss-medication-questions](https://shiftsometimber.co.uk/downloads/weight-loss-medication-questions)
+- [/downloads/bariatric-surgery-checklist](https://shiftsometimber.co.uk/downloads/bariatric-surgery-checklist)
+- [/downloads/private-provider-checklist](https://shiftsometimber.co.uk/downloads/private-provider-checklist)
+- [/downloads/overseas-surgery-checklist](https://shiftsometimber.co.uk/downloads/overseas-surgery-checklist)
+- [/downloads/maintenance-plan-template](https://shiftsometimber.co.uk/downloads/maintenance-plan-template)
