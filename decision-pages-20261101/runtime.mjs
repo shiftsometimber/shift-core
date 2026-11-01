@@ -15,8 +15,10 @@ export function transform(html,key){
  const revisedHero=hero.html.replace(wrap.html,revisedWrap).replace('<section','<section data-dp-hero');
  let main=old.replace(hero.html,revisedHero).replace('<main','<main data-approved-pages="'+key+'" data-approved-release="'+release+'"');
  const guidance=bounds(main,t=>t.includes('data-tool-guidance='));if(guidance)main=main.replace(guidance.html,'<details class="dp-guidance"><summary><span data-dp-label>About this tool and saved profiles</span></summary>'+guidance.html+'</details>');
+ main=main.slice(0,main.indexOf('>')+1)+'<div class="dp-service-container sg-copy">'+main.slice(main.indexOf('>')+1,main.lastIndexOf('</main>'))+'</div></main>';
  const root='html body main#main-content#main-content#main-content#main-content#main-content#main-content#main-content[data-approved-release="'+release+'"]';
- return withoutTicker(html.replace(old,main)).replace('</head>','<style data-approved-page-style="'+release+'">'+css.replaceAll('MAIN',root)+'</style></head>');
+ const placement='<script data-dp-bridge>(()=>{const place=()=>{const m=document.querySelector(\'main[data-approved-release="'+release+'"]\'),c=m?.querySelector(\'.dp-service-container\'),b=m?.querySelector(\'.sst-service-bridge\');if(c&&b&&(b.parentElement!==c||b!==c.lastElementChild))c.append(b);};new MutationObserver(place).observe(document.documentElement,{childList:true,subtree:true});document.addEventListener(\'DOMContentLoaded\',place,{once:true});})();</script>';
+ return withoutTicker(html.replace(old,main)).replace('</head>','<style data-approved-page-style="'+release+'">'+css.replaceAll('MAIN',root)+'</style>'+placement+'</head>');
 }
 export function wrap(original,media,ownedPaths){return {...original,async fetch(request,env,ctx){
  const u=new URL(request.url),read=['GET','HEAD'].includes(request.method),page=identify(u.pathname),target=read&&page&&ownedPaths.includes(u.pathname+(u.search?'?':''));
