@@ -1,0 +1,2575 @@
+{
+  "verified": true,
+  "source": "acf2620cc587ef111795e761027eabb4063e6b4d",
+  "release": "surgery-guides-20261101-v1",
+  "pages": [
+    {
+      "key": "balloon-vs-esg",
+      "path": "/comparisons/surgery/balloon-vs-esg",
+      "selected": "Authorised unfinished surgery comparison upgrade"
+    },
+    {
+      "key": "balloon-vs-sleeve",
+      "path": "/comparisons/surgery/balloon-vs-sleeve",
+      "selected": "Authorised unfinished surgery comparison upgrade"
+    },
+    {
+      "key": "esg-vs-gastric-sleeve",
+      "path": "/comparisons/surgery/esg-vs-gastric-sleeve",
+      "selected": "Authorised unfinished surgery comparison upgrade"
+    },
+    {
+      "key": "gastric-band-vs-bypass",
+      "path": "/comparisons/surgery/gastric-band-vs-bypass",
+      "selected": "Authorised unfinished surgery comparison upgrade"
+    },
+    {
+      "key": "gastric-bypass-vs-mini-bypass",
+      "path": "/comparisons/surgery/gastric-bypass-vs-mini-bypass",
+      "selected": "Authorised unfinished surgery comparison upgrade"
+    },
+    {
+      "key": "sleeve-vs-gastric-bypass",
+      "path": "/comparisons/surgery/sleeve-vs-gastric-bypass",
+      "selected": "Authorised unfinished surgery comparison upgrade"
+    },
+    {
+      "key": "sleeve-vs-mini-bypass",
+      "path": "/comparisons/surgery/sleeve-vs-mini-bypass",
+      "selected": "Authorised unfinished surgery comparison upgrade"
+    }
+  ],
+  "workers": [
+    {
+      "name": "shift-public-presentation-batch-20261022",
+      "versionId": "e9c806c4-b508-49e9-8eda-5568deac8dc0",
+      "previousVersion": "53256048-729d-4d2a-b699-ea72f6bbccaa",
+      "retainedModules": 80,
+      "refreshedOwnedModules": 0,
+      "bindingsPreserved": 4,
+      "migrationTagPreserved": null
+    },
+    {
+      "name": "shift-core",
+      "versionId": "14a268b3-c8a4-4e33-a702-b9b93fa4a4e5",
+      "previousVersion": "eda3510e-1353-421a-826d-6dd266341644",
+      "retainedModules": 63,
+      "refreshedOwnedModules": 0,
+      "bindingsPreserved": 52,
+      "migrationTagPreserved": "v1-site-content-state"
+    }
+  ],
+  "routeCount": 915,
+  "routesChanged": 0,
+  "checks": [
+    {
+      "path": "/comparisons/surgery/balloon-vs-esg",
+      "key": "balloon-vs-esg",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/surgery/balloon-vs-esg?presentation=1",
+      "key": "balloon-vs-esg",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/surgery/balloon-vs-sleeve",
+      "key": "balloon-vs-sleeve",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/surgery/balloon-vs-sleeve?presentation=1",
+      "key": "balloon-vs-sleeve",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/surgery/esg-vs-gastric-sleeve",
+      "key": "esg-vs-gastric-sleeve",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/surgery/esg-vs-gastric-sleeve?presentation=1",
+      "key": "esg-vs-gastric-sleeve",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/surgery/gastric-band-vs-bypass",
+      "key": "gastric-band-vs-bypass",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/surgery/gastric-band-vs-bypass?presentation=1",
+      "key": "gastric-band-vs-bypass",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/surgery/gastric-bypass-vs-mini-bypass",
+      "key": "gastric-bypass-vs-mini-bypass",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/surgery/gastric-bypass-vs-mini-bypass?presentation=1",
+      "key": "gastric-bypass-vs-mini-bypass",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/surgery/sleeve-vs-gastric-bypass",
+      "key": "sleeve-vs-gastric-bypass",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/surgery/sleeve-vs-gastric-bypass?presentation=1",
+      "key": "sleeve-vs-gastric-bypass",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/surgery/sleeve-vs-mini-bypass",
+      "key": "sleeve-vs-mini-bypass",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/surgery/sleeve-vs-mini-bypass?presentation=1",
+      "key": "sleeve-vs-mini-bypass",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    }
+  ],
+  "protectedPages": [
+    "/tools/bmi",
+    "/tools/calories",
+    "/tools/healthy-weight",
+    "/tools/protein",
+    "/tools/waist-height",
+    "/tools/walking",
+    "/tools/water",
+    "/tools/steps",
+    "/tools/sleep",
+    "/tools/alcohol",
+    "/tools/weight-management-review",
+    "/how-are-you-feeling",
+    "/",
+    "/start-here",
+    "/programme",
+    "/shift-health",
+    "/knowledge",
+    "/explore-knowledge",
+    "/ask-timber",
+    "/treatment-centre",
+    "/member/dashboard",
+    "/mens-mental-health",
+    "/shift-for-work",
+    "/shift-health/stop-smoking",
+    "/tools",
+    "/tools?ct3=1",
+    "/weight-loss-support-for-men",
+    "/partner-with-us",
+    "/male-obesity",
+    "/compare-weight-loss-treatments",
+    "/clinic-gone-quiet",
+    "/about",
+    "/contact",
+    "/shift-newsroom",
+    "/life-back",
+    "/corporate-wellbeing",
+    "/guides/retatrutide-uk-guide",
+    "/husband-help",
+    "/my-timber-for-providers",
+    "/nhs-vs-private",
+    "/surgery-comparison-centre",
+    "/knowledge?presentation=1",
+    "/articles/stopping-glp1",
+    "/articles/food-noise-after-stopping-glp1",
+    "/member/life-back",
+    "/shift-newsroom/client.js",
+    "/shift-newsroom/compare.js",
+    "/provider-switch",
+    "/our-causes-partners",
+    "/downloads-resources",
+    "/downloads-resources?presentation=1",
+    "/family-discussion-guide",
+    "/family-discussion-guide?presentation=1",
+    "/community",
+    "/community?presentation=1",
+    "/faq",
+    "/help",
+    "/waiting-list-journey",
+    "/waiting-list-journey?presentation=1",
+    "/advertise-with-us",
+    "/expert-contributors",
+    "/media-centre",
+    "/press-centre",
+    "/trusted-partners",
+    "/shift-promise",
+    "/treatment-finder",
+    "/my-weight-loss-roadmap",
+    "/shift-health/health-mot",
+    "/editorial-standards",
+    "/commercial-principles",
+    "/commercial-principles?presentation=1",
+    "/how-we-review-products",
+    "/how-we-review-products?presentation=1",
+    "/affiliate-disclosure",
+    "/affiliate-disclosure?presentation=1",
+    "/decision-trees-explained",
+    "/decision-trees-explained?presentation=1",
+    "/treatment-finder-methodology",
+    "/treatment-finder-methodology?presentation=1",
+    "/roadmap-methodology",
+    "/roadmap-methodology?presentation=1",
+    "/health-mot-methodology",
+    "/health-mot-methodology?presentation=1",
+    "/medication-comparison-methodology",
+    "/medication-comparison-methodology?presentation=1",
+    "/advertise-with-us?presentation=1",
+    "/expert-contributors?presentation=1",
+    "/media-centre?presentation=1",
+    "/press-centre?presentation=1",
+    "/trusted-partners?presentation=1",
+    "/shift-promise?presentation=1",
+    "/work-with-us",
+    "/work-with-us?presentation=1",
+    "/decision-centre-methodology",
+    "/decision-centre-methodology?presentation=1",
+    "/decision-readiness-methodology",
+    "/decision-readiness-methodology?presentation=1",
+    "/lifestyle-treatment-methodology",
+    "/lifestyle-treatment-methodology?presentation=1",
+    "/nhs-private-methodology",
+    "/nhs-private-methodology?presentation=1",
+    "/progress-centre-methodology",
+    "/progress-centre-methodology?presentation=1",
+    "/surgery-comparison-methodology",
+    "/surgery-comparison-methodology?presentation=1",
+    "/uk-europe-methodology",
+    "/uk-europe-methodology?presentation=1",
+    "/universal-comparison-methodology",
+    "/universal-comparison-methodology?presentation=1",
+    "/clinical-governance",
+    "/clinical-governance?presentation=1",
+    "/editorial-standards?presentation=1",
+    "/medical-disclaimer",
+    "/medical-disclaimer?presentation=1",
+    "/privacy-centre",
+    "/privacy-centre?presentation=1",
+    "/data-governance",
+    "/data-governance?presentation=1",
+    "/dpia-summary",
+    "/dpia-summary?presentation=1",
+    "/product-reviews",
+    "/product-reviews?presentation=1",
+    "/authors/matt-obrien",
+    "/authors/matt-obrien?presentation=1",
+    "/accessibility",
+    "/accessibility?presentation=1",
+    "/complaints",
+    "/complaints?presentation=1",
+    "/downloads/gp-appointment-checklist",
+    "/downloads/gp-appointment-checklist?presentation=1",
+    "/downloads/weight-loss-medication-questions",
+    "/downloads/weight-loss-medication-questions?presentation=1",
+    "/downloads/bariatric-surgery-checklist",
+    "/downloads/bariatric-surgery-checklist?presentation=1",
+    "/downloads/private-provider-checklist",
+    "/downloads/private-provider-checklist?presentation=1",
+    "/downloads/overseas-surgery-checklist",
+    "/downloads/overseas-surgery-checklist?presentation=1",
+    "/downloads/maintenance-plan-template",
+    "/downloads/maintenance-plan-template?presentation=1",
+    "/before-you-decide",
+    "/before-you-decide?presentation=1",
+    "/decision-centre",
+    "/decision-centre?presentation=1",
+    "/decision-readiness",
+    "/decision-readiness?presentation=1",
+    "/lifestyle-vs-treatment",
+    "/lifestyle-vs-treatment?presentation=1",
+    "/comparison-centre",
+    "/comparison-centre?presentation=1",
+    "/future-medicines-comparison",
+    "/future-medicines-comparison?presentation=1",
+    "/uk-vs-europe-treatment",
+    "/uk-vs-europe-treatment?presentation=1",
+    "/comparisons/lifestyle/cardio-vs-strength",
+    "/comparisons/lifestyle/cardio-vs-strength?presentation=1",
+    "/comparisons/lifestyle/lifestyle-vs-medication",
+    "/comparisons/lifestyle/lifestyle-vs-medication?presentation=1",
+    "/comparisons/lifestyle/lifestyle-vs-surgery",
+    "/comparisons/lifestyle/lifestyle-vs-surgery?presentation=1",
+    "/comparisons/lifestyle/medication-plus-lifestyle",
+    "/comparisons/lifestyle/medication-plus-lifestyle?presentation=1",
+    "/comparisons/lifestyle/structured-vs-diy",
+    "/comparisons/lifestyle/structured-vs-diy?presentation=1",
+    "/comparisons/lifestyle/surgery-plus-lifestyle",
+    "/comparisons/lifestyle/surgery-plus-lifestyle?presentation=1",
+    "/comparisons/lifestyle/walking-vs-structured-exercise",
+    "/comparisons/lifestyle/walking-vs-structured-exercise?presentation=1",
+    "/comparisons/nhs-private/gp-vs-specialist-weight-management",
+    "/comparisons/nhs-private/gp-vs-specialist-weight-management?presentation=1",
+    "/comparisons/nhs-private/nhs-vs-private-aftercare",
+    "/comparisons/nhs-private/nhs-vs-private-aftercare?presentation=1",
+    "/comparisons/nhs-private/nhs-vs-private-medication",
+    "/comparisons/nhs-private/nhs-vs-private-medication?presentation=1",
+    "/comparisons/nhs-private/nhs-vs-private-surgery",
+    "/comparisons/nhs-private/nhs-vs-private-surgery?presentation=1",
+    "/comparisons/nhs-private/nice-eligible-but-no-access",
+    "/comparisons/nhs-private/nice-eligible-but-no-access?presentation=1",
+    "/comparisons/nhs-private/online-pharmacy-vs-clinic",
+    "/comparisons/nhs-private/online-pharmacy-vs-clinic?presentation=1",
+    "/comparisons/nhs-private/wait-vs-pay-private",
+    "/comparisons/nhs-private/wait-vs-pay-private?presentation=1",
+    "/comparisons/surgery/gastric-band-vs-sleeve",
+    "/comparisons/surgery/gastric-band-vs-sleeve?presentation=1"
+  ],
+  "calculatorPages": [
+    "/tools/bmi",
+    "/tools/calories",
+    "/tools/healthy-weight",
+    "/tools/protein",
+    "/tools/waist-height",
+    "/tools/walking",
+    "/tools/water",
+    "/tools/steps",
+    "/tools/sleep",
+    "/tools/alcohol",
+    "/tools/weight-management-review"
+  ],
+  "existingCodeAssetsPreserved": 300,
+  "photographs": [],
+  "browser": [
+    {
+      "page": "balloon-vs-esg",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "balloon-vs-esg",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 109.96875
+        }
+      }
+    },
+    {
+      "page": "balloon-vs-esg",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "balloon-vs-esg",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 110.015625
+        }
+      }
+    },
+    {
+      "page": "balloon-vs-sleeve",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "balloon-vs-sleeve",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 110.125
+        }
+      }
+    },
+    {
+      "page": "balloon-vs-sleeve",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "balloon-vs-sleeve",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 110.171875
+        }
+      }
+    },
+    {
+      "page": "esg-vs-gastric-sleeve",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "esg-vs-gastric-sleeve",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 109.8125
+        }
+      }
+    },
+    {
+      "page": "esg-vs-gastric-sleeve",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "esg-vs-gastric-sleeve",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 109.859375
+        }
+      }
+    },
+    {
+      "page": "gastric-band-vs-bypass",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "gastric-band-vs-bypass",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 110.125
+        }
+      }
+    },
+    {
+      "page": "gastric-band-vs-bypass",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "gastric-band-vs-bypass",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 110.171875
+        }
+      }
+    },
+    {
+      "page": "gastric-bypass-vs-mini-bypass",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "gastric-bypass-vs-mini-bypass",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 110.125
+        }
+      }
+    },
+    {
+      "page": "gastric-bypass-vs-mini-bypass",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "gastric-bypass-vs-mini-bypass",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 110.171875
+        }
+      }
+    },
+    {
+      "page": "sleeve-vs-gastric-bypass",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "sleeve-vs-gastric-bypass",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 109.8125
+        }
+      }
+    },
+    {
+      "page": "sleeve-vs-gastric-bypass",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "sleeve-vs-gastric-bypass",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 109.859375
+        }
+      }
+    },
+    {
+      "page": "sleeve-vs-mini-bypass",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "sleeve-vs-mini-bypass",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 110.125
+        }
+      }
+    },
+    {
+      "page": "sleeve-vs-mini-bypass",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "sleeve-vs-mini-bypass",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 110.171875
+        }
+      }
+    },
+    {
+      "page": "balloon-vs-esg",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "balloon-vs-esg",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 109.53125
+        }
+      }
+    },
+    {
+      "page": "balloon-vs-esg",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "balloon-vs-esg",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 109.984375
+        }
+      }
+    },
+    {
+      "page": "balloon-vs-sleeve",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "balloon-vs-sleeve",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 109.8125
+        }
+      }
+    },
+    {
+      "page": "balloon-vs-sleeve",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "balloon-vs-sleeve",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 110.265625
+        }
+      }
+    },
+    {
+      "page": "esg-vs-gastric-sleeve",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "esg-vs-gastric-sleeve",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 110.390625
+        }
+      }
+    },
+    {
+      "page": "esg-vs-gastric-sleeve",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "esg-vs-gastric-sleeve",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 109.84375
+        }
+      }
+    },
+    {
+      "page": "gastric-band-vs-bypass",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "gastric-band-vs-bypass",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 110.046875
+        }
+      }
+    },
+    {
+      "page": "gastric-band-vs-bypass",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "gastric-band-vs-bypass",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 109.5
+        }
+      }
+    },
+    {
+      "page": "gastric-bypass-vs-mini-bypass",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "gastric-bypass-vs-mini-bypass",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 110.046875
+        }
+      }
+    },
+    {
+      "page": "gastric-bypass-vs-mini-bypass",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "gastric-bypass-vs-mini-bypass",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 109.5
+        }
+      }
+    },
+    {
+      "page": "sleeve-vs-gastric-bypass",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "sleeve-vs-gastric-bypass",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 109.78125
+        }
+      }
+    },
+    {
+      "page": "sleeve-vs-gastric-bypass",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "sleeve-vs-gastric-bypass",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 110.234375
+        }
+      }
+    },
+    {
+      "page": "sleeve-vs-mini-bypass",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "sleeve-vs-mini-bypass",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 109.65625
+        }
+      }
+    },
+    {
+      "page": "sleeve-vs-mini-bypass",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "sleeve-vs-mini-bypass",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 110.109375
+        }
+      }
+    },
+    {
+      "page": "balloon-vs-esg",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "balloon-vs-esg",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 109.578125
+        }
+      }
+    },
+    {
+      "page": "balloon-vs-esg",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "balloon-vs-esg",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 110.3125
+        }
+      }
+    },
+    {
+      "page": "balloon-vs-sleeve",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "balloon-vs-sleeve",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 110.078125
+        }
+      }
+    },
+    {
+      "page": "balloon-vs-sleeve",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "balloon-vs-sleeve",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 109.8125
+        }
+      }
+    },
+    {
+      "page": "esg-vs-gastric-sleeve",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "esg-vs-gastric-sleeve",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 110.1875
+        }
+      }
+    },
+    {
+      "page": "esg-vs-gastric-sleeve",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "esg-vs-gastric-sleeve",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 109.921875
+        }
+      }
+    },
+    {
+      "page": "gastric-band-vs-bypass",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "gastric-band-vs-bypass",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 109.578125
+        }
+      }
+    },
+    {
+      "page": "gastric-band-vs-bypass",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "gastric-band-vs-bypass",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 110.3125
+        }
+      }
+    },
+    {
+      "page": "gastric-bypass-vs-mini-bypass",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "gastric-bypass-vs-mini-bypass",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 110.4375
+        }
+      }
+    },
+    {
+      "page": "gastric-bypass-vs-mini-bypass",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "gastric-bypass-vs-mini-bypass",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 109.640625
+        }
+      }
+    },
+    {
+      "page": "sleeve-vs-gastric-bypass",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "sleeve-vs-gastric-bypass",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 110.09375
+        }
+      }
+    },
+    {
+      "page": "sleeve-vs-gastric-bypass",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "sleeve-vs-gastric-bypass",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 109.828125
+        }
+      }
+    },
+    {
+      "page": "sleeve-vs-mini-bypass",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "sleeve-vs-mini-bypass",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 110.4375
+        }
+      }
+    },
+    {
+      "page": "sleeve-vs-mini-bypass",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "surgery-guides-20261101-v1",
+        "key": "sleeve-vs-mini-bypass",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/surgery-comparison-centre"
+          },
+          {
+            "height": 48,
+            "href": "/programme"
+          },
+          {
+            "height": 48,
+            "href": "/how-are-you-feeling"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        },
+        "index": {
+          "count": 7,
+          "position": 109.625
+        }
+      }
+    }
+  ],
+  "verifiedAt": "2026-11-01T15:42:52.196Z",
+  "workflow": {
+    "runId": 41322183492,
+    "jobId": 124894587275,
+    "url": "https://github.com/shiftsometimber/shift-core/actions/runs/41322183492",
+    "conclusion": "success"
+  },
+  "evidenceArtifact": {
+    "id": 13090200503,
+    "name": "surgery-guides-41322183492",
+    "size_in_bytes": 36394528,
+    "url": "https://api.github.com/repos/shiftsometimber/shift-core/actions/artifacts/13090200503",
+    "archive_download_url": "https://api.github.com/repos/shiftsometimber/shift-core/actions/artifacts/13090200503/zip",
+    "expired": false,
+    "created_at": "2026-11-01T15:42:54Z",
+    "expires_at": "2027-01-30T15:37:42Z",
+    "updated_at": "2026-11-01T15:42:54Z",
+    "digest": "sha256:768f07d58a20c5ed343e1a42a2f3ebdd8619d64cf60fd84bf08b5540687d0e24",
+    "workflow_run": {
+      "id": 41322183492,
+      "repository_id": 1328867509,
+      "head_repository_id": 1328867509,
+      "head_branch": "release/surgery-guides-20261101",
+      "head_sha": "acf2620cc587ef111795e761027eabb4063e6b4d"
+    }
+  },
+  "liveProof": {
+    "path": "surgery-guides-20261101/live-proof.jpg",
+    "blob": "2464424a1c6358980191acb5dc0fcb7d07e9a3a7",
+    "page": "https://shiftsometimber.co.uk/comparisons/surgery/esg-vs-gastric-sleeve"
+  },
+  "browserSummary": {
+    "passed": 42,
+    "widths": [
+      1440,
+      768,
+      390
+    ],
+    "ordinaryCases": 21,
+    "queryCases": 21,
+    "manualVisualReview": true,
+    "horizontalTableScrollVerified": true,
+    "sectionIndexVerified": true
+  },
+  "excludedBespokePage": {
+    "path": "/comparisons/surgery/gastric-band-vs-sleeve",
+    "preserved": true,
+    "photographsPreserved": [
+      "/comparisons/surgery/gastric-band-vs-sleeve/assets/lake-v1.webp",
+      "/comparisons/surgery/gastric-band-vs-sleeve/assets/path-v1.webp"
+    ]
+  }
+}
