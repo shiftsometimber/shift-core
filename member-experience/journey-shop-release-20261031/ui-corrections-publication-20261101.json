@@ -1,92 +1,251 @@
 {
-  "kind": "MY_TIMBER_BRAND_MARK_CORRECTION",
-  "createdAt": "2026-11-01T08:57:31.396Z",
-  "worker": "shift-programme-member-20261023",
-  "ownedModule": "journey-shop-release-20261031/programme.mjs",
-  "previousVersion": "837eb6c0-09d4-4c1c-9a9d-2f841a4e00f0",
-  "baselineDeployment": "5b1a04fc-b871-4714-9169-152787b9d7e6",
-  "currentDeployment": "0d7e4ed6-2be3-4b4a-bf68-ca64d7bb3804",
-  "documentsVersion": "459dd83d-9ade-461f-997a-6e11a4d7d3ff",
-  "documentsDeployment": "05b5f637-5ac3-4920-a87f-062772124160",
-  "mainModule": "first-six-weeks-20261101/entry.mjs",
-  "bindings": [
+  "kind": "MY_TIMBER_FIRST_PAINT_RELEASE",
+  "createdAt": "2026-11-01T09:28:31.236Z",
+  "owners": [
     {
-      "environment": "production",
-      "name": "CORE",
-      "service": "shift-core",
-      "type": "service"
+      "name": "shift-programme-member-20261023",
+      "kind": "programme",
+      "ownedModule": "journey-shop-release-20261031/programme.mjs",
+      "previousVersion": "742bfb7e-7743-4cbc-84d5-187177488ce9",
+      "baselineDeployment": "0d7e4ed6-2be3-4b4a-bf68-ca64d7bb3804",
+      "currentDeployment": "4513f2f2-1edc-428d-8e3d-625c81f5efc6",
+      "mainModule": "first-six-weeks-20261101/entry.mjs",
+      "bindings": [
+        {
+          "environment": "production",
+          "name": "CORE",
+          "service": "shift-core",
+          "type": "service"
+        },
+        {
+          "database_id": "88f40aed-cb23-4372-8c94-8a73f48bc847",
+          "id": "88f40aed-cb23-4372-8c94-8a73f48bc847",
+          "name": "DB",
+          "type": "d1"
+        },
+        {
+          "name": "MEMBER_EXPERIENCE_V1_ENABLED",
+          "text": "true",
+          "type": "plain_text"
+        },
+        {
+          "environment": "production",
+          "name": "MY_TIMBER_PUBLIC_KIT",
+          "service": "shift-timber-mill-presentation-20261021",
+          "type": "service"
+        },
+        {
+          "environment": "production",
+          "name": "MY_TIMBER_PUBLIC_NUTRITION",
+          "service": "shift-health-heroes-20261029",
+          "type": "service"
+        },
+        {
+          "environment": "production",
+          "name": "MY_TIMBER_PUBLIC_TESTING",
+          "service": "shift-health-nutrition-20261027",
+          "type": "service"
+        },
+        {
+          "name": "MY_TIMBER_V6_RELEASE_ENABLED",
+          "type": "secret_text"
+        }
+      ],
+      "compatibilityDate": "2026-08-09",
+      "compatibilityFlags": [
+        "nodejs_compat",
+        "global_fetch_strictly_public"
+      ],
+      "operatingConfiguration": {
+        "usage_model": "standard",
+        "placement": {},
+        "tail_consumers": [],
+        "logpush": false
+      },
+      "baselineModuleHashes": {
+        "continuity-review-20261031/entry.mjs": "69349447b3584bf8a34717f2946badb999c245d79a53b4c5ff47feece48c875a",
+        "continuity-review-20261031/handoff.mjs": "6aae38134d1aa1c9f66b12b64ab3b6808eb71d9bb26f69db988fe3f7684d92b5",
+        "continuity-review-20261031/html.mjs": "6fc6472132ab06a69fb99bdeaf1e74cb006827db5e8798270104177d5c6ea92e",
+        "continuity-review-20261031/runtime.mjs": "d4480c7fe2455d3f87ecb1e57863218fb466f8e624ba0a364f5d4d421779d42c",
+        "data.mjs": "04eeffcded2e2365a76a73e914c0ed4deb461b7001eb43697cddcd63d51df40e",
+        "first-six-weeks-20261101/entry.mjs": "5c61072e72e77d76144bd1db186509f284aa641b4c9c9a4523c8a5fe8e624876",
+        "first-six-weeks-20261101/first-six-weeks-client.mjs": "2a01de6bece21bd394e25ed5078a8759f28f7b694c563602696039dfd42ab3da",
+        "first-six-weeks-20261101/first-six-weeks-content.mjs": "6ea4b21126a5de2c61dc2d93b0a87097e91af0a2f001948124f0615650de0300",
+        "first-six-weeks-20261101/first-six-weeks-photo.mjs": "6d349982995b08efb1f43dcefe5b3c6e3388ae831f54263bbf33e3efec7c005e",
+        "first-six-weeks-20261101/first-six-weeks-styles.mjs": "bd5e717519104f51a55e3a95ca710f26b3884bdb01cef59fcb52a3393ab63ef6",
+        "first-six-weeks-20261101/first-six-weeks.mjs": "c1d5e793f555613924cd71679a216e405a3c21263a05add18f6484af54b18ea2",
+        "journey-shop-release-20261031/entry.mjs": "2523d634b2979f52339014672f12ab88716b46c96ed56b49f7c1c33e694f5fea",
+        "journey-shop-release-20261031/programme.mjs": "f4c0a6e6de80d123a94c1d709891c2106a279ea844baead7ec4a0424e8072321",
+        "presentation-entry.mjs": "28154046175263fad23dfdb139acdeb2a637c0daf32d64134e1121bfe1ab56f5",
+        "presentation.mjs": "f3411974c4a5f9c417077a7e6de4298ea96254135137426d8c1f980c2c346c39",
+        "support-release-gate.mjs": "a66f8d44b1a409fbfd94e209e0c138dd1cfeb812f3f89089683d0be85ace3798",
+        "support-service-next.mjs": "4d5232198f92e6e1fc528b3e385921a9c675861a9d5bd5878a667776e2db12c3",
+        "support-service-prior.mjs": "cc8f3f834acebddfefe8c9e6bda52f05d7f7131cf4882ebbfa4abb7fd1032bf4",
+        "support-service.mjs": "257023e78469382031e9da3654ebf879fa352f4d3c3c47897618e95b3bd206cf",
+        "urgent-phone-link.mjs": "2959b38f5259960d18af0cdef8cbeb17f5063048a0e000bf1e229499629a2a04",
+        "worker.mjs": "a8e356b3eb5f991473bb3c9e0971407fdac5c4b5840d625f7cbc95da72e8fc95"
+      },
+      "schedules": {
+        "schedules": []
+      },
+      "moduleHashes": {
+        "continuity-review-20261031/entry.mjs": "69349447b3584bf8a34717f2946badb999c245d79a53b4c5ff47feece48c875a",
+        "continuity-review-20261031/handoff.mjs": "6aae38134d1aa1c9f66b12b64ab3b6808eb71d9bb26f69db988fe3f7684d92b5",
+        "continuity-review-20261031/html.mjs": "6fc6472132ab06a69fb99bdeaf1e74cb006827db5e8798270104177d5c6ea92e",
+        "continuity-review-20261031/runtime.mjs": "d4480c7fe2455d3f87ecb1e57863218fb466f8e624ba0a364f5d4d421779d42c",
+        "data.mjs": "04eeffcded2e2365a76a73e914c0ed4deb461b7001eb43697cddcd63d51df40e",
+        "first-six-weeks-20261101/entry.mjs": "5c61072e72e77d76144bd1db186509f284aa641b4c9c9a4523c8a5fe8e624876",
+        "first-six-weeks-20261101/first-six-weeks-client.mjs": "2a01de6bece21bd394e25ed5078a8759f28f7b694c563602696039dfd42ab3da",
+        "first-six-weeks-20261101/first-six-weeks-content.mjs": "6ea4b21126a5de2c61dc2d93b0a87097e91af0a2f001948124f0615650de0300",
+        "first-six-weeks-20261101/first-six-weeks-photo.mjs": "6d349982995b08efb1f43dcefe5b3c6e3388ae831f54263bbf33e3efec7c005e",
+        "first-six-weeks-20261101/first-six-weeks-styles.mjs": "bd5e717519104f51a55e3a95ca710f26b3884bdb01cef59fcb52a3393ab63ef6",
+        "first-six-weeks-20261101/first-six-weeks.mjs": "c1d5e793f555613924cd71679a216e405a3c21263a05add18f6484af54b18ea2",
+        "journey-shop-release-20261031/entry.mjs": "2523d634b2979f52339014672f12ab88716b46c96ed56b49f7c1c33e694f5fea",
+        "journey-shop-release-20261031/programme.mjs": "53856d89a00a4c5d0309c2d1cd41f8e9bd8736b5c06f09d1382e76ded5e5497c",
+        "presentation-entry.mjs": "28154046175263fad23dfdb139acdeb2a637c0daf32d64134e1121bfe1ab56f5",
+        "presentation.mjs": "f3411974c4a5f9c417077a7e6de4298ea96254135137426d8c1f980c2c346c39",
+        "support-release-gate.mjs": "a66f8d44b1a409fbfd94e209e0c138dd1cfeb812f3f89089683d0be85ace3798",
+        "support-service-next.mjs": "4d5232198f92e6e1fc528b3e385921a9c675861a9d5bd5878a667776e2db12c3",
+        "support-service-prior.mjs": "cc8f3f834acebddfefe8c9e6bda52f05d7f7131cf4882ebbfa4abb7fd1032bf4",
+        "support-service.mjs": "257023e78469382031e9da3654ebf879fa352f4d3c3c47897618e95b3bd206cf",
+        "urgent-phone-link.mjs": "2959b38f5259960d18af0cdef8cbeb17f5063048a0e000bf1e229499629a2a04",
+        "worker.mjs": "a8e356b3eb5f991473bb3c9e0971407fdac5c4b5840d625f7cbc95da72e8fc95"
+      },
+      "bundleSHA256": "53856d89a00a4c5d0309c2d1cd41f8e9bd8736b5c06f09d1382e76ded5e5497c",
+      "uploadIntent": {
+        "at": "2026-11-01T09:31:22.614Z",
+        "source": "7b35640afe71bd4ef18dc305db6d160c57c3f0cb"
+      },
+      "versionId": "cef30348-4ce4-4ed6-957d-d500863ec457",
+      "stagedVerifiedAt": "2026-11-01T09:31:49.251Z",
+      "deploymentIntent": {
+        "mode": "live",
+        "message": "My Timber first paint 7b35640afe71bd4ef18dc305db6d160c57c3f0cb programme live",
+        "previousDeployment": "afc02f9e-d91c-4ec2-bbfb-48ca5dd28b2c",
+        "at": "2026-11-01T09:35:09.855Z",
+        "finished": true
+      },
+      "zeroVerifiedAt": "2026-11-01T09:32:28.474Z",
+      "liveVerifiedAt": "2026-11-01T09:35:12.521Z"
     },
     {
-      "database_id": "88f40aed-cb23-4372-8c94-8a73f48bc847",
-      "id": "88f40aed-cb23-4372-8c94-8a73f48bc847",
-      "name": "DB",
-      "type": "d1"
-    },
-    {
-      "name": "MEMBER_EXPERIENCE_V1_ENABLED",
-      "text": "true",
-      "type": "plain_text"
-    },
-    {
-      "environment": "production",
-      "name": "MY_TIMBER_PUBLIC_KIT",
-      "service": "shift-timber-mill-presentation-20261021",
-      "type": "service"
-    },
-    {
-      "environment": "production",
-      "name": "MY_TIMBER_PUBLIC_NUTRITION",
-      "service": "shift-health-heroes-20261029",
-      "type": "service"
-    },
-    {
-      "environment": "production",
-      "name": "MY_TIMBER_PUBLIC_TESTING",
-      "service": "shift-health-nutrition-20261027",
-      "type": "service"
-    },
-    {
-      "name": "MY_TIMBER_V6_RELEASE_ENABLED",
-      "type": "secret_text"
+      "name": "shift-hq-member-comms-20261023",
+      "kind": "documents",
+      "ownedModule": "journey-shop-release-20261031/documents.mjs",
+      "previousVersion": "459dd83d-9ade-461f-997a-6e11a4d7d3ff",
+      "baselineDeployment": "05b5f637-5ac3-4920-a87f-062772124160",
+      "currentDeployment": "db8b698d-aec3-48cd-8c0d-049694813f9d",
+      "mainModule": "first-six-weeks-20261101/entry.mjs",
+      "bindings": [
+        {
+          "environment": "production",
+          "name": "CORE",
+          "service": "shift-core",
+          "type": "service"
+        },
+        {
+          "database_id": "88f40aed-cb23-4372-8c94-8a73f48bc847",
+          "id": "88f40aed-cb23-4372-8c94-8a73f48bc847",
+          "name": "DB",
+          "type": "d1"
+        },
+        {
+          "allowed_sender_addresses": [
+            "hq@shiftsometimber.co.uk"
+          ],
+          "name": "EMAIL",
+          "type": "send_email"
+        },
+        {
+          "environment": "production",
+          "name": "HQ",
+          "service": "shift-hq",
+          "type": "service"
+        },
+        {
+          "name": "MY_TIMBER_V6_RELEASE_ENABLED",
+          "type": "secret_text"
+        },
+        {
+          "environment": "production",
+          "name": "SUPPORT",
+          "service": "shift-mytimber-support-20261023",
+          "type": "service"
+        }
+      ],
+      "compatibilityDate": "2026-10-23",
+      "compatibilityFlags": [
+        "nodejs_compat"
+      ],
+      "operatingConfiguration": {
+        "usage_model": "standard",
+        "placement": {},
+        "tail_consumers": [],
+        "logpush": false
+      },
+      "baselineModuleHashes": {
+        "data.mjs": "04eeffcded2e2365a76a73e914c0ed4deb461b7001eb43697cddcd63d51df40e",
+        "first-six-weeks-20261101/entry.mjs": "5c61072e72e77d76144bd1db186509f284aa641b4c9c9a4523c8a5fe8e624876",
+        "first-six-weeks-20261101/first-six-weeks-client.mjs": "2a01de6bece21bd394e25ed5078a8759f28f7b694c563602696039dfd42ab3da",
+        "first-six-weeks-20261101/first-six-weeks-content.mjs": "6ea4b21126a5de2c61dc2d93b0a87097e91af0a2f001948124f0615650de0300",
+        "first-six-weeks-20261101/first-six-weeks-photo.mjs": "6d349982995b08efb1f43dcefe5b3c6e3388ae831f54263bbf33e3efec7c005e",
+        "first-six-weeks-20261101/first-six-weeks-styles.mjs": "bd5e717519104f51a55e3a95ca710f26b3884bdb01cef59fcb52a3393ab63ef6",
+        "first-six-weeks-20261101/first-six-weeks.mjs": "c1d5e793f555613924cd71679a216e405a3c21263a05add18f6484af54b18ea2",
+        "journey-shop-release-20261031/documents.mjs": "4e8e63f984a5a266aee61fa6d76fcca2a9d4050d433c23d1f945bc5647ed1841",
+        "journey-shop-release-20261031/entry.mjs": "74489e3e90b435cc9dd35b62996b84f0b1f18ef289aa2d2bc003f544719dc528",
+        "presentation-entry.mjs": "de73cf1ae340ebad4dc6c72214d38a8a4706838c707c1f2f53ea8fbda13f6857",
+        "presentation.mjs": "5b87498f0fd0a69363177f71502a96a42790f5072178ac653d8de6fdf5c7ad9f",
+        "support-markup-next.mjs": "03977c34506c2b3aefe7f1d9945712400fe6d44a1ecd24a252a0606e1c8c80da",
+        "support-markup-prior.mjs": "28f7d1dbf1d9fc27d65fbd4a5ff1edef79cbe001bb7921e1a6a5113ce34aea73",
+        "support-markup.mjs": "71a0ab7b49a09e86050c672c7eda4920f0234738f6d3d4f213da0700740d38ed",
+        "support-release-gate.mjs": "a66f8d44b1a409fbfd94e209e0c138dd1cfeb812f3f89089683d0be85ace3798",
+        "worker.js": "42ff6cc0794618ea9521c532f06f8562f6f467588345ddb75be7732a138aa793"
+      },
+      "schedules": {
+        "schedules": [
+          {
+            "cron": "*/5 * * * *",
+            "created_on": "2026-10-23T13:33:47.644279Z",
+            "modified_on": "2026-10-23T13:33:47.644279Z"
+          }
+        ]
+      },
+      "moduleHashes": {
+        "data.mjs": "04eeffcded2e2365a76a73e914c0ed4deb461b7001eb43697cddcd63d51df40e",
+        "first-six-weeks-20261101/entry.mjs": "5c61072e72e77d76144bd1db186509f284aa641b4c9c9a4523c8a5fe8e624876",
+        "first-six-weeks-20261101/first-six-weeks-client.mjs": "2a01de6bece21bd394e25ed5078a8759f28f7b694c563602696039dfd42ab3da",
+        "first-six-weeks-20261101/first-six-weeks-content.mjs": "6ea4b21126a5de2c61dc2d93b0a87097e91af0a2f001948124f0615650de0300",
+        "first-six-weeks-20261101/first-six-weeks-photo.mjs": "6d349982995b08efb1f43dcefe5b3c6e3388ae831f54263bbf33e3efec7c005e",
+        "first-six-weeks-20261101/first-six-weeks-styles.mjs": "bd5e717519104f51a55e3a95ca710f26b3884bdb01cef59fcb52a3393ab63ef6",
+        "first-six-weeks-20261101/first-six-weeks.mjs": "c1d5e793f555613924cd71679a216e405a3c21263a05add18f6484af54b18ea2",
+        "journey-shop-release-20261031/documents.mjs": "656cd82212e1fdbf21bc285a38e9b59dfdb82b5088e37b122200b651e1fb0ccb",
+        "journey-shop-release-20261031/entry.mjs": "74489e3e90b435cc9dd35b62996b84f0b1f18ef289aa2d2bc003f544719dc528",
+        "presentation-entry.mjs": "de73cf1ae340ebad4dc6c72214d38a8a4706838c707c1f2f53ea8fbda13f6857",
+        "presentation.mjs": "5b87498f0fd0a69363177f71502a96a42790f5072178ac653d8de6fdf5c7ad9f",
+        "support-markup-next.mjs": "03977c34506c2b3aefe7f1d9945712400fe6d44a1ecd24a252a0606e1c8c80da",
+        "support-markup-prior.mjs": "28f7d1dbf1d9fc27d65fbd4a5ff1edef79cbe001bb7921e1a6a5113ce34aea73",
+        "support-markup.mjs": "71a0ab7b49a09e86050c672c7eda4920f0234738f6d3d4f213da0700740d38ed",
+        "support-release-gate.mjs": "a66f8d44b1a409fbfd94e209e0c138dd1cfeb812f3f89089683d0be85ace3798",
+        "worker.js": "42ff6cc0794618ea9521c532f06f8562f6f467588345ddb75be7732a138aa793"
+      },
+      "bundleSHA256": "656cd82212e1fdbf21bc285a38e9b59dfdb82b5088e37b122200b651e1fb0ccb",
+      "uploadIntent": {
+        "at": "2026-11-01T09:31:57.255Z",
+        "source": "7b35640afe71bd4ef18dc305db6d160c57c3f0cb"
+      },
+      "versionId": "d61a4a95-f5eb-425a-97ee-c16584b31766",
+      "stagedVerifiedAt": "2026-11-01T09:32:13.416Z",
+      "deploymentIntent": {
+        "mode": "live",
+        "message": "My Timber first paint 7b35640afe71bd4ef18dc305db6d160c57c3f0cb documents live",
+        "previousDeployment": "222a10e3-1252-4d77-917e-64c09e0b0ae1",
+        "at": "2026-11-01T09:36:00.236Z",
+        "finished": true
+      },
+      "zeroVerifiedAt": "2026-11-01T09:32:45.166Z",
+      "liveVerifiedAt": "2026-11-01T09:36:02.528Z"
     }
   ],
-  "baselineModuleHashes": {
-    "continuity-review-20261031/entry.mjs": "69349447b3584bf8a34717f2946badb999c245d79a53b4c5ff47feece48c875a",
-    "continuity-review-20261031/handoff.mjs": "6aae38134d1aa1c9f66b12b64ab3b6808eb71d9bb26f69db988fe3f7684d92b5",
-    "continuity-review-20261031/html.mjs": "6fc6472132ab06a69fb99bdeaf1e74cb006827db5e8798270104177d5c6ea92e",
-    "continuity-review-20261031/runtime.mjs": "d4480c7fe2455d3f87ecb1e57863218fb466f8e624ba0a364f5d4d421779d42c",
-    "data.mjs": "04eeffcded2e2365a76a73e914c0ed4deb461b7001eb43697cddcd63d51df40e",
-    "first-six-weeks-20261101/entry.mjs": "5c61072e72e77d76144bd1db186509f284aa641b4c9c9a4523c8a5fe8e624876",
-    "first-six-weeks-20261101/first-six-weeks-client.mjs": "2a01de6bece21bd394e25ed5078a8759f28f7b694c563602696039dfd42ab3da",
-    "first-six-weeks-20261101/first-six-weeks-content.mjs": "6ea4b21126a5de2c61dc2d93b0a87097e91af0a2f001948124f0615650de0300",
-    "first-six-weeks-20261101/first-six-weeks-photo.mjs": "6d349982995b08efb1f43dcefe5b3c6e3388ae831f54263bbf33e3efec7c005e",
-    "first-six-weeks-20261101/first-six-weeks-styles.mjs": "bd5e717519104f51a55e3a95ca710f26b3884bdb01cef59fcb52a3393ab63ef6",
-    "first-six-weeks-20261101/first-six-weeks.mjs": "c1d5e793f555613924cd71679a216e405a3c21263a05add18f6484af54b18ea2",
-    "journey-shop-release-20261031/entry.mjs": "2523d634b2979f52339014672f12ab88716b46c96ed56b49f7c1c33e694f5fea",
-    "journey-shop-release-20261031/programme.mjs": "add6646d2d2e4d17769c6c7635d980883fc256b77fd0b625068ad9fb655c0abb",
-    "presentation-entry.mjs": "28154046175263fad23dfdb139acdeb2a637c0daf32d64134e1121bfe1ab56f5",
-    "presentation.mjs": "f3411974c4a5f9c417077a7e6de4298ea96254135137426d8c1f980c2c346c39",
-    "support-release-gate.mjs": "a66f8d44b1a409fbfd94e209e0c138dd1cfeb812f3f89089683d0be85ace3798",
-    "support-service-next.mjs": "4d5232198f92e6e1fc528b3e385921a9c675861a9d5bd5878a667776e2db12c3",
-    "support-service-prior.mjs": "cc8f3f834acebddfefe8c9e6bda52f05d7f7131cf4882ebbfa4abb7fd1032bf4",
-    "support-service.mjs": "257023e78469382031e9da3654ebf879fa352f4d3c3c47897618e95b3bd206cf",
-    "urgent-phone-link.mjs": "2959b38f5259960d18af0cdef8cbeb17f5063048a0e000bf1e229499629a2a04",
-    "worker.mjs": "a8e356b3eb5f991473bb3c9e0971407fdac5c4b5840d625f7cbc95da72e8fc95"
-  },
-  "compatibilityDate": "2026-08-09",
-  "compatibilityFlags": [
-    "nodejs_compat",
-    "global_fetch_strictly_public"
-  ],
-  "operatingConfiguration": {
-    "usage_model": "standard",
-    "placement": {},
-    "tail_consumers": [],
-    "logpush": false
-  },
-  "schedules": {
-    "schedules": []
-  },
   "routes": [
     {
       "id": "0a34cf6527e7452988a9a5bcc2da4710",
@@ -5579,63 +5738,24 @@
       "request_limit_fail_open": false
     }
   ],
-  "baselineVerifiedAt": "2026-11-01T08:57:42.706Z",
+  "baselineVerifiedAt": "2026-11-01T09:29:20.348Z",
+  "updatedAt": "2026-11-01T09:37:00.556Z",
   "lastSuccessfulPhase": "status",
-  "updatedAt": "2026-11-01T09:02:07.576Z",
-  "source": "3195018951f5188094ae3ef032b1d496269f7dee",
-  "moduleHashes": {
-    "continuity-review-20261031/entry.mjs": "69349447b3584bf8a34717f2946badb999c245d79a53b4c5ff47feece48c875a",
-    "continuity-review-20261031/handoff.mjs": "6aae38134d1aa1c9f66b12b64ab3b6808eb71d9bb26f69db988fe3f7684d92b5",
-    "continuity-review-20261031/html.mjs": "6fc6472132ab06a69fb99bdeaf1e74cb006827db5e8798270104177d5c6ea92e",
-    "continuity-review-20261031/runtime.mjs": "d4480c7fe2455d3f87ecb1e57863218fb466f8e624ba0a364f5d4d421779d42c",
-    "data.mjs": "04eeffcded2e2365a76a73e914c0ed4deb461b7001eb43697cddcd63d51df40e",
-    "first-six-weeks-20261101/entry.mjs": "5c61072e72e77d76144bd1db186509f284aa641b4c9c9a4523c8a5fe8e624876",
-    "first-six-weeks-20261101/first-six-weeks-client.mjs": "2a01de6bece21bd394e25ed5078a8759f28f7b694c563602696039dfd42ab3da",
-    "first-six-weeks-20261101/first-six-weeks-content.mjs": "6ea4b21126a5de2c61dc2d93b0a87097e91af0a2f001948124f0615650de0300",
-    "first-six-weeks-20261101/first-six-weeks-photo.mjs": "6d349982995b08efb1f43dcefe5b3c6e3388ae831f54263bbf33e3efec7c005e",
-    "first-six-weeks-20261101/first-six-weeks-styles.mjs": "bd5e717519104f51a55e3a95ca710f26b3884bdb01cef59fcb52a3393ab63ef6",
-    "first-six-weeks-20261101/first-six-weeks.mjs": "c1d5e793f555613924cd71679a216e405a3c21263a05add18f6484af54b18ea2",
-    "journey-shop-release-20261031/entry.mjs": "2523d634b2979f52339014672f12ab88716b46c96ed56b49f7c1c33e694f5fea",
-    "journey-shop-release-20261031/programme.mjs": "f4c0a6e6de80d123a94c1d709891c2106a279ea844baead7ec4a0424e8072321",
-    "presentation-entry.mjs": "28154046175263fad23dfdb139acdeb2a637c0daf32d64134e1121bfe1ab56f5",
-    "presentation.mjs": "f3411974c4a5f9c417077a7e6de4298ea96254135137426d8c1f980c2c346c39",
-    "support-release-gate.mjs": "a66f8d44b1a409fbfd94e209e0c138dd1cfeb812f3f89089683d0be85ace3798",
-    "support-service-next.mjs": "4d5232198f92e6e1fc528b3e385921a9c675861a9d5bd5878a667776e2db12c3",
-    "support-service-prior.mjs": "cc8f3f834acebddfefe8c9e6bda52f05d7f7131cf4882ebbfa4abb7fd1032bf4",
-    "support-service.mjs": "257023e78469382031e9da3654ebf879fa352f4d3c3c47897618e95b3bd206cf",
-    "urgent-phone-link.mjs": "2959b38f5259960d18af0cdef8cbeb17f5063048a0e000bf1e229499629a2a04",
-    "worker.mjs": "a8e356b3eb5f991473bb3c9e0971407fdac5c4b5840d625f7cbc95da72e8fc95"
-  },
-  "bundleSHA256": "f4c0a6e6de80d123a94c1d709891c2106a279ea844baead7ec4a0424e8072321",
-  "uploadIntent": {
-    "at": "2026-11-01T08:59:01.221Z",
-    "source": "3195018951f5188094ae3ef032b1d496269f7dee",
-    "baseline": "5b1a04fc-b871-4714-9169-152787b9d7e6"
-  },
-  "versionId": "742bfb7e-7743-4cbc-84d5-187177488ce9",
-  "stagedVerifiedAt": "2026-11-01T08:59:27.110Z",
-  "deploymentIntent": {
-    "mode": "live",
-    "message": "My Timber SHIFT S header mark 3195018951f5188094ae3ef032b1d496269f7dee live",
-    "previousDeployment": "0124de9b-1073-48aa-ab14-e62e4623a6b3",
-    "attemptedAt": "2026-11-01T09:01:21.702Z",
-    "finished": true
-  },
-  "zeroVerifiedAt": "2026-11-01T08:59:42.369Z",
-  "candidateAcceptance": [
+  "source": "7b35640afe71bd4ef18dc305db6d160c57c3f0cb",
+  "acceptance": [
     {
-      "path": "brand-mark-production-candidate.json",
-      "sha256": "e47f6674e4e785504c7352fb9de0b05a36a209a9ee71b4f1ebd8b15492069f70"
+      "path": "first-paint-production-candidate.json",
+      "sha256": "0622a266aaf7ca18c4d6faee7529181598d06807149f742bb3551f1f99a76a47"
     },
     {
-      "path": "shop-browser-proof/brand-mark-served-candidate-chromium-20261101/receipt.json",
-      "sha256": "1e512f0a15c352a7f8475a944b83ee683797cfaa4b4dabd360325a2cd29c8728"
+      "path": "shop-browser-proof/first-paint-served-candidate-chromium-20261101/receipt.json",
+      "sha256": "fe2c2c03d80af4d3d2bf1cad83b22462bf594e2691276f1207251b4a366106c5"
     },
     {
-      "path": "shop-browser-proof/brand-mark-served-candidate-webkit-20261101/receipt.json",
-      "sha256": "53ae4a1bf9e6cf7f6d4cbd38123010eb66ded48b29c0044e58d17e98d6ffc1b0"
+      "path": "shop-browser-proof/first-paint-served-candidate-webkit-20261101/receipt.json",
+      "sha256": "4ac9e5f9903a8e11ae91a1c661a7b22228691ad745652e69cb04c0833dca0871"
     }
   ],
-  "candidateAcceptanceAt": "2026-11-01T09:01:07.265Z",
-  "liveVerifiedAt": "2026-11-01T09:01:24.056Z"
+  "candidateAcceptedAt": "2026-11-01T09:34:56.344Z",
+  "programmeProductionVerifiedAt": "2026-11-01T09:35:50.819Z"
 }

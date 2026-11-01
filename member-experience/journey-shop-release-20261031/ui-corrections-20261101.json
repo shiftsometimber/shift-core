@@ -1,12 +1,7 @@
 {
   "state": "LIVE_AND_VERIFIED",
-  "at": "2026-11-01T09:02:05.469Z",
-  "source": "3195018951f5188094ae3ef032b1d496269f7dee",
-  "worker": "shift-programme-member-20261023",
-  "versionId": "742bfb7e-7743-4cbc-84d5-187177488ce9",
-  "deploymentId": "0d7e4ed6-2be3-4b4a-bf68-ca64d7bb3804",
-  "rollbackVersion": "837eb6c0-09d4-4c1c-9a9d-2f841a4e00f0",
-  "bundleSHA256": "f4c0a6e6de80d123a94c1d709891c2106a279ea844baead7ec4a0424e8072321",
+  "at": "2026-11-01T09:36:58.522Z",
+  "source": "7b35640afe71bd4ef18dc305db6d160c57c3f0cb",
   "resolved": [
     "Shop category emoji arrows remain removed",
     "Figure uses a changing clipped filled area, not opacity or colour changes",
@@ -14,43 +9,164 @@
     "Guide date is restored when returning to Journey, including cancelling a dated entry; new-record dates remain unchanged",
     "Pointer, wheel, range, keyboard, day buttons and Play keep the figure and chart synchronised",
     "All seven day buttons visible without horizontal scrolling; Day 7 directly selectable; touch targets at least 44 by 44 CSS pixels",
-    "Existing SHIFT S mark restored beside My Timber in shared member header; 30px mark, 10px gap, unchanged header height and navigation"
+    "Existing SHIFT S mark restored beside My Timber in shared member header; 30px mark, 10px gap, unchanged header height and navigation",
+    "Member pages now render the app styling and non-private opening shell in the initial head; no website or legacy navigation frame precedes the verified app"
   ],
-  "brandMark": {
-    "path": "/assets/favicon-shift-s-20261020.png",
-    "status": 200,
-    "contentType": "image/png",
-    "sha256": "97f754538a660372c62cf5a36c003b3082e672fa2a9de97d0fe4f1f288b56682",
-    "displaySize": 30,
-    "nameGap": 10,
-    "existingAssetReused": true,
-    "decorativeEmptyAlt": true,
-    "sharedAcrossMemberPages": true,
-    "nativeBuild8ScriptsIncludedInCompatibilityChecks": true
-  },
-  "dayButtonLayout": {
-    "sevenColumnsWhenTheyFit": true,
-    "fourThenThreeBelow375px": true,
-    "testedWidths": [
-      320,
-      390,
-      768,
-      1440
+  "firstPaint": {
+    "inlineInitialStyles": true,
+    "nonPrivateOpeningShell": true,
+    "legacyChromeHiddenBeforeNavigationDownload": true,
+    "privateContentRemainsGuarded": true,
+    "nativeBuild8InsetCompatibility": true,
+    "noJavaScriptFailureAndEmbeddedFallbacksPassed": true,
+    "actualProductionChromium": [
+      {
+        "path": "/member/dashboard",
+        "openingShellVisible": true,
+        "websiteFrames": 0,
+        "privateContentGuarded": true,
+        "anonymousSignInPreserved": true,
+        "navigationDelayedWithoutResponseSubstitution": true
+      },
+      {
+        "path": "/member/life-back/journey",
+        "openingShellVisible": true,
+        "websiteFrames": 0,
+        "privateContentGuarded": true,
+        "anonymousSignInPreserved": true,
+        "navigationDelayedWithoutResponseSubstitution": true
+      },
+      {
+        "path": "/member/life-back/shop",
+        "openingShellVisible": true,
+        "websiteFrames": 0,
+        "privateContentGuarded": true,
+        "anonymousSignInPreserved": true,
+        "navigationDelayedWithoutResponseSubstitution": true
+      },
+      {
+        "path": "/member/grub",
+        "openingShellVisible": true,
+        "websiteFrames": 0,
+        "privateContentGuarded": true,
+        "anonymousSignInPreserved": true,
+        "navigationDelayedWithoutResponseSubstitution": true
+      },
+      {
+        "path": "/member/fit",
+        "openingShellVisible": true,
+        "websiteFrames": 0,
+        "privateContentGuarded": true,
+        "anonymousSignInPreserved": true,
+        "navigationDelayedWithoutResponseSubstitution": true
+      },
+      {
+        "path": "/member/dashboard?timber=support#today",
+        "openingShellVisible": true,
+        "websiteFrames": 0,
+        "privateContentGuarded": true,
+        "anonymousSignInPreserved": true,
+        "navigationDelayedWithoutResponseSubstitution": true
+      },
+      {
+        "path": "/member/dashboard?timber=stuff#today",
+        "openingShellVisible": true,
+        "websiteFrames": 0,
+        "privateContentGuarded": true,
+        "anonymousSignInPreserved": true,
+        "navigationDelayedWithoutResponseSubstitution": true
+      }
     ],
-    "noHorizontalScrolling": true,
-    "allButtonsVisibleAndUnobscured": true,
-    "day7SelectedByPointerWithoutAutomaticScroll": true,
-    "stylesheetCapturedFromServedCandidateAndMatchesLive": true
+    "actualProductionWebkit": [
+      {
+        "path": "/member/dashboard",
+        "openingShellVisible": true,
+        "websiteFrames": 0,
+        "privateContentGuarded": true,
+        "anonymousSignInPreserved": true,
+        "navigationDelayedWithoutResponseSubstitution": true
+      },
+      {
+        "path": "/member/life-back/journey",
+        "openingShellVisible": true,
+        "websiteFrames": 0,
+        "privateContentGuarded": true,
+        "anonymousSignInPreserved": true,
+        "navigationDelayedWithoutResponseSubstitution": true
+      },
+      {
+        "path": "/member/life-back/shop",
+        "openingShellVisible": true,
+        "websiteFrames": 0,
+        "privateContentGuarded": true,
+        "anonymousSignInPreserved": true,
+        "navigationDelayedWithoutResponseSubstitution": true
+      },
+      {
+        "path": "/member/grub",
+        "openingShellVisible": true,
+        "websiteFrames": 0,
+        "privateContentGuarded": true,
+        "anonymousSignInPreserved": true,
+        "navigationDelayedWithoutResponseSubstitution": true
+      },
+      {
+        "path": "/member/fit",
+        "openingShellVisible": true,
+        "websiteFrames": 0,
+        "privateContentGuarded": true,
+        "anonymousSignInPreserved": true,
+        "navigationDelayedWithoutResponseSubstitution": true
+      },
+      {
+        "path": "/member/dashboard?timber=support#today",
+        "openingShellVisible": true,
+        "websiteFrames": 0,
+        "privateContentGuarded": true,
+        "anonymousSignInPreserved": true,
+        "navigationDelayedWithoutResponseSubstitution": true
+      },
+      {
+        "path": "/member/dashboard?timber=stuff#today",
+        "openingShellVisible": true,
+        "websiteFrames": 0,
+        "privateContentGuarded": true,
+        "anonymousSignInPreserved": true,
+        "navigationDelayedWithoutResponseSubstitution": true
+      }
+    ],
+    "networkDelaysWithoutResponseSubstitution": true,
+    "newIdentityApiOrDataWrites": false,
+    "programmeVerifiedBeforeDashboardPromotion": "2026-11-01T09:35:50.819Z"
   },
   "routesPreserved": 915,
   "newRoutes": 0,
   "appleActions": 0,
   "productionCustomerWrites": 0,
-  "sourceChecks": 28,
-  "chromiumIsolatedChecks": 34,
-  "webkitNativeIsolatedChecks": 34,
+  "owners": [
+    {
+      "name": "shift-programme-member-20261023",
+      "versionId": "cef30348-4ce4-4ed6-957d-d500863ec457",
+      "deploymentId": "4513f2f2-1edc-428d-8e3d-625c81f5efc6",
+      "rollbackVersion": "742bfb7e-7743-4cbc-84d5-187177488ce9",
+      "retainedModules": 20,
+      "bindingsPreserved": 7
+    },
+    {
+      "name": "shift-hq-member-comms-20261023",
+      "versionId": "d61a4a95-f5eb-425a-97ee-c16584b31766",
+      "deploymentId": "db8b698d-aec3-48cd-8c0d-049694813f9d",
+      "rollbackVersion": "459dd83d-9ade-461f-997a-6e11a4d7d3ff",
+      "retainedModules": 15,
+      "bindingsPreserved": 6
+    }
+  ],
+  "sourceChecks": 32,
+  "chromiumIsolatedChecks": 39,
+  "webkitNativeIsolatedChecks": 39,
   "productionPagesPerEngine": 24,
   "productionAssetsPerEngine": 11,
+  "actualProductionFirstPaintChecksPerEngine": 7,
   "newConsoleErrors": 0,
   "sixWeekProgrammePreserved": true,
   "privateApis": [
@@ -76,6 +192,5 @@
     }
   ],
   "ordinaryProductionJourneyPersistence": "NOT VERIFIED; authorised test session signed out",
-  "physicalInstalledPwaAndNative": "NOT VERIFIED",
-  "documentsCandidatePublished": false
+  "physicalInstalledPwaAndNative": "NOT VERIFIED"
 }
