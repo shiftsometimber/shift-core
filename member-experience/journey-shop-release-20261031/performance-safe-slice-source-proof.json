@@ -1,0 +1,313 @@
+{
+  "at": "2026-11-01T22:41:41.919Z",
+  "verified": true,
+  "transportEnabled": false,
+  "loginSessionIdentityChanges": 0,
+  "resources": [
+    {
+      "path": "/assets/member-experience/programme-shop-basket.js",
+      "sha256": "7c28d5220d010fd8fec217e16f52fdc8b80d1cb0cbb3211d17f8cbcc8f0b8343",
+      "fingerprinted": false
+    },
+    {
+      "path": "/analytics-bootstrap-v1.js",
+      "sha256": "1c04156865c81cf052ba9dfd94022ad9c24bb4a2dcfd63a1f674e23c8562e5d3",
+      "fingerprinted": true
+    },
+    {
+      "path": "/member-p0-v1.css",
+      "sha256": "e40a57cef6cd7dec1c72f2e89c0204135ab7911862837c6c03bd4cc35c8868ae",
+      "fingerprinted": true
+    },
+    {
+      "path": "/member-today-premium-v1.css",
+      "sha256": "942433f46cc0ed9aa76dd6c74ea7b9b911cea9bcc21a89650afc0a7b99ac2796",
+      "fingerprinted": true
+    },
+    {
+      "path": "/my-timber-v11.css",
+      "sha256": "fa04bf4ba1971281145213d8a84e10c947c5f13b80a73c6162d57db50c636b0b",
+      "fingerprinted": true
+    },
+    {
+      "path": "/member-my-journey-v1.css",
+      "sha256": "64efe8cd8fb3338e236ab58edf055c84d34c1165c756c9e58317c5e4d297e7d7",
+      "fingerprinted": true
+    },
+    {
+      "path": "/member-my-journey-checkin-v1.css",
+      "sha256": "69a5f7fd9d8a18ccb3024acbcb984f9ef5efe98234bf38ea1f0a9db688ede55d",
+      "fingerprinted": false
+    },
+    {
+      "path": "/assets/v137-estate-closeout.css",
+      "sha256": "a0e9927ac92becaf57f2c787985c78c5d4acea3b3b54c4a1c78b5f479358346f",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-shell-v6.css",
+      "sha256": "adbfc632e2bdd87aa173f56031e09bb1c61d3b47fe7e42505a1c9b12fc038e9f",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/shift-recovery-v6.css",
+      "sha256": "3edc9ac6a663ef3bd16bd7bc13215275dd8c86c46f2f550d3aac4cf0c500d632",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/header-navigation-v2.css",
+      "sha256": "83fcff138e0b3f88d5e6fb06c78bb334fb4073553652037e074f75223785ad94",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/public-feedback-v1.css",
+      "sha256": "db1c9c661a33f348ba6fc9474e8292deece52f71a7b6d63256c608a26c01f3c5",
+      "fingerprinted": false
+    },
+    {
+      "path": "/assets/my-timber-welcome-20261021.css",
+      "sha256": "fbe31e415489de92d43f46aa7883bd0e7e0f5bb7f75c54442acd7c1651b2aeec",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/passport.css",
+      "sha256": "5648311bde137a556daac461e73812b85d79c8a425b881112385b152981d4091",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/passport.js",
+      "sha256": "a02141d476e16fd266e19e246975c48e42d5e6aacb34bcd0347532616956c0fd",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/my-timber-pwa.css",
+      "sha256": "12aab722f97abb9ee8d65687383d5f79a1080fc258faf84c578f7c5bee8027bc",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/programme-style.css",
+      "sha256": "c4c8b0e42ce238eade23e9a648bd36c02e77c9dc213909de49c76cffe468c90a",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/programme-shop-navigation.mjs",
+      "sha256": "f7059a9a901054be59bdf808d8fb043be513c907a78c029c47ea8f21d5dd00eb",
+      "fingerprinted": false
+    },
+    {
+      "path": "/assets/member-experience/session.mjs",
+      "sha256": "c35c367a2d82723604ae2632ff38548a94059f60ca97b9119762cc03d18570f2",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-login-security-20260912.js",
+      "sha256": "ab4c12202142282824fbf1e453254cc35a51892a07fd51fd844c4ab27d6d4532",
+      "fingerprinted": true
+    },
+    {
+      "path": "/api-adapter-v33d.js",
+      "sha256": "eeb741d84aa1e8a9e27d75f1f065a0a7cf65efd378264c45294ba18f069a95bd",
+      "fingerprinted": true
+    },
+    {
+      "path": "/member-treatment-journey-v1.js",
+      "sha256": "25aec39e710d192274da4e517a35f815c4c8a7f0cd07563e917bad62e40e677d",
+      "fingerprinted": true
+    },
+    {
+      "path": "/my-timber-v11.js",
+      "sha256": "6ea38a5410a64c7072d999f70f7fe9c47e4129369d6ee0cfca2b38fd8322fd4f",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/ask-timber-sync-v1.js",
+      "sha256": "cb1434cc5fd0ea7b00aeea67767097ad1ed6c2ec6b29ac65a8c5f1681ad37e19",
+      "fingerprinted": true
+    },
+    {
+      "path": "/consent-v4a.js",
+      "sha256": "7ffe5454fd08374408f70784f6ddde0ba8a51c3d948a5034af083647b4ac38b4",
+      "fingerprinted": true
+    },
+    {
+      "path": "/analytics-events-v31b.js",
+      "sha256": "135750c70453438dadfdfc8ace5027f80de99b12052a27cf65f8e1d791739873",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-shell-v6.js",
+      "sha256": "6e3a6c3d6d136bb2369ad132d90747cc85056804dba4e9355da7ced2a5375dd2",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/my-timber-onboarding-20261021.js",
+      "sha256": "cd7e07b96a8edf7f24d28aad01088f1dd1afaaff75e2b7d5110f9990ae846e9d",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/v1.css",
+      "sha256": "45e56cf9b8887be3912b1d55d0838faa3d0239059e9a5dd5245625f785c90125",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/v1.mjs",
+      "sha256": "0b1e048807b667abf8a3f3e6f446efe79b35e582d028ecea2d2597321f8723a7",
+      "fingerprinted": true
+    },
+    {
+      "path": "/member-plans-premium-v1.css",
+      "sha256": "315b5eec8290131ebe83a40290b0bc29849db56fe29bdc5ebf4e61e0f3cda590",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/tools.css",
+      "sha256": "a0cc81d1a67224b8d0ba5631583685ae443bc2691b6f77bb9ff3b579a9fb3b12",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/home.css",
+      "sha256": "de9dbec6578719fdc96e59b80f565e584516a9e661e3aff7095977828de6255a",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/health.mjs",
+      "sha256": "79b9047d6ece00f509db7cb6b08fc673b33699dd28eea53a885601e7c4645088",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/checkin-followup.css",
+      "sha256": "9c840b582dcc9bef4335dcc2b873e5104f5e8d5266babd0c717423469b749227",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/checkin-followup.mjs",
+      "sha256": "82e2558060c5eda419ef0b39f7bdee1e32079b139906cf1ec8a020d7fc0edcd4",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/day-guide.css",
+      "sha256": "3001dcbb338fffc8e33bf653960d0036b93327fd66300b5661f79fb2ed7bc252",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/day-guide.mjs",
+      "sha256": "b95b5dab3a09b57d0ff79f0db877198f2226fe98f995f3fd03dff070c73bdbd1",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/continuity-exposure.mjs",
+      "sha256": "70e759ade9aaa9608eb98a27824ffd0d3cd9f09384b891fc1a8632d5e90e419f",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/chrome.css",
+      "sha256": "8f106e5fe8bf2e6c3d84be60ce3313a2a343f3b2942627a0f6ab6321560ccc72",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/my-timber-pwa.js",
+      "sha256": "79644feae7d6ef169e1c56166aa558b92cb09b89ee3d0760c6d3ceb6820f4806",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/my-timber-layout.mjs",
+      "sha256": "24fa200f1b2ea5335de778ada3e583ed2c8f5587b97527769afefa073aaa5c1c",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/programme-client.js",
+      "sha256": "6cd179f6e9f35a3f35c97373a43956e53f4271f1ab7293b64f53be1d4e989ef7",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/programme-support-plan.css",
+      "sha256": "ec758c79ff70ff9606579ca9829a1f61d0cf6b6e026aa85a8fdcd799c1c9abc0",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/programme-support-plan.mjs",
+      "sha256": "677fc9d0a870c75be505efcd4519b41b9722d930f5aa216ed84fae1024ef2229",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/programme-shed.css",
+      "sha256": "1d7e37feac4dc508ed4c9fcf09826780d3b65a3d057abc74cacbce56ce2cba40",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/programme-shed.mjs",
+      "sha256": "2b2d1f46dc3a4c06d23683b7174e2e3ef69856cfa5f84c73b1c50c12ae69ba45",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/programme-first-six-weeks.css",
+      "sha256": "d71d87c027b538f06096a9ba1881968930984f74e89b8f7eaf7d0a5b92c8d8e9",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/programme-first-six-weeks.mjs",
+      "sha256": "c88bb148c9119a29540ca897f6ce8c08e4554ad90e4d15a2819cc2459235d974",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/programme-journey.css",
+      "sha256": "03368124f96fd2af3cdf8b91e30bd2f23aa3fb008b48b8c7ce2c2354dd9edce0",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/programme-journey.mjs",
+      "sha256": "971acb12a3b108f1b73f1e7576af6a59f5f1256bc3dd9f0780336285a6b16914",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/my-shift-app-v8.css",
+      "sha256": "8f86b8ab08e7e3b693d145b76370aa398d3b349ae4b5a536bb21147cef558fb1",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-grub-v8.css",
+      "sha256": "e596234e93a5b633eb08f4b01686d63d46a498d90f59e2c16e5f05259874334e",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/ask-timber-drawer-v2.css",
+      "sha256": "776b4381973eb9605e8b72f3fed61428c361b13702f35e35a02426376ec37142",
+      "fingerprinted": false
+    },
+    {
+      "path": "/assets/v136-desolation-recovery.css",
+      "sha256": "28a814a60931993d1aab212058f889e11fc638608561c1dd091a76f78af43585",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-grub-contrast-fix-v1.css",
+      "sha256": "12d992fd08eb6173674f41fdd32cade1fecb4a13d5cf1c43ca47d4bc36422b83",
+      "fingerprinted": true
+    },
+    {
+      "path": "/app.js",
+      "sha256": "c42c5deca73a8948a117049324612cfa955e8669b0fbe83123cfa637bdd73606",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/grub.mjs",
+      "sha256": "9a49e80fc012afa38d6f3f5759237d187e88a4523f316d5f6c8a158456e9f8cb",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-experience/food-diary.mjs",
+      "sha256": "e9150a904886918d5f9607dca8c5483ced5e1fc4771f28bfc9bcb9968dee37ec",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/member-fit-experience-v1.css",
+      "sha256": "f3512f61d6b6d92382b19f8dbe19c8347cf0e38a57e06b7580570e68a3e5cdc8",
+      "fingerprinted": true
+    },
+    {
+      "path": "/assets/my-timber-layout-launch.mjs",
+      "sha256": "573103a609c889b8aa5d87ce5bf5a3fc703d779365bc3736c3c1d9ad48bb3cef",
+      "fingerprinted": true
+    }
+  ]
+}
