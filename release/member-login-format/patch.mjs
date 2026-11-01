@@ -5,10 +5,11 @@ export function deriveLoginPatch(before,after){
  let start=0;while(start<before.length&&start<after.length&&before[start]===after[start])start++;
  assert(start<before.length,'No compiled login repair');
  let end=0;while(end<before.length-start&&end<after.length-start&&before.at(-1-end)===after.at(-1-end))end++;
- const left=Math.max(0,start-512),rightBefore=Math.min(before.length,before.length-end+512),rightAfter=Math.min(after.length,after.length-end+512);
+ const functionStart=before.lastIndexOf('function withSessionState(',start);assert(functionStart>=0,'Only the compiled session adapter may change');
+ const left=Math.max(functionStart,start-512),rightBefore=Math.min(before.length,before.length-end+512),rightAfter=Math.min(after.length,after.length-end+512);
  const oldText=before.slice(left,rightBefore),newText=after.slice(left,rightAfter);
  assert(oldText.length<6500&&newText.length<9000,'Compiled repair exceeds login-only envelope');
- assert.match(oldText,/function withSessionState\(html\)/);
+ assert.match(oldText,/function withSessionState\(html\d*\)/);
  assert.match(newText,/removeAttribute\('pattern'\)/);
  assert.equal(before.split(oldText).length,2);assert.equal(after.split(newText).length,2);
  assert.equal(after.replace(newText,oldText),before,'Every unrelated compiled byte must remain');
