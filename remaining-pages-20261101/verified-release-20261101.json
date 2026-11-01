@@ -1,0 +1,766 @@
+{
+  "verified": true,
+  "source": "46be78d366584a300e7f5439c174eed9b5a6913a",
+  "release": "remaining-pages-20261101-v1",
+  "pages": [
+    {
+      "key": "decision",
+      "path": "/decision-centre-methodology",
+      "selected": "Delegated remaining-page visual upgrade"
+    },
+    {
+      "key": "readiness",
+      "path": "/decision-readiness-methodology",
+      "selected": "Delegated remaining-page visual upgrade"
+    },
+    {
+      "key": "lifestyle",
+      "path": "/lifestyle-treatment-methodology",
+      "selected": "Delegated remaining-page visual upgrade"
+    },
+    {
+      "key": "nhs",
+      "path": "/nhs-private-methodology",
+      "selected": "Delegated remaining-page visual upgrade"
+    },
+    {
+      "key": "progress",
+      "path": "/progress-centre-methodology",
+      "selected": "Delegated remaining-page visual upgrade"
+    },
+    {
+      "key": "surgery",
+      "path": "/surgery-comparison-methodology",
+      "selected": "Delegated remaining-page visual upgrade"
+    },
+    {
+      "key": "overseas",
+      "path": "/uk-europe-methodology",
+      "selected": "Delegated remaining-page visual upgrade"
+    },
+    {
+      "key": "universal",
+      "path": "/universal-comparison-methodology",
+      "selected": "Delegated remaining-page visual upgrade"
+    },
+    {
+      "key": "governance",
+      "path": "/clinical-governance",
+      "selected": "Delegated remaining-page visual upgrade"
+    },
+    {
+      "key": "editorial",
+      "path": "/editorial-standards",
+      "selected": "Delegated remaining-page visual upgrade"
+    },
+    {
+      "key": "disclaimer",
+      "path": "/medical-disclaimer",
+      "selected": "Delegated remaining-page visual upgrade"
+    },
+    {
+      "key": "privacy",
+      "path": "/privacy-centre",
+      "selected": "Delegated remaining-page visual upgrade"
+    },
+    {
+      "key": "data",
+      "path": "/data-governance",
+      "selected": "Delegated remaining-page visual upgrade"
+    },
+    {
+      "key": "dpia",
+      "path": "/dpia-summary",
+      "selected": "Delegated remaining-page visual upgrade"
+    },
+    {
+      "key": "reviews",
+      "path": "/product-reviews",
+      "selected": "Delegated remaining-page visual upgrade"
+    },
+    {
+      "key": "author",
+      "path": "/authors/matt-obrien",
+      "selected": "Delegated remaining-page visual upgrade"
+    },
+    {
+      "key": "accessibility",
+      "path": "/accessibility",
+      "selected": "Delegated remaining-page visual upgrade"
+    },
+    {
+      "key": "complaints",
+      "path": "/complaints",
+      "selected": "Delegated remaining-page visual upgrade"
+    },
+    {
+      "key": "gp",
+      "path": "/downloads/gp-appointment-checklist",
+      "selected": "Delegated remaining-page visual upgrade"
+    },
+    {
+      "key": "medication",
+      "path": "/downloads/weight-loss-medication-questions",
+      "selected": "Delegated remaining-page visual upgrade"
+    },
+    {
+      "key": "operation",
+      "path": "/downloads/bariatric-surgery-checklist",
+      "selected": "Delegated remaining-page visual upgrade"
+    },
+    {
+      "key": "provider",
+      "path": "/downloads/private-provider-checklist",
+      "selected": "Delegated remaining-page visual upgrade"
+    },
+    {
+      "key": "travel",
+      "path": "/downloads/overseas-surgery-checklist",
+      "selected": "Delegated remaining-page visual upgrade"
+    },
+    {
+      "key": "maintenance",
+      "path": "/downloads/maintenance-plan-template",
+      "selected": "Delegated remaining-page visual upgrade"
+    }
+  ],
+  "workers": [
+    {
+      "name": "shift-public-presentation-batch-20261022",
+      "versionId": "9e4a0837-f185-4de4-9a15-7627cc7f5b36",
+      "previousVersion": "039d26a7-2f00-4588-b411-e219b4fadb0d",
+      "retainedModules": 56,
+      "refreshedOwnedModules": 0,
+      "bindingsPreserved": 4,
+      "migrationTagPreserved": null
+    },
+    {
+      "name": "shift-core",
+      "versionId": "1b0acb36-4fee-452c-b23b-10b03d2421ce",
+      "previousVersion": "5678669f-a865-476f-bda7-0639c4225618",
+      "retainedModules": 24,
+      "refreshedOwnedModules": 0,
+      "bindingsPreserved": 52,
+      "migrationTagPreserved": "v1-site-content-state"
+    }
+  ],
+  "routeCount": 915,
+  "routesChanged": 0,
+  "checks": [
+    {
+      "path": "/decision-centre-methodology",
+      "key": "decision",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/decision-centre-methodology?presentation=1",
+      "key": "decision",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/decision-readiness-methodology",
+      "key": "readiness",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/decision-readiness-methodology?presentation=1",
+      "key": "readiness",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/lifestyle-treatment-methodology",
+      "key": "lifestyle",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/lifestyle-treatment-methodology?presentation=1",
+      "key": "lifestyle",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/nhs-private-methodology",
+      "key": "nhs",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/nhs-private-methodology?presentation=1",
+      "key": "nhs",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/progress-centre-methodology",
+      "key": "progress",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/progress-centre-methodology?presentation=1",
+      "key": "progress",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/surgery-comparison-methodology",
+      "key": "surgery",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/surgery-comparison-methodology?presentation=1",
+      "key": "surgery",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/uk-europe-methodology",
+      "key": "overseas",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/uk-europe-methodology?presentation=1",
+      "key": "overseas",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/universal-comparison-methodology",
+      "key": "universal",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/universal-comparison-methodology?presentation=1",
+      "key": "universal",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/clinical-governance",
+      "key": "governance",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/clinical-governance?presentation=1",
+      "key": "governance",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/editorial-standards",
+      "key": "editorial",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/editorial-standards?presentation=1",
+      "key": "editorial",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/medical-disclaimer",
+      "key": "disclaimer",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/medical-disclaimer?presentation=1",
+      "key": "disclaimer",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/privacy-centre",
+      "key": "privacy",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/privacy-centre?presentation=1",
+      "key": "privacy",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/data-governance",
+      "key": "data",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/data-governance?presentation=1",
+      "key": "data",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/dpia-summary",
+      "key": "dpia",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/dpia-summary?presentation=1",
+      "key": "dpia",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/product-reviews",
+      "key": "reviews",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/product-reviews?presentation=1",
+      "key": "reviews",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/authors/matt-obrien",
+      "key": "author",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/authors/matt-obrien?presentation=1",
+      "key": "author",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/accessibility",
+      "key": "accessibility",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/accessibility?presentation=1",
+      "key": "accessibility",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/accessibility/",
+      "key": "accessibility",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/accessibility/?presentation=1",
+      "key": "accessibility",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/accessibility.html",
+      "key": "accessibility",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/accessibility.html?presentation=1",
+      "key": "accessibility",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/complaints",
+      "key": "complaints",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/complaints?presentation=1",
+      "key": "complaints",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/downloads/gp-appointment-checklist",
+      "key": "gp",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/downloads/gp-appointment-checklist?presentation=1",
+      "key": "gp",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/downloads/weight-loss-medication-questions",
+      "key": "medication",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/downloads/weight-loss-medication-questions?presentation=1",
+      "key": "medication",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/downloads/bariatric-surgery-checklist",
+      "key": "operation",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/downloads/bariatric-surgery-checklist?presentation=1",
+      "key": "operation",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/downloads/private-provider-checklist",
+      "key": "provider",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/downloads/private-provider-checklist?presentation=1",
+      "key": "provider",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/downloads/overseas-surgery-checklist",
+      "key": "travel",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/downloads/overseas-surgery-checklist?presentation=1",
+      "key": "travel",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/downloads/maintenance-plan-template",
+      "key": "maintenance",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/downloads/maintenance-plan-template?presentation=1",
+      "key": "maintenance",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    }
+  ],
+  "protectedPages": [
+    "/tools/bmi",
+    "/tools/calories",
+    "/tools/healthy-weight",
+    "/tools/protein",
+    "/tools/waist-height",
+    "/tools/walking",
+    "/tools/water",
+    "/tools/steps",
+    "/tools/sleep",
+    "/tools/alcohol",
+    "/tools/weight-management-review",
+    "/how-are-you-feeling",
+    "/",
+    "/start-here",
+    "/programme",
+    "/shift-health",
+    "/knowledge",
+    "/explore-knowledge",
+    "/ask-timber",
+    "/treatment-centre",
+    "/member/dashboard",
+    "/mens-mental-health",
+    "/shift-for-work",
+    "/shift-health/stop-smoking",
+    "/tools",
+    "/tools?ct3=1",
+    "/weight-loss-support-for-men",
+    "/partner-with-us",
+    "/male-obesity",
+    "/compare-weight-loss-treatments",
+    "/clinic-gone-quiet",
+    "/about",
+    "/contact",
+    "/shift-newsroom",
+    "/life-back",
+    "/corporate-wellbeing",
+    "/guides/retatrutide-uk-guide",
+    "/husband-help",
+    "/my-timber-for-providers",
+    "/nhs-vs-private",
+    "/surgery-comparison-centre",
+    "/knowledge?presentation=1",
+    "/articles/stopping-glp1",
+    "/articles/food-noise-after-stopping-glp1",
+    "/member/life-back",
+    "/shift-newsroom/client.js",
+    "/shift-newsroom/compare.js",
+    "/provider-switch",
+    "/our-causes-partners",
+    "/downloads-resources",
+    "/downloads-resources?presentation=1",
+    "/family-discussion-guide",
+    "/family-discussion-guide?presentation=1",
+    "/community",
+    "/community?presentation=1",
+    "/faq",
+    "/help",
+    "/waiting-list-journey",
+    "/waiting-list-journey?presentation=1",
+    "/advertise-with-us",
+    "/expert-contributors",
+    "/media-centre",
+    "/press-centre",
+    "/trusted-partners",
+    "/shift-promise",
+    "/treatment-finder",
+    "/my-weight-loss-roadmap",
+    "/shift-health/health-mot",
+    "/commercial-principles",
+    "/commercial-principles?presentation=1",
+    "/how-we-review-products",
+    "/how-we-review-products?presentation=1",
+    "/affiliate-disclosure",
+    "/affiliate-disclosure?presentation=1",
+    "/decision-trees-explained",
+    "/decision-trees-explained?presentation=1",
+    "/treatment-finder-methodology",
+    "/treatment-finder-methodology?presentation=1",
+    "/roadmap-methodology",
+    "/roadmap-methodology?presentation=1",
+    "/health-mot-methodology",
+    "/health-mot-methodology?presentation=1",
+    "/medication-comparison-methodology",
+    "/medication-comparison-methodology?presentation=1",
+    "/advertise-with-us?presentation=1",
+    "/expert-contributors?presentation=1",
+    "/media-centre?presentation=1",
+    "/press-centre?presentation=1",
+    "/trusted-partners?presentation=1",
+    "/shift-promise?presentation=1",
+    "/work-with-us",
+    "/work-with-us?presentation=1"
+  ],
+  "calculatorPages": [
+    "/tools/bmi",
+    "/tools/calories",
+    "/tools/healthy-weight",
+    "/tools/protein",
+    "/tools/waist-height",
+    "/tools/walking",
+    "/tools/water",
+    "/tools/steps",
+    "/tools/sleep",
+    "/tools/alcohol",
+    "/tools/weight-management-review"
+  ],
+  "existingCodeAssetsPreserved": 285,
+  "photographs": [
+    {
+      "path": "/assets/remaining-pages-20261101/editorial.webp",
+      "sha256": "da6fe82ca36d2cb1a6da8d2257a3795b192f78b153a09a31d59732ea2e096665"
+    },
+    {
+      "path": "/assets/remaining-pages-20261101/lifestyle.webp",
+      "sha256": "193eeaca4d5a065d8cdd4759cbb10e0cec8309283c1391b422298c8c1686b0a2"
+    },
+    {
+      "path": "/assets/remaining-pages-20261101/reviews.webp",
+      "sha256": "23c4f3fccf2c8f8483c9dc9eb8cf7edbca385736fa9e7d088f8dc9712fbbe137"
+    }
+  ],
+  "verifiedAt": "2026-11-01T08:56:04.893Z",
+  "browserVerification": {
+    "checks": 144,
+    "viewports": [
+      1440,
+      768,
+      390
+    ],
+    "ordinaryUrls": 72,
+    "queryUrls": 72,
+    "allPassed": true,
+    "readabilityIssues": 0,
+    "printableResources": [
+      {
+        "page": "gp",
+        "pages": 1,
+        "visibleItems": 8,
+        "whitePaper": true,
+        "outsideMain": []
+      },
+      {
+        "page": "medication",
+        "pages": 1,
+        "visibleItems": 8,
+        "whitePaper": true,
+        "outsideMain": []
+      },
+      {
+        "page": "operation",
+        "pages": 1,
+        "visibleItems": 8,
+        "whitePaper": true,
+        "outsideMain": []
+      },
+      {
+        "page": "provider",
+        "pages": 1,
+        "visibleItems": 8,
+        "whitePaper": true,
+        "outsideMain": []
+      },
+      {
+        "page": "travel",
+        "pages": 1,
+        "visibleItems": 8,
+        "whitePaper": true,
+        "outsideMain": []
+      },
+      {
+        "page": "maintenance",
+        "pages": 1,
+        "visibleItems": 9,
+        "whitePaper": true,
+        "outsideMain": []
+      }
+    ]
+  },
+  "workflowRun": 41290423262,
+  "workflowJob": 124800334207,
+  "evidence": {
+    "artifactId": 13077341830,
+    "sha256": "sha256:6a08cec2874fe55e8c20bf4f97971288a7aac5301c9a7673d5df7aa9842ba493",
+    "expiresAt": "2027-01-30T08:48:55Z",
+    "workflow": "https://github.com/shiftsometimber/shift-core/actions/runs/41290423262"
+  },
+  "review": {
+    "source": "765bce6190cb86e3fefbe2796f405098ec7fcdce",
+    "workflowRun": 41290029721,
+    "artifactId": 13076872947,
+    "file": "reviewed-source.json"
+  },
+  "liveCapture": {
+    "page": "https://shiftsometimber.co.uk/product-reviews",
+    "file": "proof-product-reviews-live.jpg",
+    "gitBlob": "b16c1a0584bd30268cf777f6e3741697c8ffc0d7"
+  }
+}
+

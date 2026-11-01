@@ -1,6 +1,6 @@
 # Twenty-four remaining supporting pages
 
-Status: manually reviewed; production deployment and live verification in progress.
+Status: complete. Twenty-four pages deployed and verified at 08:56:04 GMT on 1 November 2026.
 
 Matt delegated the next batch of pages that have not received the approved visual treatment. This release covers eight methodology pages, ten trust/editorial/supporting pages and six printable resources. The full scope is config.mjs.
 
@@ -46,3 +46,13 @@ Visual review of the first full 144-case capture covered every desktop and phone
 The final print review renders the actual A4 PDF rather than relying on the screen-media capture alone. It requires white HTML/body backgrounds, visible original list points, no outside navigation/footer, and 15 mm paper margins. Tile words use normal wrapping, so clipped words cannot be hidden by splitting individual letters.
 
 Final source preview passed: run 41290029721, source 765bce6190cb86e3fefbe2796f405098ec7fcdce, evidence artifact 13076872947. All 144 cases passed with no content issues. All six actual A4 PDFs were rendered and inspected as clean single-page documents. reviewed-source.json binds the accepted source modules to this review.
+
+## Verified production release
+
+Production source: `46be78d366584a300e7f5439c174eed9b5a6913a`. Workflow 41290423262 / job 124800334207 succeeded. Artifact 13077341830 contains the complete source-preview and live browser evidence (expires 30 January 2027). The durable condensed receipt is [verified-release-20261101.json](verified-release-20261101.json).
+
+All twenty-four pages passed 144 live browser cases at 1440, 768 and 390 pixels across ordinary and query URLs. All 52 successful original HTML variants retained their complete wording, scripts, shared shell, links, controls, IDs and version metadata. Six real A4 PDFs each contain one white-paper page with the complete original checklist, 15 mm margins, and no site navigation or footer.
+
+The release preserved 92 protected pages, 285 existing code/image assets, all 56 bindings and all 915 route rules. Public Worker version: `9e4a0837-f185-4de4-9a15-7627cc7f5b36` (56 prior modules retained). Core version: `1b0acb36-4fee-452c-b23b-10b03d2421ce` (24 prior modules retained). Core kept the existing `v1-site-content-state` migration tag with no migration operations. The three new photographs are available at their configured URLs and decode at 1536 pixels wide.
+
+[Actual live Product Reviews capture](proof-product-reviews-live.jpg). The captured public page was verified in the browser after promotion and uses this exact release marker and dedicated photograph. No changes to the completed fourteen-page correction, W2, WW1, SU1, FAQ, Help or earlier selected page designs were required.
