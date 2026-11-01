@@ -120,4 +120,3 @@ Evidence: `shift-ai-food-model/evidence/visible-model-progress-20261101.json`.
 Reproduce with `visible_learning.py prepare`, `stream-features`, `train`, then
 `routed_learning.py` and `verify_visible.py`; CLI help requires explicit local
 paths and bounded download/compute budgets. Use `--research` for actual serving.
-
