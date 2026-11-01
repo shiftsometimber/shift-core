@@ -91,23 +91,27 @@ async function checkGuideInteractions(h){
  const {page}=h,posts=h.requests.filter(r=>r.method==='POST').length,plot=page.locator('.tj-guide-visual [data-tj-medicine-plot]');
  assert.equal(await plot.count(),1,'The guide chart must use the drag/scroll handler, not only the date slider');
  const value=async()=>Number(await page.locator('[data-tj-date]').inputValue());
- const tint=async()=>Number(await page.locator('.tj-figure path').nth(1).getAttribute('opacity'));
+ const fill=async()=>Number(await page.locator('[data-tj-example-fill]').getAttribute('height'));
+ const assertFill=async level=>{assert.ok(Math.abs(await fill()-197*level)<.000001,'Filled area must rise/fall with the example curve');assert.ok(Math.abs(Number(await page.locator('[data-tj-example-fill]').getAttribute('y'))-(207-197*level))<.000001);assert.equal(await page.locator('[data-tj-example-body]').getAttribute('fill'),'#E7E3DA');assert.equal(await page.locator('[data-tj-example-body]').getAttribute('opacity'),null,'Do not substitute colour/opacity changes for changing the filled area');};
  const waitIndex=async n=>page.waitForFunction(n=>Number(document.querySelector('[data-tj-date]')?.value)===n,n,{timeout:3000});
- await page.locator('[data-tj-date]').focus();await page.keyboard.press('Home');await waitIndex(0);const low=await tint();
+ assert.equal(await value(),0,'The guide must open at the beginning, without moving the slider first');assert.equal(await page.locator('[data-tj-day="1"]').getAttribute('aria-pressed'),'true');await assertFill(.25);const low=await fill();
  await plot.scrollIntoViewIfNeeded();const box=await plot.locator('svg').boundingBox();assert(box);
  const x=i=>box.x+(112+458*i/27)/600*box.width,y=box.y+70/175*box.height;
  await page.mouse.move(x(0),y);await page.mouse.down();await page.mouse.move(x(2),y,{steps:8});await page.mouse.up();await waitIndex(2);
- assert.ok(Math.abs(await tint()-(.25+.65*.87))<.000001,'Figure follows the selected example point');assert.notEqual(await tint(),low);
- await page.mouse.wheel(0,120);await waitIndex(3);await page.mouse.wheel(-120,0);await waitIndex(2);
+ await assertFill(.87);assert.ok(await fill()>low,'Absorption is represented by a growing filled area');
+ await page.locator('.tj-guide-visual').screenshot({path:join(out,'guide-day3-'+page.viewportSize().width+'.png')});
+ await page.mouse.wheel(0,120);await waitIndex(3);await assertFill(.78);assert.ok(await fill()<197*.87,'Removal is represented by a shrinking filled area');await page.mouse.wheel(-120,0);await waitIndex(2);
  await page.locator('[data-tj-date]').focus();await page.keyboard.press('Home');await waitIndex(0);await page.locator('[data-tj-date]').scrollIntoViewIfNeeded();const slider=await page.locator('[data-tj-date]').boundingBox();assert(slider);
  await page.mouse.move(slider.x+10,slider.y+slider.height/2);await page.mouse.down();await page.mouse.move(slider.x+slider.width-10,slider.y+slider.height/2,{steps:20});await page.mouse.up();
  assert.ok(await value()>=26,'Dragging the range control keeps working through the whole movement');
  await page.locator('[data-tj-date]').focus();await page.keyboard.press('Home');await waitIndex(0);await page.keyboard.press('ArrowRight');await page.keyboard.press('ArrowRight');await waitIndex(2);
- await page.locator('[data-tj-day="1"]').click();await waitIndex(0);assert.ok(Math.abs(await tint()-(.25+.65*.25))<.000001);
+ await page.locator('[data-tj-day="1"]').click();await waitIndex(0);await assertFill(.25);
  await page.locator('[data-tj-day="3"]').click();await waitIndex(2);await page.locator('[data-tj-play]').click();await waitIndex(3);await page.locator('[data-tj-play]').click();
- assert.notEqual(await tint(),low);assert.match(await page.locator('.tj-badge').innerText(),/Illustration.*not your actual levels/);
+ assert.notEqual(await fill(),low);assert.match(await page.locator('.tj-badge').innerText(),/Illustration.*not your actual levels/);assert.match(await page.locator('#timberJourney').innerText(),/symbolic.*not medicine moving up your body/);
+ await page.locator('[data-tj-date]').focus();await page.keyboard.press('End');await waitIndex(27);await page.locator('[data-tj-play]').click();await waitIndex(0);await page.locator('[data-tj-play]').click();
+ await page.locator('[data-tj-back]').click();await page.locator('[data-tj-guide]').click();await waitIndex(0);await assertFill(.25);
  assert.equal(h.requests.filter(r=>r.method==='POST').length,posts,'Exploring the illustration must not create health records or treatment changes');
- results.push({width:page.viewportSize().width,case:'guide drag, wheel, continuous range drag, keyboard, day buttons and Play keep the illustrative figure in sync without writes',pass:true});
+ results.push({width:page.viewportSize().width,case:'guide starts and reopens at Day 1; filled area rises/falls through drag, wheel, range, keyboard, day buttons and replay without writes',pass:true});
 }
 async function assertBars(page){await page.waitForFunction(()=>{const t=document.querySelector('.mt-shop-top'),b=document.querySelector('.mt-shop-bottom'),s=getComputedStyle(document.body);return t&&b&&parseFloat(s.paddingTop)+1>=t.getBoundingClientRect().height&&parseFloat(s.paddingBottom)+1>=b.getBoundingClientRect().height});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);assert.equal(await page.locator('#mtShopChrome').count(),1);}
 const waitChrome=page=>page.waitForSelector('#mtShopChrome .mt-shop-primary a',{state:'visible',timeout:10000});

@@ -20,13 +20,21 @@ try{
  await page.route('**/*',r=>{if(!['GET','HEAD','OPTIONS'].includes(r.request().method())&&!(r.request().method()==='POST'&&new URL(r.request().url()).pathname==='/v1/privacy/export'&&r.request().postData()==='{}')){receipt.blockedPosts++;return r.abort();}return r.continue();});
  await page.goto(origin+(phase==='before'?'/privacy':'/member/life-back/shop'),{waitUntil:'domcontentloaded',timeout:30000});
  const get=async path=>page.evaluate(async path=>{const r=await fetch(path,{credentials:'include',cache:'no-store'});return {status:r.status,html:await r.text(),headers:Object.fromEntries(r.headers)};},path);
- const protectedPaths=['/','/clinic-gone-quiet','/shift-health','/start-here','/treatment-centre','/privacy','/account-deletion','/member/settings','/member/orders','/member/saved'];
+ const protectedPaths=['/','/clinic-gone-quiet','/shift-health','/start-here','/treatment-centre','/privacy','/account-deletion','/member/settings','/member/orders','/member/saved',...(process.env.MY_TIMBER_PRESERVE_SIX_WEEKS?['/member/life-back/journey?view=first-six-weeks']:[])];
  let baseline;
  if(phase!=='before')baseline=JSON.parse(readFileSync(receiptPrefix+'before.json','utf8'));
  for(const path of protectedPaths){
   const r=await get(path);assert.equal(r.status,200,path);const text=main(r.html);assert(text,path+' main');
   const item={path,status:r.status,mainSHA256:digest(text)};receipt.pages.push(item);
   if(baseline){const old=baseline.pages.find(x=>x.path===path);assert.equal(item.mainSHA256,old.mainSHA256,'Protected main changed: '+path);}
+ }
+ if(process.env.MY_TIMBER_PRESERVE_SIX_WEEKS){
+  receipt.sixWeeksAssets=[];
+  for(const ext of ['mjs','css','webp']){
+   const path='/assets/member-experience/programme-first-six-weeks.'+ext;
+   const r=await page.evaluate(async path=>{const r=await fetch(path,{cache:'no-store'}),bytes=await r.arrayBuffer(),hash=await crypto.subtle.digest('SHA-256',bytes);return {status:r.status,contentType:r.headers.get('Content-Type'),sha256:[...new Uint8Array(hash)].map(b=>b.toString(16).padStart(2,'0')).join('')};},path);
+   assert.equal(r.status,200,path);assert.match(r.contentType,/javascript|css|image/);if(baseline)assert.equal(r.sha256,baseline.sixWeeksAssets.find(a=>a.path===path).sha256,'Six-week asset changed: '+path);receipt.sixWeeksAssets.push({path,...r});
+  }
  }
  if(phase!=='before'){
   for(const path of ['/member/dashboard','/member/dashboard?timber=support#today','/member/dashboard?timber=stuff#today','/member/grub','/member/fit','/member/life-back/journey','/member/life-back/shop']){
