@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-01T22:41:41.919Z",
+  "at": "2026-11-01T23:32:44.743Z",
   "verified": true,
   "transportEnabled": false,
   "loginSessionIdentityChanges": 0,
@@ -82,7 +82,7 @@
     {
       "path": "/assets/my-timber-pwa.css",
       "sha256": "12aab722f97abb9ee8d65687383d5f79a1080fc258faf84c578f7c5bee8027bc",
-      "fingerprinted": true
+      "fingerprinted": false
     },
     {
       "path": "/assets/member-experience/programme-style.css",
@@ -227,7 +227,7 @@
     {
       "path": "/assets/member-experience/programme-support-plan.mjs",
       "sha256": "677fc9d0a870c75be505efcd4519b41b9722d930f5aa216ed84fae1024ef2229",
-      "fingerprinted": true
+      "fingerprinted": false
     },
     {
       "path": "/assets/member-experience/programme-shed.css",
@@ -237,7 +237,7 @@
     {
       "path": "/assets/member-experience/programme-shed.mjs",
       "sha256": "2b2d1f46dc3a4c06d23683b7174e2e3ef69856cfa5f84c73b1c50c12ae69ba45",
-      "fingerprinted": true
+      "fingerprinted": false
     },
     {
       "path": "/assets/member-experience/programme-first-six-weeks.css",

@@ -43,7 +43,7 @@ try{
   const open=XMLHttpRequest.prototype.open,send=XMLHttpRequest.prototype.send;
   XMLHttpRequest.prototype.open=function(method,url,...args){this.__fixtureBlocked=new URL(url,location.href).pathname.startsWith('/v1/')||!['GET','HEAD'].includes(String(method).toUpperCase());return open.call(this,method,url,...args);};
   XMLHttpRequest.prototype.send=function(...args){if(this.__fixtureBlocked)throw Error('Unstubbed XHR blocked by performance fixture');return send.apply(this,args);};
-  document.addEventListener('DOMContentLoaded',()=>{for(const script of native){const e=document.createElement('script');e.textContent=script;document.head.append(e);}}, {once:true});
+  document.addEventListener('DOMContentLoaded',()=>{if(parent!==window)return;for(const script of native){const e=document.createElement('script');e.textContent=script;document.head.append(e);}}, {once:true});
   if(parent!==window)return;
   const visible=(e,w)=>{if(!e)return false;const s=w.getComputedStyle(e),r=e.getBoundingClientRect();return s.visibility!=='hidden'&&s.display!=='none'&&r.width>0&&r.height>0;};
   const usable=tab=>{try{const w=window.MT_PERFORMANCE?.current()||window,d=w.document,b=d.body;if(b?.dataset.memberSession!=='ready'||!b.hasAttribute('data-mt-shop-navigation')||w.__profilePending>0||(b.dataset.memberPage==='dashboard'&&!d.querySelector('#previewMember.is-ready:not([hidden])'))||!visible(d.querySelector('main'),w)||[...d.querySelectorAll('main [aria-busy=true]')].some(e=>visible(e,w)))return false;

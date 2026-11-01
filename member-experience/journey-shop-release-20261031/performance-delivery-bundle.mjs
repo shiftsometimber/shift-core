@@ -725,7 +725,7 @@ async function performanceDocumentText(response) {
   if (!/<!doctype html>/i.test(text)) throw Error("Member document is not decoded HTML");
   return text;
 }
-var memberTransportEnabled = true ? true : true;
+var memberTransportEnabled = true ? false : true;
 function augmentPerformanceDocument(html, assets = {}, stage = "cache") {
   if (!memberTransportEnabled) stage = "static";
   if (stage === "server") return html;
