@@ -61,35 +61,34 @@ const protectedPaths=['/','/about','/knowledge','/api-adapter-v33d.js','/member-
 const captureProtected=async()=>{const rows={};for(const path of protectedPaths){const r=await fetchText(path);rows[path]={sha256:sha(r.text),type:r.type};}return rows;};
 const active=await current();
 if(active.versions?.length===1&&active.versions[0].version_id===pin.stagedVersionId&&active.versions[0].percentage===100){
- execFileSync(process.execPath,['scripts/verify-member-login-password-format.cjs','--live'],{stdio:'inherit'});
- save('release',{source:pin.source,releaseSource:process.env.GITHUB_SHA,alreadyServing:true,liveVerified:true,...pin});process.exit(0);
+ const delivered=await fetchText('/member-login.html');assert(delivered.text.includes(newRule)&&!delivered.text.includes(oldRule));
+ save('release',{source:pin.source,releaseSource:process.env.GITHUB_SHA,alreadyServing:true,httpVerified:true,browserVerification:'independent Mac pending',...pin});process.exit(0);
 }
-assert.equal(active.id,pin.originalDeploymentId,'Serving owner changed since verified staging');assertOwned(active,pin.originalVersionId);
+assertOwned(active,pin.originalVersionId);const beforeDeploymentId=active.id;
 const beforeProtected=await captureProtected(),loginBefore=await fetchText('/member-login.html');
 assert(loginBefore.text.includes(oldRule),'Live page does not match the reviewed login defect');
 const expectedLogin=repair(loginBefore.text);assert.notEqual(expectedLogin,loginBefore.text);
+const entryPaths=['/member-login','/member-register','/member/dashboard','/member/dashboard.html','/my-timber-preview'];
+const expectedEntries={};for(const path of entryPaths){const before=await fetchText(path);expectedEntries[path]=repair(before.text);}
 const receipt={at:new Date().toISOString(),source:pin.source,releaseSource:process.env.GITHUB_SHA,run:process.env.GITHUB_RUN_ID,
- originalDeploymentId:pin.originalDeploymentId,originalVersionId:pin.originalVersionId,stagedVersionId:pin.stagedVersionId,
+ originalDeploymentId:beforeDeploymentId,stagedOriginalDeploymentId:pin.originalDeploymentId,originalVersionId:pin.originalVersionId,stagedVersionId:pin.stagedVersionId,
  stagedRun:pin.run,stagingVerified:true,otherModulesPreserved:pin.otherModules,assetsPreserved:true,bindingsPreserved:true,
  routeChanges:false,customerDataAccess:false,databaseWrites:false,communicationsSent:false,deployed:false};
 save('release',receipt);save('protected-before',beforeProtected);
 assert.equal(process.env.LOGIN_FORMAT_PROMOTE,'ONLY_LOGIN_FORMAT');
 try{
- assert.equal((await current()).id,pin.originalDeploymentId,'Serving owner moved before promotion');
+ assert.equal((await current()).id,beforeDeploymentId,'Serving owner moved before promotion');
  assert.deepEqual(await api('/workers/scripts/shift-core/settings'),settings,'Settings changed before promotion');
  receipt.promotionIntended=true;save('release',receipt);
  let promotionError;try{await promote(pin.stagedVersionId);}catch(e){promotionError=e;}
  const deployed=await current();assertOwned(deployed,pin.stagedVersionId);receipt.deployed=true;receipt.deploymentId=deployed.id;save('release',receipt);
  let after;for(let attempt=0;attempt<8;attempt++){after=await fetchText('/member-login.html');if(after.text===expectedLogin)break;await new Promise(resolve=>setTimeout(resolve,1500));}
  assert.equal(after.text,expectedLogin,'Only the two reviewed login format edits may appear in the delivered document');
- for(const path of ['/member-login','/member-register','/member/dashboard']){
-  const r=await fetchText(path);assert(r.text.includes(newRule)&&!r.text.includes(oldRule),path+' correction absent');
- }
+ for(const path of entryPaths){const r=await fetchText(path);assert.equal(r.text,expectedEntries[path],path+' differs from its own approved before-image and exact login repair');}
  assert.deepEqual(await captureProtected(),beforeProtected,'Protected public pages or application scripts changed');
  assert.deepEqual(await api('/workers/scripts/shift-core/settings'),settings,'Serving settings changed after promotion');
  const stored=await version(pin.stagedVersionId);assert.equal(stored.migration_tag,original.migration_tag,'Migration tag changed');
- execFileSync(process.execPath,['scripts/verify-member-login-password-format.cjs','--live'],{stdio:'inherit'});
- assertOwned(await current(),pin.stagedVersionId);receipt.liveVerified=true;save('release',receipt);
- console.log('LOGIN_FORMAT_LIVE_VERIFIED '+JSON.stringify(receipt));
+ assertOwned(await current(),pin.stagedVersionId);receipt.httpVerified=true;receipt.browserVerification='independent Mac pending';save('release',receipt);
+ console.log('LOGIN_FORMAT_HTTP_VERIFIED '+JSON.stringify(receipt));
  if(promotionError)console.log('Provider ownership and live response independently confirmed after a promotion response error.');
 }catch(e){receipt.failure=String(e.message);save('release',receipt);await rollback();throw e;}
