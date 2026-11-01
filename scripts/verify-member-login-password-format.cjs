@@ -8,6 +8,7 @@ const fs=require('node:fs');const assert=require('node:assert/strict');
    try{
     const context=await browser.newContext({viewport:{width:390,height:844}});
     await context.route('**/v1/me',r=>r.fulfill({status:401,contentType:'application/json',body:'{"ok":false,"error":"unauthorised"}'}));
+    await context.route('**/v1/auth/turnstile-config',r=>r.fulfill({status:200,contentType:'application/json',body:'{"required":false,"enabled":false}'}));
     await context.route('**/v1/auth/login',r=>r.fulfill({status:401,contentType:'application/json',body:'{"ok":false,"error":"invalid_credentials","message":"Synthetic login check"}'}));
     await context.addInitScript(()=>{window.__loginFormatSubmits=0;document.addEventListener('submit',e=>{if(e.target.id==='previewRegister')window.__loginFormatSubmits++},true)});
     const page=await context.newPage();await page.goto('https://shiftsometimber.co.uk/member-login.html',{waitUntil:'domcontentloaded',timeout:45000});

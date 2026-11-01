@@ -53,21 +53,11 @@ jobs:
           mkdir -p evidence/member-login-format
           git show abc093c61ad4cdd832dc62bbffa25de668d58661:frontend/member/my-timber-preview.html > "$RUNNER_TEMP/login-format-before.html"
           node scripts/verify-member-login-password-format.cjs "$RUNNER_TEMP/login-format-before.html" > evidence/member-login-format/offline-browser.json
-      - name: Compile the reviewed before and after source without deployment
-        run: |
-          git diff --exit-code
-          restore_login_source() { git restore --worktree -- member-experience/session-state.mjs frontend/member/my-timber-preview.html; }
-          trap restore_login_source EXIT
-          git show abc093c61ad4cdd832dc62bbffa25de668d58661:member-experience/session-state.mjs > member-experience/session-state.mjs
-          git show abc093c61ad4cdd832dc62bbffa25de668d58661:frontend/member/my-timber-preview.html > frontend/member/my-timber-preview.html
-          node_modules/.bin/wrangler deploy --dry-run --config wrangler.jsonc --outdir "$LOGIN_BASELINE_BUILD" > "$RUNNER_TEMP/login-format-baseline-build.log" 2>&1 || { tail -40 "$RUNNER_TEMP/login-format-baseline-build.log"; exit 1; }
-          restore_login_source
-          trap - EXIT
-          node_modules/.bin/wrangler deploy --dry-run --config wrangler.jsonc --outdir "$LOGIN_CANDIDATE_BUILD" > "$RUNNER_TEMP/login-format-candidate-build.log" 2>&1 || { tail -40 "$RUNNER_TEMP/login-format-candidate-build.log"; exit 1; }
-          git diff --exit-code
+      - name: Require unchanged application source from the verified staged version
+        run: git diff --exit-code e44e549447e8ca360ce5924aa012fb11c47a1c52 HEAD -- frontend/member/my-timber-preview.html member-experience/session-state.mjs tests/member-login-password-format.test.mjs tests/member-auth-ui-v2.test.mjs
       - name: Confirm that no route additions are needed
         run: python3 scripts/cloudflare-route-capacity.py check --intent content-only --report evidence/member-login-format/route-capacity.json
-      - name: Stage and verify the exact login-only serving-version patch, then promote
+      - name: Verify the exact previously staged login-only version, then promote
         run: node release/member-login-format/release.mjs
       - name: Restore only an owned deployment after a later failure
         if: ${{ failure() && hashFiles('evidence/member-login-format/release.json') != '' }}
