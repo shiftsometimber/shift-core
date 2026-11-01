@@ -23,7 +23,7 @@ jobs:
   release:
     if: github.event_name == 'push' && github.actor_id == '315011648'
     needs: source
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     concurrency:
       group: cloudflare-production-promote
