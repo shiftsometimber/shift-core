@@ -1,19 +1,34 @@
 {
   "state": "LIVE_AND_VERIFIED",
-  "at": "2026-11-01T08:34:38.932Z",
-  "source": "4fa9e5088522c6d5920bf8e50fc322fc055c5638",
+  "at": "2026-11-01T08:50:09.235Z",
+  "source": "941bebe0d8ab21e8ba5f1ac972981da8daa3606f",
   "worker": "shift-programme-member-20261023",
-  "versionId": "ebbc0b1b-7e78-41a1-913f-161a77c241a5",
-  "deploymentId": "0bfe300a-3885-46a8-beb7-80399f37a3f3",
-  "rollbackVersion": "1620b118-a5c1-498c-99d6-ae1d514e70e0",
-  "bundleSHA256": "18fa9cd718858b98690d48a0824c51b15dc2071373e3c74336953facb9552a8c",
+  "versionId": "837eb6c0-09d4-4c1c-9a9d-2f841a4e00f0",
+  "deploymentId": "5b1a04fc-b871-4714-9169-152787b9d7e6",
+  "rollbackVersion": "ebbc0b1b-7e78-41a1-913f-161a77c241a5",
+  "bundleSHA256": "add6646d2d2e4d17769c6c7635d980883fc256b77fd0b625068ad9fb655c0abb",
   "resolved": [
     "Shop category emoji arrows remain removed",
     "Figure uses a changing clipped filled area, not opacity or colour changes",
     "Guide opens and reopens at Day 1; Play restarts from Day 1 at the end",
     "Guide date is restored when returning to Journey, including cancelling a dated entry; new-record dates remain unchanged",
-    "Pointer, wheel, range, keyboard, day buttons and Play keep the figure and chart synchronised"
+    "Pointer, wheel, range, keyboard, day buttons and Play keep the figure and chart synchronised",
+    "All seven day buttons visible without horizontal scrolling; Day 7 directly selectable; touch targets at least 44 by 44 CSS pixels"
   ],
+  "dayButtonLayout": {
+    "sevenColumnsWhenTheyFit": true,
+    "fourThenThreeBelow375px": true,
+    "testedWidths": [
+      320,
+      390,
+      768,
+      1440
+    ],
+    "noHorizontalScrolling": true,
+    "allButtonsVisibleAndUnobscured": true,
+    "day7SelectedByPointerWithoutAutomaticScroll": true,
+    "stylesheetCapturedFromServedCandidateAndMatchesLive": true
+  },
   "routesPreserved": 915,
   "newRoutes": 0,
   "appleActions": 0,

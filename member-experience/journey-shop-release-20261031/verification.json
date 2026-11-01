@@ -1,7 +1,7 @@
 {
   "state": "PUBLISHED_AND_PRODUCTION_VERIFIED_AUTHENTICATED_PERSISTENCE_PENDING",
   "fullyComplete": false,
-  "verifiedAtUtc": "2026-11-01T08:34:38.932Z",
+  "verifiedAtUtc": "2026-11-01T08:50:09.235Z",
   "origin": "https://shiftsometimber.co.uk",
   "approvedNavigation": {
     "top": [
@@ -16,8 +16,8 @@
       "More"
     ]
   },
-  "runtimeSource": "4fa9e5088522c6d5920bf8e50fc322fc055c5638",
-  "verificationSource": "4fa9e5088522c6d5920bf8e50fc322fc055c5638",
+  "runtimeSource": "941bebe0d8ab21e8ba5f1ac972981da8daa3606f",
+  "verificationSource": "941bebe0d8ab21e8ba5f1ac972981da8daa3606f",
   "sourceBranch": "work/my-timber-shop-connected-20261029",
   "predecessors": {
     "journey": "a67f1b3f1bdd51ca2b93997fa796a1e1202b390b",
@@ -45,9 +45,9 @@
       "bytes": 7612
     },
     "member-experience/tests/shop-connected-browser.mjs": {
-      "gitBlob": "76635c407ae8e17ebefa49791a321c498b323dd8",
-      "sha256": "b59f18a5ba903bc9fa66219a56af85115713d1f70073391ac9ab468ddfcf742e",
-      "bytes": 27854
+      "gitBlob": "4f11a99e9aabee6da180910fe67a0d52617e9ab6",
+      "sha256": "a906b6ea33232ad37c83502974c829f63c6991b3cc0be12bf4f0a133f6a1be7b",
+      "bytes": 29695
     },
     "member-experience/shop-navigation-client.mjs": {
       "gitBlob": "588b5c935765dc4dd4c4a4e5d84119c3fe5181b2",
@@ -75,9 +75,9 @@
       "bytes": 1291
     },
     "member-experience/tests/journey-shop-production-check.mjs": {
-      "gitBlob": "af39257eb8a57d90904380375eaf6c896342d21b",
-      "sha256": "3f87a78ad50e705e1b93701b45079c76cbf983f9aaf8251b541f70ed9e0d9d6b",
-      "bytes": 9327
+      "gitBlob": "06bdaa482d5c5ace63c6546281633ce2aa6bef81",
+      "sha256": "1eb044dca0b31043b817632c362369a50244703cf7110dc3cbbdb61882885de3",
+      "bytes": 9487
     },
     "member-experience/shop-basket.mjs": {
       "gitBlob": "4b97e407f8a6f18da40fec031d4520a65dd2e169",
@@ -113,17 +113,27 @@
       "gitBlob": "494be9bf41741719ac70bff19c74a0ee43722138",
       "sha256": "78912975d205e5a3a835f65436968475d083c3a3e4c6b52cc3fbf3d64bb55a96",
       "bytes": 11332
+    },
+    "member-experience/journey-page.mjs": {
+      "gitBlob": "f1e23604ed92e766b0693687db453848ee05a2df",
+      "sha256": "bf1ea37eb45e1d645ccbff90e7eec3f699c0554af4997d207faf6c81c8f849f5",
+      "bytes": 11968
+    },
+    "member-experience/day-buttons-release-20261101.mjs": {
+      "gitBlob": "b6fd3e7216a9a14b7f0be39ca527f5a31b3ed665",
+      "sha256": "4678b2ba872fc6df32af34aafea428df497eea386deeb5d80fa289365414fba8",
+      "bytes": 11351
     }
   },
   "sourceChecks": {
     "passed": 28,
     "failed": 0,
-    "log": "guide-fill-source-final-20261101.log"
+    "log": "day-buttons-source-20261101.log"
   },
   "isolatedAcceptance": {
     "chromium": {
       "kind": "MY_TIMBER_SHOP_OFFLINE_BROWSER_ACCEPTANCE",
-      "at": "2026-11-01T08:33:15.171Z",
+      "at": "2026-11-01T08:48:42.590Z",
       "browser": "chromium",
       "nativeScriptSha256": [
         "00fe5e04f7e1ab9f757ba0106a95b6622314748f388ee17b40c2961f3958e88b",
@@ -159,7 +169,7 @@
         },
         {
           "width": 320,
-          "case": "guide starts and reopens at Day 1; filled area rises/falls through drag, wheel, range, keyboard, day buttons and replay without writes",
+          "case": "all seven days visible and usable without sideways scroll; Day 1, changing fill, drag, wheel, range, keyboard and replay work without writes",
           "pass": true
         },
         {
@@ -199,7 +209,7 @@
         },
         {
           "width": 390,
-          "case": "guide starts and reopens at Day 1; filled area rises/falls through drag, wheel, range, keyboard, day buttons and replay without writes",
+          "case": "all seven days visible and usable without sideways scroll; Day 1, changing fill, drag, wheel, range, keyboard and replay work without writes",
           "pass": true
         },
         {
@@ -239,7 +249,7 @@
         },
         {
           "width": 768,
-          "case": "guide starts and reopens at Day 1; filled area rises/falls through drag, wheel, range, keyboard, day buttons and replay without writes",
+          "case": "all seven days visible and usable without sideways scroll; Day 1, changing fill, drag, wheel, range, keyboard and replay work without writes",
           "pass": true
         },
         {
@@ -279,7 +289,7 @@
         },
         {
           "width": 1440,
-          "case": "guide starts and reopens at Day 1; filled area rises/falls through drag, wheel, range, keyboard, day buttons and replay without writes",
+          "case": "all seven days visible and usable without sideways scroll; Day 1, changing fill, drag, wheel, range, keyboard and replay work without writes",
           "pass": true
         },
         {
@@ -316,7 +326,7 @@
     },
     "webkitWithExactBuild8Scripts": {
       "kind": "MY_TIMBER_SHOP_OFFLINE_BROWSER_ACCEPTANCE",
-      "at": "2026-11-01T08:33:39.455Z",
+      "at": "2026-11-01T08:49:07.279Z",
       "browser": "webkit",
       "nativeScriptSha256": [
         "00fe5e04f7e1ab9f757ba0106a95b6622314748f388ee17b40c2961f3958e88b",
@@ -352,7 +362,7 @@
         },
         {
           "width": 320,
-          "case": "guide starts and reopens at Day 1; filled area rises/falls through drag, wheel, range, keyboard, day buttons and replay without writes",
+          "case": "all seven days visible and usable without sideways scroll; Day 1, changing fill, drag, wheel, range, keyboard and replay work without writes",
           "pass": true
         },
         {
@@ -392,7 +402,7 @@
         },
         {
           "width": 390,
-          "case": "guide starts and reopens at Day 1; filled area rises/falls through drag, wheel, range, keyboard, day buttons and replay without writes",
+          "case": "all seven days visible and usable without sideways scroll; Day 1, changing fill, drag, wheel, range, keyboard and replay work without writes",
           "pass": true
         },
         {
@@ -432,7 +442,7 @@
         },
         {
           "width": 768,
-          "case": "guide starts and reopens at Day 1; filled area rises/falls through drag, wheel, range, keyboard, day buttons and replay without writes",
+          "case": "all seven days visible and usable without sideways scroll; Day 1, changing fill, drag, wheel, range, keyboard and replay work without writes",
           "pass": true
         },
         {
@@ -472,7 +482,7 @@
         },
         {
           "width": 1440,
-          "case": "guide starts and reopens at Day 1; filled area rises/falls through drag, wheel, range, keyboard, day buttons and replay without writes",
+          "case": "all seven days visible and usable without sideways scroll; Day 1, changing fill, drag, wheel, range, keyboard and replay work without writes",
           "pass": true
         },
         {
@@ -509,7 +519,7 @@
     }
   },
   "build": {
-    "at": "2026-11-01T08:30:33.189Z",
+    "at": "2026-11-01T08:45:46.848Z",
     "esbuildVersion": "0.28.1",
     "externalServingModule": "support-service-prior.mjs",
     "overrides": {
@@ -520,8 +530,8 @@
     },
     "bundles": {
       "programme": {
-        "sha256": "18fa9cd718858b98690d48a0824c51b15dc2071373e3c74336953facb9552a8c",
-        "bytes": 7081956,
+        "sha256": "add6646d2d2e4d17769c6c7635d980883fc256b77fd0b625068ad9fb655c0abb",
+        "bytes": 7082063,
         "inputs": {
           "scoped-source/member-state-fast-v1.js": {
             "bytes": 6158,
@@ -753,7 +763,7 @@
             "canonicalSourceSHA256": "3567d8c3d34dd8fbbc61ec36061c1addcc413fbffc7c6d7717e39b6bd9cf0161"
           },
           "scoped-source/member-experience/journey-page.mjs": {
-            "bytes": 11861,
+            "bytes": 11968,
             "imports": [
               {
                 "path": "scoped-source/member-experience/session-state.mjs",
@@ -767,7 +777,7 @@
               }
             ],
             "format": "esm",
-            "canonicalSourceSHA256": "35e3c3c375675e0507f0ba5f89fb7a296fe2ea6dadc6f788b4ef18a63ad6e13e"
+            "canonicalSourceSHA256": "bf1ea37eb45e1d645ccbff90e7eec3f699c0554af4997d207faf6c81c8f849f5"
           },
           "scoped-source/industrial-catalogue-v1.js": {
             "bytes": 23464,
@@ -1772,8 +1782,8 @@
     "chromium": {
       "phase": "live",
       "browser": "chromium",
-      "source": "4fa9e5088522c6d5920bf8e50fc322fc055c5638",
-      "checkedAt": "2026-11-01T08:34:03.697Z",
+      "source": "941bebe0d8ab21e8ba5f1ac972981da8daa3606f",
+      "checkedAt": "2026-11-01T08:49:32.785Z",
       "productionWrites": 0,
       "pages": [
         {
@@ -1927,7 +1937,7 @@
         {
           "path": "/assets/member-experience/programme-journey.css",
           "status": 200,
-          "sha256": "c4f34cb29518da70318a98e7dad402be85a4a230b92e85cb3063612227f1272b",
+          "sha256": "03368124f96fd2af3cdf8b91e30bd2f23aa3fb008b48b8c7ce2c2354dd9edce0",
           "integration": null
         },
         {
@@ -2040,13 +2050,13 @@
         }
       ],
       "verified": true,
-      "finishedAt": "2026-11-01T08:34:23.433Z"
+      "finishedAt": "2026-11-01T08:49:49.631Z"
     },
     "webkit": {
       "phase": "live",
       "browser": "webkit",
-      "source": "4fa9e5088522c6d5920bf8e50fc322fc055c5638",
-      "checkedAt": "2026-11-01T08:34:23.621Z",
+      "source": "941bebe0d8ab21e8ba5f1ac972981da8daa3606f",
+      "checkedAt": "2026-11-01T08:49:49.820Z",
       "productionWrites": 0,
       "pages": [
         {
@@ -2200,7 +2210,7 @@
         {
           "path": "/assets/member-experience/programme-journey.css",
           "status": 200,
-          "sha256": "c4f34cb29518da70318a98e7dad402be85a4a230b92e85cb3063612227f1272b",
+          "sha256": "03368124f96fd2af3cdf8b91e30bd2f23aa3fb008b48b8c7ce2c2354dd9edce0",
           "integration": null
         },
         {
@@ -2313,17 +2323,17 @@
         }
       ],
       "verified": true,
-      "finishedAt": "2026-11-01T08:34:38.932Z"
+      "finishedAt": "2026-11-01T08:50:09.235Z"
     }
   },
   "preservation": {
-    "runtimeSource": "4fa9e5088522c6d5920bf8e50fc322fc055c5638",
+    "runtimeSource": "941bebe0d8ab21e8ba5f1ac972981da8daa3606f",
     "owners": [
       {
         "name": "shift-programme-member-20261023",
-        "versionId": "ebbc0b1b-7e78-41a1-913f-161a77c241a5",
-        "deploymentId": "0bfe300a-3885-46a8-beb7-80399f37a3f3",
-        "rollbackVersion": "1620b118-a5c1-498c-99d6-ae1d514e70e0",
+        "versionId": "837eb6c0-09d4-4c1c-9a9d-2f841a4e00f0",
+        "deploymentId": "5b1a04fc-b871-4714-9169-152787b9d7e6",
+        "rollbackVersion": "ebbc0b1b-7e78-41a1-913f-161a77c241a5",
         "rollbackVerified": true,
         "originalModulesPreserved": 13,
         "originalBindingsPreserved": 4,
@@ -2370,7 +2380,7 @@
     "productionMemberWrites": 0,
     "routeCount": 915,
     "verified": true,
-    "verifiedAt": "2026-11-01T08:34:38.932Z"
+    "verifiedAt": "2026-11-01T08:50:09.235Z"
   },
   "authenticatedJourneyPersistence": {
     "isolatedIntegratedHandlers": "PASSED: synthetic accounts, isolated SQLite, all six record kinds, refresh, corrections, deletion, Snapshot safeguards and account isolation",
@@ -2416,12 +2426,12 @@
   "receiptUrl": "https://github.com/shiftsometimber/shift-core/blob/work/my-timber-shop-connected-20261029/member-experience/journey-shop-release-20261031/verification.json",
   "uiCorrections": {
     "state": "LIVE_AND_VERIFIED",
-    "at": "2026-11-01T08:34:38.932Z",
-    "source": "4fa9e5088522c6d5920bf8e50fc322fc055c5638",
+    "at": "2026-11-01T08:50:09.235Z",
+    "source": "941bebe0d8ab21e8ba5f1ac972981da8daa3606f",
     "worker": "shift-programme-member-20261023",
-    "versionId": "ebbc0b1b-7e78-41a1-913f-161a77c241a5",
-    "deploymentId": "0bfe300a-3885-46a8-beb7-80399f37a3f3",
-    "rollbackVersion": "1620b118-a5c1-498c-99d6-ae1d514e70e0",
+    "versionId": "837eb6c0-09d4-4c1c-9a9d-2f841a4e00f0",
+    "deploymentId": "5b1a04fc-b871-4714-9169-152787b9d7e6",
+    "rollbackVersion": "ebbc0b1b-7e78-41a1-913f-161a77c241a5",
     "changedServingModules": [
       "journey-shop-release-20261031/programme.mjs"
     ],
@@ -2447,17 +2457,18 @@
       "urgent-phone-link.mjs": "2959b38f5259960d18af0cdef8cbeb17f5063048a0e000bf1e229499629a2a04",
       "worker.mjs": "a8e356b3eb5f991473bb3c9e0971407fdac5c4b5840d625f7cbc95da72e8fc95"
     },
-    "bundleSHA256": "18fa9cd718858b98690d48a0824c51b15dc2071373e3c74336953facb9552a8c",
-    "baselineVerifiedAt": "2026-11-01T08:24:28.971Z",
-    "zeroVerifiedAt": "2026-11-01T08:32:06.237Z",
-    "candidateAcceptanceAt": "2026-11-01T08:33:43.624Z",
-    "liveVerifiedAt": "2026-11-01T08:33:58.777Z",
+    "bundleSHA256": "add6646d2d2e4d17769c6c7635d980883fc256b77fd0b625068ad9fb655c0abb",
+    "baselineVerifiedAt": "2026-11-01T08:45:57.738Z",
+    "zeroVerifiedAt": "2026-11-01T08:47:52.525Z",
+    "candidateAcceptanceAt": "2026-11-01T08:49:11.685Z",
+    "liveVerifiedAt": "2026-11-01T08:49:28.475Z",
     "resolved": [
       "Shop category emoji arrows remain removed",
       "Figure uses a changing clipped filled area, not opacity or colour changes",
       "Guide opens and reopens at Day 1; Play restarts from Day 1 at the end",
       "Guide date is restored when returning to Journey, including cancelling a dated entry; new-record dates remain unchanged",
-      "Pointer, wheel, range, keyboard, day buttons and Play keep the figure and chart synchronised"
+      "Pointer, wheel, range, keyboard, day buttons and Play keep the figure and chart synchronised",
+      "All seven day buttons visible without horizontal scrolling; Day 7 directly selectable; touch targets at least 44 by 44 CSS pixels"
     ],
     "educationalBoundary": "Symbolic illustration, not measured medicine level, anatomical flow, personal symptom prediction or a dosing tool",
     "sourceCheck": {
@@ -2467,12 +2478,13 @@
       "exampleCurveIsNotSourceData": true
     },
     "servedInputs": {
-      "at": "2026-11-01T08:32:48.792644+00:00",
-      "source": "4fa9e5088522c6d5920bf8e50fc322fc055c5638",
+      "at": "2026-11-01T08:48:15.767349+00:00",
+      "source": "941bebe0d8ab21e8ba5f1ac972981da8daa3606f",
       "sha256": {
-        "guide-fill-candidate-shop.html": "aa6ca88a8d7a9b3429abab9943ae9f26f6b461ffa0ae2b082ad4b8550cae2eac",
-        "guide-fill-candidate-journey.mjs": "71f80867a0e8111774c763de85a80c24096964309e3f69cc3c5e811e30982b13",
-        "scoped-source/member-experience/tests/shop-connected-browser.mjs": "b59f18a5ba903bc9fa66219a56af85115713d1f70073391ac9ab468ddfcf742e"
+        "day-buttons-candidate-shop.html": "aa6ca88a8d7a9b3429abab9943ae9f26f6b461ffa0ae2b082ad4b8550cae2eac",
+        "day-buttons-candidate-journey.mjs": "71f80867a0e8111774c763de85a80c24096964309e3f69cc3c5e811e30982b13",
+        "day-buttons-candidate-journey.css": "03368124f96fd2af3cdf8b91e30bd2f23aa3fb008b48b8c7ce2c2354dd9edce0",
+        "scoped-source/member-experience/tests/shop-connected-browser.mjs": "a906b6ea33232ad37c83502974c829f63c6991b3cc0be12bf4f0a133f6a1be7b"
       }
     },
     "preservedFirstSixWeeksEntry": "first-six-weeks-20261101/entry.mjs",
@@ -2510,13 +2522,20 @@
     "schedulesAndRuntimeConfigurationPreserved": true,
     "appleActions": 0,
     "productionCustomerWrites": 0,
-    "replacedZeroTrafficCandidates": [
-      {
-        "versionId": "39de070b-af1d-4d58-9d51-80e194a0defc",
-        "source": "0c75cf84ba58bb0c0f01f748676f3d1603a2a6ca",
-        "stagedVerifiedAt": "2026-11-01T08:27:11.218Z",
-        "ordinaryTrafficPercent": 0
-      }
-    ]
+    "replacedZeroTrafficCandidates": [],
+    "dayButtonLayout": {
+      "sevenColumnsWhenTheyFit": true,
+      "fourThenThreeBelow375px": true,
+      "testedWidths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "noHorizontalScrolling": true,
+      "allButtonsVisibleAndUnobscured": true,
+      "day7SelectedByPointerWithoutAutomaticScroll": true,
+      "stylesheetCapturedFromServedCandidateAndMatchesLive": true
+    }
   }
 }

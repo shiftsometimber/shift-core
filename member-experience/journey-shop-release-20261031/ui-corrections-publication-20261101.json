@@ -1,11 +1,11 @@
 {
-  "kind": "MY_TIMBER_GUIDE_FILL_CORRECTION",
-  "createdAt": "2026-11-01T08:24:18.946Z",
+  "kind": "MY_TIMBER_DAY_BUTTON_LAYOUT_CORRECTION",
+  "createdAt": "2026-11-01T08:45:47.062Z",
   "worker": "shift-programme-member-20261023",
   "ownedModule": "journey-shop-release-20261031/programme.mjs",
-  "previousVersion": "1620b118-a5c1-498c-99d6-ae1d514e70e0",
-  "baselineDeployment": "14cae7df-606d-4dc7-854e-fbd579e0bd4c",
-  "currentDeployment": "0bfe300a-3885-46a8-beb7-80399f37a3f3",
+  "previousVersion": "ebbc0b1b-7e78-41a1-913f-161a77c241a5",
+  "baselineDeployment": "0bfe300a-3885-46a8-beb7-80399f37a3f3",
+  "currentDeployment": "5b1a04fc-b871-4714-9169-152787b9d7e6",
   "documentsVersion": "459dd83d-9ade-461f-997a-6e11a4d7d3ff",
   "documentsDeployment": "05b5f637-5ac3-4920-a87f-062772124160",
   "mainModule": "first-six-weeks-20261101/entry.mjs",
@@ -63,7 +63,7 @@
     "first-six-weeks-20261101/first-six-weeks-styles.mjs": "bd5e717519104f51a55e3a95ca710f26b3884bdb01cef59fcb52a3393ab63ef6",
     "first-six-weeks-20261101/first-six-weeks.mjs": "c1d5e793f555613924cd71679a216e405a3c21263a05add18f6484af54b18ea2",
     "journey-shop-release-20261031/entry.mjs": "2523d634b2979f52339014672f12ab88716b46c96ed56b49f7c1c33e694f5fea",
-    "journey-shop-release-20261031/programme.mjs": "f7db9ebdf589239c9f8490a187d9d21e64efa85007e4c4eb03bbb4cfa03fc0cd",
+    "journey-shop-release-20261031/programme.mjs": "18fa9cd718858b98690d48a0824c51b15dc2071373e3c74336953facb9552a8c",
     "presentation-entry.mjs": "28154046175263fad23dfdb139acdeb2a637c0daf32d64134e1121bfe1ab56f5",
     "presentation.mjs": "f3411974c4a5f9c417077a7e6de4298ea96254135137426d8c1f980c2c346c39",
     "support-release-gate.mjs": "a66f8d44b1a409fbfd94e209e0c138dd1cfeb812f3f89089683d0be85ace3798",
@@ -5579,10 +5579,10 @@
       "request_limit_fail_open": false
     }
   ],
-  "baselineVerifiedAt": "2026-11-01T08:24:28.971Z",
+  "baselineVerifiedAt": "2026-11-01T08:45:57.738Z",
   "lastSuccessfulPhase": "status",
-  "updatedAt": "2026-11-01T08:34:41.195Z",
-  "source": "4fa9e5088522c6d5920bf8e50fc322fc055c5638",
+  "updatedAt": "2026-11-01T08:50:11.488Z",
+  "source": "941bebe0d8ab21e8ba5f1ac972981da8daa3606f",
   "moduleHashes": {
     "continuity-review-20261031/entry.mjs": "69349447b3584bf8a34717f2946badb999c245d79a53b4c5ff47feece48c875a",
     "continuity-review-20261031/handoff.mjs": "6aae38134d1aa1c9f66b12b64ab3b6808eb71d9bb26f69db988fe3f7684d92b5",
@@ -5596,7 +5596,7 @@
     "first-six-weeks-20261101/first-six-weeks-styles.mjs": "bd5e717519104f51a55e3a95ca710f26b3884bdb01cef59fcb52a3393ab63ef6",
     "first-six-weeks-20261101/first-six-weeks.mjs": "c1d5e793f555613924cd71679a216e405a3c21263a05add18f6484af54b18ea2",
     "journey-shop-release-20261031/entry.mjs": "2523d634b2979f52339014672f12ab88716b46c96ed56b49f7c1c33e694f5fea",
-    "journey-shop-release-20261031/programme.mjs": "18fa9cd718858b98690d48a0824c51b15dc2071373e3c74336953facb9552a8c",
+    "journey-shop-release-20261031/programme.mjs": "add6646d2d2e4d17769c6c7635d980883fc256b77fd0b625068ad9fb655c0abb",
     "presentation-entry.mjs": "28154046175263fad23dfdb139acdeb2a637c0daf32d64134e1121bfe1ab56f5",
     "presentation.mjs": "f3411974c4a5f9c417077a7e6de4298ea96254135137426d8c1f980c2c346c39",
     "support-release-gate.mjs": "a66f8d44b1a409fbfd94e209e0c138dd1cfeb812f3f89089683d0be85ace3798",
@@ -5606,44 +5606,36 @@
     "urgent-phone-link.mjs": "2959b38f5259960d18af0cdef8cbeb17f5063048a0e000bf1e229499629a2a04",
     "worker.mjs": "a8e356b3eb5f991473bb3c9e0971407fdac5c4b5840d625f7cbc95da72e8fc95"
   },
-  "bundleSHA256": "18fa9cd718858b98690d48a0824c51b15dc2071373e3c74336953facb9552a8c",
-  "replacedCandidates": [
-    {
-      "versionId": "39de070b-af1d-4d58-9d51-80e194a0defc",
-      "source": "0c75cf84ba58bb0c0f01f748676f3d1603a2a6ca",
-      "stagedVerifiedAt": "2026-11-01T08:27:11.218Z",
-      "ordinaryTrafficPercent": 0
-    }
-  ],
+  "bundleSHA256": "add6646d2d2e4d17769c6c7635d980883fc256b77fd0b625068ad9fb655c0abb",
   "uploadIntent": {
-    "at": "2026-11-01T08:31:24.885Z",
-    "source": "4fa9e5088522c6d5920bf8e50fc322fc055c5638",
-    "baseline": "dfbd4221-a373-407a-8945-c78ad4a7ddc2"
+    "at": "2026-11-01T08:47:10.877Z",
+    "source": "941bebe0d8ab21e8ba5f1ac972981da8daa3606f",
+    "baseline": "0bfe300a-3885-46a8-beb7-80399f37a3f3"
   },
-  "versionId": "ebbc0b1b-7e78-41a1-913f-161a77c241a5",
-  "stagedVerifiedAt": "2026-11-01T08:31:49.646Z",
+  "versionId": "837eb6c0-09d4-4c1c-9a9d-2f841a4e00f0",
+  "stagedVerifiedAt": "2026-11-01T08:47:36.650Z",
   "deploymentIntent": {
     "mode": "live",
-    "message": "My Timber guide fill correction 4fa9e5088522c6d5920bf8e50fc322fc055c5638 live",
-    "previousDeployment": "89927661-be71-4282-9ea2-e2dfba3cb701",
-    "attemptedAt": "2026-11-01T08:33:56.523Z",
+    "message": "My Timber seven visible day buttons 941bebe0d8ab21e8ba5f1ac972981da8daa3606f live",
+    "previousDeployment": "e753913d-c455-48c6-b7a6-7e40417e4c5d",
+    "attemptedAt": "2026-11-01T08:49:26.526Z",
     "finished": true
   },
-  "zeroVerifiedAt": "2026-11-01T08:32:06.237Z",
+  "zeroVerifiedAt": "2026-11-01T08:47:52.525Z",
   "candidateAcceptance": [
     {
-      "path": "guide-fill-production-candidate.json",
-      "sha256": "1d91606a4dd51b8cf43c6d023e6c810ba09bae9eed1aa1ff755dafbdb4b4afa4"
+      "path": "day-buttons-production-candidate.json",
+      "sha256": "52f8b14a549a8066757fb695841ca72c9404ba34222d4caee30a4b7ec5bab591"
     },
     {
-      "path": "shop-browser-proof/guide-fill-served-candidate-chromium-20261101/receipt.json",
-      "sha256": "2343a0cd3f547706fb0d863b1ac5ce375da9c64ae72c2e6381c2ebc3a21dec1e"
+      "path": "shop-browser-proof/day-buttons-served-candidate-chromium-20261101/receipt.json",
+      "sha256": "47f9a65adfcd67ba014afef06b154ea8016c844f8fee1ad51c2b3c12aae59cc8"
     },
     {
-      "path": "shop-browser-proof/guide-fill-served-candidate-webkit-20261101/receipt.json",
-      "sha256": "d63bbd5fa43acbd0386de99bde7807487f84409a2e14c71eeb2422003de9cce2"
+      "path": "shop-browser-proof/day-buttons-served-candidate-webkit-20261101/receipt.json",
+      "sha256": "43ee063bb801d8568f01dcbaad1e28d5b419e8359a165b97476dfbfb900b3c88"
     }
   ],
-  "candidateAcceptanceAt": "2026-11-01T08:33:43.624Z",
-  "liveVerifiedAt": "2026-11-01T08:33:58.777Z"
+  "candidateAcceptanceAt": "2026-11-01T08:49:11.685Z",
+  "liveVerifiedAt": "2026-11-01T08:49:28.475Z"
 }
