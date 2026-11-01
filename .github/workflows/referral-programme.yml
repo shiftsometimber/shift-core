@@ -1,0 +1,69 @@
+name: Referral and programme sample qualification
+on:
+  push:
+    branches: [work/referrer-programme-20261101]
+    paths: ['referral-programme/**', '.github/workflows/referral-programme.yml']
+  pull_request:
+    paths: ['referral-programme/**', '.github/workflows/referral-programme.yml']
+  workflow_dispatch:
+    inputs:
+      action:
+        type: choice
+        options: [capture, release]
+        default: capture
+        required: true
+      approved_copy_sha256:
+        description: Exact fingerprint of the final public version approved by Matt; required for release
+        type: string
+        required: false
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Qualify public routes, fictional sample, original contact delivery and package preservation
+        run: |
+          node referral-programme/prepare-assets.mjs
+          git diff --exit-code -- referral-programme/assets.mjs
+          node --test referral-programme/referral-programme.test.mjs tests/contact-delivery-contract.test.mjs tests/contact-success-analytics.test.mjs tests/independent-presentation-preservation.test.mjs tests/runtime-rollback-guard.test.mjs
+          for file in referral-programme/*.mjs; do node --check "$file"; done
+          git diff --check
+  provider:
+    if: github.event_name != 'pull_request'
+    needs: source
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    concurrency:
+      group: cloudflare-production-promote
+      cancel-in-progress: false
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      APPROVED_COPY_SHA256: ${{ inputs.approved_copy_sha256 }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Capture current production without writes, or publish the exact approved version
+        env:
+          RELEASE_ACTION: ${{ github.event_name == 'workflow_dispatch' && inputs.action || 'capture' }}
+        run: node referral-programme/release.mjs "$RELEASE_ACTION"
+      - name: Restore only this owned release if post-promotion verification fails
+        if: failure() && hashFiles('referral-programme-proof/deployed.json') != ''
+        run: node referral-programme/release.mjs rollback
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: referral-programme-${{ github.run_id }}
+          path: referral-programme-proof/
+          if-no-files-found: warn
+          retention-days: 14
