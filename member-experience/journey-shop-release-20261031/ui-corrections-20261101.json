@@ -1,0 +1,49 @@
+{
+  "state": "LIVE_AND_VERIFIED",
+  "at": "2026-11-01T08:08:18.974Z",
+  "source": "4e19af0cca965490b7b619d9d39698ce1534bbbd",
+  "worker": "shift-programme-member-20261023",
+  "versionId": "7bb57148-6cd6-4088-8d69-9b6b2bc49701",
+  "deploymentId": "f54232e1-bf02-40a7-98b5-98a00e0a53d3",
+  "rollbackVersion": "d908e3e1-58e3-4c8f-b639-6fb8a852f6b2",
+  "bundleSHA256": "f7db9ebdf589239c9f8490a187d9d21e64efa85007e4c4eb03bbb4cfa03fc0cd",
+  "resolved": [
+    "Shop category emoji arrows removed; same four cards, images and spacing retained",
+    "Guide chart is connected to pointer and wheel handlers",
+    "Continuous range input remains mounted while date, marker, day copy and example figure update in place"
+  ],
+  "routesPreserved": 915,
+  "newRoutes": 0,
+  "appleActions": 0,
+  "productionCustomerWrites": 0,
+  "sourceChecks": 28,
+  "chromiumIsolatedChecks": 34,
+  "webkitNativeIsolatedChecks": 34,
+  "productionPagesPerEngine": 23,
+  "productionAssetsPerEngine": 7,
+  "privateApis": [
+    {
+      "path": "/v1/life-back/journey",
+      "status": 401,
+      "method": "GET"
+    },
+    {
+      "path": "/v1/life-back",
+      "status": 401,
+      "method": "GET"
+    },
+    {
+      "path": "/v1/privacy/export",
+      "status": 401,
+      "method": "POST"
+    },
+    {
+      "path": "/v1/commerce/active-checkout",
+      "status": 401,
+      "method": "GET"
+    }
+  ],
+  "newConsoleErrors": 0,
+  "ordinaryProductionJourneyPersistence": "NOT VERIFIED; retained test session is signed out",
+  "physicalInstalledPwaAndNative": "NOT VERIFIED"
+}
