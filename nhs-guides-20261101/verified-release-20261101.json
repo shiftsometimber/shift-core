@@ -1,0 +1,2046 @@
+{
+  "verified": true,
+  "source": "3eff2010bc1d1b7ba8e61dd37133d8005c0d362a",
+  "release": "nhs-guides-20261101-v1",
+  "pages": [
+    {
+      "key": "gp-vs-specialist-weight-management",
+      "path": "/comparisons/nhs-private/gp-vs-specialist-weight-management",
+      "selected": "Authorised unfinished NHS and private comparison upgrade"
+    },
+    {
+      "key": "nhs-vs-private-aftercare",
+      "path": "/comparisons/nhs-private/nhs-vs-private-aftercare",
+      "selected": "Authorised unfinished NHS and private comparison upgrade"
+    },
+    {
+      "key": "nhs-vs-private-medication",
+      "path": "/comparisons/nhs-private/nhs-vs-private-medication",
+      "selected": "Authorised unfinished NHS and private comparison upgrade"
+    },
+    {
+      "key": "nhs-vs-private-surgery",
+      "path": "/comparisons/nhs-private/nhs-vs-private-surgery",
+      "selected": "Authorised unfinished NHS and private comparison upgrade"
+    },
+    {
+      "key": "nice-eligible-but-no-access",
+      "path": "/comparisons/nhs-private/nice-eligible-but-no-access",
+      "selected": "Authorised unfinished NHS and private comparison upgrade"
+    },
+    {
+      "key": "online-pharmacy-vs-clinic",
+      "path": "/comparisons/nhs-private/online-pharmacy-vs-clinic",
+      "selected": "Authorised unfinished NHS and private comparison upgrade"
+    },
+    {
+      "key": "wait-vs-pay-private",
+      "path": "/comparisons/nhs-private/wait-vs-pay-private",
+      "selected": "Authorised unfinished NHS and private comparison upgrade"
+    }
+  ],
+  "workers": [
+    {
+      "name": "shift-public-presentation-batch-20261022",
+      "versionId": "53256048-729d-4d2a-b699-ea72f6bbccaa",
+      "previousVersion": "16c68455-b25f-45fa-a206-f724f5724778",
+      "retainedModules": 74,
+      "refreshedOwnedModules": 0,
+      "bindingsPreserved": 4,
+      "migrationTagPreserved": null
+    },
+    {
+      "name": "shift-core",
+      "versionId": "24fe702f-66d7-40f8-b078-9219350a2038",
+      "previousVersion": "528d254c-b494-48a0-8e01-bbf275ed4a07",
+      "retainedModules": 51,
+      "refreshedOwnedModules": 0,
+      "bindingsPreserved": 52,
+      "migrationTagPreserved": "v1-site-content-state"
+    }
+  ],
+  "routeCount": 915,
+  "routesChanged": 0,
+  "checks": [
+    {
+      "path": "/comparisons/nhs-private/gp-vs-specialist-weight-management",
+      "key": "gp-vs-specialist-weight-management",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/nhs-private/gp-vs-specialist-weight-management?presentation=1",
+      "key": "gp-vs-specialist-weight-management",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-aftercare",
+      "key": "nhs-vs-private-aftercare",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-aftercare?presentation=1",
+      "key": "nhs-vs-private-aftercare",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-medication",
+      "key": "nhs-vs-private-medication",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-medication?presentation=1",
+      "key": "nhs-vs-private-medication",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-surgery",
+      "key": "nhs-vs-private-surgery",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-surgery?presentation=1",
+      "key": "nhs-vs-private-surgery",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/nhs-private/nice-eligible-but-no-access",
+      "key": "nice-eligible-but-no-access",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/nhs-private/nice-eligible-but-no-access?presentation=1",
+      "key": "nice-eligible-but-no-access",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/nhs-private/online-pharmacy-vs-clinic",
+      "key": "online-pharmacy-vs-clinic",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/nhs-private/online-pharmacy-vs-clinic?presentation=1",
+      "key": "online-pharmacy-vs-clinic",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/nhs-private/wait-vs-pay-private",
+      "key": "wait-vs-pay-private",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    },
+    {
+      "path": "/comparisons/nhs-private/wait-vs-pay-private?presentation=1",
+      "key": "wait-vs-pay-private",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true
+    }
+  ],
+  "protectedPages": [
+    "/tools/bmi",
+    "/tools/calories",
+    "/tools/healthy-weight",
+    "/tools/protein",
+    "/tools/waist-height",
+    "/tools/walking",
+    "/tools/water",
+    "/tools/steps",
+    "/tools/sleep",
+    "/tools/alcohol",
+    "/tools/weight-management-review",
+    "/how-are-you-feeling",
+    "/",
+    "/start-here",
+    "/programme",
+    "/shift-health",
+    "/knowledge",
+    "/explore-knowledge",
+    "/ask-timber",
+    "/treatment-centre",
+    "/member/dashboard",
+    "/mens-mental-health",
+    "/shift-for-work",
+    "/shift-health/stop-smoking",
+    "/tools",
+    "/tools?ct3=1",
+    "/weight-loss-support-for-men",
+    "/partner-with-us",
+    "/male-obesity",
+    "/compare-weight-loss-treatments",
+    "/clinic-gone-quiet",
+    "/about",
+    "/contact",
+    "/shift-newsroom",
+    "/life-back",
+    "/corporate-wellbeing",
+    "/guides/retatrutide-uk-guide",
+    "/husband-help",
+    "/my-timber-for-providers",
+    "/nhs-vs-private",
+    "/surgery-comparison-centre",
+    "/knowledge?presentation=1",
+    "/articles/stopping-glp1",
+    "/articles/food-noise-after-stopping-glp1",
+    "/member/life-back",
+    "/shift-newsroom/client.js",
+    "/shift-newsroom/compare.js",
+    "/provider-switch",
+    "/our-causes-partners",
+    "/downloads-resources",
+    "/downloads-resources?presentation=1",
+    "/family-discussion-guide",
+    "/family-discussion-guide?presentation=1",
+    "/community",
+    "/community?presentation=1",
+    "/faq",
+    "/help",
+    "/waiting-list-journey",
+    "/waiting-list-journey?presentation=1",
+    "/advertise-with-us",
+    "/expert-contributors",
+    "/media-centre",
+    "/press-centre",
+    "/trusted-partners",
+    "/shift-promise",
+    "/treatment-finder",
+    "/my-weight-loss-roadmap",
+    "/shift-health/health-mot",
+    "/editorial-standards",
+    "/commercial-principles",
+    "/commercial-principles?presentation=1",
+    "/how-we-review-products",
+    "/how-we-review-products?presentation=1",
+    "/affiliate-disclosure",
+    "/affiliate-disclosure?presentation=1",
+    "/decision-trees-explained",
+    "/decision-trees-explained?presentation=1",
+    "/treatment-finder-methodology",
+    "/treatment-finder-methodology?presentation=1",
+    "/roadmap-methodology",
+    "/roadmap-methodology?presentation=1",
+    "/health-mot-methodology",
+    "/health-mot-methodology?presentation=1",
+    "/medication-comparison-methodology",
+    "/medication-comparison-methodology?presentation=1",
+    "/advertise-with-us?presentation=1",
+    "/expert-contributors?presentation=1",
+    "/media-centre?presentation=1",
+    "/press-centre?presentation=1",
+    "/trusted-partners?presentation=1",
+    "/shift-promise?presentation=1",
+    "/work-with-us",
+    "/work-with-us?presentation=1",
+    "/decision-centre-methodology",
+    "/decision-centre-methodology?presentation=1",
+    "/decision-readiness-methodology",
+    "/decision-readiness-methodology?presentation=1",
+    "/lifestyle-treatment-methodology",
+    "/lifestyle-treatment-methodology?presentation=1",
+    "/nhs-private-methodology",
+    "/nhs-private-methodology?presentation=1",
+    "/progress-centre-methodology",
+    "/progress-centre-methodology?presentation=1",
+    "/surgery-comparison-methodology",
+    "/surgery-comparison-methodology?presentation=1",
+    "/uk-europe-methodology",
+    "/uk-europe-methodology?presentation=1",
+    "/universal-comparison-methodology",
+    "/universal-comparison-methodology?presentation=1",
+    "/clinical-governance",
+    "/clinical-governance?presentation=1",
+    "/editorial-standards?presentation=1",
+    "/medical-disclaimer",
+    "/medical-disclaimer?presentation=1",
+    "/privacy-centre",
+    "/privacy-centre?presentation=1",
+    "/data-governance",
+    "/data-governance?presentation=1",
+    "/dpia-summary",
+    "/dpia-summary?presentation=1",
+    "/product-reviews",
+    "/product-reviews?presentation=1",
+    "/authors/matt-obrien",
+    "/authors/matt-obrien?presentation=1",
+    "/accessibility",
+    "/accessibility?presentation=1",
+    "/complaints",
+    "/complaints?presentation=1",
+    "/downloads/gp-appointment-checklist",
+    "/downloads/gp-appointment-checklist?presentation=1",
+    "/downloads/weight-loss-medication-questions",
+    "/downloads/weight-loss-medication-questions?presentation=1",
+    "/downloads/bariatric-surgery-checklist",
+    "/downloads/bariatric-surgery-checklist?presentation=1",
+    "/downloads/private-provider-checklist",
+    "/downloads/private-provider-checklist?presentation=1",
+    "/downloads/overseas-surgery-checklist",
+    "/downloads/overseas-surgery-checklist?presentation=1",
+    "/downloads/maintenance-plan-template",
+    "/downloads/maintenance-plan-template?presentation=1",
+    "/before-you-decide",
+    "/before-you-decide?presentation=1",
+    "/decision-centre",
+    "/decision-centre?presentation=1",
+    "/decision-readiness",
+    "/decision-readiness?presentation=1",
+    "/lifestyle-vs-treatment",
+    "/lifestyle-vs-treatment?presentation=1",
+    "/comparison-centre",
+    "/comparison-centre?presentation=1",
+    "/future-medicines-comparison",
+    "/future-medicines-comparison?presentation=1",
+    "/uk-vs-europe-treatment",
+    "/uk-vs-europe-treatment?presentation=1",
+    "/comparisons/lifestyle/cardio-vs-strength",
+    "/comparisons/lifestyle/cardio-vs-strength?presentation=1",
+    "/comparisons/lifestyle/lifestyle-vs-medication",
+    "/comparisons/lifestyle/lifestyle-vs-medication?presentation=1",
+    "/comparisons/lifestyle/lifestyle-vs-surgery",
+    "/comparisons/lifestyle/lifestyle-vs-surgery?presentation=1",
+    "/comparisons/lifestyle/medication-plus-lifestyle",
+    "/comparisons/lifestyle/medication-plus-lifestyle?presentation=1",
+    "/comparisons/lifestyle/structured-vs-diy",
+    "/comparisons/lifestyle/structured-vs-diy?presentation=1",
+    "/comparisons/lifestyle/surgery-plus-lifestyle",
+    "/comparisons/lifestyle/surgery-plus-lifestyle?presentation=1",
+    "/comparisons/lifestyle/walking-vs-structured-exercise",
+    "/comparisons/lifestyle/walking-vs-structured-exercise?presentation=1"
+  ],
+  "calculatorPages": [
+    "/tools/bmi",
+    "/tools/calories",
+    "/tools/healthy-weight",
+    "/tools/protein",
+    "/tools/waist-height",
+    "/tools/walking",
+    "/tools/water",
+    "/tools/steps",
+    "/tools/sleep",
+    "/tools/alcohol",
+    "/tools/weight-management-review"
+  ],
+  "existingCodeAssetsPreserved": 296,
+  "photographs": [],
+  "browser": [
+    {
+      "page": "gp-vs-specialist-weight-management",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "gp-vs-specialist-weight-management",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "gp-vs-specialist-weight-management",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "gp-vs-specialist-weight-management",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "nhs-vs-private-aftercare",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "nhs-vs-private-aftercare",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "nhs-vs-private-aftercare",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "nhs-vs-private-aftercare",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "nhs-vs-private-medication",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "nhs-vs-private-medication",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "nhs-vs-private-medication",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "nhs-vs-private-medication",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "nhs-vs-private-surgery",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "nhs-vs-private-surgery",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "nhs-vs-private-surgery",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "nhs-vs-private-surgery",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "nice-eligible-but-no-access",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "nice-eligible-but-no-access",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "nice-eligible-but-no-access",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "nice-eligible-but-no-access",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "online-pharmacy-vs-clinic",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "online-pharmacy-vs-clinic",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "online-pharmacy-vs-clinic",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "online-pharmacy-vs-clinic",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "wait-vs-pay-private",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "wait-vs-pay-private",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "wait-vs-pay-private",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "wait-vs-pay-private",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 104.5,
+          "right": 693.5,
+          "scroll": 589,
+          "width": 589
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 1214,
+          "scrollWidth": 1214,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "gp-vs-specialist-weight-management",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "gp-vs-specialist-weight-management",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "gp-vs-specialist-weight-management",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "gp-vs-specialist-weight-management",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "nhs-vs-private-aftercare",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "nhs-vs-private-aftercare",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "nhs-vs-private-aftercare",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "nhs-vs-private-aftercare",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "nhs-vs-private-medication",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "nhs-vs-private-medication",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "nhs-vs-private-medication",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "nhs-vs-private-medication",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "nhs-vs-private-surgery",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "nhs-vs-private-surgery",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "nhs-vs-private-surgery",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "nhs-vs-private-surgery",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "nice-eligible-but-no-access",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "nice-eligible-but-no-access",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "nice-eligible-but-no-access",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "nice-eligible-but-no-access",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "online-pharmacy-vs-clinic",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "online-pharmacy-vs-clinic",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "online-pharmacy-vs-clinic",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "online-pharmacy-vs-clinic",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "wait-vs-pay-private",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "wait-vs-pay-private",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "wait-vs-pay-private",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "wait-vs-pay-private",
+        "width": 768,
+        "scrollWidth": 753,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 32,
+          "right": 364,
+          "scroll": 332,
+          "width": 332
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 687,
+          "scrollWidth": 687,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "gp-vs-specialist-weight-management",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "gp-vs-specialist-weight-management",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "gp-vs-specialist-weight-management",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "gp-vs-specialist-weight-management",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "nhs-vs-private-aftercare",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "nhs-vs-private-aftercare",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "nhs-vs-private-aftercare",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "nhs-vs-private-aftercare",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "nhs-vs-private-medication",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "nhs-vs-private-medication",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "nhs-vs-private-medication",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "nhs-vs-private-medication",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "nhs-vs-private-surgery",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "nhs-vs-private-surgery",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "nhs-vs-private-surgery",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "nhs-vs-private-surgery",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "nice-eligible-but-no-access",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "nice-eligible-but-no-access",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "nice-eligible-but-no-access",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "nice-eligible-but-no-access",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "online-pharmacy-vs-clinic",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "online-pharmacy-vs-clinic",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "online-pharmacy-vs-clinic",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "online-pharmacy-vs-clinic",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "wait-vs-pay-private",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "wait-vs-pay-private",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        }
+      }
+    },
+    {
+      "page": "wait-vs-pay-private",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigationAttempts": 1,
+      "layout": {
+        "release": "nhs-guides-20261101-v1",
+        "key": "wait-vs-pay-private",
+        "width": 390,
+        "scrollWidth": 375,
+        "headings": 1,
+        "font": "Arial, Helvetica, sans-serif",
+        "headingColour": "rgb(231, 227, 218)",
+        "background": "rgb(5, 5, 5)",
+        "headingBounds": {
+          "left": 18,
+          "right": 357,
+          "scroll": 339,
+          "width": 339
+        },
+        "ticker": false
+      },
+      "behaviour": {
+        "links": [
+          {
+            "height": 48,
+            "href": "/nhs-vs-private"
+          }
+        ],
+        "table": {
+          "width": 337,
+          "scrollWidth": 610,
+          "overflow": "auto"
+        }
+      }
+    }
+  ],
+  "verifiedAt": "2026-11-01T15:12:20.773Z",
+  "workflow": {
+    "runId": 41319580337,
+    "jobId": 124886731567,
+    "url": "https://github.com/shiftsometimber/shift-core/actions/runs/41319580337",
+    "conclusion": "success"
+  },
+  "evidenceArtifact": {
+    "id": 13088464312,
+    "name": "nhs-guides-41319580337",
+    "size_in_bytes": 23337554,
+    "url": "https://api.github.com/repos/shiftsometimber/shift-core/actions/artifacts/13088464312",
+    "archive_download_url": "https://api.github.com/repos/shiftsometimber/shift-core/actions/artifacts/13088464312/zip",
+    "expired": false,
+    "created_at": "2026-11-01T15:12:22Z",
+    "expires_at": "2027-01-30T15:07:15Z",
+    "updated_at": "2026-11-01T15:12:22Z",
+    "digest": "sha256:567f478ce9e8f5d384fc3412d2ea2d22daefc3ba173c1f58c5fad328ed6ba69b",
+    "workflow_run": {
+      "id": 41319580337,
+      "repository_id": 1328867509,
+      "head_repository_id": 1328867509,
+      "head_branch": "release/nhs-guides-20261101",
+      "head_sha": "3eff2010bc1d1b7ba8e61dd37133d8005c0d362a"
+    }
+  },
+  "liveProof": {
+    "path": "nhs-guides-20261101/live-proof.jpg",
+    "blob": "a3e158383e79e52e129821b670ff31e2cecc4829",
+    "page": "https://shiftsometimber.co.uk/comparisons/nhs-private/nhs-vs-private-aftercare"
+  },
+  "browserSummary": {
+    "passed": 42,
+    "widths": [
+      1440,
+      768,
+      390
+    ],
+    "ordinaryCases": 21,
+    "queryCases": 21,
+    "manualVisualReview": true,
+    "horizontalTableScrollVerified": true
+  }
+}
