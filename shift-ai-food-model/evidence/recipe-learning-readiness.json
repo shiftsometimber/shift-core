@@ -1,0 +1,40 @@
+{
+  "scope": "Readiness of the new recipe-specific learning stage against the current source snapshot",
+  "current_governed_recipes": 2692,
+  "qualified_real_recipe_training_photos": 0,
+  "recipe_specific_training_run": false,
+  "intake_audit": {
+    "schema": "shift-recipe-pair-audit-1",
+    "data_kind": "real_recipe_photos",
+    "photos": 0,
+    "counts": {
+      "train": {},
+      "validation": {},
+      "test": {}
+    },
+    "rights_review_evidence_files": 0,
+    "manifest_sha256": "08e245184bb2b95b0c6318fb4137e60a75fc2e9851a5ba88c6119eaa6c162925",
+    "catalogue_sha256": "964619c159f716607837f6c3d2514943b8e31e4eabc0f7e1c1ae415d90a08483",
+    "production_ready": false,
+    "live_data_collected": false,
+    "note": "Intake qualification verifies recorded evidence and bytes, not independent legal review or recipe accuracy."
+  },
+  "available_reference_images_used_for_training": false,
+  "reason": "Current exact recipe/photo labels and reviewed training-use evidence are not available in the inspected source material. Older illustrative references and unlabelled Nutrition5k meals were not relabelled as SHIFT dishes.",
+  "checks": {
+    "python": 26,
+    "recipe_node": 4
+  },
+  "production_deployed": false,
+  "new_spend": false,
+  "prior_CI": {
+    "commit": "ed662ed2962591656de061280b76d0daf8f5aeae",
+    "run": 41294130920,
+    "focused_pass": 137,
+    "focused_opt_in_skip": 1,
+    "full_member_pass": 580,
+    "full_member_fail": 2,
+    "model_and_recipe_job": "success",
+    "note": "Two historical CSV failures. Baseline diagnostic also has worktree .git/index incompatibility for its second failure; do not claim identical baseline error text."
+  }
+}

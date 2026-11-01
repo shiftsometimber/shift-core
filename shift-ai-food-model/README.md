@@ -231,3 +231,84 @@ again before selecting a production runtime. Similarity scores are not calibrate
 probabilities. A meal absent from the catalogue can still receive bad suggestions.
 Always allow rejecting every candidate. No auto-training or live diary write is
 implemented by these research tools.
+
+## Supervised learning from checked recipe photos
+
+`recipe_learning.py` adds an offline recipe-specific learning path alongside
+text-based recipe retrieval. It averages frozen pinned SigLIP image features
+from checked training dishes into learned recipe prototypes. It does not update
+the foundation encoder. No real recipe-specific model was trained in this pass:
+the inspected source contains zero qualified current real-photo/recipe pairs.
+The 26 Python checks use generated JPEGs and vector fixtures to test contracts
+and learning mechanics. They are not food or recipe accuracy evidence. Fixture
+manifests cannot train or load a saved recipe artifact.
+
+Intake requires the current catalogue SHA256 and recipe content SHA256, checked
+exact ingredients, real resized JPEG bytes, anonymous capture/dish/source groups,
+and pinned local review and rights records. Inference/training permission is not
+inferred from saving a meal or correcting a suggestion. Recorded permissions
+must explicitly cover model training and evaluation; withdrawn or changed records
+invalidate reuse on the next local load. These attestations need real human review:
+the code cannot independently establish ownership or recognise a fraudulent label.
+There is no live consent collection, revocation service, upload UI or deletion
+service in this research module. No member data is collected by these commands.
+
+Exact file and decoded-pixel duplicates are rejected across the dataset. A small
+perceptual fingerprint also flags likely duplicate photos across splits; this is
+conservative and may flag genuinely different dishes that need human resolution.
+Capture, dish and source groups cannot cross splits. Use source groups to keep a
+household/photographer session together without embedding personal identifiers.
+Evaluation admits one photo per cooked dish, so repeat angles cannot inflate the
+sample count. Training requires three independently cooked dishes per recipe,
+at least two recipes, and five validation dishes for each recipe. A small pilot
+could begin with two recipes, three training/five validation/five test dishes each,
+plus five non-food and five other-food negatives in both validation and test
+(46 photos total). That would test the engineering path, not qualify production.
+
+Calibration uses validation only. Both negative categories need at least five
+validation examples. A suggestion setting must achieve 90% overall validation
+precision, no more than 5% negative false accepts, and measured support/precision
+for every recipe. A strong recipe cannot hide a weak recipe. When no setting
+qualifies, the model abstains on every image. Similarities are not probabilities.
+Test metrics are descriptive development evidence; production readiness always
+remains false pending independent UK acceptance and hosting/privacy checks.
+
+Minimal manifest structure (the empty list is deliberate, not fabricated data):
+
+```json
+{
+  "schema": "shift-recipe-photo-pairs-1",
+  "data_kind": "real_recipe_photos",
+  "catalogue_sha256": "SHA256 of exported recipe catalogue",
+  "test_previously_inspected": false,
+  "samples": []
+}
+```
+
+Each sample must contain `id`, `path`, `sha256`, `split`, `capture_group`,
+`dish_group`, `source_group`, `image_kind:"real_photo"`, and `target` equal to
+`recipe`, `other_food` or `non_food`. Recipe samples also have current `recipe_id`
+and `recipe_hash`; negatives carry neither. `review` has `checked:true`,
+`ingredients_match` (true for recipe, false for negatives), `evidence` (relative
+JSON path) and that evidence file's `sha256`. The review JSON binds `photo_sha256`,
+`target`, `recipe_id`, `recipe_hash`, `ingredients_match` and `checked:true`.
+`rights` has `basis` (`SHIFT-owned`, `CC-BY-4.0` or
+`explicit-member-training-consent`), `attribution`, `evidence` and `sha256`.
+Its JSON evidence must bind the photo SHA256 and basis, and explicitly record
+`active:true`, `reviewed:true`, `training_reuse:true`, `evaluation_reuse:true`.
+Do not put member IDs or contact details in manifests; paths stay local to the
+photo-pair directory. Strip EXIF, location, XMP and comments before intake.
+A generated image remains a fixture regardless of its filename or labels.
+
+```bash
+python shift-ai-food-model/recipe_learning.py qualify --manifest /absolute/pairs/manifest.json --catalogue /absolute/work/recipe-index.json
+python shift-ai-food-model/recipe_learning.py train --manifest /absolute/pairs/manifest.json --catalogue /absolute/work/recipe-index.json --base /absolute/work/siglip-base --output /absolute/work/recipe-model-1 --max-minutes 20
+python shift-ai-food-model/recipe_learning.py predict --manifest /absolute/pairs/manifest.json --catalogue /absolute/work/recipe-index.json --base /absolute/work/siglip-base --artifact /absolute/work/recipe-model-1 --research < bounded-request.json
+```
+
+Prediction requires the same qualified dataset and recorded permissions at local
+load, the same base and current recipe hashes, and intact learned prototype bytes.
+It returns either one possible recipe or abstains. Nutrition stays absent and
+`autoSave` stays false. Current-recipe/substitution/portion confirmation still
+belongs before the existing single member-food save route. No production flags,
+service bindings or member UI were changed by this learning stage.

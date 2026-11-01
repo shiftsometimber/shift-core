@@ -5,6 +5,56 @@ He subsequently instructed that both food recognition and the MediSearch-style
 research capability belong inside Shift AI. No competitor trial, subscription
 or integration is part of this implementation.
 
+## Recipe-photo learning pipeline — subsequent continuation, 1 November 2026 UTC
+
+Matt authorised further development. Existing development-only scope, no spend,
+no external communications, no gated licence and no production activation remain.
+Feature checkpoint was `ed662ed2962591656de061280b76d0daf8f5aeae`; source branch
+was rechecked at that head before this continuation. No AGENTS.md occurs in its
+complete recursive source tree. The saved research archive remains version 3;
+this stage adds source code, not new real trained weights, so it is not replaced.
+
+Implemented `shift-ai-food-model/recipe_learning.py`: current-recipe/hash and
+photo-pair qualification, pinned rights and exact-label evidence, JPEG/metadata
+checks, duplicate decoded pixels and conservative cross-split perceptual checks,
+and independent capture/dish/source groups. Validation/test admit one photo per
+cooked dish. Fixture-only datasets cannot produce or load a saved recipe artifact.
+Rights records are human attestations checked by code, not independent legal proof.
+No implicit reuse of member meals or corrections is permitted.
+
+The offline learner builds recipe visual prototypes from training photos only
+using the existing pinned frozen SigLIP base. It requires at least two recipes,
+three independent training dishes and five validation dishes per recipe.
+Validation-only similarity/margin calibration needs both non-food and other-food
+negatives; every advertised recipe needs measured validation support and precision.
+Failure produces abstention, rather than lowering the floor or inventing a match.
+Held-out reporting counts wrong recipes, recall, coverage and negative false
+accepts. Similarities are not percentage confidence. All outputs remain research
+only, with no nutrient prediction or diary writes. Local model loading rechecks
+recipe versions, source photos, evidence/permission pins and prototype integrity.
+
+Local verification: 26 Python checks pass, including 15 new recipe-learning
+checks; four existing governed-recipe/confirmation Node checks pass. Generated
+JPEGs and vector fixtures test mechanics only, not food accuracy. The actual
+source readiness audit still has ZERO qualified real current recipe-photo pairs;
+no recipe-specific training run or new recipe accuracy result is claimed. Generic
+Nutrition5k dishes were not assigned false SHIFT recipe labels. Readiness evidence:
+`shift-ai-food-model/evidence/recipe-learning-readiness.json`.
+
+Previous exact-source CI run 41294130920: model/recipe job passed, focused food
+checks 137 passed/one opt-in skipped, actual Worker dry-run and public PubMed
+connectivity passed; full member regression 580/582 with the two historical
+weight-import CSV failures. Both feature failures report the frozen Registration
+tail qualifier. The unchanged-base diagnostic's second test additionally encounters
+worktree `.git/index` incompatibility, so identical baseline error text is not
+claimed. Existing checks are retained, no skips or relaxed release gates added.
+
+Next data dependency: checked real recipe-labelled photos with actual reuse
+permission and independent groups. Begin with a small two-recipe engineering
+pilot; representative UK and non-food acceptance must follow. This is neither a
+member upload/consent flow nor a deployed training/serving/revocation service.
+The existing text recipe bank and previous food component models are preserved.
+
 ## Recipe-aware continuation — 1 November 2026
 
 Matt asked that recognition fit our own recipes and learn from them. The local
