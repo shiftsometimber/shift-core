@@ -21,6 +21,9 @@ export function renderPage(html,path){
  const info=PAGE_INFO[path];if(!info)throw Error('Unknown referral page');
  if((html.match(/<main\b/gi)||[]).length!==1||(html.match(/<\/main\s*>/gi)||[]).length!==1)throw Error('Unexpected shared page shell');
  let result=html.replace(/<main\b[^>]*>[\s\S]*?<\/main\s*>/i,()=>`<main id="main-content" class="sr-page" data-shift-referral-programme="${VERSION}">${pageBody(path)}</main>`);
+ // The inherited Programme shell currently carries a news strip. New referral
+ // and sample pages are outside the approved ticker locations.
+ result=result.replace(/<section\b(?=[^>]*\bid=["']shift-public-news["'])[^>]*>[\s\S]*?<\/section>/gi,'');
  // Keep the shared header/footer and site assets. Replace only page metadata.
  result=result.replace(/<title\b[^>]*>[\s\S]*?<\/title>/i,()=>'<title>'+esc(info.title)+'</title>');
  result=result.replace(/<meta\b[^>]*\b(?:name|property)\s*=\s*["'](?:description|og:title|og:description|og:url|twitter:title|twitter:description|twitter:url)["'][^>]*>/gi,'');
