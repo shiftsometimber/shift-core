@@ -30,9 +30,37 @@
       "partner toolkit",
       "printable weekly planner"
     ],
-    "state": "draft for review; not published or distributed",
+    "state": "published and verified",
     "reviewFile": "SHIFT-Referrers-and-Affiliates-Draft-2026-11-01.html",
     "libraryFileId": "libfile_f779f6a1e3e4819191bcfe9f59599caf"
   },
-  "oneTimePushReleaseRetired": true
+  "oneTimePushReleaseRetired": true,
+  "resourcePublication": {
+    "instruction": "Publish but is this the best it can be ???? I worry",
+    "source": "5fe197ad5d28d150923416fe027c8e16c524d303",
+    "run": 41322974482,
+    "version": "8bcd6146-f35d-436f-9bcd-c24da8b85f23",
+    "copySHA256": "80d145ab295ea5b81a410aa3c77b40cc1c55faafd7556ddc95c31d6a075a35cf",
+    "sourceChecksPassed": 45,
+    "routes": [
+      "/refer-to-shift/resources"
+    ],
+    "verified": [
+      "release checks preserved other runtime modules including newer surgery wrapper",
+      "public referral link opens resource hub",
+      "live toolkit copy control",
+      "live planner entry, feedback and reset",
+      "mobile width 375px has no horizontal overflow"
+    ],
+    "printLayout": "expanded text mirrors; physical printing not tested",
+    "realEmailsSent": 0,
+    "memberWrites": 0,
+    "remainingCapabilities": [
+      "affiliate attribution",
+      "partner reporting",
+      "agreed commercial terms",
+      "evidence from real use"
+    ],
+    "oneTimePushReleaseRetired": true
+  }
 }
