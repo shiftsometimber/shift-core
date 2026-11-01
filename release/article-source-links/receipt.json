@@ -1,0 +1,43 @@
+{
+  "state": "deployed_and_production_verified",
+  "verifiedAt": "2026-11-01T19:47:41.150Z",
+  "pullRequest": "https://github.com/shiftsometimber/shift-core/pull/1509",
+  "testedHead": "60a1bdabbc7de1e8be2af3203456a7b2de08313c",
+  "mergedMain": "c6d4445bbd72f8e465b33d04de42d443b979116b",
+  "applicationFiles": ["babylove/dynamic-public.mjs", "babylove/dynamic-public.test.mjs"],
+  "releaseMode": "Isolated compiled article module repair over the captured serving package",
+  "releaseSource": "335d9550edff99ea8ec7b9ec62ec7177bc448858",
+  "releaseRun": 41343403566,
+  "releaseUrl": "https://github.com/shiftsometimber/shift-core/actions/runs/41343403566",
+  "artifactId": 13097518436,
+  "artifactSHA256": "c098f9a2fd0e2d88c045ed7932efcdfae8c7b423619de3474802e8ecda516199",
+  "versionId": "ef0470b5-8557-4270-897a-9b92de3b18c3",
+  "deploymentId": "036996f8-7d3e-4252-822c-7daceaee0d2f",
+  "servingPercentage": 100,
+  "reusedSuccessfulChecks": [41251655793, 41251655750, 41251655803],
+  "eClinicalMedicineHref": "https://www.thelancet.com/journals/eclinm/article/PIIS2589-5370(25)00614-5/fulltext",
+  "completeHrefOccurrencesVerified": 2,
+  "getAndHeadSourceHeaders": {
+    "glp-1-weight-regain": "babylovegrowth",
+    "weight-loss-maintenance-plan": "babylovegrowth",
+    "type-2-diabetes-remission-men": "shift-contributor"
+  },
+  "verified": {
+    "articleBodiesAndDatesUnchanged": true,
+    "articleSecurityHeadersUnchanged": true,
+    "imagesHTTP200AndApprovedSHA256": 8,
+    "protectedDocumentsAndAssetsUnchanged": 16,
+    "otherServingModulesPreservedExactly": 78,
+    "configurationAndBindingsPreserved": true,
+    "onlyExpectedReleaseAnnotationsChanged": true,
+    "databaseWrites": 0,
+    "routeChanges": false,
+    "communicationsSent": false
+  },
+  "rollback": {
+    "previousDeploymentId": "a852dcaf-64fa-4a92-acda-7a9c1c3b763e",
+    "previousVersionId": "632d2c61-45d1-41f0-9f86-2dd70a14ef91",
+    "policy": "Restore only the exact source/run/deployment owned by this release; preserve any newer deployment owner"
+  },
+  "publisher": "Pinned to the completed release source; later branch updates cannot publish"
+}

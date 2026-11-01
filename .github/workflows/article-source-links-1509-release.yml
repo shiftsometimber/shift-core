@@ -13,6 +13,8 @@ concurrency:
   cancel-in-progress: false
 jobs:
   release:
+    # Completed one-time release. Later receipt/maintenance commits cannot replay it.
+    if: github.sha == '335d9550edff99ea8ec7b9ec62ec7177bc448858'
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     env:
