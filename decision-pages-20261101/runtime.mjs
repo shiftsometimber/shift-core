@@ -14,6 +14,7 @@ export function transform(html,key){
  const revisedWrap=wrap.html.slice(0,wrap.html.indexOf('>')+1)+layout+'</div>';
  const revisedHero=hero.html.replace(wrap.html,revisedWrap).replace('<section','<section data-dp-hero');
  let main=old.replace(hero.html,revisedHero).replace('<main','<main data-approved-pages="'+key+'" data-approved-release="'+release+'"');
+ main=main.replace(/<div class="qa-scroll-table-v2224">/g,'<p class="dp-table-hint" data-dp-label>Swipe sideways to see every column.</p><div class="qa-scroll-table-v2224">');
  main=main.replace(/(?:<section\b[^>]*class="[^"]*programme-cta-mini[^"]*"[^>]*>[\s\S]*?<\/section>\s*){2,}/g,block=>'<div class="dp-next-grid">'+block+'</div>');
  const guidance=bounds(main,t=>t.includes('data-tool-guidance='));if(guidance)main=main.replace(guidance.html,'<details class="dp-guidance"><summary><span data-dp-label>About this tool and saved profiles</span></summary>'+guidance.html+'</details>');
  main=main.slice(0,main.indexOf('>')+1)+'<div class="dp-service-container sg-copy">'+main.slice(main.indexOf('>')+1,main.lastIndexOf('</main>'))+'</div></main>';
