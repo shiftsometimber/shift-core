@@ -15,7 +15,7 @@ export function plannedPackage(before,{replaceOwned=false}={}){
  assert(before.main_module&&before.modules?.some(m=>m.name===before.main_module));
  assert.match(before.main_module,/^[a-zA-Z0-9_./-]+\.m?js$/);assert(!before.main_module.split('/').includes('..'));
  if(replaceOwned){
-  assert.equal(before.main_module,ENTRY);
+  assert(before.modules.some(m=>m.name===ENTRY));
   assert.deepEqual(before.modules.filter(m=>m.name.startsWith('referral-programme/')).map(m=>m.name).sort(),[ENTRY,...MODULES.map(n=>'referral-programme/'+n)].sort(),'Unexpected owned module inventory');
   return {...before,modules:before.modules.map(m=>{const name=m.name.replace(/^referral-programme\//,'');return MODULES.includes(name)?{...m,content_base64:readFileSync(new URL(name,import.meta.url)).toString('base64')}:m;})};
  }

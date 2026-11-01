@@ -6,13 +6,14 @@ const shells={'/partner-with-us':readFileSync(partner,'utf8'),'/programme':readF
 function preview(html,client){
  html=html.replace(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi,(all,attrs)=>/type=["']application\/(?:ld\+)?json["']/i.test(attrs)?all:'');
  html=html.replace(/<link\b[^>]*href=["']\/assets\/referral-programme\/styles.css["'][^>]*>/gi,'<style>'+readFileSync(new URL('styles.css',import.meta.url),'utf8')+'</style>');
+ html=html.replace(/<link\b[^>]*href=["']\/assets\/referral-programme\/resources.css["'][^>]*>/gi,'<style>'+readFileSync(new URL('resources.css',import.meta.url),'utf8')+'</style>');
  html=html.replace(/(href|src)=["'](\/(?!\/)[^"']*)["']/g,(all,key,value)=>value.startsWith('/assets/')?key+'="https://shiftsometimber.co.uk'+value+'"':all);
  const stub='<script>window.SSTTurnstile={getToken:async()=>"fictional-preview-token"};window.fetch=async(path,init)=>{if(path!=="/v1/contact")throw Error("Preview request blocked");window.lastPreviewRequest=JSON.parse(init.body);return new Response(JSON.stringify({ok:true,status:"sent",message:"Preview accepted — no email has been sent."}),{headers:{"Content-Type":"application/json"}});};</script>';
  if(client)html=html.replace('</body>',stub+'<script type="module">'+readFileSync(new URL(client,import.meta.url),'utf8')+'</script></body>');
  return html;
 }
 mkdirSync(output,{recursive:true});
-for(const path of ['/refer-to-shift','/programme/sample','/partner-with-us','/programme']){
+for(const path of ['/refer-to-shift','/programme/sample','/partner-with-us','/programme','/refer-to-shift/resources']){
  const info=PAGE_INFO[path],html=info?renderPage(shells[info.parent],path):addDiscovery(shells[path],path),rendered=preview(html,info?.script),dir=output+path;
  mkdirSync(dir,{recursive:true});writeFileSync(dir+'/index.html',rendered);
 }

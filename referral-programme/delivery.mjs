@@ -10,7 +10,7 @@ export function wrapReferralProgramme(original){return {...original,async fetch(
  const asset=ASSETS[path],info=PAGE_INFO[path],discovery=['/programme','/partner-with-us'].includes(path);
  if(!asset&&!info&&!discovery)return original.fetch(request,env,ctx);
  if(!['GET','HEAD'].includes(request.method))return asset||info?new Response('Method not allowed',{status:405,headers:{...publicHeaders,Allow:'GET, HEAD'}}):original.fetch(request,env,ctx);
- if(asset!==undefined)return new Response(request.method==='HEAD'?null:asset,{headers:{...publicHeaders,'Content-Type':path.endsWith('.css')?'text/css; charset=utf-8':'text/javascript; charset=utf-8'}});
+ if(asset!==undefined)return new Response(request.method==='HEAD'?null:asset,{headers:{...publicHeaders,'Content-Type':path.endsWith('.css')?'text/css; charset=utf-8':path.endsWith('.html')?'text/html; charset=utf-8':'text/javascript; charset=utf-8'}});
  if(info){
   const parent=new URL(url);parent.pathname=info.parent;parent.search='';
   const headers=new Headers(request.headers);for(const name of ['Cookie','Authorization','If-None-Match','If-Modified-Since'])headers.delete(name);

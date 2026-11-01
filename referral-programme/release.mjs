@@ -54,8 +54,9 @@ if(mode==='rollback'){
  const documents=await publicSnapshot(protectedPaths);save('documents-before.json',documents);
  assert.equal(documents['/assets/member-experience/programme-first-six-weeks.mjs'].sha256,receipt.sourceSHA256,'Existing six-week source changed; reconcile content before publication');
  const independent=await captureIndependentPresentation({accountId:account,token});save('independent-before.json',independent);
- const repair=Boolean(process.env.EXPECTED_REPAIR_VERSION);
- if(repair)assert.equal(before.versions[0].version_id,process.env.EXPECTED_REPAIR_VERSION,'Repair predecessor moved');
+ const repair=Boolean(process.env.EXPECTED_REPAIR_VERSION||process.env.EXPECTED_INSTALLED_COPY_SHA256);
+ if(process.env.EXPECTED_INSTALLED_COPY_SHA256){const installed=hash(MODULES.map(name=>{const m=original.modules.find(m=>m.name==='referral-programme/'+name);assert(m,'Installed referral module missing');return name+'\n'+Buffer.from(m.content_base64,'base64').toString('utf8');}).join('\n'));assert.equal(installed,process.env.EXPECTED_INSTALLED_COPY_SHA256,'Installed referral version changed');}
+ if(process.env.EXPECTED_REPAIR_VERSION)assert.equal(before.versions[0].version_id,process.env.EXPECTED_REPAIR_VERSION,'Repair predecessor moved');
  const planned=plannedPackage(original,{replaceOwned:repair});
  assert.equal((await latest()).id,before.id,'Serving source moved during capture');
  save('plan.json',{source:process.env.GITHUB_SHA,copySHA256:copySHA,preservedModules:original.modules.length,addedModules:planned.modules.length-original.modules.length,entry:planned.main_module,productionMutations:mode==='capture'?0:'pending'});
@@ -83,12 +84,12 @@ if(mode==='rollback'){
   assert.deepEqual(await publicSnapshot(protectedPaths),documents,'Protected public or member response changed');
   assert.deepEqual(await captureIndependentPresentation({accountId:account,token}),independent);
   assert(stableSettings(await settings())===stableSettings(config),'Serving settings changed');
-  for(const path of ['/refer-to-shift','/programme/sample','/programme','/partner-with-us']){
+  for(const path of ['/refer-to-shift','/programme/sample','/programme','/partner-with-us','/refer-to-shift/resources']){
    const r=await fetch('https://shiftsometimber.co.uk'+path,{signal:AbortSignal.timeout(30000)});assert.equal(r.status,200);assert.equal(r.headers.get('X-Shift-Referral-Programme'),VERSION);const text=await r.text();assert(text.includes(path==='/programme'||path==='/partner-with-us'?'data-shift-referral-entry=':'data-shift-referral-programme='));
    const head=await fetch('https://shiftsometimber.co.uk'+path,{method:'HEAD',signal:AbortSignal.timeout(30000)});assert.equal(head.status,200);assert.equal((await head.arrayBuffer()).byteLength,0);
   }
-  for(const name of ['styles.css','referrer-client.mjs','sample-client.mjs']){const r=await fetch('https://shiftsometimber.co.uk/assets/referral-programme/'+name);assert.equal(r.status,200);assert.equal(hash(Buffer.from(await r.arrayBuffer())),hash(readFileSync(new URL(name,import.meta.url))));}
-  save('verified.json',{source:process.env.GITHUB_SHA,version:uploaded.id,copySHA256:copySHA,pages:4,protectedResponses:protectedPaths.length,realEmailTests:0,memberWrites:0,newRoutes:0,independentPresentationPreserved:true});
+  for(const name of ['styles.css','referrer-client.mjs','sample-client.mjs','resources.html','resources.css','resources-client.mjs']){const r=await fetch('https://shiftsometimber.co.uk/assets/referral-programme/'+name);assert.equal(r.status,200);assert.equal(hash(Buffer.from(await r.arrayBuffer())),hash(readFileSync(new URL(name,import.meta.url))));}
+  save('verified.json',{source:process.env.GITHUB_SHA,version:uploaded.id,copySHA256:copySHA,pages:5,protectedResponses:protectedPaths.length,realEmailTests:0,memberWrites:0,newRoutes:0,independentPresentationPreserved:true});
   console.log(JSON.stringify({deployed:true,verified:true,version:uploaded.id,copySHA256:copySHA}));
   }
  }
