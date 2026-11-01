@@ -24,7 +24,7 @@ export function plannedPackage(before,{replaceOwned=false}={}){
  return {main_module:ENTRY,modules:[...before.modules,{name:ENTRY,content_base64:Buffer.from(source).toString('base64')},...MODULES.map(name=>({name:'referral-programme/'+name,content_base64:readFileSync(new URL(name,import.meta.url)).toString('base64')}))]};
 }
 export function verifyPackage(before,staged,planned){
- assert.equal(staged.main_module,ENTRY);assert(JSON.stringify(staged.bindings)===JSON.stringify(before.bindings),'Bindings changed');
+ assert.equal(staged.main_module,planned.main_module);assert(JSON.stringify(staged.bindings)===JSON.stringify(before.bindings),'Bindings changed');
  assert.equal(staged.compatibility_date,before.compatibility_date);
  assert(JSON.stringify((staged.compatibility_flags||[]).toSorted())===JSON.stringify((before.compatibility_flags||[]).toSorted()),'Compatibility flags changed');
  assert.deepEqual(staged.modules.map(m=>m.name).sort(),planned.modules.map(m=>m.name).sort());
