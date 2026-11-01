@@ -1,0 +1,951 @@
+{
+  "readOnly": true,
+  "source": "96951fa414df7e9fdd0158fc7f2f2f42a8780578",
+  "capturedAt": "2026-11-01T15:04:25.544Z",
+  "routeCount": 915,
+  "owners": [
+    {
+      "path": "/comparisons/nhs-private/gp-vs-specialist-weight-management",
+      "route": {
+        "id": "0aec5e0c20904d268451155614ab3cef",
+        "pattern": "https://shiftsometimber.co.uk/comparisons/nhs-private/gp-vs-specialist-weight-management",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/gp-vs-specialist-weight-management?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/gp-vs-specialist-weight-management/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/gp-vs-specialist-weight-management/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/gp-vs-specialist-weight-management.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/gp-vs-specialist-weight-management.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-aftercare",
+      "route": {
+        "id": "01bba952314c41bfbee570887894aeaf",
+        "pattern": "https://shiftsometimber.co.uk/comparisons/nhs-private/nhs-vs-private-aftercare",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-aftercare?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-aftercare/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-aftercare/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-aftercare.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-aftercare.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-medication",
+      "route": {
+        "id": "d700e2c38004449b90531b47672de8b6",
+        "pattern": "https://shiftsometimber.co.uk/comparisons/nhs-private/nhs-vs-private-medication",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-medication?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-medication/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-medication/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-medication.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-medication.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-surgery",
+      "route": {
+        "id": "c2848be5467246a98488142dfcf44e21",
+        "pattern": "https://shiftsometimber.co.uk/comparisons/nhs-private/nhs-vs-private-surgery",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-surgery?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-surgery/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-surgery/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-surgery.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/nhs-vs-private-surgery.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/nice-eligible-but-no-access",
+      "route": {
+        "id": "c541725785b24d4f9e23067fb8d6aee7",
+        "pattern": "https://shiftsometimber.co.uk/comparisons/nhs-private/nice-eligible-but-no-access",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/nice-eligible-but-no-access?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/nice-eligible-but-no-access/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/nice-eligible-but-no-access/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/nice-eligible-but-no-access.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/nice-eligible-but-no-access.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/online-pharmacy-vs-clinic",
+      "route": {
+        "id": "50211f30672447e6be4d91fabc0cdc3b",
+        "pattern": "https://shiftsometimber.co.uk/comparisons/nhs-private/online-pharmacy-vs-clinic",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/online-pharmacy-vs-clinic?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/online-pharmacy-vs-clinic/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/online-pharmacy-vs-clinic/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/online-pharmacy-vs-clinic.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/online-pharmacy-vs-clinic.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/wait-vs-pay-private",
+      "route": {
+        "id": "ff4c6e342dfd427f9fb097ef39fdea63",
+        "pattern": "https://shiftsometimber.co.uk/comparisons/nhs-private/wait-vs-pay-private",
+        "script": "shift-public-presentation-batch-20261022",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/wait-vs-pay-private?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/wait-vs-pay-private/",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/wait-vs-pay-private/?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/wait-vs-pay-private.html",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    },
+    {
+      "path": "/comparisons/nhs-private/wait-vs-pay-private.html?presentation=1",
+      "route": {
+        "id": "07178fa6c72e461a82bb014b0284f37a",
+        "pattern": "shiftsometimber.co.uk/*",
+        "script": "shift-core",
+        "request_limit_fail_open": false
+      }
+    }
+  ],
+  "workers": [
+    {
+      "name": "shift-public-presentation-batch-20261022",
+      "versionId": "16c68455-b25f-45fa-a206-f724f5724778",
+      "deploymentId": "d8ccd737-901e-4e80-a757-0e6e84c5106b",
+      "main": "lifestyle-guides-20261101/entry.mjs",
+      "modules": [
+        {
+          "name": "comparison-cp1/layout.mjs",
+          "bytes": 994
+        },
+        {
+          "name": "comparison-cp1/overlay.mjs",
+          "bytes": 1062
+        },
+        {
+          "name": "comparison-cp1/styles.mjs",
+          "bytes": 32043
+        },
+        {
+          "name": "decision-pages-20261101/config.mjs",
+          "bytes": 1832
+        },
+        {
+          "name": "decision-pages-20261101/entry.mjs",
+          "bytes": 357
+        },
+        {
+          "name": "decision-pages-20261101/graphics.mjs",
+          "bytes": 2434
+        },
+        {
+          "name": "decision-pages-20261101/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "decision-pages-20261101/presentation.mjs",
+          "bytes": 36212
+        },
+        {
+          "name": "decision-pages-20261101/runtime.mjs",
+          "bytes": 4379
+        },
+        {
+          "name": "downloads-dr3-20261031/config.mjs",
+          "bytes": 490
+        },
+        {
+          "name": "downloads-dr3-20261031/entry.mjs",
+          "bytes": 210
+        },
+        {
+          "name": "downloads-dr3-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "downloads-dr3-20261031/presentation.mjs",
+          "bytes": 8305
+        },
+        {
+          "name": "downloads-dr3-20261031/runtime.mjs",
+          "bytes": 3948
+        },
+        {
+          "name": "family-fd3-20261031/config.mjs",
+          "bytes": 493
+        },
+        {
+          "name": "family-fd3-20261031/entry.mjs",
+          "bytes": 214
+        },
+        {
+          "name": "family-fd3-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "family-fd3-20261031/presentation.mjs",
+          "bytes": 7722
+        },
+        {
+          "name": "family-fd3-20261031/runtime.mjs",
+          "bytes": 3288
+        },
+        {
+          "name": "health-hb2/layout.mjs",
+          "bytes": 1321
+        },
+        {
+          "name": "health-hb2/overlay.mjs",
+          "bytes": 1079
+        },
+        {
+          "name": "health-hb2/styles.mjs",
+          "bytes": 26189
+        },
+        {
+          "name": "hero-set-20261030/entry.mjs",
+          "bytes": 600
+        },
+        {
+          "name": "hero-set-20261030/payload.mjs",
+          "bytes": 39042
+        },
+        {
+          "name": "hero-set-20261030/runtime.mjs",
+          "bytes": 9762
+        },
+        {
+          "name": "knowledge-health-entry.mjs",
+          "bytes": 266
+        },
+        {
+          "name": "knowledge-health/client.mjs",
+          "bytes": 2540
+        },
+        {
+          "name": "knowledge-health/content.mjs",
+          "bytes": 54409
+        },
+        {
+          "name": "knowledge-health/evidence.mjs",
+          "bytes": 11569
+        },
+        {
+          "name": "knowledge-health/expansion-content.mjs",
+          "bytes": 97780
+        },
+        {
+          "name": "knowledge-health/production.mjs",
+          "bytes": 3726
+        },
+        {
+          "name": "knowledge-health/render.mjs",
+          "bytes": 22279
+        },
+        {
+          "name": "lifestyle-guides-20261101/config.mjs",
+          "bytes": 2433
+        },
+        {
+          "name": "lifestyle-guides-20261101/entry.mjs",
+          "bytes": 526
+        },
+        {
+          "name": "lifestyle-guides-20261101/graphics.mjs",
+          "bytes": 1565
+        },
+        {
+          "name": "lifestyle-guides-20261101/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "lifestyle-guides-20261101/presentation.mjs",
+          "bytes": 50026
+        },
+        {
+          "name": "lifestyle-guides-20261101/runtime.mjs",
+          "bytes": 9640
+        },
+        {
+          "name": "pending-pages-20261031/config.mjs",
+          "bytes": 983
+        },
+        {
+          "name": "pending-pages-20261031/entry.mjs",
+          "bytes": 220
+        },
+        {
+          "name": "pending-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "pending-pages-20261031/presentation.mjs",
+          "bytes": 25583
+        },
+        {
+          "name": "pending-pages-20261031/runtime.mjs",
+          "bytes": 5070
+        },
+        {
+          "name": "previews/public-presentation-batch/answer-depth.mjs",
+          "bytes": 35553
+        },
+        {
+          "name": "previews/public-presentation-batch/manifest.mjs",
+          "bytes": 20650
+        },
+        {
+          "name": "previews/public-presentation-batch/stopping-layout.mjs",
+          "bytes": 1073
+        },
+        {
+          "name": "previews/public-presentation-batch/stopping-style.mjs",
+          "bytes": 8263
+        },
+        {
+          "name": "previews/public-presentation-batch/style.mjs",
+          "bytes": 13197
+        },
+        {
+          "name": "previews/public-presentation-batch/worker.mjs",
+          "bytes": 4901
+        },
+        {
+          "name": "quality-repair-20261101/config.mjs",
+          "bytes": 2579
+        },
+        {
+          "name": "quality-repair-20261101/entry.mjs",
+          "bytes": 521
+        },
+        {
+          "name": "quality-repair-20261101/graphics.mjs",
+          "bytes": 2800
+        },
+        {
+          "name": "quality-repair-20261101/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "quality-repair-20261101/presentation.mjs",
+          "bytes": 25897
+        },
+        {
+          "name": "quality-repair-20261101/runtime.mjs",
+          "bytes": 8379
+        },
+        {
+          "name": "remaining-pages-20261101/config.mjs",
+          "bytes": 3422
+        },
+        {
+          "name": "remaining-pages-20261101/entry.mjs",
+          "bytes": 619
+        },
+        {
+          "name": "remaining-pages-20261101/graphics.mjs",
+          "bytes": 4206
+        },
+        {
+          "name": "remaining-pages-20261101/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "remaining-pages-20261101/presentation.mjs",
+          "bytes": 45075
+        },
+        {
+          "name": "remaining-pages-20261101/runtime.mjs",
+          "bytes": 9447
+        },
+        {
+          "name": "support-pages-20261031/config.mjs",
+          "bytes": 1161
+        },
+        {
+          "name": "support-pages-20261031/entry.mjs",
+          "bytes": 318
+        },
+        {
+          "name": "support-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "support-pages-20261031/presentation.mjs",
+          "bytes": 16635
+        },
+        {
+          "name": "support-pages-20261031/runtime.mjs",
+          "bytes": 4023
+        },
+        {
+          "name": "utility-pages-20261031/config.mjs",
+          "bytes": 1055
+        },
+        {
+          "name": "utility-pages-20261031/entry.mjs",
+          "bytes": 408
+        },
+        {
+          "name": "utility-pages-20261031/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "utility-pages-20261031/presentation.mjs",
+          "bytes": 24334
+        },
+        {
+          "name": "utility-pages-20261031/runtime.mjs",
+          "bytes": 3274
+        },
+        {
+          "name": "weight-mw1/layout.mjs",
+          "bytes": 1053
+        },
+        {
+          "name": "weight-mw1/overlay.mjs",
+          "bytes": 1048
+        },
+        {
+          "name": "weight-mw1/styles.mjs",
+          "bytes": 44834
+        }
+      ],
+      "bindingCount": 4
+    },
+    {
+      "name": "shift-core",
+      "versionId": "528d254c-b494-48a0-8e01-bbf275ed4a07",
+      "deploymentId": "bb9abbbe-6645-4337-a035-b358cdddb2eb",
+      "main": "lifestyle-guides-20261101/entry.mjs",
+      "modules": [
+        {
+          "name": "decision-pages-20261101/config.mjs",
+          "bytes": 1832
+        },
+        {
+          "name": "decision-pages-20261101/entry.mjs",
+          "bytes": 1138
+        },
+        {
+          "name": "decision-pages-20261101/graphics.mjs",
+          "bytes": 2434
+        },
+        {
+          "name": "decision-pages-20261101/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "decision-pages-20261101/presentation.mjs",
+          "bytes": 36212
+        },
+        {
+          "name": "decision-pages-20261101/runtime.mjs",
+          "bytes": 4379
+        },
+        {
+          "name": "first-paint-utilities-20261101/documents.mjs",
+          "bytes": 25730
+        },
+        {
+          "name": "first-paint-utilities-20261101/entry.mjs",
+          "bytes": 226
+        },
+        {
+          "name": "lifestyle-guides-20261101/config.mjs",
+          "bytes": 2433
+        },
+        {
+          "name": "lifestyle-guides-20261101/entry.mjs",
+          "bytes": 1979
+        },
+        {
+          "name": "lifestyle-guides-20261101/graphics.mjs",
+          "bytes": 1565
+        },
+        {
+          "name": "lifestyle-guides-20261101/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "lifestyle-guides-20261101/presentation.mjs",
+          "bytes": 50026
+        },
+        {
+          "name": "lifestyle-guides-20261101/runtime.mjs",
+          "bytes": 9640
+        },
+        {
+          "name": "public-image-repair/delivery.mjs",
+          "bytes": 1082
+        },
+        {
+          "name": "public-image-repair/entry.mjs",
+          "bytes": 221
+        },
+        {
+          "name": "public-image-repair/tools-image.mjs",
+          "bytes": 166820
+        },
+        {
+          "name": "quality-repair-20261101/config.mjs",
+          "bytes": 2579
+        },
+        {
+          "name": "quality-repair-20261101/entry.mjs",
+          "bytes": 2057
+        },
+        {
+          "name": "quality-repair-20261101/graphics.mjs",
+          "bytes": 2800
+        },
+        {
+          "name": "quality-repair-20261101/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "quality-repair-20261101/media.mjs",
+          "bytes": 795
+        },
+        {
+          "name": "quality-repair-20261101/photo-contributors.mjs",
+          "bytes": 158583
+        },
+        {
+          "name": "quality-repair-20261101/photo-media.mjs",
+          "bytes": 163699
+        },
+        {
+          "name": "quality-repair-20261101/photo-mot.mjs",
+          "bytes": 125399
+        },
+        {
+          "name": "quality-repair-20261101/photo-partners.mjs",
+          "bytes": 241951
+        },
+        {
+          "name": "quality-repair-20261101/photo-promise.mjs",
+          "bytes": 205143
+        },
+        {
+          "name": "quality-repair-20261101/photo-research.mjs",
+          "bytes": 154699
+        },
+        {
+          "name": "quality-repair-20261101/photo-roadmap.mjs",
+          "bytes": 242115
+        },
+        {
+          "name": "quality-repair-20261101/presentation.mjs",
+          "bytes": 25897
+        },
+        {
+          "name": "quality-repair-20261101/restore-community-0.mjs",
+          "bytes": 246727
+        },
+        {
+          "name": "quality-repair-20261101/restore-downloads-0.mjs",
+          "bytes": 104879
+        },
+        {
+          "name": "quality-repair-20261101/restore-family-0.mjs",
+          "bytes": 250783
+        },
+        {
+          "name": "quality-repair-20261101/restore-pending-0.mjs",
+          "bytes": 166195
+        },
+        {
+          "name": "quality-repair-20261101/restore-pending-1.mjs",
+          "bytes": 275907
+        },
+        {
+          "name": "quality-repair-20261101/restore-provider-0.mjs",
+          "bytes": 146399
+        },
+        {
+          "name": "quality-repair-20261101/restore-selected-0.mjs",
+          "bytes": 282247
+        },
+        {
+          "name": "quality-repair-20261101/restore-selected-1.mjs",
+          "bytes": 99335
+        },
+        {
+          "name": "quality-repair-20261101/restored-media.mjs",
+          "bytes": 1070
+        },
+        {
+          "name": "quality-repair-20261101/runtime.mjs",
+          "bytes": 8379
+        },
+        {
+          "name": "remaining-pages-20261101/config.mjs",
+          "bytes": 3422
+        },
+        {
+          "name": "remaining-pages-20261101/entry.mjs",
+          "bytes": 4301
+        },
+        {
+          "name": "remaining-pages-20261101/graphics.mjs",
+          "bytes": 4206
+        },
+        {
+          "name": "remaining-pages-20261101/html.mjs",
+          "bytes": 1788
+        },
+        {
+          "name": "remaining-pages-20261101/media.mjs",
+          "bytes": 393
+        },
+        {
+          "name": "remaining-pages-20261101/photo-editorial.mjs",
+          "bytes": 151199
+        },
+        {
+          "name": "remaining-pages-20261101/photo-lifestyle.mjs",
+          "bytes": 302991
+        },
+        {
+          "name": "remaining-pages-20261101/photo-reviews.mjs",
+          "bytes": 185379
+        },
+        {
+          "name": "remaining-pages-20261101/presentation.mjs",
+          "bytes": 45075
+        },
+        {
+          "name": "remaining-pages-20261101/runtime.mjs",
+          "bytes": 9447
+        },
+        {
+          "name": "worker.js",
+          "bytes": 33697619
+        }
+      ],
+      "assets": {
+        "config": {
+          "html_handling": "auto-trailing-slash",
+          "not_found_handling": "none",
+          "run_worker_first": true,
+          "base_path": "/"
+        }
+      },
+      "bindingCount": 52
+    }
+  ],
+  "captures": [
+    {
+      "key": "gp-vs-specialist-weight-management",
+      "status": 200,
+      "bytes": 57759
+    },
+    {
+      "key": "nhs-vs-private-aftercare",
+      "status": 200,
+      "bytes": 57683
+    },
+    {
+      "key": "nhs-vs-private-medication",
+      "status": 200,
+      "bytes": 57991
+    },
+    {
+      "key": "nhs-vs-private-surgery",
+      "status": 200,
+      "bytes": 57636
+    },
+    {
+      "key": "nice-eligible-but-no-access",
+      "status": 200,
+      "bytes": 57921
+    },
+    {
+      "key": "online-pharmacy-vs-clinic",
+      "status": 200,
+      "bytes": 57798
+    },
+    {
+      "key": "wait-vs-pay-private",
+      "status": 200,
+      "bytes": 57795
+    }
+  ]
+}

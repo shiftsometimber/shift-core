@@ -1,0 +1,43 @@
+{
+  "visualReviewPassed": true,
+  "reviewedSource": "96951fa414df7e9fdd0158fc7f2f2f42a8780578",
+  "browserChecks": 42,
+  "pages": [
+    "gp-vs-specialist-weight-management",
+    "nhs-vs-private-aftercare",
+    "nhs-vs-private-medication",
+    "nhs-vs-private-surgery",
+    "nice-eligible-but-no-access",
+    "online-pharmacy-vs-clinic",
+    "wait-vs-pay-private"
+  ],
+  "viewports": [
+    1440,
+    768,
+    390
+  ],
+  "evidence": [
+    {
+      "source": "96951fa414df7e9fdd0158fc7f2f2f42a8780578",
+      "run": 41319277963,
+      "artifact": 13088089742,
+      "cases": 42,
+      "scope": "Complete responsive, source-preservation and horizontal-table browser review"
+    }
+  ],
+  "manualReview": "Inspected all seven desktop, tablet and phone header/layout screenshots and a representative full phone page through sources, service panel and footer. No clipped text or contrast issues. Mobile tables are intentionally horizontal, with a visible swipe hint and verified scrolling.",
+  "moduleHashes": {
+    "config.mjs": "3cf1daca100598bf2ee4e751f778a3cc6a9ac0aa993e229cbcf5b00109d0fee5",
+    "runtime.mjs": "f1e2a8dfeb44fdd26769d18e8e00e104994fb7d6e30770ee6b100adce450cf4d",
+    "presentation.mjs": "ef0823591ea56aca825e69040bedfd7b092d62ffd92a594e40db89fb8091af1a",
+    "graphics.mjs": "6d548b705a50362113fc3034b4bd8dec48ffa1f7b609239fa5bc384794d00c75",
+    "html.mjs": "efb7081f50337295361cb96d6b05f5f7d7d03df773f625609299ca4e86297146",
+    "browser.mjs": "5226bdf06fb24bf9478c2cf8e12a4b31668894181e5fac9127a9778a5072bdb5",
+    "check.mjs": "0259f5b3d2459c71834aaafb155099929ac4fe29a00eb8155278789e8550514e",
+    "deploy.mjs": "398e831d85677a72e5d49e98a0466652290ddc15b80ace9bb07348fcd2cb9728",
+    "capture.mjs": "3ae9cd66c1fb6e76799a0af21edfdb784477ff6b99346883aabc0f64f8aa682f",
+    "route-owner.mjs": "35d4ad17759b7926b46fe76631c1fcf614c8251c28c5d50e6c0211360af30305",
+    "release-state.mjs": "b7a21d4dd04b7ab21d15b063fecdb8bf95ca1741bc4861d019872983f9143630",
+    "media.mjs": "f05ae5a3b3af2d818d07ed249b3b54516faea7d2e38d0e0835b6ba3e98e2ee66"
+  }
+}
