@@ -1,16 +1,18 @@
 {
   "state": "LIVE_AND_VERIFIED",
-  "at": "2026-11-01T08:08:18.974Z",
-  "source": "4e19af0cca965490b7b619d9d39698ce1534bbbd",
+  "at": "2026-11-01T08:34:38.932Z",
+  "source": "4fa9e5088522c6d5920bf8e50fc322fc055c5638",
   "worker": "shift-programme-member-20261023",
-  "versionId": "7bb57148-6cd6-4088-8d69-9b6b2bc49701",
-  "deploymentId": "f54232e1-bf02-40a7-98b5-98a00e0a53d3",
-  "rollbackVersion": "d908e3e1-58e3-4c8f-b639-6fb8a852f6b2",
-  "bundleSHA256": "f7db9ebdf589239c9f8490a187d9d21e64efa85007e4c4eb03bbb4cfa03fc0cd",
+  "versionId": "ebbc0b1b-7e78-41a1-913f-161a77c241a5",
+  "deploymentId": "0bfe300a-3885-46a8-beb7-80399f37a3f3",
+  "rollbackVersion": "1620b118-a5c1-498c-99d6-ae1d514e70e0",
+  "bundleSHA256": "18fa9cd718858b98690d48a0824c51b15dc2071373e3c74336953facb9552a8c",
   "resolved": [
-    "Shop category emoji arrows removed; same four cards, images and spacing retained",
-    "Guide chart is connected to pointer and wheel handlers",
-    "Continuous range input remains mounted while date, marker, day copy and example figure update in place"
+    "Shop category emoji arrows remain removed",
+    "Figure uses a changing clipped filled area, not opacity or colour changes",
+    "Guide opens and reopens at Day 1; Play restarts from Day 1 at the end",
+    "Guide date is restored when returning to Journey, including cancelling a dated entry; new-record dates remain unchanged",
+    "Pointer, wheel, range, keyboard, day buttons and Play keep the figure and chart synchronised"
   ],
   "routesPreserved": 915,
   "newRoutes": 0,
@@ -19,8 +21,10 @@
   "sourceChecks": 28,
   "chromiumIsolatedChecks": 34,
   "webkitNativeIsolatedChecks": 34,
-  "productionPagesPerEngine": 23,
-  "productionAssetsPerEngine": 7,
+  "productionPagesPerEngine": 24,
+  "productionAssetsPerEngine": 10,
+  "newConsoleErrors": 0,
+  "sixWeekProgrammePreserved": true,
   "privateApis": [
     {
       "path": "/v1/life-back/journey",
@@ -43,7 +47,6 @@
       "method": "GET"
     }
   ],
-  "newConsoleErrors": 0,
-  "ordinaryProductionJourneyPersistence": "NOT VERIFIED; retained test session is signed out",
+  "ordinaryProductionJourneyPersistence": "NOT VERIFIED; authorised test session signed out",
   "physicalInstalledPwaAndNative": "NOT VERIFIED"
 }
