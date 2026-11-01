@@ -1,0 +1,32 @@
+{
+  "scope": "Simulated explicit selection and portion confirmation; no member confirmation or database write occurred",
+  "default_nutrition_absent": true,
+  "substitutions_require_review": true,
+  "draft": {
+    "food": "Chilli tuna jacket potato — tomato ketchup, cider vinegar",
+    "items": [
+      "Chilli tuna jacket potato — tomato ketchup, cider vinegar"
+    ],
+    "nutrition": {
+      "kcal": 686.4,
+      "proteinG": 56,
+      "carbsG": 96.8,
+      "fatG": 10.5
+    },
+    "nutritionSource": "member_confirmed_estimate",
+    "recipe": {
+      "id": "industrial-v3-jacket-potato-buffalo-tuna",
+      "content_sha256": "8a26450cb55d863f7815066fa455e57c01b7651f276482d6bc2e62e368bd9339",
+      "servingsEaten": 1.5,
+      "recipeYield": 1,
+      "ingredientsChanged": false
+    },
+    "basis": {
+      "amount": 1.5,
+      "unit": "recipe serving"
+    },
+    "requiresReview": true,
+    "autoSave": false,
+    "message": "Recipe estimates for the serving you confirmed. Check any substitutions, then save once."
+  }
+}

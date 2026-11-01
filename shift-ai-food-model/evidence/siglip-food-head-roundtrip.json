@@ -1,0 +1,17 @@
+{
+  "real_jpeg_roundtrips": 200,
+  "maximum_probability_difference": 8.106231689453125e-06,
+  "production_invocation_refused": true,
+  "private_identity_fields_refused": true,
+  "warm_image_inference_mean_ms": 396.3049846947979,
+  "example": {
+    "id": "dish_1560543755",
+    "response": {
+      "items": [
+        "carrots"
+      ],
+      "nutrition": {}
+    }
+  },
+  "scope": "Local research serialization and request checks; not UK recipe or production acceptance"
+}

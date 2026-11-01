@@ -5,6 +5,63 @@ He subsequently instructed that both food recognition and the MediSearch-style
 research capability belong inside Shift AI. No competitor trial, subscription
 or integration is part of this implementation.
 
+## Recipe-aware continuation — 1 November 2026
+
+Matt asked that recognition fit our own recipes and learn from them. The local
+reference bank now contains 2,692 current governed source recipes: 2,671 full
+UK recipes, 14 UK core additions and seven everyday recipes. Publication status,
+release hashes and corrected row hashes are checked. This is a source snapshot,
+not live D1 readback. Recipe text embeddings give image-to-recipe suggestions;
+they do not constitute supervised visual training of 2,692 recipe identities.
+
+`recipe_catalogue.mjs` provides an explicit current-recipe/hash and portion
+confirmation step. Nutrition is optional and off by default. It scales recorded
+per-serving estimates once, preserves unknown nutrients as absent, and withholds
+recipe numbers when ingredients differ. Its result is a review draft with
+`autoSave:false`: it does not itself call the existing member diary writer.
+The future UI must pass the member-reviewed draft into the existing single-save
+flow to update Grub, Today, Journey and shared AI context; no second log store.
+No actual member selection, logging write or production hookup happened here.
+
+Of the reference image bindings, 2,671 refer to older recipe snapshots; none
+exactly matches current title, ingredients and method. Another 21 recipes lack
+an exact binding. This is a source-version check, not proof that every photo
+looks wrong or that the live recipe UI is broken. Some references are AI-generated
+illustrations. These are excluded from exact-current-recipe training and from
+real-photo evaluation. Learning exact recipes requires verified real meal photos
+paired with the current recipe hash, substitutions and capture/source group;
+training rights/consent must cover that reuse. Member confirmations alone are
+not shared-training permission. A separate representative evaluation must stay
+out of training, including repeat photos of the same dish/cook session.
+
+A fourth component experiment used the public Apache-2.0 SigLIP base, pinned to
+`7fd15f0689c79d79e38b1c2e2e2370a7bf2761ed`, and trained our own 9,228-parameter
+head on the same 1,200 / 200 / 200 grouped images. It selected the full-image
+view and epoch 119 using validation only. CPU training took 582.02 seconds.
+Calibrated development-test precision was 70.87%, recall 31.03%, versus the prior
+70.00% / 7.24%. Five classes remain disabled; several enabled classes still have
+poor precision. The previously inspected test is not blind acceptance, the
+labels remain only twelve ingredient groups, UK recipe accuracy is unmeasured,
+and no true non-food evaluation exists. The release floors are still failed.
+No threshold was changed using these test results.
+
+All 200 real-JPEG saved-head round trips passed (maximum probability difference
+8.11e-6; mean warm image inference 396 ms locally). Three text-only retrieval
+queries ranked the intended beans on toast, tuna sandwich and scrambled eggs on
+toast first. That is not photo accuracy. One public JPEG returned five possible
+recipes with similarity scores, no nutrition and no automatic save; it is a
+plumbing check, not a verified recipe hit. A simulated explicit selection and
+1.5-serving confirmation produced source-derived estimates, while omitted
+nutrition/substitutions correctly withheld them. No member confirmation occurred.
+
+The new research artifact includes the learned head and recipe bank, with pins
+and attribution; the 812 MB third-party SigLIP base is a separate dependency.
+Neither a new foundation model nor a fully standalone inference bundle is claimed.
+Local qualification: 11 Python checks and four recipe checks pass. Production
+flags remain off, no service binding is provisioned, no new spend or gated
+agreement was accepted. Prior full CI had the same two historical CSV failures
+on feature and unchanged base; the gates have not been relaxed.
+
 ## Own food-model development — 1 November 2026, Europe/London
 
 Matt said “Let's go” after the recommendation to train a specialist food model

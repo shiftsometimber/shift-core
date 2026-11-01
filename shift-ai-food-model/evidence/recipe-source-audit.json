@@ -1,0 +1,25 @@
+{
+  "schema": "shift-recipe-recognition-catalogue-1",
+  "source_kind": "governed_source_snapshot_not_live_database_readback",
+  "source_sha256": {
+    "grub-uk-full-publication-20261018.mjs": "8a2285269526c955dfde5e657e96031ac24cbdd7a673bcd92c430decbda81a3b",
+    "grub-uk-core-publication-20261017.mjs": "1213caeaf4253da8e05fc94fc1324917c0fdfc583851d69c45a7c17f707c45e9",
+    "grub-everyday-publication-v1.mjs": "1aa0ee0d7a766596a7debb567bb4225c5a67750be8988f80e023241e9aad26d6",
+    "grub-image-map.mjs": "82cbb550bafe6f587e009eb044f9c796eafcdf3207ba0a4600e995c48af00d69"
+  },
+  "stats": {
+    "recipes": 2692,
+    "by_publication": {
+      "uk_full": 2671,
+      "uk_core": 14,
+      "everyday": 7
+    },
+    "exact_current_images": 0,
+    "older_image_bindings": 2671,
+    "missing_image_bindings": 21,
+    "nutrition_estimates": 2692,
+    "complete_nutrition": 980
+  },
+  "image_binding_result_scope": "Exact source-version comparison only; not a visual judgement of all recipe photographs",
+  "nutrition_use": "Only after exact recipe and portion confirmation; optional amounts; no automatic log"
+}

@@ -98,6 +98,10 @@ jobs:
       - name: Install only the image parser for qualification checks
         run: python -m pip install --disable-pip-version-check Pillow==12.3.0
       - name: Parse training and inference code without downloading a model
-        run: python -m compileall -q shift-ai-food-model
+        run: |
+          python -m compileall -q shift-ai-food-model
+          node --check shift-ai-food-model/recipe_catalogue.mjs
+      - name: Check governed recipe links and explicit serving confirmation
+        run: node --test shift-ai-food-model/tests/recipe-catalogue.test.mjs
       - name: Check data separation, evaluation and the private recognition contract
         run: python -m unittest discover -s shift-ai-food-model/tests -v

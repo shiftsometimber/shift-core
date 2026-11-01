@@ -1,0 +1,14 @@
+{
+  "schema": "shift-recipe-bank-1",
+  "recipes": 2692,
+  "catalogue_sha256": "964619c159f716607837f6c3d2514943b8e31e4eabc0f7e1c1ae415d90a08483",
+  "embeddings_sha256": "81ad1e2bf4499e76d4bf6f5c159cc79bad9f38af3707506934295ce729f98193",
+  "base_revision": "7fd15f0689c79d79e38b1c2e2e2370a7bf2761ed",
+  "model_weights_changed": false,
+  "method": "Recipe text reference embeddings, not per-recipe supervised visual training",
+  "seconds": 194.79,
+  "production_ready": false,
+  "real_photo_recipe_accuracy_evaluated": false,
+  "auto_save": false,
+  "nutrition_in_match_response": false
+}

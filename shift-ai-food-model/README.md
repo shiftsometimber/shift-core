@@ -4,6 +4,63 @@ Matt authorised the specialist food-model route on 1 November 2026,
 Europe/London. This directory belongs to the existing food-capture branch;
 it is not a second app, an external Cal AI integration or a production release.
 
+## Recipe-aware continuation — 1 November 2026
+
+Matt asked that recognition fit our own recipes and learn from them. The local
+reference bank now contains 2,692 current governed source recipes: 2,671 full
+UK recipes, 14 UK core additions and seven everyday recipes. Publication status,
+release hashes and corrected row hashes are checked. This is a source snapshot,
+not live D1 readback. Recipe text embeddings give image-to-recipe suggestions;
+they do not constitute supervised visual training of 2,692 recipe identities.
+
+`recipe_catalogue.mjs` provides an explicit current-recipe/hash and portion
+confirmation step. Nutrition is optional and off by default. It scales recorded
+per-serving estimates once, preserves unknown nutrients as absent, and withholds
+recipe numbers when ingredients differ. Its result is a review draft with
+`autoSave:false`: it does not itself call the existing member diary writer.
+The future UI must pass the member-reviewed draft into the existing single-save
+flow to update Grub, Today, Journey and shared AI context; no second log store.
+No actual member selection, logging write or production hookup happened here.
+
+Of the reference image bindings, 2,671 refer to older recipe snapshots; none
+exactly matches current title, ingredients and method. Another 21 recipes lack
+an exact binding. This is a source-version check, not proof that every photo
+looks wrong or that the live recipe UI is broken. Some references are AI-generated
+illustrations. These are excluded from exact-current-recipe training and from
+real-photo evaluation. Learning exact recipes requires verified real meal photos
+paired with the current recipe hash, substitutions and capture/source group;
+training rights/consent must cover that reuse. Member confirmations alone are
+not shared-training permission. A separate representative evaluation must stay
+out of training, including repeat photos of the same dish/cook session.
+
+A fourth component experiment used the public Apache-2.0 SigLIP base, pinned to
+`7fd15f0689c79d79e38b1c2e2e2370a7bf2761ed`, and trained our own 9,228-parameter
+head on the same 1,200 / 200 / 200 grouped images. It selected the full-image
+view and epoch 119 using validation only. CPU training took 582.02 seconds.
+Calibrated development-test precision was 70.87%, recall 31.03%, versus the prior
+70.00% / 7.24%. Five classes remain disabled; several enabled classes still have
+poor precision. The previously inspected test is not blind acceptance, the
+labels remain only twelve ingredient groups, UK recipe accuracy is unmeasured,
+and no true non-food evaluation exists. The release floors are still failed.
+No threshold was changed using these test results.
+
+All 200 real-JPEG saved-head round trips passed (maximum probability difference
+8.11e-6; mean warm image inference 396 ms locally). Three text-only retrieval
+queries ranked the intended beans on toast, tuna sandwich and scrambled eggs on
+toast first. That is not photo accuracy. One public JPEG returned five possible
+recipes with similarity scores, no nutrition and no automatic save; it is a
+plumbing check, not a verified recipe hit. A simulated explicit selection and
+1.5-serving confirmation produced source-derived estimates, while omitted
+nutrition/substitutions correctly withheld them. No member confirmation occurred.
+
+The new research artifact includes the learned head and recipe bank, with pins
+and attribution; the 812 MB third-party SigLIP base is a separate dependency.
+Neither a new foundation model nor a fully standalone inference bundle is claimed.
+Local qualification: 11 Python checks and four recipe checks pass. Production
+flags remain off, no service binding is provisioned, no new spend or gated
+agreement was accepted. Prior full CI had the same two historical CSV failures
+on feature and unchanged base; the gates have not been relaxed.
+
 ## What we are training
 
 A compact, multi-label food-component classifier. Its general visual encoder
@@ -150,3 +207,27 @@ The persisted model package retains original licence/credit and public-data
 provenance. Production still needs a qualified recognition approach, verified
 representative UK meal and non-food labels, reviewed serving integration and
 actual phone/photo-to-confirmed-log acceptance.
+
+## Stronger encoder and recipe bank commands
+
+Run from the repository root after installing the pinned requirements. Keep output
+directories new; inference never downloads a model. The base download is about
+812 MB and must match the pinned SHA256. It is not included in the small head artifact.
+
+```bash
+python shift-ai-food-model/semantic_model.py --help
+python shift-ai-food-model/recipe_bank.py fetch-tokenizer --base /absolute/work/siglip-base
+node shift-ai-food-model/recipe_catalogue.mjs /absolute/governed-sources /absolute/work/recipe-index.json
+python shift-ai-food-model/recipe_bank.py build --base /absolute/work/siglip-base --catalogue /absolute/work/recipe-index.json --bank /absolute/work/recipe-bank --max-minutes 20
+python shift-ai-food-model/recipe_bank.py text-check --base /absolute/work/siglip-base --bank /absolute/work/recipe-bank --research
+python shift-ai-food-model/recipe_bank.py predict --base /absolute/work/siglip-base --bank /absolute/work/recipe-bank --research < bounded-request.json
+node --test shift-ai-food-model/tests/recipe-catalogue.test.mjs
+```
+
+The pinned SigLIP config emits Transformers BOS/EOS default-ID warnings; its
+published tokenizer supplies valid input token IDs. Text retrieval diagnostics
+succeeded; these warnings do not establish photo accuracy and must be reviewed
+again before selecting a production runtime. Similarity scores are not calibrated
+probabilities. A meal absent from the catalogue can still receive bad suggestions.
+Always allow rejecting every candidate. No auto-training or live diary write is
+implemented by these research tools.
