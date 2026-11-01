@@ -2633,14 +2633,19 @@
   "authenticatedJourneyPersistence": {
     "isolatedIntegratedHandlers": "PASSED: synthetic accounts, isolated SQLite, all six record kinds, refresh, corrections, deletion, Snapshot safeguards and account isolation",
     "ordinaryProduction": "NOT VERIFIED",
-    "evidence": "Retained authorised test browser profile returned GET /v1/me HTTP 401; existing-session-check.log",
-    "smallestNextAction": "Normal local sign-in of an existing synthetic member in the authorised test browser; then save, refresh and remove an isolated Journey test record. Do not create a customer, use a real/reviewer record, bypass authentication or send verification emails."
+    "evidence": "Fresh retained authorised test browser GET /v1/me returned HTTP 401 at 2026-11-01T14:36:57.916Z; existing-session-check.log. GET Journey returned HTTP 200 and app-shell-20261101.",
+    "smallestNextAction": "Sign an existing synthetic test member into the retained authorised test browser on the SST Mac using normal login. Physical-device acceptance requires an accessible connected iPhone; no Apple submission change is needed."
   },
   "physicalDeviceAcceptance": {
     "performed": false,
     "pwaInstalledOperationVerified": false,
     "nativePhysicalOperationVerified": false,
-    "webkitIsPhysicalIphoneProof": false
+    "webkitIsPhysicalIphoneProof": false,
+    "latestDiscovery": {
+      "atUtc": "2026-11-01T14:38:02.210534+00:00",
+      "result": "TIMED_OUT_AFTER_30_SECONDS",
+      "physicalConnectionConfirmed": false
+    }
   },
   "apple": {
     "actions": 0,
@@ -4131,5 +4136,23 @@
         "canonicalSourceSHA256": "5462515ca7d02dee97849f0170af2d6bfcef2d302eb862b8d13454a533eb8420"
       }
     }
+  },
+  "outstandingAcceptanceRecheck": {
+    "atUtc": "2026-11-01T14:37:00.801Z",
+    "journeyHttpStatus": 200,
+    "appFirstHeader": "app-shell-20261101",
+    "authorisedExistingTestProfileIdentity": {
+      "status": 401,
+      "hasIdentity": false,
+      "explicitSyntheticFlag": false
+    },
+    "productionWrites": 0,
+    "physicalDeviceDiscovery": {
+      "command": "xcrun devicectl list devices",
+      "result": "TIMED_OUT_AFTER_30_SECONDS",
+      "physicalConnectionConfirmed": false,
+      "doesNotEstablishNoDevice": true
+    },
+    "smallestNextAction": "Sign an existing synthetic test member into the retained authorised test browser on the SST Mac using normal login. Physical-device acceptance requires an accessible connected iPhone; no Apple submission change is needed."
   }
 }

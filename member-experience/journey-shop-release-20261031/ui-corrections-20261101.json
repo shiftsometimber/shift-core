@@ -418,5 +418,23 @@
     "productionWrites": 0,
     "bindingsRoutesSchedulesAssetsOperatingFlagsPreserved": true,
     "currentToolsImageRepairPreserved": true
+  },
+  "outstandingAcceptanceRecheck": {
+    "atUtc": "2026-11-01T14:37:00.801Z",
+    "journeyHttpStatus": 200,
+    "appFirstHeader": "app-shell-20261101",
+    "authorisedExistingTestProfileIdentity": {
+      "status": 401,
+      "hasIdentity": false,
+      "explicitSyntheticFlag": false
+    },
+    "productionWrites": 0,
+    "physicalDeviceDiscovery": {
+      "command": "xcrun devicectl list devices",
+      "result": "TIMED_OUT_AFTER_30_SECONDS",
+      "physicalConnectionConfirmed": false,
+      "doesNotEstablishNoDevice": true
+    },
+    "smallestNextAction": "Sign an existing synthetic test member into the retained authorised test browser on the SST Mac using normal login. Physical-device acceptance requires an accessible connected iPhone; no Apple submission change is needed."
   }
 }
