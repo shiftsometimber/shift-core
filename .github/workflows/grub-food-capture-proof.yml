@@ -23,6 +23,7 @@ on:
       - 'member-experience/tests/shift-ai-capabilities.test.mjs'
       - 'shift-ai*.js'
       - 'shift-ai-capabilities.mjs'
+      - 'shift-ai-food-model/**'
       - 'ask-timber-v1.js'
       - 'frontend/member/assets/ask-timber-v1.*'
       - 'tests/shift-ai-research-route.test.mjs'
@@ -54,6 +55,7 @@ jobs:
           node --check member-experience/journey-portability.mjs
           node --check shift-coach/worker.mjs
           node --check shift-ai-capabilities.mjs
+          node --check shift-ai-food-model/verify_binding.mjs
           node --check member-experience/ai-research.mjs
           node --check member-experience/ai-public-retrieval.mjs
           node --check ask-timber-v1.js
@@ -85,3 +87,17 @@ jobs:
           ln -s "$GITHUB_WORKSPACE/node_modules" "$baseline/node_modules"
           cd "$baseline"
           node --test member-experience/tests/weight-import-mapping-ui.test.mjs
+  food-model-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install only the image parser for qualification checks
+        run: python -m pip install --disable-pip-version-check Pillow==12.3.0
+      - name: Parse training and inference code without downloading a model
+        run: python -m compileall -q shift-ai-food-model
+      - name: Check data separation, evaluation and the private recognition contract
+        run: python -m unittest discover -s shift-ai-food-model/tests -v

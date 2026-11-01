@@ -1,0 +1,11 @@
+{
+  "actualModelInvocations": 1,
+  "response": {
+    "items": [
+      "pizza"
+    ],
+    "nutrition": {}
+  },
+  "localElapsedMs": 6990,
+  "scope": "Actual trained research model through shared Shift AI adapter; local process transport, not a deployed service or accuracy acceptance"
+}

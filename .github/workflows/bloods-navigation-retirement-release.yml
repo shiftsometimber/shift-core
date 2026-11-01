@@ -1,0 +1,64 @@
+name: Bloods navigation retirement release
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'public-bloods/shift-bloods-public.mjs'
+      - 'public-bloods/shift-bloods-marketing-worker.mjs'
+      - 'public-bloods/approved-faq.test.mjs'
+      - 'release/bloods-navigation-retirement-deploy.mjs'
+      - '.github/workflows/bloods-navigation-retirement-release.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: github.actor_id == '315011648'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Require exact current main and bounded release
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin main
+          test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)"
+          python3 - <<'PY'
+          import subprocess
+          actual=set(subprocess.check_output(['git','diff','--name-only','HEAD^','HEAD'],text=True).splitlines())
+          expected={'.github/workflows/bloods-navigation-retirement-release.yml','release/bloods-navigation-retirement-deploy.mjs'}
+          assert actual==expected,(actual,expected)
+          PY
+      - name: Install locked release toolchain
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      # Re-run the bounded verifier after correcting its source-level regex escaping.
+      - name: Verify focused Bloods retirement policy
+        run: |
+          node --check public-bloods/shift-bloods-public.mjs
+          node --check public-bloods/shift-bloods-marketing-worker.mjs
+          node --check release/bloods-navigation-retirement-deploy.mjs
+          node --test public-bloods/approved-faq.test.mjs
+      - name: Stage, promote and verify the dedicated Bloods owner
+        run: node release/bloods-navigation-retirement-deploy.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bloods-navigation-retirement-${{ github.run_id }}
+          path: bloods-navigation-retirement-proof/
+          retention-days: 30
+

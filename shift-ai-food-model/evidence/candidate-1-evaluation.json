@@ -1,0 +1,519 @@
+{
+  "schema": "shift-food-model-1",
+  "candidate": "shift-food-candidate-1",
+  "created_utc": "2026-11-01T08:15:05.292418+00:00",
+  "data_kind": "real_public_research",
+  "source_manifest_sha256": "1ffc1d09c1c9b5c633e0530e1f8449dceaed80f1a804dc35391139872ac0887f",
+  "source_manifest_identity": "09014a62bf639d4cfd212c99af5ed80790d10a67246617ed806dd99b4d8a2494",
+  "base": {
+    "id": "facebook/deit-tiny-patch16-224",
+    "revision": "b3428f18dcc7b543470d07f14b4a4157815d1880",
+    "licence": "Apache-2.0"
+  },
+  "training": {
+    "method": "Frozen pretrained visual encoder; newly trained multilabel food classifier",
+    "trained_from_scratch": false,
+    "encoder_updated": false,
+    "seed": 20261101,
+    "epochs": 100,
+    "selected_epoch": 9,
+    "validation_bce": 0.22233106195926666,
+    "split_images": {
+      "train": 320,
+      "validation": 100,
+      "test": 100
+    },
+    "cpu_threads": 4,
+    "cuda_used": false,
+    "seconds": 12.44,
+    "new_paid_services": false
+  },
+  "labels": [
+    "chicken",
+    "beef",
+    "fish",
+    "eggs",
+    "rice",
+    "potatoes",
+    "broccoli",
+    "carrots",
+    "leafy salad",
+    "cauliflower",
+    "pizza",
+    "bacon"
+  ],
+  "thresholds": [
+    1.01,
+    1.01,
+    1.01,
+    1.01,
+    1.01,
+    1.01,
+    1.01,
+    1.01,
+    0.8,
+    1.01,
+    0.2,
+    1.01
+  ],
+  "disabled_classes": [
+    "chicken",
+    "beef",
+    "fish",
+    "eggs",
+    "rice",
+    "potatoes",
+    "broccoli",
+    "carrots",
+    "cauliflower",
+    "bacon"
+  ],
+  "validation": {
+    "images": 100,
+    "micro_precision": 1.0,
+    "micro_recall": 0.14444444444444443,
+    "micro_f1": 0.2524271844660194,
+    "exact_match": 0.44,
+    "coverage": 0.13,
+    "classes": [
+      {
+        "label": "chicken",
+        "support": 4,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "beef",
+        "support": 8,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "fish",
+        "support": 2,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "eggs",
+        "support": 8,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "rice",
+        "support": 3,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "potatoes",
+        "support": 6,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "broccoli",
+        "support": 4,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "carrots",
+        "support": 9,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "leafy salad",
+        "support": 19,
+        "predictions": 6,
+        "precision": 1.0,
+        "recall": 0.3157894736842105,
+        "f1": 0.48
+      },
+      {
+        "label": "cauliflower",
+        "support": 14,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "pizza",
+        "support": 10,
+        "predictions": 7,
+        "precision": 1.0,
+        "recall": 0.7,
+        "f1": 0.8235294117647058
+      },
+      {
+        "label": "bacon",
+        "support": 3,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    ]
+  },
+  "test": {
+    "images": 100,
+    "micro_precision": 0.6875,
+    "micro_recall": 0.0738255033557047,
+    "micro_f1": 0.13333333333333333,
+    "exact_match": 0.2,
+    "coverage": 0.15,
+    "classes": [
+      {
+        "label": "chicken",
+        "support": 16,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "beef",
+        "support": 3,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "fish",
+        "support": 12,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "eggs",
+        "support": 13,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "rice",
+        "support": 9,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "potatoes",
+        "support": 29,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "broccoli",
+        "support": 13,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "carrots",
+        "support": 4,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "leafy salad",
+        "support": 26,
+        "predictions": 6,
+        "precision": 1.0,
+        "recall": 0.23076923076923078,
+        "f1": 0.375
+      },
+      {
+        "label": "cauliflower",
+        "support": 8,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "pizza",
+        "support": 7,
+        "predictions": 10,
+        "precision": 0.5,
+        "recall": 0.7142857142857143,
+        "f1": 0.5882352941176471
+      },
+      {
+        "label": "bacon",
+        "support": 9,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    ]
+  },
+  "test_at_fixed_half_threshold": {
+    "images": 100,
+    "micro_precision": 0.37662337662337664,
+    "micro_recall": 0.19463087248322147,
+    "micro_f1": 0.25663716814159293,
+    "exact_match": 0.21,
+    "coverage": 0.54,
+    "classes": [
+      {
+        "label": "chicken",
+        "support": 16,
+        "predictions": 10,
+        "precision": 0.1,
+        "recall": 0.0625,
+        "f1": 0.07692307692307693
+      },
+      {
+        "label": "beef",
+        "support": 3,
+        "predictions": 2,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "fish",
+        "support": 12,
+        "predictions": 10,
+        "precision": 0.3,
+        "recall": 0.25,
+        "f1": 0.2727272727272727
+      },
+      {
+        "label": "eggs",
+        "support": 13,
+        "predictions": 3,
+        "precision": 1.0,
+        "recall": 0.23076923076923078,
+        "f1": 0.375
+      },
+      {
+        "label": "rice",
+        "support": 9,
+        "predictions": 11,
+        "precision": 0.2727272727272727,
+        "recall": 0.3333333333333333,
+        "f1": 0.3
+      },
+      {
+        "label": "potatoes",
+        "support": 29,
+        "predictions": 6,
+        "precision": 0.3333333333333333,
+        "recall": 0.06896551724137931,
+        "f1": 0.11428571428571428
+      },
+      {
+        "label": "broccoli",
+        "support": 13,
+        "predictions": 2,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "carrots",
+        "support": 4,
+        "predictions": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "leafy salad",
+        "support": 26,
+        "predictions": 20,
+        "precision": 0.6,
+        "recall": 0.46153846153846156,
+        "f1": 0.5217391304347826
+      },
+      {
+        "label": "cauliflower",
+        "support": 8,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "pizza",
+        "support": 7,
+        "predictions": 7,
+        "precision": 0.42857142857142855,
+        "recall": 0.42857142857142855,
+        "f1": 0.42857142857142855
+      },
+      {
+        "label": "bacon",
+        "support": 9,
+        "predictions": 5,
+        "precision": 0.4,
+        "recall": 0.2222222222222222,
+        "f1": 0.2857142857142857
+      }
+    ]
+  },
+  "baseline_top_two_training_foods": {
+    "images": 100,
+    "micro_precision": 0.275,
+    "micro_recall": 0.3691275167785235,
+    "micro_f1": 0.3151862464183381,
+    "exact_match": 0.03,
+    "coverage": 1.0,
+    "classes": [
+      {
+        "label": "chicken",
+        "support": 16,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "beef",
+        "support": 3,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "fish",
+        "support": 12,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "eggs",
+        "support": 13,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "rice",
+        "support": 9,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "potatoes",
+        "support": 29,
+        "predictions": 100,
+        "precision": 0.29,
+        "recall": 1.0,
+        "f1": 0.4496124031007752
+      },
+      {
+        "label": "broccoli",
+        "support": 13,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "carrots",
+        "support": 4,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "leafy salad",
+        "support": 26,
+        "predictions": 100,
+        "precision": 0.26,
+        "recall": 1.0,
+        "f1": 0.4126984126984127
+      },
+      {
+        "label": "cauliflower",
+        "support": 8,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "pizza",
+        "support": 7,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "bacon",
+        "support": 9,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    ]
+  },
+  "non_food_test": null,
+  "production_privacy_reviewed": false,
+  "local_latency_ms": {
+    "median": 23.66,
+    "maximum": 83.2,
+    "scope": "Ten warm CPU forwards of one real held-out image; not production or phone latency"
+  },
+  "limitations": [
+    "US cafeterias, not representative UK field data",
+    "Ingredient annotation is not visibility annotation",
+    "No true non-food examples",
+    "No calorie or portion prediction"
+  ],
+  "production_ready": false,
+  "release_blockers": [
+    "Independent representative UK meal evaluation missing",
+    "At least 200 independent UK evaluation images required",
+    "Food suggestion precision below proposed 90% floor",
+    "Food coverage below proposed 60% recall floor",
+    "Each advertised food class needs 20 independent evaluation examples",
+    "Every advertised food class needs measured suggestion precision",
+    "Independent non-food rejection evaluation missing or below floor",
+    "Production hosting and photo privacy review outstanding"
+  ]
+}

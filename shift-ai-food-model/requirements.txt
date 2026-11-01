@@ -1,0 +1,6 @@
+# Install the CPU-only PyTorch wheel first using the command in README.md.
+torch==2.15.0
+transformers==5.22.1
+safetensors==0.8.0
+numpy==2.3.5
+Pillow==12.3.0

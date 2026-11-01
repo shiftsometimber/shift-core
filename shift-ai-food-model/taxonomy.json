@@ -1,0 +1,24 @@
+{
+  "version": "shift-food-components-1",
+  "labels": {
+    "chicken": ["chicken", "chicken thighs", "chicken breast", "grilled chicken"],
+    "beef": ["beef", "steak", "ground beef"],
+    "fish": ["fish", "salmon", "tuna", "tilapia", "cod"],
+    "eggs": ["scrambled eggs", "egg whites", "eggs", "hard boiled eggs"],
+    "rice": ["white rice", "brown rice", "country rice", "fried rice"],
+    "potatoes": ["potatoes", "roasted potatoes", "sweet potato", "yam", "hash browns", "mashed potatoes"],
+    "broccoli": ["broccoli"],
+    "carrots": ["carrot", "carrots"],
+    "leafy salad": ["mixed greens", "caesar salad", "garden salad", "arugula", "spinach (raw)", "lettuce"],
+    "cauliflower": ["cauliflower"],
+    "pizza": ["cheese pizza", "pizza", "pepperoni pizza"],
+    "bacon": ["bacon", "turkey bacon"]
+  },
+  "minimum_ingredient_grams": 10,
+  "minimum_dish_mass_fraction": 0.05,
+  "limitations": [
+    "Candidate component vocabulary; not complete meal or ingredient recognition.",
+    "Mass-based training labels are ingredient annotations, not proof an ingredient is visible.",
+    "No portion, calorie, nutrient, allergy or medical prediction."
+  ]
+}

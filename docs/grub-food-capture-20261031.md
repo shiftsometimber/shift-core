@@ -5,6 +5,65 @@ He subsequently instructed that both food recognition and the MediSearch-style
 research capability belong inside Shift AI. No competitor trial, subscription
 or integration is part of this implementation.
 
+## Own food-model development — 1 November 2026, Europe/London
+
+Matt said “Let's go” after the recommendation to train a specialist food model
+using a commercially reusable visual base and training images. This authorises
+the development/training route, not new paid training, an external subscription,
+the gated Llama vision agreement or a production promotion. Existing capture,
+confirmed logging and shared AI integration are preserved.
+
+`shift-ai-food-model/` now contains bounded public-data acquisition, rights and
+image pins, grouped dataset qualification, local training, validation-only
+threshold calibration, held-out reporting and offline JPEG inference. The
+published Apache-2.0 DeiT tiny visual base is pinned to
+`b3428f18dcc7b543470d07f14b4a4157815d1880`; its publisher's original weight
+SHA256 is verified before restricted weights-only loading. Derivatives are
+saved as safetensors with base credit/licence and data attribution. No model
+code is downloaded/executed by training or inference. No member images are used.
+
+The public Nutrition5k publisher permits commercial adaptation under CC BY 4.0.
+The first data preparation downloaded 232,107,575 bytes for 520 real RGB images,
+retaining source links and original/transformed SHA256 values. Whole capture
+weeks are disjoint across train/validation/test (13/7/7 weeks respectively).
+These are custom grouped development splits, not the paper's benchmark.
+The initial vocabulary is twelve food components. Ingredient mass annotations
+are a visibility proxy; this US cafeteria data cannot validate UK meals.
+
+Completed actual CPU training, with no paid training service or GPU rental:
+
+| Experiment | Training / validation / test images | Calibrated test precision | Calibrated test recall | Scope |
+| --- | --- | --- | --- | --- |
+| First food head, frozen visual encoder | 320 / 100 / 100 | 68.75% | 7.38% | First research test; ten classes disabled for inadequate validation support |
+| Last two visual layers plus food head | 320 / 100 / 100 | 30.77% | 2.68% | Development test previously inspected; eleven classes disabled |
+
+The stronger pass ran 20 epochs and selected epoch 4 by validation loss; its
+training took 190.03 seconds on four CPU threads. At an uncalibrated fixed 0.5
+threshold it achieved 32.39% precision / 53.69% recall, still unacceptable for
+members. Results have not been relabelled or presented as production accuracy.
+The first run took 12.44 seconds after data preparation. Neither candidate is
+ready for production. Eleven focused data/evaluation/contract checks pass.
+
+The second saved candidate passed 100 real-JPEG round trips; saved-model
+probabilities differ from reported evaluation by at most 2.39e-7. It returns no
+invented nutrients, rejects member identity fields, and normal invocation refuses
+the research candidate. A separate local process diagnostic exercises the
+existing shared Shift AI service adapter with actual candidate inference;
+this does not provision a service binding or verify production serving.
+
+Current next experiment: expand to 1,200 training / 200 validation / 200
+development-test images, reusing the verified initial images. Train the new food
+head before adapting the final visual layers; select on validation only and
+retain the previously-inspected-test limitation. A representative UK set and
+non-food rejection evidence remain necessary. These are model/data limitations,
+not a claim that a large hosted-model bill is required.
+
+Production flags, main, live runtime, native binaries, accounts and commercial
+commitments are unchanged. Existing two historical CSV-release failures remain
+separate from food-model accuracy. Current source main also contains seven
+disjoint Bloods owner commits after the feature's prior base; preserve those
+when reconciling this development branch.
+
 ## Shared Shift AI implementation
 
 `shift-ai-capabilities.mjs` is the shared inference boundary used by the existing
