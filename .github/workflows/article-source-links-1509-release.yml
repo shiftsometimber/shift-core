@@ -1,0 +1,47 @@
+name: Release exact article renderer PR 1509
+on:
+  push:
+    branches: [release/article-source-links-1509-20261101]
+    paths:
+      - release/article-source-links/**
+      - .github/workflows/article-source-links-1509-release.yml
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      CLOUDFLARE_ACCOUNT_ID: '9e5386dcf455be34c582d93f8bfc79e6'
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - name: Verify the isolated package patch and retained rollback guards
+        run: |
+          node --test release/article-source-links/patch.test.mjs tests/runtime-rollback-guard.test.mjs
+          git diff --check
+          git diff --exit-code
+      - name: Release only the merged, already tested article renderer over the serving package
+        run: node release/article-source-links/release.mjs
+      - name: Restore only this run's owned deployment after any later failure
+        if: ${{ failure() && hashFiles('evidence/article-source-links/deployed.json') != '' }}
+        run: node release/article-source-links/release.mjs rollback
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: article-source-links-${{ github.run_id }}
+          path: evidence/article-source-links/
+          if-no-files-found: error
+          retention-days: 90
