@@ -1,12 +1,25 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {repairPackage,verifyPackage,ENTRY} from './package.mjs';
+import {repairPackage,verifyPackage,ENTRY,snapshotDocument} from './package.mjs';
 
 const before = {main_module:'remaining-pages-20261101/entry.mjs', compatibility_date:'2026-08-09',bindings:[{name:'MEMBER_ASSETS',type:'assets'},{name:'DB',type:'d1'}], modules:[
   {name:'remaining-pages-20261101/entry.mjs',content_base64:Buffer.from('export default {};').toString('base64')},
   {name:'worker.js',content_base64:Buffer.from('original Core and articles').toString('base64')},
   {name:'quality-repair-20261101/restored-media.mjs',content_base64:Buffer.from('the seven recovered images').toString('base64')}
 ]};
+
+test('document preservation records absent headers and detects every existing header or body change', () => {
+  const html='<main>Existing approved page</main>';
+  const response=new Response(html,{headers:{'strict-transport-security':'max-age=31536000','x-frame-options':'SAMEORIGIN'}});
+  const baseline=snapshotDocument(response,html);
+  assert.equal(baseline.security['content-security-policy'],null);
+  assert.deepEqual(snapshotDocument(response,html),baseline);
+  for(const [name,value] of [['content-security-policy',"default-src 'self'"],['strict-transport-security','max-age=0'],['x-frame-options','DENY']]) {
+    const headers=new Headers(response.headers);headers.set(name,value);
+    assert.notDeepEqual(snapshotDocument(new Response(html,{headers}),html),baseline);
+  }
+  assert.notDeepEqual(snapshotDocument(response,html+' changed'),baseline);
+});
 
 test('native package preserves every serving module and links the same entry', () => {
   const result = repairPackage(before);
