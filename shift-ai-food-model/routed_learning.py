@@ -1,4 +1,4 @@
-"""Validation-only routing between two Shift-trained heads, one frozen encoder.
+"""Validation-only routing between Shift-trained heads, one frozen encoder.
 
 No extra image model call, threshold relaxation, gradient training, new service
 or test-selected rule. Outputs are food decisions, never calibrated confidence.
@@ -14,6 +14,16 @@ from core import SCHEMA, digest, local_path, metrics, validate_manifest
 from visible_learning import BASELINE_MAP, cached_features
 
 FAMILY = "shift-visible-food-routed-1"
+
+
+def make_head(key, meta):
+    if key == "balanced":
+        from balanced_experiment import architecture
+        if meta.get("family") != "shift-balanced-food-head-1" or meta.get("hidden") not in (0, 128):
+            raise ValueError("Known own balanced-head architecture required")
+        return architecture(768, len(meta["labels"]), meta["hidden"])
+    from semantic_model import FoodHead
+    return FoodHead(768, len(meta["labels"]))
 
 
 def decisions(probabilities, rules):
@@ -42,12 +52,19 @@ def build(args):
         raise ValueError("Same visible training manifest required")
     settings = {"baseline": qualify(args.baseline, "shift-siglip-food-head-1"),
                 "visible": qualify(args.visible, "shift-visible-food-head-1")}
+    directories = {"baseline": args.baseline, "visible": args.visible}
+    if args.balanced:
+        settings["balanced"] = qualify(args.balanced, "shift-balanced-food-head-1")
+        balanced_report = json.loads((args.balanced / "evaluation.json").read_text())
+        if balanced_report["source_manifest_sha256"] != digest(args.manifest):
+            raise ValueError("Balanced head must use the same visible manifest")
+        directories["balanced"] = args.balanced
     if any(m["views"] != 1 or m["width"] != 768 or m["preprocess"] != PREPROCESS for m in settings.values()):
         raise ValueError("Both source heads must use the identical full-image encoder")
-    if (args.baseline / "base-source.json").read_bytes() != (args.visible / "base-source.json").read_bytes():
+    if any((p / "base-source.json").read_bytes() != (args.visible / "base-source.json").read_bytes() for p in directories.values()):
         raise ValueError("Same frozen encoder required")
-    heads = torch.nn.ModuleDict({key: FoodHead(768, len(m["labels"])) for key, m in settings.items()})
-    for key, directory in (("baseline", args.baseline), ("visible", args.visible)):
+    heads = torch.nn.ModuleDict({key: make_head(key, m) for key, m in settings.items()})
+    for key, directory in directories.items():
         heads[key].load_state_dict(load_file(directory / "head.safetensors")); heads[key].eval()
     labels = report["labels"]
     splits = {s: [r for r in manifest["samples"] if r["split"] == s] for s in ("validation", "test")}
@@ -89,11 +106,13 @@ def build(args):
         thresholds=[.5] * len(labels), disabled_classes=[l for l, r in zip(labels, rules) if not r["head"]],
         validation=metrics(decisions(validation_scores, rules), validation_y, [.5] * len(labels), labels),
         test=metrics(predicted, test_y, [.5] * len(labels), labels))
-    final["training"] = {"method": "Validation-only class routing between two existing Shift-trained heads; no additional gradient training",
+    final["training"] = {"method": "Validation-only class routing between existing Shift-trained heads; no additional gradient training",
         "source_visible_training": report["training"], "selection": "Existing 85% validation precision / 5 predictions floor, then maximum per-class validation F1",
         "encoder_updated": False, "trained_from_scratch": False, "selected_views": 1,
         "encoder_calls_per_scan": 1, "new_paid_services": False,
-        "rules": selection, "source_artifact_sha256": {k: digest(p / "artifact.json") for k, p in (("baseline", args.baseline), ("visible", args.visible))}}
+        "rules": selection, "source_artifact_sha256": {k: digest(p / "artifact.json") for k, p in directories.items()}}
+    if args.balanced:
+        final["training"]["source_balanced_training"] = balanced_report["training"]
     common = final["same_images_shared_categories"]["labels"]; indices = [labels.index(l) for l in common]
     y = [[row[j] for j in indices] for row in test_y]; p = [[row[j] for j in indices] for row in predicted]
     shared = final["same_images_shared_categories"]
@@ -143,7 +162,8 @@ def load_routed_predictor(directory, base, *, research=False):
         raise ValueError("Training provenance changed")
     if len(settings["rules"]) != len(settings["labels"]):
         raise ValueError("One explicit route per food group required")
-    if set(settings.get("source_heads", {})) != {"baseline", "visible"} or any(
+    keys = set(settings.get("source_heads", {}))
+    if keys not in ({"baseline", "visible"}, {"baseline", "visible", "balanced"}) or any(
         m.get("views") != 1 or m.get("width") != 768 or m.get("preprocess") != PREPROCESS
         for m in settings["source_heads"].values()):
         raise ValueError("Known source preprocessing required")
@@ -167,7 +187,7 @@ def load_routed_predictor(directory, base, *, research=False):
     class RoutedPredictor(SemanticPredictor):
         def __init__(self):
             self.settings = settings; self.report = report; self.model = model
-            self.heads = torch.nn.ModuleDict({k: FoodHead(768, len(m["labels"])) for k, m in settings["source_heads"].items()})
+            self.heads = torch.nn.ModuleDict({k: make_head(k, m) for k, m in settings["source_heads"].items()})
             self.heads.load_state_dict(load_file(directory / "head.safetensors"), strict=True); self.heads.eval()
 
         def score_features(self, embedding):
@@ -182,4 +202,5 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ("visible", "baseline", "manifest", "feature-cache", "output"):
         parser.add_argument("--" + name, type=Path, required=True)
+    parser.add_argument("--balanced", type=Path)
     build(parser.parse_args())

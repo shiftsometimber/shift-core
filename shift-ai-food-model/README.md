@@ -1,5 +1,34 @@
 # Shift AI food model — research candidate
 
+## Requested 99.99% quality target — 1 November 2026, Europe/London
+
+Matt requested 99.99% precision and recall and a full route map. The concrete
+plan is `shift-ai-food-model/quality-roadmap.md`. A tested scorecard now retains
+misses from abstention, disabled categories and the actual 12-item response cap;
+photo-only, shared-category and member-assisted results cannot be conflated.
+Current results do not verify the requested target.
+
+Executed four bounded class-balanced linear/nonlinear head variants on existing
+public features; validation selected the nonlinear square-root variant. Tested
+validation-only three-head routing as candidate 8. Shared-category recall rises
+50.76% -> 66.77%, but precision falls 84.85% -> 83.08%. Full-39 ungated precision /
+recall is 78.47% / 48.48%. This trade-off is explicit: candidate 8 is a research
+alternative, not a promotion over candidate 6. All 208 saved JPEG decisions
+reproduce exactly; the local shared adapter and incumbent backward compatibility
+pass. Python checks: 50; Node checks: 12. No test floor was weakened.
+
+A source-pinned 40-format UK collection brief is prepared: first 180 method-pilot
+photos, then a planned 1,000 independent cook sessions / 3,000 photos, including
+200 blind sessions. No real UK photos, participant requests, consent or costs have
+been created. These are collection quotas, not proof of 99.99%. Exact-binomial
+zero-error sample illustrations, independence assumptions and evidence limitations
+are in the roadmap. Current grouped public development data is not acceptance.
+
+Evidence: `shift-ai-food-model/evidence/quality-target-progress-20261101.json`.
+Existing production, spend, member-photo-training and communication holds remain.
+The next material dependency is qualified independently labelled UK meal/negative
+data. No research job continues unattended after this completed batch.
+
 ## Visible-food improvement — 1 November 2026, Europe/London
 
 Completed the authorised no-fee own-model experiment on 1,056 public Nutrition5k

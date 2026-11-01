@@ -1,0 +1,731 @@
+{
+  "schema": "shift-food-uk-field-pilot-plan-1",
+  "status": "PREPARED_COLLECTION_BRIEF_ONLY",
+  "catalogue_sha256": "964619c159f716607837f6c3d2514943b8e31e4eabc0f7e1c1ae415d90a08483",
+  "catalogue_source": "governed_source_snapshot_not_live_database_readback",
+  "selection": "Forty distinct formats; source/short-title selection, not measured member popularity",
+  "families": [
+    {
+      "family": "on-toast",
+      "example_recipe_id": "everyday-beans-on-toast",
+      "title": "Beans on toast",
+      "recipe_sha256": "8917598395d411c5b4a544ce8c606f6bbbe3ff7685808301d2c7daf326448365",
+      "publication": "everyday",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "egg-toast",
+      "example_recipe_id": "industrial-breakfast-egg-toast-banana-cocoa-1",
+      "title": "Mushroom egg and vegetables on toast",
+      "recipe_sha256": "f274c08776c8c8fe4fa2e6d05a7659b2a4ebbcb96261a84750baf5b193bb3a05",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "omelette",
+      "example_recipe_id": "uk-core-vegetable-omelette",
+      "title": "Vegetable omelette with toast",
+      "recipe_sha256": "61b1f003074bcaca20ae06d8b3a8d3819c550433912b3563f1a5a145a2af1ace",
+      "publication": "uk_core",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "overnight-oats",
+      "example_recipe_id": "industrial-breakfast-overnight-oats-pear-ginger-3",
+      "title": "Pear yoghurt overnight oats",
+      "recipe_sha256": "dc0f9f2ddccbdce1731d83b28225eb09e68b4f7e234e4e75657cc13ebf691dce",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "protein-oats",
+      "example_recipe_id": "industrial-breakfast-protein-oats-pear-ginger-3",
+      "title": "Pear yoghurt porridge",
+      "recipe_sha256": "a43e09f3238186768175b905780e5d23194a330635259305bd1724a57bed6e7a",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "yoghurt-pot",
+      "example_recipe_id": "industrial-breakfast-yoghurt-pot-pear-ginger-3",
+      "title": "Pear yoghurt pot",
+      "recipe_sha256": "52c0c7d21559c8f0856780ab10c8c3f9e8f39affa5e1af063f9ff38b0272ef59",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "fruit-and-yoghurt",
+      "example_recipe_id": "uk-core-apple-yoghurt",
+      "title": "Apple and yoghurt",
+      "recipe_sha256": "081597aa6c8c6773f9050a13b1537911f4cc62399a7c0936221312f257491388",
+      "publication": "uk_core",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "fruit-and-nuts",
+      "example_recipe_id": "uk-core-apple-peanut-butter",
+      "title": "Apple with peanut butter",
+      "recipe_sha256": "a9d3ec93907deca533b3a7ea3b582a64c622d0c8546e53eb6b23d4f23818475b",
+      "publication": "uk_core",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "breakfast-wrap",
+      "example_recipe_id": "industrial-v3-breakfast-wrap-mediterranean-egg",
+      "title": "Herby egg breakfast wrap",
+      "recipe_sha256": "8613acd61cb8940fff20fd648c34eef50c7fbd90b3a4e7c752c3f95c53c4e3c1",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "breakfast-buttie",
+      "example_recipe_id": "industrial-v3-breakfast-buttie-mediterranean-egg",
+      "title": "Herby egg breakfast bap",
+      "recipe_sha256": "975c195c439519eeb5432b3c8c5dc6ea26af4afec7f14929e2b3e96f87d5f8a2",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "breakfast-hash",
+      "example_recipe_id": "industrial-v3-breakfast-hash-mediterranean-egg",
+      "title": "Herby egg potato breakfast hash",
+      "recipe_sha256": "345bad41d8c18e24e64a1e5445f840b1f922d9a2fb893f20b048c2da01c972bd",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "breakfast-toastie",
+      "example_recipe_id": "industrial-v3-breakfast-toastie-mediterranean-egg",
+      "title": "Herby egg breakfast toastie",
+      "recipe_sha256": "4f9ada9f7cef508408bb0741199f747924bc2d1799a9d34a2fb236249207c612",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "sandwich",
+      "example_recipe_id": "everyday-ham-sandwich",
+      "title": "Ham sandwich",
+      "recipe_sha256": "f34c00c4b75f05e0b4c2395dea034ddfe4eb3a54d61f8b0bc2704f753abb165b",
+      "publication": "everyday",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "wrap",
+      "example_recipe_id": "industrial-v3-wrap-greek-ham",
+      "title": "Lemon ham salad wrap",
+      "recipe_sha256": "a76a263493844d6c32a5ee4f7fe4eecfd942e53eee40e39ef40b37ced896c455",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "toastie",
+      "example_recipe_id": "industrial-lunch-tofu-toastie",
+      "title": "Tofu toastie",
+      "recipe_sha256": "0a7996998e870e953a68a3b1dda01fee63875031793606562c47a28f68fa8f4f",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "bagel",
+      "example_recipe_id": "industrial-v3-bagel-greek-egg",
+      "title": "Lemon egg salad bagel",
+      "recipe_sha256": "6dbf50511b60c48f3516c72dbc12fb914ac9d1f4c76baa140c50ccfcec66637a",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "jacket-potato",
+      "example_recipe_id": "uk-core-jacket-tuna-mayo",
+      "title": "Jacket potato with tuna mayonnaise",
+      "recipe_sha256": "1f4a35faeca975d6ca012d5d4c5082ba193774757643822977d09a94f4f60e3b",
+      "publication": "uk_core",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "potato-hash",
+      "example_recipe_id": "industrial-breakfast-potato-hash-blueberry-lemon-6",
+      "title": "Chicken potato hash",
+      "recipe_sha256": "407dc38536d5dcfcc6d19111982e89fb5454af5a2dbea1995b240a264dadc09c",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "pasta",
+      "example_recipe_id": "uk-core-tomato-lentil-pasta",
+      "title": "Tomato and lentil pasta",
+      "recipe_sha256": "a1e7b55f447ae115efff3c9f12a3d473bb46c84892598b4fa9758fbfc865a8e9",
+      "publication": "uk_core",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "pasta-bake",
+      "example_recipe_id": "industrial-dinner-pork-pasta-bake",
+      "title": "Pork pasta bake",
+      "recipe_sha256": "b5d1bb5daaecddf8cb33dc274c5180183c20b0815ba56001337c4629e62f6145",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "pasta-pot",
+      "example_recipe_id": "industrial-lunch-egg-pasta-pot",
+      "title": "Pesto egg pasta salad",
+      "recipe_sha256": "9c98fac8d0a4b5e5c6d6130e3eac597570998e04f27540e061dbe61ae0caf5aa",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "curry",
+      "example_recipe_id": "uk-core-chickpea-spinach-curry",
+      "title": "Chickpea and spinach curry with rice",
+      "recipe_sha256": "f5392314f7457cd7524fbe36d49e60b339143405122436093c03c007355b0bd6",
+      "publication": "uk_core",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "chilli",
+      "example_recipe_id": "industrial-v3-chilli-balti-pork",
+      "title": "Balti pork chilli with rice",
+      "recipe_sha256": "f14c6926006a5268e02b46868f4e294189c642582ef6b5f2ce96b33f55cc72c9",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "slow-cooker",
+      "example_recipe_id": "industrial-dinner-turkey-slow-cooker-stew",
+      "title": "Turkey slow-cooker potato and vegetable pot",
+      "recipe_sha256": "def4826f1f7b9d690309460e1ee642796c609ef4a444f78abda4f64dfd8f3b3d",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "stir-fry",
+      "example_recipe_id": "uk-core-chicken-vegetable-noodles",
+      "title": "Chicken and vegetable noodles",
+      "recipe_sha256": "77ebca27d832094383b55afedfef155319bafdb737ae55dd49504a5af3246dd8",
+      "publication": "uk_core",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "rice-bowl",
+      "example_recipe_id": "industrial-lunch-egg-rice-bowl",
+      "title": "Lemon egg rice bowl",
+      "recipe_sha256": "b45c4fb129d52f4427a245b5dafb7629471a93990bdaedfa8ce3d7430d9148aa",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "meal-prep-bowl",
+      "example_recipe_id": "industrial-v3-meal-prep-bowl-greek-egg",
+      "title": "Lemon egg rice lunch bowl",
+      "recipe_sha256": "241ef5c0d105f7ba09286fb352b1d43e1269b993d75ae223c7313f67f9355bdf",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "grain-salad",
+      "example_recipe_id": "industrial-lunch-egg-grain-salad",
+      "title": "Mustard egg couscous salad",
+      "recipe_sha256": "74624e00aa82710b549494629aca7188eeb26a4fb27cce9113e789df53bf9b45",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "salad",
+      "example_recipe_id": "everyday-ham-salad",
+      "title": "Ham salad",
+      "recipe_sha256": "094611df331124244d4d452d9aaf051b998ee391e7e18286e1752105d201a979",
+      "publication": "everyday",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "roast",
+      "example_recipe_id": "industrial-v3-roast-mediterranean-beef",
+      "title": "Beef meatballs with roast potatoes",
+      "recipe_sha256": "dbb9774ba279cb90e008cbc7ee16930b3c43cd6bc315733cd7af4cca8c9ae7ee",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "traybake",
+      "example_recipe_id": "industrial-dinner-turkey-traybake",
+      "title": "Turkey with roasted potatoes and vegetables",
+      "recipe_sha256": "d56048185ecbf39bb22c0a41108291855525a401ace804df383e8746869a3b99",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "burger",
+      "example_recipe_id": "industrial-v3-burger-tikka-pork",
+      "title": "Tikka pork burger with side salad",
+      "recipe_sha256": "a43071d4c97811dc219711702875b1f6cdd95c55eca0efdf021c703508e8ed50",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "pizza",
+      "example_recipe_id": "uk-core-mushroom-pizza",
+      "title": "Mushroom pizza with side salad",
+      "recipe_sha256": "a7580c54d70401482ff27b914dd86e6e06af3186c97fc4d02b79defae17a097a",
+      "publication": "uk_core",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "kebab",
+      "example_recipe_id": "industrial-v3-kebab-tikka-pork",
+      "title": "Tikka pork salad flatbread",
+      "recipe_sha256": "c3cc2408421758cca23cf67078ec5ec2fbfcd0df4aec3f244ecf3ed7a1e60204",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "loaded-fries",
+      "example_recipe_id": "industrial-v3-loaded-fries-tikka-pork",
+      "title": "Tikka pork topped oven chips",
+      "recipe_sha256": "11f5bb21dbdf1635658e3ae921ab4483ea8561f42c75862c964b3cee7d515b97",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "pitta",
+      "example_recipe_id": "industrial-lunch-tuna-pitta",
+      "title": "Tuna salad pitta",
+      "recipe_sha256": "e87aee48e387cc0c8490664c624da91babf698741462023c2696fc8b85bcf435",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "wholemeal-wrap",
+      "example_recipe_id": "industrial-lunch-tofu-wholemeal-wrap",
+      "title": "Lemon tofu salad wrap",
+      "recipe_sha256": "774f9dd3acb5804ee30783ed599ec3fd535dcdfa5d2048f56578cf8cb318f0c6",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "work-snack-box",
+      "example_recipe_id": "industrial-v4-work-snack-box-lemon-overnight-oats",
+      "title": "Berries lemon oats overnight oats",
+      "recipe_sha256": "f9dceafe30d760cfe20b3448c668df082f2a7fb42e15df58f583b7fd933ed536",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "protein-pot",
+      "example_recipe_id": "industrial-v4-protein-pot-lemon-overnight-oats",
+      "title": "Berries lemon fruit pot",
+      "recipe_sha256": "40b372fce5ade8858fcac9ce6ba9f67b338c4e2aa4655578b777fc807486b5f2",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    },
+    {
+      "family": "dessert-pot",
+      "example_recipe_id": "industrial-v4-dessert-pot-berry-greek-yoghurt",
+      "title": "Berries yoghurt pot \u2014 Greek yoghurt",
+      "recipe_sha256": "f4953ba11e78ebc4f58293734e41aa6b823ed89cb43f2846d54e06914d2a2742",
+      "publication": "uk_full",
+      "independent_cook_sessions_requested": 25,
+      "planning_session_quotas": {
+        "train": 15,
+        "validation": 5,
+        "blind_test": 5
+      },
+      "views_per_session": 3,
+      "training_qualified_photos": 0,
+      "current_reference_usable_as_real_validation_photo": false
+    }
+  ],
+  "total_planned_sessions": 1000,
+  "total_planned_photos": 3000,
+  "planned_blind_sessions": 200,
+  "stages": [
+    {
+      "stage": "collection_method_pilot",
+      "formats": [
+        "on-toast",
+        "egg-toast",
+        "omelette",
+        "overnight-oats",
+        "protein-oats",
+        "yoghurt-pot",
+        "fruit-and-yoghurt",
+        "fruit-and-nuts",
+        "breakfast-wrap",
+        "breakfast-buttie",
+        "breakfast-hash",
+        "breakfast-toastie"
+      ],
+      "sessions_per_family": 5,
+      "photos": 180,
+      "acceptance_evidence": false
+    },
+    {
+      "stage": "scale_if_pilot_qualified",
+      "families": 40,
+      "sessions": 1000,
+      "photos": 3000,
+      "acceptance_evidence": "200 blind cook sessions is initial development acceptance scope, not proof of 99.99%; actual source-group quotas must be verified"
+    }
+  ],
+  "required_photo_record": {
+    "file": null,
+    "sha256": null,
+    "recipe_id": null,
+    "recipe_sha256": null,
+    "visible_components": null,
+    "unknown_or_occluded_components": null,
+    "substitutions": null,
+    "portion_evidence": null,
+    "capture_group": null,
+    "source_group": null,
+    "rights_receipt": null,
+    "training_permission": null,
+    "independent_label_review": null,
+    "split": null
+  },
+  "photo_views": [
+    "natural phone view",
+    "overhead",
+    "oblique; include a non-identifying size reference if available"
+  ],
+  "non_food_plan": {
+    "minimum_independent_examples": 100,
+    "groups": [
+      "empty plates",
+      "utensils and tables",
+      "documents and screens",
+      "unrelated household objects"
+    ],
+    "real_photos_collected": 0
+  },
+  "controls": [
+    "Current recipe version must be revalidated before use; this catalogue is a source snapshot",
+    "Existing illustrative/stale recipe images cannot become real evaluation evidence",
+    "All views of a cook session and all captures from a source group stay in one split",
+    "Choose the primary test view before model results; report all-view performance with capture clustering",
+    "Maintain minimum per-advertised-class blind support; quotas alone cannot establish this",
+    "Exact recipe target only if recipe/version/ingredients match; changed ingredients get variant/component labels",
+    "Visible food labels and hidden recipe ingredients are separate fields",
+    "Two independent label reviews for blind acceptance; disagreements resolved before freezing truth",
+    "Explicit source rights and separate training permission required; diary confirmation is not training consent",
+    "Do not move development-test errors into training",
+    "No generated image is a real-photo test",
+    "No faces, identifiers or location metadata in research examples"
+  ],
+  "photos_collected": 0,
+  "contacts_or_requests_sent": 0,
+  "costs_committed": 0,
+  "training_ready": false,
+  "production_ready": false
+}
