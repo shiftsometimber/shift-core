@@ -6,7 +6,7 @@ test('private identity, records, account, basket, writes and public handlers ret
  const paths=['/v1/me','/v1/life-back/journey','/v1/privacy/export','/v1/privacy/account','/v1/commerce/active-checkout','/v1/commerce/basket-quote','/v1/auth/logout','/','/start-here','/shift-health/testing/vitamin-d'];
  for(const path of paths)for(const method of ['GET','POST','DELETE']){
  const expected=new Response('unchanged guarded response',{status:401,headers:{'Cache-Control':'no-store','Set-Cookie':'synthetic=retained'}}),env={MEMBER_EXPERIENCE_V1_ENABLED:'true',CORE:{otherMethod:()=>42}},original={fetch:(request,e)=>{assert.equal(e,env);return expected;},scheduled:()=>{}},wrapped=wrapMemberPerformance(original,{},{} ,'core');
- assert.equal(wrapped.scheduled,original.scheduled);assert.equal(await wrapped.fetch(new Request('https://shiftsometimber.co.uk'+path,{method}),env,{}),expected);
+ assert.equal(wrapped.scheduled,original.scheduled);const actual=await wrapped.fetch(new Request('https://shiftsometimber.co.uk'+path,{method}),env,{});if(path==='/v1/life-back/journey'&&method==='GET'){assert.equal(actual.status,expected.status);assert.equal(await actual.text(),'unchanged guarded response');assert.equal(actual.headers.get('Set-Cookie'),'synthetic=retained');assert.equal(actual.headers.get('Cache-Control'),'no-store, private');}else assert.equal(actual,expected);
  }});
 test('only exact non-personalised, content-versioned assets are immutable; wrong versions revalidate',async()=>{
  const asset={body:'static code',type:'text/javascript',sha256:'a'.repeat(64),owner:'core'},wrapped=wrapMemberPerformance({fetch:()=>new Response('original')},{},{'/assets/example.mjs':asset},'core'),env={MEMBER_EXPERIENCE_V1_ENABLED:'true'};

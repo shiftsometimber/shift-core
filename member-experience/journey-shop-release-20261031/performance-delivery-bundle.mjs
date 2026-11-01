@@ -4,7 +4,7 @@ function memberPerformanceClient(options) {
   options = options || {};
   if (window.__mtPerformance) return;
   window.__mtPerformance = true;
-  const originalFetch = window.fetch.bind(window), reads = /* @__PURE__ */ new Map(), pendingReads = /* @__PURE__ */ new Set(), identityOrigins = /* @__PURE__ */ new Set();
+  const originalFetch = window.fetch.bind(window), reads = /* @__PURE__ */ new Map(), pendingReads = /* @__PURE__ */ new Set(), identityOrigins = /* @__PURE__ */ new Set(), originIdentities = /* @__PURE__ */ new Map();
   let version = 0, identity = null, lastOwner = null, identityAt = 0, inflight = null, controller = null;
   const authorisedOrigin = (u) => u.origin === location.origin;
   const firstParty = (u) => [location.origin, "https://api.shiftsometimber.co.uk", "https://shiftsometimber.co.uk", "https://www.shiftsometimber.co.uk"].includes(u.origin);
@@ -26,6 +26,7 @@ function memberPerformanceClient(options) {
     ++version;
     identity = null;
     identityAt = 0;
+    originIdentities.clear();
     controller?.abort();
     inflight = null;
     if (reason !== "background") {
@@ -53,6 +54,7 @@ function memberPerformanceClient(options) {
           wipe("account-switch");
           throw Error("Account changed");
         }
+        originIdentities.clear();
         identity = data;
         lastOwner = String(data.user.id);
         identityAt = Date.now();
@@ -68,14 +70,37 @@ function memberPerformanceClient(options) {
     inflight = job;
     return job;
   }
+  async function verifiedOrigin(origin) {
+    if (!firstParty(new URL(origin)) || origin === location.origin) throw Error("Unrecognised identity origin");
+    identityOrigins.add(origin);
+    if (parentApp?.identityOrigin) return parentApp.identityOrigin(origin);
+    const proof = await verified(), epoch = version, existing = originIdentities.get(origin);
+    if (existing && existing.epoch === epoch && Date.now() - existing.at < 15e3) return existing.promise;
+    const job = (async () => {
+      const r = await originalFetch(origin + "/v1/me", { credentials: "include", cache: "no-store", signal: AbortSignal.timeout(12e3) }), data = await r.json();
+      if (epoch !== version) throw Error("Account changed");
+      if (!r.ok || String(data?.user?.id) !== String(proof.user.id)) {
+        (parentApp?.invalidate || wipe)("identity-origin-mismatch", true);
+        throw Error("Account changed");
+      }
+      return data;
+    })();
+    originIdentities.set(origin, { epoch, at: Date.now(), promise: job });
+    try {
+      return await job;
+    } catch (e) {
+      originIdentities.delete(origin);
+      throw e;
+    }
+  }
   if (!parentApp) channel?.addEventListener("message", () => wipe("another-window"));
   const identityPath = (u) => authorisedOrigin(u) && u.pathname === "/v1/me";
   window.MT_MEMBER_IDENTITY = verified;
   window.fetch = async function(input, init) {
     const u = endpoint(input), method = (init?.method || (input instanceof Request ? input.method : "GET")).toUpperCase();
-    if (u && identityPath(u) && method === "GET") {
+    if (u && firstParty(u) && u.pathname === "/v1/me" && method === "GET") {
       try {
-        return new Response(JSON.stringify(await verified()), { status: 200, headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } });
+        return new Response(JSON.stringify(await (identityPath(u) ? verified() : verifiedOrigin(u.origin))), { status: 200, headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } });
       } catch {
         return new Response('{"error":"sign_in_required"}', { status: 401, headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } });
       }
@@ -116,13 +141,7 @@ function memberPerformanceClient(options) {
     await Promise.allSettled([...pendingReads]);
     const before = version, proof = await verified();
     let changed = false;
-    const checks = [...identityOrigins].map(async (origin) => {
-      const r = await originalFetch(origin + "/v1/me", { credentials: "include", cache: "no-store", signal: AbortSignal.timeout(12e3) }), data = await r.json();
-      if (!r.ok || String(data?.user?.id) !== String(proof.user.id)) {
-        (parentApp?.invalidate || wipe)("identity-origin-mismatch", true);
-        throw Error("Account changed");
-      }
-    });
+    const checks = [...identityOrigins].map((origin) => verifiedOrigin(origin));
     await Promise.all([...checks, ...[...reads].map(async ([path, body]) => {
       const r = await originalFetch(path, { credentials: "include", cache: "no-store", signal: AbortSignal.timeout(12e3) });
       if (!r.ok) {
@@ -370,7 +389,8 @@ function memberPerformanceClient(options) {
       finish(entry, u);
       if (!entry) {
         internalRoute = true;
-        dispatchEvent(new PopStateEvent("popstate"));
+        if (window.MT_MEMBER_ROUTE_REFRESH) window.MT_MEMBER_ROUTE_REFRESH();
+        else dispatchEvent(new PopStateEvent("popstate"));
         internalRoute = false;
       }
       if (entry) entry.loaded = true;
@@ -389,7 +409,7 @@ function memberPerformanceClient(options) {
     }
     return true;
   }
-  window.MT_PERFORMANCE = { identity: verified, invalidate, navigate, samples, reflect: (source, href) => {
+  window.MT_PERFORMANCE = { identity: verified, identityOrigin: verifiedOrigin, invalidate, navigate, samples, reflect: (source, href) => {
     const u = endpoint(href);
     if (active && source === active.frame.contentWindow && u && screenPath(u)) {
       history.replaceState(history.state, "", u.pathname + u.search + u.hash);
@@ -692,6 +712,12 @@ function wrapMemberPerformance(original, templates, assets, kind) {
     const u = new URL(request.url), stage = request.headers.get("X-My-Timber-Performance-Stage") || "cache", experimental = ["server", "identity", "retained"].includes(stage), read = ["GET", "HEAD"].includes(request.method);
     const enabled = kind === "documents" ? env.MY_TIMBER_V6_RELEASE_ENABLED === "true" : env.MEMBER_EXPERIENCE_V1_ENABLED === "true";
     if (enabled && kind === "programme" && u.pathname === performanceMetricsPath) return performanceMetricsRoute(request, env);
+    if (enabled && read && u.pathname === "/v1/life-back/journey") {
+      const r = await original.fetch(request, env, ctx), h2 = new Headers(r.headers);
+      h2.set("Cache-Control", "no-store, private");
+      if (!/\bcookie\b/i.test(h2.get("Vary") || "")) h2.append("Vary", "Cookie");
+      return new Response(r.body, { status: r.status, statusText: r.statusText, headers: h2, encodeBody: "manual" });
+    }
     if (!enabled || !read) return original.fetch(request, env, ctx);
     const asset = assets[u.pathname];
     if (asset && asset.owner === kind && (u.searchParams.get("mtv") === asset.sha256.slice(0, 20) || experimental && u.pathname === "/assets/member-experience/programme-shop-navigation.mjs") && (!experimental || u.pathname === "/assets/member-experience/programme-shop-navigation.mjs" && stage !== "server")) {

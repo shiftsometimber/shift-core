@@ -1,7 +1,7 @@
 {
-  "at": "2026-11-01T21:12:47.174Z",
-  "bundleSHA256": "ef1c45a65846467c7274bb2b161e3a11212c9739ac847b56a49beaae025a7516",
-  "assetsSHA256": "652cc37848282e3f38f21b08e70ce2d13aee426a723baa5767b38cfa9eb2fdb0",
+  "at": "2026-11-01T21:35:26.726Z",
+  "bundleSHA256": "d191af871730ab28a6ac7665b78ff47dd1d4211a3209617df043d3cd11c4e1a3",
+  "assetsSHA256": "6171a1b7a3a129e889aa3e8121e18b3dc86df7b9578021822eb8f3f0c26621b7",
   "publicSourcesSHA256": "17ed9150cece1c044d9223dd0b04d0545332198d3948e05dc2508116217ee925",
   "staticAssets": {
     "/assets/member-experience/programme-shop-basket.js": {
@@ -211,8 +211,8 @@
     },
     "/assets/my-timber-layout.mjs": {
       "owner": "programme",
-      "sha256": "24fa200f1b2ea5335de778ada3e583ed2c8f5587b97527769afefa073aaa5c1c",
-      "bytes": 169503
+      "sha256": "c49effdc1d81c728fcd568c26818dc43adeb3f65278a2fa4423f0d4d8674d7b6",
+      "bytes": 169626
     },
     "/assets/member-experience/programme-client.js": {
       "owner": "programme",
@@ -380,8 +380,8 @@
     }
   ],
   "sourceInputs": {
-    "scoped-source/member-experience/performance-client.mjs": "62282239da15b1b61082462c9acd5b4e98eed7f4f2db096025f2be4947de71d6",
+    "scoped-source/member-experience/performance-client.mjs": "61c152bc6ae1ad9c6f9079687ce97d9846359a9e60b738c731320d68ee505d6c",
     "scoped-source/member-experience/performance-monitor.mjs": "b1abbf94451cfe4545738dc5b558022266a5ba33553380558a0d0e255f1c009d",
-    "scoped-source/member-experience/performance-delivery.mjs": "209bc071bf95283d4340e43f8208a812043290fd8017672d078742d3b92bc8ef"
+    "scoped-source/member-experience/performance-delivery.mjs": "4f21e38b20ebf4d2fdc0ae08938ad63e71e6e390e940f7faa82dc7ce8d521b7e"
   }
 }

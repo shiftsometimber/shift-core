@@ -29,6 +29,7 @@ export function wrapMemberPerformance(original,templates,assets,kind){
  const u=new URL(request.url),stage=request.headers.get('X-My-Timber-Performance-Stage')||'cache',experimental=['server','identity','retained'].includes(stage),read=['GET','HEAD'].includes(request.method);
  const enabled=kind==='documents'?env.MY_TIMBER_V6_RELEASE_ENABLED==='true':env.MEMBER_EXPERIENCE_V1_ENABLED==='true';
  if(enabled&&kind==='programme'&&u.pathname===performanceMetricsPath)return performanceMetricsRoute(request,env);
+ if(enabled&&read&&u.pathname==='/v1/life-back/journey'){const r=await original.fetch(request,env,ctx),h=new Headers(r.headers);h.set('Cache-Control','no-store, private');if(!/\bcookie\b/i.test(h.get('Vary')||''))h.append('Vary','Cookie');return new Response(r.body,{status:r.status,statusText:r.statusText,headers:h,encodeBody:'manual'});}
  if(!enabled||!read)return original.fetch(request,env,ctx);
  const asset=assets[u.pathname];
  if(asset&&asset.owner===kind&&(u.searchParams.get('mtv')===asset.sha256.slice(0,20)||experimental&&u.pathname==='/assets/member-experience/programme-shop-navigation.mjs')&&(!experimental||u.pathname==='/assets/member-experience/programme-shop-navigation.mjs'&&stage!=='server')){

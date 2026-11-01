@@ -2,7 +2,7 @@
 export function memberPerformanceClient(options){
 'use strict';options=options||{};
 if(window.__mtPerformance)return;window.__mtPerformance=true;
-const originalFetch=window.fetch.bind(window),reads=new Map(),pendingReads=new Set(),identityOrigins=new Set();
+const originalFetch=window.fetch.bind(window),reads=new Map(),pendingReads=new Set(),identityOrigins=new Set(),originIdentities=new Map();
 let version=0,identity=null,lastOwner=null,identityAt=0,inflight=null,controller=null;
 const authorisedOrigin=u=>u.origin===location.origin;
 const firstParty=u=>[location.origin,'https://api.shiftsometimber.co.uk','https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk'].includes(u.origin);
@@ -11,7 +11,7 @@ let parentApp;try{if(parent!==window&&parent.location.origin===location.origin)p
 if(window.SST_API_BASE==='null')window.SST_API_BASE=location.origin;
 const channel=typeof BroadcastChannel==='function'?new BroadcastChannel('my-timber-session-invalidated'):null;
 function wipe(reason,broadcast=false){
- ++version;identity=null;identityAt=0;controller?.abort();inflight=null;if(reason!=='background'){reads.clear();lastOwner=null;}
+ ++version;identity=null;identityAt=0;originIdentities.clear();controller?.abort();inflight=null;if(reason!=='background'){reads.clear();lastOwner=null;}
  document.dispatchEvent(new CustomEvent('mt:identity-invalidated',{detail:{reason}}));
  if(broadcast)channel?.postMessage({invalidate:true});
 }
@@ -28,17 +28,26 @@ async function verified(force=false){
  const data=await r.json();if(data?.user?.id===undefined||data.user.id===null)throw Error('Account missing');
  if(epoch!==version)throw Error('Account changed');
  if(lastOwner!==null&&lastOwner!==String(data.user.id)){wipe('account-switch');throw Error('Account changed');}
- identity=data;lastOwner=String(data.user.id);identityAt=Date.now();return data;
+ originIdentities.clear();identity=data;lastOwner=String(data.user.id);identityAt=Date.now();return data;
  }catch(e){if(epoch===version)wipe('identity-failed');throw e;}finally{clearTimeout(timer);if(epoch===version)inflight=null;}
  })();inflight=job;return job;
+}
+
+async function verifiedOrigin(origin){
+ if(!firstParty(new URL(origin))||origin===location.origin)throw Error('Unrecognised identity origin');
+ identityOrigins.add(origin);if(parentApp?.identityOrigin)return parentApp.identityOrigin(origin);
+ const proof=await verified(),epoch=version,existing=originIdentities.get(origin);
+ if(existing&&existing.epoch===epoch&&Date.now()-existing.at<15000)return existing.promise;
+ const job=(async()=>{const r=await originalFetch(origin+'/v1/me',{credentials:'include',cache:'no-store',signal:AbortSignal.timeout(12000)}),data=await r.json();if(epoch!==version)throw Error('Account changed');if(!r.ok||String(data?.user?.id)!==String(proof.user.id)){(parentApp?.invalidate||wipe)('identity-origin-mismatch',true);throw Error('Account changed');}return data;})();
+ originIdentities.set(origin,{epoch,at:Date.now(),promise:job});try{return await job}catch(e){originIdentities.delete(origin);throw e;}
 }
 if(!parentApp)channel?.addEventListener('message',()=>wipe('another-window'));
 const identityPath=u=>authorisedOrigin(u)&&u.pathname==='/v1/me';
 window.MT_MEMBER_IDENTITY=verified;
 window.fetch=async function(input,init){
  const u=endpoint(input),method=(init?.method||(input instanceof Request?input.method:'GET')).toUpperCase();
- if(u&&identityPath(u)&&method==='GET'){
-  try{return new Response(JSON.stringify(await verified()),{status:200,headers:{'Content-Type':'application/json','Cache-Control':'no-store'}})}
+ if(u&&firstParty(u)&&u.pathname==='/v1/me'&&method==='GET'){
+  try{return new Response(JSON.stringify(await (identityPath(u)?verified():verifiedOrigin(u.origin))),{status:200,headers:{'Content-Type':'application/json','Cache-Control':'no-store'}})}
   catch{return new Response('{"error":"sign_in_required"}',{status:401,headers:{'Content-Type':'application/json','Cache-Control':'no-store'}})}
  }
  const tracked=u&&firstParty(u)&&u.pathname.startsWith('/v1/')&&u.pathname!=='/v1/me'&&method==='GET';
@@ -55,7 +64,7 @@ window.fetch=async function(input,init){
 };
 async function revalidate(){
  await Promise.allSettled([...pendingReads]);const before=version,proof=await verified();let changed=false;
- const checks=[...identityOrigins].map(async origin=>{const r=await originalFetch(origin+'/v1/me',{credentials:'include',cache:'no-store',signal:AbortSignal.timeout(12000)}),data=await r.json();if(!r.ok||String(data?.user?.id)!==String(proof.user.id)){(parentApp?.invalidate||wipe)('identity-origin-mismatch',true);throw Error('Account changed');}});
+ const checks=[...identityOrigins].map(origin=>verifiedOrigin(origin));
  await Promise.all([...checks,...[...reads].map(async([path,body])=>{const r=await originalFetch(path,{credentials:'include',cache:'no-store',signal:AbortSignal.timeout(12000)});if(!r.ok){if([401,403].includes(r.status))(parentApp?.invalidate||wipe)('private-data-access-changed',true);throw Error('Current information unavailable');}if(await r.text()!==body)changed=true;})]);
  if(before!==version)throw Error('Account changed');return !changed;
 }
@@ -134,12 +143,12 @@ async function navigate(href,options={}){
  if(!options.history)history.pushState({mtRetained:true},'',u.pathname+u.search+u.hash);
  if(!entry&&u.hash!==initial.hash){history.replaceState(history.state,'',u.pathname+u.search+u.hash);dispatchEvent(new Event('hashchange'));}
  if(entry&&u.hash&&entry.frame.contentWindow.location.hash!==u.hash)entry.frame.contentWindow.location.hash=u.hash;
- finish(entry,u);if(!entry){internalRoute=true;dispatchEvent(new PopStateEvent('popstate'));internalRoute=false;}if(entry)entry.loaded=true;row.usableMs=Math.round(performance.now()-t);row.pass=true;samples.push(row);document.dispatchEvent(new CustomEvent('mt:screen-usable',{detail:row}));
+ finish(entry,u);if(!entry){internalRoute=true;if(window.MT_MEMBER_ROUTE_REFRESH)window.MT_MEMBER_ROUTE_REFRESH();else dispatchEvent(new PopStateEvent('popstate'));internalRoute=false;}if(entry)entry.loaded=true;row.usableMs=Math.round(performance.now()-t);row.pass=true;samples.push(row);document.dispatchEvent(new CustomEvent('mt:screen-usable',{detail:row}));
  }catch(e){if(ticket!==navigation)return;row.error=e.message;samples.push(row);if(!identity)fail();else status(e.message+'. Your saved information has not changed.');}
  finally{if(ticket===navigation)document.querySelector('#mtShopChrome')?.removeAttribute('aria-busy');}
  return true;
 }
-window.MT_PERFORMANCE={identity:verified,invalidate,navigate,samples,reflect:(source,href)=>{const u=endpoint(href);if(active&&source===active.frame.contentWindow&&u&&screenPath(u)){history.replaceState(history.state,'',u.pathname+u.search+u.hash);select(u);}},current:()=>active?.frame.contentWindow||window};
+window.MT_PERFORMANCE={identity:verified,identityOrigin:verifiedOrigin,invalidate,navigate,samples,reflect:(source,href)=>{const u=endpoint(href);if(active&&source===active.frame.contentWindow&&u&&screenPath(u)){history.replaceState(history.state,'',u.pathname+u.search+u.hash);select(u);}},current:()=>active?.frame.contentWindow||window};
 document.addEventListener('mt:identity-invalidated',e=>{if(e.detail?.reason==='background'){++navigation;lock();return;}const wasReady=document.body?.dataset.memberSession==='ready';discard();document.body&&(document.body.dataset.memberSession='pending');if(wasReady){document.querySelectorAll('main').forEach(n=>n.replaceChildren());location.reload();}});
 document.addEventListener('sst:account-changed',()=>{invalidate('account-event',true);window.SST_MEMBER_SESSION?.check();});
 document.addEventListener('click',event=>{
