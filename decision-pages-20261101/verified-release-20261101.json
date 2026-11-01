@@ -1,0 +1,1452 @@
+{
+  "verified": true,
+  "source": "48749f4fb9c16654862165841ba8a525683d407f",
+  "release": "decision-pages-20261101-v1",
+  "pages": [
+    {
+      "key": "prepare",
+      "path": "/before-you-decide",
+      "selected": "Delegated unfinished decision-page visual upgrade"
+    },
+    {
+      "key": "decision",
+      "path": "/decision-centre",
+      "selected": "Delegated unfinished decision-page visual upgrade"
+    },
+    {
+      "key": "readiness",
+      "path": "/decision-readiness",
+      "selected": "Delegated unfinished decision-page visual upgrade"
+    },
+    {
+      "key": "lifestyle",
+      "path": "/lifestyle-vs-treatment",
+      "selected": "Delegated unfinished decision-page visual upgrade"
+    },
+    {
+      "key": "universal",
+      "path": "/comparison-centre",
+      "selected": "Delegated unfinished decision-page visual upgrade"
+    },
+    {
+      "key": "future",
+      "path": "/future-medicines-comparison",
+      "selected": "Delegated unfinished decision-page visual upgrade"
+    },
+    {
+      "key": "overseas",
+      "path": "/uk-vs-europe-treatment",
+      "selected": "Delegated unfinished decision-page visual upgrade"
+    }
+  ],
+  "workers": [
+    {
+      "name": "shift-public-presentation-batch-20261022",
+      "versionId": "49241486-bd2f-40e2-a1d7-44adefcdd844",
+      "previousVersion": "9e4a0837-f185-4de4-9a15-7627cc7f5b36",
+      "retainedModules": 62,
+      "refreshedOwnedModules": 0,
+      "bindingsPreserved": 4,
+      "migrationTagPreserved": null
+    },
+    {
+      "name": "shift-core",
+      "versionId": "0a1db8da-2ff1-4f56-8635-6f37294a3236",
+      "previousVersion": "7de3a164-ad02-432a-aa3c-fa34bed48710",
+      "retainedModules": 39,
+      "refreshedOwnedModules": 0,
+      "bindingsPreserved": 52,
+      "migrationTagPreserved": "v1-site-content-state"
+    }
+  ],
+  "routeCount": 915,
+  "routesChanged": 0,
+  "checks": [
+    {
+      "path": "/before-you-decide",
+      "key": "prepare",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true,
+      "controlsPreserved": true
+    },
+    {
+      "path": "/before-you-decide?presentation=1",
+      "key": "prepare",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true,
+      "controlsPreserved": true
+    },
+    {
+      "path": "/decision-centre",
+      "key": "decision",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true,
+      "controlsPreserved": true
+    },
+    {
+      "path": "/decision-centre?presentation=1",
+      "key": "decision",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true,
+      "controlsPreserved": true
+    },
+    {
+      "path": "/decision-readiness",
+      "key": "readiness",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true,
+      "controlsPreserved": true
+    },
+    {
+      "path": "/decision-readiness?presentation=1",
+      "key": "readiness",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true,
+      "controlsPreserved": true
+    },
+    {
+      "path": "/lifestyle-vs-treatment",
+      "key": "lifestyle",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true,
+      "controlsPreserved": true
+    },
+    {
+      "path": "/lifestyle-vs-treatment?presentation=1",
+      "key": "lifestyle",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true,
+      "controlsPreserved": true
+    },
+    {
+      "path": "/comparison-centre",
+      "key": "universal",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true,
+      "controlsPreserved": true
+    },
+    {
+      "path": "/comparison-centre?presentation=1",
+      "key": "universal",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true,
+      "controlsPreserved": true
+    },
+    {
+      "path": "/future-medicines-comparison",
+      "key": "future",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true,
+      "controlsPreserved": true
+    },
+    {
+      "path": "/future-medicines-comparison?presentation=1",
+      "key": "future",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true,
+      "controlsPreserved": true
+    },
+    {
+      "path": "/uk-vs-europe-treatment",
+      "key": "overseas",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true,
+      "controlsPreserved": true
+    },
+    {
+      "path": "/uk-vs-europe-treatment?presentation=1",
+      "key": "overseas",
+      "contentPreserved": true,
+      "scriptsPreserved": true,
+      "shellPreserved": true,
+      "linksPreserved": true,
+      "controlsPreserved": true
+    }
+  ],
+  "protectedPages": [
+    "/tools/bmi",
+    "/tools/calories",
+    "/tools/healthy-weight",
+    "/tools/protein",
+    "/tools/waist-height",
+    "/tools/walking",
+    "/tools/water",
+    "/tools/steps",
+    "/tools/sleep",
+    "/tools/alcohol",
+    "/tools/weight-management-review",
+    "/how-are-you-feeling",
+    "/",
+    "/start-here",
+    "/programme",
+    "/shift-health",
+    "/knowledge",
+    "/explore-knowledge",
+    "/ask-timber",
+    "/treatment-centre",
+    "/member/dashboard",
+    "/mens-mental-health",
+    "/shift-for-work",
+    "/shift-health/stop-smoking",
+    "/tools",
+    "/tools?ct3=1",
+    "/weight-loss-support-for-men",
+    "/partner-with-us",
+    "/male-obesity",
+    "/compare-weight-loss-treatments",
+    "/clinic-gone-quiet",
+    "/about",
+    "/contact",
+    "/shift-newsroom",
+    "/life-back",
+    "/corporate-wellbeing",
+    "/guides/retatrutide-uk-guide",
+    "/husband-help",
+    "/my-timber-for-providers",
+    "/nhs-vs-private",
+    "/surgery-comparison-centre",
+    "/knowledge?presentation=1",
+    "/articles/stopping-glp1",
+    "/articles/food-noise-after-stopping-glp1",
+    "/member/life-back",
+    "/shift-newsroom/client.js",
+    "/shift-newsroom/compare.js",
+    "/provider-switch",
+    "/our-causes-partners",
+    "/downloads-resources",
+    "/downloads-resources?presentation=1",
+    "/family-discussion-guide",
+    "/family-discussion-guide?presentation=1",
+    "/community",
+    "/community?presentation=1",
+    "/faq",
+    "/help",
+    "/waiting-list-journey",
+    "/waiting-list-journey?presentation=1",
+    "/advertise-with-us",
+    "/expert-contributors",
+    "/media-centre",
+    "/press-centre",
+    "/trusted-partners",
+    "/shift-promise",
+    "/treatment-finder",
+    "/my-weight-loss-roadmap",
+    "/shift-health/health-mot",
+    "/editorial-standards",
+    "/commercial-principles",
+    "/commercial-principles?presentation=1",
+    "/how-we-review-products",
+    "/how-we-review-products?presentation=1",
+    "/affiliate-disclosure",
+    "/affiliate-disclosure?presentation=1",
+    "/decision-trees-explained",
+    "/decision-trees-explained?presentation=1",
+    "/treatment-finder-methodology",
+    "/treatment-finder-methodology?presentation=1",
+    "/roadmap-methodology",
+    "/roadmap-methodology?presentation=1",
+    "/health-mot-methodology",
+    "/health-mot-methodology?presentation=1",
+    "/medication-comparison-methodology",
+    "/medication-comparison-methodology?presentation=1",
+    "/advertise-with-us?presentation=1",
+    "/expert-contributors?presentation=1",
+    "/media-centre?presentation=1",
+    "/press-centre?presentation=1",
+    "/trusted-partners?presentation=1",
+    "/shift-promise?presentation=1",
+    "/work-with-us",
+    "/work-with-us?presentation=1",
+    "/decision-centre-methodology",
+    "/decision-centre-methodology?presentation=1",
+    "/decision-readiness-methodology",
+    "/decision-readiness-methodology?presentation=1",
+    "/lifestyle-treatment-methodology",
+    "/lifestyle-treatment-methodology?presentation=1",
+    "/nhs-private-methodology",
+    "/nhs-private-methodology?presentation=1",
+    "/progress-centre-methodology",
+    "/progress-centre-methodology?presentation=1",
+    "/surgery-comparison-methodology",
+    "/surgery-comparison-methodology?presentation=1",
+    "/uk-europe-methodology",
+    "/uk-europe-methodology?presentation=1",
+    "/universal-comparison-methodology",
+    "/universal-comparison-methodology?presentation=1",
+    "/clinical-governance",
+    "/clinical-governance?presentation=1",
+    "/editorial-standards?presentation=1",
+    "/medical-disclaimer",
+    "/medical-disclaimer?presentation=1",
+    "/privacy-centre",
+    "/privacy-centre?presentation=1",
+    "/data-governance",
+    "/data-governance?presentation=1",
+    "/dpia-summary",
+    "/dpia-summary?presentation=1",
+    "/product-reviews",
+    "/product-reviews?presentation=1",
+    "/authors/matt-obrien",
+    "/authors/matt-obrien?presentation=1",
+    "/accessibility",
+    "/accessibility?presentation=1",
+    "/complaints",
+    "/complaints?presentation=1",
+    "/downloads/gp-appointment-checklist",
+    "/downloads/gp-appointment-checklist?presentation=1",
+    "/downloads/weight-loss-medication-questions",
+    "/downloads/weight-loss-medication-questions?presentation=1",
+    "/downloads/bariatric-surgery-checklist",
+    "/downloads/bariatric-surgery-checklist?presentation=1",
+    "/downloads/private-provider-checklist",
+    "/downloads/private-provider-checklist?presentation=1",
+    "/downloads/overseas-surgery-checklist",
+    "/downloads/overseas-surgery-checklist?presentation=1",
+    "/downloads/maintenance-plan-template",
+    "/downloads/maintenance-plan-template?presentation=1"
+  ],
+  "calculatorPages": [
+    "/tools/bmi",
+    "/tools/calories",
+    "/tools/healthy-weight",
+    "/tools/protein",
+    "/tools/waist-height",
+    "/tools/walking",
+    "/tools/water",
+    "/tools/steps",
+    "/tools/sleep",
+    "/tools/alcohol",
+    "/tools/weight-management-review"
+  ],
+  "existingCodeAssetsPreserved": 296,
+  "photographs": [],
+  "browser": [
+    {
+      "page": "prepare",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "prepare",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {}
+    },
+    {
+      "page": "prepare",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "prepare",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {}
+    },
+    {
+      "page": "decision",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "decision",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "guidance": true,
+        "emptyProfileDisabled": [
+          "nhs",
+          "scenarios",
+          "gp"
+        ],
+        "tabs": [
+          "routes",
+          "nhs",
+          "scenarios",
+          "gp"
+        ],
+        "originalPrintButton": true,
+        "printedReport": {
+          "visibleButtons": [],
+          "paper": "rgb(255, 255, 255)",
+          "title": 0,
+          "report": 1,
+          "pages": 1
+        }
+      }
+    },
+    {
+      "page": "decision",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "decision",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "guidance": true,
+        "emptyProfileDisabled": [
+          "nhs",
+          "scenarios",
+          "gp"
+        ],
+        "tabs": [
+          "routes",
+          "nhs",
+          "scenarios",
+          "gp"
+        ]
+      }
+    },
+    {
+      "page": "readiness",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "readiness",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "emptyProfileDisabled": [],
+        "tabs": [
+          "summary",
+          "gaps",
+          "evidence",
+          "checks",
+          "results"
+        ],
+        "originalPrintButton": true,
+        "printedReport": {
+          "visibleButtons": [],
+          "paper": "rgb(255, 255, 255)",
+          "title": 0,
+          "summary": 1,
+          "pages": 2
+        }
+      }
+    },
+    {
+      "page": "readiness",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "readiness",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "emptyProfileDisabled": [],
+        "tabs": [
+          "summary",
+          "gaps",
+          "evidence",
+          "checks",
+          "results"
+        ]
+      }
+    },
+    {
+      "page": "lifestyle",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "lifestyle",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "comparisonChanged": true
+      }
+    },
+    {
+      "page": "lifestyle",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "lifestyle",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "comparisonChanged": true
+      }
+    },
+    {
+      "page": "universal",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "universal",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "comparisonChanged": true,
+        "preset": true
+      }
+    },
+    {
+      "page": "universal",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "universal",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "comparisonChanged": true,
+        "preset": true
+      }
+    },
+    {
+      "page": "future",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "future",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "comparisonChanged": true
+      }
+    },
+    {
+      "page": "future",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "future",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "comparisonChanged": true
+      }
+    },
+    {
+      "page": "overseas",
+      "query": false,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "overseas",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "destinationChanged": true,
+        "costRecalculated": true,
+        "packageChecklist": true
+      }
+    },
+    {
+      "page": "overseas",
+      "query": true,
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "overseas",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "destinationChanged": true,
+        "costRecalculated": true,
+        "packageChecklist": true
+      }
+    },
+    {
+      "page": "prepare",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "prepare",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 768,
+        "scrollWidth": 753,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {}
+    },
+    {
+      "page": "prepare",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "prepare",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 768,
+        "scrollWidth": 753,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {}
+    },
+    {
+      "page": "decision",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "decision",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 768,
+        "scrollWidth": 753,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "guidance": true,
+        "emptyProfileDisabled": [
+          "nhs",
+          "scenarios",
+          "gp"
+        ],
+        "tabs": [
+          "routes",
+          "nhs",
+          "scenarios",
+          "gp"
+        ]
+      }
+    },
+    {
+      "page": "decision",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "decision",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 768,
+        "scrollWidth": 753,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "guidance": true,
+        "emptyProfileDisabled": [
+          "nhs",
+          "scenarios",
+          "gp"
+        ],
+        "tabs": [
+          "routes",
+          "nhs",
+          "scenarios",
+          "gp"
+        ]
+      }
+    },
+    {
+      "page": "readiness",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "readiness",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 768,
+        "scrollWidth": 753,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "emptyProfileDisabled": [],
+        "tabs": [
+          "summary",
+          "gaps",
+          "evidence",
+          "checks",
+          "results"
+        ]
+      }
+    },
+    {
+      "page": "readiness",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "readiness",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 768,
+        "scrollWidth": 753,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "emptyProfileDisabled": [],
+        "tabs": [
+          "summary",
+          "gaps",
+          "evidence",
+          "checks",
+          "results"
+        ]
+      }
+    },
+    {
+      "page": "lifestyle",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "lifestyle",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 768,
+        "scrollWidth": 753,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "comparisonChanged": true
+      }
+    },
+    {
+      "page": "lifestyle",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "lifestyle",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 768,
+        "scrollWidth": 753,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "comparisonChanged": true
+      }
+    },
+    {
+      "page": "universal",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "universal",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 768,
+        "scrollWidth": 753,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "comparisonChanged": true,
+        "preset": true
+      }
+    },
+    {
+      "page": "universal",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "universal",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 768,
+        "scrollWidth": 753,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "comparisonChanged": true,
+        "preset": true
+      }
+    },
+    {
+      "page": "future",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "future",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 768,
+        "scrollWidth": 753,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "comparisonChanged": true
+      }
+    },
+    {
+      "page": "future",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "future",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 768,
+        "scrollWidth": 753,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "comparisonChanged": true
+      }
+    },
+    {
+      "page": "overseas",
+      "query": false,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "overseas",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 768,
+        "scrollWidth": 753,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "destinationChanged": true,
+        "costRecalculated": true,
+        "packageChecklist": true
+      }
+    },
+    {
+      "page": "overseas",
+      "query": true,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "overseas",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 768,
+        "scrollWidth": 753,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "destinationChanged": true,
+        "costRecalculated": true,
+        "packageChecklist": true
+      }
+    },
+    {
+      "page": "prepare",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "prepare",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 390,
+        "scrollWidth": 375,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {}
+    },
+    {
+      "page": "prepare",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "prepare",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 390,
+        "scrollWidth": 375,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {}
+    },
+    {
+      "page": "decision",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "decision",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 390,
+        "scrollWidth": 375,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "guidance": true,
+        "emptyProfileDisabled": [
+          "nhs",
+          "scenarios",
+          "gp"
+        ],
+        "tabs": [
+          "routes",
+          "nhs",
+          "scenarios",
+          "gp"
+        ]
+      }
+    },
+    {
+      "page": "decision",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "decision",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 390,
+        "scrollWidth": 375,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "guidance": true,
+        "emptyProfileDisabled": [
+          "nhs",
+          "scenarios",
+          "gp"
+        ],
+        "tabs": [
+          "routes",
+          "nhs",
+          "scenarios",
+          "gp"
+        ]
+      }
+    },
+    {
+      "page": "readiness",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "readiness",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 390,
+        "scrollWidth": 375,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "emptyProfileDisabled": [],
+        "tabs": [
+          "summary",
+          "gaps",
+          "evidence",
+          "checks",
+          "results"
+        ]
+      }
+    },
+    {
+      "page": "readiness",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "readiness",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 390,
+        "scrollWidth": 375,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "emptyProfileDisabled": [],
+        "tabs": [
+          "summary",
+          "gaps",
+          "evidence",
+          "checks",
+          "results"
+        ]
+      }
+    },
+    {
+      "page": "lifestyle",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "lifestyle",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 390,
+        "scrollWidth": 375,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "comparisonChanged": true
+      }
+    },
+    {
+      "page": "lifestyle",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "lifestyle",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 390,
+        "scrollWidth": 375,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "comparisonChanged": true
+      }
+    },
+    {
+      "page": "universal",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "universal",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 390,
+        "scrollWidth": 375,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "comparisonChanged": true,
+        "preset": true
+      }
+    },
+    {
+      "page": "universal",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "universal",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 390,
+        "scrollWidth": 375,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "comparisonChanged": true,
+        "preset": true
+      }
+    },
+    {
+      "page": "future",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "future",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 390,
+        "scrollWidth": 375,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "comparisonChanged": true
+      }
+    },
+    {
+      "page": "future",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "future",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 390,
+        "scrollWidth": 375,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "comparisonChanged": true
+      }
+    },
+    {
+      "page": "overseas",
+      "query": false,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "overseas",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 390,
+        "scrollWidth": 375,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "destinationChanged": true,
+        "costRecalculated": true,
+        "packageChecklist": true
+      }
+    },
+    {
+      "page": "overseas",
+      "query": true,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "release": "decision-pages-20261101-v1",
+        "key": "overseas",
+        "font": "Arial, Helvetica, sans-serif",
+        "background": "rgb(5, 5, 5)",
+        "heading": "rgb(231, 227, 218)",
+        "width": 390,
+        "scrollWidth": 375,
+        "h1Count": 1,
+        "ticker": false
+      },
+      "behaviour": {
+        "destinationChanged": true,
+        "costRecalculated": true,
+        "packageChecklist": true
+      }
+    }
+  ],
+  "verifiedAt": "2026-11-01T14:26:12.267Z",
+  "workflow": {
+    "runId": 41315818092,
+    "jobId": 124875502547,
+    "url": "https://github.com/shiftsometimber/shift-core/actions/runs/41315818092",
+    "conclusion": "success"
+  },
+  "evidenceArtifact": {
+    "id": 13087228018,
+    "name": "decision-pages-41315818092",
+    "size_in_bytes": 67582900,
+    "url": "https://api.github.com/repos/shiftsometimber/shift-core/actions/artifacts/13087228018",
+    "archive_download_url": "https://api.github.com/repos/shiftsometimber/shift-core/actions/artifacts/13087228018/zip",
+    "expired": false,
+    "created_at": "2026-11-01T14:26:14Z",
+    "expires_at": "2027-01-30T14:21:47Z",
+    "updated_at": "2026-11-01T14:26:14Z",
+    "digest": "sha256:10dac0df7609cc72d1b2de2a0b67d86f7b689d0ee42e45faa7cacffd61cee2d4",
+    "workflow_run": {
+      "id": 41315818092,
+      "repository_id": 1328867509,
+      "head_repository_id": 1328867509,
+      "head_branch": "release/decision-pages-20261101",
+      "head_sha": "48749f4fb9c16654862165841ba8a525683d407f"
+    }
+  },
+  "liveProof": {
+    "path": "decision-pages-20261101/live-proof.jpg",
+    "blob": "8c03a6be336495abd6742109f8e2ccf3855bed75",
+    "page": "https://shiftsometimber.co.uk/before-you-decide",
+    "capturedAt": "2026-11-01T14:30:14.268Z"
+  },
+  "browserSummary": {
+    "passed": 42,
+    "widths": [
+      1440,
+      768,
+      390
+    ],
+    "ordinaryCases": 21,
+    "queryCases": 21,
+    "printedReportPages": {
+      "gp": 1,
+      "readiness": 2
+    },
+    "manualVisualReview": true
+  }
+}
