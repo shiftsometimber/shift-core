@@ -10,6 +10,9 @@ on:
       - .github/workflows/act2b-route-origin-repair.yml
       - .github/workflows/p0-contact-menu-footer-audit.yml
       - tests/act2b-workflow-preservation.test.mjs
+      - frontend-member-source-gate.mjs
+      - frontend-member-route-coverage.mjs
+      - tests/frontend-member-route-coverage.test.mjs
   workflow_dispatch:
 permissions:
   contents: read
@@ -35,8 +38,11 @@ jobs:
           grep -Fq '"pattern": "shiftsometimber.co.uk/*"' wrangler.jsonc
           grep -Fq '"pattern": "www.shiftsometimber.co.uk/*"' wrangler.jsonc
       - name: Verify member source contract without rewriting it
-        run: node frontend-member-source-gate.mjs
+        run: |
+          node --test tests/frontend-member-route-coverage.test.mjs
+          node frontend-member-source-gate.mjs
       - name: Prevent obsolete workflows from rewriting the baseline
         run: node --test tests/act2b-workflow-preservation.test.mjs
       - name: Verify working tree is unchanged
         run: git diff --exit-code
+
