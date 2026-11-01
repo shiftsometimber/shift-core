@@ -34,5 +34,23 @@ email or publication changes are part of this repair.
 Local validation: five focused tests pass, including all query/host variants,
 HEAD, exact recovered image bytes, unrelated document/method passthrough,
 complete native package preservation, and rejection of provider mutations.
-Hosted release and all sixteen rendered mobile/desktop inspections remain
-pending until the release receipt and screenshot review confirm them.
+The complete release passed in [run 41294010182](https://github.com/shiftsometimber/shift-core/actions/runs/41294010182),
+source `aad4bfabf17b4559fa5481d2ffa3f120325a7a07`.
+Core version `75f089f8-fcaa-4f46-b464-a642f2288a7e`, deployment
+`85d7e567-b823-42eb-8a9c-72cf3607c6cd`, serves 100% of its existing traffic.
+All 34 previous modules and all bindings were preserved; three image delivery
+modules were added. All eight image URLs returned 200 with exact expected
+SHA256 values. All thirteen protected documents and their existing security
+headers matched before/after. All sixteen actual live-browser cases passed
+at 390 and 1440 pixels. The source suite now has 19 passing checks.
+
+The release artifact is `13078876543`, SHA256
+`39cba5bdae8efb79051dca3d270c2fbe05b439be57451849c6a2b6ec721c0769`.
+The desktop pages were also independently opened and visually inspected in
+the live browser. Final unobstructed screenshots are captured by the read-only
+`visual` job, which selects necessary cookies only before inspecting images.
+The one-time publisher is pinned to the completed source and cannot replay on
+later documentation or QA changes. Future rollback code reuses the existing
+source/run/deployment-ID ownership guard, including protection against a newer
+deployment that selects the same version. No new deployment is needed for this
+closeout. Article PR #1509 and its renderer remain unchanged.
