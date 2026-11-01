@@ -1,0 +1,11 @@
+✔ utility wrapper preserves every original API, write, public route, disabled flag and non-HTML response (14.595708ms)
+✔ only existing guarded utility HTML receives app-first styles, with cookies, CSP and main controls retained (5.266125ms)
+✔ unguarded, oversized and unsuccessful documents retain their existing serving bytes and controls (1.769208ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 78.476667
