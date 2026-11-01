@@ -54,7 +54,9 @@ if(mode==='rollback'){
  const documents=await publicSnapshot(protectedPaths);save('documents-before.json',documents);
  assert.equal(documents['/assets/member-experience/programme-first-six-weeks.mjs'].sha256,receipt.sourceSHA256,'Existing six-week source changed; reconcile content before publication');
  const independent=await captureIndependentPresentation({accountId:account,token});save('independent-before.json',independent);
- const planned=plannedPackage(original);
+ const repair=Boolean(process.env.EXPECTED_REPAIR_VERSION);
+ if(repair)assert.equal(before.versions[0].version_id,process.env.EXPECTED_REPAIR_VERSION,'Repair predecessor moved');
+ const planned=plannedPackage(original,{replaceOwned:repair});
  assert.equal((await latest()).id,before.id,'Serving source moved during capture');
  save('plan.json',{source:process.env.GITHUB_SHA,copySHA256:copySHA,preservedModules:original.modules.length,addedModules:planned.modules.length-original.modules.length,entry:planned.main_module,productionMutations:mode==='capture'?0:'pending'});
  if(mode==='capture')console.log(JSON.stringify({ready:true,readOnly:true,copySHA256:copySHA,preservedModules:original.modules.length}));
