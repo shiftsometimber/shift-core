@@ -55,9 +55,14 @@ jobs:
           node scripts/verify-member-login-password-format.cjs "$RUNNER_TEMP/login-format-before.html" > evidence/member-login-format/offline-browser.json
       - name: Compile the reviewed before and after source without deployment
         run: |
-          git worktree add --detach "$RUNNER_TEMP/login-format-baseline" abc093c61ad4cdd832dc62bbffa25de668d58661
-          (cd "$RUNNER_TEMP/login-format-baseline" && npm ci --no-audit --no-fund)
-          (cd "$RUNNER_TEMP/login-format-baseline" && "$GITHUB_WORKSPACE/node_modules/.bin/wrangler" deploy --dry-run --config wrangler.jsonc --outdir "$LOGIN_BASELINE_BUILD") > "$RUNNER_TEMP/login-format-baseline-build.log" 2>&1 || { tail -40 "$RUNNER_TEMP/login-format-baseline-build.log"; exit 1; }
+          git diff --exit-code
+          restore_login_source() { git restore --worktree -- member-experience/session-state.mjs frontend/member/my-timber-preview.html; }
+          trap restore_login_source EXIT
+          git show abc093c61ad4cdd832dc62bbffa25de668d58661:member-experience/session-state.mjs > member-experience/session-state.mjs
+          git show abc093c61ad4cdd832dc62bbffa25de668d58661:frontend/member/my-timber-preview.html > frontend/member/my-timber-preview.html
+          node_modules/.bin/wrangler deploy --dry-run --config wrangler.jsonc --outdir "$LOGIN_BASELINE_BUILD" > "$RUNNER_TEMP/login-format-baseline-build.log" 2>&1 || { tail -40 "$RUNNER_TEMP/login-format-baseline-build.log"; exit 1; }
+          restore_login_source
+          trap - EXIT
           node_modules/.bin/wrangler deploy --dry-run --config wrangler.jsonc --outdir "$LOGIN_CANDIDATE_BUILD" > "$RUNNER_TEMP/login-format-candidate-build.log" 2>&1 || { tail -40 "$RUNNER_TEMP/login-format-candidate-build.log"; exit 1; }
           git diff --exit-code
       - name: Confirm that no route additions are needed
