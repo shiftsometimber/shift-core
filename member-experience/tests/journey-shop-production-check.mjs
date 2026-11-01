@@ -36,6 +36,10 @@ try{
    assert.equal(r.status,200,path);assert.match(r.contentType,/javascript|css|image/);if(baseline)assert.equal(r.sha256,baseline.sixWeeksAssets.find(a=>a.path===path).sha256,'Six-week asset changed: '+path);receipt.sixWeeksAssets.push({path,...r});
   }
  }
+ if(process.env.MY_TIMBER_VERIFY_BRAND_MARK){
+  const path='/assets/favicon-shift-s-20261020.png',image=await page.evaluate(async path=>{const r=await fetch(path,{cache:'no-store'}),bytes=new Uint8Array(await r.arrayBuffer()),hash=await crypto.subtle.digest('SHA-256',bytes);return {status:r.status,contentType:r.headers.get('Content-Type'),sha256:[...new Uint8Array(hash)].map(b=>b.toString(16).padStart(2,'0')).join(''),base64:btoa(Array.from(bytes,b=>String.fromCharCode(b)).join(''))};},path);
+  assert.equal(image.status,200);assert.match(image.contentType,/image\/png/);assert.equal(image.sha256,'97f754538a660372c62cf5a36c003b3082e672fa2a9de97d0fe4f1f288b56682');if(baseline)assert.equal(image.sha256,baseline.brandMark.sha256);if(process.env.MY_TIMBER_CAPTURE_SERVED)writeFileSync(process.env.MY_TIMBER_CAPTURE_SERVED+'-shift-s.png',Buffer.from(image.base64,'base64'));delete image.base64;receipt.brandMark={path,...image};
+ }
  if(phase!=='before'){
   for(const path of ['/member/dashboard','/member/dashboard?timber=support#today','/member/dashboard?timber=stuff#today','/member/grub','/member/fit','/member/life-back/journey','/member/life-back/shop']){
    const r=await get(path);assert.equal(r.status,200,path);
@@ -58,6 +62,8 @@ try{
    if(path.endsWith('my-timber-layout.mjs'))assert.equal(r.integration,'approved-journey-applied');
    if(process.env.MY_TIMBER_CAPTURE_SERVED&&path.endsWith('programme-journey.mjs'))writeFileSync(process.env.MY_TIMBER_CAPTURE_SERVED+'-journey.mjs',r.source);
    if(process.env.MY_TIMBER_CAPTURE_SERVED&&path.endsWith('programme-journey.css'))writeFileSync(process.env.MY_TIMBER_CAPTURE_SERVED+'-journey.css',r.source);
+   if(process.env.MY_TIMBER_VERIFY_BRAND_MARK&&path.endsWith('programme-shop-navigation.mjs')){assert(r.source.includes('mt-shop-mark'));assert(r.source.includes('/assets/favicon-shift-s-20261020.png'));if(process.env.MY_TIMBER_CAPTURE_SERVED)writeFileSync(process.env.MY_TIMBER_CAPTURE_SERVED+'-navigation.mjs',r.source);}
+   if(process.env.MY_TIMBER_VERIFY_BRAND_MARK&&process.env.MY_TIMBER_CAPTURE_SERVED&&path.endsWith('programme-shop.css'))writeFileSync(process.env.MY_TIMBER_CAPTURE_SERVED+'-shop.css',r.source);
    receipt.assets.push({path,status:r.status,sha256:digest(r.source),integration:r.integration});
   }
   for(const path of ['/v1/life-back/journey','/v1/life-back','/v1/privacy/export','/v1/commerce/active-checkout']){
