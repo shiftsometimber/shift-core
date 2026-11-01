@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
-import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';
+import {mkdirSync,writeFileSync,readFileSync,existsSync} from 'node:fs';
+import {runtimeRollbackDecision} from '../release/runtime-rollback-guard.mjs';
 import manifest from './manifest.json' with {type:'json'};
 import {repairPackage,verifyPackage,hash,snapshotDocument,SECURITY_HEADERS} from './package.mjs';
 
@@ -53,10 +54,14 @@ const mode=process.argv[2]||'release';
 if(mode==='rollback'){
   const intent=JSON.parse(readFileSync(directory+'/promotion-intent.json'));
   const current=await latest();
-  if(current.versions[0].version_id===intent.owned){
+  assert(existsSync(directory+'/deployed.json'),'No confirmed owned deployment receipt; manual reconciliation required');
+  const owned=JSON.parse(readFileSync(directory+'/deployed.json'));
+  const captured=JSON.parse(readFileSync(directory+'/before.json')).deployment;
+  const decision=runtimeRollbackDecision({before:captured,active:current,receipt:owned,source:process.env.GITHUB_SHA,run:process.env.GITHUB_RUN_ID});
+  if(decision.action==='restore'){
     const result=await api('/workers/scripts/'+script+'/deployments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({strategy:'percentage',versions:[{version_id:intent.previous,percentage:100}]})});
     assert.equal((await latest()).versions[0].version_id,intent.previous);save('rollback.json',{restored:intent.previous,failed:intent.owned,deployment:result.id});
-  }else save('rollback.json',{skipped:true,reason:'A different owner selected a newer deployment',current:current.id});
+  }else save('rollback.json',{skipped:true,reason:decision.reason,current:current.id});
 }else{
   requireCurrentMain();
   const before=await latest();assert.equal(before.id,manifest.baselineDeployment,'Serving deployment changed; reconcile before staging');
@@ -76,8 +81,8 @@ if(mode==='rollback'){
   requireCurrentMain();assert.equal((await latest()).id,before.id,'Serving owner moved during staging');
   save('promotion-intent.json',{source:process.env.GITHUB_SHA,previous:manifest.baselineVersion,owned:uploaded.id});
   const promoted=await api('/workers/scripts/'+script+'/deployments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({strategy:'percentage',versions:[{version_id:uploaded.id,percentage:100}]})});
-  assert.equal((await latest()).versions[0].version_id,uploaded.id);
-  save('deployed.json',{source:process.env.GITHUB_SHA,version:uploaded.id,deployment:promoted.id,previous:manifest.baselineVersion});
+  save('deployed.json',{kind:'owned_runtime_deployment',source:process.env.GITHUB_SHA,run:process.env.GITHUB_RUN_ID,version:uploaded.id,versionId:uploaded.id,deployment:promoted.id,deploymentId:promoted.id,previous:manifest.baselineVersion});
+  const active=await latest();assert.equal(active.id,promoted.id);assert.equal(active.versions[0].version_id,uploaded.id);
   const after=await documents();assert.deepEqual(after,JSON.parse(readFileSync(directory+'/documents-before.json')),'Protected page HTML changed');
   save('documents-after.json',after);save('images-after.json',await images(true));
   for(const host of ['shiftsometimber.co.uk','www.shiftsometimber.co.uk'])for(const suffix of ['','?utm_source=image-repair']){

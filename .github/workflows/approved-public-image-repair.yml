@@ -21,7 +21,9 @@ jobs:
           node --check public-image-repair/live-browser.mjs
           git diff --check
   release:
-    if: github.event_name == 'push' && github.actor_id == '315011648'
+    # Completed one-time publication. Later changes verify source; they cannot
+    # replay the captured pre-repair deployment over the verified result.
+    if: github.event_name == 'push' && github.actor_id == '315011648' && github.sha == 'aad4bfabf17b4559fa5481d2ffa3f120325a7a07'
     needs: source
     runs-on: ubuntu-24.04
     timeout-minutes: 20
@@ -68,4 +70,26 @@ jobs:
           name: approved-public-image-repair-${{ github.run_id }}
           path: public-image-repair-proof/
           if-no-files-found: warn
+          retention-days: 14
+  visual:
+    if: github.event_name == 'pull_request'
+    needs: source
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Prepare the read-only production image check
+        run: |
+          npm install --prefix "$RUNNER_TEMP/image-repair-browser" --no-package-lock --no-audit --no-fund playwright@1.58.2
+          "$RUNNER_TEMP/image-repair-browser/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Verify all eight live images without the cookie prompt covering them
+        run: PLAYWRIGHT_MODULE="$RUNNER_TEMP/image-repair-browser/node_modules/playwright" node public-image-repair/live-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: approved-public-image-visual-${{ github.run_id }}
+          path: public-image-repair-proof/
           retention-days: 14

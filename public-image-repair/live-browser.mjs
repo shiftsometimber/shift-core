@@ -23,6 +23,11 @@ try{
           assert.equal(await target.count(),1,item.page+' approved image');
           await target.waitFor({state:'visible',timeout:20000});
           await target.evaluate(async img=>{await img.decode();});
+          const necessary=page.getByRole('button',{name:'Necessary only',exact:true});
+          if(await necessary.isVisible()){
+            await necessary.click();
+            await necessary.waitFor({state:'hidden',timeout:5000});
+          }
           await target.scrollIntoViewIfNeeded();
           const rendered=await target.evaluate(img=>{
             const box=img.getBoundingClientRect(),style=getComputedStyle(img);
