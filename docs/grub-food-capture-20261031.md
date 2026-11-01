@@ -5,6 +5,34 @@ He subsequently instructed that both food recognition and the MediSearch-style
 research capability belong inside Shift AI. No competitor trial, subscription
 or integration is part of this implementation.
 
+## Data-opportunity access check — 1 November 2026, Europe/London
+
+Matt asked to check the opportunity if there was no cost. The public visible-region
+annotation source was pinned at 0997586b5c177fa8f2c0a61eb7f958ab18605362 and its
+CC BY 4.0 commercial-adaptation/attribution terms inspected. Retrieved CSV/licence
+and eight train-only image/mask pairs without purchase, registration, publisher
+code execution, new paid compute or communications. All eight original-image
+hashes, dimensions and region pixel counts matched. Their overlays were visually
+inspected for plausible food alignment, not independently human-adjudicated.
+
+The metadata covers 1,056 dishes, 2,922 regions and 40 coarse categories. Existing
+data overlap is 421 training, 52 validation and 54 previously inspected test
+photos; preserve the splits. Coarse category mapping and crop/inference design
+remain to be checked. In particular, using ground-truth test masks cannot be
+presented as member camera performance. No retraining has started.
+
+MyFoodRepo's published v2.1 release has 54,392 training photos/323 classes and
+stated CC BY 4.0 data licensing. Its download path redirects to sign-in; the site
+advertises free participation, but standalone authenticated download conditions
+have not been inspected. No account or challenge entry was created. Entry/model
+submission rights were identified separately and not accepted or represented as
+conditions automatically attached to standalone data use.
+
+Full access/cost/sample review: shift-ai-food-model/evidence/visible-data-access-review.json.
+The public annotation improvement can proceed as a controlled comparison on
+existing resources; no dataset fee was paid and no new paid service was added.
+This is an access/data review, not a trained-model improvement or release.
+
 ## Model startup and experimental rejection progress — 1 November 2026, Europe/London
 
 Matt flagged a stall and required faster progress. Source checkpoint was

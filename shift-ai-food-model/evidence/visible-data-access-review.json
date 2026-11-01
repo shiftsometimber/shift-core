@@ -1,0 +1,194 @@
+{
+  "source": "https://github.com/liamhand/ingredient-level-nutrition-regression",
+  "revision": "0997586b5c177fa8f2c0a61eb7f958ab18605362",
+  "licence": "CC-BY-4.0",
+  "licence_sha256": "088ec6d5a54123482f9e1cf2ee80f1df12e702cdcd434277d1ea6964f700a40d",
+  "source_csv_sha256": "e8f420ccd81c2aa3fa97470d28a2f43a42bdf0a88ba56659c82dfd20c11dbd45",
+  "annotation_rows": 2922,
+  "distinct_dishes": 1056,
+  "categories": 40,
+  "overlap": {
+    "train": 421,
+    "test": 54,
+    "validation": 52
+  },
+  "sample_checks": [
+    {
+      "dish_id": "dish_1557861697",
+      "our_split": "train",
+      "rgb_size": [
+        640,
+        480
+      ],
+      "mask_size": [
+        640,
+        480
+      ],
+      "pixel_counts_match_csv": true,
+      "rgb_original_sha256_verified": true,
+      "categories": [
+        "squash_eggplant"
+      ],
+      "mask_sha256": "93f944e2e37a1a6f89a6b0fcb5272ca7fa1246cc91cbac5034836601ec3c3aee"
+    },
+    {
+      "dish_id": "dish_1557862345",
+      "our_split": "train",
+      "rgb_size": [
+        640,
+        480
+      ],
+      "mask_size": [
+        640,
+        480
+      ],
+      "pixel_counts_match_csv": true,
+      "rgb_original_sha256_verified": true,
+      "categories": [
+        "poultry"
+      ],
+      "mask_sha256": "7efca5ecd8ba6f70a68dc93d29f1d6112c0c5f191fad0f5a1f7741c6622ad829"
+    },
+    {
+      "dish_id": "dish_1557862696",
+      "our_split": "train",
+      "rgb_size": [
+        640,
+        480
+      ],
+      "mask_size": [
+        640,
+        480
+      ],
+      "pixel_counts_match_csv": true,
+      "rgb_original_sha256_verified": true,
+      "categories": [
+        "cruciferous"
+      ],
+      "mask_sha256": "9321cd039aac81af098b8c8d5e3cf9585f6fce97002f487c6641a87ded34fef1"
+    },
+    {
+      "dish_id": "dish_1557862738",
+      "our_split": "train",
+      "rgb_size": [
+        640,
+        480
+      ],
+      "mask_size": [
+        640,
+        480
+      ],
+      "pixel_counts_match_csv": true,
+      "rgb_original_sha256_verified": true,
+      "categories": [
+        "meat_red"
+      ],
+      "mask_sha256": "c0424a81e370b5b6b836fb700482e88831cace0ea579a36a84b2343d3e3a834c"
+    },
+    {
+      "dish_id": "dish_1557862783",
+      "our_split": "train",
+      "rgb_size": [
+        640,
+        480
+      ],
+      "mask_size": [
+        640,
+        480
+      ],
+      "pixel_counts_match_csv": true,
+      "rgb_original_sha256_verified": true,
+      "categories": [
+        "cruciferous",
+        "meat_red",
+        "poultry"
+      ],
+      "mask_sha256": "7c0c3262231d22422f50dc59f5327e4112e562b66345039146041b31ed6d7216"
+    },
+    {
+      "dish_id": "dish_1557862829",
+      "our_split": "train",
+      "rgb_size": [
+        640,
+        480
+      ],
+      "mask_size": [
+        640,
+        480
+      ],
+      "pixel_counts_match_csv": true,
+      "rgb_original_sha256_verified": true,
+      "categories": [
+        "leafy_greens"
+      ],
+      "mask_sha256": "27e6251217d75b9ed3138aa07d2ad9f6968d6f8f6ad7e2c394ea7921ba57f81c"
+    },
+    {
+      "dish_id": "dish_1557936599",
+      "our_split": "train",
+      "rgb_size": [
+        640,
+        480
+      ],
+      "mask_size": [
+        640,
+        480
+      ],
+      "pixel_counts_match_csv": true,
+      "rgb_original_sha256_verified": true,
+      "categories": [
+        "cruciferous"
+      ],
+      "mask_sha256": "7d6b8853d7e266c0b5c081760fdb4a29755ae4aab4fb84dd8accc848b3c00d3b"
+    },
+    {
+      "dish_id": "dish_1557936645",
+      "our_split": "train",
+      "rgb_size": [
+        640,
+        480
+      ],
+      "mask_size": [
+        640,
+        480
+      ],
+      "pixel_counts_match_csv": true,
+      "rgb_original_sha256_verified": true,
+      "categories": [
+        "berry"
+      ],
+      "mask_sha256": "32aa9828e621a84c41021b313125e3bb06531cc04012c0557f2766185f244dd5"
+    }
+  ],
+  "sample_downloaded_bytes": 3295559,
+  "fee_paid": false,
+  "account_created": false,
+  "competition_entered": false,
+  "third_party_code_executed": false,
+  "training_started": false,
+  "limitation": "Eight train-only samples checked structurally. Masks still need visual quality review; coarse categories cannot be asserted as exact recipes or narrower ingredients.",
+  "sample_visual_inspection": {
+    "performed": true,
+    "scope": "Eight training-source photo/mask pairs inspected in an overlay contact sheet; regions align plausibly with visible food. Not independent human adjudication or a full annotation audit.",
+    "important_category_limit": "cruciferous groups broccoli and cauliflower; meat_red is broader than beef; labels must not be narrowed automatically."
+  },
+  "myfoodrepo": {
+    "source": "https://www.aicrowd.com/challenges/food-recognition-benchmark-2022",
+    "published_training_images": 54392,
+    "published_classes": 323,
+    "published_dataset_licence": "CC-BY-4.0",
+    "participation_advertised_free": true,
+    "download_price_verified_after_login": false,
+    "download_route_observation": "dataset_files redirected to participants/sign_in",
+    "account_created": false,
+    "competition_entered": false,
+    "model_submitted": false,
+    "entry_terms_note": "The published competition rules grant organisers rights over submitted entries; those submission terms are not asserted to apply to standalone data use. Standalone authenticated download conditions remain unchecked."
+  },
+  "cost_assessment": {
+    "visible_annotation_public_files": "Accessible without payment or registration; published CC BY 4.0 permits commercial adaptation with attribution",
+    "sample_review_new_paid_service": false,
+    "full_training_cost_quote": null,
+    "paid_compute_authorised": false
+  }
+}
