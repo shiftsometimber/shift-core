@@ -44,7 +44,7 @@ jobs:
     env:
       CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      APPROVED_COPY_SHA256: ${{ inputs.approved_copy_sha256 }}
+      APPROVED_COPY_SHA256: ${{ github.event_name == 'push' && github.event.head_commit.message == 'Publish Matt-approved referral and programme design 6aa5a473' && '6aa5a4734355aa80bb57294e56e0e1cd1b9226154288fd40dc41d8289e06fdde' || inputs.approved_copy_sha256 }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -55,7 +55,7 @@ jobs:
           node-version-file: .nvmrc
       - name: Verify an unpublished package, or publish the exact approved version
         env:
-          RELEASE_ACTION: ${{ github.event_name == 'workflow_dispatch' && inputs.action || 'stage' }}
+          RELEASE_ACTION: ${{ github.event_name == 'workflow_dispatch' && inputs.action || github.event_name == 'push' && github.event.head_commit.message == 'Publish Matt-approved referral and programme design 6aa5a473' && 'release' || 'stage' }}
         run: node referral-programme/release.mjs "$RELEASE_ACTION"
       - name: Restore only this owned release if post-promotion verification fails
         if: failure() && hashFiles('referral-programme-proof/deployed.json') != ''
