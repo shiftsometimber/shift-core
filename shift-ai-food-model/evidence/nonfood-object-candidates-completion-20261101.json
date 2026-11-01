@@ -1,0 +1,12 @@
+{
+  "status": "ACQUIRED_AND_INFERRED; VISUAL_ADJUDICATION_REQUIRED",
+  "source_object_candidates": 140,
+  "rights_checked_photos_downloaded": 115,
+  "inference_photos": 100,
+  "valid_negative_rate_available": false,
+  "food_absence_truth_adjudicated": false,
+  "training_on_candidates": false,
+  "production_ready": false,
+  "review_sheets_prepared": 4,
+  "review_template": "shift-ai-food-model/evidence/nonfood-object-review-template-20261101.json"
+}

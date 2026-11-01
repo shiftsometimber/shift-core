@@ -1,0 +1,3581 @@
+{
+  "schema": "shift-public-nonfood-acquisition-1",
+  "human_labels_source": "https://storage.googleapis.com/openimages/v5/validation-annotations-human-imagelabels-boxable.csv",
+  "human_labels_sha256": "d5ff236d3cdbba36dac1ee6f7fdf9a26934205cbec5b933b0872722e2b6d3417",
+  "hierarchy_source": "https://storage.googleapis.com/openimages/2018_04/bbox_labels_600_hierarchy.json",
+  "hierarchy_sha256": "a28f06e83c8378c4285d92d768ceda7568a48cac3c02994b6c346df804e7d612",
+  "verified_food_absent_ids": 6527,
+  "outcomes": [
+    {
+      "image_id": "001083f05db4352b",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:ada8c4f7d0a613499483d7690a504722dc7f07609d535c63f2e32c10891bc0ad",
+      "original_landing_url": "https://www.flickr.com/photos/automobileitalia/20795376805",
+      "author": "Automobile Italia",
+      "title": "A Pebble Beach in California le auto pi\u00f9 belle",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "851ad673a19ce565789a1d551f47dfe9f8a0a898194ef9242082c9e8d77fe98d",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        640
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/001083f05db4352b.jpg",
+      "sha256": "218a92a4c311d4d19014de76d6293b707cb4dec2722f71f80127330f91dbbed9",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/001083f05db4352b.jpg",
+      "attribution": "A Pebble Beach in California le auto pi\u00f9 belle \u2014 Automobile Italia; https://www.flickr.com/photos/automobileitalia/20795376805; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "001a794d1865ee47",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:fe215f5fb40151a237fce26e1e3ed249737b50905e1169dc751f68f0c7b55f45",
+      "original_landing_url": "https://www.flickr.com/photos/velsfi/5336089950",
+      "author": "Jonny White",
+      "title": "Racing Green",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "3d22ec9958813dc73a137e02e86803afe82665bae07734ba20a241231189c8d4",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        614
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/001a794d1865ee47.jpg",
+      "sha256": "812854fc3574a818c26475ba29cf8e25c968db6fab3fb54283b0b731904a7477",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/001a794d1865ee47.jpg",
+      "attribution": "Racing Green \u2014 Jonny White; https://www.flickr.com/photos/velsfi/5336089950; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "001a809ad40a2f84",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:32813f0a268f04ebf1a188ca33484a418377e897feef5de08c62790641810ff4",
+      "original_landing_url": "https://www.flickr.com/photos/msvg/5484042252",
+      "author": "Michael Gil",
+      "title": "2011 Volvo S60 T5",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "8848003dacf4046016c7bd7847b9c6ffc7a94b3336da82eeb865a1d9c6dc11ed",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/001a809ad40a2f84.jpg",
+      "sha256": "27191362c706f807ec2f8ff8b9a3f2bc126c5ab45a160d645a3ffa0bdf0893b8",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/001a809ad40a2f84.jpg",
+      "attribution": "2011 Volvo S60 T5 \u2014 Michael Gil; https://www.flickr.com/photos/msvg/5484042252; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "001a995c1e25d892",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:ee96f028fd93f0bd8ece79b8858f0cdb46fc520de50bf8fd11c77152d494e27d",
+      "original_landing_url": "https://www.flickr.com/photos/guimaraesfilho/6455790903",
+      "author": "Guimaraes Filho",
+      "title": "Moto harley-davidson-vrod-tecnobike-img01",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "5386568c5cd2a9207572d9ad82ddd8362f1a199a919bb2fc7035594263ffbe84",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/001a995c1e25d892.jpg",
+      "sha256": "f6c435457d88e26003ee75a2d39b7a77804a8cdf92024e1f3c9b5653b0e0664e",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/001a995c1e25d892.jpg",
+      "attribution": "Moto harley-davidson-vrod-tecnobike-img01 \u2014 Guimaraes Filho; https://www.flickr.com/photos/guimaraesfilho/6455790903; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0022e32008e479cb",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:e1686220879c6cf88d03125471353e868043b2d45afd902a911aa59e28b82399",
+      "original_landing_url": "https://www.flickr.com/photos/44400574@N05/14831520944/",
+      "author": "Weldon Warren",
+      "title": "Scan-140804-0010invertcorrect",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "c8f162ac09b52d375185d18479f949a1ae69d8082ca5269ed33e1f17d117c28c",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        685
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/0022e32008e479cb.jpg",
+      "sha256": "c2a3fed51f7a2e2cd57cc8255386ef6887193615657ddb47beea0d427bd76cc2",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0022e32008e479cb.jpg",
+      "attribution": "Scan-140804-0010invertcorrect \u2014 Weldon Warren; https://www.flickr.com/photos/44400574@N05/14831520944/; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "00230c216711fceb",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:6e7b4bbaabf0d14fe03ef2ee3f578c1dbf38798f890920e453d8471b9fc98763",
+      "original_landing_url": "https://www.flickr.com/photos/ducktail964/144429519",
+      "author": "\u9673 \u6e05",
+      "title": "Ruf BTR",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "44eca2d415eee77cd5e0c7ab0d82344f44217e587fcba53830cac88530d84040",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        680
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/00230c216711fceb.jpg",
+      "sha256": "b701d558254ec87426af1296bd38a08eec92be71271877386706aadb2594f6df",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/00230c216711fceb.jpg",
+      "attribution": "Ruf BTR \u2014 \u9673 \u6e05; https://www.flickr.com/photos/ducktail964/144429519; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "002d1dd67c722d98",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:73368b94ab485c207a4f78f706d50e31b2354f8676560eb279cb958755fafdcf",
+      "original_landing_url": "https://www.flickr.com/photos/cadab/4502888288",
+      "author": "James Coverdale",
+      "title": "Woop woop",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "status": "source_check_failed",
+      "error_type": "HTTPError"
+    },
+    {
+      "image_id": "002f8241bd829022",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:8ff50526c41a0cbe9c4aed8381ac3bf5b81bedc6d2eec404a91c9a58c0a3d6a3",
+      "original_landing_url": "https://www.flickr.com/photos/otherjoel/987060274",
+      "author": "Joel Dueck",
+      "title": "Aug02_005",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "8228eb339160496b160de93c8eddf9026a7169adeab354ec5e9f009b0946d3a1",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/002f8241bd829022.jpg",
+      "sha256": "937783f3f14396a989fb21e3dd59b6b80d25590072fd1883798568e35f7b7fb9",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/002f8241bd829022.jpg",
+      "attribution": "Aug02_005 \u2014 Joel Dueck; https://www.flickr.com/photos/otherjoel/987060274; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "003132be85a0beae",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:73455fb58868ecc7f9472408c4f742a5f13d940cd40b1bb3155621c7d946c891",
+      "original_landing_url": "https://www.flickr.com/photos/hectoralejandro/5763085728",
+      "author": "Hector Alejandro",
+      "title": "Jared's Civic 85.jpg",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "69698fbfa18c791787bb8556168df013ef193399149685292016bb7b8ddcc351",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        685
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/003132be85a0beae.jpg",
+      "sha256": "93b877b8f531ab1e04100d0fd5ce8153c5ce9740672cba851fc3784a490307b2",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/003132be85a0beae.jpg",
+      "attribution": "Jared's Civic 85.jpg \u2014 Hector Alejandro; https://www.flickr.com/photos/hectoralejandro/5763085728; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "003a5aaf6d17c917",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:71531c1bd624a6b237dc7313c52476a2d4420637fe802a90328742b3644ad6c0",
+      "original_landing_url": "https://www.flickr.com/photos/monkey-kc/5466970559",
+      "author": "Kalvin Chan",
+      "title": "IMG_1586",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "93bb55ecad8110c7bed2d7a5d5d2520becd6c49d60f62b5b8ab166181724b13a",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/003a5aaf6d17c917.jpg",
+      "sha256": "c0ddec440f83ad8996aec898f980af98482574ffbc548b240223ce3164c3ca3b",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/003a5aaf6d17c917.jpg",
+      "attribution": "IMG_1586 \u2014 Kalvin Chan; https://www.flickr.com/photos/monkey-kc/5466970559; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "00575b9132bb3746",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:02c152d0f4dfd885c96055a81d3fe2904719c43a1d1ed0d2b2273b20faaaa3b3",
+      "original_landing_url": "https://www.flickr.com/photos/euthman/5402229494",
+      "author": "Ed Uthman",
+      "title": "ACT_3289",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "ae0174d85ce121ca22d419ee4da1f6271f36a290edef26243b37f625572e9135",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/00575b9132bb3746.jpg",
+      "sha256": "67ea27a01f6734ddbcdc544fd02dc2ce83e9027cbbea634a2cf54372b6144586",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/00575b9132bb3746.jpg",
+      "attribution": "ACT_3289 \u2014 Ed Uthman; https://www.flickr.com/photos/euthman/5402229494; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "005b598d8fecb139",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:76b6900ca6d535610e524bed9316eb7c9adbe6e24aec187303574d0871f3aab7",
+      "original_landing_url": "https://www.flickr.com/photos/jpeura/750912399",
+      "author": "Jukka Peura",
+      "title": "Ford 1934 Hot Rod",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "f4064c4b943ac9f76435ed401ce16a302b5837e5be2532df874e5d89c894e2be",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        763
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/005b598d8fecb139.jpg",
+      "sha256": "4eaa079dc596047bd558bc3952fc5724884e6cfdefd02eab9f5b0d4eebd8764b",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/005b598d8fecb139.jpg",
+      "attribution": "Ford 1934 Hot Rod \u2014 Jukka Peura; https://www.flickr.com/photos/jpeura/750912399; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "005ea49186b013d8",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:c4074226ca7fde55c8d3779a7c9bb6884a6f639e4daae76bce6619cb4b32f924",
+      "original_landing_url": "https://www.flickr.com/photos/possan/9057859369",
+      "author": "possan",
+      "title": "_MG_3227",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "d66dd2db107c10440be5d92ee4069bce8f9929cbe196f5551a9193fdbf0d8348",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/005ea49186b013d8.jpg",
+      "sha256": "656955ba6561857c3fee02485efb684a6695b5184f89b137efa618e55112698c",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/005ea49186b013d8.jpg",
+      "attribution": "_MG_3227 \u2014 possan; https://www.flickr.com/photos/possan/9057859369; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "00723dac8201a83e",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:4f8230d451b1e9d50daa915e3a76e843863b9f51e56faad12658a76e9d979670",
+      "original_landing_url": "https://www.flickr.com/photos/ciroduran/432591931",
+      "author": "Cirofono",
+      "title": "D\u00eda 023: \u00bfDe 91 o 95?",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "c517999242851fc6ae108165a64be8f9b7b7d8a4193f656483278bd5ec5f1bde",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/00723dac8201a83e.jpg",
+      "sha256": "3e82ff1d28f3b7ff8865b0fc599fa8f729ee22cf294c178bf64fa67e654bdd25",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/00723dac8201a83e.jpg",
+      "attribution": "D\u00eda 023: \u00bfDe 91 o 95? \u2014 Cirofono; https://www.flickr.com/photos/ciroduran/432591931; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "007f71665b0812a7",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:eef4d16b11baf9ffe19d6f82786a8c530d8a1554bf68ec21608b06d75030c824",
+      "original_landing_url": "https://www.flickr.com/photos/sorosh/759905168",
+      "author": "Sorosh Tavakoli",
+      "title": "Rain rain rain, welcome to Sweden",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "",
+      "training_ready": false,
+      "status": "source_check_failed",
+      "error_type": "HTTPError"
+    },
+    {
+      "image_id": "0082b95745cb8ed5",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:c900f392db4c8ac49010d545024c4298f195a221ddbbf0c25141728134cbd68a",
+      "original_landing_url": "https://www.flickr.com/photos/parkingdaysofia/8032610600",
+      "author": "PARK(ing) Day Sofia",
+      "title": "photo by Veny Raynovska",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "3c7d60852426024a25311925640b355a9ef5c247fc8aa38cd4f393bea0bd281a",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/0082b95745cb8ed5.jpg",
+      "sha256": "f3f107b42f8cc6a80ea9994416ac0cee1a7ad2192865d7e921ed77b0b5060fd8",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0082b95745cb8ed5.jpg",
+      "attribution": "photo by Veny Raynovska \u2014 PARK(ing) Day Sofia; https://www.flickr.com/photos/parkingdaysofia/8032610600; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "008637722500f239",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:32813f0a268f04ebf1a188ca33484a418377e897feef5de08c62790641810ff4",
+      "original_landing_url": "https://www.flickr.com/photos/msvg/5340010485",
+      "author": "Michael Gil",
+      "title": "Datsun 280Z 5 Speed",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "0b702b9054cbf6341bd542767940a93caa99f77cad84f1470a07f23f1eecdd3c",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/008637722500f239.jpg",
+      "sha256": "e26533b273a764f921bf1d4312f20a2c76ff450cb854fb7414b1a1f45bf407a6",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/008637722500f239.jpg",
+      "attribution": "Datsun 280Z 5 Speed \u2014 Michael Gil; https://www.flickr.com/photos/msvg/5340010485; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "00a1f2a6e7f78ac5",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:2fb30d2cec3c59e8c70302c3fb557d626cdbc7717ffdf96f802143553489ab4d",
+      "original_landing_url": "https://www.flickr.com/photos/8058098@N07/5516505342",
+      "author": "nakhon100",
+      "title": "Audi A1",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "9b334ec868527a6aeef5e6f713805c03dbd9a7919006f749239c7da773236b18",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/00a1f2a6e7f78ac5.jpg",
+      "sha256": "3bd8108d2a3e38740bd99b1f60acb5237e0db4dde8b30ecad3f01177e2c3368b",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/00a1f2a6e7f78ac5.jpg",
+      "attribution": "Audi A1 \u2014 nakhon100; https://www.flickr.com/photos/8058098@N07/5516505342; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "00a3654c1cf00d11",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:8a11d189c981bca0f53be1d2098c4c0d78adb4cdf57c1b002d2e801274b207ff",
+      "original_landing_url": "https://www.flickr.com/photos/126952482@N06/15038212434",
+      "author": "SuperTowTrucks Blog",
+      "title": "How did you land your first #towing job? Did you apply online or simply walk in and ask for a job?  #bugatti #flatbed",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "07a00b5d70bcd803e8c8bd51292c007fc00613d6b098ebd5bc3926ccb6a4de0c",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/00a3654c1cf00d11.jpg",
+      "sha256": "0e3afaf185e7a381d64a67d19ad00f8809049b01432f04214e764e5e2c51b07c",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/00a3654c1cf00d11.jpg",
+      "attribution": "How did you land your first #towing job? Did you apply online or simply walk in and ask for a job?  #bugatti #flatbed \u2014 SuperTowTrucks Blog; https://www.flickr.com/photos/126952482@N06/15038212434; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "00a36f96e31731c4",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:52a9c56cff4bfab6a19ec1e8e0c4e7b31a04de28595daccc0e4ad2e4e2bd5192",
+      "original_landing_url": "https://www.flickr.com/photos/johanl/8289365270",
+      "author": "Johan Larsson",
+      "title": "Untitled",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "fb86e2b1f078ecaaf1ec15ae40cbb735946d06947d846c908000d7bac8570695",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/00a36f96e31731c4.jpg",
+      "sha256": "bb2a0036dac98b487f30b3c0088c5438efc445f33dbdff8bb840e28062ec310f",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/00a36f96e31731c4.jpg",
+      "attribution": "Untitled \u2014 Johan Larsson; https://www.flickr.com/photos/johanl/8289365270; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "00acf53b127218c2",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:2fb30d2cec3c59e8c70302c3fb557d626cdbc7717ffdf96f802143553489ab4d",
+      "original_landing_url": "https://www.flickr.com/photos/8058098@N07/13314143603",
+      "author": "nakhon100",
+      "title": "Jeep Gran Cherokee 3.0 CRD",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "42fe334211154750868e3b73ac82d089e9fd0fc94de1a5fb11f669cea69554f4",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/00acf53b127218c2.jpg",
+      "sha256": "659871ea31612f79d93b38626ab24a4554cff070242637f30f3ef1631d5a5208",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/00acf53b127218c2.jpg",
+      "attribution": "Jeep Gran Cherokee 3.0 CRD \u2014 nakhon100; https://www.flickr.com/photos/8058098@N07/13314143603; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "00b562abdf5766d3",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:57d87d8a62b3ed8c2724dd9ecf7f43b3d586c9add60bfa6c9ed0698593610333",
+      "original_landing_url": "https://www.flickr.com/photos/rainrannu/953262953",
+      "author": "Rain Rannu",
+      "title": "Sportscar in Jersey City, NJ",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "",
+      "training_ready": false,
+      "original_page_sha256": "d41f178439b825b531ba1cd556441f5de67bef9e76315d544c384b996ed09d60",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/00b562abdf5766d3.jpg",
+      "sha256": "0a6028d12ef8d3ccc50f236bde9179d1ce41d83a394e9903b0d32b7d44569042",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/00b562abdf5766d3.jpg",
+      "attribution": "Sportscar in Jersey City, NJ \u2014 Rain Rannu; https://www.flickr.com/photos/rainrannu/953262953; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "00b75a8487446cdd",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:f11add4f5aa8d2216ae86e80f118e2bfc21f0f13cc98ec8b6fdbb9bccefea0f7",
+      "original_landing_url": "https://www.flickr.com/photos/28361207@N08/3679100484",
+      "author": "stebbi66",
+      "title": "1966 Mustang High Country Special",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "9d04153def42716f04381d892c0153e995c0b8d759dd96c406a3692626875549",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/00b75a8487446cdd.jpg",
+      "sha256": "9b36d7c670448ab3c265dbd90a4b8385b9af0abe646a42aaf66ec2a4cd7e2a64",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/00b75a8487446cdd.jpg",
+      "attribution": "1966 Mustang High Country Special \u2014 stebbi66; https://www.flickr.com/photos/28361207@N08/3679100484; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "00cd12b9ee1905a7",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:524e7fb42f98012b97acac6e2066130af1d400e6acad7c71cc9f4b55f68a13b8",
+      "original_landing_url": "https://www.flickr.com/photos/grahoo/3289957648",
+      "author": "Masatoshi Nishinaga",
+      "title": "IMG_4856",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "f5bdee4b3648abf8ac56b7395fc371b8b59a77373cc5b5293a779d7c40e58a88",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/00cd12b9ee1905a7.jpg",
+      "sha256": "de0648d0426eea37be2819bfc45e5ef70620c298203fd46784eb412c45cecb8f",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/00cd12b9ee1905a7.jpg",
+      "attribution": "IMG_4856 \u2014 Masatoshi Nishinaga; https://www.flickr.com/photos/grahoo/3289957648; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "00d2a568dd4afd0d",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:b2e5b9ad3db1b028323e12e0655b44f32ebfcc19834e954ea9ec9840169010a5",
+      "original_landing_url": "https://www.flickr.com/photos/alindquist_/4899461926",
+      "author": "Alexander Lindquist",
+      "title": "JKPG Tr\u00e4ffen 2K10",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "c55c380c204bd1a8b4cdd0602776281c7e312a851666a2d437c31fcda049e095",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        608
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/00d2a568dd4afd0d.jpg",
+      "sha256": "46081e7a89f0cd14f0b107893d61cc854346e7e85ea75ee7d6a291070f4c778f",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/00d2a568dd4afd0d.jpg",
+      "attribution": "JKPG Tr\u00e4ffen 2K10 \u2014 Alexander Lindquist; https://www.flickr.com/photos/alindquist_/4899461926; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "00d9efcc4d1fda53",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:ebe775a526075b06248d73da52da32fb0be88b7bac790a3b3cd76a0313701bfc",
+      "original_landing_url": "https://www.flickr.com/photos/mdeuk/8068204496",
+      "author": "Micheal Evans",
+      "title": "Edd and Gimp",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "7397afd6423fdf5882bb4d8c9a973592e70da128cd0b8be1ec5f5304b535190a",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        678
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/00d9efcc4d1fda53.jpg",
+      "sha256": "d0da2282314bf2e35af66e8aae8814a3c320565bd30014a5b82c6c9d44799a62",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/00d9efcc4d1fda53.jpg",
+      "attribution": "Edd and Gimp \u2014 Micheal Evans; https://www.flickr.com/photos/mdeuk/8068204496; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "00e5682d509f4b26",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:f9822d677faeccbae906edb918ab50c529b5c29c36abd3b0a3521dd0ffdc5731",
+      "original_landing_url": "https://www.flickr.com/photos/tandemracer/1797103254/",
+      "author": "David Hunter",
+      "title": "Austin-Healey",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "a3973eee258539366e00375256c4c28cb33293666fd2025c309eb028cd955354",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/00e5682d509f4b26.jpg",
+      "sha256": "6e22bcbf746592313616b468a563a1b906c8b63e4369eb0bce2c264aa7e2e241",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/00e5682d509f4b26.jpg",
+      "attribution": "Austin-Healey \u2014 David Hunter; https://www.flickr.com/photos/tandemracer/1797103254/; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "00e9084d1bc8e0ea",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:68003488bb53cb64b800d9493bee27d12150f06a996db82edc8caccb3cb14837",
+      "original_landing_url": "https://www.flickr.com/photos/influenzia/5599702283",
+      "author": "influenZia marketing",
+      "title": "Probando BKOOL",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "10a7ee3c0739fe151d88e2d0038ba3ef10657c753bd0015a3dcc1f0bb8e2854c",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/00e9084d1bc8e0ea.jpg",
+      "sha256": "5fce1cdb4a9db0e90406f5a517507e9b121102330905bfc6ecb58a1472fcfdef",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/00e9084d1bc8e0ea.jpg",
+      "attribution": "Probando BKOOL \u2014 influenZia marketing; https://www.flickr.com/photos/influenzia/5599702283; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "00ec4ba83d648c33",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:fae8612cf49a0d55a78505b866dc9fee6b9a8434451bb171d6920b69c22db58e",
+      "original_landing_url": "https://www.flickr.com/photos/zbowling/6820961330",
+      "author": "Zac Bowling",
+      "title": "Adaptive advertisements based on faces, genders, race, and age.",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "",
+      "training_ready": false,
+      "original_page_sha256": "134030bddcd4e9cb27fbed7cd2963226ee3eccd75715efed1f3fb32e83d1018f",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/00ec4ba83d648c33.jpg",
+      "sha256": "3964708dc87e66660ccaa9305df2df3bec834276326e8c6521474c91ab518ca2",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/00ec4ba83d648c33.jpg",
+      "attribution": "Adaptive advertisements based on faces, genders, race, and age. \u2014 Zac Bowling; https://www.flickr.com/photos/zbowling/6820961330; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "00ee7576fe9ebe6c",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:3c7c797d5a8cd78896e0247fef8b97344e8a32ae9b765dd3c753a037babcd679",
+      "original_landing_url": "https://www.flickr.com/photos/satterwhiteb/15255359338",
+      "author": "Brandon Satterwhite",
+      "title": "Venomous",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "ad5fe6b3e9f5492fbe5f47d709213332ce96a068d6dc41e5e73802261942ed71",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/00ee7576fe9ebe6c.jpg",
+      "sha256": "ea1772627b81d8a3116a90f3b03d02f1d172373864b6c8344d90685a673346f7",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/00ee7576fe9ebe6c.jpg",
+      "attribution": "Venomous \u2014 Brandon Satterwhite; https://www.flickr.com/photos/satterwhiteb/15255359338; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "010374db88064834",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:db31f206f2906527c2bd6969d18c840e5b609986b4d306a916cc5da25f7af372",
+      "original_landing_url": "https://www.flickr.com/photos/webseitz/339175169",
+      "author": "Bill Seitz",
+      "title": "Highest position; skimpy mattress.",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "7d1a1f08256418104e9838170b71273c1c38c015a7c17f28feeef8a0f7682b5f",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        768,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/010374db88064834.jpg",
+      "sha256": "70e2d5a9369d21033e2bbf963f7822089cf4c4f95e1995b3d7599e2f95a679bd",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/010374db88064834.jpg",
+      "attribution": "Highest position; skimpy mattress. \u2014 Bill Seitz; https://www.flickr.com/photos/webseitz/339175169; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0104cba3ff87376c",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:bbc6289dc71521ac28ca68bc04d7f57a60ff544f113a8580679fb08eca31839c",
+      "original_landing_url": "https://www.flickr.com/photos/exfordy/615483297",
+      "author": "Brian Snelson",
+      "title": "Ford Capri RS 'Cologne' 1973",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "b6fd8eb4d65c968dfc373bc6c617d2259eae10ebb03e15795f808364097ac567",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        782
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/0104cba3ff87376c.jpg",
+      "sha256": "fd3fe1c199c86fafd65737c7d1cda204f6c47b9b34bb4994f058f19338a06285",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0104cba3ff87376c.jpg",
+      "attribution": "Ford Capri RS 'Cologne' 1973 \u2014 Brian Snelson; https://www.flickr.com/photos/exfordy/615483297; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "01142f30b8bdac1a",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:26e6ffdb0f558682c6d2c4ac797c645e3d097e0acfe4c2fced0a792fd2b974c3",
+      "original_landing_url": "https://www.flickr.com/photos/jukk_a/4827332989",
+      "author": "Jukka",
+      "title": "Saab",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "04b3317ea509b919bd6bff061e352f3dd51819d2c712b1adf7cfa7b597a73900",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/01142f30b8bdac1a.jpg",
+      "sha256": "a87394a0efdc088d1748c12df05aafa926f75dced8bc978cf785f668afbdb3ea",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/01142f30b8bdac1a.jpg",
+      "attribution": "Saab \u2014 Jukka; https://www.flickr.com/photos/jukk_a/4827332989; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0119db1a3ebc3f65",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:bb9bf2a1073f6530c1f1560c59ea0abe04b6afdf25fd23118993cd314f38de94",
+      "original_landing_url": "https://www.flickr.com/photos/119886413@N05/14257977871/",
+      "author": "amateur photography by michel",
+      "title": "1955 Ford Victoria",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "03bfdf48242311117667b0c6f27ef14af77f9aee94141eba0e1ef2a783f93239",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        576
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/0119db1a3ebc3f65.jpg",
+      "sha256": "87fdcc7fcda8a3b51249f9e5eb3dd12915e0c43721f67d3cd0f7ac142335c5d7",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0119db1a3ebc3f65.jpg",
+      "attribution": "1955 Ford Victoria \u2014 amateur photography by michel; https://www.flickr.com/photos/119886413@N05/14257977871/; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "01267ff8f7cfcdbd",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:25c2cd393288548408318d6e78dc5a6c6581bdadafcf68fd9cc656e3b0a502c0",
+      "original_landing_url": "https://www.flickr.com/photos/ennaimi/8566021422",
+      "author": "mustapha ennaimi",
+      "title": "DSC_3028",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "3967f693234b2836eb6758d4e698bb0ac849d23b1f7762a01e77712ba84c47fe",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        688
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/01267ff8f7cfcdbd.jpg",
+      "sha256": "fa7dc67d10b251ab498ade22270d1d87d1c91342d7fd577e4320767f60fd22b1",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/01267ff8f7cfcdbd.jpg",
+      "attribution": "DSC_3028 \u2014 mustapha ennaimi; https://www.flickr.com/photos/ennaimi/8566021422; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "01284dd8eaad0569",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:3e12c64bb2466722c933234c762a227e60e32909bab841ade48be1640bcd4baf",
+      "original_landing_url": "https://www.flickr.com/photos/ogwrnsk/8553071111",
+      "author": "naosuke ii",
+      "title": "IMG_6529",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "638114881e55e2dfa1cbf9c83ca927e68ae2a446a2d00392c54e5c9f90f55a47",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/01284dd8eaad0569.jpg",
+      "sha256": "5016e2fe31ebcb630254de7f051fea6e6cc95e1fa1a8ab467043ad9a439f84e0",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/01284dd8eaad0569.jpg",
+      "attribution": "IMG_6529 \u2014 naosuke ii; https://www.flickr.com/photos/ogwrnsk/8553071111; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "012ea1afd40e85ac",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:2c81ffc9ca671734f069716c52efb1fb7fd30426ac5d0719497465de41c4ed7e",
+      "original_landing_url": "https://www.flickr.com/photos/hllewellyn/334682527",
+      "author": "H Dragon",
+      "title": "Spouting Horn Part 1",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "f3e95e25a4b0ef3cee9cc1be88d9e02fb8be176f24058940f5279315bc7309e9",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        683,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/012ea1afd40e85ac.jpg",
+      "sha256": "e83d40683a79d4f260cd2db3a653016162e4943bc2c6d5338fbc31c5e0f26737",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/012ea1afd40e85ac.jpg",
+      "attribution": "Spouting Horn Part 1 \u2014 H Dragon; https://www.flickr.com/photos/hllewellyn/334682527; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "013b99371484d3d5",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:f58b458a8ae50ce96a88ac780d3495cefeb5872e9ea0694af43ad44fe1f68674",
+      "original_landing_url": "https://www.flickr.com/photos/pics-by-mpd/5161343119",
+      "author": "Matt Davis",
+      "title": "YK05 CDU at Lewes Bus Station",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "c94ecafb2b3914dbaf87fc93942c4c9186086fd36a6996c3cbf1c43db8504ae8",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/013b99371484d3d5.jpg",
+      "sha256": "80f0e145838a1672977803cb82599355366500135c10741d81159c283a2aa9fd",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/013b99371484d3d5.jpg",
+      "attribution": "YK05 CDU at Lewes Bus Station \u2014 Matt Davis; https://www.flickr.com/photos/pics-by-mpd/5161343119; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "01471c9fcf29869f",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:9c1d155e1b055752971082862d29f5659579194bb75ffd14ad3a6a1cb7a922c3",
+      "original_landing_url": "https://www.flickr.com/photos/scubabrett22/14130228053",
+      "author": "Brett Levin",
+      "title": "CUSCC Car Show",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "e1fdf9163ddd825dad81ebd1c04a127b32740f270494201c92ea3ec1a4e28ae2",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        678
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/01471c9fcf29869f.jpg",
+      "sha256": "2140e8996a8a39493d84965ce27a302fc58af218d81272fcc56348eb5de969bb",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/01471c9fcf29869f.jpg",
+      "attribution": "CUSCC Car Show \u2014 Brett Levin; https://www.flickr.com/photos/scubabrett22/14130228053; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "014ad124c16040a4",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:e3585e243b95418dda74086e80a23a886ddb14435259d50a7f54028a607b02ea",
+      "original_landing_url": "https://www.flickr.com/photos/666_is_money/5015123851",
+      "author": "Raquel Baranow",
+      "title": "Monsoon Flood",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "f6634cb1d82a0efac4e95245656c0fdb9dfb35f0052dd79636d9cfd281c66152",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by-sa/2.0/deed.en"
+      ],
+      "original_licence_verified": false,
+      "status": "licence_unverified"
+    },
+    {
+      "image_id": "015d7d3a6db03a94",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:20e66aa977834399af94e8f847a8639077c465eef89f068950550dbcea6776b6",
+      "original_landing_url": "https://www.flickr.com/photos/armydre2008/4156338171",
+      "author": "frankieleon",
+      "title": "Que:  A-Team Music",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "3429fe6756fea8a209c11381c7ae308590e55e5c4ec1d949a3ac98f5ef96d7e0",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/015d7d3a6db03a94.jpg",
+      "sha256": "991adb7e621a944909720fb3c58c59246a6f7d0b0f6255412b08c061f8909890",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/015d7d3a6db03a94.jpg",
+      "attribution": "Que:  A-Team Music \u2014 frankieleon; https://www.flickr.com/photos/armydre2008/4156338171; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0160b5826ab10020",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:1b6bc7547122329909d6ea964a4da1f166bcbf94b3e0798a9ea435f58c08b670",
+      "original_landing_url": "https://www.flickr.com/photos/verzo/4611620247",
+      "author": "Roberto Verzo",
+      "title": "Bad Voeslau Old Timers Car Rally",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "",
+      "training_ready": false,
+      "status": "source_check_failed",
+      "error_type": "HTTPError"
+    },
+    {
+      "image_id": "0170ea8e1a33375a",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:3b1c6e6cf933f48cc9792dcd4b18de7ad4ff4ea41aa64048813efdd14cdfc3ea",
+      "original_landing_url": "https://www.flickr.com/photos/hang_up_and_drive/3333969844",
+      "author": "a selfish disregard for others",
+      "title": "gray 2008/2009 Volkswagen Jetta, WA 729-XRV",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "",
+      "training_ready": false,
+      "original_page_sha256": "b08690935a0104ae1b698a95c9d95fc925f61479fff1c3e43b37a67c0974897a",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/0170ea8e1a33375a.jpg",
+      "sha256": "fac66821ea0ceceaa08f58fb7fbcc73e583740d9f2d6bc021ccb82efa0285325",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0170ea8e1a33375a.jpg",
+      "attribution": "gray 2008/2009 Volkswagen Jetta, WA 729-XRV \u2014 a selfish disregard for others; https://www.flickr.com/photos/hang_up_and_drive/3333969844; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "017527da8bfeb97d",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:28b237126e2ac2434852592f8e9847e82e7cf77f1b1008544c5d3e5315090d5d",
+      "original_landing_url": "https://www.flickr.com/photos/fire_eyes/3811341674",
+      "author": "Fire_Eyes",
+      "title": "IMG_5528",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "status": "source_check_failed",
+      "error_type": "HTTPError"
+    },
+    {
+      "image_id": "017b690dbb7552db",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:ad63a92cfdbe4c706be60f2d705f3e4b72368a90518f1cf1e9bdf84966f5e996",
+      "original_landing_url": "https://www.flickr.com/photos/we-are-envato/11075036896",
+      "author": "Envato",
+      "title": "8:45am - &quot;The parking is cheap and the indecent graffiti aplenty&quot; | A Day in the Life of the CEO",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "425d6413f06d699b4fa52ef74906ceafd289d1e7175523cefce4cb7afd3d3e9f",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/017b690dbb7552db.jpg",
+      "sha256": "8953f7a4142911cc76941a9e4d2d7f02e3e8ecd0ec99edb27b703ea10171dbc1",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/017b690dbb7552db.jpg",
+      "attribution": "8:45am - &quot;The parking is cheap and the indecent graffiti aplenty&quot; | A Day in the Life of the CEO \u2014 Envato; https://www.flickr.com/photos/we-are-envato/11075036896; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "017f34d289d6e1dc",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:d4d8589113d1f8ef0a67ba05b90612cbfcff41a1c766b329b1feb21c67ca2fb7",
+      "original_landing_url": "https://www.flickr.com/photos/dno1967b/14672979385",
+      "author": "Daniel Oines",
+      "title": "IMG_0186r",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "status": "source_check_failed",
+      "error_type": "HTTPError"
+    },
+    {
+      "image_id": "018bbadd96337150",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:fe30573f4fdd981a706e08e2aef0264744320b1ced85d537eac49dbb486e5d2c",
+      "original_landing_url": "https://www.flickr.com/photos/41841231@N08/7747069716",
+      "author": "CrumleyRoberts",
+      "title": "Crumley Roberts Extreme Dorm Makeover",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "b2b450afd8e852d5aa7a904afd14d324b4d8074f218f9f0d9ea99dd1dd9e7d2c",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        2592,
+        1944
+      ],
+      "downloaded_exif_orientation": 1,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/018bbadd96337150.jpg",
+      "sha256": "ce3a8d169fce9b70d721827c4beec219e5ee69b43cf448c8f9d06a227dc78265",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/018bbadd96337150.jpg",
+      "attribution": "Crumley Roberts Extreme Dorm Makeover \u2014 CrumleyRoberts; https://www.flickr.com/photos/41841231@N08/7747069716; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "019483ccc1cc242b",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:bb9bf2a1073f6530c1f1560c59ea0abe04b6afdf25fd23118993cd314f38de94",
+      "original_landing_url": "https://www.flickr.com/photos/119886413@N05/13055210703",
+      "author": "amateur photography by michel",
+      "title": "1990 Lotus Esprit 3 SE",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "fe78d69ac1d27bd6c7ffdba2c5edd7eefaf5408aabfda1f67f90aa80ba3a7cda",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/019483ccc1cc242b.jpg",
+      "sha256": "2bfa2765e367d57c3ad9f43b2ebb6dccfd48c4c327457491178b5e4e87d42022",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/019483ccc1cc242b.jpg",
+      "attribution": "1990 Lotus Esprit 3 SE \u2014 amateur photography by michel; https://www.flickr.com/photos/119886413@N05/13055210703; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0197df7725980004",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:a0e54a1a384112450dcb458f4c32e408ca3d001c31c253d5b27a3c2143ba575c",
+      "original_landing_url": "https://www.flickr.com/photos/talk2santosh/9662693902",
+      "author": "Santosh Puthran",
+      "title": "Triumph Spitfire 1500",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "399b10f09b2a76492e54ee8c7e0e44d4582b26b7a1eed278d1f8f8a348d36682",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        681
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/0197df7725980004.jpg",
+      "sha256": "aef1013b98bbdfb08a3c9b6f2fed34b496eead37055ffec4f4444fb88788c338",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0197df7725980004.jpg",
+      "attribution": "Triumph Spitfire 1500 \u2014 Santosh Puthran; https://www.flickr.com/photos/talk2santosh/9662693902; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "01b405e0cab3add3",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:43755f3de9d78a8a0642e7907dd01a63da3fcecf69af1ca85216d09207698e1d",
+      "original_landing_url": "https://www.flickr.com/photos/mdpettitt/5003280553",
+      "author": "Martin Pettitt",
+      "title": "Classic & Sports Cars By The Lake 12-9-2010",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "b2f944ee358677f599ede20028456275cd4879b45f5291b656716f5d535f394d",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        680
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/01b405e0cab3add3.jpg",
+      "sha256": "9be1c565a76e73cd8a134ad17ff8e9afbac34077db3bf7bf5ace1ef061ce3450",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/01b405e0cab3add3.jpg",
+      "attribution": "Classic & Sports Cars By The Lake 12-9-2010 \u2014 Martin Pettitt; https://www.flickr.com/photos/mdpettitt/5003280553; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "01c04124383a9a02",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:417cb88c668a619ea65efdbac656706de65bce45a668ad96d64e32d671043457",
+      "original_landing_url": "https://www.flickr.com/photos/4lkna/6212736114",
+      "author": "David",
+      "title": "Aston Martin V12 Vantage",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "08111624bf479e3dc1a16f24dd2d745c2b2b72d787b0a9cd933806c8748f2fac",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        681
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/01c04124383a9a02.jpg",
+      "sha256": "e08d12b98937e8b79e65294644560bcf5c193d77833e97bc9bc5c36d42388e9e",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/01c04124383a9a02.jpg",
+      "attribution": "Aston Martin V12 Vantage \u2014 David; https://www.flickr.com/photos/4lkna/6212736114; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "01dda8e0ceb32219",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:5fcec8193b4d9f054d459c62d835df43a92093c29888f0a97413c8adff9a9cc7",
+      "original_landing_url": "https://www.flickr.com/photos/london/137645334",
+      "author": "Jon Rawlinson",
+      "title": "ferrari",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "status": "source_check_failed",
+      "error_type": "HTTPError"
+    },
+    {
+      "image_id": "01de9381fb29fb25",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:207f3b1e99d5820cf3661c3ba93fb7dd40816143b9a9ebe031f3f0a8a8e2f761",
+      "original_landing_url": "https://www.flickr.com/photos/hightechdad/8025572303",
+      "author": "Michael Sheehan",
+      "title": "Cargo Space - 2012 Mini Cooper Countryman",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "3778c9c19f1fd2704380ed3555ea7657b6c8fc1933592af38ccaa3b55cc481f5",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        637
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/01de9381fb29fb25.jpg",
+      "sha256": "9f47633551cfe6ff2182cea18002702be477b872ec1a15267255b3886a6a5bc0",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/01de9381fb29fb25.jpg",
+      "attribution": "Cargo Space - 2012 Mini Cooper Countryman \u2014 Michael Sheehan; https://www.flickr.com/photos/hightechdad/8025572303; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "01e8509529aac2b8",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:9464ffd36a99cd20da4dedf6cf3ba1503e4d61edc5d980ef27c6a38f217f0ade",
+      "original_landing_url": "https://www.flickr.com/photos/atomic80/20076975362",
+      "author": "atomic80",
+      "title": "Ultimate Driving Experience 2015",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "1dc2dc403c9a8f5f6cb8e2d647c9a069595d061585db97d78d74fe4845e85518",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/01e8509529aac2b8.jpg",
+      "sha256": "177028beab524f2c10bca37f9a39bffba0a3be3bf0858d7835c488c103a6e6cd",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/01e8509529aac2b8.jpg",
+      "attribution": "Ultimate Driving Experience 2015 \u2014 atomic80; https://www.flickr.com/photos/atomic80/20076975362; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "01f8886b50a031a1",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:7694c8b7dda94fcc4e89779df9c19b7148befe3a50c47bfb18ff9d4ea45d7eb3",
+      "original_landing_url": "https://www.flickr.com/photos/degu_andre/7113943807",
+      "author": "Andr\u00e9 Gustavo Stumpf",
+      "title": "DETRAN-DF",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "status": "source_check_failed",
+      "error_type": "HTTPError"
+    },
+    {
+      "image_id": "02040812efa69b71",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:6e741d5a02adf45b6c1f5e3acd96787c3f9a32647d1c9ebacafed741ede4bb93",
+      "original_landing_url": "https://www.flickr.com/photos/mitsucars/7939075164",
+      "author": "Mitsubishi Photos",
+      "title": "Unpretentious / 2013 Outlander Sport",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "9124e058fc5047ede13a6aa9f46755d1709ce9319849fa105edda9890bbca883",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/02040812efa69b71.jpg",
+      "sha256": "7b1d54d3ee877da79bbfac4486f34ae8895d364a273d726a74af432906b6a4b2",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/02040812efa69b71.jpg",
+      "attribution": "Unpretentious / 2013 Outlander Sport \u2014 Mitsubishi Photos; https://www.flickr.com/photos/mitsucars/7939075164; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "020feca9b536f1fe",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:a0f40f5bc01225e72e398324c27bc0c285b69220e87464f8ede495a0570b41d9",
+      "original_landing_url": "https://www.flickr.com/photos/conbon/2258982401",
+      "author": "Connie",
+      "title": "IMG_4228.JPG",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "status": "source_check_failed",
+      "error_type": "HTTPError"
+    },
+    {
+      "image_id": "0210f9c01e31f873",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:eca8901ea3bfc9db3fd34ee25d2c7cc01c57d04aa44c7d0bbb7ed805c34faa79",
+      "original_landing_url": "https://www.flickr.com/photos/nielsautos/9014218921/",
+      "author": "Niels de Wit",
+      "title": "1995 Aston Martin DB7",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "f47353a275a41818cc3b5b2159e8b11ce1498e7c03aac6f0a824d7e4b97659d5",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        685
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/0210f9c01e31f873.jpg",
+      "sha256": "dbc70396906e6e4c5c0af1cc7bc8fd808bb5628cf9b5e779d9deb63e8bff5c71",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0210f9c01e31f873.jpg",
+      "attribution": "1995 Aston Martin DB7 \u2014 Niels de Wit; https://www.flickr.com/photos/nielsautos/9014218921/; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0217ef254d8bf5cd",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:8d2b3940dd54ef6ec469e879695185faed044b0610bb1a22b96d73ae6030ebd0",
+      "original_landing_url": "https://www.flickr.com/photos/rattler97/8168430511",
+      "author": "Daniel Lewis",
+      "title": "IMG_3819",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "bf1fee95886abfb0d59b1d18edc3128a2e637ea3ac41848d37fb088c658ac57c",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        683,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/0217ef254d8bf5cd.jpg",
+      "sha256": "f694e6e0b091055f1bc688d0595d9be23cbb83770177cb0c006af2232367cb35",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0217ef254d8bf5cd.jpg",
+      "attribution": "IMG_3819 \u2014 Daniel Lewis; https://www.flickr.com/photos/rattler97/8168430511; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "022881fd81a5a8f7",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:e878da566cad8556e9586511dc6d79b2a31d38b1648dad135af3f8e403c25ec3",
+      "original_landing_url": "https://www.flickr.com/photos/croco/252716102",
+      "author": "Marc Lacoste",
+      "title": "Lubitel 2",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "77f86d72e7be253779f50e8bee68de709a45e4f449ff0e59df3ea18af54b5781",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        805,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/022881fd81a5a8f7.jpg",
+      "sha256": "ddd0dbde604c88ec1073df9eb614b0250a9427129380269fba00d057c9255c2a",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/022881fd81a5a8f7.jpg",
+      "attribution": "Lubitel 2 \u2014 Marc Lacoste; https://www.flickr.com/photos/croco/252716102; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "022e3344a8407aa9",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:58374c9317dc0f8814286bedba9d20c12f1d6cf712fbd193d5256a036d356bf0",
+      "original_landing_url": "https://www.flickr.com/photos/greggjerdingen/7299625986",
+      "author": "Greg Gjerdingen",
+      "title": "62 Ford Falcon",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "status": "source_check_failed",
+      "error_type": "HTTPError"
+    },
+    {
+      "image_id": "023a8d0a05ec58ad",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:24d57efaee911f4193f5cc3509141a396bdf1478097de89a0763da3f4777f4dd",
+      "original_landing_url": "https://www.flickr.com/photos/hayano/5496481172",
+      "author": "Ryu Hayano",
+      "title": "Good old Corvette and Camaro",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "2e41ba114cfe25ac4dd30b1a2de8cef878829660e190a0f7680ac9d51a057bf5",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/023a8d0a05ec58ad.jpg",
+      "sha256": "e6d687a47de7519fe7ac204a83da2c4ad42acbdf42e421c15a23616573becca5",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/023a8d0a05ec58ad.jpg",
+      "attribution": "Good old Corvette and Camaro \u2014 Ryu Hayano; https://www.flickr.com/photos/hayano/5496481172; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0256ad72229e0c5d",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:10ecea689cdf453c44e203d0eb0ae6052be9f2bc154f5e5ee354e963a56ce99e",
+      "original_landing_url": "https://www.flickr.com/photos/draco2008/3759006190",
+      "author": "Draco2008",
+      "title": "Shildon Classic Car Show",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "951c60fcc4c984f46e7aecd7e099d10d3df5c10841ee0231fc69d83d2070a0f9",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        681
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/0256ad72229e0c5d.jpg",
+      "sha256": "b8a6235e13e439f0ba82323fbf42c61d2019ded05c1cdebae9fe9c84bc923830",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0256ad72229e0c5d.jpg",
+      "attribution": "Shildon Classic Car Show \u2014 Draco2008; https://www.flickr.com/photos/draco2008/3759006190; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "02717d30304f4849",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:c6779210b0934baeb2fc19250ab29dc404b33b38d5ddbaf33d593c948b77b0aa",
+      "original_landing_url": "https://www.flickr.com/photos/terry_wha/2467246951",
+      "author": "Terry Whalebone",
+      "title": "Preserved Bristol single-decker",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "86d4d0c344a5fa5d44e77268ad0dd72a906067cdeb2a11475d93af24e9ebbc47",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/02717d30304f4849.jpg",
+      "sha256": "02f795c9dc949654c36e706cd67cd6def277dc19f6e8168a634712447563981b",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/02717d30304f4849.jpg",
+      "attribution": "Preserved Bristol single-decker \u2014 Terry Whalebone; https://www.flickr.com/photos/terry_wha/2467246951; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "02718fa0885fd7de",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:02121d1775c355130ac4c9b3ca12d9693085e95d8f319afc8390f947bf181a0b",
+      "original_landing_url": "https://www.flickr.com/photos/katescars/7407717652",
+      "author": "Katherine Tompkins",
+      "title": "1965 Volvo P544 Sport side",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "",
+      "training_ready": false,
+      "status": "source_check_failed",
+      "error_type": "HTTPError"
+    },
+    {
+      "image_id": "029285d102bc56db",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:a738d8486a5ba9b3454843e2a14feeeafa232ede01a543d9b9210e0f06de584f",
+      "original_landing_url": "https://www.flickr.com/photos/martyn404/9538746746",
+      "author": "Martyn Wright",
+      "title": "2013 and Dorset",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "a49dc69d1a54d3db3b1bed8679273cbfa12c812a2975282e06243b1850b360a1",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        769
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/029285d102bc56db.jpg",
+      "sha256": "9398d682cb2f6344a4c3d49fea1642753324aa2882ce42a9292f6d406224941b",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/029285d102bc56db.jpg",
+      "attribution": "2013 and Dorset \u2014 Martyn Wright; https://www.flickr.com/photos/martyn404/9538746746; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "02a6ef3d9bd68e91",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:eb879111a1787eb9a4de11e29de7b0220e261c87dae64aaab59165e3da04ca8d",
+      "original_landing_url": "https://www.flickr.com/photos/alreadytaken/2516320228/",
+      "author": "Piutus",
+      "title": "Alfa Romeo",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "414109b33c94d5789d4f3707ab27b651893bc59721934be2e215f685781ca6e7",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/02a6ef3d9bd68e91.jpg",
+      "sha256": "ea7fb018f27f9a0f17648a776893d1e6ba1903d52d589f88152d90464a5f199d",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/02a6ef3d9bd68e91.jpg",
+      "attribution": "Alfa Romeo \u2014 Piutus; https://www.flickr.com/photos/alreadytaken/2516320228/; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "02af9804c6b68f61",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:5a08fba0c174e07325430faf5803eb88a2a5d089406ab40d88bc5b3ee9c9a732",
+      "original_landing_url": "https://www.flickr.com/photos/jblmmwr/14907951062",
+      "author": "JBLM  MWR",
+      "title": "IMG_2904",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "8a3f00c2368eabc1274bab35f1f56b213229cfde87be5e533d316be52d16b7e2",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/02af9804c6b68f61.jpg",
+      "sha256": "76da38917c2eec4a1a161c13cf65d9ce6e7b7afe48d171007fec4a0153ad8555",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/02af9804c6b68f61.jpg",
+      "attribution": "IMG_2904 \u2014 JBLM  MWR; https://www.flickr.com/photos/jblmmwr/14907951062; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "02bd20a5a913127d",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:2de39689c85bd3ab8424357435044cb0dcf0380e917a2e1f3e9dd9815aff3a25",
+      "original_landing_url": "https://www.flickr.com/photos/tinou/14768623366",
+      "author": "Tinou Bao",
+      "title": "30-POLARIS-INTERIORS-DETAILS",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "status": "source_check_failed",
+      "error_type": "HTTPError"
+    },
+    {
+      "image_id": "02c0f07948ac1eb9",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:69501671bfdb76aaf5f8deaf99c93cf4dcb8e1ca7a4e8e4147dc35e8aea3ceb7",
+      "original_landing_url": "https://www.flickr.com/photos/57637970@N05/9045462941",
+      "author": "Shawn D. Ashley",
+      "title": "Triple J &quot;Pepboys Meet&quot; 2013",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "c059ad1682f5aac53ce6e86cba8b3cc9b3d1b73b5351ca370f827270839c3173",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/02c0f07948ac1eb9.jpg",
+      "sha256": "4398c5cac829fc3e53f1283ba2fee8c5b1c70b9fb17c327400474833641899a9",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/02c0f07948ac1eb9.jpg",
+      "attribution": "Triple J &quot;Pepboys Meet&quot; 2013 \u2014 Shawn D. Ashley; https://www.flickr.com/photos/57637970@N05/9045462941; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "02cf5678f44a3145",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:61db245e7c61989ade5d1c4220c706a44a2276b8ee373526cbd446b51a18b167",
+      "original_landing_url": "https://www.flickr.com/photos/kaikot/15554708866",
+      "author": "Arnaud Caillot",
+      "title": "Maserati Alfieri",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "1c8104b8a18cf5dfcde161d3b55c2ef32ab73ce9be2bb89c6bfd5038229a4c91",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/02cf5678f44a3145.jpg",
+      "sha256": "86c7faedebbbd4748c56319b5e1a0430155fa52fd2572c50cf35e81addacd5c3",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/02cf5678f44a3145.jpg",
+      "attribution": "Maserati Alfieri \u2014 Arnaud Caillot; https://www.flickr.com/photos/kaikot/15554708866; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "02d3d8579d152a67",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:1c5d72f80edbeaaa45f02aaceb99f81992b0f1db9d15571f0d0cb3c37caafdde",
+      "original_landing_url": "https://www.flickr.com/photos/tracyhunter/21478594763",
+      "author": "Tracy Hunter",
+      "title": "Charles and Ray Eames Exhitbit",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "1ef0963fabdc2b4e503266faffa14e995b8502a59fb447d7f0817a3936cb8bf6",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        753
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/02d3d8579d152a67.jpg",
+      "sha256": "da0c0d63e6e580420e71e2c29eb016bd5b9217c2deb34da4068d2d1a30eee8d7",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/02d3d8579d152a67.jpg",
+      "attribution": "Charles and Ray Eames Exhitbit \u2014 Tracy Hunter; https://www.flickr.com/photos/tracyhunter/21478594763; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "02d9a3eb87efe5c0",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:9c1d155e1b055752971082862d29f5659579194bb75ffd14ad3a6a1cb7a922c3",
+      "original_landing_url": "https://www.flickr.com/photos/scubabrett22/7836254922",
+      "author": "Brett Levin",
+      "title": "Ferrari 328 GTS",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "0acf111f191a6822304f7c494c5b06bc6ef9841ce96ff57cccb77063b7497e27",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        678
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/02d9a3eb87efe5c0.jpg",
+      "sha256": "30ad2430d90b3803ffde3238b81eeec9ce824649a59498184ec577a71a24d82d",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/02d9a3eb87efe5c0.jpg",
+      "attribution": "Ferrari 328 GTS \u2014 Brett Levin; https://www.flickr.com/photos/scubabrett22/7836254922; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "02da35e6e72d6816",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:a3338dbf5b6d86d759c74f51f21aac3da520a30d44823499c43e5798a8c19395",
+      "original_landing_url": "https://www.flickr.com/photos/22707890@N03/2277350779",
+      "author": "Alan Taylor",
+      "title": "OT17",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "bb08ab8564db6d924ca610e094b67a37aa460dca33fe6dcd59ae6793f6f082fc",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        450
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/02da35e6e72d6816.jpg",
+      "sha256": "61a437574a4545979189ddb94a83d0b5dc2126809e80e1f0ce13738157f21a78",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/02da35e6e72d6816.jpg",
+      "attribution": "OT17 \u2014 Alan Taylor; https://www.flickr.com/photos/22707890@N03/2277350779; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "02dc31437b2ec48f",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:20e66aa977834399af94e8f847a8639077c465eef89f068950550dbcea6776b6",
+      "original_landing_url": "https://www.flickr.com/photos/armydre2008/5554598390",
+      "author": "frankieleon",
+      "title": "watching a train wreck",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "5d328a001b5decabc49ff64ed99179028b792cab46101d32b8291c456caf4169",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/02dc31437b2ec48f.jpg",
+      "sha256": "2560e205bebb2a1559bd1daf73e13f2fcf9da7e98ad91cdfe88ec8758d3406b5",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/02dc31437b2ec48f.jpg",
+      "attribution": "watching a train wreck \u2014 frankieleon; https://www.flickr.com/photos/armydre2008/5554598390; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "02dfa3e35b58bdb7",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:246926b329dd298c2430e4f98cced7e03a4109e6cff0f2ec0100ad5b29e0b863",
+      "original_landing_url": "https://www.flickr.com/photos/rittysdigiez/3300269400",
+      "author": "Kathy",
+      "title": "Sony Shooter",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "dd810d1ca34dbaf4e8538932cfcbebb80ffa3c3f8ca4e7392936c03a947a0baa",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        751
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/02dfa3e35b58bdb7.jpg",
+      "sha256": "fe9282251db2c8e39e39fa2913e9073302e24531a05fb9ea796499f2cf170582",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/02dfa3e35b58bdb7.jpg",
+      "attribution": "Sony Shooter \u2014 Kathy; https://www.flickr.com/photos/rittysdigiez/3300269400; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "02ec4bbec941280a",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:120ab2199404997309376f63fa0a4e24cd49beac35890d009336ad3847ad356a",
+      "original_landing_url": "https://www.flickr.com/photos/thecarspy/5706994962",
+      "author": "The Car Spy",
+      "title": "2007 Volkswagen Golf R32",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "1768eaa1776e6cf4b27290db723a62c30d5406cc9158a1dce489f47aa433903c",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/02ec4bbec941280a.jpg",
+      "sha256": "f39bbbe1366c9cd667ead50b17aa2e0ce3d0ce37b87705c38a348d12a2b3a379",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/02ec4bbec941280a.jpg",
+      "attribution": "2007 Volkswagen Golf R32 \u2014 The Car Spy; https://www.flickr.com/photos/thecarspy/5706994962; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "02fcf5654c103ede",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:96cccd98d2ef0092911354928d9df0d35cd5c4485d442ac8d7f5599f8577a2d1",
+      "original_landing_url": "https://www.flickr.com/photos/daveseven/14224613082",
+      "author": "dave_7",
+      "title": "Volkswagen Golf",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "bfe77bda8bc8a66c4809a55500ab0881398f9fce8ce2b2bff73d60e07a8915d8",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        576
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/02fcf5654c103ede.jpg",
+      "sha256": "8f3df5b7c932f0f17a24a7b6ba0e9de66ac03f452d8e6abb47fb9e8c39ed40b4",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/02fcf5654c103ede.jpg",
+      "attribution": "Volkswagen Golf \u2014 dave_7; https://www.flickr.com/photos/daveseven/14224613082; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "030bf2a8f3340ec3",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:87080c0dfe81cf781e25680754783d25b5957cd4bd651ca682585d7e8c734233",
+      "original_landing_url": "https://www.flickr.com/photos/ricardojesusflores/16660144109",
+      "author": "Rick Flores",
+      "title": "Lance's AP1",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "5928bc3ba033704c215b1823cb462b4eb826db0c7d955534ffdfe53f66967af6",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        681
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/030bf2a8f3340ec3.jpg",
+      "sha256": "227bc69fdee32af2721a60ccc1e77e1f8e594c0e84b36ea802386c69fde25a75",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/030bf2a8f3340ec3.jpg",
+      "attribution": "Lance's AP1 \u2014 Rick Flores; https://www.flickr.com/photos/ricardojesusflores/16660144109; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "030c35e683f00ad8",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:af0e68c0c44e0593a58add3ba49ca7f8444389f90a05fe93d6d53aa460939d0d",
+      "original_landing_url": "https://www.flickr.com/photos/gonmi/15144151794",
+      "author": "Nacho",
+      "title": "Peugeot 205 SR",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "status": "source_check_failed",
+      "error_type": "HTTPError"
+    },
+    {
+      "image_id": "030c8676318cbad0",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:ce1ba88b5109d5415c13bf39eaa3269e1a1bbab6ed9beeae277c6a7a89f00964",
+      "original_landing_url": "https://www.flickr.com/photos/supermac/4476521335",
+      "author": "Supermac1961",
+      "title": "My new BMW - March 2010",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "9fa6c0a1e32e846c05bc221c4ec11acba30169cd2db92df56aeb76c8b535d8a6",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/030c8676318cbad0.jpg",
+      "sha256": "2458bfef4ae3d74fb181f53fcab103befe23d5aa07b060c5f8fe522473e35487",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/030c8676318cbad0.jpg",
+      "attribution": "My new BMW - March 2010 \u2014 Supermac1961; https://www.flickr.com/photos/supermac/4476521335; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "030e63dc830320d1",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:998ce118afaed35b124beadc44e4f552adc5403725e9d4f4412c5b78ea888218",
+      "original_landing_url": "https://www.flickr.com/photos/rheinitz/13195304525",
+      "author": "Randy Heinitz",
+      "title": "Viper",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "49fdc7880ae5fdad2823483c4161ff9db849f22f30ea468b78ed22cd723f8b2c",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        804
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/030e63dc830320d1.jpg",
+      "sha256": "2729c7620f06afc903ca7b184d07a84b63d4998177e86eded1894d1e360eff7b",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/030e63dc830320d1.jpg",
+      "attribution": "Viper \u2014 Randy Heinitz; https://www.flickr.com/photos/rheinitz/13195304525; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "031336c27b5d1168",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:ba05fb09aa79a4210e56c1d55378d0dcdaa5bcf75c13e20c3353bd47e42f2ce7",
+      "original_landing_url": "https://www.flickr.com/photos/gkrew/8477080013",
+      "author": "gkrew",
+      "title": "Untitled",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "7c178bb22fa803f6d7c2f573554784e98822e08ddb496130ea7462d0aa916eac",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/031336c27b5d1168.jpg",
+      "sha256": "b9cd6ba5db9a1adbdbebd3460caaca6cdbb5f326c490afa8222453e68e237574",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/031336c27b5d1168.jpg",
+      "attribution": "Untitled \u2014 gkrew; https://www.flickr.com/photos/gkrew/8477080013; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0344ec1dcd07fd4a",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:6a017292a55c82a32ed8e29eb6be2628d48d0a60aaf0e127c6cab22d36145dae",
+      "original_landing_url": "https://www.flickr.com/photos/huffstutterrobertl/6797650306",
+      "author": "ROBERT HUFFSTUTTER",
+      "title": "MORRIS MINOR BY THE MISSOURI RIVER",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "062ab243640ae836f8a14cbe660ea937a820411fa01b9048f1fb18a6e07c4b38",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        1021
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/0344ec1dcd07fd4a.jpg",
+      "sha256": "f497824d598a6f700d6ba8443ba351b64eca7c2f94b1de6beaa2544b290e8b56",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0344ec1dcd07fd4a.jpg",
+      "attribution": "MORRIS MINOR BY THE MISSOURI RIVER \u2014 ROBERT HUFFSTUTTER; https://www.flickr.com/photos/huffstutterrobertl/6797650306; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "034530143f388715",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:32109156de1332d0c6c0af6196563417cc3e955d5ef88df9e4ce763738bb2869",
+      "original_landing_url": "https://www.flickr.com/photos/rinaldi/73305500",
+      "author": "Andrea Rinaldi",
+      "title": "Motorshow_SLK",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "0def968d9722208b89f7b654eb0ea83b2ace1f1c3bcd03278afc2368545e7894",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/034530143f388715.jpg",
+      "sha256": "038f503011636973023095810fd6811a95eb124f1dd1022ae7fa7ec4d6530894",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/034530143f388715.jpg",
+      "attribution": "Motorshow_SLK \u2014 Andrea Rinaldi; https://www.flickr.com/photos/rinaldi/73305500; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "035f9a5f8369d8c6",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:567a65358d4bcb1c944695161598dc0f5958dbda2403ec6823287a5709371284",
+      "original_landing_url": "https://www.flickr.com/photos/eddy1/20173921823",
+      "author": "Eddy 1",
+      "title": "2495_p37_l",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "a02c24caf7958ced4ade213552e62c821092dd3c3ea58a263917b3b8cfdfcb78",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        658
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/035f9a5f8369d8c6.jpg",
+      "sha256": "5227c8763d327c82ae0c4f733ce287a8e8f68496bf7a0e3982b84ef00c1333c6",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/035f9a5f8369d8c6.jpg",
+      "attribution": "2495_p37_l \u2014 Eddy 1; https://www.flickr.com/photos/eddy1/20173921823; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "03646bb2f288eaae",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:e723921e42f7370e36ebdfbc04ff12b0ec32ebe08c240c2c6dadc8778b092a04",
+      "original_landing_url": "https://www.flickr.com/photos/petrichorr/13073061203",
+      "author": "Selina",
+      "title": "Man's Best Friend.",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "0ea7a4b6598c32d47fa5b9711d336ef4a6165056f7762888a06ecc111c9e4f40",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        685
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/03646bb2f288eaae.jpg",
+      "sha256": "4225b4ca14329ac486444943b89ae2e4b034dc4b3b2de2880d769b1dcd5fe17d",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/03646bb2f288eaae.jpg",
+      "attribution": "Man's Best Friend. \u2014 Selina; https://www.flickr.com/photos/petrichorr/13073061203; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "03793a9d2a2eab25",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:6c0608eba2443eb9c13584f0bc421311b81c8812ae0896dd3ae31e900cf8bd30",
+      "original_landing_url": "https://www.flickr.com/photos/irinaslutsky/1370766935",
+      "author": "irina slutsky",
+      "title": "velle is from estonia!",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "status": "source_check_failed",
+      "error_type": "HTTPError"
+    },
+    {
+      "image_id": "0394201b977eb6c5",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:eff161ffe6efc4002b13cddce0a6c4a59d3f735c940c8c06092c73bbca5f6ec0",
+      "original_landing_url": "https://www.flickr.com/photos/motosclasicas/8428213945",
+      "author": "German Medeot",
+      "title": "1987 FERRARI TESTAROSSA",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "030ec41a4ab2e7cfab3d415dca1a5cb0df7eccc7e4c34b02225d77a4a7f275bd",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        685
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/0394201b977eb6c5.jpg",
+      "sha256": "58a65d5889586c2557f89893f72a8a75d9d2065a7979ada8aaccc9420c6c7e32",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0394201b977eb6c5.jpg",
+      "attribution": "1987 FERRARI TESTAROSSA \u2014 German Medeot; https://www.flickr.com/photos/motosclasicas/8428213945; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "03a54515e1de5422",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:b4173b544374b7f6690464cb934a88359f403d7fc0066cbd05e0f9c259beac31",
+      "original_landing_url": "https://www.flickr.com/photos/ivang/499291804",
+      "author": "Ivan Gonzalez",
+      "title": "Los Km. del demonio",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "",
+      "training_ready": false,
+      "status": "source_check_failed",
+      "error_type": "HTTPError"
+    },
+    {
+      "image_id": "03a83451f0d8239d",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:4ea3296aa1aa49608d219ca6a50bf356b4516bc0f4215aded50047ffb07e44fd",
+      "original_landing_url": "https://www.flickr.com/photos/rsdio/27717790",
+      "author": "Casey Marshall",
+      "title": "Mustang 2",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "8c3ebc873989112ed871606e82d18447e0ce62899842e1dfada163bf7ef647e2",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/03a83451f0d8239d.jpg",
+      "sha256": "011b3a66bb1ad6c9a6f3dc6eebaf877fa5ff2953717f4150c154dd29bc95c768",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/03a83451f0d8239d.jpg",
+      "attribution": "Mustang 2 \u2014 Casey Marshall; https://www.flickr.com/photos/rsdio/27717790; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "03b7b71e1ffcb7a8",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:5b3103c223447aa96e7f0b3e015bd06bd6736b01778d429930ef2659760c705c",
+      "original_landing_url": "https://www.flickr.com/photos/shadowsofthesun/13192010993",
+      "author": "David Brown",
+      "title": "Period correct e30",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "9778f5029e940fc0b28f70d1005656016758ad9f40fb68b113f140dfb73b546d",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/03b7b71e1ffcb7a8.jpg",
+      "sha256": "38fd8595cae936394063efb01623e32abfc41d4b0ed6e92a4567442652afacc8",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/03b7b71e1ffcb7a8.jpg",
+      "attribution": "Period correct e30 \u2014 David Brown; https://www.flickr.com/photos/shadowsofthesun/13192010993; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "03c266312b81fd7f",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:96cccd98d2ef0092911354928d9df0d35cd5c4485d442ac8d7f5599f8577a2d1",
+      "original_landing_url": "https://www.flickr.com/photos/daveseven/3439819483",
+      "author": "dave_7",
+      "title": "1951 Iota 350",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "e2646dce8755bb4f18bfd78337536b89adf778d084071603133c1b591761346b",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/03c266312b81fd7f.jpg",
+      "sha256": "b4e6fef5854ed63a970e91fd96f996ffc640e74deb4ab58ef87f64fc52aa9912",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/03c266312b81fd7f.jpg",
+      "attribution": "1951 Iota 350 \u2014 dave_7; https://www.flickr.com/photos/daveseven/3439819483; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "03c35bdfffbea53f",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:10649408ec05bc3903e55bc0eb310fda581e9cc54add459cfc7030416bb6ce62",
+      "original_landing_url": "https://www.flickr.com/photos/bizmac/16332584327",
+      "author": "bizmac",
+      "title": "R3005285",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "798382f6de52a2f287e3190856968b7350fb58d3320ad85519aab5870f46f638",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/03c35bdfffbea53f.jpg",
+      "sha256": "b7e2100e139218dfe55e71cba38f9134d84038bd7d9e93e9158d782d0922b633",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/03c35bdfffbea53f.jpg",
+      "attribution": "R3005285 \u2014 bizmac; https://www.flickr.com/photos/bizmac/16332584327; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "03df40e50dfc9098",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:5576849e3176cf9eebfcf5a8a542122a19aec35321801a295bed82289e5fe2c6",
+      "original_landing_url": "https://www.flickr.com/photos/larry-ziffle/6159883251",
+      "author": "Larry Ziffle",
+      "title": "Fab Ford 50's 104",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "f892b424096ac6da7a907dda7a90276421153521b9194ecae8ce0d088d317dee",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/03df40e50dfc9098.jpg",
+      "sha256": "56ae1565df7c987aa42c73f7d59490f7365d27ff01557accfd57b3e221202ae9",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/03df40e50dfc9098.jpg",
+      "attribution": "Fab Ford 50's 104 \u2014 Larry Ziffle; https://www.flickr.com/photos/larry-ziffle/6159883251; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "03f28131b85a0b97",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:010b2d8d74f34ca8c4784725f3160e34718fa5a83c84c152c61e2da31b56ad72",
+      "original_landing_url": "https://www.flickr.com/photos/jurvetson/8260373988",
+      "author": "Steve Jurvetson",
+      "title": "Blue Belles",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "b6e4446b0fba888771f773554701374740f53524aae6aea5d331c26176523c50",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        828
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/03f28131b85a0b97.jpg",
+      "sha256": "f131434932f47c07c67d875ea95fa73d76d043779758a98b279160b7369527e7",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/03f28131b85a0b97.jpg",
+      "attribution": "Blue Belles \u2014 Steve Jurvetson; https://www.flickr.com/photos/jurvetson/8260373988; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "03ff1b5b9c860734",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:969c54b790a319b8a038a0fff4af99135ea5a6069b99090929abceac01c6d425",
+      "original_landing_url": "https://www.flickr.com/photos/keanan_t/3089719367",
+      "author": "k3anan",
+      "title": "Alfa Romeo 8C (3)",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "cac6a9a3a43dc1c1fa98453144a9d2f9f2ed6cabf65a55fbb8ad51bc7b081192",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        685
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/03ff1b5b9c860734.jpg",
+      "sha256": "d2d552b0f9f4b622f7aa347ff9a3e2d7c0921d6e2ea5f08af4d77c008e787c8d",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/03ff1b5b9c860734.jpg",
+      "attribution": "Alfa Romeo 8C (3) \u2014 k3anan; https://www.flickr.com/photos/keanan_t/3089719367; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "040212027eacf079",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:a1b833378f265cde47f24a6c76670d3887535db2fa83d7182e512c2705c78b34",
+      "original_landing_url": "https://www.flickr.com/photos/hisgett/14733676029",
+      "author": "Tony Hisgett",
+      "title": "Morgan Roadster 100",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "2bd6ca9080fb7f1f402f0c34ec2d839649387356ab5a699edd4c9aa920fef5b6",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        708
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/040212027eacf079.jpg",
+      "sha256": "281047199dbde9d04d178817bdf3758fa05b0ba3066672d0dc96ed851d317e56",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/040212027eacf079.jpg",
+      "attribution": "Morgan Roadster 100 \u2014 Tony Hisgett; https://www.flickr.com/photos/hisgett/14733676029; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0403980601a6ee5b",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:362f61531ca31072fe1fc88292ff1e4ef47bb57cf07da583dec211505acfdd37",
+      "original_landing_url": "https://www.flickr.com/photos/120882277@N03/13279890365",
+      "author": "Ellie Mills",
+      "title": "auto insurance miami fl",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "7782170d1db46d6d18587a3b90ceab19f005d281e5cc584b1f405c270f1ff25d",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/0403980601a6ee5b.jpg",
+      "sha256": "003e062fdc6c740aa15b1e47c1df7ebda29a84586a795fb561752cfc6f295c57",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0403980601a6ee5b.jpg",
+      "attribution": "auto insurance miami fl \u2014 Ellie Mills; https://www.flickr.com/photos/120882277@N03/13279890365; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0404b2b471b90c34",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:78abb6d9a10fca87461551796231412c748a0b103bd92b70299a5e8dc9f750ea",
+      "original_landing_url": "https://www.flickr.com/photos/50603062@N06/17276830985",
+      "author": "mancbranch",
+      "title": "BEIGE, 1980 FORD ESCORT RS CUSTOM KDB 787V",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "",
+      "training_ready": false,
+      "status": "source_check_failed",
+      "error_type": "HTTPError"
+    },
+    {
+      "image_id": "040dd20f15657190",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:5def690f8181e7766bfe24b9c5565783d2774416f3ad2c6aa1bede50ee3f3080",
+      "original_landing_url": "https://www.flickr.com/photos/mario_carvajal/3106126584",
+      "author": "Mario Carvajal",
+      "title": "Barcelona Mont Juic",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "status": "source_check_failed",
+      "error_type": "HTTPError"
+    },
+    {
+      "image_id": "0414d895e634d934",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:e65bc352252a0805f180649a80386a25fbce0eea924fd27b1e6fe635245c21e4",
+      "original_landing_url": "https://www.flickr.com/photos/joeshlabotnik/105915799",
+      "author": "Joe Shlabotnik",
+      "title": "New Car",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "ad58423737aaf2c9a14bc55047d4b14d6682f866c9055315be58f1492b5a27f5",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        771
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/0414d895e634d934.jpg",
+      "sha256": "ea0566ae9dd90b837f8d03c7771d11a51088a292d9da5a519fc421237e8260b6",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0414d895e634d934.jpg",
+      "attribution": "New Car \u2014 Joe Shlabotnik; https://www.flickr.com/photos/joeshlabotnik/105915799; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0419739a49a5d743",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:1e9999d6f9fefb72fd61ae974d430ad70d3a8d93746221ddd7d2b6c982bcf7bd",
+      "original_landing_url": "https://www.flickr.com/photos/timpatterson/777532310",
+      "author": "Tim Patterson",
+      "title": "Replacing Car Window",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "",
+      "training_ready": false,
+      "original_page_sha256": "0845d7663f5a24d0d32fa92b7c944cc63bc98eab93819c6f5b6bae1ed504f142",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        819,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/0419739a49a5d743.jpg",
+      "sha256": "89baccc7b64f73a8f13bb3a1b7a61e57044b99e439d86be93c921913c1adc404",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0419739a49a5d743.jpg",
+      "attribution": "Replacing Car Window \u2014 Tim Patterson; https://www.flickr.com/photos/timpatterson/777532310; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "041f9231a69f7981",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:5dd337d81ce3a43932e343df58192c5b7fdb85882d968838c39a14e820316f49",
+      "original_landing_url": "https://www.flickr.com/photos/tanenhaus/3242769364",
+      "author": "Tanenhaus",
+      "title": "Waterfront, Riohacha",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "",
+      "training_ready": false,
+      "original_page_sha256": "63bf539f70932c0c3f8918627d9c59ae6ff431fda108188b931c1faa04618708",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/041f9231a69f7981.jpg",
+      "sha256": "2f508de7633c1ee0c1297a2abb07e6e8ce8521626a02238cf268676a4dff1b8c",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/041f9231a69f7981.jpg",
+      "attribution": "Waterfront, Riohacha \u2014 Tanenhaus; https://www.flickr.com/photos/tanenhaus/3242769364; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0421a6e230527185",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:ffd52ea1c40109e6de0608f871bf1084f7890878cdff06e680bdfaf84a45032b",
+      "original_landing_url": "https://www.flickr.com/photos/esparta/3861904561",
+      "author": "Esparta Palma",
+      "title": "Windows 7 + MacBook",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "bfb58d5516a27e4e1523b959ea7c1385cb3ec86585b56d3ec5262658d769d3f1",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/0421a6e230527185.jpg",
+      "sha256": "619ea25a7c9afbe877249b6f9423b8454b510f96e95ef3815f9d69ecce8db69f",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0421a6e230527185.jpg",
+      "attribution": "Windows 7 + MacBook \u2014 Esparta Palma; https://www.flickr.com/photos/esparta/3861904561; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "04311ae05c027377",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:aba6e9dde68f18fc28c43084426b7be6f771b72b26d71903ef26d509f7ac0c65",
+      "original_landing_url": "https://www.flickr.com/photos/rfa/5184407278",
+      "author": "refeia",
+      "title": "E-5 @ ISO6400",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "status": "source_check_failed",
+      "error_type": "HTTPError"
+    },
+    {
+      "image_id": "04325d2d011736fd",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:96cccd98d2ef0092911354928d9df0d35cd5c4485d442ac8d7f5599f8577a2d1",
+      "original_landing_url": "https://www.flickr.com/photos/daveseven/4648109600",
+      "author": "dave_7",
+      "title": "1963 Austin Cambridge wagon",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "0bc47062c9c194b3f1b752ec5d1c1436a1e64f16f3f5e3646c8423cd88f483bf",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/04325d2d011736fd.jpg",
+      "sha256": "95ffe1424f97bba15c012fa11c5389d5ed7a8a843f954d833910b6f94daa4b1d",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/04325d2d011736fd.jpg",
+      "attribution": "1963 Austin Cambridge wagon \u2014 dave_7; https://www.flickr.com/photos/daveseven/4648109600; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "04359c727259b86c",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:8cda4c1d75f8de71f2b82d19bba023c2265efe0e0cb24e719bd72040e334459b",
+      "original_landing_url": "https://www.flickr.com/photos/pyntofmyld/16115362350",
+      "author": "pyntofmyld",
+      "title": "Porsche Carrera",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "015cb36abdaed617a6f13738c50288e64e956e34aec46c2d533fc6746b859d57",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        682
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/04359c727259b86c.jpg",
+      "sha256": "4c281da2880a99f4c2250a0f66eb552d8ba277c36eaa0fc795a4caa39f56fe3b",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/04359c727259b86c.jpg",
+      "attribution": "Porsche Carrera \u2014 pyntofmyld; https://www.flickr.com/photos/pyntofmyld/16115362350; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0438dea0e3cd161a",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:eff161ffe6efc4002b13cddce0a6c4a59d3f735c940c8c06092c73bbca5f6ec0",
+      "original_landing_url": "https://www.flickr.com/photos/motosclasicas/8269493473",
+      "author": "German Medeot",
+      "title": "2009 APP Street-Racing Volkswagen Scirocco",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "187d31fa62dcc9cc0a4402963ef5cf4c1e7c0a4758c628bf459646af388f8e75",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        680
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/0438dea0e3cd161a.jpg",
+      "sha256": "2b97cc9c43a0fe2e8c8b015bacbb31a08df28a1c6bb4bc7072cf50558ed79b44",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0438dea0e3cd161a.jpg",
+      "attribution": "2009 APP Street-Racing Volkswagen Scirocco \u2014 German Medeot; https://www.flickr.com/photos/motosclasicas/8269493473; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0443efb101717113",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:c050a08216c3433f4d9385519a78d76ced7b4299885d3c3d2f28dba44d7e28a9",
+      "original_landing_url": "https://www.flickr.com/photos/craigmdennis/8760470650",
+      "author": "Craig Dennis",
+      "title": "Nissan GTR Black Edition",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "93204d82adc9fa6ea4b66205213c60b32acbad3d0f894ea7d2be77529eeb2f72",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        682
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/0443efb101717113.jpg",
+      "sha256": "678a04447cd337c509be1f2454eb1d0078ac25912bf0645c05de8528a86eca77",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0443efb101717113.jpg",
+      "attribution": "Nissan GTR Black Edition \u2014 Craig Dennis; https://www.flickr.com/photos/craigmdennis/8760470650; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "044417ca6134604f",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:5dd1afbb9d9bd76dbe56fe7156c7a590200630d1ea09bbd8bd46013954a5f9da",
+      "original_landing_url": "https://www.flickr.com/photos/92622665@N08/15031891718",
+      "author": "Charlie",
+      "title": "1994 Granada Scorpio I A",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "e44906330db2e5ab9a653567b1721e180574c0d6f0b9c8c78a55cd200744147d",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/044417ca6134604f.jpg",
+      "sha256": "26f057857cd7054714e4120592bec459e1ddd91be3c0b32134eacb7c03e82e97",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/044417ca6134604f.jpg",
+      "attribution": "1994 Granada Scorpio I A \u2014 Charlie; https://www.flickr.com/photos/92622665@N08/15031891718; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0445879119ab002f",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:a9e7231e5ab159501bcb661f9251fc1c42b14cc9274af801b2cd705338c9a51f",
+      "original_landing_url": "https://www.flickr.com/photos/owensoft/15310535330",
+      "author": "owensoft",
+      "title": "IMG-20141010-WA000",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "status": "source_check_failed",
+      "error_type": "HTTPError"
+    },
+    {
+      "image_id": "044c70c9fa3dbe80",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:831daa794b4969d343016228f143d65f402979c173209bc872f4a3655f82834e",
+      "original_landing_url": "https://www.flickr.com/photos/zouny/5054776204",
+      "author": "Johnny Ainsworth",
+      "title": "Geneva Car Show 2010",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "d2f5d8afb725b07c8df7d3b1acfc9bff1b9f1804067ac0252eedce975d7a11c2",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        680
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/044c70c9fa3dbe80.jpg",
+      "sha256": "0ae610866fc6ba2abe432980eac665146616f8c594280dcecb8d41a4a64d9428",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/044c70c9fa3dbe80.jpg",
+      "attribution": "Geneva Car Show 2010 \u2014 Johnny Ainsworth; https://www.flickr.com/photos/zouny/5054776204; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0450c83178d36a42",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:7807303dee88d7a3fce4fb9dcd14d5a8e87bd47b7bbac7f0f882419239bc8d73",
+      "original_landing_url": "https://www.flickr.com/photos/mpeinadopa/4285500166",
+      "author": "M.Peinado",
+      "title": "001456 - Hyundai Sonata",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "293959d6c475269b888ba21ac791951e9d60a230fc5b9d45e3ff38c6d826b20f",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        418
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/0450c83178d36a42.jpg",
+      "sha256": "4c1a35eee98becfa59a450033bd3935382a9ad40b9a7cc800caca2de52e5e3b1",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0450c83178d36a42.jpg",
+      "attribution": "001456 - Hyundai Sonata \u2014 M.Peinado; https://www.flickr.com/photos/mpeinadopa/4285500166; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0462aec2688ccf6c",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:36b2646134cb470930879c79834fc0f45bf25da25ca46f21b6fccbb56f910153",
+      "original_landing_url": "https://www.flickr.com/photos/voz-gallery/10610760196",
+      "author": "Ren\u00e9",
+      "title": "Opel_Olympia-1950",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "5d5d676a3fd4f09d38e953f780e29b67507375e499200b1796bbdd680a049a28",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        769
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/0462aec2688ccf6c.jpg",
+      "sha256": "c855236f1c955ec12f7b323d1cc53be13497829e5fe9902e6dcfe534a1d4b57e",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0462aec2688ccf6c.jpg",
+      "attribution": "Opel_Olympia-1950 \u2014 Ren\u00e9; https://www.flickr.com/photos/voz-gallery/10610760196; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0464eb56ce511db6",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:1e576e717b1507ce5b3835dd3b83c08ebe69a91a7e626944ad1fe8828184937a",
+      "original_landing_url": "https://www.flickr.com/photos/14916700@N00/4471690976",
+      "author": "Matt",
+      "title": "2001 Ford Taurus For Sale",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "f97eefc4da5e76ea5556b01a512dd557434ea403ab64abfcf486a45f70c31b59",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/0464eb56ce511db6.jpg",
+      "sha256": "c84410869d02eff578aa1356effee2253b3853c2c2196ca6010b38df810fb338",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0464eb56ce511db6.jpg",
+      "attribution": "2001 Ford Taurus For Sale \u2014 Matt; https://www.flickr.com/photos/14916700@N00/4471690976; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "04737aad68f78bb7",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:7d0a8ed323155587327d41aacf5cba87c7ca7ea2546ecc4068108b9ad7279338",
+      "original_landing_url": "https://www.flickr.com/photos/rpavich/13082957645",
+      "author": "rpavich",
+      "title": "Shawn's Ride...",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "status": "source_check_failed",
+      "error_type": "HTTPError"
+    },
+    {
+      "image_id": "047bcf313d24a279",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:4bd3ab9d7112208c9535ef1b1bf2b5f11c1c32775cbfef9c198509860da3a8d7",
+      "original_landing_url": "https://www.flickr.com/photos/bb_hans/14343444441",
+      "author": "Hans Hanraths",
+      "title": "P1010792",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "a93b5b891a849c0d4ffa880ea6ef760a45fc5a52cab96f4547ebe5ea254a2283",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/047bcf313d24a279.jpg",
+      "sha256": "ecf0ff9a310c97594d2a124d4dffa65d162dc036ea5023a7cfc181e926ea1d95",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/047bcf313d24a279.jpg",
+      "attribution": "P1010792 \u2014 Hans Hanraths; https://www.flickr.com/photos/bb_hans/14343444441; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "047e093c38e40f22",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:64fe33bf3c1debc88e8c4d86553ab33e28b624e0127aff785d8c934066d8ce26",
+      "original_landing_url": "https://www.flickr.com/photos/moto_club4ag/7467467014",
+      "author": "Moto &quot;Club4AG&quot; Miwa",
+      "title": "White LEDs make this Scion match with the rest of the car that is Subaru, Toyota....",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "",
+      "training_ready": false,
+      "status": "source_check_failed",
+      "error_type": "HTTPError"
+    },
+    {
+      "image_id": "04833bdaa8c68594",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:873212ab81f5a696f9d6a72a7ed6f932436b4ddd2c54a49e92cfa1852b4595b4",
+      "original_landing_url": "https://www.flickr.com/photos/62176843@N06/5654740063",
+      "author": "al3xadk1n5",
+      "title": "London Taxis",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "de21164f2f0c0d6b5bccde3cc6e10939c3fa2337262a1ec7ed5dbe5865d4f14b",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        577
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/04833bdaa8c68594.jpg",
+      "sha256": "021371418fac50cfb4cf0b5d8fd6648a28a4159c380a74f8ee44e863d8824fc8",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/04833bdaa8c68594.jpg",
+      "attribution": "London Taxis \u2014 al3xadk1n5; https://www.flickr.com/photos/62176843@N06/5654740063; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "049b2fae5ca8aa8b",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:a7972a4a51553fa2ad59090a2e7a4980a3a060d130f80116ef3db36937e6275e",
+      "original_landing_url": "https://www.flickr.com/photos/qilin/82903264",
+      "author": "Christopher",
+      "title": "He's got red boxes",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "status": "source_check_failed",
+      "error_type": "HTTPError"
+    },
+    {
+      "image_id": "049cbdf58c353959",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:828aa8f26482f2aeb06f9b3c63658c6b768325dd036ab7c0221d64c54193d0ef",
+      "original_landing_url": "https://www.flickr.com/photos/42063682@N06/17142462878",
+      "author": "George Shahda",
+      "title": "#dubai #dxb #AbuDhabi #uae #motorcycle #indian #indianmotorcycle #victory #victorymotorcycle #photoshoot #hasselblad #broncolor #scoro #movie #mobil #studio #models #georgeshahda #camaro #chevrolet #cars #speed #luxury",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "5b70ccc7e28c1f94ddbb620fa28aede29c4d07fcf96ccf7b86f5a38f1b846f6b",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/049cbdf58c353959.jpg",
+      "sha256": "cfb2fd1883b04ac78406d82e2c69389dc69bd2bf81573d5017f1d67beb17c10b",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/049cbdf58c353959.jpg",
+      "attribution": "#dubai #dxb #AbuDhabi #uae #motorcycle #indian #indianmotorcycle #victory #victorymotorcycle #photoshoot #hasselblad #broncolor #scoro #movie #mobil #studio #models #georgeshahda #camaro #chevrolet #cars #speed #luxury \u2014 George Shahda; https://www.flickr.com/photos/42063682@N06/17142462878; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "04acaea66fb2a25a",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:dc51a7aea140157c740f9f8d9dec3653275e73a2c2af5f7599b4998d5207d108",
+      "original_landing_url": "https://www.flickr.com/photos/drarkane/4611785441",
+      "author": "Chris Faulkner",
+      "title": "SOWO 2010",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "73de9e70c7c65cd28fe91263680772cdbef186f0f9fa17501cff6dfb54e6ee2a",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        685
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/04acaea66fb2a25a.jpg",
+      "sha256": "fa89894d202d8e8cf816a4e1328c4104a21904f266e5095500d6bafa5cce0301",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/04acaea66fb2a25a.jpg",
+      "attribution": "SOWO 2010 \u2014 Chris Faulkner; https://www.flickr.com/photos/drarkane/4611785441; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "04b0625c5301e24e",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:8fa8bd5af4880eeece8c0df275ee77221b85c8e6877ee46d1f4dd22e7339221c",
+      "original_landing_url": "https://www.flickr.com/photos/arcadius/4636893490",
+      "author": "Arcadiu\u0161",
+      "title": "Wy\u015bcigi maluch\u00f3w",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "status": "source_check_failed",
+      "error_type": "HTTPError"
+    },
+    {
+      "image_id": "04c9d21d307621e7",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:631cee7e1859884ab6897f4f1e75f0efc05bc31f5d86a2853875ae8c5d237063",
+      "original_landing_url": "https://www.flickr.com/photos/rene-germany/684137659",
+      "author": "Rene Schwietzke",
+      "title": "Seashore Trolley Museum Kennebunkport, Maine",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "",
+      "training_ready": false,
+      "original_page_sha256": "04a9823a2d82a6d5e3bcdcbc36db85b02de21dff2b073f58f2d844bbbb7d8456",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/04c9d21d307621e7.jpg",
+      "sha256": "fcfc37cfd36189b63237b57bec6ca5c5788ee9e1144ceaed009c9f08f85adbae",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/04c9d21d307621e7.jpg",
+      "attribution": "Seashore Trolley Museum Kennebunkport, Maine \u2014 Rene Schwietzke; https://www.flickr.com/photos/rene-germany/684137659; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "04d23234a24acc99",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:ad14e1bdd46b4b193542e03d5cb3d0a855b2928f74224366f01ac27540ea22a5",
+      "original_landing_url": "https://www.flickr.com/photos/systemslibrarian/1951706354",
+      "author": "Paul Clark",
+      "title": "Poe Spring (Alachua County, FL)",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "",
+      "training_ready": false,
+      "original_page_sha256": "0af51dbfecca3452e784a3236d2ae0ebb05119879d0876a9711f145b60e919cb",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/04d23234a24acc99.jpg",
+      "sha256": "48d897b6e12b52e310fcf23394423a8722d94db3a2f409843a69d6e02c4e2580",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/04d23234a24acc99.jpg",
+      "attribution": "Poe Spring (Alachua County, FL) \u2014 Paul Clark; https://www.flickr.com/photos/systemslibrarian/1951706354; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "04d99f31fa5f4602",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:d82be8bd688e93ddfd02781fbd895ca5279f6dbb1dbaac6a1f1c3712bdca7c3c",
+      "original_landing_url": "https://www.flickr.com/photos/eager/15832383159",
+      "author": "\u6e96\u5efa\u7bc9\u4eba\u624b\u672d\u7db2\u7ad9 Forgemind ArchiMedia",
+      "title": "DSC72601 - 2014-1214 \u6df1\u5733\u8857\u666f",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "da824ac711eeed038a8051ce1144f4fd67fa7900b27ed4fa9a73d27bbdc3992a",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/04d99f31fa5f4602.jpg",
+      "sha256": "36bb751a4ce47d9dc4a3956d6ef0aece82d5827306e879dc79c5762c7c76030b",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/04d99f31fa5f4602.jpg",
+      "attribution": "DSC72601 - 2014-1214 \u6df1\u5733\u8857\u666f \u2014 \u6e96\u5efa\u7bc9\u4eba\u624b\u672d\u7db2\u7ad9 Forgemind ArchiMedia; https://www.flickr.com/photos/eager/15832383159; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0501cc6b559cc711",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:c4278fcd422db9b8e660f32746dab8248f17bb299e1f97c2decb8e3d2f94c504",
+      "original_landing_url": "https://www.flickr.com/photos/bradbox/7006795386",
+      "author": "Bradley Howard",
+      "title": "Natalie, Ishai, Ethan, Shelley & Orli in Thetford Forest",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "",
+      "training_ready": false,
+      "status": "source_check_failed",
+      "error_type": "HTTPError"
+    },
+    {
+      "image_id": "052ad2ea2d01ae65",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:94c773a559a1f89500a136ca47755d8df2b2c26879f7996c69ce58a902385903",
+      "original_landing_url": "https://www.flickr.com/photos/cristiano_betta/435697246",
+      "author": "Cristiano Betta",
+      "title": "Porshe",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "5a40533bfe9563e2712241ab519df4f1a6aea6e9c37f35d0a764454b8c8bb483",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        525
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/052ad2ea2d01ae65.jpg",
+      "sha256": "52bfcdd6a51b05e90d2d588665482e7ddfaab8e5b1045496db65fb8f71c1d83e",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/052ad2ea2d01ae65.jpg",
+      "attribution": "Porshe \u2014 Cristiano Betta; https://www.flickr.com/photos/cristiano_betta/435697246; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0537786795f34ef4",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:5491aa8d3e4f928c8c48acc01fc0481549b3baf462328b975a6071aa56b393c5",
+      "original_landing_url": "https://www.flickr.com/photos/edwardotis/8929665757",
+      "author": "Ed Johnson",
+      "title": "SF Peace Protest",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "a2197df20b470543a3af36c0c4497c2fa8910531c8a00bc96bf7230250e7f1bb",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/0537786795f34ef4.jpg",
+      "sha256": "db1e22a507851d1c985dc285a3b565e9bd20053dfc10e7e3a63b1052ddfd06da",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0537786795f34ef4.jpg",
+      "attribution": "SF Peace Protest \u2014 Ed Johnson; https://www.flickr.com/photos/edwardotis/8929665757; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0552ac7ed0de822f",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:5ff3629b92f28924af8aaeb4aa596135dc0d3ad9512ef4c01b6f3b640a8ba8db",
+      "original_landing_url": "https://www.flickr.com/photos/airboy123/5826123620",
+      "author": "Sunny",
+      "title": "Toyota_D3S_5249",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "aa2d58fb73150e5e9e2475e3183ff3b9a1cd38079f15977e67d7f5cb740ace1a",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        680
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/0552ac7ed0de822f.jpg",
+      "sha256": "cae3616ca632256097fd309d0b55ecd543a4e21e5da9d5a90e5d0c82bb07fd83",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0552ac7ed0de822f.jpg",
+      "attribution": "Toyota_D3S_5249 \u2014 Sunny; https://www.flickr.com/photos/airboy123/5826123620; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "05544d84d21af1c1",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:27e3d962a1f3790a533a7c7ed3c2569f8dd662969921822362394b4ae78c3300",
+      "original_landing_url": "https://www.flickr.com/photos/gestalteando/3449563692",
+      "author": "Douglas F. Henrique",
+      "title": "\u0417\u0435\u043d\u0438\u0301\u0442",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "02a1702a186550fcdcc7020f8bc092ffb84c090fe8de5a122d95a824acd97189",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/05544d84d21af1c1.jpg",
+      "sha256": "962e39948ef2043eeff454d96213b437bbd6b712bd996a9962a847748a8dce3c",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/05544d84d21af1c1.jpg",
+      "attribution": "\u0417\u0435\u043d\u0438\u0301\u0442 \u2014 Douglas F. Henrique; https://www.flickr.com/photos/gestalteando/3449563692; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "057569768fd6303e",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:09142f069eeb309c27ce1bda26694f47c13d8f8ab1d9ac7465ae383e67618bb3",
+      "original_landing_url": "https://www.flickr.com/photos/jason_burmeister/2350503333/",
+      "author": "Jason",
+      "title": "BMW 325 custom",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "5df24b3df5eb1b21ccfed8b111be9f5d616984a4db6fb3961129b6d181e2c3c7",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/057569768fd6303e.jpg",
+      "sha256": "fa0a02d1a5184ad235205f1025a2f8e0d243393305bf357a2a3992e43b91cdee",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/057569768fd6303e.jpg",
+      "attribution": "BMW 325 custom \u2014 Jason; https://www.flickr.com/photos/jason_burmeister/2350503333/; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "057c7d02566141cf",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:a3ffcd8e923f795784eb2ab1e72c0b6119efcf6baf590134e329bab8ed9c2b07",
+      "original_landing_url": "https://www.flickr.com/photos/drivingthenortheast/5755686908",
+      "author": "DrivingtheNortheast",
+      "title": "Cadillac CTS-V Coupe",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "e9c0437296dcc669a87b6c278c0b5584d926eeaa83516e6c132137e21dedfa1a",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/057c7d02566141cf.jpg",
+      "sha256": "ebb3a5de48951d44161a3b9fb8b2d1efd35390c6cd7c97b47cca884bbd76429e",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/057c7d02566141cf.jpg",
+      "attribution": "Cadillac CTS-V Coupe \u2014 DrivingtheNortheast; https://www.flickr.com/photos/drivingthenortheast/5755686908; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "05871920eddd31a6",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:e1b48356dd45bbbb22ed3d5b7e540c52d8e42aa720c953210e942292123c8bf5",
+      "original_landing_url": "https://www.flickr.com/photos/reddragonimages/8529699718",
+      "author": "Red Dragon Images",
+      "title": "RPB_4841wm",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "e2158a95831f9fbf4107f09cc6f1260f7907744a77d2b348d94809b3783c9d4d",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        678
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/05871920eddd31a6.jpg",
+      "sha256": "6a7606477f602c410d5840dc64f204a730076c6bb5b225edf58856478e3362f4",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/05871920eddd31a6.jpg",
+      "attribution": "RPB_4841wm \u2014 Red Dragon Images; https://www.flickr.com/photos/reddragonimages/8529699718; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0588eee8262ae6b5",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:4ad25a0fd1ebe3a28c5749b00ded8bc39dda2cf1d1b18c7bda1ec0ded1cb39ff",
+      "original_landing_url": "https://www.flickr.com/photos/50415738@N04/7708164412",
+      "author": "sv1ambo",
+      "title": "1970 Ford XY Falcon GT sedan",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "status": "source_check_failed",
+      "error_type": "HTTPError"
+    },
+    {
+      "image_id": "058ecce8decdeeaa",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:ea8876cfc190eb5ac797b5f2bd02d600e33930c1c09386a6b6f0c216f07d2924",
+      "original_landing_url": "https://www.flickr.com/photos/tomsaint/3628024172",
+      "author": "Rennett Stowe",
+      "title": "1934 Packard",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "6d9e4e69a776b0b0dafab9c9a4bec7d8f3884eb787258fbb467e9c60a906d255",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        710
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/058ecce8decdeeaa.jpg",
+      "sha256": "5d72dd2a232ab82ab7e4b207d6962f49787f72190adeef1609b28b1760034e82",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/058ecce8decdeeaa.jpg",
+      "attribution": "1934 Packard \u2014 Rennett Stowe; https://www.flickr.com/photos/tomsaint/3628024172; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0598d112cfe889ea",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:7077dab15e57693758d74c0c7a37db14f2ce2926ee7ac134beeaa695cb15db2f",
+      "original_landing_url": "https://www.flickr.com/photos/jacksonwest/4686657706",
+      "author": "Jackson West",
+      "title": "Way to the Castro of the wild underestimate",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "9415503cf90e38ca6c48746f3d8f194d26ed8e4b6f0f54dbc04e069bbf2d209e",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        819
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/0598d112cfe889ea.jpg",
+      "sha256": "0b7779337ac79c5942dc7043201baa5600368a2f7e6b3069863d1fb47c459835",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0598d112cfe889ea.jpg",
+      "attribution": "Way to the Castro of the wild underestimate \u2014 Jackson West; https://www.flickr.com/photos/jacksonwest/4686657706; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "05c8595bd8616030",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:4b2092d2373214a18eac36ac041ad16d4d8c45fa3e1ba78d8047223c52fd7d4e",
+      "original_landing_url": "https://www.flickr.com/photos/fire_up_the_quattro/4974846689",
+      "author": "Firing up the quattro....",
+      "title": "1986 Ford Capri 2.8",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "a01d7d795af3627e5b1d1348a65087776b93eff164ac762e919799f19f37a2a1",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/05c8595bd8616030.jpg",
+      "sha256": "e434623d532abd19f48f365af917fc9188891208e85385806151da4d3f7e4910",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/05c8595bd8616030.jpg",
+      "attribution": "1986 Ford Capri 2.8 \u2014 Firing up the quattro....; https://www.flickr.com/photos/fire_up_the_quattro/4974846689; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "05ca659dea8dbdbd",
+      "publisher_split": "validation",
+      "publisher_class": "candidate only; global food/drink absence unreviewed",
+      "source_group": "openimages-author:5ff3629b92f28924af8aaeb4aa596135dc0d3ad9512ef4c01b6f3b640a8ba8db",
+      "original_landing_url": "https://www.flickr.com/photos/airboy123/8084625112",
+      "author": "Sunny",
+      "title": "jeep",
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "publisher_rotation": "0.0",
+      "training_ready": false,
+      "original_page_sha256": "249f272e01a83677b824c84eda8351d1d29cd91907561b5c333dc08322d7fb4c",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "downloaded_pixel_size": [
+        1024,
+        788
+      ],
+      "downloaded_exif_orientation": null,
+      "status": "image_downloaded_quarantined",
+      "image_path": "images/05ca659dea8dbdbd.jpg",
+      "sha256": "6acac1f47b6a116df7b87f92c85997de9094984d7cd40bf95757b9029f8babc0",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/05ca659dea8dbdbd.jpg",
+      "attribution": "jeep \u2014 Sunny; https://www.flickr.com/photos/airboy123/8084625112; CC BY 2.0; resized, metadata removed."
+    }
+  ],
+  "selected_for_diagnostic": [
+    "001083f05db4352b",
+    "001a794d1865ee47",
+    "001a809ad40a2f84",
+    "001a995c1e25d892",
+    "0022e32008e479cb",
+    "00230c216711fceb",
+    "002f8241bd829022",
+    "003132be85a0beae",
+    "003a5aaf6d17c917",
+    "00575b9132bb3746",
+    "005b598d8fecb139",
+    "005ea49186b013d8",
+    "00723dac8201a83e",
+    "0082b95745cb8ed5",
+    "008637722500f239",
+    "00a1f2a6e7f78ac5",
+    "00a3654c1cf00d11",
+    "00a36f96e31731c4",
+    "00acf53b127218c2",
+    "00b562abdf5766d3",
+    "00b75a8487446cdd",
+    "00cd12b9ee1905a7",
+    "00d2a568dd4afd0d",
+    "00d9efcc4d1fda53",
+    "00e5682d509f4b26",
+    "00e9084d1bc8e0ea",
+    "00ec4ba83d648c33",
+    "00ee7576fe9ebe6c",
+    "010374db88064834",
+    "0104cba3ff87376c",
+    "01142f30b8bdac1a",
+    "0119db1a3ebc3f65",
+    "01267ff8f7cfcdbd",
+    "01284dd8eaad0569",
+    "012ea1afd40e85ac",
+    "013b99371484d3d5",
+    "01471c9fcf29869f",
+    "015d7d3a6db03a94",
+    "0170ea8e1a33375a",
+    "017b690dbb7552db",
+    "018bbadd96337150",
+    "019483ccc1cc242b",
+    "0197df7725980004",
+    "01b405e0cab3add3",
+    "01c04124383a9a02",
+    "01de9381fb29fb25",
+    "01e8509529aac2b8",
+    "02040812efa69b71",
+    "0210f9c01e31f873",
+    "0217ef254d8bf5cd",
+    "022881fd81a5a8f7",
+    "023a8d0a05ec58ad",
+    "0256ad72229e0c5d",
+    "02717d30304f4849",
+    "029285d102bc56db",
+    "02a6ef3d9bd68e91",
+    "02af9804c6b68f61",
+    "02c0f07948ac1eb9",
+    "02cf5678f44a3145",
+    "02d3d8579d152a67",
+    "02d9a3eb87efe5c0",
+    "02da35e6e72d6816",
+    "02dc31437b2ec48f",
+    "02dfa3e35b58bdb7",
+    "02ec4bbec941280a",
+    "02fcf5654c103ede",
+    "030bf2a8f3340ec3",
+    "030c8676318cbad0",
+    "030e63dc830320d1",
+    "031336c27b5d1168",
+    "0344ec1dcd07fd4a",
+    "034530143f388715",
+    "035f9a5f8369d8c6",
+    "03646bb2f288eaae",
+    "0394201b977eb6c5",
+    "03a83451f0d8239d",
+    "03b7b71e1ffcb7a8",
+    "03c266312b81fd7f",
+    "03c35bdfffbea53f",
+    "03df40e50dfc9098",
+    "03f28131b85a0b97",
+    "03ff1b5b9c860734",
+    "040212027eacf079",
+    "0403980601a6ee5b",
+    "0414d895e634d934",
+    "0419739a49a5d743",
+    "041f9231a69f7981",
+    "0421a6e230527185",
+    "04325d2d011736fd",
+    "04359c727259b86c",
+    "0438dea0e3cd161a",
+    "0443efb101717113",
+    "044417ca6134604f",
+    "044c70c9fa3dbe80",
+    "0450c83178d36a42",
+    "0462aec2688ccf6c",
+    "0464eb56ce511db6",
+    "047bcf313d24a279",
+    "04833bdaa8c68594",
+    "049cbdf58c353959"
+  ],
+  "training_photos_or_authors_used": 0,
+  "member_photos": 0,
+  "fee_paid": false,
+  "production_ready": false,
+  "independent_uk_acceptance": false,
+  "limitations": [
+    "Publisher labels are only candidate selection; global food/drink absence requires visual adjudication",
+    "Public data; base pretraining overlap unknown",
+    "No gate threshold or model selected using this diagnostic"
+  ]
+}

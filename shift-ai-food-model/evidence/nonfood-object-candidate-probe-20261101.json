@@ -1,0 +1,729 @@
+{
+  "scope": "Unadjudicated public candidate-image probe; not a valid non-food benchmark",
+  "status": "VISUAL_FOOD_AND_DRINK_ABSENCE_REVIEW_REQUIRED",
+  "images": 100,
+  "available": 100,
+  "unavailable": 0,
+  "valid_false_food_suggestion_rate": null,
+  "food_absence_truth_adjudicated": false,
+  "reason": "Publisher Food-class absence or a nonfood-object label does not prove global absence of food, drink or ingredients",
+  "gate_accept_fraction_on_candidates": 0.1,
+  "food_suggestion_fraction_on_candidates": 0.04,
+  "candidate": "shift-spatial-ensemble-15",
+  "acquisition_sha256": "7326f5be921ca51e26a8411563ba0bfa6b0fcd49658393fc5b4c0233f6a322dd",
+  "thresholds_changed": false,
+  "training_on_candidates": false,
+  "results": [
+    {
+      "image_id": "001083f05db4352b",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "001a794d1865ee47",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "001a809ad40a2f84",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "001a995c1e25d892",
+      "gate_accept": true,
+      "food_suggestion": true,
+      "items": [
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "0022e32008e479cb",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "00230c216711fceb",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "002f8241bd829022",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "003132be85a0beae",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "003a5aaf6d17c917",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "00575b9132bb3746",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "005b598d8fecb139",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "005ea49186b013d8",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "00723dac8201a83e",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0082b95745cb8ed5",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "008637722500f239",
+      "gate_accept": true,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "00a1f2a6e7f78ac5",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "00a3654c1cf00d11",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "00a36f96e31731c4",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "00acf53b127218c2",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "00b562abdf5766d3",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "00b75a8487446cdd",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "00cd12b9ee1905a7",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "00d2a568dd4afd0d",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "00d9efcc4d1fda53",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "00e5682d509f4b26",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "00e9084d1bc8e0ea",
+      "gate_accept": true,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "00ec4ba83d648c33",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "00ee7576fe9ebe6c",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "010374db88064834",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0104cba3ff87376c",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "01142f30b8bdac1a",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0119db1a3ebc3f65",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "01267ff8f7cfcdbd",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "01284dd8eaad0569",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "012ea1afd40e85ac",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "013b99371484d3d5",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "01471c9fcf29869f",
+      "gate_accept": true,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "015d7d3a6db03a94",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0170ea8e1a33375a",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "017b690dbb7552db",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "018bbadd96337150",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "019483ccc1cc242b",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0197df7725980004",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "01b405e0cab3add3",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "01c04124383a9a02",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "01de9381fb29fb25",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "01e8509529aac2b8",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "02040812efa69b71",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0210f9c01e31f873",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0217ef254d8bf5cd",
+      "gate_accept": true,
+      "food_suggestion": true,
+      "items": [
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "022881fd81a5a8f7",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "023a8d0a05ec58ad",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0256ad72229e0c5d",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "02717d30304f4849",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "029285d102bc56db",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "02a6ef3d9bd68e91",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "02af9804c6b68f61",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "02c0f07948ac1eb9",
+      "gate_accept": true,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "02cf5678f44a3145",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "02d3d8579d152a67",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "02d9a3eb87efe5c0",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "02da35e6e72d6816",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "02dc31437b2ec48f",
+      "gate_accept": true,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "02dfa3e35b58bdb7",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "02ec4bbec941280a",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "02fcf5654c103ede",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "030bf2a8f3340ec3",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "030c8676318cbad0",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "030e63dc830320d1",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "031336c27b5d1168",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0344ec1dcd07fd4a",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "034530143f388715",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "035f9a5f8369d8c6",
+      "gate_accept": true,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "03646bb2f288eaae",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0394201b977eb6c5",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "03a83451f0d8239d",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "03b7b71e1ffcb7a8",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "03c266312b81fd7f",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "03c35bdfffbea53f",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "03df40e50dfc9098",
+      "gate_accept": true,
+      "food_suggestion": true,
+      "items": [
+        "pizza"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "03f28131b85a0b97",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "03ff1b5b9c860734",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "040212027eacf079",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0403980601a6ee5b",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0414d895e634d934",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0419739a49a5d743",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "041f9231a69f7981",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0421a6e230527185",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "04325d2d011736fd",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "04359c727259b86c",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0438dea0e3cd161a",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0443efb101717113",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "044417ca6134604f",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "044c70c9fa3dbe80",
+      "gate_accept": true,
+      "food_suggestion": true,
+      "items": [
+        "pizza",
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "0450c83178d36a42",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0462aec2688ccf6c",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0464eb56ce511db6",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "047bcf313d24a279",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "04833bdaa8c68594",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "049cbdf58c353959",
+      "gate_accept": false,
+      "food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    }
+  ],
+  "production_ready": false,
+  "seconds": 345.00895702300477
+}
