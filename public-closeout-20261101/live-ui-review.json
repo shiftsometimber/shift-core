@@ -1,0 +1,22 @@
+{
+  "release": "public-closeout-20261101-v1",
+  "observedAt": "2026-11-01T17:36:30Z",
+  "productionRun": 41330658193,
+  "fullLiveGate": "passed",
+  "verifiedPublicUrls": [
+    "https://shiftsometimber.co.uk/faq/is-fat-bad",
+    "https://shiftsometimber.co.uk/guides/common-blood-tests-explained",
+    "https://shiftsometimber.co.uk/mental-health/stress-overwhelm",
+    "https://shiftsometimber.co.uk/comparisons/europe/headline-price-vs-true-cost",
+    "https://shiftsometimber.co.uk/shift-health/blood-tests/advanced",
+    "https://shiftsometimber.co.uk/guides/sleep-stress-mindset-emotional-eating-maintenance"
+  ],
+  "allObservedReleaseMarkers": "public-closeout-20261101-v1",
+  "screenshot": "live-proof.jpg",
+  "screenshotUrl": "https://shiftsometimber.co.uk/guides/common-blood-tests-explained",
+  "screenshotOriginal": "public-closeout-live-1793554562807.jpg",
+  "screenshotInspected": true,
+  "fullLiveGateVerifiedAt": "2026-11-01T17:50:30.188Z",
+  "liveCases": 1770,
+  "screenshotSha256": "d16fd2b16aac13a2f0428c8dea7a1e6c34c54f894382c4a0b0ad59875936001a"
+}
