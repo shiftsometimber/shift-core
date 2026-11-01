@@ -1,5 +1,5 @@
 name: Approved public review cloud release
-# Use a unique exact-commit preview and bounded propagation checks.
+# Extend only the existing publication-date projection; preserve source and rollback gates.
 on:
   push:
     branches: [fix/review-footer-colour-20261027]
@@ -19,84 +19,28 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Run exact newsroom regressions without installation
-        run: node --test tests/radar-newsroom-page-v1.test.mjs tests/radar-newsroom-sort-v1.test.mjs
-      - name: Read current deployment ownership and publication dates without mutations
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          GITHUB_TOKEN: ${{ github.token }}
+      - name: Run retained newsroom and exact canonical projection regressions
         run: |
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-          import assert from 'node:assert/strict';
-          const cf='https://api.cloudflare.com/client/v4',repo='https://api.github.com/repos/shiftsometimber/shift-core';
-          const get=async(url,token)=>{const r=await fetch(url,{headers:token?{Authorization:'Bearer '+token,'User-Agent':'SHIFT-approved-public-review'}:{},signal:AbortSignal.timeout(25000),redirect:'error'});const body=await r.json();if(!r.ok||body.success===false)throw Error('Read failed HTTP '+r.status+' '+url);return body.result??body};
-          assert(process.env.CLOUDFLARE_API_TOKEN,'Existing Cloudflare credential unavailable');
-          const a='/accounts/9e5386dcf455be34c582d93f8bfc79e6',token=process.env.CLOUDFLARE_API_TOKEN;
-          const project=await get(cf+a+'/pages/projects/projectshift',token);
-          const d=project.canonical_deployment;assert(d?.id,'Current Pages deployment missing');
-          const detail=await get(cf+a+'/pages/projects/projectshift/deployments/'+d.id,token);
-          const main=await get(repo+'/branches/main',process.env.GITHUB_TOKEN);
-          const runs=await get(repo+'/actions/runs?status=in_progress&per_page=50',process.env.GITHUB_TOKEN);
-          const promotions=[];
-          for(const run of runs.workflow_runs.filter(x=>x.name==='Cloudflare Production Promote')){
-            const jobs=await get(repo+'/actions/runs/'+run.id+'/jobs?per_page=100',process.env.GITHUB_TOKEN);
-            for(const j of jobs.jobs.filter(x=>x.name==='promote'&&x.status==='in_progress'))promotions.push({run:run.id,job:j.id,started:j.started_at,currentStep:j.steps.find(s=>s.status==='in_progress')?.number,publicBaselineCaptured:j.steps.some(s=>s.number>=25&&['in_progress','completed'].includes(s.status))});
-          }
-          const workers={};
-          for(const name of ['shift-core','shift-latest-news-ticker-20261024']){
-            const r=await get(cf+a+'/workers/scripts/'+name+'/deployments',token);
-            workers[name]=r.deployments?.[0];
-          }
-          const routes=await get(cf+'/zones/66ec3268950adcfc837b7b8b2f8356ed/workers/routes',token);
-          const news=await get('https://shiftsometimber.co.uk/v1/radar/news');
-          const story=news.items.find(x=>x.id===1263);
-          const report={at:new Date().toISOString(),candidate:process.env.GITHUB_SHA,currentMain:main.commit.sha,productionWrites:0,pages:{id:d.id,url:d.url,created:d.created_on,trigger:d.deployment_trigger,status:d.latest_stage?.status,files:detail.files},workers,ownedRoutes:routes.filter(x=>['shift-core','shift-latest-news-ticker-20261024'].includes(x.script)),promotions,story:story?{id:story.id,published:story.metadata.datePublished,modified:story.metadata.dateModified}:null};
-          fs.mkdirSync('public-review-cloud-evidence',{recursive:true});fs.writeFileSync('public-review-cloud-evidence/baseline.json',JSON.stringify(report,null,2));
-          console.log(JSON.stringify({...report,pages:{...report.pages,files:undefined,fileCount:Object.keys(detail.files||{}).length},workers:Object.fromEntries(Object.entries(workers).map(([k,v])=>[k,{id:v?.id,created:v?.created_on,versions:v?.versions}]))},null,2));
-          NODE
-      - name: Reconcile only changed shell bytes against the current live assets
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: |
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';import vm from 'node:vm';
-          const sha=s=>createHash('sha256').update(s).digest('hex');
-          const oldRef='580e6b4bdde5014820daf3c817d5a82d1c4f541a';
-          const api='https://api.github.com/repos/shiftsometimber/shift-core/contents/release/shared-home-shell-20261024/home-shell-client.js?ref='+oldRef;
-          const response=await fetch(api,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN,'User-Agent':'SHIFT-cloud-source-reconciliation'}});assert(response.ok);
-          const old=Buffer.from((await response.json()).content,'base64').toString();
-          const next=fs.readFileSync('release/shared-home-shell-20261024/home-shell-client.js','utf8');
-          const report={at:new Date().toISOString(),productionWrites:0,source:process.env.GITHUB_SHA,assets:[]};
-          for(const name of ['v42.js','home-shell-v1.js']){
-            const url='https://shiftsometimber.co.uk/assets/'+name;
-            const r=await fetch(url,{headers:{'Cache-Control':'no-cache'},redirect:'error',signal:AbortSignal.timeout(25000)});assert(r.ok);
-            const live=await r.text();assert.equal(live.split(old).length,2,'The exact original shell must occur once in current '+name);
-            const candidate=live.replace(old,next);new vm.Script(candidate);
-            const index=live.indexOf(old);assert.equal(candidate.slice(0,index),live.slice(0,index));assert.equal(candidate.slice(index+next.length),live.slice(index+old.length));
-            fs.writeFileSync('public-review-cloud-evidence/current-'+name,live);fs.writeFileSync('public-review-cloud-evidence/candidate-'+name,candidate);
-            report.assets.push({url,currentSha256:sha(live),candidateSha256:sha(candidate),prefixAndSuffixPreserved:true});
-          }
-          fs.writeFileSync('public-review-cloud-evidence/asset-reconciliation.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
-          NODE
-      - name: Install isolated browser runtime on the cloud runner
+          node --test tests/radar-newsroom-page-v1.test.mjs tests/radar-newsroom-sort-v1.test.mjs
+          LOCAL_TEST_ONLY=1 node release/public-news-date-rollover-20261101.mjs
+      - name: Load successful existing Worker and owned rollback receipt
+        uses: actions/download-artifact@v4
+        with:
+          name: public-review-cloud-readiness-01ac88748021c866b6590e5386afd6b057e73aa8
+          run-id: 40869756565
+          github-token: ${{ github.token }}
+          path: previous-public-review/
+      - name: Install isolated browser runtime
         run: |
           npm install --prefix "$RUNNER_TEMP/public-review-runtime" --no-audit --no-fund playwright@1.56.1
           "$RUNNER_TEMP/public-review-runtime/node_modules/.bin/playwright" install --with-deps chromium
-      - name: Load the exact prior rollback receipt before reusing the scoped Worker
-        uses: actions/download-artifact@v4
-        with:
-          name: public-review-cloud-readiness-59d897dd38a593efdce1c45455b9d8d310e9380c
-          run-id: 40869521869
-          github-token: ${{ github.token }}
-          path: previous-public-review/
-      - name: Validate, release scoped public fixes and verify or roll back owned routes
+      - name: Qualify exact preview, extend owned date projection, verify or roll back
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           GITHUB_TOKEN: ${{ github.token }}
         run: |
-          node --check release/public-review-cloud-20261029.mjs
-          PLAYWRIGHT_MODULE="$RUNNER_TEMP/public-review-runtime/node_modules/playwright" node release/public-review-cloud-20261029.mjs
+          node --check release/public-news-date-rollover-20261101.mjs
+          PLAYWRIGHT_MODULE="$RUNNER_TEMP/public-review-runtime/node_modules/playwright" node release/public-news-date-rollover-20261101.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

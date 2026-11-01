@@ -1,0 +1,85 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {createRequire} from 'node:module';
+const dir='public-review-cloud-evidence';fs.mkdirSync(dir,{recursive:true});
+const origin='https://shiftsometimber.co.uk',account='/accounts/9e5386dcf455be34c582d93f8bfc79e6',zone='/zones/66ec3268950adcfc837b7b8b2f8356ed';
+const name='shift-public-review-fixes-20261029',cf='https://api.cloudflare.com/client/v4',gh='https://api.github.com/repos/shiftsometimber/shift-core';
+const sha=x=>createHash('sha256').update(x).digest('hex'),save=(n,x)=>fs.writeFileSync(dir+'/'+n+'.json',JSON.stringify(x,null,2));
+const targets=[
+ {id:1263,path:'/medicine-news/antidepressant-safety-information-mhra-october-2026',published:'2026-10-19T19:55:33.000Z'},
+ {id:241,path:'/medicine-news/sleeve-gastrectomy-vs-tirzepatide-ckd-survival',published:'2026-09-10T12:06:57.000Z'},
+ {id:240,path:'/medicine-news/glucagon-like-peptide-1-receptor-agonists-research',published:'2026-09-10T12:08:03.000Z'},
+ {id:218,path:'/medicine-news/obesity-driven-heart-failure-research',published:'2026-09-10T12:08:16.000Z'},
+ {id:189,path:'/medicine-news/semaglutide-analytical-methods-review',published:'2026-09-10T12:07:21.000Z'}
+];
+// Fixed public articles only. Failed source retrieval keeps the original feed response.
+async function dates(fetcher){
+ const entries=await Promise.all(targets.map(async t=>{
+  const r=await fetcher('https://shiftsometimber.co.uk'+t.path,{redirect:'manual',signal:AbortSignal.timeout(8000)});
+  if(!r.ok)throw Error('Article unavailable HTTP '+r.status);
+  const html=await r.text();
+  for(const m of html.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/g)){
+   let j;try{j=JSON.parse(m[1])}catch{continue}
+   if(j['@type']==='Article'&&j.mainEntityOfPage==='https://shiftsometimber.co.uk'+t.path&&j.datePublished===t.published&&Number.isFinite(Date.parse(j.dateModified))&&Date.parse(j.datePublished)<=Date.parse(j.dateModified)&&Date.parse(j.dateModified)<=Date.now())return [t.id,{published:j.datePublished,modified:j.dateModified}];
+  }
+  throw Error('Authoritative article dates missing or changed for '+t.id);
+ }));return Object.fromEntries(entries);
+}
+function correct(body,d){
+ if(body.ok!==true||!Array.isArray(body.items))return body;
+ return {...body,items:body.items.map(row=>{
+  const t=targets.find(t=>t.id===row.id&&row.metadata?.canonical==='https://shiftsometimber.co.uk'+t.path),v=t&&d[t.id];
+  return v?{...row,published_at:v.published,metadata:{...row.metadata,datePublished:v.published,dateModified:v.modified}}:row;
+ })};
+}
+export {targets,dates,correct};
+if(process.env.LOCAL_TEST_ONLY==='1'){
+ const t=await import('node:test');
+ for(const target of targets){const source={ok:true,items:[{id:target.id,metadata:{canonical:origin+target.path,datePublished:'2026-11-01',sourceIssueDate:'2026-11-01'},article_markdown:'retained source body'},{id:999,metadata:{datePublished:'2026-08-01'}}]};const before=JSON.stringify(source),fixed=correct(source,{[target.id]:{published:target.published,modified:target.published}});assert.equal(fixed.items[0].metadata.datePublished,target.published);assert.equal(fixed.items[0].article_markdown,source.items[0].article_markdown);assert.equal(fixed.items[0].metadata.sourceIssueDate,'2026-11-01');assert.deepEqual(fixed.items[1],source.items[1]);assert.equal(JSON.stringify(source),before);const mismatch=structuredClone(source);mismatch.items[0].metadata.canonical+='-other';assert.deepEqual(correct(mismatch,{[target.id]:{published:target.published}}),mismatch);}
+ const actual=await dates(async url=>{const t=targets.find(t=>origin+t.path===url);return new Response('<script type="application/ld+json">'+JSON.stringify({'@type':'Article',mainEntityOfPage:url,datePublished:t.published,dateModified:t.published})+'</script>')});assert.equal(Object.keys(actual).length,5);await assert.rejects(()=>dates(async()=>new Response('',{status:403})));console.log('PASS: five exact canonical projections; mismatched/unrelated rows, source dates, bodies and inputs preserved; failed source rejects');
+}else{
+ assert(process.env.CLOUDFLARE_API_TOKEN&&process.env.GITHUB_TOKEN&&process.env.GITHUB_SHA,'Required existing release credentials/source unavailable');
+ async function api(path,options={}){const r=await fetch(cf+path,{...options,headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN,...options.headers},signal:AbortSignal.timeout(30000),redirect:'manual'});const b=await r.json();assert(r.ok&&b.success!==false,'Cloudflare failed HTTP '+r.status+' '+path);return b.result}
+ async function github(path){const r=await fetch(gh+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN,'User-Agent':'SHIFT-date-rollover-release'},signal:AbortSignal.timeout(25000)});assert(r.ok);return r.json()}
+ async function guard(){const head=await github('/git/ref/heads/fix/review-footer-colour-20261027');assert.equal(head.object.sha,process.env.GITHUB_SHA,'Candidate source moved');for(const state of ['in_progress','queued']){const runs=await github('/actions/runs?status='+state+'&per_page=100');assert(!runs.workflow_runs.some(r=>String(r.id)!==process.env.GITHUB_RUN_ID&&/Cloudflare Production Promote|Approved public review cloud release|news.*release|ticker.*release/i.test(r.name)),'Another production release is active/queued');}}
+ async function snap(){return {routes:await api(zone+'/workers/routes'),pages:(await api(account+'/pages/projects/projectshift')).canonical_deployment.id,core:(await api(account+'/workers/scripts/shift-core/deployments')).deployments[0],ticker:(await api(account+'/workers/scripts/shift-latest-news-ticker-20261024/deployments')).deployments[0],review:(await api(account+'/workers/scripts/'+name+'/deployments')).deployments[0]}}
+ async function source(script){const r=await fetch(cf+account+'/workers/scripts/'+script+'/content/v2',{headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN},signal:AbortSignal.timeout(25000)});assert(r.ok);if(r.headers.get('content-type')?.includes('multipart/form-data')){const parts=await r.formData();assert(parts.get('worker.mjs'),'Expected existing main module');return parts.get('worker.mjs').text()}return r.text()}
+ await guard();const before=await snap(),oldWorker=await source(name),receiptWorker=fs.readFileSync('previous-public-review/worker.mjs','utf8');assert.equal(oldWorker,receiptWorker,'Current Worker differs from successful original receipt');
+ const settings=await api(account+'/workers/scripts/'+name+'/settings');assert.equal(settings.compatibility_date,'2026-08-09');assert.equal(settings.bindings.length,1);assert.equal(settings.bindings[0].type,'service');assert.equal(settings.bindings[0].name,'CORE');assert.equal(settings.bindings[0].service,'shift-core');assert(!settings.bindings[0].environment,'Unexpected service environment');save('binding-assertions',{pass:true,onlyAnonymousCoreService:true});
+ const patterns=['shiftsometimber.co.uk/assets/v42.js*','shiftsometimber.co.uk/assets/home-shell-v1.js*','shiftsometimber.co.uk/v1/radar/news*'];assert.deepEqual(before.routes.filter(r=>r.script===name).map(r=>r.pattern).sort(),[...patterns].sort(),'Route ownership changed');
+ save('before',{...before,source:process.env.GITHUB_SHA,workerSha256:sha(oldWorker)});fs.writeFileSync(dir+'/rollback-worker.mjs',oldWorker);
+ const oldRelease=fs.readFileSync('release/public-review-cloud-20261029.mjs','utf8');
+ const oldDates=oldRelease.slice(oldRelease.indexOf('async function dates(fetcher)'),oldRelease.indexOf('\nfunction correct(body,d)'));
+ const oldCorrect=oldRelease.slice(oldRelease.indexOf('function correct(body,d)'),oldRelease.indexOf('\nconst authoritative='));
+ assert.equal(oldWorker.split(oldDates).length,2,'Exact date-function boundary drift');assert.equal(oldWorker.split(oldCorrect).length,2,'Exact projection-function boundary drift');
+ const replacement='const targets='+JSON.stringify(targets)+';'+dates.toString();
+ const worker=oldWorker.replace(oldDates,replacement).replace(oldCorrect,correct.toString());
+ // No assets, request fencing, service bindings or fallback logic can change.
+ assert.equal(worker.replace(replacement,oldDates).replace(correct.toString(),oldCorrect),oldWorker);
+ fs.writeFileSync(dir+'/worker.mjs',worker);
+ const authoritative=await dates(fetch),nr=await fetch(origin+'/v1/radar/news',{signal:AbortSignal.timeout(25000)});assert(nr.ok);const oldNews=await nr.json(),newNews=correct(oldNews,authoritative);assert(oldNews.ok&&Array.isArray(oldNews.items));
+ for(const target of targets){assert(oldNews.items.some(r=>r.id===target.id),'Target missing');assert.equal(newNews.items.find(r=>r.id===target.id).metadata.datePublished,target.published)}
+ for(let i=0;i<oldNews.items.length;i++){const a=oldNews.items[i],b=newNews.items[i];if(!targets.some(t=>t.id===a.id))assert.deepEqual(a,b);else{assert.deepEqual({...a,published_at:b.published_at,metadata:{...a.metadata,datePublished:b.metadata.datePublished,dateModified:b.metadata.dateModified}},b)}}
+ const deployed=await import('data:text/javascript;base64,'+Buffer.from(worker).toString('base64'));let calls=[];
+ const CORE={async fetch(req){calls.push(req.url);assert.equal(req.method,'GET');assert.equal(req.headers.get('cookie'),null);assert.equal(req.headers.get('authorization'),null);const p=new URL(req.url).pathname;if(p==='/v1/radar/news')return new Response(JSON.stringify(oldNews),{headers:{'content-type':'application/json'}});const t=targets.find(t=>t.path===p);assert(t,'Unexpected upstream path');return new Response('<script type="application/ld+json">'+JSON.stringify({'@type':'Article',mainEntityOfPage:origin+p,datePublished:t.published,dateModified:authoritative[t.id].modified})+'</script>')}};
+ const runtime=await deployed.default.fetch(new Request(origin+'/v1/radar/news',{headers:{Cookie:'must-not-forward',Authorization:'must-not-forward'}}),{CORE});assert.deepEqual(await runtime.json(),newNews);assert.equal(calls.length,6);assert.equal((await deployed.default.fetch(new Request(origin+'/v1/radar/news',{method:'POST'}),{CORE})).status,405);
+ const failed=await deployed.default.fetch(new Request(origin+'/v1/radar/news'),{CORE:{async fetch(req){return new URL(req.url).pathname==='/v1/radar/news'?new Response(JSON.stringify(oldNews),{headers:{'content-type':'application/json'}}):new Response('',{status:403})}}});assert.deepEqual(await failed.json(),oldNews,'Failed source must retain upstream');
+ save('projection-tests',{pass:true,source:process.env.GITHUB_SHA,authoritative,exactSourceBoundary:true,unchangedOtherRows:oldNews.items.length-5,publicReadOnlyCalls:6,credentialsForwarded:false,failedSourceFallbackPreserved:true});
+ const assets={};for(const p of ['/assets/v42.js','/assets/home-shell-v1.js']){const r=await fetch(origin+p);assert(r.ok);assets[p]=await r.text()}
+ const {chromium}=createRequire(import.meta.url)(process.env.PLAYWRIGHT_MODULE);
+ async function browserCheck(staged){const browser=await chromium.launch({headless:true}),results=[];try{for(const width of [390,1440]){const context=await browser.newContext({viewport:{width,height:1000},serviceWorkers:'block'});try{await context.route('**/*',async route=>{const r=route.request(),u=new URL(r.url());if(!['GET','HEAD'].includes(r.method())||/google-analytics|googletagmanager/.test(u.hostname))return route.abort();if(staged&&u.origin===origin&&u.pathname==='/v1/radar/news')return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(newNews)});return route.continue()});const page=await context.newPage();await page.goto(origin+'/shift-newsroom',{waitUntil:'domcontentloaded',timeout:45000});await page.waitForFunction(()=>document.querySelector('#shift-public-news a[href*="retatrutide-ozempic"]'),null,{timeout:25000});const links=await page.locator('#shift-public-news .shift-news-copy').first().locator('a').evaluateAll(rows=>rows.map(a=>({text:a.textContent,url:a.getAttribute('href')})));assert(links.some(a=>a.url?.includes('retatrutide-ozempic')));assert(!links.some(a=>/Published 1 Nov 2026/.test(a.text)&&targets.some(t=>a.url?.includes(t.path))));const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth);assert.equal(overflow,false);results.push({width,links,overflow});await page.screenshot({path:dir+'/'+(staged?'candidate':'production')+'-'+width+'.png',fullPage:true});}finally{await context.close()}}}finally{await browser.close()}return results}
+ save('candidate-browser',{pass:true,cases:await browserCheck(true)});
+ const previewName='shift-news-date-preview-'+process.env.GITHUB_SHA.slice(0,12),previewPrefix='/assets/public-review-preview-20261029/'+process.env.GITHUB_SHA,previewPattern='shiftsometimber.co.uk'+previewPrefix+'/*';
+ const previewWorker=worker.replace(/const previewPrefix=("[^"]+");/,'const previewPrefix='+JSON.stringify(previewPrefix)+';');assert.notEqual(previewWorker,worker);
+ function form(body){const f=new FormData();f.append('metadata',JSON.stringify({main_module:'worker.mjs',compatibility_date:'2026-08-09',bindings:[{type:'service',name:'CORE',service:'shift-core'}],tags:['matt-approved-public-review-20261029']}));f.append('worker.mjs',new File([body],'worker.mjs',{type:'application/javascript+module'}),'worker.mjs');return f}
+ await guard();assert.deepEqual(await snap(),before,'Concurrent provider mutation');assert(!before.routes.some(r=>r.pattern===previewPattern));let previewRoute;
+ try{await api(account+'/workers/scripts/'+previewName,{method:'PUT',body:form(previewWorker)});await api(account+'/workers/scripts/'+previewName+'/subdomain',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({enabled:false,previews_enabled:false})});previewRoute=await api(zone+'/workers/routes',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({pattern:previewPattern,script:previewName})});let pass=false;for(let i=0;i<60;i++){try{const r=await fetch(origin+previewPrefix+'/v1/radar/news',{signal:AbortSignal.timeout(15000)});if(r.ok){const b=await r.json();if(targets.every(t=>b.items?.find(x=>x.id===t.id)?.metadata?.datePublished===t.published)){pass=true;break}}}catch{}await new Promise(r=>setTimeout(r,1000))}assert(pass,'Exact candidate preview did not pass');save('worker-preview',{pass:true,source:process.env.GITHUB_SHA,previewPattern,workerSha256:sha(previewWorker)});
+ }finally{if(previewRoute){const current=await api(zone+'/workers/routes');assert(current.some(r=>r.id===previewRoute.id&&r.script===previewName&&r.pattern===previewPattern),'Preview ownership changed');await api(zone+'/workers/routes/'+previewRoute.id,{method:'DELETE'})}await api(account+'/workers/scripts/'+previewName,{method:'DELETE'});save('preview-closed',{at:new Date().toISOString(),previewName})}
+ await guard();assert.deepEqual(await snap(),before,'Concurrent release before promotion');assert.equal(await source(name),oldWorker,'Current source moved');
+ let mutated=false;try{const uploaded=await api(account+'/workers/scripts/'+name,{method:'PUT',body:form(worker)});mutated=true;save('upload',{at:new Date().toISOString(),source:process.env.GITHUB_SHA,id:uploaded.id,version:uploaded.deployment_id,workerSha256:sha(worker)});
+  let pass=false;for(let i=0;i<60;i++){try{const r=await fetch(origin+'/v1/radar/news',{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(15000)}),b=await r.json();if(r.ok&&targets.every(t=>b.items?.find(x=>x.id===t.id)?.metadata?.datePublished===t.published)){pass=true;break}}catch{}await new Promise(r=>setTimeout(r,1000))}assert(pass,'Production feed did not converge');
+  assert.equal(await source(name),worker);const after=await snap();assert.deepEqual(after.routes,before.routes);for(const key of ['pages','core','ticker'])assert.deepEqual(after[key],before[key],key+' changed');for(const [p,body] of Object.entries(assets)){const r=await fetch(origin+p);assert.equal(await r.text(),body,'Shared asset changed')}
+  const live=await browserCheck(false);save('production-verification',{pass:true,at:new Date().toISOString(),source:process.env.GITHUB_SHA,worker:after.review,authoritative,cases:live,routesUnchanged:true,corePagesTickerUnchanged:true,assetsUnchanged:true,noPublicationOrNotification:true});console.log('VERIFIED_PRODUCTION '+JSON.stringify({source:process.env.GITHUB_SHA,worker:after.review,corrected:targets.map(t=>t.id),renderedCases:live.length}));
+ }catch(error){if(mutated){assert.equal(await source(name),worker,'Worker changed: owned rollback refused');const current=await snap();assert.deepEqual(current.routes,before.routes,'Routes changed: owned rollback refused');const restored=await api(account+'/workers/scripts/'+name,{method:'PUT',body:form(oldWorker)});assert.equal(await source(name),oldWorker);save('rollback',{at:new Date().toISOString(),error:String(error),restored,originalSha256:sha(oldWorker),verified:true})}throw error}
+}
