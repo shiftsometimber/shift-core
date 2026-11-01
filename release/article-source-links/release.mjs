@@ -93,7 +93,7 @@ for(const slug of slugs){
  const oldBody=oldRenderer.renderMarkdown(row.body,row.title,row.slug),newBody=newRenderer.renderMarkdown(row.body,row.title,row.slug);
  const r=await get('/articles/'+slug);assert(r.text.includes(oldBody),'Live body does not match the authenticated published preimage: '+slug);
  assert.equal(r.text.split(oldBody).length,2,'One published article body required');
- articleBefore[slug]=r;expectedArticles[slug]=r.text.replace(oldBody,newBody);
+ articleBefore[slug]=r;expectedArticles[slug]=r.text.replace(oldBody,()=>newBody);
  sourceProof[slug]={sourceId:row.source_id,editorial:!!row.editorial,expected:newRenderer.articleSource(row),publishedAt:row.publish_at,updatedAt:row.updated_at,bodySHA256:sha(row.body)};
 }
 const beforePages=await protectedPages();save('protected-before',beforePages);save('images-before',await imageProof());save('article-sources',sourceProof);

@@ -15,7 +15,7 @@ export function deriveArticlePatch(before,after){
  assert.notEqual(oldText,newText,'Article correction is absent');
  assert(oldText.length<100000&&newText.length<100000,'Article module exceeds the bounded envelope');
  assert.match(newText,/function articleSource\d*\(/,'Tested source-label function missing');
- const reverted=after.replace(newText,oldText);
+ const reverted=after.replace(newText,()=>oldText);
  if(reverted!==before){
   let first=0;while(first<before.length&&first<reverted.length&&before[first]===reverted[first])first++;
   let tail=0;while(tail<before.length-first&&tail<reverted.length-first&&before.at(-1-tail)===reverted.at(-1-tail))tail++;
@@ -27,8 +27,8 @@ export function applyArticlePatch(bytes,patch){
  const before=Buffer.from(bytes).toString('utf8');
  assert(Buffer.from(before).equals(Buffer.from(bytes)),'Serving module must be exact UTF-8');
  assert.equal(before.split(patch.oldText).length,2,'Serving article preimage is absent or ambiguous');
- const code=before.replace(patch.oldText,patch.newText);
+ const code=before.replace(patch.oldText,()=>patch.newText);
  assert.equal(code.split(patch.newText).length,2);
- assert.equal(code.replace(patch.newText,patch.oldText),before,'Serving patch must have an exact byte inverse');
+ assert.equal(code.replace(patch.newText,()=>patch.oldText),before,'Serving patch must have an exact byte inverse');
  return {code,proof:{beforeSHA256:sha(bytes),afterSHA256:sha(code),exactInverse:true,oldArticleSHA256:sha(patch.oldText),newArticleSHA256:sha(patch.newText)}};
 }

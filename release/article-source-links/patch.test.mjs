@@ -1,9 +1,10 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {deriveArticlePatch,applyArticlePatch} from './patch.mjs';
-const old='// before.mjs\nconst before=1;\n// babylove/dynamic-public.mjs\nfunction inline(){return 1}\n// after.mjs\nconst after=2;\n';
+const literal='const literal="'+['$&','$$',"$'",'$`'].join(' ')+'";\n';
+const old='// before.mjs\nconst before=1;\n// babylove/dynamic-public.mjs\n'+literal+'function inline(){return 1}\n// after.mjs\nconst after=2;\n';
 const candidate=old.replace('function inline(){return 1}','function articleSource(){return "shift-contributor"}\nfunction inline(){return 2}');
-test('compiled correction preserves every byte outside the article module and the serving inverse',()=>{
+test('compiled correction preserves literal replacement tokens, unrelated serving bytes and the exact inverse',()=>{
  const patch=deriveArticlePatch(old,candidate);
  const serving='independent serving wrapper\n'+old+'\nlatest unrelated login repair';
  const result=applyArticlePatch(Buffer.from(serving),patch);
