@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {mkdirSync,readFileSync,writeFileSync,existsSync} from 'node:fs';
 import {plannedPackage,verifyPackage,hash,MODULES,providerOperationAllowed} from './package.mjs';
+import {VERSION} from './pages.mjs';
 import {runtimeRollbackDecision,latestDeployment} from '../release/runtime-rollback-guard.mjs';
 import {captureIndependentPresentation} from '../release/independent-presentation-preservation.mjs';
 import receipt from './source-receipt.json' with {type:'json'};
@@ -81,7 +82,7 @@ if(mode==='rollback'){
   assert.deepEqual(await captureIndependentPresentation({accountId:account,token}),independent);
   assert(stableSettings(await settings())===stableSettings(config),'Serving settings changed');
   for(const path of ['/refer-to-shift','/programme/sample','/programme','/partner-with-us']){
-   const r=await fetch('https://shiftsometimber.co.uk'+path,{signal:AbortSignal.timeout(30000)});assert.equal(r.status,200);assert.equal(r.headers.get('X-Shift-Referral-Programme'),'referral-programme-20261101-v1');const text=await r.text();assert(text.includes(path==='/programme'||path==='/partner-with-us'?'data-shift-referral-entry=':'data-shift-referral-programme='));
+   const r=await fetch('https://shiftsometimber.co.uk'+path,{signal:AbortSignal.timeout(30000)});assert.equal(r.status,200);assert.equal(r.headers.get('X-Shift-Referral-Programme'),VERSION);const text=await r.text();assert(text.includes(path==='/programme'||path==='/partner-with-us'?'data-shift-referral-entry=':'data-shift-referral-programme='));
    const head=await fetch('https://shiftsometimber.co.uk'+path,{method:'HEAD',signal:AbortSignal.timeout(30000)});assert.equal(head.status,200);assert.equal((await head.arrayBuffer()).byteLength,0);
   }
   for(const name of ['styles.css','referrer-client.mjs','sample-client.mjs']){const r=await fetch('https://shiftsometimber.co.uk/assets/referral-programme/'+name);assert.equal(r.status,200);assert.equal(hash(Buffer.from(await r.arrayBuffer())),hash(readFileSync(new URL(name,import.meta.url))));}
