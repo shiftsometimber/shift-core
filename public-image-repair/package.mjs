@@ -4,6 +4,12 @@ import {readFileSync} from 'node:fs';
 
 export const hash = value => createHash('sha256').update(value).digest('hex');
 export const ENTRY = 'public-image-repair/entry.mjs';
+export const SECURITY_HEADERS = ['content-security-policy','strict-transport-security','x-frame-options'];
+
+export function snapshotDocument(response, text) {
+  return {sha256:hash(text), bytes:Buffer.byteLength(text),
+    security:Object.fromEntries(SECURITY_HEADERS.map(name => [name,response.headers.get(name)]))};
+}
 
 // Add a delivery wrapper to the captured serving package. Never recompile or
 // replace the existing Core, member, presentation or article modules.

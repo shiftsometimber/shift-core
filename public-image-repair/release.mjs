@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';
 import manifest from './manifest.json' with {type:'json'};
-import {repairPackage,verifyPackage,hash} from './package.mjs';
+import {repairPackage,verifyPackage,hash,snapshotDocument,SECURITY_HEADERS} from './package.mjs';
 
 const directory='public-image-repair-proof', script='shift-core';
 mkdirSync(directory,{recursive:true});
@@ -27,8 +27,8 @@ async function documents(){
   for(const path of protectedPaths){
     const r=await fetch('https://shiftsometimber.co.uk'+path,{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(30000)});
     assert.equal(r.status,200,path);const text=clean(await r.text());
-    pages[path]={sha256:hash(text),bytes:Buffer.byteLength(text)};
-    if(path!=='/member-login')for(const header of ['content-security-policy','strict-transport-security','x-frame-options'])assert(r.headers.get(header),path+' '+header);
+    pages[path]=snapshotDocument(r,text);
+    if(manifest.pages.some(item=>item.page===path))for(const header of SECURITY_HEADERS)assert(r.headers.get(header),path+' '+header);
   }
   return pages;
 }
