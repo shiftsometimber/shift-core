@@ -1,6 +1,6 @@
 # Twenty-four remaining supporting pages
 
-Status: implemented; staged browser and print review pending.
+Status: manually reviewed; production deployment and live verification in progress.
 
 Matt delegated the next batch of pages that have not received the approved visual treatment. This release covers eight methodology pages, ten trust/editorial/supporting pages and six printable resources. The full scope is config.mjs.
 
@@ -40,3 +40,9 @@ Preview 41288062191 stopped before browser review because the protected member d
 - [/downloads/private-provider-checklist](https://shiftsometimber.co.uk/downloads/private-provider-checklist)
 - [/downloads/overseas-surgery-checklist](https://shiftsometimber.co.uk/downloads/overseas-surgery-checklist)
 - [/downloads/maintenance-plan-template](https://shiftsometimber.co.uk/downloads/maintenance-plan-template)
+
+Visual review of the first full 144-case capture covered every desktop and phone hero and full-page flow. Small-screen tile labels were tightened, the readiness content grid gets the full tablet row, and the decorative disclaimer artwork is removed on phones to bring the existing urgent-help section forward. Print review found the shared shell leaking into PDFs; follow-up checks now require navigation/footer isolation, visible original checklist points and a saved print-layout diagnostic before release.
+
+The final print review renders the actual A4 PDF rather than relying on the screen-media capture alone. It requires white HTML/body backgrounds, visible original list points, no outside navigation/footer, and 15 mm paper margins. Tile words use normal wrapping, so clipped words cannot be hidden by splitting individual letters.
+
+Final source preview passed: run 41290029721, source 765bce6190cb86e3fefbe2796f405098ec7fcdce, evidence artifact 13076872947. All 144 cases passed with no content issues. All six actual A4 PDFs were rendered and inspected as clean single-page documents. reviewed-source.json binds the accepted source modules to this review.
