@@ -9,7 +9,7 @@ on:
     inputs:
       action:
         type: choice
-        options: [capture, release]
+        options: [capture, stage, release]
         default: capture
         required: true
       approved_copy_sha256:
@@ -53,9 +53,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-      - name: Capture current production without writes, or publish the exact approved version
+      - name: Verify an unpublished package, or publish the exact approved version
         env:
-          RELEASE_ACTION: ${{ github.event_name == 'workflow_dispatch' && inputs.action || 'capture' }}
+          RELEASE_ACTION: ${{ github.event_name == 'workflow_dispatch' && inputs.action || 'stage' }}
         run: node referral-programme/release.mjs "$RELEASE_ACTION"
       - name: Restore only this owned release if post-promotion verification fails
         if: failure() && hashFiles('referral-programme-proof/deployed.json') != ''

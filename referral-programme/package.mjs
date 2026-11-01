@@ -4,6 +4,13 @@ import {readFileSync} from 'node:fs';
 export const hash=value=>createHash('sha256').update(value).digest('hex');
 export const ENTRY='referral-programme/entry.mjs';
 export const MODULES=['delivery.mjs','pages.mjs','referrer-content.mjs','programme-weeks.mjs','assets.mjs'];
+export function providerOperationAllowed(mode,path,method='GET'){
+ if(!/^\/workers\/(?:scripts|workers)\/shift-core(?:\/|\?|$)/.test(path))return false;
+ if(method==='GET')return true;
+ if(method!=='POST')return false;
+ const version=/^\/workers\/scripts\/shift-core\/versions(?:\?|$)/.test(path),deployment=path==='/workers/scripts/shift-core/deployments';
+ return mode==='stage'?version:mode==='release'?version||deployment:mode==='rollback'?deployment:false;
+}
 export function plannedPackage(before){
  assert(before.main_module&&before.modules?.some(m=>m.name===before.main_module));
  assert.match(before.main_module,/^[a-zA-Z0-9_./-]+\.m?js$/);assert(!before.main_module.split('/').includes('..'));

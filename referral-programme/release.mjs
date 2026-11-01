@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {mkdirSync,readFileSync,writeFileSync,existsSync} from 'node:fs';
-import {plannedPackage,verifyPackage,hash,MODULES} from './package.mjs';
+import {plannedPackage,verifyPackage,hash,MODULES,providerOperationAllowed} from './package.mjs';
 import {runtimeRollbackDecision,latestDeployment} from '../release/runtime-rollback-guard.mjs';
 import {captureIndependentPresentation} from '../release/independent-presentation-preservation.mjs';
 import receipt from './source-receipt.json' with {type:'json'};
@@ -9,15 +9,14 @@ import receipt from './source-receipt.json' with {type:'json'};
 // This release adds an outer public-page wrapper to the current provider package.
 // It never rebuilds main, adds routes, runs migrations or changes an email handler.
 const mode=process.argv[2]||'capture',directory='referral-programme-proof',script='shift-core';
-assert(['capture','release','rollback'].includes(mode));mkdirSync(directory,{recursive:true});
+assert(['capture','stage','release','rollback'].includes(mode));mkdirSync(directory,{recursive:true});
 const account=process.env.CLOUDFLARE_ACCOUNT_ID,token=process.env.CLOUDFLARE_API_TOKEN;
 assert.equal(account,'9e5386dcf455be34c582d93f8bfc79e6');assert(token,'Existing deployment credential required');
 const save=(name,data)=>writeFileSync(directory+'/'+name,JSON.stringify(data,null,2));
 const copySHA=hash(MODULES.map(name=>name+'\n'+readFileSync(new URL(name,import.meta.url),'utf8')).join('\n'));
 save('source.json',{source:process.env.GITHUB_SHA,copySHA256:copySHA,mode});
 async function api(path,init={}){
- assert(path.startsWith('/workers/scripts/'+script)||path.startsWith('/workers/workers/'+script));
- if(mode==='capture')assert(!init.method||init.method==='GET','Capture must remain read-only');
+ assert(providerOperationAllowed(mode,path,init.method||'GET'),'Provider operation outside this mode’s exact scope');
  const response=await fetch('https://api.cloudflare.com/client/v4/accounts/'+account+path,{...init,headers:{Authorization:'Bearer '+token,...init.headers},signal:AbortSignal.timeout(60000)});
  const data=await response.json();assert(response.ok&&data.success,'Provider request failed; no credentials are included in the receipt');return data.result;
 }
@@ -70,6 +69,10 @@ if(mode==='rollback'){
   save('staged.json',{version:uploaded.id,source:process.env.GITHUB_SHA,providerBytesVerified:true});
   requireCurrentSource();assert.equal((await latest()).id,before.id);
   assert.deepEqual(await captureIndependentPresentation({accountId:account,token}),independent,'Independent presentation moved');
+  if(mode==='stage'){
+   save('ready.json',{source:process.env.GITHUB_SHA,version:uploaded.id,copySHA256:copySHA,providerBytesVerified:true,preservedModules:original.modules.length,liveDeploymentUnchanged:before.id,trafficChanged:false,realEmailTests:0,memberWrites:0});
+   console.log(JSON.stringify({ready:true,staged:true,version:uploaded.id,copySHA256:copySHA,preservedModules:original.modules.length,trafficChanged:false}));
+  }else{
   save('promotion-intent.json',{source:process.env.GITHUB_SHA,previous:before.versions[0].version_id,owned:uploaded.id});
   const deployed=await api('/workers/scripts/'+script+'/deployments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({strategy:'percentage',versions:[{version_id:uploaded.id,percentage:100}]})});
   save('deployed.json',{kind:'owned_runtime_deployment',source:process.env.GITHUB_SHA,run:process.env.GITHUB_RUN_ID,versionId:uploaded.id,deploymentId:deployed.id});
@@ -84,5 +87,6 @@ if(mode==='rollback'){
   for(const name of ['styles.css','referrer-client.mjs','sample-client.mjs']){const r=await fetch('https://shiftsometimber.co.uk/assets/referral-programme/'+name);assert.equal(r.status,200);assert.equal(hash(Buffer.from(await r.arrayBuffer())),hash(readFileSync(new URL(name,import.meta.url))));}
   save('verified.json',{source:process.env.GITHUB_SHA,version:uploaded.id,copySHA256:copySHA,pages:4,protectedResponses:protectedPaths.length,realEmailTests:0,memberWrites:0,newRoutes:0,independentPresentationPreserved:true});
   console.log(JSON.stringify({deployed:true,verified:true,version:uploaded.id,copySHA256:copySHA}));
+  }
  }
 }

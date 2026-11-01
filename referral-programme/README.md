@@ -15,7 +15,7 @@ node referral-programme/prepare-assets.mjs
 node --test referral-programme/referral-programme.test.mjs tests/contact-delivery-contract.test.mjs tests/contact-success-analytics.test.mjs tests/independent-presentation-preservation.test.mjs tests/runtime-rollback-guard.test.mjs
 ```
 
-The workflow runs source checks and a read-only provider capture on the task branch. Production release is separately selected with `workflow_dispatch`, `action: release`, and the exact final public-version fingerprint from the capture receipt, after Matt's sign-off. Any copy changes require a fresh fingerprint and sign-off. A push never deploys this feature automatically.
+The workflow runs source checks and verifies an unpublished provider version on the task branch. Staging is technically restricted to version uploads: it cannot promote traffic, alter settings or touch another worker. Production release is separately selected with `workflow_dispatch`, `action: release`, and the exact final public-version fingerprint from the receipt, after Matt's sign-off. Any copy changes require a fresh fingerprint and sign-off. A push never changes live traffic automatically.
 
 The release adds an outer wrapper to the freshly captured provider package, preserving each original module byte, all bindings and current settings. It shares the existing production release lock. It changes no Cloudflare routes, migrations, real member records, supplier or payment activation. Verification checks the existing private journey, six-week assets, shared protected pages and independent member presentation. Rollback requires an owned deployment receipt and refuses to overwrite a newer release.
 
