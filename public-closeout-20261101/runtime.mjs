@@ -6,15 +6,15 @@ export {mainHTML,byClass};export {release as version};
 export const inner=s=>s.slice(s.indexOf('>')+1,s.lastIndexOf('</'));
 export const plain=s=>s.replace(/<[^>]*>/g,' ').replaceAll('&amp;','&').replaceAll('&nbsp;',' ').replaceAll('&#39;',"'").replace(/\s+/g,' ').trim();
 const esc=s=>s.replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;').replaceAll('>','&gt;');
-const atoms=new Set(['p','h1','h2','h3','h4','ul','ol','dl','table','pre','blockquote','figure','form','a','aside','button','details','script','style','img','picture','svg','video','audio','canvas','nav']);
-const components=['sst-reading-rail-v31','author-box','gtt-urgent','gtt-next','gtt-sources','medicine-trust-panel-v42l','availability','detail-summary','sibling-nav','authority-facts','authority-jumps','authority-safety','authority-next','redflags','topic-hubs','grid2','grid3','eu-grid','med2-battle','med2-adv','med2-info','med2-warning','uni-battle','uni-warning','policy-table-wrap','fa-toc','surg2-battle','surg2-adv','surg2-info','surg2-warning','context-cta-v30c','np-note','life2-battle','life2-adv','qa-scroll-table-v2224','ready-grid','governance-register-v65','authority-grid-v65','review-score','continue-grid','privacy-actions-v65','sourcebox','source-box','editorial-note-v2222','trust-statement','actions','commercial-form'];
+const atoms=new Set(['p','h1','h2','h3','h4','ul','ol','dl','table','pre','blockquote','figure','form','a','aside','button','details','script','style','img','picture','svg','video','audio','canvas','nav','small','strong','span','em','b','i','time','select','input','textarea','label','option','output']);
+const components=['related-grid','sst-reading-rail-v31','author-box','gtt-urgent','gtt-next','gtt-sources','medicine-trust-panel-v42l','availability','detail-summary','sibling-nav','authority-facts','authority-jumps','authority-safety','authority-next','redflags','topic-hubs','grid2','grid3','eu-grid','med2-battle','med2-adv','med2-info','med2-warning','uni-battle','uni-warning','policy-table-wrap','fa-toc','surg2-battle','surg2-adv','surg2-info','surg2-warning','context-cta-v30c','np-note','life2-battle','life2-adv','qa-scroll-table-v2224','ready-grid','governance-register-v65','authority-grid-v65','review-score','continue-grid','privacy-actions-v65','sourcebox','source-box','editorial-note-v2222','trust-statement','actions','commercial-form'];
 export function blocks(source){
  const result=[];let rest=source,limit=0;
  while(rest.trim()&&limit++<600){
   const b=bounds(rest,()=>true);if(!b){if(rest.trim())result.push(rest);break;}
   const leading=rest.slice(0,b.start);if(leading.replace(/<!--[\s\S]*?-->/g,'').trim())result.push(leading);
   const opening=b.html.slice(0,b.html.indexOf('>')+1),tag=opening.match(/^<([\w-]+)/)?.[1],classes=opening.match(/\bclass=["']([^"']*)["']/)?.[1]?.split(/\s+/)||[];
-  if(atoms.has(tag)||components.some(c=>classes.includes(c))||classes.some(c=>c.endsWith('-banner')))result.push(b.html);
+  if(atoms.has(tag)||components.some(c=>classes.includes(c))||classes.some(c=>c.endsWith('-banner')||/-(builder|result|path|step|procon|warning|note|print|week|day|reset|questions|grid)$/.test(c)))result.push(b.html);
   else {const id=opening.match(/\bid=[\"']([^\"']+)[\"']/)?.[1];if(id)result.push('<span class=\"rp-source-anchor\" id=\"'+esc(id)+'\" aria-hidden=\"true\"></span>');result.push(...blocks(inner(b.html)));}
   rest=rest.slice(b.end);
  }
@@ -38,7 +38,7 @@ export function transform(html,key){
  for(let i=0;i<groups.length;i++){
   const g=groups[i],title=plain(g.heading||''),joined=g.items.join('');
   g.feature=page.kind==='guide'&&joined.length<800&&!!g.heading&&sectionNo===0&&!['governance','editorial','disclaimer','accessibility','author'].includes(key)&&page.kind!=='printable'&&title!=='Side-by-side';
-  g.wide=!g.heading||g.feature||/Sources|Local (storage|data)|Data keys|What this release|Country verification|Four different|Four readiness|Different claims|What we might|How we judge|Related decision|Questions for a bariatric surgeon|High-scrutiny|^Verification$/i.test(title)||/<table|med2-adv|surg2-table|surg2-adv|ready-grid|authority-grid-v65|governance-register-v65|review-score|continue-grid|sourcebox/.test(joined);
+  g.wide=!g.heading||g.feature||/Sources|Local (storage|data)|Data keys|What this release|Country verification|Four different|Four readiness|Different claims|What we might|How we judge|Related decision|Questions for a bariatric surgeon|High-scrutiny|^Verification$/i.test(title)||/related-grid|<table|med2-adv|surg2-table|surg2-adv|ready-grid|authority-grid-v65|governance-register-v65|review-score|continue-grid|sourcebox/.test(joined);
   if(g.heading)sectionNo++;
   if(g.wide){if(unpaired!==null){groups[unpaired].wide=true;unpaired=null;}}else unpaired=unpaired===null?i:null;
  }

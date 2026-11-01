@@ -16,6 +16,7 @@ export function check(before,after,key){
  const oldIndex=byClass(old,'ut-index-frame'),content=oldIndex?old.replace(oldIndex.html,''):old;
  for(const a of content.matchAll(/<a\b[^>]*>[\s\S]*?<\/a>/g))assert(now.includes(a[0]),'Original link and attributes retained '+a[0]);
  for(const c of content.matchAll(/<code\b[^>]*>[\s\S]*?<\/code>/g))assert(now.includes(c[0]),'Original data-key/code reference retained');
+ for(const control of content.matchAll(/<(?:select|textarea)\b[\s\S]*?<\/(?:select|textarea)>/g))assert(now.includes(control[0]),'Original selector and options retained');for(const control of content.matchAll(/<input\b[^>]*>/g))assert(now.includes(control[0]),'Original input retained');
  for(const im of old.matchAll(/<img\b[^>]*>/g))assert(now.includes(im[0]),'Original image and attributes retained');
  const originalIds=[...old.matchAll(/\bid=\"([^\"]+)\"/g)].map(x=>x[1]);
  const ids=[...now.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);assert.equal(new Set(ids).size,ids.length,'All IDs unique');for(const id of originalIds)assert(ids.includes(id),'Original anchor retained '+id);

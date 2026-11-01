@@ -69,5 +69,428 @@
     "images": [
       "/shift-health/blood-pressure-monitor?shift_hero=20261029-approved-v1-pressure-2f28da96a967"
     ]
+  },
+  {
+    "path": "/guides/mens-health-mot-guide",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/shift-health/hero-set-20261030/mot.webp"
+    ]
+  },
+  {
+    "path": "/articles/testosterone-weight-men",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/shift-health/hero-set-20261030/weight-health.webp",
+      "https://shiftsometimber.co.uk/uploads/blog/refresh-83e64f2e4849.jpg"
+    ]
+  },
+  {
+    "path": "/articles/upper-arm-blood-collection",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": []
+  },
+  {
+    "path": "/articles/understanding-blood-test-results",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": []
+  },
+  {
+    "path": "/articles/first-health-check-men",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": []
+  },
+  {
+    "path": "/articles/wegovy-cost-uk",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/shift-health/hero-set-20261030/treatment-costs.webp",
+      "/assets/articles/wegovy-cost-uk/annual-budget.svg",
+      "/assets/articles/wegovy-cost-uk/provider-checklist.svg"
+    ]
+  },
+  {
+    "path": "/articles/weight-loss-plateau-in-men",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/weight-loss-plateau-in-men/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1793324766166_Illustrated-title-card-about-weight-loss-plateaus.jpeg",
+      "/articles/weight-loss-plateau-in-men/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1793325129209_Why-weight-loss-stalls-in-men.jpeg",
+      "/articles/weight-loss-plateau-in-men/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1793325007720_Strength-exercises-and-protein-for-muscle-support.jpeg",
+      "/articles/weight-loss-plateau-in-men/image?src=https%3A%2F%2Fcsuxjmfbwmkxiegfpljm.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fblog-images%2Forganization-55073%2F1789842979988_shiftsometimber.jpg"
+    ]
+  },
+  {
+    "path": "/articles/glp-1-weight-regain",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/glp-1-weight-regain/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1793238199241_Hand-drawn-weight-management-title-card.jpeg",
+      "/articles/glp-1-weight-regain/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1793238207565_Man-completing-a-home-strength-exercise.jpeg",
+      "/articles/glp-1-weight-regain/image?src=https%3A%2F%2Fcsuxjmfbwmkxiegfpljm.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fblog-images%2Forganization-55073%2F1789842979988_shiftsometimber.jpg"
+    ]
+  },
+  {
+    "path": "/articles/type-2-diabetes-remission-men",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "https://shiftsometimber.co.uk/uploads/blog/114958ff-9c9f-4311-8b8a-ac34806e8dd5.jpg"
+    ]
+  },
+  {
+    "path": "/articles/weight-loss-maintenance-plan",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/weight-loss-maintenance-plan/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1793189693925_Maintenance-themed-sketches-framing-the-title.jpeg",
+      "/articles/weight-loss-maintenance-plan/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1793189784915_Six-linked-steps-for-maintaining-weight-loss.jpeg",
+      "/articles/weight-loss-maintenance-plan/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1793189714397_Man-performing-a-dumbbell-strength-exercise.jpeg",
+      "/articles/weight-loss-maintenance-plan/image?src=https%3A%2F%2Fcsuxjmfbwmkxiegfpljm.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fblog-images%2Forganization-55073%2F1789842979988_shiftsometimber.jpg"
+    ]
+  },
+  {
+    "path": "/articles/mounjaro-injection-sites",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/mounjaro-injection-sites/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1793074859131_Decorative-injection-site-rotation-title-card.jpeg",
+      "/articles/mounjaro-injection-sites/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1793075024596_Three-approved-Mounjaro-injection-locations.jpeg",
+      "/articles/mounjaro-injection-sites/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1793074986094_Our-view-the-site-matters-less-than-the-routine-overview-diagram.jpeg",
+      "/articles/mounjaro-injection-sites/image?src=https%3A%2F%2Fcsuxjmfbwmkxiegfpljm.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fblog-images%2Forganization-55073%2F1789842979988_shiftsometimber.jpg"
+    ]
+  },
+  {
+    "path": "/articles/how-to-lose-belly-fat-for-men",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/how-to-lose-belly-fat-for-men/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792978735288_Sketches-framing-a-men-s-health-title.jpeg",
+      "/articles/how-to-lose-belly-fat-for-men/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792978893051_Why-belly-fat-matters-more-than-other-fat-overview-diagram.jpeg",
+      "/articles/how-to-lose-belly-fat-for-men/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792978824382_Weekly-activity-and-strength-targets.jpeg"
+    ]
+  },
+  {
+    "path": "/articles/testosterone-blood-test-timing",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "https://shiftsometimber.co.uk/uploads/blog/ebca2db7-0855-4737-b9eb-57467f6acd25.jpg"
+    ]
+  },
+  {
+    "path": "/articles/what-to-eat-on-mounjaro",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/what-to-eat-on-mounjaro/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792896307429_Sketches-of-nourishing-foods-frame-the-title.jpeg",
+      "/articles/what-to-eat-on-mounjaro/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792896316648_Man-prepares-avocado-with-wholegrain-bread.jpeg",
+      "/articles/what-to-eat-on-mounjaro/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792896364171_Four-fields-to-track-in-a-food-diary.jpeg"
+    ]
+  },
+  {
+    "path": "/articles/hba1c-test-explained",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "https://shiftsometimber.co.uk/uploads/blog/716a3cfa-c1b1-4a3a-8967-e511effd2df7.jpg"
+    ]
+  },
+  {
+    "path": "/articles/weight-loss-support-for-busy-dads",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/weight-loss-support-for-busy-dads/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792837839198_Sketches-frame-a-clear-title-area.jpeg",
+      "/articles/weight-loss-support-for-busy-dads/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792837998707_Perspective-what-we-have-learned-at-SHIFT-overview-diagram.jpeg"
+    ]
+  },
+  {
+    "path": "/articles/visceral-fat-men",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "https://shiftsometimber.co.uk/uploads/blog/315b4985-1483-444f-a928-9352ab21e114.jpg"
+    ]
+  },
+  {
+    "path": "/articles/weight-loss-for-men-over-50",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/weight-loss-for-men-over-50/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792721493641_Sketch-framed-title-card-for-men-s-weight-loss.jpeg",
+      "/articles/weight-loss-for-men-over-50/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792721501293_Balanced-dinner-showing-simple-plate-proportions.jpeg",
+      "/articles/weight-loss-for-men-over-50/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792721554241_A-realistic-week-at-home-overview-diagram.jpeg"
+    ]
+  },
+  {
+    "path": "/articles/winter-low-mood-men",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "https://shiftsometimber.co.uk/uploads/blog/f2882460-f975-4d8d-a869-d48ddc7d5a3e.jpg"
+    ]
+  },
+  {
+    "path": "/articles/alcohol-free-beer-weight-loss",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "https://shiftsometimber.co.uk/uploads/blog/baced88e-61a4-4d6e-85ef-2153cf23cfe4.jpg"
+    ]
+  },
+  {
+    "path": "/articles/rybelsus-weight-loss-uk",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/rybelsus-weight-loss-uk/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792633164136_Hand-drawn-tablet-and-healthy-routine-title-card.jpeg",
+      "/articles/rybelsus-weight-loss-uk/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792633239508_NHS-Wegovy-eligibility-thresholds-and-review-points.jpeg",
+      "/articles/rybelsus-weight-loss-uk/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792633174992_Man-walking-along-a-local-park-path.jpeg"
+    ]
+  },
+  {
+    "path": "/articles/low-energy-in-men-over-40",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/low-energy-in-men-over-40/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792546876487_Decorative-sketch-title-card-for-men-s-health.jpeg",
+      "/articles/low-energy-in-men-over-40/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792546943447_Morning-testosterone-testing-steps-and-result-ranges.jpeg",
+      "/articles/low-energy-in-men-over-40/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792546985764_Our-view-tiredness-is-a-signal-not-a-character-flaw-overview-diagram.jpeg"
+    ]
+  },
+  {
+    "path": "/articles/high-protein-meals-for-weight-loss",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/high-protein-meals-for-weight-loss/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792460650362_Hand-drawn-food-illustrations-framing-the-title.jpeg",
+      "/articles/high-protein-meals-for-weight-loss/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792460697537_Plate-split-into-vegetables-protein-and-carbohydrate.jpeg",
+      "/articles/high-protein-meals-for-weight-loss/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792460524982_Man-having-cottage-cheese-and-apple-at-work.jpeg"
+    ]
+  },
+  {
+    "path": "/articles/healthy-meals-on-a-budget-uk",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/healthy-meals-on-a-budget-uk/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792374191678_Hand-drawn-food-sketches-frame-the-title.jpeg",
+      "/articles/healthy-meals-on-a-budget-uk/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792374255675_Why-healthy-does-not-have-to-mean-expensive-overview-diagram.jpeg",
+      "/articles/healthy-meals-on-a-budget-uk/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792374200171_Man-portions-homemade-chilli-for-freezing.jpeg"
+    ]
+  },
+  {
+    "path": "/articles/emotional-eating-in-men",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/emotional-eating-in-men/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792287805290_Sketches-of-snacks-and-everyday-coping-cues.jpeg",
+      "/articles/emotional-eating-in-men/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792287885502_When-it-is-more-than-a-habit-getting-help-overview-diagram.jpeg"
+    ]
+  },
+  {
+    "path": "/articles/weight-loss-medication-eligibility-uk",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/weight-loss-medication-eligibility-uk/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792238586325_Hand-drawn-weight-management-title-card.jpeg",
+      "/articles/weight-loss-medication-eligibility-uk/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792238654661_Six-month-weight-loss-stop-rule.jpeg",
+      "/articles/weight-loss-medication-eligibility-uk/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792238694656_Safety-points-to-know-before-you-apply-overview-diagram.jpeg"
+    ]
+  },
+  {
+    "path": "/articles/mens-fat-loss-workouts",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/mens-fat-loss-workouts/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792169084317_Hand-drawn-workout-tools-frame-title-area.jpeg",
+      "/articles/mens-fat-loss-workouts/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792169086194_Man-practising-a-bodyweight-squat-at-home.jpeg"
+    ]
+  },
+  {
+    "path": "/articles/metabolic-health-markers",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/metabolic-health-markers/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792062480449_Sketches-of-tools-for-metabolic-health-checks.jpeg",
+      "/articles/metabolic-health-markers/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1792062563493_Metabolic-risk-markers-grouped-into-one-cluster.jpeg",
+      "/articles/metabolic-health-markers/image?src=https%3A%2F%2Fcsuxjmfbwmkxiegfpljm.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fblog-images%2Forganization-55073%2F1789842979988_shiftsometimber.jpg"
+    ]
+  },
+  {
+    "path": "/articles/weight-loss-blood-tests",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": []
+  },
+  {
+    "path": "/articles/mens-weight-loss-diet",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/mens-weight-loss-diet/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791889522014_Sketches-of-food-around-a-clear-title-area.jpeg",
+      "/articles/mens-weight-loss-diet/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791889618351_Eatwell-plate-proportions-for-a-balanced-meal.jpeg",
+      "/articles/mens-weight-loss-diet/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791889703818_Adjusting-your-diet-for-male-specific-conditions-affecting-weight-loss-overview-diagram.jpeg",
+      "/articles/mens-weight-loss-diet/image?src=https%3A%2F%2Fcsuxjmfbwmkxiegfpljm.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fblog-images%2Forganization-55073%2F1789842979988_shiftsometimber.jpg"
+    ]
+  },
+  {
+    "path": "/articles/high-protein-breakfasts-men",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/high-protein-breakfasts-men/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791808881422_Illustrated-high-protein-breakfast-title-card.jpeg",
+      "/articles/high-protein-breakfasts-men/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791809023676_Protein-amounts-across-everyday-breakfast-options.jpeg",
+      "/articles/high-protein-breakfasts-men/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791809200757_How-to-hit-your-20-to-40g-target-every-morning-overview-diagram.jpeg",
+      "/articles/high-protein-breakfasts-men/image?src=https%3A%2F%2Fcsuxjmfbwmkxiegfpljm.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fblog-images%2Forganization-55073%2F1789842979988_shiftsometimber.jpg"
+    ]
+  },
+  {
+    "path": "/articles/body-composition-tracking",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/body-composition-tracking/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791718810892_Hand-drawn-measurement-motifs-framing-title-space.jpeg",
+      "/articles/body-composition-tracking/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791719007686_Trend-patterns-linked-to-practical-food-and-movement-adjustments.jpeg",
+      "/articles/body-composition-tracking/image?src=https%3A%2F%2Fcsuxjmfbwmkxiegfpljm.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fblog-images%2Forganization-55073%2F1789842979988_shiftsometimber.jpg"
+    ]
+  },
+  {
+    "path": "/articles/ozempic-weight-loss-plateau",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/ozempic-weight-loss-plateau/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791635949000_Hand-drawn-title-card-for-plateau-review.jpeg",
+      "/articles/ozempic-weight-loss-plateau/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791636102485_What-an-Ozempic-plateau-actually-is-and-when-it-tends-to-appear-overview-diagram.jpeg"
+    ]
+  },
+  {
+    "path": "/articles/wegovy-eligibility-uk",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/wegovy-eligibility-uk/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791552907638_Wegovy-eligibility-article-title-card.jpeg",
+      "/articles/wegovy-eligibility-uk/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791552983756_BMI-waist-and-health-factors-in-eligibility-assessment.jpeg"
+    ]
+  },
+  {
+    "path": "/articles/glp-1-weight-loss-plateau",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/glp-1-weight-loss-plateau/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791462890474_Sketches-of-scales-calendar-and-measuring-tape.jpeg",
+      "/articles/glp-1-weight-loss-plateau/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791463001578_What-a-weight-loss-plateau-is-on-GLP-1-treatment-overview-diagram.jpeg"
+    ]
+  },
+  {
+    "path": "/articles/glp-1-constipation",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/glp-1-constipation/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791376501531_Illustrated-title-card-for-GLP-1-constipation.jpeg",
+      "/articles/glp-1-constipation/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791376497812_Urgent-constipation-warning-signs-and-care-routes.jpeg",
+      "/articles/glp-1-constipation/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791376558607_Food-choices-and-meal-timing-that-help-beyond-fibre-overview-diagram.jpeg"
+    ]
+  },
+  {
+    "path": "/articles/glp-1-dosage-guide",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/glp-1-dosage-guide/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791293523083_GLP-1-dosing-title-card-illustration.jpeg",
+      "/articles/glp-1-dosage-guide/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791293511902_Four-priorities-for-safer-GLP-1-support.jpeg",
+      "/articles/glp-1-dosage-guide/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791293568706_Our-take-titration-charts-are-a-starting-point-not-the-plan-overview-diagram.jpeg"
+    ]
+  },
+  {
+    "path": "/articles/glp-1-and-alcohol",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/glp-1-and-alcohol/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791203602621_GLP-1-and-alcohol-article-title-card.jpeg",
+      "/articles/glp-1-and-alcohol/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791203547953_Semaglutide-and-placebo-trial-result-comparison.jpeg",
+      "/articles/glp-1-and-alcohol/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791203619813_Illustrated-GLP-1-reward-and-cue-pathways.jpeg"
+    ]
+  },
+  {
+    "path": "/articles/glp-1-nausea",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/glp-1-nausea/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791119292519_Decorative-GLP-1-nausea-title-card.jpeg",
+      "/articles/glp-1-nausea/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791119319046_Illustration-of-gut-and-brain-nausea-signalling.jpeg",
+      "/articles/glp-1-nausea/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791119253646_GLP-1-nausea-red-flags-and-urgent-actions.jpeg",
+      "/articles/glp-1-nausea/image?src=https%3A%2F%2Fcsuxjmfbwmkxiegfpljm.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fblog-images%2Forganization-55073%2F1789842979988_shiftsometimber.jpg"
+    ]
+  },
+  {
+    "path": "/articles/glp-1-weight-loss-uk",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/glp-1-weight-loss-uk/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791033064131_Decorative-GLP-1-clinical-access-title-card.jpeg",
+      "/articles/glp-1-weight-loss-uk/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1791033098055_3.-Benefits-and-risks-what-the-trials-show-and-what-can-go-wrong-overview-diagram.jpeg",
+      "/articles/glp-1-weight-loss-uk/image?src=https%3A%2F%2Fcsuxjmfbwmkxiegfpljm.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fblog-images%2Forganization-55073%2F1789842979988_shiftsometimber.jpg"
+    ]
+  },
+  {
+    "path": "/articles/semaglutide-and-antidepressants",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/semaglutide-and-antidepressants/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1790955244132_Semaglutide-and-antidepressants-title-card.jpeg",
+      "/articles/semaglutide-and-antidepressants/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1790955388716_Oral-semaglutide-timing-and-hydration-routine.jpeg",
+      "/articles/semaglutide-and-antidepressants/image?src=https%3A%2F%2Fcsuxjmfbwmkxiegfpljm.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fblog-images%2Forganization-55073%2F1789842979988_shiftsometimber.jpg"
+    ]
+  },
+  {
+    "path": "/articles/evidence-based-weight-loss",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/evidence-based-weight-loss/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1790883489615_Evidence-based-weight-loss-title-card.jpeg",
+      "/articles/evidence-based-weight-loss/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1790883501510_Man-briskly-walking-through-a-UK-park.jpeg",
+      "/articles/evidence-based-weight-loss/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1790883496263_Illustration-of-weight-loss-reaching-a-plateau.jpeg",
+      "/articles/evidence-based-weight-loss/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1790883488439_Man-assembling-a-high-fibre-protein-lunch.jpeg",
+      "/articles/evidence-based-weight-loss/image?src=https%3A%2F%2Fcsuxjmfbwmkxiegfpljm.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fblog-images%2Forganization-55073%2F1789842979988_shiftsometimber.jpg"
+    ]
+  },
+  {
+    "path": "/articles/glp-1-coaching",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/glp-1-coaching/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1790802908601_Decorative-GLP-1-coaching-essentials-title-card.jpeg",
+      "/articles/glp-1-coaching/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1790802918891_Man-performing-resistance-band-strength-exercise.jpeg"
+    ]
+  },
+  {
+    "path": "/articles/life-after-ozempic",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": []
+  },
+  {
+    "path": "/articles/glp-1-for-men",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/glp-1-for-men/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1790641307057_Decorative-GLP-1-muscle-loss-title-card.jpeg",
+      "/articles/glp-1-for-men/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1790641367418_Man-performing-resistance-training-with-dumbbells.jpeg"
+    ]
+  },
+  {
+    "path": "/articles/semaglutide-results-timeline",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/semaglutide-results-timeline/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1790548883051_Decorative-semaglutide-timeline-title-card.jpeg"
+    ]
+  },
+  {
+    "path": "/articles/glp-1-binge-eating",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": []
+  },
+  {
+    "path": "/articles/wegovy-not-working",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/wegovy-not-working/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1790385228551_Decorative-Wegovy-weight-stall-title-card.jpeg",
+      "/articles/wegovy-not-working/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1790385228240_Small-balanced-meal-beside-a-glass-of-water.jpeg"
+    ]
+  },
+  {
+    "path": "/articles/glp-1-and-exercise",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": [
+      "/articles/glp-1-and-exercise/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1790267969717_GLP-1-exercise-strength-title-card.jpeg",
+      "/articles/glp-1-and-exercise/image?src=https%3A%2F%2Fmedia.babylovegrowth.ai%2Fblog-images%2Forganization-55073%2F1790267908312_Older-man-practising-a-sit-to-stand.jpeg"
+    ]
+  },
+  {
+    "path": "/articles/glp-1-muscle-loss",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": []
+  },
+  {
+    "path": "/articles/nhs-weight-loss-drugs",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": []
+  },
+  {
+    "path": "/articles/wegovy-side-effects-timeline",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": []
+  },
+  {
+    "path": "/articles/missed-wegovy-dose",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": []
+  },
+  {
+    "path": "/articles/mounjaro-cost-uk",
+    "reason": "Existing current dynamic or approved hero publication; preserve",
+    "images": []
   }
 ]
