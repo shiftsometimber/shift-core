@@ -1,0 +1,65 @@
+{
+  "visualReviewPassed": true,
+  "reviewedSource": "631f9694cad2e391fea51b725ff13b2eb28b598c",
+  "browserChecks": 42,
+  "pages": [
+    "prepare",
+    "decision",
+    "readiness",
+    "lifestyle",
+    "universal",
+    "future",
+    "overseas"
+  ],
+  "viewports": [
+    1440,
+    768,
+    390
+  ],
+  "evidence": [
+    {
+      "source": "22f1155de26f0fd03ce24098328707e5a2e1b659",
+      "run": 41314471497,
+      "artifact": 13085794577,
+      "cases": 42,
+      "scope": "Complete responsive and interactive check"
+    },
+    {
+      "source": "2efe6fe6d2b14971a16804943604bb07c8d4fc07",
+      "run": 41315261773,
+      "artifact": 13087321054,
+      "cases": 2,
+      "scope": "Print-only delta: remove floating controls, separate readiness score labels"
+    },
+    {
+      "source": "631f9694cad2e391fea51b725ff13b2eb28b598c",
+      "run": 41315546996,
+      "artifact": 13086773021,
+      "cases": 6,
+      "scope": "Preparation-page checklist layout delta at all widths/URL modes"
+    }
+  ],
+  "manualReview": [
+    "All seven desktop and phone heroes and complete page layouts",
+    "Mobile labels kept whole, source comparison meters visibly labelled",
+    "Source tables retain every column with mobile swipe hints",
+    "Focused GP report: one white A4 page, original report content only",
+    "Readiness summary: two white A4 pages, clear labels, no floating controls",
+    "Controls and source clinical wording/models/scripts retained",
+    "Anonymous report gate preserved; populated-state checks use isolated synthetic browser data only"
+  ],
+  "moduleHashes": {
+    "runtime.mjs": "4885c632e0da36ed02495e8ec925c87c1968ee808e70674bf41f32558d92fe3e",
+    "presentation.mjs": "c16a5f648b383747906842bff6dd44e14c4e948931d2fd5e8e182c430779b737",
+    "graphics.mjs": "71f7e45fc06e21007481aa2d7bfc975f6a6251084730753518dcadfc30a726ef",
+    "config.mjs": "9d62f08c80bd100c41121ff089e1f81adef0f5c559c36bcf85dd8ab809009b58",
+    "html.mjs": "efb7081f50337295361cb96d6b05f5f7d7d03df773f625609299ca4e86297146",
+    "media.mjs": "f05ae5a3b3af2d818d07ed249b3b54516faea7d2e38d0e0835b6ba3e98e2ee66",
+    "check.mjs": "e9bbe464260195e62db5a1f782666e591f701f837436cf12cb3144c31952cb14",
+    "browser.mjs": "4e19ff20de8d6ac829d04f3601ce4ec14597680dfe3f61457ab009dcceb1a840",
+    "deploy.mjs": "2d02a6d07f505b65aecd84874e3a08f28f4a813398d126c4ae3f0e792c5485b6",
+    "route-owner.mjs": "35d4ad17759b7926b46fe76631c1fcf614c8251c28c5d50e6c0211360af30305",
+    "release-state.mjs": "b7a21d4dd04b7ab21d15b063fecdb8bf95ca1741bc4861d019872983f9143630"
+  },
+  "reviewNote": "Full seven-page evidence plus focused delta checks inspected. The production run must repeat all 42 cases against this exact accepted source before and after promotion."
+}
