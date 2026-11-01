@@ -1,0 +1,10 @@
+import {readFileSync,writeFileSync} from 'node:fs';
+import {noCookingMeal,effortAllows,recipeExcluded} from '../member-experience/grub-intelligence.mjs';
+import {filterRecipe} from '../member-experience/grub-search.mjs';
+const source=readFileSync(new URL('../member-experience/grub-search.mjs',import.meta.url),'utf8');
+const animal=source.match(/const animal=.*?;\n/)[0];
+const core=readFileSync(new URL('core.mjs',import.meta.url),'utf8').replace(/^import .*;\n/gm,'').replace(/\bexport /g,'');
+const data=readFileSync(new URL('recipes.json',import.meta.url),'utf8');
+const html=readFileSync(new URL('review-template.html',import.meta.url),'utf8').replace('/*CORE*/',animal+[noCookingMeal,effortAllows,recipeExcluded,filterRecipe].map(fn=>fn.toString()).join('\n')+'\n'+core+'\nconst recipes='+data.replaceAll('<','\\u003c')+';');
+writeFileSync('/workspace/scratch/3a144d155603/SHIFT-Appetite-and-Grub-Working-Review-2026-11-01.html',html);
+console.log('Self-contained working review built.');

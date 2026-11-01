@@ -1,0 +1,647 @@
+[
+  {
+    "id": "everyday-chicken-salad",
+    "name": "Chicken salad",
+    "image": null,
+    "discovery": {
+      "eligible": true,
+      "tier": "core",
+      "rank": 2,
+      "decision": "retain",
+      "reason": "UK consumer recipe corrected from its actual ingredients and method; retained full catalogue breadth.",
+      "hands_on_minutes": 5,
+      "timing_is_estimate": true,
+      "hideImage": true
+    },
+    "meal_type": "lunch",
+    "servings": 1,
+    "minutes": 5,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "hands_on_minutes": 5,
+    "timing_is_estimate": true,
+    "protein_g": 39.7,
+    "kcal": 238.6,
+    "nutrition": {
+      "status": "validated",
+      "kcal": 238.6,
+      "protein_g": 39.7,
+      "carbohydrate_g": 4.5,
+      "fat_g": 7,
+      "fibre_g": 1.7,
+      "methodology": "CoFID 2021 ingredient-level estimate; exact recipe and evidence independently AI reviewed. Household portions, brands and measurements vary.",
+      "precision_note": "Estimated nutrition for the listed portion. Food brands, egg sizes and household measurements vary; use actual product labels where available."
+    },
+    "ingredients": [
+      {
+        "item": "cooked chicken breast",
+        "amount": "120g"
+      },
+      {
+        "item": "salad leaves",
+        "amount": "60g"
+      },
+      {
+        "item": "tomato",
+        "amount": "80g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "15g"
+      }
+    ],
+    "method": [
+      "Use chilled, already-cooked chicken breast. Wash and dry salad leaves and tomato unless the packet says ready washed; slice the tomato.",
+      "Put the chicken and salad on a plate and add the measured mayonnaise. Eat now, or cover and refrigerate promptly as described below."
+    ],
+    "allergens": [
+      "egg",
+      "mustard"
+    ],
+    "allergen_note": "",
+    "nutrition_limitations": [],
+    "food_safety": [
+      "Check every bought ingredient label for allergens and use-by dates. These recipes do not guarantee allergy suitability.",
+      "Use clean hands, utensils and surfaces. Keep chilled ready-to-eat ingredients refrigerated until assembly."
+    ],
+    "storage": {
+      "chilled": "Cover and refrigerate promptly at 0–5°C. Eat within 24 hours of assembly or any earlier ingredient use-by or after-opening deadline; keep chilled until eating. If using home-cooked chicken, it must have been cooled and refrigerated within 2 hours of cooking and used within 48 hours of original cooking; assembling this meal does not restart that clock."
+    },
+    "equipment": [
+      "plate",
+      "knife",
+      "fork",
+      "chopping-board",
+      "kitchen-scales"
+    ],
+    "matched": [],
+    "missing": [
+      "cooked chicken breast",
+      "salad leaves",
+      "tomato",
+      "light mayonnaise"
+    ],
+    "pantry": [],
+    "source": "published_catalogue",
+    "taxonomy": {},
+    "food_format": "salad",
+    "tags": [
+      "everyday",
+      "cold-assembly"
+    ]
+  },
+  {
+    "id": "everyday-chicken-salad-sandwich",
+    "name": "Chicken salad sandwich",
+    "image": null,
+    "discovery": {
+      "eligible": true,
+      "tier": "core",
+      "rank": 0,
+      "decision": "retain",
+      "reason": "UK consumer recipe corrected from its actual ingredients and method; retained full catalogue breadth.",
+      "hands_on_minutes": 5,
+      "timing_is_estimate": true,
+      "hideImage": true
+    },
+    "meal_type": "lunch",
+    "servings": 1,
+    "minutes": 5,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "hands_on_minutes": 5,
+    "timing_is_estimate": true,
+    "protein_g": 39.9,
+    "kcal": 367,
+    "nutrition": {
+      "status": "validated",
+      "kcal": 367,
+      "protein_g": 39.9,
+      "carbohydrate_g": 35.1,
+      "fat_g": 8.4,
+      "fibre_g": 5.9,
+      "methodology": "CoFID 2021 ingredient-level estimate; exact recipe and evidence independently AI reviewed. Household portions, brands and measurements vary.",
+      "precision_note": "Estimated nutrition for the listed portion. Food brands, egg sizes and household measurements vary; use actual product labels where available."
+    },
+    "ingredients": [
+      {
+        "item": "cooked chicken breast",
+        "amount": "100g"
+      },
+      {
+        "item": "wholemeal bread",
+        "amount": "80g"
+      },
+      {
+        "item": "salad leaves",
+        "amount": "20g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "15g"
+      }
+    ],
+    "method": [
+      "Use chilled, already-cooked chicken breast and two slices of bread weighing 80g in total. Wash and dry the leaves unless labelled ready washed.",
+      "Spread the measured mayonnaise on the bread, add the chicken and leaves, and close the sandwich. Serve any filling that will not fit alongside; all listed ingredients count in the portion."
+    ],
+    "allergens": [
+      "gluten",
+      "egg",
+      "mustard"
+    ],
+    "allergen_note": "",
+    "nutrition_limitations": [],
+    "food_safety": [
+      "Check every bought ingredient label for allergens and use-by dates. These recipes do not guarantee allergy suitability.",
+      "Use clean hands, utensils and surfaces. Keep chilled ready-to-eat ingredients refrigerated until assembly."
+    ],
+    "storage": {
+      "chilled": "Cover and refrigerate promptly at 0–5°C. Eat within 24 hours of assembly or any earlier ingredient use-by or after-opening deadline; keep chilled until eating. If using home-cooked chicken, it must have been cooled and refrigerated within 2 hours of cooking and used within 48 hours of original cooking; assembling this meal does not restart that clock."
+    },
+    "equipment": [
+      "plate",
+      "knife",
+      "fork",
+      "chopping-board",
+      "kitchen-scales"
+    ],
+    "matched": [],
+    "missing": [
+      "cooked chicken breast",
+      "wholemeal bread",
+      "salad leaves",
+      "light mayonnaise"
+    ],
+    "pantry": [],
+    "source": "published_catalogue",
+    "taxonomy": {},
+    "food_format": "sandwich",
+    "tags": [
+      "everyday",
+      "cold-assembly"
+    ]
+  },
+  {
+    "id": "everyday-ham-sandwich",
+    "name": "Ham sandwich",
+    "image": null,
+    "discovery": {
+      "eligible": true,
+      "tier": "core",
+      "rank": 3,
+      "decision": "retain",
+      "reason": "UK consumer recipe corrected from its actual ingredients and method; retained full catalogue breadth.",
+      "hands_on_minutes": 5,
+      "timing_is_estimate": true,
+      "hideImage": true
+    },
+    "meal_type": "lunch",
+    "servings": 1,
+    "minutes": 5,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "hands_on_minutes": 5,
+    "timing_is_estimate": true,
+    "protein_g": 19,
+    "kcal": 283.2,
+    "nutrition": {
+      "status": "validated",
+      "kcal": 283.2,
+      "protein_g": 19,
+      "carbohydrate_g": 35.7,
+      "fat_g": 8.2,
+      "fibre_g": 6,
+      "methodology": "CoFID 2021 ingredient-level estimate; exact recipe and evidence independently AI reviewed. Household portions, brands and measurements vary.",
+      "precision_note": "Estimated nutrition for the listed portion. Food brands, egg sizes and household measurements vary; use actual product labels where available."
+    },
+    "ingredients": [
+      {
+        "item": "lean ham",
+        "amount": "60g"
+      },
+      {
+        "item": "wholemeal bread",
+        "amount": "80g"
+      },
+      {
+        "item": "salad leaves",
+        "amount": "20g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "15g"
+      }
+    ],
+    "method": [
+      "Use sliced ready-to-eat ham and two slices of bread weighing 80g in total. Wash and dry the leaves unless labelled ready washed.",
+      "Spread the measured mayonnaise on the bread, add the cold ham and leaves, and close the sandwich. There is no pan or warming step."
+    ],
+    "allergens": [
+      "gluten",
+      "egg",
+      "mustard"
+    ],
+    "allergen_note": "",
+    "nutrition_limitations": [],
+    "food_safety": [
+      "Check every bought ingredient label for allergens and use-by dates. These recipes do not guarantee allergy suitability.",
+      "Use clean hands, utensils and surfaces. Keep chilled ready-to-eat ingredients refrigerated until assembly."
+    ],
+    "storage": {
+      "chilled": "Cover and refrigerate promptly at 0–5°C. Eat within 24 hours of assembly or any earlier ingredient use-by or after-opening deadline; keep chilled until eating."
+    },
+    "equipment": [
+      "plate",
+      "knife",
+      "fork",
+      "chopping-board",
+      "kitchen-scales"
+    ],
+    "matched": [],
+    "missing": [
+      "lean ham",
+      "wholemeal bread",
+      "salad leaves",
+      "light mayonnaise"
+    ],
+    "pantry": [],
+    "source": "published_catalogue",
+    "taxonomy": {},
+    "food_format": "sandwich",
+    "tags": [
+      "everyday",
+      "cold-assembly"
+    ]
+  },
+  {
+    "id": "everyday-tuna-sandwich",
+    "name": "Tuna sandwich",
+    "image": null,
+    "discovery": {
+      "eligible": true,
+      "tier": "core",
+      "rank": 1,
+      "decision": "retain",
+      "reason": "UK consumer recipe corrected from its actual ingredients and method; retained full catalogue breadth.",
+      "hands_on_minutes": 5,
+      "timing_is_estimate": true,
+      "hideImage": true
+    },
+    "meal_type": "lunch",
+    "servings": 1,
+    "minutes": 5,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "hands_on_minutes": 5,
+    "timing_is_estimate": true,
+    "protein_g": 32.8,
+    "kcal": 328,
+    "nutrition": {
+      "status": "validated",
+      "kcal": 328,
+      "protein_g": 32.8,
+      "carbohydrate_g": 35.1,
+      "fat_g": 7.2,
+      "fibre_g": 5.9,
+      "methodology": "CoFID 2021 ingredient-level estimate; exact recipe and evidence independently AI reviewed. Household portions, brands and measurements vary.",
+      "precision_note": "Estimated nutrition for the listed portion. Food brands, egg sizes and household measurements vary; use actual product labels where available."
+    },
+    "ingredients": [
+      {
+        "item": "tuna in spring water, drained",
+        "amount": "100g"
+      },
+      {
+        "item": "wholemeal bread",
+        "amount": "80g"
+      },
+      {
+        "item": "salad leaves",
+        "amount": "20g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "15g"
+      }
+    ],
+    "method": [
+      "Use canned tuna in spring water. Drain, then weigh 100g and flake with a fork. Use two slices of bread weighing 80g in total; wash and dry the leaves unless labelled ready washed.",
+      "Mix the measured mayonnaise into the tuna and put it between the bread slices with the leaves. Serve any filling that will not fit alongside."
+    ],
+    "allergens": [
+      "fish",
+      "gluten",
+      "egg",
+      "mustard"
+    ],
+    "allergen_note": "",
+    "nutrition_limitations": [],
+    "food_safety": [
+      "Check every bought ingredient label for allergens and use-by dates. These recipes do not guarantee allergy suitability.",
+      "Use clean hands, utensils and surfaces. Keep chilled ready-to-eat ingredients refrigerated until assembly."
+    ],
+    "storage": {
+      "chilled": "Cover and refrigerate promptly at 0–5°C. Eat within 24 hours of assembly or any earlier ingredient use-by or after-opening deadline; keep chilled until eating."
+    },
+    "equipment": [
+      "plate",
+      "knife",
+      "fork",
+      "chopping-board",
+      "kitchen-scales",
+      "bowl",
+      "can-opener-if-needed"
+    ],
+    "matched": [],
+    "missing": [
+      "tuna in spring water, drained",
+      "wholemeal bread",
+      "salad leaves",
+      "light mayonnaise"
+    ],
+    "pantry": [],
+    "source": "published_catalogue",
+    "taxonomy": {},
+    "food_format": "sandwich",
+    "tags": [
+      "everyday",
+      "cold-assembly"
+    ]
+  },
+  {
+    "id": "everyday-ham-salad",
+    "name": "Ham salad",
+    "image": null,
+    "discovery": {
+      "eligible": true,
+      "tier": "core",
+      "rank": 4,
+      "decision": "retain",
+      "reason": "UK consumer recipe corrected from its actual ingredients and method; retained full catalogue breadth.",
+      "hands_on_minutes": 5,
+      "timing_is_estimate": true,
+      "hideImage": true
+    },
+    "meal_type": "lunch",
+    "servings": 1,
+    "minutes": 5,
+    "prep_minutes": 5,
+    "cook_minutes": 0,
+    "hands_on_minutes": 5,
+    "timing_is_estimate": true,
+    "protein_g": 19.8,
+    "kcal": 233.4,
+    "nutrition": {
+      "status": "validated",
+      "kcal": 233.4,
+      "protein_g": 19.8,
+      "carbohydrate_g": 22.1,
+      "fat_g": 8,
+      "fibre_g": 4.6,
+      "methodology": "CoFID 2021 ingredient-level estimate; exact recipe and evidence independently AI reviewed. Household portions, brands and measurements vary.",
+      "precision_note": "Estimated nutrition for the listed portion. Food brands, egg sizes and household measurements vary; use actual product labels where available."
+    },
+    "ingredients": [
+      {
+        "item": "lean ham",
+        "amount": "80g"
+      },
+      {
+        "item": "salad leaves",
+        "amount": "60g"
+      },
+      {
+        "item": "tomato",
+        "amount": "80g"
+      },
+      {
+        "item": "wholemeal bread",
+        "amount": "40g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "15g"
+      }
+    ],
+    "method": [
+      "Use chilled ready-to-eat ham. Wash and dry the leaves and tomato unless labelled ready washed; slice the tomato.",
+      "Put the ham, leaves and tomato on a plate, add the measured mayonnaise and serve with the bread. Eat now or keep chilled as described below."
+    ],
+    "allergens": [
+      "gluten",
+      "egg",
+      "mustard"
+    ],
+    "allergen_note": "",
+    "nutrition_limitations": [],
+    "food_safety": [
+      "Check every bought ingredient label for allergens and use-by dates. These recipes do not guarantee allergy suitability.",
+      "Use clean hands, utensils and surfaces. Keep chilled ready-to-eat ingredients refrigerated until assembly."
+    ],
+    "storage": {
+      "chilled": "Cover and refrigerate promptly at 0–5°C. Eat within 24 hours of assembly or any earlier ingredient use-by or after-opening deadline; keep chilled until eating."
+    },
+    "equipment": [
+      "plate",
+      "knife",
+      "fork",
+      "chopping-board",
+      "kitchen-scales"
+    ],
+    "matched": [],
+    "missing": [
+      "lean ham",
+      "salad leaves",
+      "tomato",
+      "wholemeal bread",
+      "light mayonnaise"
+    ],
+    "pantry": [],
+    "source": "published_catalogue",
+    "taxonomy": {},
+    "food_format": "salad",
+    "tags": [
+      "everyday",
+      "cold-assembly"
+    ]
+  },
+  {
+    "id": "everyday-beans-on-toast",
+    "name": "Beans on toast",
+    "image": null,
+    "discovery": {
+      "eligible": true,
+      "tier": "core",
+      "rank": 5,
+      "decision": "retain",
+      "reason": "UK consumer recipe corrected from its actual ingredients and method; retained full catalogue breadth.",
+      "hands_on_minutes": 4,
+      "timing_is_estimate": true,
+      "hideImage": true
+    },
+    "meal_type": "lunch",
+    "servings": 1,
+    "minutes": 8,
+    "prep_minutes": 2,
+    "cook_minutes": 6,
+    "hands_on_minutes": 4,
+    "timing_is_estimate": true,
+    "protein_g": 17.5,
+    "kcal": 335.6,
+    "nutrition": {
+      "status": "validated",
+      "kcal": 335.6,
+      "protein_g": 17.5,
+      "carbohydrate_g": 63.6,
+      "fat_g": 3,
+      "fibre_g": 15.4,
+      "methodology": "CoFID 2021 ingredient-level estimate; exact recipe and evidence independently AI reviewed. Household portions, brands and measurements vary.",
+      "precision_note": "Estimated nutrition for the listed portion. Food brands, egg sizes and household measurements vary; use actual product labels where available."
+    },
+    "ingredients": [
+      {
+        "item": "baked beans",
+        "amount": "200g"
+      },
+      {
+        "item": "wholemeal bread",
+        "amount": "80g"
+      }
+    ],
+    "method": [
+      "Heat the canned baked beans according to the packet instructions, stirring as directed, until steaming hot throughout. Use a microwave-safe bowl if microwaving.",
+      "Meanwhile toast two slices of wholemeal bread weighing 80g in total. Spoon the hot beans over the toast and eat immediately. Appliance and packet times govern; the total time is an estimate."
+    ],
+    "allergens": [
+      "gluten"
+    ],
+    "allergen_note": "",
+    "nutrition_limitations": [],
+    "food_safety": [
+      "Check every bought ingredient label for allergens and use-by dates. These recipes do not guarantee allergy suitability.",
+      "Use clean hands, utensils and surfaces. Keep chilled ready-to-eat ingredients refrigerated until assembly."
+    ],
+    "storage": {
+      "chilled": "Eat immediately after cooking. These instructions do not cover storing or reheating the finished meal."
+    },
+    "equipment": [
+      "hob-or-microwave",
+      "toaster",
+      "saucepan-or-microwave-safe-bowl",
+      "kitchen-scales"
+    ],
+    "matched": [],
+    "missing": [
+      "baked beans",
+      "wholemeal bread"
+    ],
+    "pantry": [],
+    "source": "published_catalogue",
+    "taxonomy": {},
+    "food_format": "on-toast",
+    "tags": [
+      "everyday",
+      "simple-cooking"
+    ]
+  },
+  {
+    "id": "everyday-scrambled-eggs-on-toast",
+    "name": "Scrambled eggs on toast",
+    "image": null,
+    "discovery": {
+      "eligible": true,
+      "tier": "core",
+      "rank": 6,
+      "decision": "retain",
+      "reason": "UK consumer recipe corrected from its actual ingredients and method; retained full catalogue breadth.",
+      "hands_on_minutes": 8,
+      "timing_is_estimate": true,
+      "hideImage": true
+    },
+    "meal_type": "lunch",
+    "servings": 1,
+    "minutes": 10,
+    "prep_minutes": 3,
+    "cook_minutes": 7,
+    "hands_on_minutes": 8,
+    "timing_is_estimate": true,
+    "protein_g": 21.2,
+    "kcal": 343.2,
+    "nutrition": {
+      "status": "validated",
+      "kcal": 343.2,
+      "protein_g": 21.2,
+      "carbohydrate_g": 35,
+      "fat_g": 14.3,
+      "fibre_g": 5.6,
+      "methodology": "CoFID 2021 ingredient-level estimate; exact recipe and evidence independently AI reviewed. Household portions, brands and measurements vary.",
+      "precision_note": "Estimated nutrition for the listed portion. Food brands, egg sizes and household measurements vary; use actual product labels where available."
+    },
+    "ingredients": [
+      {
+        "item": "eggs",
+        "amount": "100g (about 2 medium eggs, without shells)"
+      },
+      {
+        "item": "wholemeal bread",
+        "amount": "80g"
+      },
+      {
+        "item": "semi-skimmed milk",
+        "amount": "30ml"
+      },
+      {
+        "item": "olive oil",
+        "amount": "3ml"
+      }
+    ],
+    "method": [
+      "Crack two medium eggs into a bowl and beat in the measured milk. Nutrition assumes about 100g of edible egg without shells; actual egg sizes vary. Wash hands and utensils after handling raw eggs.",
+      "Heat the measured oil in a non-stick pan over a low to medium heat. Add the eggs and stir gently until fully set throughout. Meanwhile toast two slices of bread weighing 80g in total.",
+      "Spoon the cooked eggs onto the toast and eat immediately. The total time is an estimate; fully set eggs govern doneness."
+    ],
+    "allergens": [
+      "egg",
+      "gluten",
+      "milk"
+    ],
+    "allergen_note": "",
+    "nutrition_limitations": [],
+    "food_safety": [
+      "Check every bought ingredient label for allergens and use-by dates. These recipes do not guarantee allergy suitability.",
+      "Use clean hands, utensils and surfaces. Keep chilled ready-to-eat ingredients refrigerated until assembly."
+    ],
+    "storage": {
+      "chilled": "Eat immediately after cooking. These instructions do not cover storing or reheating the finished meal."
+    },
+    "equipment": [
+      "hob",
+      "toaster",
+      "non-stick-pan",
+      "bowl",
+      "fork",
+      "pan-safe-spatula",
+      "measuring-jug",
+      "measuring-spoon",
+      "kitchen-scales"
+    ],
+    "matched": [],
+    "missing": [
+      "eggs",
+      "wholemeal bread",
+      "semi-skimmed milk",
+      "olive oil"
+    ],
+    "pantry": [
+      "olive oil"
+    ],
+    "source": "published_catalogue",
+    "taxonomy": {},
+    "food_format": "on-toast",
+    "tags": [
+      "everyday",
+      "simple-cooking"
+    ]
+  }
+]
