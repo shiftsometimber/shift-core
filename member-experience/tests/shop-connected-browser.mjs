@@ -57,7 +57,7 @@ async function setup(width){
   if(u.pathname==='/v1/commerce/basket-quote')return route.fulfill({json:{ok:true,accountReference:state.reference,quote:{items:[],subtotalPence:0,totalPence:0,deliveries:[]},recommendations:[],products:[]}});
   if(u.pathname.startsWith('/v1/'))return route.fulfill({json:{ok:true,memory:null,journey:{records:[]},orders:[],consents:[],units:{weight:'kg'},support:{}}});
   const request=new Request(r.url(),{method:r.method()});
-  let response=shopNavigationAsset(request)||await memberBasketRoutes(request,env,publicRead)||await shopPageRoutes(request,env,publicRead)||journeyPageRoutes(request,env)||memberExperienceRoutes(request,env);
+  let response=(u.pathname==='/assets/member-experience/programme-journey.mjs'&&process.env.MY_TIMBER_JOURNEY_RUNTIME_FILE?new Response(readFileSync(process.env.MY_TIMBER_JOURNEY_RUNTIME_FILE,'utf8'),{headers:{'Content-Type':'text/javascript'}}):null)||(u.pathname===shopBase&&process.env.MY_TIMBER_SHOP_HUB_FILE?new Response(readFileSync(process.env.MY_TIMBER_SHOP_HUB_FILE,'utf8'),{headers:{'Content-Type':'text/html'}}):null)||shopNavigationAsset(request)||await memberBasketRoutes(request,env,publicRead)||await shopPageRoutes(request,env,publicRead)||journeyPageRoutes(request,env)||memberExperienceRoutes(request,env);
   if(!response&&['/member/dashboard','/member/grub','/member/fit','/member/settings','/member/saved','/member/orders','/member/plans'].includes(u.pathname))response=new Response(existingPage(u.pathname),{headers:{'Content-Type':'text/html'}});
   if(response){response=await withShopNavigation(request,response,env);if(nativeScripts.length&&response.headers.get('Content-Type')?.includes('text/html'))response=new Response((await response.text()).replace('</body>',nativeScripts.map(content=>'<script>'+content+'</script>').join('')+'</body>'),{status:response.status,headers:response.headers});return route.fulfill({status:response.status,headers:Object.fromEntries(response.headers),body:Buffer.from(await response.arrayBuffer())});}
   if(u.pathname==='/shop/client.js'){
@@ -77,7 +77,7 @@ async function checkJourney(h){
  await page.locator('[data-tj-edit]').first().click();await page.locator('[name=text]').fill('Corrected isolated win');await page.locator('[data-tj-record-form] button.tj-primary').click();await page.waitForSelector('[data-tj-add=win]');
  await add('measurement',async()=>{if(await page.locator('[name=weight]').count())await page.locator('[name=weight]').fill('95.2');else{await page.locator('[name=stones]').fill('15');await page.locator('[name=pounds]').fill('0');}await page.locator('[name=waistCm]').fill('103.4');});
  await page.click('[data-tj-measure=clothes]');await add('clothes',async()=>{await page.locator('[name=top]').fill('L');await page.locator('[name=trousers]').fill('32 inch waist');});
- await page.click('[data-tj-guide]');await page.click('[data-tj-add=feeling]');await page.locator('[name=on]').fill('2026-10-28');await page.locator('[name=feelings][value=okay]').check();await page.locator('[data-tj-record-form] button.tj-primary').click();await page.waitForSelector('[data-tj-add=win]');
+ await page.click('[data-tj-guide]');await checkGuideInteractions(h);await page.click('[data-tj-add=feeling]');await page.locator('[name=on]').fill('2026-10-28');await page.locator('[name=feelings][value=okay]').check();await page.locator('[data-tj-record-form] button.tj-primary').click();await page.waitForSelector('[data-tj-add=win]');
  await add('treatment',()=>page.locator('[name=change]').selectOption('changed'));
  await add('injection',()=>page.locator('[name=site]').fill('My own past site record'));
  await page.locator('[data-tj-range]').selectOption('custom');await page.locator('[name=from]').fill('2026-10-01');await page.locator('[name=to]').fill('2026-10-31');await page.locator('[data-tj-dates] button').click();assert.equal(new URL(page.url()).searchParams.get('from'),'2026-10-01');
@@ -86,6 +86,28 @@ async function checkJourney(h){
  await page.locator('[data-tj-back]').click();await page.click('[data-tj-records]');const record=page.locator('.tj-record').filter({hasText:'Corrected isolated win'});await record.locator('[data-tj-edit]').click();page.once('dialog',dialog=>dialog.accept());await page.locator('[data-tj-delete]').click();await page.waitForSelector('.tj-record');assert.doesNotMatch(await page.locator('#timberJourney').innerText(),/Corrected isolated win/);
  await page.reload();await page.waitForSelector('[data-tj-add=win]');await page.click('[data-tj-records]');assert.equal(await page.locator('.tj-record').count(),5);assert.match(await page.locator('#timberJourney').innerText(),/32 inch waist/);assert.match(await page.locator('#timberJourney').innerText(),/My own past site record/);
  const before=await page.evaluate(()=>fetch('/v1/life-back/journey').then(r=>r.json()));assert.equal(before.records.length,5);h.state.id=2;await page.goto(origin+'/member/life-back/journey');await page.waitForSelector('[data-tj-add=win]');assert.doesNotMatch(await page.locator('#timberJourney').innerText(),/My own past site record|32 inch waist/);h.state.id=1;
+}
+async function checkGuideInteractions(h){
+ const {page}=h,posts=h.requests.filter(r=>r.method==='POST').length,plot=page.locator('.tj-guide-visual [data-tj-medicine-plot]');
+ assert.equal(await plot.count(),1,'The guide chart must use the drag/scroll handler, not only the date slider');
+ const value=async()=>Number(await page.locator('[data-tj-date]').inputValue());
+ const tint=async()=>Number(await page.locator('.tj-figure path').nth(1).getAttribute('opacity'));
+ const waitIndex=async n=>page.waitForFunction(n=>Number(document.querySelector('[data-tj-date]')?.value)===n,n,{timeout:3000});
+ await page.locator('[data-tj-date]').focus();await page.keyboard.press('Home');await waitIndex(0);const low=await tint();
+ await plot.scrollIntoViewIfNeeded();const box=await plot.locator('svg').boundingBox();assert(box);
+ const x=i=>box.x+(112+458*i/27)/600*box.width,y=box.y+70/175*box.height;
+ await page.mouse.move(x(0),y);await page.mouse.down();await page.mouse.move(x(2),y,{steps:8});await page.mouse.up();await waitIndex(2);
+ assert.ok(Math.abs(await tint()-(.25+.65*.87))<.000001,'Figure follows the selected example point');assert.notEqual(await tint(),low);
+ await page.mouse.wheel(0,120);await waitIndex(3);await page.mouse.wheel(-120,0);await waitIndex(2);
+ await page.locator('[data-tj-date]').focus();await page.keyboard.press('Home');await waitIndex(0);await page.locator('[data-tj-date]').scrollIntoViewIfNeeded();const slider=await page.locator('[data-tj-date]').boundingBox();assert(slider);
+ await page.mouse.move(slider.x+10,slider.y+slider.height/2);await page.mouse.down();await page.mouse.move(slider.x+slider.width-10,slider.y+slider.height/2,{steps:20});await page.mouse.up();
+ assert.ok(await value()>=26,'Dragging the range control keeps working through the whole movement');
+ await page.locator('[data-tj-date]').focus();await page.keyboard.press('Home');await waitIndex(0);await page.keyboard.press('ArrowRight');await page.keyboard.press('ArrowRight');await waitIndex(2);
+ await page.locator('[data-tj-day="1"]').click();await waitIndex(0);assert.ok(Math.abs(await tint()-(.25+.65*.25))<.000001);
+ await page.locator('[data-tj-day="3"]').click();await waitIndex(2);await page.locator('[data-tj-play]').click();await waitIndex(3);await page.locator('[data-tj-play]').click();
+ assert.notEqual(await tint(),low);assert.match(await page.locator('.tj-badge').innerText(),/Illustration.*not your actual levels/);
+ assert.equal(h.requests.filter(r=>r.method==='POST').length,posts,'Exploring the illustration must not create health records or treatment changes');
+ results.push({width:page.viewportSize().width,case:'guide drag, wheel, continuous range drag, keyboard, day buttons and Play keep the illustrative figure in sync without writes',pass:true});
 }
 async function assertBars(page){await page.waitForFunction(()=>{const t=document.querySelector('.mt-shop-top'),b=document.querySelector('.mt-shop-bottom'),s=getComputedStyle(document.body);return t&&b&&parseFloat(s.paddingTop)+1>=t.getBoundingClientRect().height&&parseFloat(s.paddingBottom)+1>=b.getBoundingClientRect().height});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);assert.equal(await page.locator('#mtShopChrome').count(),1);}
 const waitChrome=page=>page.waitForSelector('#mtShopChrome .mt-shop-primary a',{state:'visible',timeout:10000});
@@ -98,7 +120,7 @@ try{
    assert.deepEqual(await page.locator('.mt-shop-primary a').allTextContents(),['Today','Journey','Shop']);assert.deepEqual(await page.locator('.mt-shop-bottom a').allTextContents(),['Grub','Fit','Support','More']);
    assert.equal(await page.locator('#mtShopChrome svg').count(),8);assert.equal(await page.locator('[data-mt-shop-tab=shop]').getAttribute('aria-current'),'page');
    const layout=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth>innerWidth,gaps:[...document.querySelectorAll('.mt-shop-category')].map(card=>({gap:card.querySelector('strong').getBoundingClientRect().top-card.querySelector('.mt-shop-visual').getBoundingClientRect().bottom,color:getComputedStyle(card.querySelector('strong')).color,display:getComputedStyle(card.querySelector('strong')).display}))}));
-   assert.equal(layout.overflow,false);for(const item of layout.gaps){assert.ok(Math.abs(item.gap-8)<=1,JSON.stringify(item));assert.equal(item.color,'rgb(231, 227, 218)');assert.notEqual(item.display,'none');}
+   assert.doesNotMatch(await page.locator('.mt-shop-grid').innerText(),/[↗↖↘↙]/,'Shop cards use plain text without emoji arrows');assert.equal(layout.overflow,false);for(const item of layout.gaps){assert.ok(Math.abs(item.gap-8)<=1,JSON.stringify(item));assert.equal(item.color,'rgb(231, 227, 218)');assert.notEqual(item.display,'none');}
    await page.screenshot({path:join(out,'shop-'+width+'.png'),fullPage:true});results.push({width,case:'approved hub, 8px spacing, seven tabs, icons and no horizontal overflow',pass:true});
    for(const tab of ['today','journey','grub','fit','support','more','shop']){
     const target=await page.locator('[data-mt-shop-tab='+tab+']').getAttribute('href');await Promise.all([page.waitForURL(origin+target),page.click('[data-mt-shop-tab='+tab+']')]);await page.waitForLoadState();await waitChrome(page);await assertBars(page);assert.equal(await page.locator('[data-mt-shop-tab='+tab+']').getAttribute('aria-current'),'page');
