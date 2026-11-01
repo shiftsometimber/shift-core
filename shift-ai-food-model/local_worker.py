@@ -39,6 +39,13 @@ if __name__ == "__main__":
     args = parser.parse_args()
     if not args.research:
         raise ValueError("Research-only local worker; production invocation refused")
-    from food_gate import GatedPredictor
-    model = GatedPredictor(args.candidate, args.base, args.gate, research=True)
+    family = json.loads((args.candidate / "artifact.json").read_text()).get("model_family")
+    if family in ("shift-visible-food-head-1", "shift-visible-food-routed-1"):
+        from visible_learning import VisibleGatedPredictor
+        model = VisibleGatedPredictor(args.candidate, args.base, args.gate, research=True)
+    elif family == "shift-siglip-food-head-1":
+        from food_gate import GatedPredictor
+        model = GatedPredictor(args.candidate, args.base, args.gate, research=True)
+    else:
+        raise ValueError("Known pinned research candidate family required")
     serve(model)
