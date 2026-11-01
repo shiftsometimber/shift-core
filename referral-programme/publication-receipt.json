@@ -1,0 +1,38 @@
+{
+  "approvedBy": "Matt",
+  "instruction": "Publish and then move to next group - we have lots to sort",
+  "dateUTC": "2026-11-01",
+  "publicRoutes": [
+    "https://shiftsometimber.co.uk/refer-to-shift",
+    "https://shiftsometimber.co.uk/programme/sample"
+  ],
+  "discoveryRoutes": [
+    "/programme",
+    "/partner-with-us"
+  ],
+  "releaseRun": 41320251983,
+  "layoutRepairRun": 41320602545,
+  "verifiedVersion": "713c4b9d-29b5-4351-a357-13c7a3b538e3",
+  "verifiedSource": "53381284aa9f540bd11f23ce0e5d1ba21ff5dc8b",
+  "packageSHA256": "232cd8640aef95bb7d2c53879f59c031de1910ae3aeca862b4de3181cd1c540e",
+  "sourceChecksPassed": 42,
+  "protectedResponsesVerified": true,
+  "liveBrowserVerified": [
+    "referral hero has no inherited sales panel",
+    "sample week-six navigation",
+    "sample planned-step feedback controls"
+  ],
+  "realEmailsSent": 0,
+  "memberWrites": 0,
+  "nextGroup": {
+    "scope": [
+      "shareable introduction",
+      "partner toolkit",
+      "printable weekly planner"
+    ],
+    "state": "draft for review; not published or distributed",
+    "reviewFile": "SHIFT-Referrers-and-Affiliates-Draft-2026-11-01.html",
+    "libraryFileId": "libfile_f779f6a1e3e4819191bcfe9f59599caf"
+  },
+  "oneTimePushReleaseRetired": true
+}
