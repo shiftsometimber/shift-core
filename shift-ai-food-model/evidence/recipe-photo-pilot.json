@@ -1,0 +1,64 @@
+{
+  "schema": "shift-recipe-photo-pilot-1",
+  "catalogue_sha256": "964619c159f716607837f6c3d2514943b8e31e4eabc0f7e1c1ae415d90a08483",
+  "targets": [
+    {
+      "recipe_id": "everyday-beans-on-toast",
+      "recipe_hash": "8917598395d411c5b4a544ce8c606f6bbbe3ff7685808301d2c7daf326448365",
+      "title": "Beans on toast",
+      "ingredients": [
+        {
+          "item": "baked beans",
+          "amount": "200g"
+        },
+        {
+          "item": "wholemeal bread",
+          "amount": "80g"
+        }
+      ],
+      "independent_training_dishes": 3,
+      "independent_validation_dishes": 5,
+      "independent_test_dishes": 5
+    },
+    {
+      "recipe_id": "everyday-scrambled-eggs-on-toast",
+      "recipe_hash": "043c3302db85ef6da95bd7a6ee0688178762563472a79e99a580c9411d3234ca",
+      "title": "Scrambled eggs on toast",
+      "ingredients": [
+        {
+          "item": "eggs",
+          "amount": "100g (about 2 medium eggs, without shells)"
+        },
+        {
+          "item": "wholemeal bread",
+          "amount": "80g"
+        },
+        {
+          "item": "semi-skimmed milk",
+          "amount": "30ml"
+        },
+        {
+          "item": "olive oil",
+          "amount": "3ml"
+        }
+      ],
+      "independent_training_dishes": 3,
+      "independent_validation_dishes": 5,
+      "independent_test_dishes": 5
+    }
+  ],
+  "validation_negatives": {
+    "non_food": 5,
+    "other_food": 5
+  },
+  "test_negatives": {
+    "non_food": 5,
+    "other_food": 5
+  },
+  "total_photos": 46,
+  "scope": "Small engineering pilot, not production acceptance",
+  "requires_real_photos": true,
+  "requires_recorded_training_permission": true,
+  "recipe_specific_training_started": false,
+  "note": "One held-out photo per independently cooked dish; capture/dish/source groups cannot cross splits. No ingredient substitutions under an exact-recipe label."
+}

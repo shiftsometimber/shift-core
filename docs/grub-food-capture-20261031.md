@@ -5,6 +5,64 @@ He subsequently instructed that both food recognition and the MediSearch-style
 research capability belong inside Shift AI. No competitor trial, subscription
 or integration is part of this implementation.
 
+## Offline photo intake and review — further continuation, 1 November 2026 Europe/London
+
+Matt said “Crack on”. The existing feature head was verified as
+`73b0e38c9391293c360109982ccdba38daea3e3f`; code/checkpoint files removed by
+workspace maintenance were restored from that exact committed source. The
+research archive remains Library version 3. Its retained local bytes matched
+SHA256 `c883c85e1fe57552238bbd02ba3a032b7079fe490ca76fd918ea4aec96c521be`,
+and its 2,692-recipe catalogue was recovered with the bank's recorded SHA256.
+No model weights or prior acceptance were discarded or retrained.
+
+Implemented `shift-ai-food-model/recipe_intake.py`: bounded still-photo import,
+EXIF orientation, metadata-free JPEG conversion within 768 px/750 kB, original
+and transformed SHA256 lineage, immutable pending-review queue, explicit exact
+recipe/negative review and existing training-permission evidence, then export
+through the existing full recipe-pair validator. Source originals are unchanged;
+original filenames and location metadata are omitted from the queue. No pending
+photo becomes training data automatically. Existing output directories are never
+overwritten; failed prepare/export operations do not publish partial datasets.
+No live member upload, diary save, consent collection or service is introduced.
+
+A narrow saved-image search found candidate images. Three plausible food-named
+or highly ranked candidates were read and were interface/concept mock-ups, not
+checked recipe photographs. They were not imported or labelled; the search is
+not an exhaustive claim that no real photos exist anywhere. Retired handovers
+were excluded and not read. No private member image was used for training.
+
+An actual pinned Nutrition5k PNG (305,308 bytes) was prepared successfully, with
+the original SHA256 verified before and after. The prepared JPEG stayed pending;
+export refused because there was no checked recipe/permission record. No exact
+SHIFT recipe or training authorisation was invented. Receipt:
+`shift-ai-food-model/evidence/recipe-intake-public-check.json`.
+
+The concrete starter pilot uses the current beans on toast and scrambled eggs
+on toast recipes, with pinned source hashes and ingredient lists. Three training,
+five validation and five test dishes per recipe, plus five non-food and five
+other-food photos in each held-out split, make 46 photos. This is a small
+engineering pilot, not production acceptance. No real recipe-photo dataset or
+new recipe-specific trained weights exist yet. Target receipt:
+`shift-ai-food-model/evidence/recipe-photo-pilot.json`.
+
+Local checks cover the original 26 qualification/learning cases plus 12 intake
+cases, including EXIF orientation/removal, pending/permission refusal, immutable
+source files, complete fixture review/export, altered bytes, wrong recipe labels,
+source-group leakage, oversized and animated inputs. Fixtures cannot produce
+saved training artifacts. Permission records are operator attestations, not
+independent legal proof. Revocation must cover every exported copy/derivative;
+a central live consent/revocation service remains unbuilt.
+
+Previous exact-source CI run 41295308786 passed all 26 Python/four recipe checks,
+137 focused member checks (one opt-in skipped), actual Worker dry-run and public
+PubMed connectivity. The full member suite retained the two historical CSV
+Registration-tail qualification failures (580/582 pass). Existing gates are
+preserved. No new cost, licence acceptance, deployment or communications occurred.
+Next data dependency remains actual independently grouped recipe photos with
+checked ingredients and genuine training/evaluation permission. New source code
+belongs in Git; the existing model archive is unchanged because no new weights
+were trained during intake development.
+
 ## Recipe-photo learning pipeline — subsequent continuation, 1 November 2026 UTC
 
 Matt authorised further development. Existing development-only scope, no spend,

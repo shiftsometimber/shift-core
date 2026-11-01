@@ -312,3 +312,74 @@ It returns either one possible recipe or abstains. Nutrition stays absent and
 `autoSave` stays false. Current-recipe/substitution/portion confirmation still
 belongs before the existing single member-food save route. No production flags,
 service bindings or member UI were changed by this learning stage.
+
+## Preparing and reviewing photos for the pilot
+
+`recipe_intake.py` closes the gap between original photos and the checked
+`recipe_learning.py` dataset. This is an offline operator workflow, not a hosted
+member upload screen. Its commands never train a model, log food, contact another
+service or grant photo rights. The current two-recipe pilot targets and exact
+recipe hashes are in `evidence/recipe-photo-pilot.json`: beans on toast and scrambled
+eggs on toast, 46 independent photos including validation/test negatives. These
+numbers support a small engineering pilot, not production accuracy acceptance.
+
+1. **Prepare:** accept up to 200 JPEG/PNG/WebP stills per batch, each at most 30 MB
+   and 50 million pixels. Apply EXIF orientation, resize within 768 px, rebuild
+   from RGB pixels and save a JPEG within the existing 750 kB limit. Source
+   originals are unchanged. The queue retains original and prepared SHA256 values
+   but no original filenames, EXIF, XMP, comments or location. A current recipe
+   hint is optional and never counts as a confirmed label. HEIC/animated inputs
+   need an explicit still JPEG export; they are not silently interpreted.
+2. **Label:** an operator checks that this is a real photo without private content,
+   confirms the exact recipe ingredients (or a negative category), records anonymous
+   capture/dish/source groups and a split, and points to an existing reviewed
+   permission record. The queue stays immutable; a separate pinned review record
+   describes the explicit operator decision. This is an attestation, not proof
+   that a picture is real or that the operator owns it. No checkbox or permission
+   is checked automatically. Member diary consent does not authorise training.
+3. **Export:** assemble only reviewed photos and pinned review/permission evidence
+   in a new dataset directory. Re-run the existing complete pair qualification,
+   including source-group leakage, exact-recipe versions and duplicate checks,
+   before making the output available. Unreviewed photos remain pending. Changed
+   photos, permissions or recipe versions block export. Failed imports/exports
+   leave no completed output directory; existing work is never overwritten.
+
+Example import description (paths are relative to the separately supplied source
+folder; IDs must be anonymous):
+
+```json
+{
+  "schema": "shift-recipe-photo-import-1",
+  "data_kind": "real_recipe_photos",
+  "photos": [{"id":"beans-001","path":"photo.jpg","recipe_hint":"everyday-beans-on-toast"}]
+}
+```
+
+The required permission JSON is placed inside the review directory and binds the
+**prepared** `photo_sha256`. It records `basis`, `attribution`, `active`, `reviewed`,
+`training_reuse` and `evaluation_reuse`. The last four must be explicitly true
+on the basis of actual permission before labelling is allowed. The tool does not
+create that permission. Keep personal contact information out of these research
+records. Revocation must be managed in every exported dataset and derivative;
+there is no central live revocation registry or deletion service in this offline
+workflow. Checking pinned local evidence does not establish that an external
+permission is still active. Production collection/revocation remains separate.
+
+```bash
+python shift-ai-food-model/recipe_intake.py prepare --batch /absolute/import.json --source /absolute/originals --catalogue /absolute/work/recipe-index.json --output /absolute/review-queue
+python shift-ai-food-model/recipe_intake.py label --queue /absolute/review-queue/queue.json --catalogue /absolute/work/recipe-index.json --photo-id beans-001 --target recipe --recipe-id everyday-beans-on-toast --split train --capture-group capture-001 --dish-group dish-001 --source-group source-001 --permission permission-beans-001.json --confirm-real-photo --confirm-ingredients --confirm-no-private-content
+python shift-ai-food-model/recipe_intake.py export --queue /absolute/review-queue/queue.json --catalogue /absolute/work/recipe-index.json --output /absolute/checked-pairs --test-history unseen
+```
+
+Do not use `unseen` after inspecting the test images to improve the model; choose
+`previously-inspected` instead. Training still needs the independent splits and
+minimum support described above. Fixture input must be `fixture_only`; that mark
+is preserved through review/export and prevents saved training/serving.
+
+Verification includes a pinned actual public Nutrition5k PNG converted to a
+metadata-free JPEG, with its original bytes unchanged. It remained pending and
+export correctly refused: no SHIFT recipe label or new permission was invented.
+Generated fixture checks separately cover a complete reviewed export; that is
+plumbing/contract evidence, never real recipe accuracy. The saved Library images
+inspected during this continuation were interface concepts rather than checked
+recipe photographs, so they were not imported or labelled for training.

@@ -1,0 +1,15 @@
+{
+  "scope": "Actual public PNG preparation only, not recipe recognition or training evidence",
+  "public_image_id": "dish_1565981802",
+  "source_original_sha256": "01e2d3bc715005d15d1f24dfcef998ce6e20e8af28134f11bb266432fd8ebeda",
+  "attribution": "Nutrition5k, Thames et al., Google Research, CVPR 2021; CC BY 4.0; resized and recompressed for this experiment.",
+  "source_bytes": 305308,
+  "prepared_jpeg_sha256": "dab3774008e8a74e746ace7ed45f3672097db31ca1b1036a6a6fc005fad663a0",
+  "remains_pending_review": true,
+  "unreviewed_export_refused": true,
+  "recipe_label_assigned": false,
+  "training_permission_inferred": false,
+  "model_training_started": false,
+  "no_original_changes": true,
+  "metadata_removed": true
+}
