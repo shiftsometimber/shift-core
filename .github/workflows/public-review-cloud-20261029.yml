@@ -1,5 +1,5 @@
 name: Approved public review cloud release
-# Extend only the existing publication-date projection; preserve source and rollback gates.
+# Preserve the default production service binding exactly; extend only the existing publication-date projection; preserve source and rollback gates.
 on:
   push:
     branches: [fix/review-footer-colour-20261027]
