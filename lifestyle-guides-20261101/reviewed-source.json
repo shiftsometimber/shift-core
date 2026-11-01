@@ -1,0 +1,43 @@
+{
+  "visualReviewPassed": true,
+  "reviewedSource": "24994b1b50ec228d46af1eee06decd80efcc5ecd",
+  "browserChecks": 42,
+  "pages": [
+    "cardio-vs-strength",
+    "lifestyle-vs-medication",
+    "lifestyle-vs-surgery",
+    "medication-plus-lifestyle",
+    "structured-vs-diy",
+    "surgery-plus-lifestyle",
+    "walking-vs-structured-exercise"
+  ],
+  "viewports": [
+    1440,
+    768,
+    390
+  ],
+  "evidence": [
+    {
+      "source": "24994b1b50ec228d46af1eee06decd80efcc5ecd",
+      "run": 41317610478,
+      "artifact": 13087693005,
+      "cases": 42,
+      "scope": "Complete screen, source-preservation, horizontal-table and responsive browser review"
+    }
+  ],
+  "manualReview": "Inspected all seven desktop and phone screenshots, full-page layouts, tablet correction and final programme label; no clipped text or contrast issues.",
+  "moduleHashes": {
+    "config.mjs": "f4ab2b4d17b3db61f6511d757124e64b275186fb5edd5ce37be96c0e6abb3797",
+    "runtime.mjs": "97d7e789d72ecf48731b98380034058ca4fd1409a5268b746f9200a86b38f9d8",
+    "presentation.mjs": "ccd2391ccd29fa3d8da4e6f274b93f10bb28e9c83b14327498eea456d8ab0791",
+    "graphics.mjs": "009909a8917c96279109b1a89b6b6a5c31287f8922ac3f88517ecfc41e0c5e50",
+    "html.mjs": "efb7081f50337295361cb96d6b05f5f7d7d03df773f625609299ca4e86297146",
+    "browser.mjs": "54d6fbea7b5b725e53e4cd5fd02513d8dc3e8927f3044151cd8dd57c2ac4dcec",
+    "check.mjs": "0259f5b3d2459c71834aaafb155099929ac4fe29a00eb8155278789e8550514e",
+    "deploy.mjs": "386333c6fd738de3dbbe605a3cd47bd43a0bc2f6c4aef7bbaa4eb0835612f8c0",
+    "capture.mjs": "36d864308eaffe787d7520a4fbcca0a09ae39c9d02b43fe36080d4e686414650",
+    "route-owner.mjs": "35d4ad17759b7926b46fe76631c1fcf614c8251c28c5d50e6c0211360af30305",
+    "release-state.mjs": "b7a21d4dd04b7ab21d15b063fecdb8bf95ca1741bc4861d019872983f9143630",
+    "media.mjs": "f05ae5a3b3af2d818d07ed249b3b54516faea7d2e38d0e0835b6ba3e98e2ee66"
+  }
+}
