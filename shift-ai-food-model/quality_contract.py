@@ -75,7 +75,7 @@ def scorecard(args):
             "primary_gate_applied_full_vocabulary": gated["gated"],
             "ungated_full_vocabulary_exact_counts": counts,
             "response_item_cap": 12, "maximum_classifier_suggestions_on_this_set": peak,
-            "shared_category_diagnostic_only": report["same_images_shared_categories"]["candidate"],
+            "shared_category_diagnostic_only": report.get("same_images_shared_categories", {}).get("candidate"),
             "member_assisted_record_accuracy": None, "nutrition_accuracy": None},
         "target_assessment": assess({"precision": gated["gated"]["micro_precision"], "recall": gated["gated"]["micro_recall"]}),
         "rules": ["Abstentions and food-gate rejections still count as missed visible components",

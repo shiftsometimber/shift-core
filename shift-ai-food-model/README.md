@@ -1,5 +1,51 @@
 # Shift AI food model — research candidate
 
+## Spatial recognition and independent public-data continuation — 1 November 2026
+
+Continued after Matt flagged that work had stopped. The earlier wording that UK
+photos were the sole next dependency was too broad: UK field data is required
+for UK acceptance, while licensed public-data development can continue now.
+
+Implemented and trained a coarse 14x14 food/background localiser using the
+existing 574 training segmentation masks. Frozen SigLIP patch vectors plus global
+context feed our own regional heads. Validation and test prediction use only RGB;
+no ground-truth crops, held-out masks or annotation CSV are needed at inference.
+A nonlinear regional head, then four fixed seeded heads sharing one encoder,
+were selected using validation only. All 39 categories remain in the score.
+
+Full-39, gate-applied, same 208 development photos: candidate 6 precision/recall
+81.96% / 35.19%; regional ensemble 15 is 83.00% / 56.73%. All 208 real-JPEG scores
+reproduce within 1.97e-6. Warm inference averages 273 ms in this run. The actual
+shared adapter reuses a ready worker, refuses private fields and closes it.
+These are previously inspected public-development results, not UK acceptance.
+
+Acquired 73 separately licensed Open Images validation photos and 90 separate
+training photos with original-page CC BY 2.0 evidence, source attribution and
+publisher CC BY 4.0 object annotations. Validation photos/authors are excluded
+from training. Unlabelled foods remain unknown. Training uses weak positive-box
+loss alongside the original dense masks, never invented complete meal labels.
+The validation source contains only partial truth: on 60 mapped known-positive
+cases, candidate 6 hits 35%, ensemble 15 hits 40%, transfer head 16 hits 56.67%.
+Precision on that partial-label probe is unknown. Generalisation remains weak.
+The new transfer ensemble did not outperform ensemble 15 on the main scorecard;
+all outcomes, including regressions, are retained.
+
+The acquisition corrected two actual implementation limits: CC BY 2.0 /deed.en
+is the same licence as its root URL, while restricted variants remain rejected;
+and the unsorted training-credit CSV needs a bounded streaming match rather than
+a short prefix. Original source-page evidence and failed checks remain recorded.
+No account, contact, spend, private member photo or production activation occurred.
+
+A real non-food diagnostic has been launched on a fixed publisher-human Food-negative
+cohort, excluding contradictory positive food descendants and training authors.
+Its results are recorded separately; the four old blank/noise controls are not a
+real non-food benchmark. No threshold is tuned on that diagnostic. Completion
+receipt: `shift-ai-food-model/evidence/nonfood-completion-20261101.json`.
+
+Evidence: `shift-ai-food-model/evidence/spatial-progress-20261101.json`.
+The requested 99.99%/99.99% remains unverified. Existing release floors, privacy
+holds and source/capture split checks remain unchanged. No rollout is authorised.
+
 ## Requested 99.99% quality target — 1 November 2026, Europe/London
 
 Matt requested 99.99% precision and recall and a full route map. The concrete

@@ -1,0 +1,3140 @@
+{
+  "schema": "shift-openimages-intake-1",
+  "source": "https://storage.googleapis.com/openimages/web/download_v7.html",
+  "licence_source": "https://storage.googleapis.com/openimages/web/factsfigures_v7.html",
+  "annotation_licence": "CC-BY-4.0",
+  "publisher_image_licence_listing": "CC-BY-2.0; checked individually",
+  "metadata": [
+    {
+      "file": "classes.csv",
+      "url": "https://storage.googleapis.com/openimages/v7/oidv7-class-descriptions-boxable.csv",
+      "sha256": "1839e0e7e84130ae281f7f67413768601b031581c0c42e7fc17527b8e2a99aa9",
+      "bytes": 12064
+    },
+    {
+      "file": "image-rights.csv",
+      "url": "https://storage.googleapis.com/openimages/2018_04/validation/validation-images-with-rotation.csv",
+      "sha256": "ed93a0e121fe345effdfc7359b848dbc64a1ff6778c8c73563157cb500b33a17",
+      "bytes": 15245485
+    },
+    {
+      "file": "boxes.csv",
+      "url": "https://storage.googleapis.com/openimages/v5/validation-annotations-bbox.csv",
+      "sha256": "d8bbd59410af14835d7733165a7bb8a3f0213981b22dd5077b0b9f7878991ff2",
+      "bytes": 25105048
+    }
+  ],
+  "images_selected": 90,
+  "outcomes": [
+    {
+      "image_id": "000ada55d36b4bcb",
+      "publisher_class": "Salad",
+      "class_id": "/m/0grw1",
+      "publisher_split": "validation",
+      "box": [
+        0.14306785,
+        0.050884955,
+        0.9985251,
+        0.99557525
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Jon Mountjoy",
+      "title": "Water Spinach",
+      "original_landing_url": "https://www.flickr.com/photos/mountjoy/5442850400",
+      "original_url": "https://c4.staticflickr.com/6/5019/5442850400_271ed5f0a3_o.jpg",
+      "source_group": "openimages:000ada55d36b4bcb",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "adb7431efbd47c5abdc1ccd631a56364b3808aba3efc8908baad2b405a8e4a08",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/000ada55d36b4bcb.jpg",
+      "sha256": "eaee6587ea77802ab4e85f1a92b767d3ab5224cd21eeabab79275958e89c2bd4",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/000ada55d36b4bcb.jpg",
+      "attribution": "Water Spinach \u2014 Jon Mountjoy; https://www.flickr.com/photos/mountjoy/5442850400; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0019308d876736fe",
+      "publisher_class": "Cheese",
+      "class_id": "/m/01nkt",
+      "publisher_split": "validation",
+      "box": [
+        0.08962264,
+        0.0,
+        0.9245283,
+        0.9356846
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Pille",
+      "title": "Ingveri-pirni pirukas",
+      "original_landing_url": "https://www.flickr.com/photos/naminami/2421022071",
+      "original_url": "https://c7.staticflickr.com/3/2097/2421022071_ba420b8a35_o.jpg",
+      "source_group": "openimages:0019308d876736fe",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "38a6132d7abfee39b443440943b337eb7e323dbf7fbea9bb8e320ac9fdd5da65",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        776
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/0019308d876736fe.jpg",
+      "sha256": "59358adaf0f24b76fb9dc4056b6b72c88f7d6a934fef610cac3e59f22abcf488",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0019308d876736fe.jpg",
+      "attribution": "Ingveri-pirni pirukas \u2014 Pille; https://www.flickr.com/photos/naminami/2421022071; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0035c28612c035fd",
+      "publisher_class": "Salad",
+      "class_id": "/m/0grw1",
+      "publisher_split": "validation",
+      "box": [
+        0.15,
+        0.083333336,
+        0.8546875,
+        0.84791666
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "poida.smith",
+      "title": "Pho, Saigon Style",
+      "original_landing_url": "https://www.flickr.com/photos/36464510@N03/3556377404",
+      "original_url": "https://c6.staticflickr.com/4/3664/3556377404_40fa448428_o.jpg",
+      "source_group": "openimages:0035c28612c035fd",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "32bc53decb13ffa4a6bd94d660de0a5f14183a3a729f0973118a81b42642be83",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/0035c28612c035fd.jpg",
+      "sha256": "1d53c705e3d1e2138ff6bc1cf5df45b44317e271201e1ab2407051669f5bfd60",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0035c28612c035fd.jpg",
+      "attribution": "Pho, Saigon Style \u2014 poida.smith; https://www.flickr.com/photos/36464510@N03/3556377404; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "006389262f7ba7f1",
+      "publisher_class": "Pizza",
+      "class_id": "/m/0663v",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.010416667,
+        1.0,
+        0.99791664
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Steve Cavers",
+      "title": "Too many pizzas? Yes. Beef, 'shrooms, onion, garlic, & avocado.",
+      "original_landing_url": "https://www.flickr.com/photos/stevecavers/14669025680",
+      "original_url": "https://farm2.staticflickr.com/3852/14669025680_bf1ec0e606_o.jpg",
+      "source_group": "openimages:006389262f7ba7f1",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "324a0db135f93c78c837d1cbcbcf2a35a1811dc36eabf7fb8d99c78489973154",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/006389262f7ba7f1.jpg",
+      "sha256": "3e9a9aae1e4746be6e67690867a777c23f4048f291eaee604d1e41f9a13b2752",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/006389262f7ba7f1.jpg",
+      "attribution": "Too many pizzas? Yes. Beef, 'shrooms, onion, garlic, & avocado. \u2014 Steve Cavers; https://www.flickr.com/photos/stevecavers/14669025680; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0069e8be6d4f66f0",
+      "publisher_class": "Cheese",
+      "class_id": "/m/01nkt",
+      "publisher_split": "validation",
+      "box": [
+        0.03532009,
+        0.44608566,
+        0.39514348,
+        0.55982274
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Cristiano Betta",
+      "title": "Pizza",
+      "original_landing_url": "https://www.flickr.com/photos/cristiano_betta/3453989964/",
+      "original_url": "https://farm1.staticflickr.com/3314/3453989964_ee0e5ba84c_o.jpg",
+      "source_group": "openimages:0069e8be6d4f66f0",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "fb76ada86ba393953ed87dc0ce22aaf262520cccdec8230618f58bdf863bffd1",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        685,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/0069e8be6d4f66f0.jpg",
+      "sha256": "a4086a1f1c659379a18bf4e2bc7a9af539fc6a91c95698157d81b7f4d4ced8ea",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0069e8be6d4f66f0.jpg",
+      "attribution": "Pizza \u2014 Cristiano Betta; https://www.flickr.com/photos/cristiano_betta/3453989964/; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "00fcc4c5d0dd04c4",
+      "publisher_class": "Pasta",
+      "class_id": "/m/05z55",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Rownak  Jahan",
+      "title": "am bhorta",
+      "original_landing_url": "https://www.flickr.com/photos/banglarecipes/8514052353",
+      "original_url": "https://farm5.staticflickr.com/8237/8514052353_cb4e7f1eb6_o.jpg",
+      "source_group": "openimages:00fcc4c5d0dd04c4",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "97d85dd607a2a382665a877a57290c18c72d5910e57b0a7eeef50d353b13bbf7",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        576
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/00fcc4c5d0dd04c4.jpg",
+      "sha256": "a16c266e7470cbdd1dcb5b5ac3bfe7cb85435806e66a32e13887347684672ccc",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/00fcc4c5d0dd04c4.jpg",
+      "attribution": "am bhorta \u2014 Rownak  Jahan; https://www.flickr.com/photos/banglarecipes/8514052353; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0150f50d412837f1",
+      "publisher_class": "Salad",
+      "class_id": "/m/0grw1",
+      "publisher_split": "validation",
+      "box": [
+        0.050632913,
+        0.02166065,
+        0.9349005,
+        0.85379064
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "CCFoodTravel.com",
+      "title": "P6133355-001",
+      "original_landing_url": "https://www.flickr.com/photos/cumidanciki/18612106539",
+      "original_url": "https://farm2.staticflickr.com/440/18612106539_204f2f1008_o.jpg",
+      "source_group": "openimages:0150f50d412837f1",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "c761b969db283dc14daa5098c723f53136edba26f08d15f27e4ec4c103c8e634",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1021,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/0150f50d412837f1.jpg",
+      "sha256": "7e3e898275638cdf02b78c2d833b9c96f7fc8dab4491c6567480645f3d271372",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0150f50d412837f1.jpg",
+      "attribution": "P6133355-001 \u2014 CCFoodTravel.com; https://www.flickr.com/photos/cumidanciki/18612106539; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "01d35b63ca69b9b2",
+      "publisher_class": "Pasta",
+      "class_id": "/m/05z55",
+      "publisher_split": "validation",
+      "box": [
+        0.0036101083,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "F_A",
+      "title": "tagliatelle with prawns",
+      "original_landing_url": "https://www.flickr.com/photos/seelensturm/6856909902",
+      "original_url": "https://farm3.staticflickr.com/7207/6856909902_6e511267d2_o.jpg",
+      "source_group": "openimages:01d35b63ca69b9b2",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "b2327aa1b48d7b85697c0e714747b665801de8c49405ed2bcdf6d1c7a6e7a24b",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/01d35b63ca69b9b2.jpg",
+      "sha256": "431ee499445ec981f58c6c1599b7d6e35f33d291fc284bab590e260b59c04c65",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/01d35b63ca69b9b2.jpg",
+      "attribution": "tagliatelle with prawns \u2014 F_A; https://www.flickr.com/photos/seelensturm/6856909902; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "01e30a3f0668d33e",
+      "publisher_class": "Sandwich",
+      "class_id": "/m/0l515",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.0,
+        0.334375,
+        0.67291665
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Helena Jacoba",
+      "title": "Grilled cheese sandwich with blueberries and apple",
+      "original_landing_url": "https://www.flickr.com/photos/69302634@N02/15135094156",
+      "original_url": "https://c7.staticflickr.com/4/3899/15135094156_2f169b34ab_o.jpg",
+      "source_group": "openimages:01e30a3f0668d33e",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "565e7efd6327be95137a130198804e49d4ad3b980fc788bd9b43215b5a2c03c7",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/01e30a3f0668d33e.jpg",
+      "sha256": "6688c75e828032c1d9ee2da19c074ebb9c1cd939f3e4f69fedeb5129778f95c0",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/01e30a3f0668d33e.jpg",
+      "attribution": "Grilled cheese sandwich with blueberries and apple \u2014 Helena Jacoba; https://www.flickr.com/photos/69302634@N02/15135094156; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0224829b5bc9d6ed",
+      "publisher_class": "Salad",
+      "class_id": "/m/0grw1",
+      "publisher_split": "validation",
+      "box": [
+        0.048672568,
+        0.07522124,
+        0.9985251,
+        0.92256635
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Jules Morgan",
+      "title": "Kale con Chile y Ajo",
+      "original_landing_url": "https://www.flickr.com/photos/ladymissmarquise/4451878982",
+      "original_url": "https://c6.staticflickr.com/3/2798/4451878982_c68e2d5b31_o.jpg",
+      "source_group": "openimages:0224829b5bc9d6ed",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "e6f9bdad222c7ba8909fbfffb11a7d71e5b9d8c3f8983441ccfe4aa776ffa32f",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        684
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/0224829b5bc9d6ed.jpg",
+      "sha256": "56355cf7df49233a972391a14c0308a5f7f5f079e93f4e0ed0d8432d0f7caf92",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0224829b5bc9d6ed.jpg",
+      "attribution": "Kale con Chile y Ajo \u2014 Jules Morgan; https://www.flickr.com/photos/ladymissmarquise/4451878982; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0235ce2972c4549a",
+      "publisher_class": "Mushroom",
+      "class_id": "/m/052sf",
+      "publisher_split": "validation",
+      "box": [
+        0.25701624,
+        0.07284768,
+        0.68094534,
+        0.86092716
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Mike K",
+      "title": "Fungus",
+      "original_landing_url": "https://www.flickr.com/photos/baltimike/625398957",
+      "original_url": "https://c3.staticflickr.com/2/1099/625398957_3846b25c9e_o.jpg",
+      "source_group": "openimages:0235ce2972c4549a",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "status": "source_check_failed_no_training_admission",
+      "error_type": "HTTPError",
+      "publisher_rotation": ""
+    },
+    {
+      "image_id": "028398b1ad4b545d",
+      "publisher_class": "Salad",
+      "class_id": "/m/0grw1",
+      "publisher_split": "validation",
+      "box": [
+        0.1534296,
+        0.19855596,
+        0.78519857,
+        0.87725633
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Gary Stevens",
+      "title": "Alice's Fancy",
+      "original_landing_url": "https://www.flickr.com/photos/garysoup/22151699356",
+      "original_url": "https://c6.staticflickr.com/6/5697/22151699356_3b36fa5454_o.jpg",
+      "source_group": "openimages:028398b1ad4b545d",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "41abac4cabc822da47a0110ed7102f038d7ddf087e9090991e7d1e6d00e063e5",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/028398b1ad4b545d.jpg",
+      "sha256": "23cbad5fdafb72e0f0603bb5ea644087bbff5a75fc3a4535da63e10d42f706ee",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/028398b1ad4b545d.jpg",
+      "attribution": "Alice's Fancy \u2014 Gary Stevens; https://www.flickr.com/photos/garysoup/22151699356; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "02e49ce7212f9176",
+      "publisher_class": "Cheese",
+      "class_id": "/m/01nkt",
+      "publisher_split": "validation",
+      "box": [
+        0.296875,
+        0.45208332,
+        0.4421875,
+        0.5520833
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Shinya Suzuki",
+      "title": "Whopper",
+      "original_landing_url": "https://www.flickr.com/photos/shinyasuzuki/4914815038",
+      "original_url": "https://farm7.staticflickr.com/4078/4914815038_53b97e32a3_o.jpg",
+      "source_group": "openimages:02e49ce7212f9176",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "8d8d377e4d5fcab28059dbb246ced7c4bb5e48f6527c1a5c9b6461af04669576",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/02e49ce7212f9176.jpg",
+      "sha256": "ceadffd104c65849fdf12835f0dfa7a585e44e5ea5b27c671f51f70044d1c0d6",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/02e49ce7212f9176.jpg",
+      "attribution": "Whopper \u2014 Shinya Suzuki; https://www.flickr.com/photos/shinyasuzuki/4914815038; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "02ea2c2f4becd07f",
+      "publisher_class": "Pasta",
+      "class_id": "/m/05z55",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Steve Johnson",
+      "title": "Mac and Cheese",
+      "original_landing_url": "https://www.flickr.com/photos/artbystevejohnson/4796899365",
+      "original_url": "https://c8.staticflickr.com/5/4119/4796899365_ca909637ac_o.jpg",
+      "source_group": "openimages:02ea2c2f4becd07f",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "75b52214ecb474d8597a451bf0e574b6024a81a48618abc3fba4ce62521719ba",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        658
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/02ea2c2f4becd07f.jpg",
+      "sha256": "1a4014096793e976b4a08b7221ff8513952210c464afd4233a5eef3e5fe9c064",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/02ea2c2f4becd07f.jpg",
+      "attribution": "Mac and Cheese \u2014 Steve Johnson; https://www.flickr.com/photos/artbystevejohnson/4796899365; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0303ef7b037b5ecb",
+      "publisher_class": "Bread",
+      "class_id": "/m/09728",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.1696751,
+        1.0,
+        0.90794224
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Mighty Travels",
+      "title": "#almond #croissant #schubert #sanfrancisco",
+      "original_landing_url": "https://www.flickr.com/photos/96223380@N02/12727067044",
+      "original_url": "https://c4.staticflickr.com/4/3737/12727067044_c623d121fe_o.jpg",
+      "source_group": "openimages:0303ef7b037b5ecb",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "status": "source_check_failed_no_training_admission",
+      "error_type": "HTTPError",
+      "publisher_rotation": "0.0"
+    },
+    {
+      "image_id": "03c3bda85937a846",
+      "publisher_class": "Pasta",
+      "class_id": "/m/05z55",
+      "publisher_split": "validation",
+      "box": [
+        0.1484375,
+        0.05,
+        0.9046875,
+        0.92291665
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "P",
+      "title": "spaghetti DIY",
+      "original_landing_url": "https://www.flickr.com/photos/donutp/2541381860",
+      "original_url": "https://farm7.staticflickr.com/2063/2541381860_93f9822b9d_o.jpg",
+      "source_group": "openimages:03c3bda85937a846",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "6ab4332a3fb0001c173f92ea42c7b546a9e943995b1a0558483409d83d4b095d",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/03c3bda85937a846.jpg",
+      "sha256": "ca6d867e23846368bfeaf63b080fec8275a453377b9d9b1b8c59d4ad6a233e64",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/03c3bda85937a846.jpg",
+      "attribution": "spaghetti DIY \u2014 P; https://www.flickr.com/photos/donutp/2541381860; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0464dba92a26a75b",
+      "publisher_class": "Pasta",
+      "class_id": "/m/05z55",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.17880794,
+        1.0,
+        1.0
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "ellevalentine",
+      "title": "Mac and Cheese Panera Style",
+      "original_landing_url": "https://www.flickr.com/photos/ellevalentine/6186891677",
+      "original_url": "https://c4.staticflickr.com/7/6160/6186891677_d6b409db83_o.jpg",
+      "source_group": "openimages:0464dba92a26a75b",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "9ae2b04da9e8c63c311877f85c400cf9465449798c05e73a640e88f1d6953075",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        686
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/0464dba92a26a75b.jpg",
+      "sha256": "db4d0876cfdd1c6e9de33200aa9b0e4d090f6c2200e6c416b886f0e8e31c0705",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0464dba92a26a75b.jpg",
+      "attribution": "Mac and Cheese Panera Style \u2014 ellevalentine; https://www.flickr.com/photos/ellevalentine/6186891677; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "04835d2d8eb828f1",
+      "publisher_class": "Pizza",
+      "class_id": "/m/0663v",
+      "publisher_split": "validation",
+      "box": [
+        0.0015625,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Jessica Spengler",
+      "title": "Lasagne",
+      "original_landing_url": "https://www.flickr.com/photos/wordridden/1251187022",
+      "original_url": "https://farm2.staticflickr.com/1230/1251187022_f85e4f10ae_o.jpg",
+      "source_group": "openimages:04835d2d8eb828f1",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "9b2cc59dd2c2a3f88f1fa67e3d78d986637c197d0daf15cff7e0b16fe1e9783f",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/04835d2d8eb828f1.jpg",
+      "sha256": "ed594465d0daff339ff47c6c919ed26e676c65513444f64e8e7183e002ff3776",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/04835d2d8eb828f1.jpg",
+      "attribution": "Lasagne \u2014 Jessica Spengler; https://www.flickr.com/photos/wordridden/1251187022; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "056b823b35b47079",
+      "publisher_class": "Egg",
+      "class_id": "/m/033cnk",
+      "publisher_split": "validation",
+      "box": [
+        0.1546875,
+        0.33125,
+        0.2875,
+        0.46875
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Emilian Robert Vicol",
+      "title": "Easter-Colored-Eggs__76319",
+      "original_landing_url": "https://www.flickr.com/photos/free-stock/6970874706/",
+      "original_url": "https://c2.staticflickr.com/9/8020/6970874706_bb1f68a434_o.jpg",
+      "source_group": "openimages:056b823b35b47079",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "f38e57a321885e2afa099b3c7b6aa3cb2ac8ebcac14806daa0be581b3cbf3973",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/056b823b35b47079.jpg",
+      "sha256": "6fdfd1d6a5724a136629d0bbecb0bbc4fd43ca69a89fddfed92af94327555470",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/056b823b35b47079.jpg",
+      "attribution": "Easter-Colored-Eggs__76319 \u2014 Emilian Robert Vicol; https://www.flickr.com/photos/free-stock/6970874706/; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "059bbdbdb843af6a",
+      "publisher_class": "Cheese",
+      "class_id": "/m/01nkt",
+      "publisher_split": "validation",
+      "box": [
+        0.11875,
+        0.15,
+        0.8546875,
+        0.8333333
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "moedusa",
+      "title": "IMG_20120408_181206",
+      "original_landing_url": "https://www.flickr.com/photos/moedusa/7056941345",
+      "original_url": "https://c3.staticflickr.com/6/5454/7056941345_26b9cb4774_o.jpg",
+      "source_group": "openimages:059bbdbdb843af6a",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "9a714acf68a19c9ae50e52d5702d3bfbe73c47be159e8e6275faec5cbf703590",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/059bbdbdb843af6a.jpg",
+      "sha256": "885419b13494711e947794ed92621c822919cf0b650f447feaf751f169857840",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/059bbdbdb843af6a.jpg",
+      "attribution": "IMG_20120408_181206 \u2014 moedusa; https://www.flickr.com/photos/moedusa/7056941345; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "05d75289b426c14a",
+      "publisher_class": "Bread",
+      "class_id": "/m/09728",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.4921875,
+        0.4676409,
+        0.9890625
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "camay",
+      "title": "20140317_144537",
+      "original_landing_url": "https://www.flickr.com/photos/camay/13419209953",
+      "original_url": "https://c3.staticflickr.com/4/3821/13419209953_8a35aef8b7_o.jpg",
+      "source_group": "openimages:05d75289b426c14a",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "b28604b089b652579df32d0e702af980cf7255e7bfae64e2dbcacb61c3b4a44e",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        768,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/05d75289b426c14a.jpg",
+      "sha256": "d99fc9bcddedf7d6456418430ed97ba099c248f370c792d932f503103ced4bc1",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/05d75289b426c14a.jpg",
+      "attribution": "20140317_144537 \u2014 camay; https://www.flickr.com/photos/camay/13419209953; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "06475bc420ee8c97",
+      "publisher_class": "Egg",
+      "class_id": "/m/033cnk",
+      "publisher_split": "validation",
+      "box": [
+        0.42941177,
+        0.1308204,
+        0.9823529,
+        0.72283816
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Yuya Saito",
+      "title": "Hamburg at Tsubame Kitchen",
+      "original_landing_url": "https://www.flickr.com/photos/studiomohawk/5206170925",
+      "original_url": "https://farm8.staticflickr.com/5205/5206170925_dcecf158b9_o.jpg",
+      "source_group": "openimages:06475bc420ee8c97",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "status": "source_check_failed_no_training_admission",
+      "error_type": "HTTPError",
+      "publisher_rotation": "0.0"
+    },
+    {
+      "image_id": "0732403beb001417",
+      "publisher_class": "Egg",
+      "class_id": "/m/033cnk",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.14583333,
+        1.0,
+        1.0
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Seph Swain",
+      "title": "Poached Eggs",
+      "original_landing_url": "https://www.flickr.com/photos/seph_swain/2350936397",
+      "original_url": "https://farm8.staticflickr.com/3191/2350936397_23e51c62e4_o.jpg",
+      "source_group": "openimages:0732403beb001417",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "8798985819c71863820d6e15dfd1b95667c4e6b734115f3d6f81476c92aebaa1",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/0732403beb001417.jpg",
+      "sha256": "ad2b979a802c3f0101ec6af509633caa793e778690cb3e549276280460b6a9b9",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0732403beb001417.jpg",
+      "attribution": "Poached Eggs \u2014 Seph Swain; https://www.flickr.com/photos/seph_swain/2350936397; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "078821d86db99fc9",
+      "publisher_class": "Apple",
+      "class_id": "/m/014j1m",
+      "publisher_split": "validation",
+      "box": [
+        0.24483776,
+        0.092920355,
+        0.5427729,
+        0.539823
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Matleena Laakso",
+      "title": "Omenapuu \u00c5ker\u00f6",
+      "original_landing_url": "https://www.flickr.com/photos/matleenalaakso/8154112499",
+      "original_url": "https://c2.staticflickr.com/8/7261/8154112499_cd0d5a31d0_o.jpg",
+      "source_group": "openimages:078821d86db99fc9",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "e358f93cf254f10cc22f23a565d34ec40dcb5fc78f3f77ee78bbf1b71a27bd5e",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/078821d86db99fc9.jpg",
+      "sha256": "473b2b0c25fd874fff09c19235c0a06e25c1209f34b26e15b5bc51cddba6a7c9",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/078821d86db99fc9.jpg",
+      "attribution": "Omenapuu \u00c5ker\u00f6 \u2014 Matleena Laakso; https://www.flickr.com/photos/matleenalaakso/8154112499; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "07b5aa736894e3f0",
+      "publisher_class": "Cheese",
+      "class_id": "/m/01nkt",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.0015625,
+        0.9979123,
+        0.8
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Crystal",
+      "title": "Pumpkin",
+      "original_landing_url": "https://www.flickr.com/photos/crystalflickr/48134519",
+      "original_url": "https://farm1.staticflickr.com/26/48134519_731aa84eed_o.jpg",
+      "source_group": "openimages:07b5aa736894e3f0",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "df209de843a191805ff0f9940211e43621b9104d7d14765a3fb870bd07a2b602",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        766,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/07b5aa736894e3f0.jpg",
+      "sha256": "4cc47391b6ea1ca3efca7f85d3aba5c7ded3ccd3d9f43942e17b20949225143d",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/07b5aa736894e3f0.jpg",
+      "attribution": "Pumpkin \u2014 Crystal; https://www.flickr.com/photos/crystalflickr/48134519; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "07e556633e32892f",
+      "publisher_class": "Bread",
+      "class_id": "/m/09728",
+      "publisher_split": "validation",
+      "box": [
+        0.1125,
+        0.28541666,
+        0.85625,
+        0.98125
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Dan Perry",
+      "title": "Bread course at the Whistling Straits Restaurant",
+      "original_landing_url": "https://www.flickr.com/photos/golf_pictures/3845277073",
+      "original_url": "https://c8.staticflickr.com/4/3449/3845277073_c25638fcee_o.jpg",
+      "source_group": "openimages:07e556633e32892f",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "759b551ffed0212726e0616c150b00edd43df6f142890a94a8fc8ba258e14384",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/07e556633e32892f.jpg",
+      "sha256": "4415acd00daf1e9698661dde38c338a4d3e5d76cebea71fa92f81492e2bc3145",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/07e556633e32892f.jpg",
+      "attribution": "Bread course at the Whistling Straits Restaurant \u2014 Dan Perry; https://www.flickr.com/photos/golf_pictures/3845277073; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "080e65075c6ff5d8",
+      "publisher_class": "Tomato",
+      "class_id": "/m/07j87",
+      "publisher_split": "validation",
+      "box": [
+        0.075,
+        0.035416666,
+        0.94375,
+        1.0
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "benketaro",
+      "title": "Blanched Tomatoes",
+      "original_landing_url": "https://www.flickr.com/photos/misskei/1580391940",
+      "original_url": "https://c1.staticflickr.com/3/2368/1580391940_746648eaf7_o.jpg",
+      "source_group": "openimages:080e65075c6ff5d8",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "b451eac99a7d4be2b26a3db93c0d4cbbe0c30eef54e11a6f7a9bf4adf7db7b78",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/080e65075c6ff5d8.jpg",
+      "sha256": "9e514316721e4410a18a0d03e9a48b5d791b69ec6b5ad07847fe0723408e304d",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/080e65075c6ff5d8.jpg",
+      "attribution": "Blanched Tomatoes \u2014 benketaro; https://www.flickr.com/photos/misskei/1580391940; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "08b38afe6c5fa6cc",
+      "publisher_class": "Strawberry",
+      "class_id": "/m/07fbm7",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.4125,
+        0.1921875,
+        0.53125
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "andrewarchy",
+      "title": "Tiramisu cake from Amadeus Fine Cakes",
+      "original_landing_url": "https://www.flickr.com/photos/andrewarchy/6652237675",
+      "original_url": "https://c5.staticflickr.com/8/7019/6652237675_da59bfe7c6_o.jpg",
+      "source_group": "openimages:08b38afe6c5fa6cc",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "18a63205b7f7a141143d37153e75aebb5706855fe9419f43a863f5d9fd79f47b",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/08b38afe6c5fa6cc.jpg",
+      "sha256": "b38b0c1b173d8a986cac431c5eac1e3239dce560b6303a69f8efd6dd5ba346af",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/08b38afe6c5fa6cc.jpg",
+      "attribution": "Tiramisu cake from Amadeus Fine Cakes \u2014 andrewarchy; https://www.flickr.com/photos/andrewarchy/6652237675; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "08b8229c9c48582e",
+      "publisher_class": "Bread",
+      "class_id": "/m/09728",
+      "publisher_split": "validation",
+      "box": [
+        0.12536873,
+        0.10840708,
+        0.9041298,
+        0.94690263
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "sylvar",
+      "title": "Irish fruit brack",
+      "original_landing_url": "https://www.flickr.com/photos/sylvar/287344210",
+      "original_url": "https://c7.staticflickr.com/1/101/287344210_898ee87ef9_o.jpg",
+      "source_group": "openimages:08b8229c9c48582e",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "a9361b5d049103755db9a127191e99e1ab6862ec28719f28ce8c802118dc5d25",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/08b8229c9c48582e.jpg",
+      "sha256": "719725d62b1edad4965f080075845d71e2637dd7c6066fd41bca65d2f58c9412",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/08b8229c9c48582e.jpg",
+      "attribution": "Irish fruit brack \u2014 sylvar; https://www.flickr.com/photos/sylvar/287344210; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "099570f1481ad914",
+      "publisher_class": "Egg",
+      "class_id": "/m/033cnk",
+      "publisher_split": "validation",
+      "box": [
+        0.26362297,
+        0.17073171,
+        0.7378498,
+        0.5210643
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Nathan",
+      "title": "Melbourne Cup Day: salad",
+      "original_landing_url": "https://www.flickr.com/photos/gemsling/291404236",
+      "original_url": "https://farm5.staticflickr.com/120/291404236_567944fe8f_o.jpg",
+      "source_group": "openimages:099570f1481ad914",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "1c47712594e917767c31198938be47b6616f972f065973dae9ae5422693b0bc1",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        681
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/099570f1481ad914.jpg",
+      "sha256": "8642c207720f5c6a5f7fd9d79a80f5d87d7d7066295e5d5733bb3c3713bd5cb8",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/099570f1481ad914.jpg",
+      "attribution": "Melbourne Cup Day: salad \u2014 Nathan; https://www.flickr.com/photos/gemsling/291404236; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "09a9a9d1fe0a592a",
+      "publisher_class": "Bread",
+      "class_id": "/m/09728",
+      "publisher_split": "validation",
+      "box": [
+        0.09375,
+        0.0,
+        1.0,
+        0.8953125
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "sunshinecity",
+      "title": "Ciambellone allo Yogurt",
+      "original_landing_url": "https://www.flickr.com/photos/sunshinecity/4398115340",
+      "original_url": "https://c3.staticflickr.com/5/4001/4398115340_f1b596e53b_o.jpg",
+      "source_group": "openimages:09a9a9d1fe0a592a",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "47f4ee7363e05ae1645253f6fe2d3e412eb410f5ec1c5aab43db7749ffb5f061",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        768,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/09a9a9d1fe0a592a.jpg",
+      "sha256": "7caa89d5e8788fca8de004b1c8bc24a98eb3d2d870250abab059260d3ec19753",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/09a9a9d1fe0a592a.jpg",
+      "attribution": "Ciambellone allo Yogurt \u2014 sunshinecity; https://www.flickr.com/photos/sunshinecity/4398115340; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "09b616a35758e42c",
+      "publisher_class": "Tomato",
+      "class_id": "/m/07j87",
+      "publisher_split": "validation",
+      "box": [
+        0.103125,
+        0.34583333,
+        0.4640625,
+        0.86875
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "anneheathen",
+      "title": "freshly picked tomatoes",
+      "original_landing_url": "https://www.flickr.com/photos/annethelibrarian/6114140066",
+      "original_url": "https://c5.staticflickr.com/7/6185/6114140066_a1e2d87e8b_o.jpg",
+      "source_group": "openimages:09b616a35758e42c",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "status": "source_check_failed_no_training_admission",
+      "error_type": "HTTPError",
+      "publisher_rotation": "0.0"
+    },
+    {
+      "image_id": "0b2c23d6ee2b3801",
+      "publisher_class": "Strawberry",
+      "class_id": "/m/07fbm7",
+      "publisher_split": "validation",
+      "box": [
+        0.075,
+        0.61041665,
+        0.1703125,
+        0.7375
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Helena Jacoba",
+      "title": "Year of the Horse raspberry mousse birthday cake",
+      "original_landing_url": "https://www.flickr.com/photos/69302634@N02/12257427923",
+      "original_url": "https://farm2.staticflickr.com/2847/12257427923_d115e259f6_o.jpg",
+      "source_group": "openimages:0b2c23d6ee2b3801",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "fb12e172798baada032a6abe3b30f3722397dfb910b895bd3535ba38e80d2961",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/0b2c23d6ee2b3801.jpg",
+      "sha256": "5d6b1eaa53d31a2a435617b8f477706241bb2bb97dc426b09378118a56153ee4",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0b2c23d6ee2b3801.jpg",
+      "attribution": "Year of the Horse raspberry mousse birthday cake \u2014 Helena Jacoba; https://www.flickr.com/photos/69302634@N02/12257427923; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0c1574422512912a",
+      "publisher_class": "Tomato",
+      "class_id": "/m/07j87",
+      "publisher_split": "validation",
+      "box": [
+        0.579646,
+        0.539823,
+        0.88495576,
+        0.78318584
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Jon Mountjoy",
+      "title": "Eggs Benedict",
+      "original_landing_url": "https://www.flickr.com/photos/mountjoy/5746070732",
+      "original_url": "https://c3.staticflickr.com/6/5310/5746070732_717c17293a_o.jpg",
+      "source_group": "openimages:0c1574422512912a",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "9eb54efb3e956dfd80ec6de95c3e3799b4754cda87a51f14551e358f206d07d8",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/0c1574422512912a.jpg",
+      "sha256": "d2f9246a4636675811ce8be7a9f1982fd18eccd6535941db4b0c52736a97cf6b",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0c1574422512912a.jpg",
+      "attribution": "Eggs Benedict \u2014 Jon Mountjoy; https://www.flickr.com/photos/mountjoy/5746070732; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0cca1d9b9d055a7a",
+      "publisher_class": "Strawberry",
+      "class_id": "/m/07fbm7",
+      "publisher_split": "validation",
+      "box": [
+        0.13541667,
+        0.1125,
+        0.36041668,
+        0.2296875
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "looopeeelisa",
+      "title": "Strawberry & Ice cream Sundae 2010-07-11",
+      "original_landing_url": "https://www.flickr.com/photos/loopygirl/4799177507",
+      "original_url": "https://c3.staticflickr.com/5/4075/4799177507_fbf347b59a_o.jpg",
+      "source_group": "openimages:0cca1d9b9d055a7a",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "status": "source_check_failed_no_training_admission",
+      "error_type": "HTTPError",
+      "publisher_rotation": "0.0"
+    },
+    {
+      "image_id": "0cdd6ff4844c04d4",
+      "publisher_class": "Mushroom",
+      "class_id": "/m/052sf",
+      "publisher_split": "validation",
+      "box": [
+        0.29038855,
+        0.11464968,
+        0.38445807,
+        0.18471338
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Phil Sellens",
+      "title": "Jelly Ear (Auricularia auricula -judae)",
+      "original_landing_url": "https://www.flickr.com/photos/phil_sellens/4115109561",
+      "original_url": "https://farm5.staticflickr.com/2739/4115109561_b75be8e03f_o.jpg",
+      "source_group": "openimages:0cdd6ff4844c04d4",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "cfb98d01c4ca653c5f607966e818df7e935ab5b70d725056a11d3d0e7978fb22",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        797,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/0cdd6ff4844c04d4.jpg",
+      "sha256": "6255e82f11a70f39468ee15998b92086dcc601d9bcd08a47e700b52da641efbb",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0cdd6ff4844c04d4.jpg",
+      "attribution": "Jelly Ear (Auricularia auricula -judae) \u2014 Phil Sellens; https://www.flickr.com/photos/phil_sellens/4115109561; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0cf55e9f5c710686",
+      "publisher_class": "Pizza",
+      "class_id": "/m/0663v",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.10625,
+        1.0,
+        1.0
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Yusuke Kawasaki",
+      "title": "IMGP5864",
+      "original_landing_url": "https://www.flickr.com/photos/u-suke/4813933834",
+      "original_url": "https://farm7.staticflickr.com/4097/4813933834_9c6f60b558_o.jpg",
+      "source_group": "openimages:0cf55e9f5c710686",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "8302388367d1ec5380b2000670584ea0d03c9a03c0ab48e8d9936c8d6af0c1b2",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/0cf55e9f5c710686.jpg",
+      "sha256": "16b5054baad9768048a1b1bebfd6c970139043746f7fad0266255a8088923bb5",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0cf55e9f5c710686.jpg",
+      "attribution": "IMGP5864 \u2014 Yusuke Kawasaki; https://www.flickr.com/photos/u-suke/4813933834; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0e0924847072dd90",
+      "publisher_class": "Tomato",
+      "class_id": "/m/07j87",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.028880866,
+        0.8231047,
+        0.99819493
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "F_A",
+      "title": "tomatoes",
+      "original_landing_url": "https://www.flickr.com/photos/seelensturm/7887690050",
+      "original_url": "https://farm1.staticflickr.com/8042/7887690050_023a64050a_o.jpg",
+      "source_group": "openimages:0e0924847072dd90",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "c69f708c1843a64fde24133b18a1cdd69f7f622c52d00e6a230105c6934fae04",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/0e0924847072dd90.jpg",
+      "sha256": "e1b08aece080acc4a2b69b63ecb0b473463788de8ab6af5367da3b3930d5f779",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0e0924847072dd90.jpg",
+      "attribution": "tomatoes \u2014 F_A; https://www.flickr.com/photos/seelensturm/7887690050; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0f65b1edbacf6563",
+      "publisher_class": "Strawberry",
+      "class_id": "/m/07fbm7",
+      "publisher_split": "validation",
+      "box": [
+        0.4719764,
+        0.4778761,
+        0.6504425,
+        0.61725664
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Chloe Lim",
+      "title": "Strawberry Jelly",
+      "original_landing_url": "https://www.flickr.com/photos/kfoodaddict/6119407106",
+      "original_url": "https://farm4.staticflickr.com/6066/6119407106_d439e784ed_o.jpg",
+      "source_group": "openimages:0f65b1edbacf6563",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "153e2530ff67c09c9103ff987b1417d67b5d0bbe218d87c2fc13507484e19d9e",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/0f65b1edbacf6563.jpg",
+      "sha256": "2038077661f01db8e30cf21aafbb77d2ff49d50ca00fb9d5784691b5c9a3e31e",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/0f65b1edbacf6563.jpg",
+      "attribution": "Strawberry Jelly \u2014 Chloe Lim; https://www.flickr.com/photos/kfoodaddict/6119407106; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "0f9a766df48d2d4d",
+      "publisher_class": "Mushroom",
+      "class_id": "/m/052sf",
+      "publisher_split": "validation",
+      "box": [
+        0.325,
+        0.21666667,
+        0.6390625,
+        0.84166664
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "John Williams",
+      "title": "Wild mushrooms",
+      "original_landing_url": "https://www.flickr.com/photos/eurapart/4923015829",
+      "original_url": "https://c6.staticflickr.com/5/4095/4923015829_cbd3e9131e_o.jpg",
+      "source_group": "openimages:0f9a766df48d2d4d",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "status": "source_check_failed_no_training_admission",
+      "error_type": "HTTPError",
+      "publisher_rotation": "0.0"
+    },
+    {
+      "image_id": "103cadacd19f2c80",
+      "publisher_class": "Pizza",
+      "class_id": "/m/0663v",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.1308204,
+        1.0,
+        0.98447895
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "AnneCN",
+      "title": "Our pizza at Scornovaccos - so good",
+      "original_landing_url": "https://www.flickr.com/photos/anne-cathrine_nyberg/5928133509/",
+      "original_url": "https://farm1.staticflickr.com/6012/5928133509_d93d89237c_o.jpg",
+      "source_group": "openimages:103cadacd19f2c80",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "763f894127e9f3709631f5af5d83b21acc5755e8073221dfe33e93cf544d576a",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        681
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/103cadacd19f2c80.jpg",
+      "sha256": "620c2fe0b79a4fea4eeb013cea1c35be53f69e23d53d4f6fe636d74b3799b523",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/103cadacd19f2c80.jpg",
+      "attribution": "Our pizza at Scornovaccos - so good \u2014 AnneCN; https://www.flickr.com/photos/anne-cathrine_nyberg/5928133509/; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "1047925fd28f2b9f",
+      "publisher_class": "Pizza",
+      "class_id": "/m/0663v",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Shoshanah",
+      "title": "Half pepperoni; Half feta, olive, and roasted red pepper",
+      "original_landing_url": "https://www.flickr.com/photos/shoshanah/3449328732/",
+      "original_url": "https://c8.staticflickr.com/4/3643/3449328732_a2abf331ab_o.jpg",
+      "source_group": "openimages:1047925fd28f2b9f",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "ee7225c1472ad115816bd0ff937128f17701643a39e91d72d137c70124484c93",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/1047925fd28f2b9f.jpg",
+      "sha256": "ca7251c3ad53268f4481eb21714b8c2190682c090847e59192558dba0d78e46c",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/1047925fd28f2b9f.jpg",
+      "attribution": "Half pepperoni; Half feta, olive, and roasted red pepper \u2014 Shoshanah; https://www.flickr.com/photos/shoshanah/3449328732/; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "105433f9d808d18e",
+      "publisher_class": "Apple",
+      "class_id": "/m/014j1m",
+      "publisher_split": "validation",
+      "box": [
+        0.12815884,
+        0.102888085,
+        0.8592058,
+        0.85559565
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "nachans",
+      "title": "0133",
+      "original_landing_url": "https://www.flickr.com/photos/pancakeplan/5880502739",
+      "original_url": "https://c7.staticflickr.com/7/6010/5880502739_f266613b73_o.jpg",
+      "source_group": "openimages:105433f9d808d18e",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "fe208ce8a0a767b5b9b5afe834a40317eb81f653e55c45b49cdcfeb9a25990a0",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/105433f9d808d18e.jpg",
+      "sha256": "1a67f7d882df6b80366708160f9228f233f216f4a950e10f1ebf9974eaea11b7",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/105433f9d808d18e.jpg",
+      "attribution": "0133 \u2014 nachans; https://www.flickr.com/photos/pancakeplan/5880502739; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "10b09438620fd5b0",
+      "publisher_class": "Cucumber",
+      "class_id": "/m/015x4r",
+      "publisher_split": "validation",
+      "box": [
+        0.446875,
+        0.0,
+        0.7671875,
+        0.4875
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Delaware Cooperative Extension",
+      "title": "Zucchini variety trial on raised beds",
+      "original_landing_url": "https://www.flickr.com/photos/udextension/15118514195",
+      "original_url": "https://farm1.staticflickr.com/5585/15118514195_4d1b59165c_o.jpg",
+      "source_group": "openimages:10b09438620fd5b0",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "cf0d433b15818365c795fa10d82de286e4871d5e33d1302d4855ced1ff0f2acb",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "270.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/10b09438620fd5b0.jpg",
+      "sha256": "940153f30a5c6f157aa6ea201ad29cecb0ecd5ffa57c0e1d12c58525cc4448ee",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/10b09438620fd5b0.jpg",
+      "attribution": "Zucchini variety trial on raised beds \u2014 Delaware Cooperative Extension; https://www.flickr.com/photos/udextension/15118514195; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "1212703168e0f200",
+      "publisher_class": "Strawberry",
+      "class_id": "/m/07fbm7",
+      "publisher_split": "validation",
+      "box": [
+        0.43548387,
+        0.50896055,
+        0.57096773,
+        0.6630824
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Kat Jordan",
+      "title": "Untitled",
+      "original_landing_url": "https://www.flickr.com/photos/djdizzykat/5703549111",
+      "original_url": "https://farm1.staticflickr.com/2314/5703549111_bc9b2bb52e_o.jpg",
+      "source_group": "openimages:1212703168e0f200",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "50d572c4654e038b406b695ec15ef940cb3b64c852a820ac535301bf4ae6568c",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        853,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/1212703168e0f200.jpg",
+      "sha256": "69cfbd6f3d82ff2e86bcde2c67f0711dd642fb67c74b3021ea5869df8ca7fa51",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/1212703168e0f200.jpg",
+      "attribution": "Untitled \u2014 Kat Jordan; https://www.flickr.com/photos/djdizzykat/5703549111; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "139eff8e41ec7a68",
+      "publisher_class": "Tomato",
+      "class_id": "/m/07j87",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.40208334,
+        0.0953125,
+        0.61041665
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "The Local People Photo Archive",
+      "title": "Canapes",
+      "original_landing_url": "https://www.flickr.com/photos/thelocalpeople/5429477262",
+      "original_url": "https://c1.staticflickr.com/6/5059/5429477262_998d3dcc82_o.jpg",
+      "source_group": "openimages:139eff8e41ec7a68",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "5dfe909e2efb9b92c501fd8f112e952023ddf3cecc7537c3e38942db9dd2d1a3",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/139eff8e41ec7a68.jpg",
+      "sha256": "f53307514d7bd1269fafe6d8b7db502d0a4cc8ce3e5f65501d46244343837c2a",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/139eff8e41ec7a68.jpg",
+      "attribution": "Canapes \u2014 The Local People Photo Archive; https://www.flickr.com/photos/thelocalpeople/5429477262; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "153a9cd9f3a83d1b",
+      "publisher_class": "Grape",
+      "class_id": "/m/0388q",
+      "publisher_split": "validation",
+      "box": [
+        0.003125,
+        0.51666665,
+        0.053125,
+        0.65
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Akos Kokai",
+      "title": "Sedum 'burrito'",
+      "original_landing_url": "https://www.flickr.com/photos/on_earth/7755389732",
+      "original_url": "https://c4.staticflickr.com/9/8302/7755389732_66a4da8408_o.jpg",
+      "source_group": "openimages:153a9cd9f3a83d1b",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "status": "source_check_failed_no_training_admission",
+      "error_type": "HTTPError",
+      "publisher_rotation": "0.0"
+    },
+    {
+      "image_id": "15cec6633d8f1d21",
+      "publisher_class": "Grape",
+      "class_id": "/m/0388q",
+      "publisher_split": "validation",
+      "box": [
+        0.103125,
+        0.0,
+        0.490625,
+        0.76458335
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "agerpoint",
+      "title": "White grapes",
+      "original_landing_url": "https://www.flickr.com/photos/agerpoint/7336418324",
+      "original_url": "https://farm2.staticflickr.com/7082/7336418324_55c13a21d0_o.jpg",
+      "source_group": "openimages:15cec6633d8f1d21",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "df0f306a03a9406f3e48bdaba9c2bf949260c31260f228295b08cd4531d218b9",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/15cec6633d8f1d21.jpg",
+      "sha256": "c3623e4c58f7b67f2c70181d99dd46211f541e7ac35187a0171a109d0a2bf9a0",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/15cec6633d8f1d21.jpg",
+      "attribution": "White grapes \u2014 agerpoint; https://www.flickr.com/photos/agerpoint/7336418324; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "164800c3e0049465",
+      "publisher_class": "Cucumber",
+      "class_id": "/m/015x4r",
+      "publisher_split": "validation",
+      "box": [
+        0.2979351,
+        0.6238938,
+        0.57522124,
+        1.0
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Yvette  Tan",
+      "title": "Cagayan - Longganisa Tuguegarao",
+      "original_landing_url": "https://www.flickr.com/photos/glossmania/8527837080",
+      "original_url": "https://farm6.staticflickr.com/8365/8527837080_9b1653a9a5_o.jpg",
+      "source_group": "openimages:164800c3e0049465",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "status": "source_check_failed_no_training_admission",
+      "error_type": "HTTPError",
+      "publisher_rotation": "0.0"
+    },
+    {
+      "image_id": "17c6e6827d3476c1",
+      "publisher_class": "Sandwich",
+      "class_id": "/m/0l515",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.17916666,
+        0.4984375,
+        0.7104167
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Kimberly Vardeman",
+      "title": "Rockin' Baja Lobster",
+      "original_landing_url": "https://www.flickr.com/photos/kimberlykv/1246202402",
+      "original_url": "https://farm2.staticflickr.com/1360/1246202402_16a51a2a5b_o.jpg",
+      "source_group": "openimages:17c6e6827d3476c1",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "eadb1f30f8812892fd43e3dad20f32d76d85e6005528642f677bc21c99f3659b",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/17c6e6827d3476c1.jpg",
+      "sha256": "3cb6b5e906a576e6fc85f39073dcde10883ab22ffb44ae999256ad881577767e",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/17c6e6827d3476c1.jpg",
+      "attribution": "Rockin' Baja Lobster \u2014 Kimberly Vardeman; https://www.flickr.com/photos/kimberlykv/1246202402; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "191fbbdafa4e4f4b",
+      "publisher_class": "Egg",
+      "class_id": "/m/033cnk",
+      "publisher_split": "validation",
+      "box": [
+        0.31277534,
+        0.6141907,
+        0.60058737,
+        0.98226166
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "whity",
+      "title": "GR027513",
+      "original_landing_url": "https://www.flickr.com/photos/whitefield_d/17662521816",
+      "original_url": "https://c4.staticflickr.com/6/5464/17662521816_32e333b9d0_o.jpg",
+      "source_group": "openimages:191fbbdafa4e4f4b",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "ec805a93eabb92c0ed68be8c5c0f1d9d4ae5b37dbdb2b9466d9edee91d0d0893",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        678
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/191fbbdafa4e4f4b.jpg",
+      "sha256": "359016d0f00d851dcb0a464d0af78cd2bdcb6ad13787aded53853da9c3847887",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/191fbbdafa4e4f4b.jpg",
+      "attribution": "GR027513 \u2014 whity; https://www.flickr.com/photos/whitefield_d/17662521816; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "1ad1b75ba69177b3",
+      "publisher_class": "Grape",
+      "class_id": "/m/0388q",
+      "publisher_split": "validation",
+      "box": [
+        0.5796875,
+        0.09791667,
+        0.8609375,
+        0.66041666
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "stannate",
+      "title": "Chaumette Winery",
+      "original_landing_url": "https://www.flickr.com/photos/stannate/1451542962",
+      "original_url": "https://farm4.staticflickr.com/1435/1451542962_ca8a45a399_o.jpg",
+      "source_group": "openimages:1ad1b75ba69177b3",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "status": "source_check_failed_no_training_admission",
+      "error_type": "HTTPError",
+      "publisher_rotation": "0.0"
+    },
+    {
+      "image_id": "1b7d0a2ce8493404",
+      "publisher_class": "Mushroom",
+      "class_id": "/m/052sf",
+      "publisher_split": "validation",
+      "box": [
+        0.1098546,
+        0.18585859,
+        0.9159935,
+        0.8080808
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Jan Tik",
+      "title": "Forest Life",
+      "original_landing_url": "https://www.flickr.com/photos/jantik/9722664",
+      "original_url": "https://farm5.staticflickr.com/7/9722664_3234294afd_o.jpg",
+      "source_group": "openimages:1b7d0a2ce8493404",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "10b34427476f8f6ca6b7020bd396ac28f80accac16e3a169b472107ba8dedcda",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        820
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/1b7d0a2ce8493404.jpg",
+      "sha256": "c8be81e657ad320f4a5296e15a9ba07b08154719edb2185e6c08adc64b61b922",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/1b7d0a2ce8493404.jpg",
+      "attribution": "Forest Life \u2014 Jan Tik; https://www.flickr.com/photos/jantik/9722664; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "1fb3ba5860c47a97",
+      "publisher_class": "Broccoli",
+      "class_id": "/m/0hkxq",
+      "publisher_split": "validation",
+      "box": [
+        0.16666667,
+        0.0513834,
+        0.9471947,
+        0.9525692
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "\u041c\u0438\u0445\u0430\u043b \u041e\u0440\u0435\u043b\u0430",
+      "title": "\u0437\u0435\u043b\u0435\u043d\u0447\u0443\u043a",
+      "original_landing_url": "https://www.flickr.com/photos/mihalorel/276142027",
+      "original_url": "https://farm8.staticflickr.com/90/276142027_8045d76eea_o.jpg",
+      "source_group": "openimages:1fb3ba5860c47a97",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "df878396d81f68e15c27290a62048ce62e25df617643ba7402c6ada4af113b62",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        856
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/1fb3ba5860c47a97.jpg",
+      "sha256": "4c72e3cb00bf275ce69963f279230717902d568e254db86a026392b48a4604ab",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/1fb3ba5860c47a97.jpg",
+      "attribution": "\u0437\u0435\u043b\u0435\u043d\u0447\u0443\u043a \u2014 \u041c\u0438\u0445\u0430\u043b \u041e\u0440\u0435\u043b\u0430; https://www.flickr.com/photos/mihalorel/276142027; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "1fc28b889734095e",
+      "publisher_class": "Sandwich",
+      "class_id": "/m/0l515",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.11913358,
+        0.99638987,
+        0.91155237
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Viviendo Madrid",
+      "title": "No saldr\u00e1 en muchas listas, pero la de Platina Caf\u00e9 es impresionante \u00bf#LaMejorTortilla de #Madrid?",
+      "original_landing_url": "https://www.flickr.com/photos/viviendomadrid/15896010931",
+      "original_url": "https://c7.staticflickr.com/8/7572/15896010931_1b66a30a4e_o.jpg",
+      "source_group": "openimages:1fc28b889734095e",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "cfc36aa3498aa80d68ad4c8a2126aaa77035d0bfe2738eb4aff6b5f5fbd38f46",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/1fc28b889734095e.jpg",
+      "sha256": "a5c681c0433dd17f6d28a7a7242f1ae54437646f5ce1cce6a5e0310a29326c4b",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/1fc28b889734095e.jpg",
+      "attribution": "No saldr\u00e1 en muchas listas, pero la de Platina Caf\u00e9 es impresionante \u00bf#LaMejorTortilla de #Madrid? \u2014 Viviendo Madrid; https://www.flickr.com/photos/viviendomadrid/15896010931; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "204018b7889eb826",
+      "publisher_class": "Broccoli",
+      "class_id": "/m/0hkxq",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Kim Woodbridge",
+      "title": "Broccoli Cheddar Loaf",
+      "original_landing_url": "https://www.flickr.com/photos/kwbridge/4024001400/",
+      "original_url": "https://farm7.staticflickr.com/2484/4024001400_78fa4a54e4_o.jpg",
+      "source_group": "openimages:204018b7889eb826",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "status": "source_check_failed_no_training_admission",
+      "error_type": "HTTPError",
+      "publisher_rotation": "0.0"
+    },
+    {
+      "image_id": "21c4ea545cc662f1",
+      "publisher_class": "Cucumber",
+      "class_id": "/m/015x4r",
+      "publisher_split": "validation",
+      "box": [
+        0.0015625,
+        0.0625,
+        0.6859375,
+        0.8020833
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Gerben Jacobs",
+      "title": "Homegrown deliciousness!",
+      "original_landing_url": "https://www.flickr.com/photos/theonewithout/9231578384",
+      "original_url": "https://farm2.staticflickr.com/2809/9231578384_7f7a4b4cff_o.jpg",
+      "source_group": "openimages:21c4ea545cc662f1",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "968f63eda384ea5522f5ef5ebde32474bbd3bedffbc73517b1c877c22c5d8a8c",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/21c4ea545cc662f1.jpg",
+      "sha256": "315c1f514718c3802130b9b4f2efc11d9ecafce9f8143c1b914980ed0f887112",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/21c4ea545cc662f1.jpg",
+      "attribution": "Homegrown deliciousness! \u2014 Gerben Jacobs; https://www.flickr.com/photos/theonewithout/9231578384; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "21f8c88ebe002ba4",
+      "publisher_class": "Sandwich",
+      "class_id": "/m/0l515",
+      "publisher_split": "validation",
+      "box": [
+        0.013254787,
+        0.23946784,
+        0.9970545,
+        0.8625277
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Kurman Communications, Inc.",
+      "title": "Roasted Amish Chicken Breast 2",
+      "original_landing_url": "https://www.flickr.com/photos/kurmanphotos/13315723774",
+      "original_url": "https://farm5.staticflickr.com/7325/13315723774_701d7c3186_o.jpg",
+      "source_group": "openimages:21f8c88ebe002ba4",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "dcf3fe23b8f4637c68ac6f1e6f858d396072f8fc4e4cfacc84c284aa0be26bad",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        680
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/21f8c88ebe002ba4.jpg",
+      "sha256": "ad14851ea18a9d6958931e02793fbdb48dec86087f41a105d2c7048d10e7de7c",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/21f8c88ebe002ba4.jpg",
+      "attribution": "Roasted Amish Chicken Breast 2 \u2014 Kurman Communications, Inc.; https://www.flickr.com/photos/kurmanphotos/13315723774; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "21fc4e8315a8857b",
+      "publisher_class": "Sandwich",
+      "class_id": "/m/0l515",
+      "publisher_split": "validation",
+      "box": [
+        0.08122744,
+        0.0,
+        1.0,
+        0.22202165
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Mark Hillary",
+      "title": "Sandu\u00edche vegetariano #sandu\u00edche #sandwich #vegetarian #vegetariano #augusta #saopaulo",
+      "original_landing_url": "https://www.flickr.com/photos/markhillary/18851118808",
+      "original_url": "https://c4.staticflickr.com/4/3787/18851118808_c2d7bac819_o.jpg",
+      "source_group": "openimages:21fc4e8315a8857b",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "afc3e03b9b54d99cab7336fb8e23f4df10e24ae49ef57d58827dd69c92d6a0c8",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/21fc4e8315a8857b.jpg",
+      "sha256": "03491dfb9a67426aeec9b0fe21f6bffa5b78daee802feaffd1b542166416dc6e",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/21fc4e8315a8857b.jpg",
+      "attribution": "Sandu\u00edche vegetariano #sandu\u00edche #sandwich #vegetarian #vegetariano #augusta #saopaulo \u2014 Mark Hillary; https://www.flickr.com/photos/markhillary/18851118808; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "2601272daf82eec5",
+      "publisher_class": "Carrot",
+      "class_id": "/m/0fj52s",
+      "publisher_split": "validation",
+      "box": [
+        0.44634527,
+        0.16771488,
+        0.90046656,
+        0.9790356
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Richard North",
+      "title": "Vegetables in a line",
+      "original_landing_url": "https://www.flickr.com/photos/richardnorth/7180974096",
+      "original_url": "https://farm6.staticflickr.com/8147/7180974096_4bc63aaf89_o.jpg",
+      "source_group": "openimages:2601272daf82eec5",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "status": "source_check_failed_no_training_admission",
+      "error_type": "HTTPError",
+      "publisher_rotation": "0.0"
+    },
+    {
+      "image_id": "2699aeff9eb68538",
+      "publisher_class": "Pear",
+      "class_id": "/m/061_f",
+      "publisher_split": "validation",
+      "box": [
+        0.275,
+        0.15,
+        0.4765625,
+        0.7083333
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "mauroguanandi",
+      "title": "Abacates (Persea americana). centro america native",
+      "original_landing_url": "https://www.flickr.com/photos/mauroguanandi/4201748978",
+      "original_url": "https://c1.staticflickr.com/3/2658/4201748978_0f5837034f_o.jpg",
+      "source_group": "openimages:2699aeff9eb68538",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "6852820ae493fb2de00b9d7349f5206e96c2a3e8a7ddeaf72854e9fb47a4efe2",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/2699aeff9eb68538.jpg",
+      "sha256": "d8ec11320d7183d06379241ae8f25ee38d07fbda6c5b2621bd03991bd5324f18",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/2699aeff9eb68538.jpg",
+      "attribution": "Abacates (Persea americana). centro america native \u2014 mauroguanandi; https://www.flickr.com/photos/mauroguanandi/4201748978; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "26a73dea7c04cad2",
+      "publisher_class": "Mushroom",
+      "class_id": "/m/052sf",
+      "publisher_split": "validation",
+      "box": [
+        0.365625,
+        0.38333333,
+        0.753125,
+        0.69166666
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "er Guiri",
+      "title": "Mushrooms",
+      "original_landing_url": "https://www.flickr.com/photos/sermarr/15185348013",
+      "original_url": "https://farm3.staticflickr.com/5610/15185348013_905c739333_o.jpg",
+      "source_group": "openimages:26a73dea7c04cad2",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "a9e6935ccd3b2c86fdd708dc1b06f1a56d7d8a768d693832faea817976941cee",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/26a73dea7c04cad2.jpg",
+      "sha256": "77844eb9ec2934c36cd28813ced22d08a020a53fbcbee08d3e186839bf4a9b0e",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/26a73dea7c04cad2.jpg",
+      "attribution": "Mushrooms \u2014 er Guiri; https://www.flickr.com/photos/sermarr/15185348013; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "275f429194a6683a",
+      "publisher_class": "Apple",
+      "class_id": "/m/014j1m",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.0054151625,
+        0.5072202,
+        0.6028881
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Christopher Paquette",
+      "title": "Green Apples",
+      "original_landing_url": "https://www.flickr.com/photos/chpaquette/2195708014/",
+      "original_url": "https://c3.staticflickr.com/3/2386/2195708014_5a7dc31161_o.jpg",
+      "source_group": "openimages:275f429194a6683a",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "status": "source_check_failed_no_training_admission",
+      "error_type": "HTTPError",
+      "publisher_rotation": "0.0"
+    },
+    {
+      "image_id": "2a64768abd5a9c65",
+      "publisher_class": "Broccoli",
+      "class_id": "/m/0hkxq",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.12108559,
+        0.2203125,
+        0.52609605
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Tamaki Sono",
+      "title": "091101",
+      "original_landing_url": "https://www.flickr.com/photos/tamakisono/4064376692",
+      "original_url": "https://farm6.staticflickr.com/2466/4064376692_6cbd880680_o.jpg",
+      "source_group": "openimages:2a64768abd5a9c65",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "808396d70910ea341ba4a4d943101ff00a1645c9a6fbd30d87485f3bd9abca82",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        767
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/2a64768abd5a9c65.jpg",
+      "sha256": "85dc9179d4e5b078e62e0a7ce68fcf2b100351c67eb35eeb61d5be7e9d2e8bd9",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/2a64768abd5a9c65.jpg",
+      "attribution": "091101 \u2014 Tamaki Sono; https://www.flickr.com/photos/tamakisono/4064376692; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "2b96210e388009ff",
+      "publisher_class": "Broccoli",
+      "class_id": "/m/0hkxq",
+      "publisher_split": "validation",
+      "box": [
+        0.671875,
+        0.2375,
+        0.8625,
+        0.43333334
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Richard Sprague",
+      "title": "IMG_3913",
+      "original_landing_url": "https://www.flickr.com/photos/sprague/12158397495",
+      "original_url": "https://c8.staticflickr.com/3/2855/12158397495_e55695c1a9_o.jpg",
+      "source_group": "openimages:2b96210e388009ff",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "df3fa5c1033f5c88237ca80f1c62b5dd2181ccbbea23ab603cd5d677e742fb99",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/2b96210e388009ff.jpg",
+      "sha256": "a5477a741cb48ddb851b5546c9f81ccf4df0e0ea6a6d5a72c88de6fe1ee48500",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/2b96210e388009ff.jpg",
+      "attribution": "IMG_3913 \u2014 Richard Sprague; https://www.flickr.com/photos/sprague/12158397495; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "2d3bf81d68393650",
+      "publisher_class": "Pear",
+      "class_id": "/m/061_f",
+      "publisher_split": "validation",
+      "box": [
+        0.029166667,
+        0.034375,
+        0.96458334,
+        0.8984375
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "eskeephoto",
+      "title": "Halo is coming down",
+      "original_landing_url": "https://www.flickr.com/photos/eskeephoto/19840390272",
+      "original_url": "https://farm1.staticflickr.com/3694/19840390272_d4f56d9e33_o.jpg",
+      "source_group": "openimages:2d3bf81d68393650",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "8edd621abd69081612ac677e6b6770ddc7636e90636b9454ed4f17e50fe9054c",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        768,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/2d3bf81d68393650.jpg",
+      "sha256": "1339268163e472448b2ac00e30297269cf1ee1cfd2ce0e3c2eafa4257ca78512",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/2d3bf81d68393650.jpg",
+      "attribution": "Halo is coming down \u2014 eskeephoto; https://www.flickr.com/photos/eskeephoto/19840390272; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "2fe4f21e409f0a56",
+      "publisher_class": "Apple",
+      "class_id": "/m/014j1m",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Herman Frantzen",
+      "title": "Hey Apple",
+      "original_landing_url": "https://www.flickr.com/photos/hermanfr/5375520288",
+      "original_url": "https://farm7.staticflickr.com/5164/5375520288_452b34c962_o.jpg",
+      "source_group": "openimages:2fe4f21e409f0a56",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "9710cd2d40d9a7eed8d3fa9134d86c1f6972d478318b24b0cbab4234fa52706e",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/2fe4f21e409f0a56.jpg",
+      "sha256": "393298065aa685ad6f545775620828b3d6703f0ad13b956b4357cb00e44e0257",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/2fe4f21e409f0a56.jpg",
+      "attribution": "Hey Apple \u2014 Herman Frantzen; https://www.flickr.com/photos/hermanfr/5375520288; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "3441aa8c50df6992",
+      "publisher_class": "Cucumber",
+      "class_id": "/m/015x4r",
+      "publisher_split": "validation",
+      "box": [
+        0.64653903,
+        0.54988915,
+        1.0,
+        0.9977827
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Hans Dinkelberg",
+      "title": "What's cooking?",
+      "original_landing_url": "https://www.flickr.com/photos/uitdragerij/3113371127",
+      "original_url": "https://farm3.staticflickr.com/3144/3113371127_02e57598a8_o.jpg",
+      "source_group": "openimages:3441aa8c50df6992",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "be9434166deb531f7f1045f55a641af1b37361104a324c3d23e6671d7074093e",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        681
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/3441aa8c50df6992.jpg",
+      "sha256": "cca9190fdb8d1ea9b9fe1abd852a011ca65b3ac28aaf3bf2a9d27ec38dae6398",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/3441aa8c50df6992.jpg",
+      "attribution": "What's cooking? \u2014 Hans Dinkelberg; https://www.flickr.com/photos/uitdragerij/3113371127; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "3802c7501243b4a9",
+      "publisher_class": "Broccoli",
+      "class_id": "/m/0hkxq",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.0,
+        0.5361011,
+        0.37545127
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Glenn Robinson",
+      "title": "Cauliflower!",
+      "original_landing_url": "https://www.flickr.com/photos/21814331@N00/14536681945",
+      "original_url": "https://c2.staticflickr.com/4/3884/14536681945_e8867953f2_o.jpg",
+      "source_group": "openimages:3802c7501243b4a9",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "2d9e685bcf0ff7d0fc7e3fbeecf76a8f682bb8798e81a9b5a0fca79a7f89fdcf",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/3802c7501243b4a9.jpg",
+      "sha256": "d9dcbc73e4ad430700dad40709bd5b39bfcf4b9bf7afc1dfbbaafe26aafb7be8",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/3802c7501243b4a9.jpg",
+      "attribution": "Cauliflower! \u2014 Glenn Robinson; https://www.flickr.com/photos/21814331@N00/14536681945; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "3881457cb3a6585e",
+      "publisher_class": "Grape",
+      "class_id": "/m/0388q",
+      "publisher_split": "validation",
+      "box": [
+        0.08303249,
+        0.5469314,
+        0.20216607,
+        0.7472924
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Jon Rawlinson",
+      "title": "#wine #grapes #sonoma #california",
+      "original_landing_url": "https://www.flickr.com/photos/london/14809931457",
+      "original_url": "https://c7.staticflickr.com/4/3875/14809931457_3e66ba74af_o.jpg",
+      "source_group": "openimages:3881457cb3a6585e",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "1c3ef9700c8df1361f57955778f500ea7e4f79651d5bf27de8bbc7a8c33f9854",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/3881457cb3a6585e.jpg",
+      "sha256": "245baec1752617a9f52bb4d36a3923f21a69b2e37ecfb5e7bd30f15451c07951",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/3881457cb3a6585e.jpg",
+      "attribution": "#wine #grapes #sonoma #california \u2014 Jon Rawlinson; https://www.flickr.com/photos/london/14809931457; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "3a8ab5b4b3c45cc6",
+      "publisher_class": "Carrot",
+      "class_id": "/m/0fj52s",
+      "publisher_split": "validation",
+      "box": [
+        0.05234657,
+        0.19855596,
+        1.0,
+        0.91155237
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Trace Meek",
+      "title": "Getting ready to juice",
+      "original_landing_url": "https://www.flickr.com/photos/tracemeek/7251342768",
+      "original_url": "https://farm7.staticflickr.com/8154/7251342768_a57af5659a_o.jpg",
+      "source_group": "openimages:3a8ab5b4b3c45cc6",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "status": "source_check_failed_no_training_admission",
+      "error_type": "HTTPError",
+      "publisher_rotation": ""
+    },
+    {
+      "image_id": "3dff873403b83fa8",
+      "publisher_class": "Cucumber",
+      "class_id": "/m/015x4r",
+      "publisher_split": "validation",
+      "box": [
+        0.234375,
+        0.46041667,
+        0.3296875,
+        0.5729167
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Shane Becker",
+      "title": "Hawaii 2011 - Day 6 - Big Island",
+      "original_landing_url": "https://www.flickr.com/photos/veganstraightedge/6578766231",
+      "original_url": "https://c1.staticflickr.com/8/7035/6578766231_6a6b925b96_o.jpg",
+      "source_group": "openimages:3dff873403b83fa8",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "3bb3998cca9efb7e1d12f01d3b968d13b178da7234c22ac7ac3d60f9c193fae5",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/3dff873403b83fa8.jpg",
+      "sha256": "b2624e5fdf16a181b19db82e329fd244bec2d5638bf51e03593827bade6dbd3d",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/3dff873403b83fa8.jpg",
+      "attribution": "Hawaii 2011 - Day 6 - Big Island \u2014 Shane Becker; https://www.flickr.com/photos/veganstraightedge/6578766231; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "3e810338e95a9cee",
+      "publisher_class": "Apple",
+      "class_id": "/m/014j1m",
+      "publisher_split": "validation",
+      "box": [
+        0.014440433,
+        0.050541516,
+        0.98736465,
+        0.96750903
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Black Zero",
+      "title": "A Green Apple, it costs Rs 110 per piece.",
+      "original_landing_url": "https://www.flickr.com/photos/zillay/6633779563",
+      "original_url": "https://c7.staticflickr.com/8/7171/6633779563_8b0574f245_o.jpg",
+      "source_group": "openimages:3e810338e95a9cee",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "307fac88945b99e1d92a7def6c749abe69ce137caf9e5362ba6ed55f660dfce0",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/3e810338e95a9cee.jpg",
+      "sha256": "9dc2f66bdc9fe1f6f30d65f911cafbd13b5cad02f291be8261e7ebc1e8f57e85",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/3e810338e95a9cee.jpg",
+      "attribution": "A Green Apple, it costs Rs 110 per piece. \u2014 Black Zero; https://www.flickr.com/photos/zillay/6633779563; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "409acc8064b23137",
+      "publisher_class": "Grape",
+      "class_id": "/m/0388q",
+      "publisher_split": "validation",
+      "box": [
+        0.4331865,
+        0.58536583,
+        0.6328928,
+        0.6385809
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Pipers Brook Vineyard Media",
+      "title": "Vintage 2014, Mount Pleasant, Launceston, Tasmania",
+      "original_landing_url": "https://www.flickr.com/photos/pbvmedia/18235883012",
+      "original_url": "https://farm8.staticflickr.com/8869/18235883012_51c35fa974_o.jpg",
+      "source_group": "openimages:409acc8064b23137",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "e671428701478cdae44440316cadec648371978642d4c93de5d1b7bea4821445",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        678
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/409acc8064b23137.jpg",
+      "sha256": "c805b47d404e46d73325945f5a2ae881b7e606e9d4e5b67fca6bcb45e7e296ed",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/409acc8064b23137.jpg",
+      "attribution": "Vintage 2014, Mount Pleasant, Launceston, Tasmania \u2014 Pipers Brook Vineyard Media; https://www.flickr.com/photos/pbvmedia/18235883012; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "41e2356b97f775c4",
+      "publisher_class": "Pear",
+      "class_id": "/m/061_f",
+      "publisher_split": "validation",
+      "box": [
+        0.39530686,
+        0.25812274,
+        0.6046931,
+        0.72202164
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Truth 4 all",
+      "title": "Trying out white background lighting setups for product photography #food #fruits #red #orange #green #background #beautiful #colors #vibrant #multicolor #photooftheday",
+      "original_landing_url": "https://www.flickr.com/photos/45639276@N05/16689620466",
+      "original_url": "https://farm5.staticflickr.com/8642/16689620466_88781c1e41_o.jpg",
+      "source_group": "openimages:41e2356b97f775c4",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "0a125db32979e9f739423492f66a8090545758a7c7c8ec2737677d4a2e60a0c5",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/41e2356b97f775c4.jpg",
+      "sha256": "66b8bc2dbec9c040d8a32b781c9fd66413f3bf4e8da8c98cf08dfd72135d5dd9",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/41e2356b97f775c4.jpg",
+      "attribution": "Trying out white background lighting setups for product photography #food #fruits #red #orange #green #background #beautiful #colors #vibrant #multicolor #photooftheday \u2014 Truth 4 all; https://www.flickr.com/photos/45639276@N05/16689620466; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "4363fb9fe61a1676",
+      "publisher_class": "Potato",
+      "class_id": "/m/05vtc",
+      "publisher_split": "validation",
+      "box": [
+        0.45870206,
+        0.0,
+        0.8333333,
+        0.30309734
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Mike Haller",
+      "title": "Sojagranulat mit F\u00e4hnchen",
+      "original_landing_url": "https://www.flickr.com/photos/mhaller1979/6534057519",
+      "original_url": "https://farm7.staticflickr.com/7149/6534057519_e9a8da11d3_o.jpg",
+      "source_group": "openimages:4363fb9fe61a1676",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "d84957e76618e74ec7a49acc0e72e114b1570f908e77125e43ae5e33bfd69628",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        683
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/4363fb9fe61a1676.jpg",
+      "sha256": "2c4b11bb214e1b5a6fca8143ea72b1bf4a2ac6dc2ab006175f87146dabdfe5f9",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/4363fb9fe61a1676.jpg",
+      "attribution": "Sojagranulat mit F\u00e4hnchen \u2014 Mike Haller; https://www.flickr.com/photos/mhaller1979/6534057519; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "494e6920449b08bb",
+      "publisher_class": "Carrot",
+      "class_id": "/m/0fj52s",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.3267148,
+        0.03429603,
+        0.35920578
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Ippei Suzuki",
+      "title": "\u306b\u3093\u3058\u3093\u3068\u3054\u307c\u3046\u306e\u304d\u3093\u3074\u3089 #dinner",
+      "original_landing_url": "https://www.flickr.com/photos/is_kyoto_jp/8876979107",
+      "original_url": "https://c4.staticflickr.com/8/7334/8876979107_1535459728_o.jpg",
+      "source_group": "openimages:494e6920449b08bb",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "b8e3192bb0c289b9344e3c90f71a2c69bba93532f6186b0d2842d98a36263578",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        768,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/494e6920449b08bb.jpg",
+      "sha256": "8fb612c4e51ab5a22803976c4346ec5ad960a6fffcd6388c0a498dbbcd43cd24",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/494e6920449b08bb.jpg",
+      "attribution": "\u306b\u3093\u3058\u3093\u3068\u3054\u307c\u3046\u306e\u304d\u3093\u3074\u3089 #dinner \u2014 Ippei Suzuki; https://www.flickr.com/photos/is_kyoto_jp/8876979107; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "542668e4fe44ad3e",
+      "publisher_class": "Pear",
+      "class_id": "/m/061_f",
+      "publisher_split": "validation",
+      "box": [
+        0.884375,
+        0.65416664,
+        0.95625,
+        0.81041664
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "allispossible.org.uk",
+      "title": "Pears",
+      "original_landing_url": "https://www.flickr.com/photos/wheatfields/3962803119",
+      "original_url": "https://c7.staticflickr.com/3/2647/3962803119_4885a76e23_o.jpg",
+      "source_group": "openimages:542668e4fe44ad3e",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "status": "source_check_failed_no_training_admission",
+      "error_type": "HTTPError",
+      "publisher_rotation": "0.0"
+    },
+    {
+      "image_id": "621d666570933209",
+      "publisher_class": "Pear",
+      "class_id": "/m/061_f",
+      "publisher_split": "validation",
+      "box": [
+        0.17213115,
+        0.027833002,
+        0.63278687,
+        0.87673956
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Avia Venefica",
+      "title": "Pear - Colored Pencil - Avia Venefica",
+      "original_landing_url": "https://www.flickr.com/photos/avenefica/6070188534",
+      "original_url": "https://c2.staticflickr.com/7/6201/6070188534_56ff58b238_o.jpg",
+      "source_group": "openimages:621d666570933209",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "cd3233d5ac8bcddd29f8c91f8e68a634b9f9bf7d75d6be74bf7939b9a24cf930",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        845
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/621d666570933209.jpg",
+      "sha256": "583e0fa13eb92bbf79fc91d6b6f652c200b5aadf1528b57926307911987f987a",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/621d666570933209.jpg",
+      "attribution": "Pear - Colored Pencil - Avia Venefica \u2014 Avia Venefica; https://www.flickr.com/photos/avenefica/6070188534; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "6597986c3f60ba42",
+      "publisher_class": "Potato",
+      "class_id": "/m/05vtc",
+      "publisher_split": "validation",
+      "box": [
+        0.71281296,
+        0.72949004,
+        0.7687776,
+        0.8802661
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "LearningLark",
+      "title": "Apple Pie 3",
+      "original_landing_url": "https://www.flickr.com/photos/44282411@N04/6686490867",
+      "original_url": "https://farm3.staticflickr.com/7035/6686490867_576f7e945c_o.jpg",
+      "source_group": "openimages:6597986c3f60ba42",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "e84ef57be3cdb29ad4590b165ece4103e66853a62e943448dcf82f856d1e7dc3",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        681
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/6597986c3f60ba42.jpg",
+      "sha256": "8d764b4edaca7425b0fee50e9ee6925d3700d15eed24c5da4f0574e6d379423a",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/6597986c3f60ba42.jpg",
+      "attribution": "Apple Pie 3 \u2014 LearningLark; https://www.flickr.com/photos/44282411@N04/6686490867; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "67d08e779e785435",
+      "publisher_class": "Potato",
+      "class_id": "/m/05vtc",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.12815884,
+        0.24548736,
+        0.26714802
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "cofiem",
+      "title": "Gnocchi and veges with lemon &amp; pepper &lt;3",
+      "original_landing_url": "https://www.flickr.com/photos/kramrecords/16261831225",
+      "original_url": "https://farm6.staticflickr.com/7525/16261831225_b00f468f69_o.jpg",
+      "source_group": "openimages:67d08e779e785435",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "status": "source_check_failed_no_training_admission",
+      "error_type": "HTTPError",
+      "publisher_rotation": "0.0"
+    },
+    {
+      "image_id": "74a44994e3d6b962",
+      "publisher_class": "Banana",
+      "class_id": "/m/09qck",
+      "publisher_split": "validation",
+      "box": [
+        0.108333334,
+        0.290625,
+        0.425,
+        0.4484375
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "tomatoes and friends",
+      "title": "Vegan Lemon Cornmeal Pancakes",
+      "original_landing_url": "https://www.flickr.com/photos/tomatoesandfriends/7206585280",
+      "original_url": "https://farm3.staticflickr.com/7242/7206585280_2bb38d9e8d_o.jpg",
+      "source_group": "openimages:74a44994e3d6b962",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "d42305ef63a9f5e19bd45e3c4116e0eac13d4b35b880c625b0f02b2dbcd08bc7",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        768,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/74a44994e3d6b962.jpg",
+      "sha256": "ee03f62b041fe0b45b6e10c251f89d068b75ed11591b9044a30e412cdf8b3ab7",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/74a44994e3d6b962.jpg",
+      "attribution": "Vegan Lemon Cornmeal Pancakes \u2014 tomatoes and friends; https://www.flickr.com/photos/tomatoesandfriends/7206585280; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "897eb8ba55ceb227",
+      "publisher_class": "Potato",
+      "class_id": "/m/05vtc",
+      "publisher_split": "validation",
+      "box": [
+        0.18255578,
+        0.4517685,
+        0.7484787,
+        0.8762058
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "mriggen",
+      "title": "double potato, 4 Town Farm",
+      "original_landing_url": "https://www.flickr.com/photos/riggenransom/4086452999",
+      "original_url": "https://farm8.staticflickr.com/2708/4086452999_040a05f38d_o.jpg",
+      "source_group": "openimages:897eb8ba55ceb227",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "63c0e92cb11093144cfccad9c63758da66790b197c988bff65f41573d9a12bf4",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        811,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/897eb8ba55ceb227.jpg",
+      "sha256": "cb398102ea01ae587283821abd4547d4a09ebb20fd897411bad38ae2e8dafcc0",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/897eb8ba55ceb227.jpg",
+      "attribution": "double potato, 4 Town Farm \u2014 mriggen; https://www.flickr.com/photos/riggenransom/4086452999; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "8aaa87f397062816",
+      "publisher_class": "Banana",
+      "class_id": "/m/09qck",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.20216607,
+        0.40794224,
+        0.9638989
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Yvette  Tan",
+      "title": "\u201cNanny Ogg knew how to start spelling 'banana', but didn't know how you stopped.\u201d - Terry Pratchett",
+      "original_landing_url": "https://www.flickr.com/photos/glossmania/21355355036",
+      "original_url": "https://farm7.staticflickr.com/5813/21355355036_5600fe6c1d_o.jpg",
+      "source_group": "openimages:8aaa87f397062816",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "status": "source_check_failed_no_training_admission",
+      "error_type": "HTTPError",
+      "publisher_rotation": ""
+    },
+    {
+      "image_id": "8f459c989ec5bfa6",
+      "publisher_class": "Carrot",
+      "class_id": "/m/0fj52s",
+      "publisher_split": "validation",
+      "box": [
+        0.0054151625,
+        0.12274368,
+        0.13537906,
+        0.25451264
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "petrr",
+      "title": "Stew You ! #punderful",
+      "original_landing_url": "https://www.flickr.com/photos/gustavthree/15355026275",
+      "original_url": "https://farm7.staticflickr.com/3858/15355026275_4d30baef21_o.jpg",
+      "source_group": "openimages:8f459c989ec5bfa6",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "8d5511e2845f2c09c2973c67acca4b06c89accfdae42df88895f3394ae4d8034",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        1024
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/8f459c989ec5bfa6.jpg",
+      "sha256": "1eae89e43e2fbf1e04149aecc65ffb30413a30f8b46e41a8cb8ed01329e317aa",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/8f459c989ec5bfa6.jpg",
+      "attribution": "Stew You ! #punderful \u2014 petrr; https://www.flickr.com/photos/gustavthree/15355026275; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "ab3ec6f1f4f6b3d3",
+      "publisher_class": "Potato",
+      "class_id": "/m/05vtc",
+      "publisher_split": "validation",
+      "box": [
+        0.1390625,
+        0.0,
+        0.9296875,
+        0.9458333
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "ma_shimaro",
+      "title": "\u6817\u304d\u3093\u3068\u3093",
+      "original_landing_url": "https://www.flickr.com/photos/ma_shimaro/8111898457",
+      "original_url": "https://farm4.staticflickr.com/8463/8111898457_e56579a487_o.jpg",
+      "source_group": "openimages:ab3ec6f1f4f6b3d3",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "3ff00d069e89f6633d3441ac45b7f540e18f88b4948d906c791371f036d37ea5",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/ab3ec6f1f4f6b3d3.jpg",
+      "sha256": "614ebaac93e73453d2f9af5bd33483f3c06fb0dc6e8ccb0f38b62eff9cccaab0",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/ab3ec6f1f4f6b3d3.jpg",
+      "attribution": "\u6817\u304d\u3093\u3068\u3093 \u2014 ma_shimaro; https://www.flickr.com/photos/ma_shimaro/8111898457; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "b70a978ef4325508",
+      "publisher_class": "Banana",
+      "class_id": "/m/09qck",
+      "publisher_split": "validation",
+      "box": [
+        0.43952802,
+        0.028761063,
+        0.6858407,
+        0.23672566
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Yann C\u0153uru",
+      "title": "Jus de banane",
+      "original_landing_url": "https://www.flickr.com/photos/yann07/20698178046",
+      "original_url": "https://c1.staticflickr.com/6/5818/20698178046_1f606f6c11_o.jpg",
+      "source_group": "openimages:b70a978ef4325508",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "status": "source_check_failed_no_training_admission",
+      "error_type": "HTTPError",
+      "publisher_rotation": "0.0"
+    },
+    {
+      "image_id": "ba67cd4669a926f5",
+      "publisher_class": "Carrot",
+      "class_id": "/m/0fj52s",
+      "publisher_split": "validation",
+      "box": [
+        0.6353591,
+        0.1981132,
+        0.7859116,
+        0.2783019
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "www.homejobsbymom.com",
+      "title": "bento cat",
+      "original_landing_url": "https://www.flickr.com/photos/76588981@N02/13927306300",
+      "original_url": "https://farm6.staticflickr.com/7432/13927306300_22d03729c5_o.jpg",
+      "source_group": "openimages:ba67cd4669a926f5",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "6cc8e4d9f7842e538a621805caed0cc582eccaf9a089719fefdd8944416a657f",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        600
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/ba67cd4669a926f5.jpg",
+      "sha256": "223561404ca96f0995aac8197085ba301fee787328a4bc8272d8ed1ba255b032",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/ba67cd4669a926f5.jpg",
+      "attribution": "bento cat \u2014 www.homejobsbymom.com; https://www.flickr.com/photos/76588981@N02/13927306300; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "c682818fe22eb309",
+      "publisher_class": "Banana",
+      "class_id": "/m/09qck",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.08125,
+        0.996875,
+        0.925
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "Neeta Lind",
+      "title": "Food pr0n",
+      "original_landing_url": "https://www.flickr.com/photos/neeta_lind/14340794828",
+      "original_url": "https://c2.staticflickr.com/4/3918/14340794828_a0965c74e0_o.jpg",
+      "source_group": "openimages:c682818fe22eb309",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "f3cad3599fcb6565a33431075f50f9f23deb918e9c15b047a7af99b4a84500f6",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/c682818fe22eb309.jpg",
+      "sha256": "f7af3649a3521c276ec5d5d986367e03f6e3b0803c32673beb1fbe08cbb9d779",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/c682818fe22eb309.jpg",
+      "attribution": "Food pr0n \u2014 Neeta Lind; https://www.flickr.com/photos/neeta_lind/14340794828; CC BY 2.0; resized, metadata removed."
+    },
+    {
+      "image_id": "da3235cd7afa51f7",
+      "publisher_class": "Banana",
+      "class_id": "/m/09qck",
+      "publisher_split": "validation",
+      "box": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "licence": "https://creativecommons.org/licenses/by/2.0/",
+      "author": "dominik18s",
+      "title": "ripe bananas",
+      "original_landing_url": "https://www.flickr.com/photos/55571726@N05/7825460058",
+      "original_url": "https://farm8.staticflickr.com/8296/7825460058_4736affb9c_o.jpg",
+      "source_group": "openimages:da3235cd7afa51f7",
+      "proposed_39_class_mapping": null,
+      "training_ready": false,
+      "original_page_sha256": "42fc0d53d5e97d7dd1c7bb9d42df59e24ff9e40a1c9188ad8023c466f4d89768",
+      "original_page_declared_licences": [
+        "https://creativecommons.org/licenses/by/2.0/deed.en"
+      ],
+      "original_licence_verified": true,
+      "status": "image_downloaded_quarantined",
+      "publisher_rotation": "0.0",
+      "prior_status": "original_licence_not_verified_no_image_downloaded",
+      "downloaded_pixel_size": [
+        1024,
+        768
+      ],
+      "downloaded_exif_orientation": null,
+      "image_path": "images/da3235cd7afa51f7.jpg",
+      "sha256": "988ad0251b1ed6549b2a9e2552af4be90d11a0d75307579b386b790ce678fc31",
+      "image_source_url": "https://open-images-dataset.s3.amazonaws.com/validation/da3235cd7afa51f7.jpg",
+      "attribution": "ripe bananas \u2014 dominik18s; https://www.flickr.com/photos/55571726@N05/7825460058; CC BY 2.0; resized, metadata removed."
+    }
+  ],
+  "images_downloaded": 73,
+  "bytes_downloaded_this_run": 78225431,
+  "seconds": 108.89117559000442,
+  "training_admitted": 0,
+  "publisher_validation_split_preserved": true,
+  "limitations": [
+    "Publisher explicitly requires individual image licence verification; an inaccessible page is not permission",
+    "Downloaded images remain quarantined pending rotation/box/label/duplicate review",
+    "Boxes are object labels, not complete meal labels or exact recipes; unlabelled foods cannot be treated as absent",
+    "UK representativeness not established",
+    "This intake is not recognition accuracy or a production release"
+  ],
+  "account_created": false,
+  "fee_paid": false,
+  "third_party_code_executed": false,
+  "messages_sent": 0,
+  "licence_canonicalisation": "CC BY 2.0 /deed.en and /legalcode identify the same licence as its root URL; BY-NC/SA/ND and other versions remain rejected",
+  "resumed_download_bytes": 22049840
+}

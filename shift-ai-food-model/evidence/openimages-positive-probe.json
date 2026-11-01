@@ -1,0 +1,960 @@
+{
+  "scope": "New-to-this-project publisher-validation whole-photo known-positive probe; not complete meal precision/recall or UK acceptance",
+  "mapped_rights_verified_images": 60,
+  "known_positive_mapping": {
+    "Cheese": "cheese",
+    "Pizza": "pizza",
+    "Pasta": "pasta",
+    "Mushroom": "mushroom",
+    "Bread": "bread",
+    "Egg": "eggs",
+    "Apple": "fruit_tree",
+    "Tomato": "tomato",
+    "Strawberry": "berry",
+    "Cucumber": "cucumber",
+    "Broccoli": "cruciferous",
+    "Carrot": "root_vegetable",
+    "Pear": "fruit_tree",
+    "Potato": "tuber",
+    "Banana": "fruit_tropical"
+  },
+  "incumbent_known_positive_recall": 0.35,
+  "spatial_known_positive_recall": 0.38333333333333336,
+  "precision": null,
+  "reason_precision_unknown": "Unlabelled foods are unknown, not false positives; publisher boxes do not give complete meal truth",
+  "skipped_ambiguous_classes": {
+    "Salad": 5,
+    "Sandwich": 5,
+    "Grape": 3
+  },
+  "original_split_preserved": "validation; never used for own-model training",
+  "oracle_boxes_or_masks_used_for_inference": false,
+  "base_encoder_passes_per_image": 1,
+  "base_pretraining_overlap_unknown": true,
+  "independent_uk_acceptance": false,
+  "training_admitted": 0,
+  "unique_publisher_authors": 59,
+  "results": [
+    {
+      "image_id": "0019308d876736fe",
+      "expected_known_positive": "cheese",
+      "publisher_class": "Cheese",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "bacon",
+        "pizza"
+      ],
+      "spatial_items": [
+        "pizza"
+      ],
+      "image_sha256": "59358adaf0f24b76fb9dc4056b6b72c88f7d6a934fef610cac3e59f22abcf488"
+    },
+    {
+      "image_id": "006389262f7ba7f1",
+      "expected_known_positive": "pizza",
+      "publisher_class": "Pizza",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": true,
+      "spatial_known_positive_hit": true,
+      "incumbent_items": [
+        "eggs",
+        "pizza"
+      ],
+      "spatial_items": [
+        "pizza"
+      ],
+      "image_sha256": "3e9a9aae1e4746be6e67690867a777c23f4048f291eaee604d1e41f9a13b2752"
+    },
+    {
+      "image_id": "0069e8be6d4f66f0",
+      "expected_known_positive": "cheese",
+      "publisher_class": "Cheese",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "eggs",
+        "root_vegetable"
+      ],
+      "spatial_items": [
+        "pizza"
+      ],
+      "image_sha256": "a4086a1f1c659379a18bf4e2bc7a9af539fc6a91c95698157d81b7f4d4ced8ea"
+    },
+    {
+      "image_id": "00fcc4c5d0dd04c4",
+      "expected_known_positive": "pasta",
+      "publisher_class": "Pasta",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "leafy_greens",
+        "pizza"
+      ],
+      "spatial_items": [],
+      "image_sha256": "a16c266e7470cbdd1dcb5b5ac3bfe7cb85435806e66a32e13887347684672ccc"
+    },
+    {
+      "image_id": "01d35b63ca69b9b2",
+      "expected_known_positive": "pasta",
+      "publisher_class": "Pasta",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "leafy_greens",
+        "pizza"
+      ],
+      "spatial_items": [],
+      "image_sha256": "431ee499445ec981f58c6c1599b7d6e35f33d291fc284bab590e260b59c04c65"
+    },
+    {
+      "image_id": "02e49ce7212f9176",
+      "expected_known_positive": "cheese",
+      "publisher_class": "Cheese",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [],
+      "spatial_items": [],
+      "image_sha256": "ceadffd104c65849fdf12835f0dfa7a585e44e5ea5b27c671f51f70044d1c0d6"
+    },
+    {
+      "image_id": "02ea2c2f4becd07f",
+      "expected_known_positive": "pasta",
+      "publisher_class": "Pasta",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "bacon",
+        "fruit_tropical",
+        "root_vegetable"
+      ],
+      "spatial_items": [
+        "cruciferous"
+      ],
+      "image_sha256": "1a4014096793e976b4a08b7221ff8513952210c464afd4233a5eef3e5fe9c064"
+    },
+    {
+      "image_id": "03c3bda85937a846",
+      "expected_known_positive": "pasta",
+      "publisher_class": "Pasta",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [],
+      "spatial_items": [],
+      "image_sha256": "ca6d867e23846368bfeaf63b080fec8275a453377b9d9b1b8c59d4ad6a233e64"
+    },
+    {
+      "image_id": "0464dba92a26a75b",
+      "expected_known_positive": "pasta",
+      "publisher_class": "Pasta",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [],
+      "spatial_items": [],
+      "image_sha256": "db4d0876cfdd1c6e9de33200aa9b0e4d090f6c2200e6c416b886f0e8e31c0705"
+    },
+    {
+      "image_id": "04835d2d8eb828f1",
+      "expected_known_positive": "pizza",
+      "publisher_class": "Pizza",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": true,
+      "spatial_known_positive_hit": true,
+      "incumbent_items": [
+        "berry",
+        "pizza"
+      ],
+      "spatial_items": [
+        "pizza"
+      ],
+      "image_sha256": "ed594465d0daff339ff47c6c919ed26e676c65513444f64e8e7183e002ff3776"
+    },
+    {
+      "image_id": "056b823b35b47079",
+      "expected_known_positive": "eggs",
+      "publisher_class": "Egg",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": true,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "eggs",
+        "fruit_tropical",
+        "nuts_seeds"
+      ],
+      "spatial_items": [],
+      "image_sha256": "6fdfd1d6a5724a136629d0bbecb0bbc4fd43ca69a89fddfed92af94327555470"
+    },
+    {
+      "image_id": "059bbdbdb843af6a",
+      "expected_known_positive": "cheese",
+      "publisher_class": "Cheese",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "leafy_greens",
+        "pizza"
+      ],
+      "spatial_items": [
+        "pizza"
+      ],
+      "image_sha256": "885419b13494711e947794ed92621c822919cf0b650f447feaf751f169857840"
+    },
+    {
+      "image_id": "05d75289b426c14a",
+      "expected_known_positive": "bread",
+      "publisher_class": "Bread",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "nuts_seeds",
+        "root_vegetable"
+      ],
+      "spatial_items": [
+        "pizza"
+      ],
+      "image_sha256": "d99fc9bcddedf7d6456418430ed97ba099c248f370c792d932f503103ced4bc1"
+    },
+    {
+      "image_id": "0732403beb001417",
+      "expected_known_positive": "eggs",
+      "publisher_class": "Egg",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": true,
+      "spatial_known_positive_hit": true,
+      "incumbent_items": [
+        "berry",
+        "eggs",
+        "root_vegetable"
+      ],
+      "spatial_items": [
+        "eggs",
+        "berry"
+      ],
+      "image_sha256": "ad2b979a802c3f0101ec6af509633caa793e778690cb3e549276280460b6a9b9"
+    },
+    {
+      "image_id": "078821d86db99fc9",
+      "expected_known_positive": "fruit_tree",
+      "publisher_class": "Apple",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": true,
+      "incumbent_items": [
+        "root_vegetable"
+      ],
+      "spatial_items": [
+        "fruit_tree",
+        "root_vegetable"
+      ],
+      "image_sha256": "473b2b0c25fd874fff09c19235c0a06e25c1209f34b26e15b5bc51cddba6a7c9"
+    },
+    {
+      "image_id": "07b5aa736894e3f0",
+      "expected_known_positive": "cheese",
+      "publisher_class": "Cheese",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [],
+      "spatial_items": [
+        "squash_eggplant"
+      ],
+      "image_sha256": "4cc47391b6ea1ca3efca7f85d3aba5c7ded3ccd3d9f43942e17b20949225143d"
+    },
+    {
+      "image_id": "07e556633e32892f",
+      "expected_known_positive": "bread",
+      "publisher_class": "Bread",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [],
+      "spatial_items": [],
+      "image_sha256": "4415acd00daf1e9698661dde38c338a4d3e5d76cebea71fa92f81492e2bc3145"
+    },
+    {
+      "image_id": "080e65075c6ff5d8",
+      "expected_known_positive": "tomato",
+      "publisher_class": "Tomato",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": true,
+      "incumbent_items": [],
+      "spatial_items": [
+        "tomato"
+      ],
+      "image_sha256": "9e514316721e4410a18a0d03e9a48b5d791b69ec6b5ad07847fe0723408e304d"
+    },
+    {
+      "image_id": "08b38afe6c5fa6cc",
+      "expected_known_positive": "berry",
+      "publisher_class": "Strawberry",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": true,
+      "spatial_known_positive_hit": true,
+      "incumbent_items": [
+        "berry",
+        "root_vegetable"
+      ],
+      "spatial_items": [
+        "berry"
+      ],
+      "image_sha256": "b38b0c1b173d8a986cac431c5eac1e3239dce560b6303a69f8efd6dd5ba346af"
+    },
+    {
+      "image_id": "08b8229c9c48582e",
+      "expected_known_positive": "bread",
+      "publisher_class": "Bread",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "fruit_tropical",
+        "root_vegetable"
+      ],
+      "spatial_items": [
+        "leafy_greens"
+      ],
+      "image_sha256": "719725d62b1edad4965f080075845d71e2637dd7c6066fd41bca65d2f58c9412"
+    },
+    {
+      "image_id": "099570f1481ad914",
+      "expected_known_positive": "eggs",
+      "publisher_class": "Egg",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": true,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "eggs",
+        "leafy_greens",
+        "root_vegetable"
+      ],
+      "spatial_items": [
+        "leafy_greens",
+        "root_vegetable"
+      ],
+      "image_sha256": "8642c207720f5c6a5f7fd9d79a80f5d87d7d7066295e5d5733bb3c3713bd5cb8"
+    },
+    {
+      "image_id": "09a9a9d1fe0a592a",
+      "expected_known_positive": "bread",
+      "publisher_class": "Bread",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "berry"
+      ],
+      "spatial_items": [],
+      "image_sha256": "7caa89d5e8788fca8de004b1c8bc24a98eb3d2d870250abab059260d3ec19753"
+    },
+    {
+      "image_id": "0b2c23d6ee2b3801",
+      "expected_known_positive": "berry",
+      "publisher_class": "Strawberry",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": true,
+      "spatial_known_positive_hit": true,
+      "incumbent_items": [
+        "berry"
+      ],
+      "spatial_items": [
+        "berry"
+      ],
+      "image_sha256": "5d6b1eaa53d31a2a435617b8f477706241bb2bb97dc426b09378118a56153ee4"
+    },
+    {
+      "image_id": "0c1574422512912a",
+      "expected_known_positive": "tomato",
+      "publisher_class": "Tomato",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "berry",
+        "eggs",
+        "root_vegetable"
+      ],
+      "spatial_items": [
+        "berry"
+      ],
+      "image_sha256": "d2f9246a4636675811ce8be7a9f1982fd18eccd6535941db4b0c52736a97cf6b"
+    },
+    {
+      "image_id": "0cdd6ff4844c04d4",
+      "expected_known_positive": "mushroom",
+      "publisher_class": "Mushroom",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "eggs",
+        "root_vegetable"
+      ],
+      "spatial_items": [],
+      "image_sha256": "6255e82f11a70f39468ee15998b92086dcc601d9bcd08a47e700b52da641efbb"
+    },
+    {
+      "image_id": "0cf55e9f5c710686",
+      "expected_known_positive": "pizza",
+      "publisher_class": "Pizza",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": true,
+      "spatial_known_positive_hit": true,
+      "incumbent_items": [
+        "eggs",
+        "pizza"
+      ],
+      "spatial_items": [
+        "pizza"
+      ],
+      "image_sha256": "16b5054baad9768048a1b1bebfd6c970139043746f7fad0266255a8088923bb5"
+    },
+    {
+      "image_id": "0e0924847072dd90",
+      "expected_known_positive": "tomato",
+      "publisher_class": "Tomato",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": true,
+      "incumbent_items": [
+        "bacon",
+        "fruit_tropical"
+      ],
+      "spatial_items": [
+        "tomato"
+      ],
+      "image_sha256": "e1b08aece080acc4a2b69b63ecb0b473463788de8ab6af5367da3b3930d5f779"
+    },
+    {
+      "image_id": "0f65b1edbacf6563",
+      "expected_known_positive": "berry",
+      "publisher_class": "Strawberry",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": true,
+      "spatial_known_positive_hit": true,
+      "incumbent_items": [
+        "berry",
+        "eggs",
+        "fruit_tropical"
+      ],
+      "spatial_items": [
+        "berry"
+      ],
+      "image_sha256": "2038077661f01db8e30cf21aafbb77d2ff49d50ca00fb9d5784691b5c9a3e31e"
+    },
+    {
+      "image_id": "103cadacd19f2c80",
+      "expected_known_positive": "pizza",
+      "publisher_class": "Pizza",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": true,
+      "spatial_known_positive_hit": true,
+      "incumbent_items": [
+        "fruit_tropical",
+        "pizza"
+      ],
+      "spatial_items": [
+        "pizza"
+      ],
+      "image_sha256": "620c2fe0b79a4fea4eeb013cea1c35be53f69e23d53d4f6fe636d74b3799b523"
+    },
+    {
+      "image_id": "1047925fd28f2b9f",
+      "expected_known_positive": "pizza",
+      "publisher_class": "Pizza",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": true,
+      "spatial_known_positive_hit": true,
+      "incumbent_items": [
+        "berry",
+        "eggs",
+        "pizza"
+      ],
+      "spatial_items": [
+        "pizza"
+      ],
+      "image_sha256": "ca7251c3ad53268f4481eb21714b8c2190682c090847e59192558dba0d78e46c"
+    },
+    {
+      "image_id": "105433f9d808d18e",
+      "expected_known_positive": "fruit_tree",
+      "publisher_class": "Apple",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "fruit_tropical",
+        "root_vegetable"
+      ],
+      "spatial_items": [
+        "fruit_tropical"
+      ],
+      "image_sha256": "1a67f7d882df6b80366708160f9228f233f216f4a950e10f1ebf9974eaea11b7"
+    },
+    {
+      "image_id": "10b09438620fd5b0",
+      "expected_known_positive": "cucumber",
+      "publisher_class": "Cucumber",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "corn",
+        "root_vegetable"
+      ],
+      "spatial_items": [
+        "squash_eggplant",
+        "tomato"
+      ],
+      "image_sha256": "940153f30a5c6f157aa6ea201ad29cecb0ecd5ffa57c0e1d12c58525cc4448ee"
+    },
+    {
+      "image_id": "1212703168e0f200",
+      "expected_known_positive": "berry",
+      "publisher_class": "Strawberry",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "root_vegetable"
+      ],
+      "spatial_items": [
+        "root_vegetable",
+        "melon"
+      ],
+      "image_sha256": "69cfbd6f3d82ff2e86bcde2c67f0711dd642fb67c74b3021ea5869df8ca7fa51"
+    },
+    {
+      "image_id": "139eff8e41ec7a68",
+      "expected_known_positive": "tomato",
+      "publisher_class": "Tomato",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": true,
+      "incumbent_items": [
+        "berry",
+        "root_vegetable"
+      ],
+      "spatial_items": [
+        "root_vegetable",
+        "berry",
+        "tomato"
+      ],
+      "image_sha256": "f53307514d7bd1269fafe6d8b7db502d0a4cc8ce3e5f65501d46244343837c2a"
+    },
+    {
+      "image_id": "191fbbdafa4e4f4b",
+      "expected_known_positive": "eggs",
+      "publisher_class": "Egg",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": true,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "bacon",
+        "berry",
+        "cruciferous",
+        "eggs",
+        "fruit_tropical",
+        "root_vegetable"
+      ],
+      "spatial_items": [
+        "root_vegetable",
+        "cruciferous"
+      ],
+      "image_sha256": "359016d0f00d851dcb0a464d0af78cd2bdcb6ad13787aded53853da9c3847887"
+    },
+    {
+      "image_id": "1b7d0a2ce8493404",
+      "expected_known_positive": "mushroom",
+      "publisher_class": "Mushroom",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "root_vegetable"
+      ],
+      "spatial_items": [],
+      "image_sha256": "c8be81e657ad320f4a5296e15a9ba07b08154719edb2185e6c08adc64b61b922"
+    },
+    {
+      "image_id": "1fb3ba5860c47a97",
+      "expected_known_positive": "cruciferous",
+      "publisher_class": "Broccoli",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": true,
+      "spatial_known_positive_hit": true,
+      "incumbent_items": [
+        "corn",
+        "cruciferous",
+        "root_vegetable"
+      ],
+      "spatial_items": [
+        "cruciferous"
+      ],
+      "image_sha256": "4c72e3cb00bf275ce69963f279230717902d568e254db86a026392b48a4604ab"
+    },
+    {
+      "image_id": "21c4ea545cc662f1",
+      "expected_known_positive": "cucumber",
+      "publisher_class": "Cucumber",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [],
+      "spatial_items": [
+        "root_vegetable"
+      ],
+      "image_sha256": "315c1f514718c3802130b9b4f2efc11d9ecafce9f8143c1b914980ed0f887112"
+    },
+    {
+      "image_id": "2699aeff9eb68538",
+      "expected_known_positive": "fruit_tree",
+      "publisher_class": "Pear",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "bacon",
+        "eggs",
+        "nuts_seeds"
+      ],
+      "spatial_items": [],
+      "image_sha256": "d8ec11320d7183d06379241ae8f25ee38d07fbda6c5b2621bd03991bd5324f18"
+    },
+    {
+      "image_id": "26a73dea7c04cad2",
+      "expected_known_positive": "mushroom",
+      "publisher_class": "Mushroom",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "eggs"
+      ],
+      "spatial_items": [],
+      "image_sha256": "77844eb9ec2934c36cd28813ced22d08a020a53fbcbee08d3e186839bf4a9b0e"
+    },
+    {
+      "image_id": "2a64768abd5a9c65",
+      "expected_known_positive": "cruciferous",
+      "publisher_class": "Broccoli",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": true,
+      "spatial_known_positive_hit": true,
+      "incumbent_items": [
+        "cruciferous",
+        "leafy_greens",
+        "root_vegetable"
+      ],
+      "spatial_items": [
+        "root_vegetable",
+        "tomato",
+        "cruciferous"
+      ],
+      "image_sha256": "85dc9179d4e5b078e62e0a7ce68fcf2b100351c67eb35eeb61d5be7e9d2e8bd9"
+    },
+    {
+      "image_id": "2b96210e388009ff",
+      "expected_known_positive": "cruciferous",
+      "publisher_class": "Broccoli",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": true,
+      "spatial_known_positive_hit": true,
+      "incumbent_items": [
+        "cruciferous",
+        "leafy_greens"
+      ],
+      "spatial_items": [
+        "meat_red",
+        "berry",
+        "cruciferous"
+      ],
+      "image_sha256": "a5477a741cb48ddb851b5546c9f81ccf4df0e0ea6a6d5a72c88de6fe1ee48500"
+    },
+    {
+      "image_id": "2d3bf81d68393650",
+      "expected_known_positive": "fruit_tree",
+      "publisher_class": "Pear",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "nuts_seeds",
+        "root_vegetable"
+      ],
+      "spatial_items": [],
+      "image_sha256": "1339268163e472448b2ac00e30297269cf1ee1cfd2ce0e3c2eafa4257ca78512"
+    },
+    {
+      "image_id": "2fe4f21e409f0a56",
+      "expected_known_positive": "fruit_tree",
+      "publisher_class": "Apple",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": true,
+      "incumbent_items": [
+        "root_vegetable"
+      ],
+      "spatial_items": [
+        "fruit_tree"
+      ],
+      "image_sha256": "393298065aa685ad6f545775620828b3d6703f0ad13b956b4357cb00e44e0257"
+    },
+    {
+      "image_id": "3441aa8c50df6992",
+      "expected_known_positive": "cucumber",
+      "publisher_class": "Cucumber",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [],
+      "spatial_items": [
+        "squash_eggplant",
+        "tomato",
+        "pizza"
+      ],
+      "image_sha256": "cca9190fdb8d1ea9b9fe1abd852a011ca65b3ac28aaf3bf2a9d27ec38dae6398"
+    },
+    {
+      "image_id": "3802c7501243b4a9",
+      "expected_known_positive": "cruciferous",
+      "publisher_class": "Broccoli",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": true,
+      "spatial_known_positive_hit": true,
+      "incumbent_items": [
+        "cruciferous",
+        "fruit_tropical"
+      ],
+      "spatial_items": [
+        "cruciferous",
+        "root_vegetable"
+      ],
+      "image_sha256": "d9dcbc73e4ad430700dad40709bd5b39bfcf4b9bf7afc1dfbbaafe26aafb7be8"
+    },
+    {
+      "image_id": "3dff873403b83fa8",
+      "expected_known_positive": "cucumber",
+      "publisher_class": "Cucumber",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "leafy_greens"
+      ],
+      "spatial_items": [],
+      "image_sha256": "b2624e5fdf16a181b19db82e329fd244bec2d5638bf51e03593827bade6dbd3d"
+    },
+    {
+      "image_id": "3e810338e95a9cee",
+      "expected_known_positive": "fruit_tree",
+      "publisher_class": "Apple",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": true,
+      "incumbent_items": [
+        "fruit_tropical"
+      ],
+      "spatial_items": [
+        "fruit_tropical",
+        "fruit_tree"
+      ],
+      "image_sha256": "9dc2f66bdc9fe1f6f30d65f911cafbd13b5cad02f291be8261e7ebc1e8f57e85"
+    },
+    {
+      "image_id": "41e2356b97f775c4",
+      "expected_known_positive": "fruit_tree",
+      "publisher_class": "Pear",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "root_vegetable"
+      ],
+      "spatial_items": [],
+      "image_sha256": "66b8bc2dbec9c040d8a32b781c9fd66413f3bf4e8da8c98cf08dfd72135d5dd9"
+    },
+    {
+      "image_id": "4363fb9fe61a1676",
+      "expected_known_positive": "tuber",
+      "publisher_class": "Potato",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "nuts_seeds",
+        "root_vegetable"
+      ],
+      "spatial_items": [],
+      "image_sha256": "2c4b11bb214e1b5a6fca8143ea72b1bf4a2ac6dc2ab006175f87146dabdfe5f9"
+    },
+    {
+      "image_id": "494e6920449b08bb",
+      "expected_known_positive": "root_vegetable",
+      "publisher_class": "Carrot",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": true,
+      "spatial_known_positive_hit": true,
+      "incumbent_items": [
+        "root_vegetable"
+      ],
+      "spatial_items": [
+        "root_vegetable"
+      ],
+      "image_sha256": "8fb612c4e51ab5a22803976c4346ec5ad960a6fffcd6388c0a498dbbcd43cd24"
+    },
+    {
+      "image_id": "621d666570933209",
+      "expected_known_positive": "fruit_tree",
+      "publisher_class": "Pear",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "corn",
+        "fruit_tropical",
+        "root_vegetable"
+      ],
+      "spatial_items": [],
+      "image_sha256": "583e0fa13eb92bbf79fc91d6b6f652c200b5aadf1528b57926307911987f987a"
+    },
+    {
+      "image_id": "6597986c3f60ba42",
+      "expected_known_positive": "tuber",
+      "publisher_class": "Potato",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "root_vegetable"
+      ],
+      "spatial_items": [],
+      "image_sha256": "8d764b4edaca7425b0fee50e9ee6925d3700d15eed24c5da4f0574e6d379423a"
+    },
+    {
+      "image_id": "74a44994e3d6b962",
+      "expected_known_positive": "fruit_tropical",
+      "publisher_class": "Banana",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "berry",
+        "root_vegetable"
+      ],
+      "spatial_items": [],
+      "image_sha256": "ee03f62b041fe0b45b6e10c251f89d068b75ed11591b9044a30e412cdf8b3ab7"
+    },
+    {
+      "image_id": "897eb8ba55ceb227",
+      "expected_known_positive": "tuber",
+      "publisher_class": "Potato",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "bacon",
+        "cruciferous",
+        "root_vegetable"
+      ],
+      "spatial_items": [
+        "root_vegetable"
+      ],
+      "image_sha256": "cb398102ea01ae587283821abd4547d4a09ebb20fd897411bad38ae2e8dafcc0"
+    },
+    {
+      "image_id": "8f459c989ec5bfa6",
+      "expected_known_positive": "root_vegetable",
+      "publisher_class": "Carrot",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": true,
+      "spatial_known_positive_hit": true,
+      "incumbent_items": [
+        "leafy_greens",
+        "root_vegetable"
+      ],
+      "spatial_items": [
+        "root_vegetable"
+      ],
+      "image_sha256": "1eae89e43e2fbf1e04149aecc65ffb30413a30f8b46e41a8cb8ed01329e317aa"
+    },
+    {
+      "image_id": "ab3ec6f1f4f6b3d3",
+      "expected_known_positive": "tuber",
+      "publisher_class": "Potato",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": false,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "root_vegetable"
+      ],
+      "spatial_items": [
+        "eggs"
+      ],
+      "image_sha256": "614ebaac93e73453d2f9af5bd33483f3c06fb0dc6e8ccb0f38b62eff9cccaab0"
+    },
+    {
+      "image_id": "ba67cd4669a926f5",
+      "expected_known_positive": "root_vegetable",
+      "publisher_class": "Carrot",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": true,
+      "spatial_known_positive_hit": true,
+      "incumbent_items": [
+        "berry",
+        "corn",
+        "leafy_greens",
+        "root_vegetable"
+      ],
+      "spatial_items": [
+        "root_vegetable"
+      ],
+      "image_sha256": "223561404ca96f0995aac8197085ba301fee787328a4bc8272d8ed1ba255b032"
+    },
+    {
+      "image_id": "c682818fe22eb309",
+      "expected_known_positive": "fruit_tropical",
+      "publisher_class": "Banana",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": true,
+      "spatial_known_positive_hit": false,
+      "incumbent_items": [
+        "berry",
+        "fruit_tropical"
+      ],
+      "spatial_items": [],
+      "image_sha256": "f7af3649a3521c276ec5d5d986367e03f6e3b0803c32673beb1fbe08cbb9d779"
+    },
+    {
+      "image_id": "da3235cd7afa51f7",
+      "expected_known_positive": "fruit_tropical",
+      "publisher_class": "Banana",
+      "gate_accept": true,
+      "incumbent_known_positive_hit": true,
+      "spatial_known_positive_hit": true,
+      "incumbent_items": [
+        "berry",
+        "fruit_tropical",
+        "pizza"
+      ],
+      "spatial_items": [
+        "fruit_tropical",
+        "pizza",
+        "berry"
+      ],
+      "image_sha256": "988ad0251b1ed6549b2a9e2552af4be90d11a0d75307579b386b790ce678fc31"
+    }
+  ],
+  "production_ready": false
+}

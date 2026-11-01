@@ -12,8 +12,8 @@ from core import digest, metrics
 from food_gate import GatedPredictor
 
 
-def verify(candidate, base, gate, manifest_path, *, research=False):
-    model = GatedPredictor(candidate, base, gate, research=research)
+def verify(candidate, base, gate, manifest_path, *, research=False, predictor_factory=None):
+    model = (predictor_factory or GatedPredictor)(candidate, base, gate, research=research)
     original = json.loads((candidate / "evaluation.json").read_text())
     if digest(manifest_path) != original["source_manifest_sha256"]:
         raise ValueError("Exact previously evaluated manifest required")

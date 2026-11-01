@@ -46,6 +46,9 @@ if __name__ == "__main__":
     elif family == "shift-siglip-food-head-1":
         from food_gate import GatedPredictor
         model = GatedPredictor(args.candidate, args.base, args.gate, research=True)
+    elif family in ("shift-spatial-food-localiser-1", "shift-spatial-food-ensemble-1"):
+        from spatial_model import GatedSpatialPredictor
+        model = GatedSpatialPredictor(args.candidate, args.base, args.gate, research=True)
     else:
         raise ValueError("Known pinned research candidate family required")
     serve(model)

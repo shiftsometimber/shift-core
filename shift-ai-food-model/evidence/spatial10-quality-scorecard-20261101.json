@@ -1,0 +1,376 @@
+{
+  "schema": "shift-food-quality-contract-1",
+  "candidate": "shift-spatial-candidate-10",
+  "metrics": {
+    "definition": "Component micro precision=TP/(TP+FP), recall=TP/(TP+FN); fixed visible vocabulary",
+    "primary_gate_applied_full_vocabulary": {
+      "images": 208,
+      "micro_precision": 0.8296089385474861,
+      "micro_recall": 0.5,
+      "micro_f1": 0.6239495798319328,
+      "exact_match": 0.25,
+      "coverage": 0.8413461538461539,
+      "classes": [
+        {
+          "label": "alium_vegetable",
+          "support": 3,
+          "predictions": 0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        {
+          "label": "bacon",
+          "support": 15,
+          "predictions": 14,
+          "precision": 0.9285714285714286,
+          "recall": 0.8666666666666667,
+          "f1": 0.896551724137931
+        },
+        {
+          "label": "berry",
+          "support": 41,
+          "predictions": 42,
+          "precision": 0.7619047619047619,
+          "recall": 0.7804878048780488,
+          "f1": 0.7710843373493976
+        },
+        {
+          "label": "bread",
+          "support": 4,
+          "predictions": 0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        {
+          "label": "cheese",
+          "support": 9,
+          "predictions": 0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        {
+          "label": "condiment_dressing",
+          "support": 1,
+          "predictions": 0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        {
+          "label": "corn",
+          "support": 10,
+          "predictions": 8,
+          "precision": 0.5,
+          "recall": 0.4,
+          "f1": 0.4444444444444444
+        },
+        {
+          "label": "cruciferous",
+          "support": 44,
+          "predictions": 59,
+          "precision": 0.6610169491525424,
+          "recall": 0.8863636363636364,
+          "f1": 0.7572815533980582
+        },
+        {
+          "label": "cucumber",
+          "support": 11,
+          "predictions": 0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        {
+          "label": "dessert",
+          "support": 0,
+          "predictions": 0,
+          "precision": null,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "eggs",
+          "support": 29,
+          "predictions": 33,
+          "precision": 0.8484848484848485,
+          "recall": 0.9655172413793104,
+          "f1": 0.9032258064516129
+        },
+        {
+          "label": "fish",
+          "support": 11,
+          "predictions": 0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        {
+          "label": "fruit_fatty",
+          "support": 5,
+          "predictions": 0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        {
+          "label": "fruit_other",
+          "support": 1,
+          "predictions": 0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        {
+          "label": "fruit_tree",
+          "support": 2,
+          "predictions": 1,
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6666666666666666
+        },
+        {
+          "label": "fruit_tropical",
+          "support": 22,
+          "predictions": 18,
+          "precision": 1.0,
+          "recall": 0.8181818181818182,
+          "f1": 0.9
+        },
+        {
+          "label": "grain_other",
+          "support": 23,
+          "predictions": 0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        {
+          "label": "herb",
+          "support": 10,
+          "predictions": 0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        {
+          "label": "leafy_greens",
+          "support": 85,
+          "predictions": 63,
+          "precision": 0.9523809523809523,
+          "recall": 0.7058823529411765,
+          "f1": 0.8108108108108109
+        },
+        {
+          "label": "legumes_green",
+          "support": 8,
+          "predictions": 0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        {
+          "label": "legumes_other",
+          "support": 7,
+          "predictions": 0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        {
+          "label": "meat_red",
+          "support": 23,
+          "predictions": 3,
+          "precision": 1.0,
+          "recall": 0.13043478260869565,
+          "f1": 0.23076923076923078
+        },
+        {
+          "label": "melon",
+          "support": 19,
+          "predictions": 18,
+          "precision": 0.8333333333333334,
+          "recall": 0.7894736842105263,
+          "f1": 0.8108108108108109
+        },
+        {
+          "label": "mushroom",
+          "support": 3,
+          "predictions": 0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        {
+          "label": "nuts_seeds",
+          "support": 4,
+          "predictions": 0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        {
+          "label": "pasta",
+          "support": 0,
+          "predictions": 0,
+          "precision": null,
+          "recall": null,
+          "f1": 0
+        },
+        {
+          "label": "peppers",
+          "support": 5,
+          "predictions": 0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        {
+          "label": "pizza",
+          "support": 21,
+          "predictions": 19,
+          "precision": 1.0,
+          "recall": 0.9047619047619048,
+          "f1": 0.95
+        },
+        {
+          "label": "poultry",
+          "support": 34,
+          "predictions": 0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        {
+          "label": "rice",
+          "support": 23,
+          "predictions": 6,
+          "precision": 0.8333333333333334,
+          "recall": 0.21739130434782608,
+          "f1": 0.3448275862068966
+        },
+        {
+          "label": "root_vegetable",
+          "support": 19,
+          "predictions": 8,
+          "precision": 0.625,
+          "recall": 0.2631578947368421,
+          "f1": 0.37037037037037035
+        },
+        {
+          "label": "salad_prepared",
+          "support": 26,
+          "predictions": 24,
+          "precision": 0.9583333333333334,
+          "recall": 0.8846153846153846,
+          "f1": 0.92
+        },
+        {
+          "label": "sausage",
+          "support": 10,
+          "predictions": 0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        {
+          "label": "squash_eggplant",
+          "support": 16,
+          "predictions": 3,
+          "precision": 0.6666666666666666,
+          "recall": 0.125,
+          "f1": 0.21052631578947367
+        },
+        {
+          "label": "tofu",
+          "support": 3,
+          "predictions": 0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        {
+          "label": "tomato",
+          "support": 14,
+          "predictions": 12,
+          "precision": 0.5,
+          "recall": 0.42857142857142855,
+          "f1": 0.46153846153846156
+        },
+        {
+          "label": "tuber",
+          "support": 27,
+          "predictions": 27,
+          "precision": 0.8888888888888888,
+          "recall": 0.8888888888888888,
+          "f1": 0.8888888888888888
+        },
+        {
+          "label": "vegetable_other",
+          "support": 3,
+          "predictions": 0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        {
+          "label": "yogurt",
+          "support": 3,
+          "predictions": 0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      ]
+    },
+    "ungated_full_vocabulary_exact_counts": {
+      "true_positive": 305,
+      "false_positive": 65,
+      "false_negative": 289,
+      "predicted_components": 370,
+      "actual_visible_components": 594,
+      "precision": 0.8243243243243243,
+      "recall": 0.5134680134680135,
+      "photos": 208,
+      "photos_without_suggestions": 23
+    },
+    "response_item_cap": 12,
+    "maximum_classifier_suggestions_on_this_set": 6,
+    "shared_category_diagnostic_only": null,
+    "member_assisted_record_accuracy": null,
+    "nutrition_accuracy": null
+  },
+  "target_assessment": {
+    "requested_precision": 0.9999,
+    "requested_recall": 0.9999,
+    "point_target_met": false,
+    "claim_verified": false,
+    "production_approval": false,
+    "reason": "These development results cannot establish representative independent real-world 99.99% performance",
+    "illustration_only_zero_error_samples": {
+      "per_single_metric_one_sided_95_percent": 29956,
+      "per_metric_for_both_simultaneous_95_percent_bonferroni": 36887,
+      "assumptions": "Zero errors; independent representative Bernoulli trials per appropriate denominator. Not an image quota, current confidence interval, guarantee, or allowance to count correlated components as independent."
+    }
+  },
+  "rules": [
+    "Abstentions and food-gate rejections still count as missed visible components",
+    "Disabled categories remain in recall denominator",
+    "Corrected or confirmed entries cannot be counted as correct photo-only predictions",
+    "No changing vocabulary, test split, food granularity or denominator to meet target",
+    "False non-food acceptance is a separate required metric, not hidden in food precision",
+    "No exact recipe, hidden ingredient, quantity or nutrition claim from component scores"
+  ],
+  "evidence": {
+    "manifest_sha256": "c81ad91590e16f9ae1f8f106413445e88ed591095e9e96aaad8be4895adf52ea",
+    "predictions_sha256": "7d20f64dcd8c7fdcb4d4cbba8b93f53d4ba130e006b326a0fe6150ca9a47d967",
+    "report_sha256": "ef06a5b5049316f609097d0b79983bec9c9e5d5de4fe977db95f7dbd9197f8fe",
+    "gate_receipt_sha256": "48e32703c1395f3969f9a76ab6bf5800c79f91cce8b8d3d0861380ccdeb6bd69",
+    "capture_weeks": 4,
+    "independent_uk_acceptance": false,
+    "real_non_food_acceptance": false,
+    "photo_only_and_member_assisted_scored_separately": true
+  }
+}
