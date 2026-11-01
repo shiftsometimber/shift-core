@@ -1,0 +1,16 @@
+{
+  "authority": "Matt's targeted repair of eight approved hero image URLs, 1 November 2026",
+  "baselineVersion": "1b0acb36-4fee-452c-b23b-10b03d2421ce",
+  "baselineDeployment": "f46cbe25-2a90-40e6-b461-fbf984e04dca",
+  "assetSource": "Exact Tools CT3 media module from successful run 41223877179, artifact 13050674592; source module SHA256 70320207a2f9af8e5577146c1aa29b142a67f83af4bfb9149f4465d3e7757c23",
+  "pages": [
+    {"page":"/tools","image":"/tools/assets/ct3-couple-20261031.webp","sha256":"57d0f67319af5df93793705af75b6d4dcf4e24cda05f2bbbbdeaf5815834fefc","width":1903,"height":826,"bytes":124984,"before":404},
+    {"page":"/male-obesity","image":"/assets/pending-pages-20261031/everyday-tea.webp","sha256":"ddf7fd1532899c6725ff07277683097891c4643ef08a1f356e2fcb9cc65271d2","width":1024,"height":1536,"bytes":206916,"before":200},
+    {"page":"/provider-switch","image":"/assets/provider-causes-20261031/provider-library.webp","sha256":"11ae3f5042fcacc456b1a295d195bed5e9e11931bb6d7da83341db04a1aca7c6","width":1536,"height":1024,"bytes":109784,"before":200},
+    {"page":"/life-back","image":"/assets/approved-pages-20261031/life-back-mosaic.webp","sha256":"c60e83e57f2d46757865710c215e7c1857a8b1f930ef96cdfbe3340de11922fb","width":1254,"height":1254,"bytes":211670,"before":200},
+    {"page":"/clinic-gone-quiet","image":"/assets/approved-pages-20261031/continuity-notebook.webp","sha256":"c617b1395f151d21f726239a2137295dceda79fbc6a467a2f75c424f6ab49dae","width":1774,"height":887,"bytes":74486,"before":200},
+    {"page":"/partner-with-us","image":"/assets/pending-pages-20261031/partner-community.webp","sha256":"5b412d8633662348bff7edaea6febde8cad959790775a038bfc394205a753878","width":1536,"height":1024,"bytes":124630,"before":200},
+    {"page":"/family-discussion-guide","image":"/assets/family-fd3-20261031/family-walk.webp","sha256":"61c6f0015b1962e84c034d260e37e835a7065b07f53d48be0fa1ae36fb0b94c4","width":1536,"height":1024,"bytes":188072,"before":200},
+    {"page":"/downloads-resources","image":"/assets/downloads-dr3-20261031/preparing-notes.webp","sha256":"bb02fce7284aeebc4d56fe75421673c49a5ebeb9868ad456608eedd857d733c4","width":1536,"height":1024,"bytes":78644,"before":200}
+  ]
+}
