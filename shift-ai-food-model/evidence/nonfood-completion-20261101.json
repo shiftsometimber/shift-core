@@ -1,0 +1,724 @@
+{
+  "schema": "shift-nonfood-review-correction-1",
+  "status": "ORIGINAL_NEGATIVE_TEST_INVALIDATED; PROVISIONAL_VISUAL_REVIEW_ONLY",
+  "reason": "Publisher Food-class absence was wrongly projected to absence of every food/drink/ingredient. Visual inspection found drinks, spices, eggs and bananas among candidates.",
+  "original_projection_rate_is_not_a_valid_false_food_rate": true,
+  "model_or_threshold_changed": false,
+  "source_candidates_used_for_training": false,
+  "all_candidates": 100,
+  "clear_nonfood": 16,
+  "food_or_drink": 31,
+  "uncertain": 53,
+  "provisional_false_food_suggestions": 6,
+  "provisional_false_food_suggestion_rate": 0.375,
+  "limitations": [
+    "Assistant visual review after an error investigation; not independent blind acceptance",
+    "Only unambiguous objects/live animals retained as provisional negatives; botanical/unclear cases remain uncertain",
+    "All original outputs retained; no source case removed without an explicit review category",
+    "Minimum 100 independently verified non-food examples remains unmet"
+  ],
+  "reviews": [
+    {
+      "image_id": "000a1249af2bc5f0",
+      "image_sha256": "b6cba03f856e59b4c9f3c9ee244a9b1227f6fa3ca23222409ad5302b08e53689",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "003232584a062b07",
+      "image_sha256": "0bc869c260fdab854593594e105795c3e457d2f8b04f411302a594d056d2f9e7",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0035a4bfeda1b637",
+      "image_sha256": "cb96a57872b12432c0b7727118a8ac4e919e4527b8110cad18b6fd5fca963a49",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "004545770f4770c7",
+      "image_sha256": "3e68e68275dcfac4f5cbf1f76433fddcd8aa52500ba115f2d48ba19debc34028",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0071f62f5d703904",
+      "image_sha256": "28045c10183cbe563764cfb45e71da7e4d2d8adc045619fbb543af99dcb31f6e",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "00786681a5cb1086",
+      "image_sha256": "a3478549388e71e7fbfa3095a7fe6364b6d56e98c410a4144ac92ee87ffc6563",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "00902c56bdcf10b6",
+      "image_sha256": "bd18bd66ec8f5b0a581754d51a5b3d9d49c94fbf348d3392508305a5e62a551a",
+      "review_status": "clear_nonfood",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "00b3ad28957f7768",
+      "image_sha256": "e20d0c6216728d7cde02a3dc3ce9034648625fc92eb2a677ed7e9c40a49fc4fc",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "00c9616a917be867",
+      "image_sha256": "ef6d7f0ed66542ad1d6d35b7ba8ab823fdbb0b12f223ceab4320e53ecf879b45",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "00e71a70a2f669ff",
+      "image_sha256": "10446cd8e4b118788e53b3a7da8e444fb4be00826325b8389b34ff1ac089ba8a",
+      "review_status": "clear_nonfood",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "013554a90a299304",
+      "image_sha256": "8542876287ea9f370681f2d15e529d851acca9eacbbcecbeceec577fbb33ca58",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "01eaa89b375cf87a",
+      "image_sha256": "2068d04eed5d8b96484ef92d6713f7aa20972322df20e0d9fb7186aff06013dd",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "01f7a31f493fb012",
+      "image_sha256": "1172bfae0105c04ff615299a174ed2293e43ea38e79a72737e3c9f81a8faede6",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "02621d3d56c7e96e",
+      "image_sha256": "3d5c56c0dbde686850846f1df2a3e6f4427b8fe7d1fa555ed688582b1efd8de1",
+      "review_status": "clear_nonfood",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "02760ace01bd113f",
+      "image_sha256": "1f56e6a2cc342114653e754f584f6b1df5555551e1e999c8d1c4bdaf690b1314",
+      "review_status": "clear_nonfood",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "02ed27fcf5602811",
+      "image_sha256": "ce0642d5b54366cc6f94237539178a6a4d8aa2adc52bef447a5783b32cdd337d",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0372b25d1e3d9bf9",
+      "image_sha256": "5ca716b8698c628b756b1923f855ca162954918aee85c51411bfefacaba2bb90",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "03868cb89ff15f9d",
+      "image_sha256": "6c9d6972891e69ed074101753ac355ee5adfdb5c01566eadc0bce2c672b4122d",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "038f08d47e1f4e27",
+      "image_sha256": "da84c202c490a14356085f91f16c2f5510ff5d3c6e59a85fb93d2a45357d575b",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0421eec829d10cb8",
+      "image_sha256": "add7fbcd764ec2ec82580b242807232540cedb7410e7ecb916a47eb08c50ca29",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "04414f9a800ad0f3",
+      "image_sha256": "4a9ad5a7170f522f3ca85d693bf70e2a71b409a8fd1efcd8e16420845c626d70",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "049720d842de2d3e",
+      "image_sha256": "ad6b7db294cee93ac93c8ea7c7ffe7f5d13edbd94a1c41970eebb51ffeffc186",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "04a4f1bfadab2ebc",
+      "image_sha256": "65b332fe1f1ec39683732ca0ff223de060af075a34fcc66201232b0bbfb32340",
+      "review_status": "clear_nonfood",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "04a5877b06ea88f5",
+      "image_sha256": "680ea3955726506264e341519fca0d564d1bb0635bab8d4d43960fb563905047",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "04cc03135cfd8580",
+      "image_sha256": "b2550271c108ef817a550efa8d2b930fb78c79385abf4115955677da53cc9cee",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0536b2a49b741fec",
+      "image_sha256": "a662da3b6861526e61cdadee39f71159f2fa41e113e35dd6a15cacd2eeff7caf",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0541fb11de1df8de",
+      "image_sha256": "038a0e6ddf0ba75cab259c2e40ab42ecf47f2d051c64c3f469b33d8230597c45",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0556195c4067a984",
+      "image_sha256": "30b094e55f21d6652df63d3d94d1b5f83dec306e05b2b249528b25d45e0dfc73",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "057c2a9cbc27c8b5",
+      "image_sha256": "84f9bbcc1fdf23d998e39ee89fea74a1807a3fd3deaa4fed5ab35a3a40c9871a",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "05992b1991659e33",
+      "image_sha256": "a27449c50967b7da1629e5f3e9f4dd66ace6fa4398d9b8b89e075ae369ce255d",
+      "review_status": "clear_nonfood",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "05a23e78a029f9b3",
+      "image_sha256": "a78168b4698dfbc4142634008c515b85b858d752ebff5c9ba5118563312c407b",
+      "review_status": "clear_nonfood",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "05d4fdc8eea425f9",
+      "image_sha256": "054eaa8afae7797a0dadaabeb2f48766e6045a22ca3672e99138b38851b19c19",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "05ec955b6ace97b9",
+      "image_sha256": "f82ac53f1b24528d0548d915de5f8ca261a207d4a58ab6bdebbe5f5453923434",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "05f0c24e9138392c",
+      "image_sha256": "a5d0cda6387f4a00aa21aa22943d5bbbed3abffb3232ae696b54701936d87cc5",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "060091417ccafbcf",
+      "image_sha256": "f87e9af00c3c6b344301cb538465752e9f722bd3a553b683ec2a38c40c21bc78",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "060b318d69481623",
+      "image_sha256": "56c3d5a17bf371ea62a4bb67abfc6b164443edd78518add07caafeb7aae9a2e7",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "061a9184977eb612",
+      "image_sha256": "a4b6ff1de7a59175e8f99bfe0f15944a942d031fe584d89174e4814ef19c4fab",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0645a4aa8d1165d5",
+      "image_sha256": "35cea71b9f5a220ad2d308f16fd6eaf42fcd70e64f789647562f907f27e23689",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "06a449c6ef03c172",
+      "image_sha256": "6b99870df8da16387450acd8e373f9975fcd9ae4295ae276b8a956601a329ac8",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0733e9d83cf3a916",
+      "image_sha256": "b72f9c5ba2af0d8ab4c877f9c667efcb8f4ee2745d77f22f8d07fe6daaca6819",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "07f05ecef40ff3ee",
+      "image_sha256": "f21825456704f2f5bdfc1c771c9d703cede14af07698f880eed323b2479cf55d",
+      "review_status": "clear_nonfood",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "083e3585685dbd8b",
+      "image_sha256": "c0c415eb56921559a55959c951ceb6581301c0a9b82c33c76e9815584e6847df",
+      "review_status": "clear_nonfood",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0867ed7b739f753a",
+      "image_sha256": "d14812e19e9c4df8220ffe886d7fbbe3306413cbc9a3b3547b118bd8d2080ebc",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "08ca608701f67f72",
+      "image_sha256": "3305272a70a0cec509aaf8bf5804cf9e4498f3d232a6e90750408316a8794715",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "08dc26c03c20ba58",
+      "image_sha256": "4c6e59c9f717cf8390fd4154397fd03303d5d3ebffb50a8ad799bdbaabf47e0b",
+      "review_status": "clear_nonfood",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "09a8ff0ee7f926f6",
+      "image_sha256": "da252d8c7fc8684960345108883e39651a725e21bfcd7a66696ce1a6d57e01da",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0af12cae5301c91d",
+      "image_sha256": "d900a1e79a98a2590d802102b6b33a277b1ebb182af085be6e53500e102a3385",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0b29557903ed7b0e",
+      "image_sha256": "77cfdb87963fafeadfbdef3a947938635f4d352a1726385e5af77f792d3caac1",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0b5b9dc7c5f88bff",
+      "image_sha256": "4bcd7f26ed5a7b90e65e1f1516e1aa97d5537a32f84dded1141a650f6d65cc44",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0b6a55f2f634455c",
+      "image_sha256": "733e8550ade4262090413aa1c3a23063fc0e3b2f46d3cbe53de4a15f1bc60e1d",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0b7c8487382a5284",
+      "image_sha256": "81cf606dc9ce61a6d871441b1386677f313b8a21612e199b7ed48d09b2fae3a6",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0bb394d3ecc97ae3",
+      "image_sha256": "fd55c83744fdb433ae6de7368ff8b7a08fb4159d2033f235ddabfd0d27ed8d3a",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0c17518d615e73d7",
+      "image_sha256": "d5cf37f126d4e28496f3fe96b923eff4fc098f875afa28b4c7863e77e8ed89c9",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0c68a17d3981e621",
+      "image_sha256": "f7b98bfa1ade69a803a09da794634be620a1a3e3ff9e59448cb166045c3ba0e3",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0c7b07eba9d3a56b",
+      "image_sha256": "6759b9035cb7102175b378055bcb9959747998863f8d10a0f64cc5afad1ad17a",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0c97a2a61416d828",
+      "image_sha256": "9f64c9041fbe982cd82aa82ded3006b6a2dd2b35b090c32f02d02384f7984ee3",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0cf4ec7ef0c0ce07",
+      "image_sha256": "9d88a039895abf901cb73a1b9592cfc8600908c60b0320b00169cfef514b88b1",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0cf5400aba547ad7",
+      "image_sha256": "b39ee181fa9ba89f56a13ea716d87335ae0b629292901896c8e28afeb784f42f",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0cfd8b8d126924ff",
+      "image_sha256": "bfca12be913d389e813fcd87f2b8ad55fdca59862b8ff3f046936a687169653e",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0d1a073b2c455b1d",
+      "image_sha256": "c96c588604068f8d05c48f18c25f593a94dc0a0c68b5d72c3e7981fde580c407",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0d1a357f911ec13c",
+      "image_sha256": "49311e0131b3355a3522f9a05d32f5888e700d77a217d8be2ffb8f629b567019",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0d436ca344f7e4b0",
+      "image_sha256": "c9c5a3a1b46b8d2b82b4c1ab300f5b94457b8e1f7d1475f812d46759c3adcd60",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0d47499ad27d4b76",
+      "image_sha256": "b772e3847a9eaaa257295430154646de30d1483da7cb2147d91643c56d12066b",
+      "review_status": "clear_nonfood",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0e481ee0c6655eb1",
+      "image_sha256": "c8973fdc22a0fd5a649d0a742f386c5646fcabc42a4e25c1e07b0dab029ce5ca",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0e55b52f12efc371",
+      "image_sha256": "ac78cfee478cff4673eb06e4610c8961eff9771d6e6bae46259e80ad04120918",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0e9ae5dacd973b79",
+      "image_sha256": "8f3d949a42a7f7824ad03944efa728f86a1408cfa9e2d14368345b32066f1d5a",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0ea539e7d8068619",
+      "image_sha256": "80fee69e104d514fc04927075377d10bae0572afc098a6b2f9bcc1befb580fe7",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0f18081b0baa7297",
+      "image_sha256": "0207a237bdae4b1a0d26e1e04705526a45ff55845282d601fcdbea7c17434f79",
+      "review_status": "clear_nonfood",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "0f228bd0748e1336",
+      "image_sha256": "dc4162108df8361a5ff15200991c62f640e33047d9848dfd2f36ec8e02295037",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "1007f0cdbf2d5c69",
+      "image_sha256": "6961483d9c0e9ea69b5eff42c229cba250623f6919449ce5e973f22c262c6806",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "1020b9690b88a2a4",
+      "image_sha256": "ba401518bee3b2f72382d3f4c311352deaccea02eab738d248dbbf4c5750b989",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "102ab8e5172f16bf",
+      "image_sha256": "a5b0e161963a5e4877271bf3d39b456d5f6150b39d4023c4770f44b4c06b5c88",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "1046014c53be3a77",
+      "image_sha256": "fe767cf1cb2016874672ce32957c5656d2764b3b50237e47a3167b39919a892a",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "106d476f595c28b8",
+      "image_sha256": "9c1130245e54975ddbea2ffa34d5876aa768f7f04944dbce470738e9de5ac027",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "10c183f776fe5e73",
+      "image_sha256": "9858bb94df5e2f019d42516961095fa573fdfca4329f4388e9ebdf789e50fa06",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "10c5316f6bbb2f82",
+      "image_sha256": "0844ec378c1a92643192c9a330e0ec4f90ac2e76244411a08d5fbd5fee965b88",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "110c321703e03bf3",
+      "image_sha256": "ae33bff80079367d7f7189ea5e33dee1e6538f83c6e48740dada4ef9004f26d4",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "116b11d42594defd",
+      "image_sha256": "22c3e719fb2c3649777db76d0b9bab2acee07d73c560e5af93aa55c9e2b28c15",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "1172ad179f7d27c6",
+      "image_sha256": "d369b4223fdeca993fb458a47c6a20eee0e17cd0c8e726832f15217fe51c2641",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "1189db08be5db50d",
+      "image_sha256": "9088ea3daebf1217ee70fcc583947cb6faefe832a40fd995c08c54651284088c",
+      "review_status": "clear_nonfood",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "119c4ed65bb2bc24",
+      "image_sha256": "d6fce024d8efad71b261a32485dd71a1c17cae432e54737814454ff6ed61cbf3",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "1219b86cef0da842",
+      "image_sha256": "2da227da2b9100c13034c4a5e24564e3508b92c6ce9bc9891bffa616b9cf835c",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "1220e474e709cdf1",
+      "image_sha256": "b61c70a10498286a9fb8b830dd10d9b2bc09381b90f6be6df4e83bac97530fe9",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "135e06229a9c4c1d",
+      "image_sha256": "c8cdd84de24ec6c3ee682d294c9a7d10ae1e51625c5b6048404646b137c3317e",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "1367657fa097ca35",
+      "image_sha256": "a68a993c93f8321e2227451b2d1af5d04c51141a4a12f00a6b14f7d225af6453",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "13cf6bf7a6614f07",
+      "image_sha256": "8bb7167ac673bae849dd0915fd9ce825e8a6311ed2f2020e12e865ad1e0f74f2",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "13d3f1e5893726a2",
+      "image_sha256": "728d97496d519f74c3b7eb2a31130e3d5fe60f58c5d9110010197086819fdd7f",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "140d247f79fc0516",
+      "image_sha256": "e4b668b20eb91202821d4961e8e50229c31400cb900f6204319c3242dda965e9",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "141a0086d791f30a",
+      "image_sha256": "062a9e16168931b28c4966711807ce253c6b199f5e148f0f71893ac435fa7fac",
+      "review_status": "clear_nonfood",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "144184cf4cb72287",
+      "image_sha256": "e0d0d9c37608be84b9165f9c281033ff66632f3523b1198b0f9ebff19c38c861",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "146c7fc8052d5f6f",
+      "image_sha256": "3dbf124b4aa9eaff7102fb82f2b3e1b1553b8f200ee9b4bb27996d69e9765b05",
+      "review_status": "clear_nonfood",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "14b32f838a0ed041",
+      "image_sha256": "62b79cc4fb654ef4104cf3ee8f4b4c2485df6cc161732180a5cbff1a3d73add9",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "14c07d919410bed9",
+      "image_sha256": "15afb5562a5da8975410c4a028401a12fb1d581da3619a4d8856e1b78a327faf",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "152adeed60a8a967",
+      "image_sha256": "b74ade69d27a0f8bb1b70b32f6849cbb0c3db6c2441d0e2b298c46c6790286fb",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "155600e5f1221f8c",
+      "image_sha256": "8bad2a1098ac7d35bd959f4c82c487866bcdd27812429d9c02b542a96c2d1e28",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "1561435395442d9c",
+      "image_sha256": "1bf7675e4f404e4a09e2db2574b3fe725326037d2f4e08eca4ffe4965a1f9b51",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "15977b7b7d3b97ca",
+      "image_sha256": "df8a8ee38ae517873993400cfd4faa0691bed1881d87a8b0018184ab71801aaa",
+      "review_status": "clear_nonfood",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "159ebc84cf74bbe6",
+      "image_sha256": "d5209080eeb177a48f8f99be09e4d7ee4ef83100aff352ddb057781ae1693a81",
+      "review_status": "uncertain",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "15c473ae47357d22",
+      "image_sha256": "19f0f06b59a6b48ae2dbc879a859bda0bc552d4f2c39f38577b9dd4ae07f0c4f",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    },
+    {
+      "image_id": "15d983fc5f9af257",
+      "image_sha256": "e090a35a2bc4b8aaa5b26bcf9188e1a12132c39aae202224f932cce032b34358",
+      "review_status": "contains_food_or_drink",
+      "reviewer_kind": "assistant_visual_review",
+      "independent_human_adjudication": false
+    }
+  ],
+  "production_ready": false,
+  "new_object_candidate_cohort": "nonfood-object-candidates-2; requires review before a valid negative rate"
+}

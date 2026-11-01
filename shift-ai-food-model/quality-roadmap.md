@@ -171,3 +171,11 @@ receipt: `shift-ai-food-model/evidence/nonfood-completion-20261101.json`.
 Evidence: `shift-ai-food-model/evidence/spatial-progress-20261101.json`.
 The requested 99.99%/99.99% remains unverified. Existing release floors, privacy
 holds and source/capture split checks remain unchanged. No rollout is authorised.
+
+The first proposed non-food cohort was invalidated after visual inspection: the
+publisher Food-class-negative label does not establish absence of drinks or all
+ingredients. No such labels entered fitting. All raw results and 100 review
+states are retained in evidence/nonfood-completion-20261101.json. Only 16 cases
+were provisionally clear non-food; this is not independent acceptance. The new
+object-positive candidate cohort requires visual adjudication before any valid
+negative rate can be reported. This is enforced in the benchmark code.

@@ -689,7 +689,7 @@
     "base_pretraining_overlap_unknown": true
   },
   "verification": {
-    "python_checks_passed": 63,
+    "python_checks_passed": 64,
     "node_checks_passed": 12,
     "real_jpeg_reloads": 208,
     "maximum_probability_difference": 1.9669532775878906e-06,
@@ -730,10 +730,10 @@
     }
   },
   "continuation": {
-    "job": "nonfood-diagnostic-1",
-    "scope": "Up to 100 rights-checked publisher-human Food-negative validation photos; no model or threshold tuning",
+    "job": "nonfood-object-candidates-2",
+    "scope": "New unrelated-object cohort; acquisition/inference only, no valid negative metrics before review",
     "started": true,
-    "completion_receipt": "shift-ai-food-model/evidence/nonfood-completion-20261101.json"
+    "completion_receipt": "shift-ai-food-model/evidence/nonfood-object-candidates-completion-20261101.json"
   },
   "limitations": [
     "Same four previously inspected public development-test capture weeks; no fresh UK acceptance",
@@ -755,5 +755,12 @@
     "fee_paid": false,
     "messages_sent": 0,
     "member_training_permission_inferred": false
+  },
+  "nonfood_quality_correction": {
+    "status": "ORIGINAL_NEGATIVE_TEST_INVALIDATED; PROVISIONAL_VISUAL_REVIEW_ONLY",
+    "source_negatives_used_for_training": false,
+    "provisional_reviewed_negatives": 16,
+    "original_36_percent_rate_valid": false,
+    "review_receipt": "shift-ai-food-model/evidence/nonfood-completion-20261101.json"
   }
 }

@@ -1,5 +1,23 @@
 # Shift AI: food capture and research
 
+## Negative-label projection correction — 1 November 2026
+
+The first publisher Food-negative candidate cohort is invalid as a global
+food/drink rejection benchmark: image inspection found drinks, spices, eggs and
+bananas among supposed negatives. Its 36% suggestion fraction is not a valid
+false-food rate. None of these source-negative labels entered model training.
+All raw outputs are retained. Assistant review classified 16 clear non-food
+objects/live animals, 31 food/drink cases and 53 uncertain cases; this is a
+provisional post-investigation review, not independent blind acceptance.
+
+The benchmark code now refuses to publish a valid negative rate without visual
+adjudication. An additional object-positive candidate cohort is being acquired
+with individual licence checks and a review-required status. It cannot become
+training truth or an acceptance score automatically. The full-39 food test and
+its 83.00% precision / 56.73% recall are separate, unchanged development results.
+
+Correction receipt: `shift-ai-food-model/evidence/nonfood-completion-20261101.json`.
+
 ## Spatial recognition and independent public-data continuation — 1 November 2026
 
 Continued after Matt flagged that work had stopped. The earlier wording that UK

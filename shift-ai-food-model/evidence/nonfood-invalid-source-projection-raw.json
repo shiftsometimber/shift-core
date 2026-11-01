@@ -1,0 +1,797 @@
+{
+  "scope": "Fixed public human-negative food-rejection diagnostic, not UK or 99.99% acceptance",
+  "images": 100,
+  "available": 100,
+  "unavailable": 0,
+  "gate_false_accept_rate_on_available": 0.73,
+  "false_food_suggestion_rate_on_available": 0.36,
+  "unavailable_counted_as_correct_rejection": false,
+  "thresholds_changed": false,
+  "model_tuned_on_this_set": false,
+  "candidate": "shift-spatial-ensemble-15",
+  "acquisition_sha256": "82279b5711ac26764ac80edad00d6fe2b7263cf9eac37bd8f3beee79d57d653e",
+  "results": [
+    {
+      "image_id": "000a1249af2bc5f0",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "003232584a062b07",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0035a4bfeda1b637",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "root_vegetable"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "004545770f4770c7",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "0071f62f5d703904",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "eggs"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "00786681a5cb1086",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "00902c56bdcf10b6",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "root_vegetable"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "00b3ad28957f7768",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "00c9616a917be867",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "00e71a70a2f669ff",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "013554a90a299304",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "fruit_tropical",
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "01eaa89b375cf87a",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "01f7a31f493fb012",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "02621d3d56c7e96e",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "02760ace01bd113f",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "02ed27fcf5602811",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "0372b25d1e3d9bf9",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "03868cb89ff15f9d",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "038f08d47e1f4e27",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0421eec829d10cb8",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "04414f9a800ad0f3",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "049720d842de2d3e",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "04a4f1bfadab2ebc",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "pizza",
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "04a5877b06ea88f5",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "04cc03135cfd8580",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0536b2a49b741fec",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "0541fb11de1df8de",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "leafy_greens",
+        "root_vegetable"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "0556195c4067a984",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "berry",
+        "pizza"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "057c2a9cbc27c8b5",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "squash_eggplant"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "05992b1991659e33",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "05a23e78a029f9b3",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "05d4fdc8eea425f9",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "05ec955b6ace97b9",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "05f0c24e9138392c",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "060091417ccafbcf",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "leafy_greens"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "060b318d69481623",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "061a9184977eb612",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "0645a4aa8d1165d5",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "06a449c6ef03c172",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0733e9d83cf3a916",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "07f05ecef40ff3ee",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "root_vegetable"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "083e3585685dbd8b",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0867ed7b739f753a",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "08ca608701f67f72",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "08dc26c03c20ba58",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "berry",
+        "pizza"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "09a8ff0ee7f926f6",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0af12cae5301c91d",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0b29557903ed7b0e",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0b5b9dc7c5f88bff",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "0b6a55f2f634455c",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "eggs"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "0b7c8487382a5284",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "0bb394d3ecc97ae3",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0c17518d615e73d7",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "0c68a17d3981e621",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0c7b07eba9d3a56b",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "0c97a2a61416d828",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0cf4ec7ef0c0ce07",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "fruit_tropical",
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "0cf5400aba547ad7",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0cfd8b8d126924ff",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0d1a073b2c455b1d",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0d1a357f911ec13c",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0d436ca344f7e4b0",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0d47499ad27d4b76",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0e481ee0c6655eb1",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0e55b52f12efc371",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0e9ae5dacd973b79",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0ea539e7d8068619",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "sausage"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "0f18081b0baa7297",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "0f228bd0748e1336",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "1007f0cdbf2d5c69",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "1020b9690b88a2a4",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "102ab8e5172f16bf",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "1046014c53be3a77",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "106d476f595c28b8",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "10c183f776fe5e73",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "10c5316f6bbb2f82",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "leafy_greens",
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "110c321703e03bf3",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "116b11d42594defd",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "berry",
+        "pizza"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "1172ad179f7d27c6",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "1189db08be5db50d",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "119c4ed65bb2bc24",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "1219b86cef0da842",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "squash_eggplant"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "1220e474e709cdf1",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "135e06229a9c4c1d",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "1367657fa097ca35",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "13cf6bf7a6614f07",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "13d3f1e5893726a2",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "140d247f79fc0516",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "pizza"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "141a0086d791f30a",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "144184cf4cb72287",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "146c7fc8052d5f6f",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "sausage"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "14b32f838a0ed041",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "14c07d919410bed9",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "152adeed60a8a967",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "155600e5f1221f8c",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "1561435395442d9c",
+      "gate_false_accept": false,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "15977b7b7d3b97ca",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "159ebc84cf74bbe6",
+      "gate_false_accept": true,
+      "false_food_suggestion": true,
+      "items": [
+        "berry"
+      ],
+      "unavailable": false
+    },
+    {
+      "image_id": "15c473ae47357d22",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    },
+    {
+      "image_id": "15d983fc5f9af257",
+      "gate_false_accept": true,
+      "false_food_suggestion": false,
+      "items": [],
+      "unavailable": false
+    }
+  ],
+  "production_ready": false,
+  "seconds": 315.2580288610043
+}

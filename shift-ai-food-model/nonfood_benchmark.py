@@ -1,4 +1,4 @@
-"""Acquire rights-checked human-negative photos and measure real false foods.
+"""Acquire rights-checked candidate photos; global food absence needs review.
 
 Fixed validation cohort, no classifier/gate tuning, no assumed negatives from
 unlabelled objects. This is a public diagnostic, not independent UK acceptance.
@@ -34,6 +34,8 @@ def food_subtree(node):
 
 
 def verified_negative_ids(rows, descendants):
+    # Publisher Food-class negatives are only CANDIDATES. Their ontology does
+    # not establish absence of every food/drink/ingredient in our application.
     negative, contradictory = set(), set()
     for row in rows:
         if row.get("Source") not in ("verification", "crowdsource-verification"):
@@ -45,6 +47,19 @@ def verified_negative_ids(rows, descendants):
     return negative - contradictory
 
 
+def unreviewed_report(evaluated, candidate, acquisition_sha256):
+    available = [r for r in evaluated if not r["unavailable"]]
+    return {"scope": "Unadjudicated public candidate-image probe; not a valid non-food benchmark",
+        "status": "VISUAL_FOOD_AND_DRINK_ABSENCE_REVIEW_REQUIRED", "images": len(evaluated),
+        "available": len(available), "unavailable": len(evaluated) - len(available),
+        "valid_false_food_suggestion_rate": None, "food_absence_truth_adjudicated": False,
+        "reason": "Publisher Food-class absence or a nonfood-object label does not prove global absence of food, drink or ingredients",
+        "gate_accept_fraction_on_candidates": sum(r.get("gate_accept", r.get("gate_false_accept", False)) for r in available) / len(available) if available else None,
+        "food_suggestion_fraction_on_candidates": sum(r.get("food_suggestion", r.get("false_food_suggestion", False)) for r in available) / len(available) if available else None,
+        "candidate": candidate, "acquisition_sha256": acquisition_sha256,
+        "thresholds_changed": False, "training_on_candidates": False, "results": evaluated, "production_ready": False}
+
+
 def run(args):
     start = time.monotonic(); deadline = start + args.max_minutes * 60
     args.output.mkdir(parents=True, exist_ok=False); (args.output / "images").mkdir()
@@ -54,7 +69,14 @@ def run(args):
     descendants = food_subtree(json.loads(hierarchy))
     if len(descendants) < 5:
         raise ValueError("Publisher food hierarchy missing; do not infer negatives")
-    identities = verified_negative_ids(csv.DictReader(raw.decode().splitlines()), descendants)
+    label_rows = list(csv.DictReader(raw.decode().splitlines()))
+    identities = verified_negative_ids(label_rows, descendants)
+    if args.object_candidates:
+        classes = dict(csv.reader((args.validation_intake / "metadata/classes.csv").open()))
+        objects = {mid for mid, name in classes.items() if name in {"Scissors", "Screwdriver", "Wrench", "Hammer", "Car", "Bus", "Train", "Airplane", "Bicycle", "Motorcycle", "Laptop", "Computer keyboard", "Computer mouse", "Television", "Camera", "Book", "Chair", "Bench", "Bed", "Sofa", "Ceiling fan", "Computer monitor", "Headphones", "Door handle"}}
+        exclusion = descendants | {mid for mid, name in classes.items() if name in {"Drink", "Coffee", "Tea", "Beer", "Wine", "Juice", "Cocktail", "Milk", "Fruit", "Vegetable", "Banana", "Apple", "Tomato", "Cheese", "Pasta", "Bread", "Sandwich"}}
+        positive_food = {r["ImageID"] for r in label_rows if r["Source"] in ("verification", "crowdsource-verification") and r["Confidence"] == "1" and r["LabelName"] in exclusion}
+        identities = {r["ImageID"] for r in label_rows if r["Source"] in ("verification", "crowdsource-verification") and r["Confidence"] == "1" and r["LabelName"] in objects} - positive_food
     rights = {r["ImageID"]: r for r in csv.DictReader((args.validation_intake / "metadata/image-rights.csv").open())}
     training = json.loads((args.training_intake / "training-intake-receipt.json").read_text())
     excluded_groups = {r["source_group"] for r in training["records"] if r.get("eligible_for_partial_positive_training")}
@@ -70,7 +92,7 @@ def run(args):
         landing = r.get("OriginalLandingURL", "").replace("http://", "https://")
         if not author or group in excluded_groups or not landing.startswith("https://www.flickr.com/photos/"):
             continue
-        selected.append({"image_id": identity, "publisher_split": "validation", "publisher_class": "human-verified Food absent",
+        selected.append({"image_id": identity, "publisher_split": "validation", "publisher_class": "candidate only; global food/drink absence unreviewed",
             "source_group": group, "original_landing_url": landing, "author": r["Author"], "title": r.get("Title", ""),
             "licence": r["License"], "publisher_rotation": r["Rotation"], "training_ready": False})
         if len(selected) == 140:
@@ -107,7 +129,7 @@ def run(args):
         "outcomes": outcomes, "selected_for_diagnostic": [r["image_id"] for r in chosen],
         "training_photos_or_authors_used": 0, "member_photos": 0, "fee_paid": False,
         "production_ready": False, "independent_uk_acceptance": False,
-        "limitations": ["Publisher human negatives need independent adjudication before formal acceptance",
+        "limitations": ["Publisher labels are only candidate selection; global food/drink absence requires visual adjudication",
             "Public data; base pretraining overlap unknown", "No gate threshold or model selected using this diagnostic"]}
     (args.output / "acquisition.json").write_text(json.dumps(acquisition, indent=2) + "\n")
     if not chosen:
@@ -123,20 +145,14 @@ def run(args):
             raise ValueError("Diagnostic photo changed")
         try:
             response, gate, _ = model.inspect({"task": "recognise_food", "image": "data:image/jpeg;base64," + base64.b64encode(path.read_bytes()).decode(), "maxOutputTokens": 400})
-            evaluated.append({"image_id": row["image_id"], "gate_false_accept": gate["accept"],
-                "false_food_suggestion": bool(response["items"]), "items": response["items"], "unavailable": False})
+            evaluated.append({"image_id": row["image_id"], "gate_accept": gate["accept"],
+                "food_suggestion": bool(response["items"]), "items": response["items"], "unavailable": False})
         except Exception as error:
             evaluated.append({"image_id": row["image_id"], "unavailable": True, "error_type": type(error).__name__})
-    available = [r for r in evaluated if not r["unavailable"]]
-    report = {"scope": "Fixed public human-negative food-rejection diagnostic, not UK or 99.99% acceptance",
-        "images": len(chosen), "available": len(available), "unavailable": len(chosen) - len(available),
-        "gate_false_accept_rate_on_available": sum(r["gate_false_accept"] for r in available) / len(available) if available else None,
-        "false_food_suggestion_rate_on_available": sum(r["false_food_suggestion"] for r in available) / len(available) if available else None,
-        "unavailable_counted_as_correct_rejection": False, "thresholds_changed": False, "model_tuned_on_this_set": False,
-        "candidate": args.candidate.name, "acquisition_sha256": digest(args.output / "acquisition.json"),
-        "results": evaluated, "production_ready": False, "seconds": time.monotonic() - start}
+    report = unreviewed_report(evaluated, args.candidate.name, digest(args.output / "acquisition.json"))
+    report["seconds"] = time.monotonic() - start
     (args.output / "benchmark.json").write_text(json.dumps(report, indent=2) + "\n")
-    print(json.dumps({"stage": "complete", "images": len(chosen), "false_food_suggestion_rate": report["false_food_suggestion_rate_on_available"]}), flush=True)
+    print(json.dumps({"stage": "complete", "images": len(chosen), "valid_false_food_suggestion_rate": None, "visual_adjudication_required": True}), flush=True)
 
 
 if __name__ == "__main__":
@@ -144,4 +160,5 @@ if __name__ == "__main__":
     for name in ("output", "validation-intake", "training-intake", "candidate", "base", "gate"):
         p.add_argument("--" + name, type=Path, required=True)
     p.add_argument("--max-minutes", type=int, default=15, choices=range(1, 21)); p.add_argument("--research", action="store_true")
+    p.add_argument("--object-candidates", action="store_true")
     run(p.parse_args())
