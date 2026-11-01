@@ -13,6 +13,7 @@ const fs=require('node:fs');const assert=require('node:assert/strict');
     await context.addInitScript(()=>{window.__loginFormatSubmits=0;document.addEventListener('submit',e=>{if(e.target.id==='previewRegister')window.__loginFormatSubmits++},true)});
     const page=await context.newPage();await page.goto('https://shiftsometimber.co.uk/member-login.html',{waitUntil:'domcontentloaded',timeout:45000});
     const form=page.locator('#previewRegister'),email=form.locator('[name=email]'),password=form.locator('[name=password]');
+    const cookieChoices=page.getByRole('dialog',{name:'Cookie choices'});await cookieChoices.waitFor({state:'visible',timeout:7000}).catch(()=>{});if(await cookieChoices.isVisible())await cookieChoices.getByRole('button',{name:'Necessary only',exact:true}).click();
     await email.waitFor({state:'visible',timeout:30000});await email.fill('login-check@example.invalid');await password.fill('legacy8!');
     assert.equal(await password.getAttribute('pattern'),null);assert.equal(await password.getAttribute('minlength'),null);
     assert.equal(await form.evaluate(el=>el.checkValidity()),true);
