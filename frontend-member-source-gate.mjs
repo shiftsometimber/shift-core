@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import {parseRouteConfig,coversCanonicalMemberRoute} from './frontend-member-route-coverage.mjs';
 const css=fs.readFileSync('frontend/member/member-p0-v1.css','utf8');
 const shell=fs.readFileSync('frontend/member/member-shell-v33g.js','utf8');
 const adapter=fs.readFileSync('frontend/member/api-adapter-v33d.js','utf8');
@@ -12,6 +13,7 @@ const plansPremium=fs.readFileSync('frontend/member/member-plans-premium-v1.js',
 const plansPremiumCss=fs.readFileSync('frontend/member/member-plans-premium-v1.css','utf8');
 const workerEntry=fs.readFileSync('worker-entry-v6.js','utf8');
 const wrangler=fs.readFileSync('wrangler.jsonc','utf8');
+const routeConfig=parseRouteConfig(wrangler);
 const fail=[];
 const need=(ok,msg)=>{if(!ok)fail.push(msg)};
 for(const path of ['/member/ask-timber','/member/plans','/member/my-target','/member/my-why','/member/saved','/member/settings'])need(workerEntry.includes(`"${path}"`)&&workerEntry.includes(`"${path}.html"`),`production Worker does not publish existing member page ${path}`);
@@ -81,10 +83,11 @@ need(/G2-015-PREMIUM-PLAN-MANAGER/.test(plansPremium)&&/data-plan-manager-v1/.te
 need(/G2-015-PREMIUM-PLAN-MANAGER/.test(plansPremiumCss)&&/\.mp-plan-manager-hero/.test(plansPremiumCss)&&/\.mp-plan-manager-history/.test(plansPremiumCss)&&/@media\(max-width:640px\)/.test(plansPremiumCss),'premium My Plans forest/cream/mobile styling is missing');
 for(const asset of ['/api-adapter-v33d.js','/member-product-v33d.js','/member-shell-v33g.js','/member-progress-v1.js','/member-progress-picture-premium-v1.js','/member-plans-premium-v1.js','/member-plans-premium-v1.css'])need(workerEntry.includes(asset)&&workerEntry.includes('GIT_MEMBER_ASSETS'),`${asset} is not explicitly served as a Git-authoritative member asset`);
 need(/path\s*===\s*["']\/shift-me["']/.test(workerEntry)&&/\/member\/dashboard#shiftme/.test(workerEntry),'retired public Shift Me route does not hand off to the authenticated product');
-need(wrangler.includes('shiftsometimber.co.uk/shift-me*')&&wrangler.includes('www.shiftsometimber.co.uk/shift-me*'),'legacy Shift Me handoff is not routed through the Worker on both canonical hosts');
+need(coversCanonicalMemberRoute(routeConfig,'/shift-me'),'legacy Shift Me handoff is not routed through the Worker on both canonical hosts');
 need(/X-Shift-Frontend-Authority/.test(workerEntry)&&/git:frontend\/member/.test(workerEntry),'Git member asset responses do not expose frontend authority');
-for(const asset of ['member-product-v33d.js','member-shell-v33g.js','member-progress-v1.js','member-progress-picture-premium-v1.js','member-plans-premium-v1.js','member-plans-premium-v1.css']){
-  need(wrangler.includes(`shiftsometimber.co.uk/${asset}*`)&&wrangler.includes(`www.shiftsometimber.co.uk/${asset}*`),`${asset} is not routed through the Shift Worker on both canonical hosts`);
+for(const asset of ['api-adapter-v33d.js','member-product-v33d.js','member-shell-v33g.js','member-progress-v1.js','member-progress-picture-premium-v1.js','member-plans-premium-v1.js','member-plans-premium-v1.css']){
+  need(coversCanonicalMemberRoute(routeConfig,'/'+asset),`${asset} is not routed through the Shift Worker on both canonical hosts`);
 }
 if(fail.length){console.error(JSON.stringify({proof:'V1_FRONTEND_SOURCE_P0',fail},null,2));process.exit(1)}
 console.log(JSON.stringify({proof:'V1_FRONTEND_SOURCE_P0',status:'PASS',checks:['closed drawer removed from layout geometry without global masking','member hero decoration locally clipped','mobile member sidebar locally contains scroll overflow','mobile member tabs locally contain scroll overflow','selected member panel is revealed immediately after tab activation','canonical v7 P0 stylesheet retained after member-surface head mutation','stale duplicate P0 stylesheet versions removed','notice non-interactive and cleared on successful auth','member dashboard links normalised to extensionless production route','authenticated My Shift points to live dashboard route','401 guard uses live login route','ordinary APIs retain a finite 15-second client budget','Fit generation alone receives the commissioned finite 60-second client budget','member product retains the existing canonical Today API render path','Today API headline renders into the existing Today surface','Today API subhead renders into the existing Today surface','whole-person Progress consumes canonical retained summary state','Progress productisation remains integrated with existing Progress Picture surface','premium Progress Picture layer is loaded without changing persistence ownership','premium photo lifecycle selectors are preserved','premium forest/cream Progress Picture styling is source-locked','premium My Plans layer is loaded without changing canonical plan persistence ownership','My Plans preserves current plan, open-plan navigation and replaced-plan history semantics','premium My Plans forest/cream responsive styling is source-locked','all commissioned member JS/CSS assets are Git-authoritative Worker-served routes on canonical and www hosts'],authority:'frontend/README.md'},null,2));
+
