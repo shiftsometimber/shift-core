@@ -1,0 +1,32 @@
+import assert from 'node:assert/strict';
+import {pages,redirects,sitemapPages} from './data.mjs';
+import {mainHTML} from './html.mjs';
+import {transform,transformSitemap} from './runtime.mjs';
+const origin='https://shiftsometimber.co.uk',decode=s=>s.replaceAll('&amp;','&').replaceAll('&quot;','"').replaceAll('&#39;',"'").replaceAll('&apos;',"'").replace(/&#(\d+);/g,(_,n)=>String.fromCodePoint(+n)),plain=s=>decode(s.replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim());
+const scriptRx=/<script\b[^>]*>[\s\S]*?<\/script>/gi,ldRx=/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi,anchorRx=/<a\b[^>]*>/gi;
+const scripts=s=>[...s.matchAll(scriptRx)].map(x=>x[0]).filter(x=>!/^<script\b[^>]*type=["']application\/ld\+json["']/i.test(x));
+const schema=s=>[...s.matchAll(ldRx)].map(x=>JSON.parse(x[1]));
+const withoutScripts=s=>s.replace(/<script\b[\s\S]*?<\/script>|<style\b[\s\S]*?<\/style>|<!--[\s\S]*?-->/gi,'');
+const href=s=>s.match(/\bhref\s*=\s*["']([^"']*)["']/i)?.[1];
+function expectedHref(raw){let u;try{u=new URL(decode(raw),origin);}catch{return decode(raw);}if(u.origin!==origin||u.search||u.hash||!redirects[u.pathname])return decode(raw);return raw.startsWith('https://')?origin+redirects[u.pathname]:redirects[u.pathname];}
+function maskHref(s){return s.replace(anchorRx,tag=>tag.replace(/(\bhref\s*=\s*)(["'])(.*?)\2/i,(_,a,q)=>a+q+'__LINK__'+q));}
+function maskedHead(s,editing){s=s.replace(ldRx,'');if(!editing)return s;return s.replace(/(<title\b[^>]*>)[\s\S]*?(<\/title>)/i,'$1__TITLE__$2').replace(/<meta\b[^>]*>/gi,tag=>{const name=tag.match(/\b(?:name|property)\s*=\s*["']([^"']*)["']/i)?.[1]?.toLowerCase();return ['description','og:title','twitter:title','og:description','twitter:description'].includes(name)?tag.replace(/(\bcontent\s*=\s*)(["'])(.*?)\2/i,(_,a,q)=>a+q+'__META__'+q):tag;});}
+function preserveSchema(before,after,path,spec,editing,h1){
+ if(Array.isArray(before)){assert(Array.isArray(after));assert.equal(before.length,after.length);before.forEach((v,i)=>preserveSchema(v,after[i],path,spec,editing,h1));return;}
+ if(!before||typeof before!=='object'){assert.deepEqual(after,before);return;}
+ const types=Array.isArray(before['@type'])?before['@type']:[before['@type']],article=types.some(x=>['Article','NewsArticle','BlogPosting'].includes(x)),organization=types.includes('Organization');
+ for(const key of Object.keys(after))if(!(key in before)){
+  if(key==='logo'&&organization&&/^shift\b/i.test(before.name||''))assert.deepEqual(after.logo,{'@type':'ImageObject',url:origin+'/assets/shift-wordmark.png'});
+  else if(key==='headline'&&article)assert.equal(after.headline,before.name||(editing&&spec.h1?spec.h1:h1));
+  else if(key==='mainEntityOfPage'&&article)assert.equal(after.mainEntityOfPage,origin+path);
+  else if(key==='dateModified'&&article&&editing&&spec.modifiedAt)assert.equal(after.dateModified,spec.modifiedAt);
+  else assert.fail('Unapproved schema field '+key+' '+path);
+ }
+ for(const [key,value]of Object.entries(before)){assert(key in after,'Original schema field retained '+path+' '+key);if(key==='headline'&&article&&editing&&spec.h1&&[h1,spec.beforeTitle].includes(value))assert.equal(after[key],spec.h1);else if(key==='dateModified'&&article&&editing&&spec.modifiedAt)assert.equal(after[key],spec.modifiedAt);else preserveSchema(value,after[key],path,spec,editing,h1);}
+}
+export function check(before,after,path){const spec=pages[path];assert(spec);assert.equal(after,transform(before,path));assert.equal(transform(after,path),after,'Idempotence '+path);const old=mainHTML(before),now=mainHTML(after);assert(old&&now);const h1=plain(old.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1]||''),title=plain(before.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1]||'');const editing=!!spec.title&&title===spec.beforeTitle&&h1===spec.beforeH1&&(spec.body||[]).every(x=>old.split(x.before).length===2);
+ let restored=now;if(editing){for(const b of spec.body||[]){assert.equal(restored.split(b.after).length,2);restored=restored.replace(b.after,b.before);}if(spec.h1){assert.equal(plain(now.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1]||''),spec.h1);restored=restored.replace(/<h1\b[^>]*>[\s\S]*?<\/h1>/i,old.match(/<h1\b[^>]*>[\s\S]*?<\/h1>/i)[0]);}}
+ const oldAnchors=[...withoutScripts(old).matchAll(anchorRx)].map(x=>x[0]),newAnchors=[...withoutScripts(restored).matchAll(anchorRx)].map(x=>x[0]);assert.equal(newAnchors.length,oldAnchors.length,'Every original anchor retained '+path);oldAnchors.forEach((a,i)=>{assert.equal(maskHref(a),maskHref(newAnchors[i]),'Anchor attributes preserved '+path);if(href(a))assert.equal(decode(href(newAnchors[i])),expectedHref(href(a)),'Only proven canonical link repair '+path);});assert.equal(maskHref(restored),maskHref(old),'All original main HTML retained except approved wording and canonical hrefs '+path);assert.deepEqual(scripts(after),scripts(before),'Every executable script preserved '+path);assert.equal(maskedHead(after.replace(now,''),editing),maskedHead(before.replace(old,''),editing),'Shell, metadata outside approved fields and styles preserved '+path);
+ const b=schema(before),a=schema(after);if(!b.length&&spec.addWebPage){assert.equal(a.length,1);assert.equal(a[0]['@type'],'WebPage');assert.equal(a[0].url,origin+path);assert.equal(a[0].name,h1);}else{assert.equal(a.length,b.length);b.forEach((v,i)=>preserveSchema(v,a[i],path,spec,editing,h1));}
+ return {path,changed:before!==after,originalContentPreserved:true,executableScriptsPreserved:true,stylesAndShellPreserved:true,canonicalLinkRepairs:oldAnchors.filter((a,i)=>href(a)!==href(newAnchors[i])).length,schemaBlocks:a.length,titleRepaired:editing};}
+export function checkSitemap(before,after){assert.equal(after,transformSitemap(before));assert.equal(transformSitemap(after),after);const locs=[...after.matchAll(/<loc>([^<]+)<\/loc>/g)].map(x=>decode(x[1]));assert.equal(new Set(locs).size,locs.length);for(const p of sitemapPages)assert(locs.includes(p.url),'Canonical public URL in sitemap '+p.url);assert(!locs.includes(origin+'/programme/sample'));return {urls:locs.length,allEligiblePublicPages:sitemapPages.length,duplicates:0};}
