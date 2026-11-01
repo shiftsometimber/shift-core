@@ -36,6 +36,28 @@ function memberPerformanceClient(options) {
     document.dispatchEvent(new CustomEvent("mt:identity-invalidated", { detail: { reason } }));
     if (broadcast) channel?.postMessage({ invalidate: true });
   }
+  function expiredView() {
+    document.querySelectorAll("main").forEach((n) => n.replaceChildren());
+    document.documentElement.dataset.mtAuthStale = "1";
+    delete document.documentElement.dataset.mtScreenLocked;
+    delete document.documentElement.dataset.mtOverlayScreen;
+    if (document.body) document.body.dataset.memberSession = "signed-out";
+    const render = () => {
+      const box = document.getElementById("memberSessionStatus");
+      if (!box) return;
+      box.hidden = false;
+      box.replaceChildren();
+      const message = document.createElement("p");
+      message.setAttribute("role", "status");
+      message.textContent = "Sign in to open your private My Timber account.";
+      const link = document.createElement("a");
+      link.textContent = "Sign in";
+      link.href = "/member-login?returnTo=" + encodeURIComponent(location.pathname + location.search + location.hash);
+      box.append(message, link);
+    };
+    render();
+    setTimeout(render, 0);
+  }
   async function verified(force = false) {
     if (parentApp) return parentApp.identity(force);
     if (!force && identity && Date.now() - identityAt < 15e3) return identity;
@@ -46,7 +68,7 @@ function memberPerformanceClient(options) {
       const timer = setTimeout(() => controller?.abort(), 12e3);
       try {
         const r = await originalFetch("/v1/me", { credentials: "include", cache: "no-store", signal: controller.signal });
-        if (!r.ok) throw Error("Sign-in unavailable");
+        if (!r.ok) throw Object.assign(Error("Sign-in unavailable"), { status: r.status });
         const data = await r.json();
         if (data?.user?.id === void 0 || data.user.id === null) throw Error("Account missing");
         if (epoch !== version) throw Error("Account changed");
@@ -60,7 +82,7 @@ function memberPerformanceClient(options) {
         identityAt = Date.now();
         return data;
       } catch (e) {
-        if (epoch === version) wipe("identity-failed");
+        if (epoch === version) wipe([401, 403].includes(e.status) ? "session-expired" : "identity-failed");
         throw e;
       } finally {
         clearTimeout(timer);
@@ -179,6 +201,10 @@ function memberPerformanceClient(options) {
   } };
   if (options.retain === false) {
     document.addEventListener("mt:identity-invalidated", (e) => {
+      if (["session-expired", "api-session-expired", "identity-origin-mismatch"].includes(e.detail?.reason)) {
+        expiredView();
+        return;
+      }
       const wasReady = document.body?.dataset.memberSession === "ready";
       document.documentElement.dataset.mtScreenLocked = "1";
       if (document.body) document.body.dataset.memberSession = "pending";
@@ -417,18 +443,22 @@ function memberPerformanceClient(options) {
     }
   }, current: () => active?.frame.contentWindow || window };
   document.addEventListener("mt:identity-invalidated", (e) => {
-    if (e.detail?.reason === "background") {
+    const reason = e.detail?.reason;
+    if (reason === "background") {
       ++navigation;
       lock();
       return;
     }
-    const wasReady = document.body?.dataset.memberSession === "ready";
+    const wasReady = document.body?.dataset.memberSession === "ready", hadView = wasReady || frames.size > 0;
     discard();
-    document.body && (document.body.dataset.memberSession = "pending");
-    if (wasReady) {
-      document.querySelectorAll("main").forEach((n) => n.replaceChildren());
-      location.reload();
+    document.querySelectorAll("main").forEach((n) => n.replaceChildren());
+    document.documentElement.dataset.mtAuthStale = "1";
+    if (["session-expired", "api-session-expired", "identity-origin-mismatch"].includes(reason)) {
+      expiredView();
+      return;
     }
+    document.body && (document.body.dataset.memberSession = "pending");
+    if (hadView || ["account-switch", "account-event", "account-operation", "another-window", "deleted"].includes(reason)) location.reload();
   });
   document.addEventListener("sst:account-changed", () => {
     invalidate("account-event", true);
@@ -475,7 +505,7 @@ function memberPerformanceClient(options) {
           window.SST_MEMBER_SESSION?.check();
           finish(active, new URL(location.href));
         } catch {
-          fail();
+          if (document.body?.dataset.memberSession !== "signed-out") fail();
         }
       })();
     }
@@ -490,6 +520,10 @@ function memberPerformanceClient(options) {
   const observe = () => {
     if (!document.body) return;
     new MutationObserver(() => {
+      if (document.body.dataset.memberSession === "ready" && document.documentElement.hasAttribute("data-mt-auth-stale")) {
+        location.reload();
+        return;
+      }
       if (document.body.dataset.accountDeleted === "1") invalidate("deleted", true);
       if (["signed-out", "error"].includes(document.body.dataset.memberSession)) delete document.documentElement.dataset.mtScreenLocked;
       const c = document.getElementById("mtShopChrome");
