@@ -1,0 +1,18 @@
+{
+  "real_jpeg_roundtrips": 200,
+  "nonempty_responses": 29,
+  "maximum_probability_roundtrip_error": 3.5762786865234375e-07,
+  "production_invocation_refused": true,
+  "identity_fields_refused": true,
+  "no_nutrients_invented": true,
+  "example": {
+    "image_id": "dish_1562007763",
+    "response": {
+      "items": [
+        "pizza"
+      ],
+      "nutrition": {}
+    },
+    "scope": "Real research-image request; not production accuracy acceptance"
+  }
+}

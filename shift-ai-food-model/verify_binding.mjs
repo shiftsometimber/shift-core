@@ -22,7 +22,7 @@ const env={
   calls++;
   const result=spawnSync(python,[fileURLToPath(new URL('./predict.py',import.meta.url)),candidate,'--research'],{
    input:JSON.stringify(body),encoding:'utf8',timeout:14000,maxBuffer:100000});
-  if(result.status!==0)throw Error('Local research model invocation failed: '+result.stderr.slice(-500));
+  if(result.status!==0)throw Error('Local research model invocation failed: '+JSON.stringify({status:result.status,signal:result.signal,error:result.error?.code,stderr:result.stderr?.slice(-500)}));
   return Response.json(JSON.parse(result.stdout));
  }}
 };

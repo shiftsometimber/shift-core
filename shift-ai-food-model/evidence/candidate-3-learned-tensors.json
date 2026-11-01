@@ -1,0 +1,13 @@
+{
+  "candidate": 3,
+  "verified_against_pinned_base": true,
+  "changed_visual_tensors": 34,
+  "changed_visual_layers": [
+    "10",
+    "11",
+    "final layernorm"
+  ],
+  "earlier_visual_tensors_equal": true,
+  "new_food_classifier_outputs": 12,
+  "scope": "Actual learned tensor comparison, not accuracy or production approval"
+}

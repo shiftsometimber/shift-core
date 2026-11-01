@@ -119,3 +119,34 @@ requires its own explicit collection/annotation permission and provenance.
 Current experiment evidence and costs are recorded in the existing project
 checkpoint, `docs/grub-food-capture-20261031.md`, and the candidate's
 `evaluation.json`. Source checks are not food accuracy evidence.
+
+## Measured research outcome
+
+Three actual candidates have been trained on the existing CPU resources. The
+largest uses 1,200 training, 200 validation and 200 development-test images.
+It warms up the food head, adapts the last two visual layers, and selects the
+best epoch using validation loss with early stopping. That run selected epoch
+2 and stopped after epoch 7, taking 220.34 seconds on four CPU threads.
+
+Its validation-selected thresholds achieved 70.00% suggestion precision and
+7.24% component recall on the development test; nine classes were disabled.
+These results fail the proposed member-use floors. More images from the same
+source did not fix the problem. The general visual representation and
+mass-derived ingredient labels need reassessment against visually verified
+target meals. There is no claim that the prototype recognises complete meals.
+
+The development test includes previously inspected research examples; it is
+not independent production acceptance. None of the three candidates is
+approved or activated for members. No paid training service, GPU rental,
+hosted inference, gated Llama agreement or member-photo collection was used.
+
+The existing source CI passes the eleven model qualification checks, 137
+focused app/food/logging checks and Worker dry-run build. The broader member
+suite still fails the same two historical CSV-release checks on both current
+and unchanged pre-feature source. Its overall result must not be called green.
+
+Candidate evaluations and real JPEG round-trip receipts are in `evidence/`.
+The persisted model package retains original licence/credit and public-data
+provenance. Production still needs a qualified recognition approach, verified
+representative UK meal and non-food labels, reviewed serving integration and
+actual phone/photo-to-confirmed-log acceptance.

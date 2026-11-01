@@ -51,18 +51,62 @@ the research candidate. A separate local process diagnostic exercises the
 existing shared Shift AI service adapter with actual candidate inference;
 this does not provision a service binding or verify production serving.
 
-Current next experiment: expand to 1,200 training / 200 validation / 200
-development-test images, reusing the verified initial images. Train the new food
-head before adapting the final visual layers; select on validation only and
-retain the previously-inspected-test limitation. A representative UK set and
-non-food rejection evidence remain necessary. These are model/data limitations,
-not a claim that a large hosted-model bill is required.
+The expanded experiment is now complete: 1,200 training / 200 validation / 200
+development-test images, reusing all 520 verified initial images. It downloaded
+458,084,827 additional public-source bytes within its explicit budget. The food
+head was warmed up for ten epochs before adapting the final visual layers.
+Validation selected epoch 2; early stopping ended the run after epoch 7.
+Training took 220.34 seconds on four CPU threads, with no paid training service.
+
+Its validation-selected thresholds achieved 70.00% suggestion precision and
+7.24% annotated-component recall on the 200-image development test; nine classes
+were disabled. At fixed 0.5 thresholds the same run achieved 39.72% precision,
+68.62% recall and F1 0.5032, compared with F1 0.2667 for the fixed two-common-food
+baseline. This demonstrates learned food signals but fails member-use quality.
+The development test contains previously inspected research examples. It is
+not fresh production acceptance, UK-meal validation or evidence of portions.
+
+The third saved model passed 200 actual-JPEG inference round trips, with
+maximum probability difference 3.58e-7 against the recorded evaluation. Normal
+invocation remains blocked; private identity fields are rejected and nutrient
+amounts are not invented. Its warm four-thread CPU forward median was 22.38 ms
+on one research image; complete local process startup/adapter timing is a
+different measurement and neither is production or installed-phone latency.
+The existing Shift AI adapter also executed the actual third candidate through
+the local diagnostic process transport. No service binding is provisioned.
+An initial third-candidate process diagnostic failed without retaining the
+child's status details. Failure reporting was improved; one repeat completed
+successfully in 8,385 ms. The 15-second shared delivery deadline and 14-second
+child deadline were unchanged. This does not prove production cold-start
+reliability; the source diagnostic receipt records its local-only scope.
+
+Training code and candidate evaluations are saved on the existing feature
+branch. The trained weights, licences, provenance, evaluations and round-trip
+receipts are retained in the model research package. All three experiments
+used existing CPU resources and public data; no external model API, paid GPU,
+account, subscription or gated Llama agreement was used. No further training
+job is running after this checkpoint.
+
+The next substantive model work is a visually verified target-meal dataset and
+recognition/label reassessment. A representative UK set and non-food rejection
+evidence remain necessary. Public source rights/suitability findings are in
+`shift-ai-food-model/data-source-review.md`; category labels and synthetic food
+stimuli are not accepted as real UK meal ground truth. These model/data
+limitations are distinct from source tests or hosting cost approval.
+
+Hosted source proof at `35c36790cda4e04dd7925132477a06eb67700b31`:
+https://github.com/shiftsometimber/shift-core/actions/runs/41289037665
+The model job passed all eleven qualification checks. The app job passed 137
+focused checks (one existing opt-in real-model probe skipped), actual Worker
+dry-run build and public PubMed connectivity. The wider suite passed 580/582,
+with only the same two historical CSV qualification failures, both reproduced
+on unchanged pre-feature source. Overall CI remains failed; no guard is altered.
 
 Production flags, main, live runtime, native binaries, accounts and commercial
 commitments are unchanged. Existing two historical CSV-release failures remain
-separate from food-model accuracy. Current source main also contains seven
-disjoint Bloods owner commits after the feature's prior base; preserve those
-when reconciling this development branch.
+separate from food-model accuracy. The branch now preserves all seven disjoint
+Bloods owner commits from current main `a1741848bd6dca238def63d9ee6f03ff45e8a7ea`.
+No public Bloods release is retriggered by this feature-branch reconciliation.
 
 ## Shared Shift AI implementation
 
