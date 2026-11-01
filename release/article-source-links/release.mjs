@@ -4,10 +4,12 @@ import {mkdirSync,readFileSync,writeFileSync,rmSync,existsSync} from 'node:fs';
 import {pathToFileURL} from 'node:url';
 import {deriveArticlePatch,applyArticlePatch,expectedRenderedDocument,sha} from './patch.mjs';
 import {runtimeRollbackDecision} from '../runtime-rollback-guard.mjs';
+import {assertSettings} from '../member-login-format/patch.mjs';
 import images from '../../public-image-repair/manifest.json' with {type:'json'};
 
 const MAIN='c6d4445bbd72f8e465b33d04de42d443b979116b';
 const HEAD='60a1bdabbc7de1e8be2af3203456a7b2de08313c',BASE='a1741848bd6dca238def63d9ee6f03ff45e8a7ea';
+const acceptedStage=Object.freeze({source:'922ed354487e68b4702e6ce0d37f31a94bfc2570',run:'41343054800',versionId:'ef0470b5-8557-4270-897a-9b92de3b18c3',beforeDeploymentId:'a852dcaf-64fa-4a92-acda-7a9c1c3b763e',beforeVersionId:'632d2c61-45d1-41f0-9f86-2dd70a14ef91',beforeRoot:'3e1e091eb1d91a57a3a0ee92d2e83b44395015dd0f553b4e096223a2c65cd84a',afterRoot:'b81fc17d44467aef43f85f76f71fc6f7b91de145fcbdf59c08b09a185319529f'});
 const appPaths=['babylove/dynamic-public.mjs','babylove/dynamic-public.test.mjs'];
 const support=['.github/workflows/article-source-links-1509-release.yml','release/article-source-links/patch.mjs','release/article-source-links/patch.test.mjs','release/article-source-links/release.mjs'];
 const dir='evidence/article-source-links';mkdirSync(dir,{recursive:true});
@@ -64,8 +66,11 @@ const compiledAfter=compile(),patch=deriveArticlePatch(compiledBefore,compiledAf
 save('compiled',{before:sha(compiledBefore),after:sha(compiledAfter),oldArticle:sha(patch.oldText),newArticle:sha(patch.newText),exactInverse:true});
 currentSource();
 const baseline=await latest(),original=await version(baseline.versions[0].version_id),settings=await api('/workers/scripts/shift-core/settings');
+assert.equal(baseline.id,acceptedStage.beforeDeploymentId,'Serving deployment moved after verified staging');
+assert.equal(baseline.versions[0].version_id,acceptedStage.beforeVersionId);
 const names=original.modules.map(m=>m.name);assert.equal(new Set(names).size,names.length);assert(names.includes('worker.js'));
 const serving=original.modules.find(m=>m.name==='worker.js'),repair=applyArticlePatch(Buffer.from(serving.content_base64,'base64'),patch);
+assert.equal(repair.proof.beforeSHA256,acceptedStage.beforeRoot);assert.equal(repair.proof.afterSHA256,acceptedStage.afterRoot);
 save('before',{deployment:baseline,main:original.main_module,modules:original.modules.map(m=>({name:m.name,sha256:sha(Buffer.from(m.content_base64,'base64'))})),repair:repair.proof});
 const planned=original.modules.map(m=>m.name==='worker.js'?{...m,content_base64:Buffer.from(repair.code).toString('base64')}:m);
 const security=['content-security-policy','strict-transport-security','x-frame-options','x-content-type-options','referrer-policy','permissions-policy'];
@@ -121,16 +126,15 @@ for(const slug of slugs){
 console.log('AUTHENTICATED_SOURCE_EXAMPLES '+JSON.stringify({direct:{slug:directSlug,...sourceProof[directSlug]},vendor}));
 const beforePages=await protectedPages();save('protected-before',beforePages);save('images-before',await imageProof());save('article-sources',sourceProof);
 currentSource();assert.equal((await latest()).id,baseline.id);assert.deepEqual(await api('/workers/scripts/shift-core/settings'),settings);
-const metadata={main_module:original.main_module,compatibility_date:settings.compatibility_date,compatibility_flags:settings.compatibility_flags||[],bindings:original.bindings.map(b=>({type:'inherit',name:b.name})),keep_assets:true,annotations:{'workers/message':'Exact article renderer PR1509; source '+source,'workers/tag':'article-1509-'+run}};
-for(const key of ['placement','limits','observability','logpush'])if(settings[key]!==undefined)metadata[key]=settings[key];
-const form=new FormData();form.set('metadata',new Blob([JSON.stringify(metadata)],{type:'application/json'}),'metadata.json');
-for(const m of planned)form.set(m.name,new Blob([Buffer.from(m.content_base64,'base64')],{type:m.content_type||'application/javascript+module'}),m.name);
-const uploaded=await api('/workers/scripts/shift-core/versions?bindings_inheritance=strict',{method:'POST',body:form}),staged=await version(uploaded.id);
+const annotations={'workers/message':'Exact article renderer PR1509; source '+acceptedStage.source,'workers/tag':'article-1509-'+acceptedStage.run,'workers/triggered_by':'version_upload'};
+const uploaded={id:acceptedStage.versionId},staged=await version(uploaded.id);
+assert.equal(staged.annotations?.['workers/message'],annotations['workers/message']);
+assert.equal(staged.annotations?.['workers/tag'],annotations['workers/tag']);
 assert.deepEqual(staged.modules.map(m=>m.name).sort(),names.toSorted());
 for(const m of planned){const actual=staged.modules.find(x=>x.name===m.name);assert.equal(sha(Buffer.from(actual.content_base64,'base64')),sha(Buffer.from(m.content_base64,'base64')),m.name);assert.equal(actual.content_type,m.content_type,m.name+' type');}
 for(const key of ['main_module','compatibility_date','compatibility_flags','bindings','assets','migration_tag','usage_model'])assert.deepEqual(staged[key],original[key],'Serving configuration changed: '+key);
-save('staged',{source,main:MAIN,run,versionId:uploaded.id,changedModule:'worker.js',unchangedModules:names.length-1,settingsPreserved:true,bindingsPreserved:true,exactInverse:true});
-currentSource();assert.equal((await latest()).id,baseline.id,'Serving owner moved during staging');assert.deepEqual(await api('/workers/scripts/shift-core/settings'),settings);
+save('staged',{source,main:MAIN,run,versionId:uploaded.id,acceptedStageSource:acceptedStage.source,acceptedStageRun:acceptedStage.run,changedModule:'worker.js',unchangedModules:names.length-1,settingsPreserved:true,bindingsPreserved:true,exactInverse:true});
+currentSource();assert.equal((await latest()).id,baseline.id,'Serving owner moved during staging');assertSettings(await api('/workers/scripts/shift-core/settings'),settings,annotations);
 save('promotion-intent',{source,run,versionId:uploaded.id,previousDeploymentId:baseline.id});
 try{
  let result,promotionError;
@@ -152,7 +156,7 @@ try{
  }
  save('articles-after',articleAfter);
  assert.deepEqual(await protectedPages(),beforePages,'Unrelated public pages or login assets changed');save('protected-after',beforePages);save('images-after',await imageProof());
- assert.deepEqual(await api('/workers/scripts/shift-core/settings'),settings,'Production settings changed');assert.equal((await latest()).id,receipt.deploymentId,'A newer deployment owns production');
+ assertSettings(await api('/workers/scripts/shift-core/settings'),settings,annotations);assert.equal((await latest()).id,receipt.deploymentId,'A newer deployment owns production');
  save('verified',{...receipt,verifiedAt:new Date().toISOString(),reusedChecks:[41251655793,41251655750,41251655803],imagesVerified:8,protectedDocuments:protectedPaths.length,articlesVerified:slugs,allOtherModulesPreserved:names.length-1,articleBodyAndDatesUnchanged:true,databaseWrites:false,routeChanges:false,communicationsSent:false,promotionResponseRecovered:!!promotionError});
  console.log('ARTICLE_RENDERER_PRODUCTION_VERIFIED '+JSON.stringify({main:MAIN,version:uploaded.id,deployment:receipt.deploymentId,articles:articleAfter,images:8,otherModules:names.length-1}));
 }catch(e){save('failure',{message:e.message});await rollback();throw e;}
