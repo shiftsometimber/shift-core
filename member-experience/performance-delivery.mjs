@@ -33,7 +33,7 @@ export function wrapMemberPerformance(original,templates,assets,kind){
  if(enabled&&read&&u.pathname==='/v1/life-back/journey'){const r=await original.fetch(request,env,ctx),h=new Headers(r.headers);h.set('Cache-Control','no-store, private');if(!/\bcookie\b/i.test(h.get('Vary')||''))h.append('Vary','Cookie');return new Response(r.body,{status:r.status,statusText:r.statusText,headers:h,encodeBody:'manual'});}
  if(!enabled||!read)return original.fetch(request,env,ctx);
  const asset=assets[u.pathname];
- if(asset&&asset.owner===kind&&(u.searchParams.get('mtv')===asset.sha256.slice(0,20)||experimental&&u.pathname==='/assets/member-experience/programme-shop-navigation.mjs')&&(!experimental||u.pathname==='/assets/member-experience/programme-shop-navigation.mjs'&&stage!=='server')){
+ if(asset&&asset.owner===kind&&(u.searchParams.get('mtv')===asset.sha256.slice(0,20)||!u.searchParams.has('mtv')&&asset.variants?.includes(u.pathname+u.search)||experimental&&u.pathname==='/assets/member-experience/programme-shop-navigation.mjs')&&(!experimental||u.pathname==='/assets/member-experience/programme-shop-navigation.mjs'&&stage!=='server')){
   const versioned=u.searchParams.get('mtv')===asset.sha256.slice(0,20),headers={'Content-Type':asset.type,'Cache-Control':experimental?'no-store':versioned?'public, max-age=31536000, immutable':'public, max-age=0, must-revalidate','ETag':'"'+asset.sha256+'"','X-Content-Type-Options':'nosniff','X-My-Timber-Performance':'20261101','Server-Timing':'mt-static;dur=0'};
   if(request.headers.get('If-None-Match')===headers.ETag)return new Response(null,{status:304,headers});
   return new Response(request.method==='HEAD'?null:asset.body,{headers});

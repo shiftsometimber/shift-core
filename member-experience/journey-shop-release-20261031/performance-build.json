@@ -1,9 +1,9 @@
 {
-  "scope": "static",
-  "transportEnabled": false,
-  "at": "2026-11-01T22:44:05.152Z",
-  "bundleSHA256": "16d8c41aa0575e21174d518c3e934305fec64e71d12742e291517d4d517c96d2",
-  "assetsSHA256": "5a269be63af97655786e127eb27c6d21d3f3543da816e415302ac89bdc261d5d",
+  "scope": "transport",
+  "transportEnabled": true,
+  "at": "2026-11-01T23:18:49.572Z",
+  "bundleSHA256": "ee931e1cf49814b02456e1d37e8146ff70f9396ae81da72aa68271d86b9b10c0",
+  "assetsSHA256": "6641a00ee7fcf8e7543a37be455ff10fc5be211eca8d05455062761abfd9cf99",
   "publicSourcesSHA256": "17ed9150cece1c044d9223dd0b04d0545332198d3948e05dc2508116217ee925",
   "staticAssets": {
     "/assets/member-experience/programme-shop-basket.js": {
@@ -93,8 +93,8 @@
     },
     "/assets/member-experience/programme-shop-navigation.mjs": {
       "owner": "programme",
-      "sha256": "f7059a9a901054be59bdf808d8fb043be513c907a78c029c47ea8f21d5dd00eb",
-      "bytes": 11181
+      "sha256": "1217b19e95303c8bc50b9169ef44def67c68a46c8a33fba40a0a963cd10b1718",
+      "bytes": 11484
     },
     "/assets/member-experience/session.mjs": {
       "owner": "core",
@@ -213,8 +213,8 @@
     },
     "/assets/my-timber-layout.mjs": {
       "owner": "programme",
-      "sha256": "24fa200f1b2ea5335de778ada3e583ed2c8f5587b97527769afefa073aaa5c1c",
-      "bytes": 169503
+      "sha256": "c49effdc1d81c728fcd568c26818dc43adeb3f65278a2fa4423f0d4d8674d7b6",
+      "bytes": 169626
     },
     "/assets/member-experience/programme-client.js": {
       "owner": "programme",
@@ -310,6 +310,16 @@
       "owner": "core",
       "sha256": "573103a609c889b8aa5d87ce5bf5a3fc703d779365bc3736c3c1d9ad48bb3cef",
       "bytes": 215
+    },
+    "/assets/my-timber-welcome-20261021.js": {
+      "owner": "core",
+      "sha256": "e0bf5c3e75048574ab0b16363d203f0073f36e90e47e5b7f77a7fbd69997193e",
+      "bytes": 10764
+    },
+    "/assets/member-experience/performance-welcome-e0bf5c3e75048574ab0b.js": {
+      "owner": "core",
+      "sha256": "e0bf5c3e75048574ab0b16363d203f0073f36e90e47e5b7f77a7fbd69997193e",
+      "bytes": 10764
     }
   },
   "publicSources": {
@@ -374,6 +384,6 @@
   "sourceInputs": {
     "scoped-source/member-experience/performance-client.mjs": "c84819db586e22ab41d695d8ca4b478f2192c9d6c64c993a7d2ae8470079252a",
     "scoped-source/member-experience/performance-monitor.mjs": "b1abbf94451cfe4545738dc5b558022266a5ba33553380558a0d0e255f1c009d",
-    "scoped-source/member-experience/performance-delivery.mjs": "051722f16b9a187f48d9e10eb509e3157179d934900c000a5b6d5e78d3b07042"
+    "scoped-source/member-experience/performance-delivery.mjs": "d2868b9ddf5167d6e8da15f88ab79cc19b29b888ea2bd79e456f5c7449afbc33"
   }
 }

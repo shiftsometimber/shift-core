@@ -19,7 +19,7 @@ function expiredView(){
  document.querySelectorAll('main').forEach(n=>n.replaceChildren());
  document.documentElement.dataset.mtAuthStale='1';delete document.documentElement.dataset.mtScreenLocked;delete document.documentElement.dataset.mtOverlayScreen;
  if(document.body)document.body.dataset.memberSession='signed-out';
- const render=()=>{const box=document.getElementById('memberSessionStatus');if(!box)return;box.hidden=false;box.replaceChildren();const message=document.createElement('p');message.setAttribute('role','status');message.textContent='Sign in to open your private My Timber account.';const link=document.createElement('a');link.textContent='Sign in';link.href='/member-login?returnTo='+encodeURIComponent(location.pathname+location.search+location.hash);box.append(message,link);};
+ const render=()=>{const box=document.getElementById('memberSessionStatus');if(!box)return;box.hidden=false;box.style.setProperty('display','block','important');box.style.setProperty('visibility','visible','important');box.replaceChildren();const message=document.createElement('p');message.setAttribute('role','status');message.textContent='Sign in to open your private My Timber account.';const link=document.createElement('a');link.textContent='Sign in';link.href='/member-login?returnTo='+encodeURIComponent(location.pathname+location.search+location.hash);box.append(message,link);};
  render();setTimeout(render,0);
 }
 async function verified(force=false){

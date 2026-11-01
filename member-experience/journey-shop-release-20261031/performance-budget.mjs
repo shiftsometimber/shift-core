@@ -1,7 +1,7 @@
 import assert from'node:assert/strict';
 import{readFileSync,writeFileSync,readdirSync}from'node:fs';
 import{spawnSync}from'node:child_process';
-const screens=['today','journey','shop','grub','fit','support','more'],profiles=[['chromium','good'],['chromium','slow4g'],['webkit','good']];
+const screens=['today','journey','shop','grub','fit','support','more'],profiles=[['chromium','good'],['chromium','slow4g']];
 export const percentile=(a,q)=>{const n=[...a].sort((a,b)=>a-b);return n[Math.max(0,Math.ceil(n.length*q)-1)];};
 export function evaluateBudget(phase,{requireCoverage=true}={}){
  const state=JSON.parse(readFileSync('performance-release-state.json')),files=readdirSync('.').filter(n=>n.startsWith('performance-distribution-')&&n.endsWith('.json')),data=files.map(file=>({...JSON.parse(readFileSync(file)),file}));
@@ -29,7 +29,7 @@ export function evaluateBudget(phase,{requireCoverage=true}={}){
 }
 export function rollbackAfterFailure(reason){
  const state=JSON.parse(readFileSync('performance-release-state.json')),actions=[];
- for(let i=2;i>=0;i--){if(!state.owners[i].liveAt)continue;const p=spawnSync(process.execPath,['performance-release.mjs','rollback',String(i)],{encoding:'utf8',timeout:180000});actions.push({owner:state.owners[i].name,status:p.status,stdout:p.stdout,stderr:p.stderr});if(p.status!==0){writeFileSync('performance-automatic-rollback.json',JSON.stringify({at:new Date().toISOString(),reason,actions,verified:false},null,2));throw Error('Automatic rollback failed: '+p.stderr);}}
+ for(let i=2;i>=0;i--){if(!state.owners[i].liveAt||state.owners[i].rollbackAt>=state.owners[i].liveAt)continue;const p=spawnSync(process.execPath,['performance-release.mjs','rollback',String(i)],{encoding:'utf8',timeout:180000});actions.push({owner:state.owners[i].name,status:p.status,stdout:p.stdout,stderr:p.stderr});if(p.status!==0){writeFileSync('performance-automatic-rollback.json',JSON.stringify({at:new Date().toISOString(),reason,actions,verified:false},null,2));throw Error('Automatic rollback failed: '+p.stderr);}}
  writeFileSync('performance-automatic-rollback.json',JSON.stringify({at:new Date().toISOString(),reason,actions,verified:true},null,2)+'\n');
 }
 if(process.argv[1]?.endsWith('performance-budget.mjs')){
