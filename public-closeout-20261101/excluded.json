@@ -1,0 +1,73 @@
+[
+  {
+    "path": "/mens-weight-management",
+    "reason": "Existing approved bespoke health or hero design",
+    "images": [
+      "/shift-health/hero-set-20261030/weight-management.webp"
+    ]
+  },
+  {
+    "path": "/shift-health/hair-loss",
+    "reason": "Existing approved bespoke health or hero design",
+    "images": [
+      "/shift-health/hair-loss?shift_hero=20261029-approved-v1-hair-c8efba044fa1"
+    ]
+  },
+  {
+    "path": "/shift-health/fertility",
+    "reason": "Existing approved bespoke health or hero design",
+    "images": [
+      "/shift-health/hero-set-20261030/fertility.webp"
+    ]
+  },
+  {
+    "path": "/treatment-centre/medicines-watch",
+    "reason": "Existing approved bespoke health or hero design",
+    "images": [
+      "/shift-health/hero-set-20261030/research.webp"
+    ]
+  },
+  {
+    "path": "/shift-health/erectile-dysfunction",
+    "reason": "Existing approved bespoke health or hero design",
+    "images": [
+      "/shift-health/hero-set-20261030/confidence.webp"
+    ]
+  },
+  {
+    "path": "/shift-health/blood-tests",
+    "reason": "Existing approved bespoke health or hero design",
+    "images": [
+      "/shift-health/blood-tests?shift_hero=20261029-approved-v1-bloods-c2d9e2093b40",
+      "/assets/shift-bloods/20261018/upper-arm-collection.svg"
+    ]
+  },
+  {
+    "path": "/shift-health/testosterone-energy",
+    "reason": "Existing approved bespoke health or hero design",
+    "images": [
+      "/shift-health/testosterone-energy?shift_hero=20261029-approved-v1-testosterone-1eea86432b85"
+    ]
+  },
+  {
+    "path": "/shift-health/shift-measure",
+    "reason": "Existing approved bespoke health or hero design",
+    "images": [
+      "/shift-health/hero-set-20261030/measure.webp"
+    ]
+  },
+  {
+    "path": "/shift-health/sleep-apnoea",
+    "reason": "Existing approved bespoke health or hero design",
+    "images": [
+      "/shift-health/sleep-apnoea?shift_hero=20261029-approved-v1-sleep-5835af825682"
+    ]
+  },
+  {
+    "path": "/shift-health/blood-pressure-monitor",
+    "reason": "Existing approved bespoke health or hero design",
+    "images": [
+      "/shift-health/blood-pressure-monitor?shift_hero=20261029-approved-v1-pressure-2f28da96a967"
+    ]
+  }
+]
