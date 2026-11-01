@@ -1,0 +1,65 @@
+name: My Timber exact login format release
+on:
+  push:
+    branches: [fix/member-login-password-format-20261101]
+    paths:
+      - frontend/member/my-timber-preview.html
+      - member-experience/session-state.mjs
+      - tests/member-login-password-format.test.mjs
+      - tests/member-auth-ui-v2.test.mjs
+      - scripts/verify-member-login-password-format.cjs
+      - release/member-login-format/**
+      - .github/workflows/member-login-format-release.yml
+permissions:
+  contents: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      CLOUDFLARE_ACCOUNT_ID: '9e5386dcf455be34c582d93f8bfc79e6'
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      LOGIN_FORMAT_PROMOTE: ONLY_LOGIN_FORMAT
+    steps:
+      - name: Set isolated build and browser paths
+        run: |
+          echo "LOGIN_BASELINE_BUILD=$RUNNER_TEMP/login-format-baseline-build" >> "$GITHUB_ENV"
+          echo "LOGIN_CANDIDATE_BUILD=$RUNNER_TEMP/login-format-candidate-build" >> "$GITHUB_ENV"
+          echo "PLAYWRIGHT_MODULE=$RUNNER_TEMP/login-format-browser/node_modules/playwright" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - name: Verify auth source and exact correction
+        run: |
+          node --test tests/member-login-password-format.test.mjs tests/member-auth-ui-v2.test.mjs tests/password-policy-v1.test.mjs tests/turnstile-client-timeout.test.mjs tests/turnstile-auth-v1.test.mjs
+          node frontend-member-source-gate.mjs
+          node g5-012-login-fastpath-gate.mjs
+          git diff --check
+          git diff --exit-code
+      - name: Retain the source and browser acceptance of the unchanged application
+        run: |
+          mkdir -p evidence/member-login-format
+          node -e "require('node:fs').writeFileSync('evidence/member-login-format/accepted-proof.json',JSON.stringify({source:'e44e549447e8ca360ce5924aa012fb11c47a1c52',compiledStageRun:41335856790,browserAcceptanceRun:41336333130,offlineBrowserChecks:14,liveBrowserVerification:'Independent authorised Mac after promotion'},null,2))"
+      - name: Require unchanged application source from the verified staged version
+        run: git diff --exit-code e44e549447e8ca360ce5924aa012fb11c47a1c52 HEAD -- frontend/member/my-timber-preview.html member-experience/session-state.mjs tests/member-login-password-format.test.mjs tests/member-auth-ui-v2.test.mjs
+      - name: Confirm that no route additions are needed
+        run: python3 scripts/cloudflare-route-capacity.py check --intent content-only --report evidence/member-login-format/route-capacity.json
+      - name: Verify the exact previously staged login-only version, then promote
+        run: node release/member-login-format/release.mjs
+      - name: Restore only an owned deployment after a later failure
+        if: ${{ failure() && hashFiles('evidence/member-login-format/release.json') != '' }}
+        run: node release/member-login-format/release.mjs rollback
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: member-login-format-${{ github.run_id }}
+          path: evidence/member-login-format/
+          retention-days: 14

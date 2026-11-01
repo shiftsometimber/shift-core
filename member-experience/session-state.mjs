@@ -27,6 +27,9 @@ export const sessionRuntime=String.raw`(()=>{
 })();`;
 
 export function withSessionState(html){
+ // Repair the retained raw auth asset as well as the corrected Git source.
+ // The account-creation rule stays intact; sign-in accepts existing credentials.
+ if(html.includes('id="previewRegister"'))html=html.replace("form.elements.password.pattern=registering?'(?=.*[A-Z])(?=.*[\\\\p{P}\\\\p{S}]).{10,}':'';","if(registering){form.elements.password.pattern='(?=.*[A-Z])(?=.*[\\\\p{P}\\\\p{S}]).{10,}';form.elements.password.minLength=10}else{form.elements.password.removeAttribute('pattern');form.elements.password.removeAttribute('minlength')}form.elements.password.placeholder=registering?'At least 10 characters':'Your password';").replace(" autocomplete=\"current-password\" minlength=\"10\" placeholder=\"At least 10 characters\" required"," autocomplete=\"current-password\" placeholder=\"Your password\" required");
  if(html.includes('id="previewRegister"')&&!html.includes('data-forgot-password')&&!html.includes('data-dashboard-password-recovery'))html=html.replace(/(<label>Password<input\b[^>]*name="password"[^>]*><\/label>)/,'$1<a data-dashboard-password-recovery href="/member-login?returnTo=%2Fmember%2Fdashboard#forgot-password" style="display:block;padding:12px 16px;margin:8px 0;border:1px solid #707762;border-radius:8px;background:#e7e3da!important;color:#050505!important;-webkit-text-fill-color:#050505!important;text-decoration:underline">Forgotten your password?</a>');
  if(html.includes('id="memberSessionStatus"'))return html;
  const dashboard=html.includes('id="previewAuth"');

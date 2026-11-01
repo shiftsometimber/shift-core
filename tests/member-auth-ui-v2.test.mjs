@@ -10,7 +10,8 @@ test('member entry defaults to sign-in without requiring a first name',()=>{
   assert.match(html,/data-registration-field hidden>First name<input name="firstName"/);
   assert.doesNotMatch(html,/name="firstName"[^>]*required/);
   assert.match(html,/first\.required=registering/);
-  assert.match(html,/autocomplete="current-password" minlength="10"/);
+  assert.match(html,/autocomplete="current-password" placeholder="Your password" required/);
+  assert.doesNotMatch(html,/autocomplete="current-password"[^>]*\b(?:minlength|pattern)=/);
   assert.match(html,/\.preview-auth \[hidden\]\{display:none!important\}/);
 });
 
@@ -33,6 +34,7 @@ test('verification and invalid-link states are explained in the entry UI',()=>{
 test('password minimum stays aligned with the live member registration contract',async()=>{
   const register=await readFile(new URL('../member-register-fastpath-v2.js',import.meta.url),'utf8');
   assert.match(register,/!passwordMeetsPolicy\(password\)/);
-  assert.match(html,/minlength="10"/);
+  assert.match(html,/\.minLength=10/);
+  assert.match(html,/removeAttribute\('minlength'\)/);
   assert.doesNotMatch(html,/minlength="12"/);
 });
