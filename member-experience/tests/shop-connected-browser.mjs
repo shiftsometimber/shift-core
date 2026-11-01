@@ -35,17 +35,24 @@ const publicRead=async request=>{
 };
 function existingPage(path){
  const isDashboard=path==='/member/dashboard',page=isDashboard?'dashboard':path.split('/').pop();
- return withSessionState('<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:0;background:#050505;color:#E7E3DA}'+memberChromeStyles+memberDesignStyles+'</style></head><body data-member-page="'+page+'" data-member-design="20261001" data-member-experience-ui="20261015"><header id="todayBrand" data-member-design-header><a href="/member/dashboard">MY TIMBER</a></header><nav id="appBottomNav">Existing native navigation</nav><nav class="sst-member-tabs">Legacy member navigation</nav><main><section id="previewMember" class="is-ready"><div id="todayActions"></div></section></main><script>'+sixPageRecoveryRuntime+'</script></body></html>');
+ return withSessionState('<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:0;background:#050505;color:#E7E3DA}'+memberChromeStyles+memberDesignStyles+'</style></head><body data-member-page="'+page+'" data-member-design="20261001" data-member-experience-ui="20261015"><header class="site-header" data-paint-website>Website navigation</header><header id="todayBrand" data-member-design-header><a href="/member/dashboard">MY TIMBER</a></header><nav id="appBottomNav">Existing native navigation</nav><nav class="sst-member-tabs">Legacy member navigation</nav><main><section id="previewMember" class="is-ready"><div id="todayActions"></div></section></main><footer id="sst-footer-c" data-paint-website>Website footer</footer><script>'+sixPageRecoveryRuntime+'</script></body></html>');
 }
-async function setup(width){
- const context=await browser.newContext({viewport:{width,height:900}}),page=await context.newPage(),errors=[],requests=[];
+async function setup(width,options={}){
+ const context=await browser.newContext({viewport:{width,height:900},javaScriptEnabled:options.javaScriptEnabled!==false}),page=await context.newPage(),errors=[],requests=[];
  const f=fixture({seed:false});f.db.exec('ALTER TABLE progress_entries ADD COLUMN notes TEXT');f.db.exec('UPDATE consents SET granted=1');context.on('close',()=>f.close());
  const service=wrapJourneyShopService({fetch:async()=>new Response('retained',{status:404})});
  const state={id:1,reference:ownerA,attempts:[],signedOut:false,held:null,release:null,meReads:0,meFailureAfter:Infinity};
  page.on('pageerror',error=>errors.push(error.message));
+ if(options.auditPaint)await page.addInitScript(()=>{window.__mtFirstPaintFrames=[];const frame=()=>{if(document.body){const visible=[...document.querySelectorAll('header.site-header,#sst-footer-c,#todayBrand,.tj-brand,.mt-support-brand,nav.sst-member-tabs,#appBottomNav,#mtSixNav')].filter(el=>{const s=getComputedStyle(el),r=el.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&r.width>0&&r.height>0;}).map(el=>el.id||el.className);window.__mtFirstPaintFrames.push({visible,pending:!!document.querySelector('#mtShopPending'),state:document.body.dataset.memberSession,app:document.body.hasAttribute('data-mt-shop-navigation')});if(window.__mtFirstPaintFrames.length>600)window.__mtFirstPaintFrames.shift();}requestAnimationFrame(frame);};requestAnimationFrame(frame);});
+
  await page.addInitScript(()=>{window.SST_API_BASE=location.origin;window.SST_API={getMe:async()=>({user:{id:1}}),getMyJourney:async()=>({journey:{}}),getProgressSummary:async()=>({progress:{}}),getConsents:async()=>({consents:[]}),getUnits:async()=>({units:{weight:'kg'}}),getOrders:async()=>({orders:[]})};});
  await page.route('**/*',async route=>{
   const r=route.request(),u=new URL(r.url());requests.push({path:u.pathname,method:r.method()});
+  if(u.pathname==='/assets/member-experience/programme-shop-navigation.mjs'){
+   if(options.failNav)return route.abort('failed');
+   if(options.holdNav)await new Promise(resolve=>{state.releaseNav=resolve;});
+  }
+
   if(u.pathname==='/v1/me')return route.fulfill({status:++state.meReads>state.meFailureAfter?503:state.signedOut?401:200,json:state.signedOut?{}:{user:{id:state.id}}});
   if(u.pathname==='/assets/member-experience/health.mjs')return route.fulfill({contentType:'text/javascript',body:'window.SST_HEALTH_CONSENT={ensure:async()=>true};'});
   if(u.pathname==='/v1/life-back/journey'||(u.pathname==='/v1/life-back'&&r.method()==='POST')){const headers=new Headers(r.headers());if(!state.signedOut)headers.set('Cookie','sst_session=test-only-member-'+state.id);const response=await service.fetch(new Request(r.url(),{method:r.method(),headers,...(r.method()==='POST'?{body:r.postData()}: {})}),f.env,{});return route.fulfill({status:response.status,headers:Object.fromEntries(response.headers),body:await response.text()});}
@@ -60,6 +67,7 @@ async function setup(width){
   const request=new Request(r.url(),{method:r.method()});
   let response=(u.pathname==='/assets/member-experience/programme-shop-navigation.mjs'&&process.env.MY_TIMBER_NAV_RUNTIME_FILE?new Response(readFileSync(process.env.MY_TIMBER_NAV_RUNTIME_FILE,'utf8'),{headers:{'Content-Type':'text/javascript'}}):null)||(u.pathname==='/assets/member-experience/programme-shop.css'&&process.env.MY_TIMBER_NAV_STYLES_FILE?new Response(readFileSync(process.env.MY_TIMBER_NAV_STYLES_FILE,'utf8'),{headers:{'Content-Type':'text/css'}}):null)||(u.pathname==='/assets/member-experience/programme-journey.css'&&process.env.MY_TIMBER_JOURNEY_STYLES_FILE?new Response(readFileSync(process.env.MY_TIMBER_JOURNEY_STYLES_FILE,'utf8'),{headers:{'Content-Type':'text/css'}}):null)||(u.pathname==='/assets/member-experience/programme-journey.mjs'&&process.env.MY_TIMBER_JOURNEY_RUNTIME_FILE?new Response(readFileSync(process.env.MY_TIMBER_JOURNEY_RUNTIME_FILE,'utf8'),{headers:{'Content-Type':'text/javascript'}}):null)||(u.pathname===shopBase&&process.env.MY_TIMBER_SHOP_HUB_FILE?new Response(readFileSync(process.env.MY_TIMBER_SHOP_HUB_FILE,'utf8'),{headers:{'Content-Type':'text/html'}}):null)||shopNavigationAsset(request)||await memberBasketRoutes(request,env,publicRead)||await shopPageRoutes(request,env,publicRead)||journeyPageRoutes(request,env)||memberExperienceRoutes(request,env);
   if(!response&&['/member/dashboard','/member/grub','/member/fit','/member/settings','/member/saved','/member/orders','/member/plans'].includes(u.pathname))response=new Response(existingPage(u.pathname),{headers:{'Content-Type':'text/html'}});
+  if(response&&options.panel&&response.headers.get('Content-Type')?.includes('text/html'))response=new Response((await response.text()).replace(/<body\b/,'<body data-app-panel="1"'),{status:response.status,headers:response.headers});
   if(response){response=await withShopNavigation(request,response,env);if(nativeScripts.length&&response.headers.get('Content-Type')?.includes('text/html'))response=new Response((await response.text()).replace('</body>',nativeScripts.map(content=>'<script>'+content+'</script>').join('')+'</body>'),{status:response.status,headers:response.headers});return route.fulfill({status:response.status,headers:Object.fromEntries(response.headers),body:Buffer.from(await response.arrayBuffer())});}
   if(u.pathname==='/shop/client.js'){
    const source=process.env.MY_TIMBER_KIT_CLIENT?readFileSync(process.env.MY_TIMBER_KIT_CLIENT,'utf8'):'';return route.fulfill({contentType:'text/javascript',body:source});
@@ -124,20 +132,45 @@ async function checkGuideInteractions(h){
  assert.equal(h.requests.filter(r=>r.method==='POST').length,posts,'Exploring the illustration must not create health records or treatment changes');
  results.push({width:page.viewportSize().width,case:'all seven days visible and usable without sideways scroll; Day 1, changing fill, drag, wheel, range, keyboard and replay work without writes',pass:true});
 }
+async function assertNoWebsitePaint(page){
+ const audit=await page.evaluate(()=>({frames:window.__mtFirstPaintFrames||[],visible:[...document.querySelectorAll('header.site-header,#sst-footer-c,#todayBrand,.tj-brand,.mt-support-brand,nav.sst-member-tabs,#appBottomNav,#mtSixNav')].filter(el=>{const s=getComputedStyle(el),r=el.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&r.width>0&&r.height>0;}).map(el=>el.id||el.className)}));
+ assert.deepEqual(audit.visible,[],'Website or legacy navigation must never paint on a member document');assert.ok(audit.frames.length>0);assert.deepEqual(audit.frames.filter(f=>f.visible.length),[],'No recorded animation frame may reveal website navigation');
+}
+async function checkOpeningPaint(width){
+ for(const path of ['/member/dashboard','/member/life-back/journey','/member/life-back/shop','/member/grub','/member/fit','/member/dashboard?timber=support#today','/member/dashboard?timber=stuff#today']){
+  const h=await setup(width,{holdNav:true,auditPaint:true});
+  try{
+   await h.page.goto(origin+path,{waitUntil:'commit'});await h.page.waitForSelector('#mtShopPending .mt-shop-brand',{state:'visible'});await h.page.waitForFunction(()=>document.body&&getComputedStyle(document.body).paddingTop!=='0px');await h.page.waitForTimeout(80);
+   await assertNoWebsitePaint(h.page);assert.equal(await h.page.locator('#mtShopChrome').count(),0);assert.equal(await h.page.locator('#mtShopPending [data-mt-shop-tab]').count(),0,'Opening chrome contains no enabled member controls');
+   assert.equal(await h.page.locator('#mtShopPending .mt-shop-brand').innerText(),'MY TIMBER');assert.equal(await h.page.locator('main').isVisible(),false,'Private content stays guarded while scripts and identity are pending');
+   assert.equal(typeof h.state.releaseNav,'function');h.state.releaseNav();await waitChrome(h.page);await assertBars(h.page);await assertNoWebsitePaint(h.page);
+   assert.equal(await h.page.locator('#mtShopPending').isVisible(),false);assert.equal(await h.page.locator('main').isVisible(),true);assert.deepEqual(h.errors,[]);
+  }finally{h.state.releaseNav?.();await h.context.close();}
+ }
+ results.push({width,case:'all seven destinations paint the app opening shell before delayed navigation loads, never website chrome; verified content replaces it without duplicate bars',pass:true});
+}
+async function checkOpeningFailures(){
+ const signed=await setup(390,{auditPaint:true});try{signed.state.signedOut=true;await signed.page.goto(origin+shopBase);await signed.page.waitForFunction(()=>document.body.dataset.memberSession==='signed-out');await assertNoWebsitePaint(signed.page);assert.equal(await signed.page.locator('#mtShopChrome').count(),0);assert.equal(await signed.page.locator('#mtShopMain').isVisible(),false);assert.equal(await signed.page.locator('#memberSessionStatus a').isVisible(),true);}finally{await signed.context.close();}
+ const failed=await setup(390,{failNav:true,auditPaint:true});try{await failed.page.goto(origin+shopBase);await failed.page.waitForSelector('[data-mt-opening-retry]',{state:'visible',timeout:15000});await assertNoWebsitePaint(failed.page);assert.equal(await failed.page.locator('#mtShopMain').isVisible(),false);assert.equal(await failed.page.locator('[data-mt-reload]').isVisible(),true);}finally{await failed.context.close();}
+ const nojs=await setup(390,{javaScriptEnabled:false});try{await nojs.page.goto(origin+shopBase);assert.equal(await nojs.page.locator('.mt-shop-noscript').isVisible(),true);assert.equal(await nojs.page.locator('#mtShopMain').isVisible(),false);assert.equal(await nojs.page.locator('#mtShopChrome').count(),0);}finally{await nojs.context.close();}
+ const embedded=await setup(390,{panel:true});try{await embedded.page.setContent('<iframe src="'+origin+shopBase+'" style="width:320px;height:700px"></iframe>');const frame=embedded.page.frameLocator('iframe');await frame.locator('body[data-app-panel="1"][data-member-session="ready"]').waitFor();assert.equal(await frame.locator('#mtShopPending').isVisible(),false);assert.equal(await frame.locator('#mtShopChrome').count(),0);assert.equal(await frame.locator('html').getAttribute('data-mt-member-paint'),null,'Embedded tools retain the parent app presentation');}finally{await embedded.context.close();}
+ results.push({width:390,case:'signed-out access, failed navigation download and disabled JavaScript and embedded tools stay private and show usable sign-in/reload/help fallbacks without website chrome',pass:true});
+}
 async function assertBrand(page){
  const brand=page.locator('#mtShopChrome .mt-shop-brand>a'),mark=brand.locator('img.mt-shop-mark');assert.equal(await mark.count(),1);assert.equal(await mark.getAttribute('src'),'/assets/favicon-shift-s-20261020.png');assert.equal(await mark.getAttribute('alt'),'');assert.equal(await brand.innerText(),'MY TIMBER');assert.match(await brand.getAttribute('href'),/\/member\/dashboard#today$/);
  await page.waitForFunction(()=>{const img=document.querySelector('#mtShopChrome .mt-shop-mark');return img?.complete&&img.naturalWidth>0;});
- const box=await mark.boundingBox(),text=await brand.locator('span').boundingBox(),link=await brand.boundingBox(),bar=await page.locator('.mt-shop-top').boundingBox();assert(box&&text&&link&&bar);assert.equal(box.width,30);assert.equal(box.height,30);assert.ok(Math.abs(text.x-box.x-box.width-10)<1,'Logo stays 10px to the left of My Timber');assert.ok(Math.abs(box.y+box.height/2-text.y-text.height/2)<1,'Logo and name are vertically aligned');assert.ok(link.height>=44&&link.x>=0&&link.x+link.width<=page.viewportSize().width,'Brand remains a usable, visible link');assert.equal(Math.round(bar.height),108,'Logo must not grow the fixed navigation height');
+ const box=await mark.boundingBox(),text=await brand.locator('span').boundingBox(),link=await brand.boundingBox(),bar=await page.locator('#mtShopChrome .mt-shop-top').boundingBox();assert(box&&text&&link&&bar);assert.equal(box.width,30);assert.equal(box.height,30);assert.ok(Math.abs(text.x-box.x-box.width-10)<1,'Logo stays 10px to the left of My Timber');assert.ok(Math.abs(box.y+box.height/2-text.y-text.height/2)<1,'Logo and name are vertically aligned');assert.ok(link.height>=44&&link.x>=0&&link.x+link.width<=page.viewportSize().width,'Brand remains a usable, visible link');assert.equal(Math.round(bar.height),108,'Logo must not grow the fixed navigation height');
 }
-async function assertBars(page){await assertBrand(page);await page.waitForFunction(()=>{const t=document.querySelector('.mt-shop-top'),b=document.querySelector('.mt-shop-bottom'),s=getComputedStyle(document.body);return t&&b&&parseFloat(s.paddingTop)+1>=t.getBoundingClientRect().height&&parseFloat(s.paddingBottom)+1>=b.getBoundingClientRect().height});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);assert.equal(await page.locator('#mtShopChrome').count(),1);}
+async function assertBars(page){await assertBrand(page);await page.waitForFunction(()=>{const t=document.querySelector('#mtShopChrome .mt-shop-top'),b=document.querySelector('#mtShopChrome .mt-shop-bottom'),s=getComputedStyle(document.body);return t&&b&&parseFloat(s.paddingTop)+1>=t.getBoundingClientRect().height&&parseFloat(s.paddingBottom)+1>=b.getBoundingClientRect().height});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);assert.equal(await page.locator('#mtShopChrome').count(),1);}
 const waitChrome=page=>page.waitForSelector('#mtShopChrome .mt-shop-primary a',{state:'visible',timeout:10000});
 try{
  for(const width of [320,390,768,1440]){
+  await checkOpeningPaint(width);
   const h=await setup(width),{page,state,context}=h;
   try{
-   await page.goto(origin+shopBase);await waitChrome(page);await assertBrand(page);await page.locator('.mt-shop-top').screenshot({path:join(out,'shift-s-header-'+width+'.png')});
+   await page.goto(origin+shopBase);await waitChrome(page);await assertBrand(page);await page.locator('#mtShopChrome .mt-shop-top').screenshot({path:join(out,'shift-s-header-'+width+'.png')});
    if(images)await page.waitForFunction(()=>[...document.querySelectorAll('.mt-shop-visual img')].every(img=>img.complete&&img.naturalWidth>0));
-   assert.deepEqual(await page.locator('.mt-shop-primary a').allTextContents(),['Today','Journey','Shop']);assert.deepEqual(await page.locator('.mt-shop-bottom a').allTextContents(),['Grub','Fit','Support','More']);
+   assert.deepEqual(await page.locator('.mt-shop-primary a').allTextContents(),['Today','Journey','Shop']);assert.deepEqual(await page.locator('#mtShopChrome .mt-shop-bottom a').allTextContents(),['Grub','Fit','Support','More']);
    assert.equal(await page.locator('#mtShopChrome svg').count(),8);assert.equal(await page.locator('[data-mt-shop-tab=shop]').getAttribute('aria-current'),'page');
    const layout=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth>innerWidth,gaps:[...document.querySelectorAll('.mt-shop-category')].map(card=>({gap:card.querySelector('strong').getBoundingClientRect().top-card.querySelector('.mt-shop-visual').getBoundingClientRect().bottom,color:getComputedStyle(card.querySelector('strong')).color,display:getComputedStyle(card.querySelector('strong')).display}))}));
    assert.doesNotMatch(await page.locator('.mt-shop-grid').innerText(),/[↗↖↘↙]/,'Shop cards use plain text without emoji arrows');assert.equal(layout.overflow,false);for(const item of layout.gaps){assert.ok(Math.abs(item.gap-8)<=1,JSON.stringify(item));assert.equal(item.color,'rgb(231, 227, 218)');assert.notEqual(item.display,'none');}
@@ -166,6 +199,7 @@ try{
    assert.deepEqual(h.errors,[]);
   }finally{await context.close();}
  }
+ await checkOpeningFailures();
  // A delayed A response must not resurrect A's basket after B signs in.
  const h=await setup(390);try{
   await h.page.goto(origin+shopBase);await waitChrome(h.page);

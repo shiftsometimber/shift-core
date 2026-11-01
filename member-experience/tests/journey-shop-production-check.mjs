@@ -44,6 +44,8 @@ try{
   for(const path of ['/member/dashboard','/member/dashboard?timber=support#today','/member/dashboard?timber=stuff#today','/member/grub','/member/fit','/member/life-back/journey','/member/life-back/shop']){
    const r=await get(path);assert.equal(r.status,200,path);
    assert(r.html.includes('/assets/member-experience/programme-shop-navigation.mjs'),'Navigation missing: '+path);
+   if(process.env.MY_TIMBER_VERIFY_FIRST_PAINT&&(process.env.MY_TIMBER_VERIFY_FIRST_PAINT!=='programme'||!path.startsWith('/member/dashboard'))){assert.equal(r.headers['x-my-timber-initial-paint'],'app-shell-20261101',path+' first-paint serving marker');assert(r.html.indexOf('data-mt-shop-initial-paint')<r.html.indexOf('</head>'),path+' inline app style before body');assert(r.html.includes('id="mtShopPending"'),path+' app opening shell');}
+
    assert(r.html.includes('/assets/member-experience/programme-shop.css'),'Styles missing: '+path);
    receipt.pages.push({path,status:r.status,shopMarker:r.headers['x-my-timber-shop'],journeyShopMarker:r.headers['x-my-timber-journey-shop']});
   }
@@ -75,6 +77,25 @@ try{
    try{const r=await view.goto(origin+path,{waitUntil:'domcontentloaded',timeout:30000});assert.equal(r.status(),200,path+' rendered response');await view.waitForFunction(()=>document.body.dataset.memberSession==='signed-out',{timeout:15000});assert.equal(await view.locator('#mtShopChrome').count(),0,'Signed-out app chrome');assert(identityRequests<=8,'Repeated identity requests: '+path);receipt.renderChecks.push({path,status:r.status(),domContentLoaded:true,signedOutProtection:true,identityRequests});}finally{await view.close();}
   }
   assert.deepEqual(receipt.errors.filter(e=>!baseline.errors.includes(e)),[],'New production console errors');
+ }
+ if(phase!=='before'&&process.env.MY_TIMBER_VERIFY_FIRST_PAINT){
+  receipt.firstPaintChecks=[];
+  const paths=['/member/dashboard','/member/life-back/journey','/member/life-back/shop','/member/grub','/member/fit','/member/dashboard?timber=support#today','/member/dashboard?timber=stuff#today'].filter(path=>process.env.MY_TIMBER_VERIFY_FIRST_PAINT!=='programme'||!path.startsWith('/member/dashboard'));
+  for(const path of paths){
+   const view=await context.newPage();let release;view.on('pageerror',e=>receipt.errors.push(e.message));
+   await view.addInitScript(()=>{window.__paint=[];const tick=()=>{if(document.body){const legacy=[...document.querySelectorAll('header.site-header,#sst-footer-c,#todayBrand,.tj-brand,.mt-support-brand,nav.sst-member-tabs,#appBottomNav,#mtSixNav')].filter(el=>{const s=getComputedStyle(el),r=el.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&r.width>0&&r.height>0;}).map(el=>el.id||el.className);window.__paint.push(legacy);if(window.__paint.length>600)window.__paint.shift();}requestAnimationFrame(tick);};requestAnimationFrame(tick);});
+   await view.route('**/assets/member-experience/programme-shop-navigation.mjs',async route=>{await new Promise(resolve=>release=resolve);await route.continue();});
+   try{
+    const r=await view.goto(origin+path,{waitUntil:'commit',timeout:30000});assert.equal(r.status(),200);await view.waitForSelector('#mtShopPending .mt-shop-brand',{state:'visible',timeout:10000});await view.waitForFunction(()=>window.__paint?.length>=3);
+    assert.equal(await view.locator('#mtShopChrome').count(),0);assert.equal(await view.locator('#mtShopPending [data-mt-shop-tab]').count(),0);
+    const audit=await view.evaluate(()=>({frames:window.__paint,background:getComputedStyle(document.body).backgroundColor,privateVisible:[...document.querySelectorAll('main')].some(el=>{const s=getComputedStyle(el),r=el.getBoundingClientRect();return s.visibility!=='hidden'&&s.display!=='none'&&r.width>0&&r.height>0;})}));
+    assert.deepEqual(audit.frames.filter(f=>f.length),[],'Website chrome painted before app: '+path);assert.equal(audit.background,'rgb(5, 5, 5)');assert.equal(audit.privateVisible,false,'Pending private content must remain guarded');
+    assert.equal(typeof release,'function');release();await view.waitForFunction(()=>document.body.dataset.memberSession==='signed-out',{timeout:15000});assert.equal(await view.locator('#mtShopChrome').count(),0);
+    assert.deepEqual(await view.evaluate(()=>window.__paint.filter(f=>f.length)),[],'Website chrome reappeared at sign-out: '+path);
+    receipt.firstPaintChecks.push({path,openingShellVisible:true,websiteFrames:0,privateContentGuarded:true,anonymousSignInPreserved:true,navigationDelayedWithoutResponseSubstitution:true});
+   }finally{release?.();await view.close();}
+  }
+  assert.deepEqual(receipt.errors,[],'New first-paint console errors');
  }
  receipt.verified=true;receipt.finishedAt=new Date().toISOString();
 }finally{if(context)await context.close();await browser.close();writeFileSync(receiptPrefix+phase+(engine==='webkit'?'-webkit':'')+'.json',JSON.stringify(receipt,null,2)+'\n');}

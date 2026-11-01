@@ -4,7 +4,8 @@ export const shopNavigationRuntime=String.raw`(()=>{
  const body=document.body,$=s=>document.querySelector(s);
  let owner=null,epoch=0,verifying=false,queued=false,basketLoaded=false,blocked=false;
  const savedPadding=new Map(),hiddenChrome=new Map();
- const ready=()=>body.dataset.memberSession==='ready'&&body.dataset.accountDeleted!=='1'&&body.dataset.appPanel!=='1'&&(body.dataset.memberPage!=='dashboard'||!!$('#previewMember.is-ready:not([hidden])'));
+ const layoutReady=()=>!document.documentElement.hasAttribute('data-mt-member-paint')||body.dataset.memberDesign!=='20261001'||!['dashboard','grub','fit'].includes(body.dataset.memberPage)||body.dataset.mtRecovery==='20261025';
+ const ready=()=>layoutReady()&&body.dataset.memberSession==='ready'&&body.dataset.accountDeleted!=='1'&&body.dataset.appPanel!=='1'&&(body.dataset.memberPage!=='dashboard'||!!$('#previewMember.is-ready:not([hidden])'));
  function padding(on){for(const [name,value]of [['padding-top','calc(108px + env(safe-area-inset-top))'],['padding-bottom','calc(78px + env(safe-area-inset-bottom))']]){
   if(on){if(!savedPadding.has(name))savedPadding.set(name,[body.style.getPropertyValue(name),body.style.getPropertyPriority(name)]);if(body.style.getPropertyValue(name)!==value)body.style.setProperty(name,value,'important');}
   else if(savedPadding.has(name)){const [v,p]=savedPadding.get(name);if(v)body.style.setProperty(name,v,p);else body.style.removeProperty(name);savedPadding.delete(name);}
@@ -36,6 +37,6 @@ export const shopNavigationRuntime=String.raw`(()=>{
  addEventListener('resize',schedule);window.visualViewport?.addEventListener('resize',schedule);addEventListener('hashchange',schedule);addEventListener('popstate',schedule);addEventListener('pagehide',clear);addEventListener('pageshow',()=>{blocked=false;if(ready())verify(true);});
  document.addEventListener('visibilitychange',()=>{if(document.hidden)clear();else{blocked=false;schedule();}});
  document.addEventListener('sst:account-changed',()=>{blocked=false;clear();schedule();});
- function boot(){new MutationObserver(records=>{if(records.some(r=>r.target===body&&r.attributeName==='data-member-session'))blocked=false;if(records.every(r=>r.target.nodeType===1&&r.target.closest?.('#mtShopChrome')))return;schedule();}).observe(body,{childList:true,subtree:true,attributes:true,attributeFilter:['data-member-session','data-account-deleted','data-app-tool','hidden','class']});schedule();}
+ function boot(){new MutationObserver(records=>{if(records.some(r=>r.target===body&&r.attributeName==='data-member-session'))blocked=false;if(records.every(r=>r.target.nodeType===1&&r.target.closest?.('#mtShopChrome')))return;schedule();}).observe(body,{childList:true,subtree:true,attributes:true,attributeFilter:['data-member-session','data-account-deleted','data-app-tool','data-mt-recovery','hidden','class']});schedule();}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();`;
