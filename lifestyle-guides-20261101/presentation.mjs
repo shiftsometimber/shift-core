@@ -165,7 +165,8 @@ MAIN .lg-table-hint{display:none!important}
 MAIN .article-next{background:#252b1f!important;border:0!important;padding:27px!important;margin:24px 0!important;color:#E7E3DA!important}
 MAIN .article-next h2{margin:8px 0 15px!important}
 MAIN .article-next a{display:inline-flex!important;align-items:center!important;min-height:44px!important;margin:4px 15px 0 0!important}
-@media(max-width:1000px){MAIN .lg-pair strong{font-size:30px!important}}
+@media(min-width:701px) and (max-width:1000px){MAIN .lg-pair{grid-template-columns:1fr!important;gap:14px!important;margin:20px 0!important}MAIN .lg-pair>div{display:grid!important;grid-template-columns:22px minmax(0,1fr)!important;gap:6px 12px!important;padding-top:14px!important}MAIN .lg-pair span{margin:4px 0 0!important;grid-row:1/3!important}MAIN .lg-pair strong{font-size:27px!important;margin:0!important}MAIN .lg-pair p{grid-column:2!important;margin:0!important}MAIN .lg-art{padding:25px!important}}
 @media(max-width:700px){MAIN .lg-art{min-height:0!important;padding:25px!important}MAIN .lg-pair{margin:24px 0!important;gap:20px!important}MAIN .lg-pair strong{font-size:28px!important}MAIN .lg-pair span{margin-bottom:20px!important}MAIN .lg-pair p{font-size:13px!important}MAIN .life2-battle{grid-template-columns:1fr!important;gap:0!important}MAIN .life2-vs{min-height:34px!important}MAIN .life2-fighter{padding:24px!important}MAIN .life2-fighter h2{font-size:24px!important}MAIN .life2-adv{grid-template-columns:1fr!important;gap:0!important}MAIN .life2-adv h2{font-size:24px!important}MAIN .lg-table-hint{display:block!important;font-size:12px!important;color:#bec6b3!important;margin:0 0 10px!important}MAIN .life2-table{min-width:610px!important}MAIN .life2-table :is(th,td){padding:15px!important;font-size:14px!important}MAIN .article-next{padding:24px!important}MAIN .article-next h2{font-size:25px!important}}
 }
 `;
+
