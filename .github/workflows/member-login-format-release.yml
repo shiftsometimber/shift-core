@@ -1,0 +1,73 @@
+name: My Timber exact login format release
+on:
+  push:
+    branches: [fix/member-login-password-format-20261101]
+    paths:
+      - frontend/member/my-timber-preview.html
+      - member-experience/session-state.mjs
+      - tests/member-login-password-format.test.mjs
+      - tests/member-auth-ui-v2.test.mjs
+      - scripts/verify-member-login-password-format.cjs
+      - release/member-login-format/**
+      - .github/workflows/member-login-format-release.yml
+permissions:
+  contents: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      CLOUDFLARE_ACCOUNT_ID: '9e5386dcf455be34c582d93f8bfc79e6'
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      LOGIN_FORMAT_PROMOTE: ONLY_LOGIN_FORMAT
+      LOGIN_BASELINE_BUILD: ${{ runner.temp }}/login-format-baseline-build
+      LOGIN_CANDIDATE_BUILD: ${{ runner.temp }}/login-format-candidate-build
+      PLAYWRIGHT_MODULE: ${{ runner.temp }}/login-format-browser/node_modules/playwright
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - name: Verify auth source and exact correction
+        run: |
+          node --test tests/member-login-password-format.test.mjs tests/member-auth-ui-v2.test.mjs tests/password-policy-v1.test.mjs tests/turnstile-client-timeout.test.mjs tests/turnstile-auth-v1.test.mjs
+          node frontend-member-source-gate.mjs
+          node g5-012-login-fastpath-gate.mjs
+          git diff --check
+          git diff --exit-code
+      - name: Prepare browsers before any production mutation
+        run: |
+          npm install --prefix "$RUNNER_TEMP/login-format-browser" --no-package-lock --no-audit --no-fund playwright@1.58.2
+          "$RUNNER_TEMP/login-format-browser/node_modules/.bin/playwright" install --with-deps chromium webkit
+      - name: Reproduce the original failure and prove the retained-asset repair
+        run: |
+          mkdir -p evidence/member-login-format
+          git show abc093c61ad4cdd832dc62bbffa25de668d58661:frontend/member/my-timber-preview.html > "$RUNNER_TEMP/login-format-before.html"
+          node scripts/verify-member-login-password-format.cjs "$RUNNER_TEMP/login-format-before.html" > evidence/member-login-format/offline-browser.json
+      - name: Compile the reviewed before and after source without deployment
+        run: |
+          git worktree add --detach "$RUNNER_TEMP/login-format-baseline" abc093c61ad4cdd832dc62bbffa25de668d58661
+          (cd "$RUNNER_TEMP/login-format-baseline" && npm ci --no-audit --no-fund)
+          (cd "$RUNNER_TEMP/login-format-baseline" && "$GITHUB_WORKSPACE/node_modules/.bin/wrangler" deploy --dry-run --config wrangler.jsonc --outdir "$LOGIN_BASELINE_BUILD") > "$RUNNER_TEMP/login-format-baseline-build.log" 2>&1 || { tail -40 "$RUNNER_TEMP/login-format-baseline-build.log"; exit 1; }
+          node_modules/.bin/wrangler deploy --dry-run --config wrangler.jsonc --outdir "$LOGIN_CANDIDATE_BUILD" > "$RUNNER_TEMP/login-format-candidate-build.log" 2>&1 || { tail -40 "$RUNNER_TEMP/login-format-candidate-build.log"; exit 1; }
+          git diff --exit-code
+      - name: Confirm that no route additions are needed
+        run: python3 scripts/cloudflare-route-capacity.py check --intent content-only --report evidence/member-login-format/route-capacity.json
+      - name: Stage and verify the exact login-only serving-version patch, then promote
+        run: node release/member-login-format/release.mjs
+      - name: Restore only an owned deployment after a later failure
+        if: ${{ failure() && hashFiles('evidence/member-login-format/release.json') != '' }}
+        run: node release/member-login-format/release.mjs rollback
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: member-login-format-${{ github.run_id }}
+          path: evidence/member-login-format/
+          retention-days: 14
