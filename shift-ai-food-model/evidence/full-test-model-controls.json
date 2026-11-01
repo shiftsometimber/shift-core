@@ -1,0 +1,50 @@
+{
+  "scope": "Four synthetic non-food smoke controls, not real non-food acceptance or recipe accuracy",
+  "learned_head_sha256": "5882524a54a3d208a71068cdb670ca7175b93553c2ec1616c33afe51c50eaf58",
+  "controls": [
+    {
+      "synthetic_control": "black",
+      "response": {
+        "items": [
+          "beef",
+          "carrots"
+        ],
+        "nutrition": {}
+      },
+      "suggested_food": true
+    },
+    {
+      "synthetic_control": "white",
+      "response": {
+        "items": [
+          "carrots"
+        ],
+        "nutrition": {}
+      },
+      "suggested_food": true
+    },
+    {
+      "synthetic_control": "grey",
+      "response": {
+        "items": [],
+        "nutrition": {}
+      },
+      "suggested_food": false
+    },
+    {
+      "synthetic_control": "random-noise",
+      "response": {
+        "items": [
+          "pizza",
+          "carrots"
+        ],
+        "nutrition": {}
+      },
+      "suggested_food": true
+    }
+  ],
+  "false_food_suggestions": 3,
+  "passes_smoke_test": false,
+  "real_non_food_test_performed": false,
+  "production_ready": false
+}

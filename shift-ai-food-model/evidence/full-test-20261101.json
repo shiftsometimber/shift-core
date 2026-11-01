@@ -1,0 +1,130 @@
+{
+  "schema": "shift-ai-full-test-2026-11-01",
+  "date": "1 November 2026",
+  "timezone": "Europe/London",
+  "application_source_commit": "a4061f00faa36b3f0af206e0f9d838bf2c219ffc",
+  "model_candidate": "shift-food-candidate-4",
+  "research_archive_version": 3,
+  "overall": "NOT_READY_FOR_RELEASE",
+  "software_checks": {
+    "python": {
+      "pass": 38,
+      "fail": 0
+    },
+    "focused_including_recipe_catalogue_and_new_log_bridge": {
+      "pass": 145,
+      "fail": 0,
+      "existing_opt_in_skip": 1
+    },
+    "full_member_suite_complete_repository": {
+      "pass": 580,
+      "fail": 2,
+      "tests": 582,
+      "concurrency": 2,
+      "failures": [
+        "CSV UI changes only the existing optional weight-import component",
+        "no native widget, build, tester, production config or model source is changed by the CSV interface"
+      ],
+      "reason": "Historical Registration tail must add only the final receipt assertion; release gate preserved"
+    },
+    "worker_dry_run_build": "passed",
+    "new_recipe_confirmation_to_log_bridge": {
+      "pass": 4,
+      "scope": "Fictional accounts, actual authenticated route and SQLite; explicit test-harness mapping, not a deployed recipe UI"
+    },
+    "coverage": [
+      "current recipe hash and portion checks",
+      "single-save retries",
+      "nutrition scaling",
+      "unknown amounts and changed ingredients",
+      "tracking consent withdrawal",
+      "account separation",
+      "diary and shared AI read model",
+      "deletion updates food totals"
+    ]
+  },
+  "real_model": {
+    "images": 200,
+    "public_source": "Nutrition5k",
+    "test_previously_inspected": true,
+    "exact_saved_inference_roundtrips": 200,
+    "precision": 0.7086614173228346,
+    "recall": 0.3103448275862069,
+    "exact_annotated_component_set_match": 0.26,
+    "warm_mean_ms": 253.52015172964457,
+    "maximum_probability_difference": 8.106231689453125e-06,
+    "proposed_floor_precision": 0.9,
+    "proposed_floor_recall": 0.6,
+    "quality_passed": false,
+    "scope": "Twelve ingredient groups on previously inspected US cafeteria development photos; not UK recipe, portion or calorie accuracy"
+  },
+  "synthetic_negative_controls": {
+    "images": 4,
+    "false_food_suggestions": 3,
+    "passed": false,
+    "real_non_food_acceptance": false
+  },
+  "adapter_process_launch": {
+    "status": "failed",
+    "scope": "Actual candidate 4 invoked through shared adapter with a local one-process-per-request diagnostic, not production hosting",
+    "actual_model_invocations_attempted": 1,
+    "child_timeout_ms": 14000,
+    "shared_deadline_ms": 15000,
+    "error": "ETIMEDOUT",
+    "signal": "SIGTERM",
+    "automatic_retry": false,
+    "deadline_extended": false,
+    "successful_response": false,
+    "note": "Standalone 200-image inference completed separately. This does not erase the failed bounded process-launch test. A preloaded serving process still needs to be implemented and accepted."
+  },
+  "recipe_reference_checks": {
+    "catalogue_recipes": 2692,
+    "text_queries": [
+      {
+        "query": "A photo of beans on toast.",
+        "top_recipe": "Beans on toast"
+      },
+      {
+        "query": "A photo of a tuna sandwich.",
+        "top_recipe": "Tuna sandwich"
+      },
+      {
+        "query": "A photo of scrambled eggs on toast.",
+        "top_recipe": "Scrambled eggs on toast"
+      }
+    ],
+    "one_public_photo_candidates": 5,
+    "photo_response_nutrition": null,
+    "auto_save": false,
+    "exact_recipe_photo_accuracy_measured": false
+  },
+  "public_research_connectivity": {
+    "status": "live",
+    "requests": 2,
+    "journey_used": false,
+    "scope": "Generic public citation metadata connectivity, not clinical evidence appraisal or model validation"
+  },
+  "not_tested_or_unavailable": [
+    "Fresh independent representative UK recipe-labelled photos",
+    "Real non-food rejection benchmark",
+    "Recipe-specific supervised model (no qualified data yet)",
+    "Provisioned internal photo service",
+    "Installed iOS/Android photo picker and full live member photo-to-save path"
+  ],
+  "restrictions": {
+    "production_deployment": false,
+    "photo_flags_activated": false,
+    "new_paid_service": false,
+    "new_licence_acceptance": false,
+    "real_member_data_used": false,
+    "outbound_person_directed_communications": false,
+    "model_weights_retrained": false
+  },
+  "environment_note": "Initial sparse clone had five additional missing-binary/promisor-environment failures. Final full-suite figures use the complete non-promisor repository and all assets; no guard was weakened.",
+  "harness_sha256": {
+    "shift-ai-food-model/verify_binding.mjs": "6537b2be04603f3da6c87cff10d316cce77c068d5dbd67884d93a7bf178f3bab",
+    "shift-ai-food-model/verify_semantic.py": "69c693926b5629c62adad65678b8ac613db98302a9ba8e026b9e27647df25a4b",
+    "shift-ai-food-model/verify_controls.py": "a47f3d8415dfa05d0f0c8435126377ee86eb2abd751ac5e81508146947c0d1ec",
+    "shift-ai-food-model/tests/recipe-log-integration.test.mjs": "843c08017cff6639a680080a2effa2b35f47062d949bd8b1f83f61ef861fbf16"
+  }
+}

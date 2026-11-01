@@ -383,3 +383,29 @@ Generated fixture checks separately cover a complete reviewed export; that is
 plumbing/contract evidence, never real recipe accuracy. The saved Library images
 inspected during this continuation were interface concepts rather than checked
 recipe photographs, so they were not imported or labelled for training.
+
+## Full-test findings, 1 November 2026
+
+The complete test summary is `evidence/full-test-20261101.json` and the existing
+project checkpoint records scope and limitations. Software qualification passes,
+but the recogniser is NOT ready: 70.87% precision / 31.03% recall on 200 previously
+inspected public development images, false food on three of four synthetic
+non-food controls, and one actual-model adapter process launch timed out at the
+unchanged 14-second child deadline. No real UK recipe or phone acceptance is claimed.
+
+To reproduce the actual-model diagnostics after restoring the pinned base,
+candidate and exact research images:
+
+```bash
+python shift-ai-food-model/verify_semantic.py /absolute/base /absolute/candidate-4 /absolute/data/manifest.json
+python shift-ai-food-model/verify_controls.py --base /absolute/base --candidate /absolute/candidate-4 --research
+node shift-ai-food-model/verify_binding.mjs /absolute/python /absolute/candidate-4 /absolute/public-test.jpg /absolute/base
+node --test shift-ai-food-model/tests/recipe-log-integration.test.mjs
+```
+
+`verify_controls.py` intentionally exits 1 for this failed model smoke test. Do
+not lower its requirement, remove the controls or call them a real-world negative
+benchmark. The fourth optional adapter argument selects the SigLIP model path;
+without it the older self-contained DeiT research candidate path is preserved.
+No timeout, release flag, model weight, acceptance threshold or runtime code is
+changed by these diagnostics.

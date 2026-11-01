@@ -5,6 +5,73 @@ He subsequently instructed that both food recognition and the MediSearch-style
 research capability belong inside Shift AI. No competitor trial, subscription
 or integration is part of this implementation.
 
+## Full test — 1 November 2026, Europe/London
+
+Matt explicitly requested a full test. Application source was verified at
+`a4061f00faa36b3f0af206e0f9d838bf2c219ffc`. Existing development-only scope,
+no production activation, no new paid service and no member training-data reuse
+were preserved. The overall result is **NOT READY FOR RELEASE**.
+
+| Check | Result | Limit |
+| --- | --- | --- |
+| Data/intake/learning qualification | 38 Python checks pass | Contract fixtures, not recipe accuracy |
+| Food, recipe, shared AI and new logging integration | 145 pass, one existing opt-in skipped | Includes four actual recipe-catalogue and four new local recipe/log bridge checks |
+| Complete member suite | 580/582 pass | Same two historical CSV Registration-tail failures; gates retained |
+| Actual Worker dry-run build | Pass | No upload or production release |
+| Saved model on 200 pinned real public JPEGs | Reproduces its recorded predictions; 70.87% precision, 31.03% recall | Twelve ingredient groups, previously inspected US development set; fails proposed 90%/60% quality floors |
+| Four synthetic non-food smoke controls | FAIL: food suggested for three | Black, white and seeded random noise produce food; grey abstains. Not a real non-food benchmark |
+| Actual candidate 4 through shared adapter/local process | FAIL: child ETIMEDOUT at 14 seconds | One attempt; unchanged 15-second shared deadline, no automatic retry or successful serving claim |
+| Recipe reference bank | Three text queries rank intended recipes first; one public JPEG returns candidates, no nutrition/auto-save | Not exact-recipe photo accuracy |
+| Generic public PubMed connection | Pass, two requests, no journey used | Citation metadata only, not clinical appraisal |
+
+The added integration test uses explicit simulated confirmation of the current
+beans-on-toast recipe and 1.5 servings, maps the reviewed draft into the existing
+authenticated diary API, and verifies real in-memory SQLite writes. Retry counts
+once; diary/shared AI see the source-derived amount; another account cannot see
+it; deletion removes amounts and food facts. Unconfirmed/stale recipe versions,
+invalid portions, changed ingredients and optional nutrition behave correctly.
+Withdrawn consent returns the existing 409 health_consent_required contract and
+writes nothing. This test-harness bridge does not claim the live recipe UI has
+been wired to the diary. It is now included in the existing focused CI job.
+
+The saved research archive was verified at version 3 and its full ZIP CRC/pinned
+hash, recipe catalogue, learned head and provenance were checked. The public
+SigLIP base was restored against its original immutable revision and SHA256;
+all 200 source PNG and transformed JPEG hashes were checked, downloading
+86,201,740 public image bytes within the explicit 200 MB recovery budget. The
+200 fresh forward passes differ from recorded probabilities by at most 8.11e-6.
+Mean local warm image inference was 253.52 ms; this is neither phone timing nor
+production cold-start acceptance. Test labels, weights and thresholds were not
+changed. No new model weights were trained.
+
+The one-process-per-request actual-model adapter diagnostic exceeded its 14-second
+child deadline on its first run. Successful standalone batch inference does not
+supersede that failure. No longer timeout or retry was used to obtain a pass.
+The new verify_controls.py makes the failed synthetic-negative smoke checks
+reproducible and exits non-zero when food is suggested for a control. These are
+separate from the 38 passing software qualification fixtures.
+
+An initial sparse local checkout lacked binaries and was a partial/promisor
+clone, producing five environment-specific failures in addition to the CSV pair.
+A complete non-promisor repository and all assets were recovered and the full
+member suite rerun with canonical concurrency two: only the two historical CSV
+failures remain. No source guard or release qualifier was relaxed.
+
+Missing acceptance remains: fresh independent UK exact-recipe photos, a real
+non-food rejection set, a trained recipe-specific model, an implemented/accepted
+internal serving process, live photo-to-save integration and actual installed
+phone capture. Highest priorities are reliable non-food/unknown rejection and
+serving lifecycle, alongside collecting checked recipe-photo pairs. Nothing
+has been deployed or switched on. Do not describe the passing logging/software
+checks as proof that the recogniser works accurately for members.
+
+Machine-readable summary: shift-ai-food-model/evidence/full-test-20261101.json.
+Actual forward-pass, negative-control and recipe-photo receipts are saved beside
+it. Verification helpers gained candidate-4 support and actual metric reporting;
+model architecture, training weights, thresholds and app runtime are unchanged.
+Final CI for these new test/helper files is reported separately from the tested
+application source above.
+
 ## Offline photo intake and review — further continuation, 1 November 2026 Europe/London
 
 Matt said “Crack on”. The existing feature head was verified as

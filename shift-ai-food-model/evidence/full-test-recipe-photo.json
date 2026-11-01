@@ -1,0 +1,98 @@
+{
+  "scope": "One public JPEG recipe-retrieval plumbing check, not verified exact-recipe recognition",
+  "public_image_id": "dish_1560543755",
+  "response": {
+    "candidates": [
+      {
+        "recipeId": "industrial-v3-jacket-potato-buffalo-tuna",
+        "recipeHash": "8a26450cb55d863f7815066fa455e57c01b7651f276482d6bc2e62e368bd9339",
+        "title": "Chilli tuna jacket potato \u2014 tomato ketchup, cider vinegar",
+        "foodFormat": "jacket-potato",
+        "ingredients": [
+          "tuna in spring water, drained",
+          "baking potato",
+          "mixed salad",
+          "spring onion",
+          "tomato ketchup",
+          "hot chilli powder blend",
+          "smoked paprika",
+          "cider vinegar",
+          "olive oil"
+        ],
+        "similarity": 0.12374
+      },
+      {
+        "recipeId": "industrial-v3-jacket-potato-cajun-chicken",
+        "recipeHash": "506e4d6fa8e2db390e15767050a02ba0eccd62028533f1885d704eaf28d43e07",
+        "title": "Paprika chicken jacket potato \u2014 plain yoghurt, garlic powder, dried oregano",
+        "foodFormat": "jacket-potato",
+        "ingredients": [
+          "cooked chicken breast",
+          "baking potato",
+          "mixed salad",
+          "spring onion",
+          "plain virtually fat-free yoghurt",
+          "smoked paprika",
+          "garlic powder",
+          "dried oregano",
+          "olive oil"
+        ],
+        "similarity": 0.11533
+      },
+      {
+        "recipeId": "industrial-lunch-tofu-jacket-potato",
+        "recipeHash": "476fad37d254c530568635e7dbf9b2c664cde56d4675a1a156807adb75af3e6c",
+        "title": "Tofu jacket potato",
+        "foodFormat": "jacket-potato",
+        "ingredients": [
+          "firm tofu",
+          "baking potato",
+          "mixed salad",
+          "spring onion",
+          "0% Greek yoghurt",
+          "olive oil"
+        ],
+        "similarity": 0.11338
+      },
+      {
+        "recipeId": "industrial-v3-jacket-potato-sweet-chilli-chicken",
+        "recipeHash": "cff5e24906c9ef3bcf31b4852906ac94edf9f1c887b1623b617cf1764a239b1d",
+        "title": "Sweet chilli chicken jacket potato",
+        "foodFormat": "jacket-potato",
+        "ingredients": [
+          "cooked chicken breast",
+          "baking potato",
+          "mixed salad",
+          "spring onion",
+          "sweet chilli sauce",
+          "olive oil"
+        ],
+        "similarity": 0.1122
+      },
+      {
+        "recipeId": "industrial-v3-jacket-potato-tikka-chicken",
+        "recipeHash": "1b8456f5c4f14cadce47fd31c015d635205ada65d87b06a6e8c7594ae0d80c3d",
+        "title": "Paprika chicken jacket potato \u2014 plain yoghurt, ground ginger, garlic powder",
+        "foodFormat": "jacket-potato",
+        "ingredients": [
+          "cooked chicken breast",
+          "baking potato",
+          "mixed salad",
+          "spring onion",
+          "plain virtually fat-free yoghurt",
+          "smoked paprika",
+          "ground ginger",
+          "garlic powder",
+          "olive oil"
+        ],
+        "similarity": 0.11091
+      }
+    ],
+    "requiresRecipeConfirmation": true,
+    "requiresPortion": true,
+    "canSelectNone": true,
+    "autoSave": false,
+    "nutrition": null,
+    "message": "Possible recipe matches. Choose only if it is what you made, check substitutions and enter how much you ate."
+  }
+}

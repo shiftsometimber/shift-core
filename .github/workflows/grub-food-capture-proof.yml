@@ -69,7 +69,7 @@ jobs:
           node --check member-experience/journey-context.mjs
           node --check member-experience/entry.mjs
       - name: Check food capture and real diary compatibility
-        run: node --test member-experience/tests/food-capture.test.mjs member-experience/tests/food-log.test.mjs member-experience/tests/food-log-delivery.test.mjs member-experience/tests/food-diary-london-date-20261015.test.mjs member-experience/tests/journey-portability.test.mjs member-experience/tests/shift-ai-capabilities.test.mjs tests/shift-ai-research-route.test.mjs tests/ask-timber-conversation-boundaries.test.mjs tests/ask-timber-public.test.mjs tests/ai-connected-member.test.mjs tests/ai-connected-legacy.test.mjs tests/ai-practical-context.test.mjs
+        run: node --test member-experience/tests/food-capture.test.mjs member-experience/tests/food-log.test.mjs member-experience/tests/food-log-delivery.test.mjs member-experience/tests/food-diary-london-date-20261015.test.mjs member-experience/tests/journey-portability.test.mjs member-experience/tests/shift-ai-capabilities.test.mjs tests/shift-ai-research-route.test.mjs tests/ask-timber-conversation-boundaries.test.mjs tests/ask-timber-public.test.mjs tests/ai-connected-member.test.mjs tests/ai-connected-legacy.test.mjs tests/ai-practical-context.test.mjs shift-ai-food-model/tests/recipe-log-integration.test.mjs
       - name: Build the actual Worker without uploading or changing production
         run: npx wrangler deploy --dry-run --config wrangler.jsonc --outdir "$RUNNER_TEMP/grub-worker-build"
       - name: Check live public PubMed connectivity (diagnostic, no account or model)

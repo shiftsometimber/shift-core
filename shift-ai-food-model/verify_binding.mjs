@@ -6,7 +6,7 @@ import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {shiftRecogniseFood} from '../shift-ai-capabilities.mjs';
 
-const [python,candidate,publicImage]=process.argv.slice(2);
+const [python,candidate,publicImage,semanticBase]=process.argv.slice(2);
 if(!python||!candidate||!publicImage)throw Error('Pass local Python, candidate directory and public research JPEG');
 const image='data:image/jpeg;base64,'+readFileSync(publicImage).toString('base64');
 let calls=0;
@@ -20,7 +20,10 @@ const env={
   const body=await request.json();
   assert.deepEqual(Object.keys(body).sort(),['caption','image','maxOutputTokens','task']);
   calls++;
-  const result=spawnSync(python,[fileURLToPath(new URL('./predict.py',import.meta.url)),candidate,'--research'],{
+  const args=semanticBase
+   ?[fileURLToPath(new URL('./semantic_model.py',import.meta.url)),'predict','--candidate',candidate,'--base',semanticBase,'--research']
+   :[fileURLToPath(new URL('./predict.py',import.meta.url)),candidate,'--research'];
+  const result=spawnSync(python,args,{
    input:JSON.stringify(body),encoding:'utf8',timeout:14000,maxBuffer:100000});
   if(result.status!==0)throw Error('Local research model invocation failed: '+JSON.stringify({status:result.status,signal:result.signal,error:result.error?.code,stderr:result.stderr?.slice(-500)}));
   return Response.json(JSON.parse(result.stdout));
