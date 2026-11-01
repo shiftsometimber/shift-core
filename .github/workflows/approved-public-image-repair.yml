@@ -1,0 +1,71 @@
+name: Approved public image delivery repair
+on:
+  pull_request:
+    paths: ['public-image-repair/**', '.github/workflows/approved-public-image-repair.yml']
+  push:
+    branches: [main]
+    paths: ['public-image-repair/**', '.github/workflows/approved-public-image-repair.yml']
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: |
+          node --test public-image-repair/*.test.mjs tests/independent-presentation-preservation.test.mjs tests/runtime-rollback-guard.test.mjs
+          node --check public-image-repair/release.mjs
+          node --check public-image-repair/live-browser.mjs
+          git diff --check
+  release:
+    if: github.event_name == 'push' && github.actor_id == '315011648'
+    needs: source
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    concurrency:
+      group: cloudflare-production-promote
+      cancel-in-progress: false
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Qualify the exact isolated repair and unchanged article source
+        run: |
+          git fetch --no-tags origin main
+          test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)"
+          git merge-base --is-ancestor a1741848bd6dca238def63d9ee6f03ff45e8a7ea HEAD
+          python3 - <<'PY'
+          import subprocess
+          files=subprocess.check_output(['git','diff','--name-only','a1741848bd6dca238def63d9ee6f03ff45e8a7ea','HEAD'],text=True).splitlines()
+          assert files and all(p.startswith('public-image-repair/') or p == '.github/workflows/approved-public-image-repair.yml' for p in files),files
+          subprocess.run(['git','diff','--exit-code','a1741848bd6dca238def63d9ee6f03ff45e8a7ea','HEAD','--','babylove'],check=True)
+          PY
+      - name: Prepare the existing browser test engine before any production mutation
+        run: |
+          npm install --prefix "$RUNNER_TEMP/image-repair-browser" --no-package-lock --no-audit --no-fund playwright@1.58.2
+          "$RUNNER_TEMP/image-repair-browser/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Stage, verify every provider module and promote under the current serving lease
+        id: publish
+        run: node public-image-repair/release.mjs
+      - name: Check all eight actual production pages on mobile and desktop
+        run: PLAYWRIGHT_MODULE="$RUNNER_TEMP/image-repair-browser/node_modules/playwright" node public-image-repair/live-browser.mjs
+      - name: Restore only the owned deployment if any post-promotion check fails
+        if: ${{ failure() && hashFiles('public-image-repair-proof/promotion-intent.json') != '' }}
+        run: node public-image-repair/release.mjs rollback
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: approved-public-image-repair-${{ github.run_id }}
+          path: public-image-repair-proof/
+          if-no-files-found: warn
+          retention-days: 14
