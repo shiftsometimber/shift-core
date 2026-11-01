@@ -71,6 +71,7 @@ async function setup(width){
 }
 async function checkJourney(h){
  const {page}=h;await page.goto(origin+'/member/life-back/journey');await waitChrome(page);await page.waitForSelector('[data-tj-add=win]');
+ const today=await page.evaluate(()=>fetch('/v1/life-back/journey').then(r=>r.json()).then(d=>d.today));await page.locator('[data-tj-add=win]').click();assert.equal(await page.locator('[name=on]').inputValue(),today,'New records retain today as their default');await page.locator('[data-tj-back]').click();
  const add=async(kind,fill)=>{await page.click('[data-tj-add='+kind+']');await page.locator('[name=on]').fill('2026-10-28');await fill();await page.locator('[data-tj-record-form] button.tj-primary').click();await page.waitForSelector('[data-tj-add=win]');assert.match(await page.locator('#timberJourney').innerText(),/Your record is saved/);};
  await add('win',()=>page.locator('[name=text]').fill('Isolated browser win'));
  await page.reload();await page.waitForSelector('[data-tj-add=win]');assert.match(await page.locator('#timberJourney').innerText(),/Isolated browser win/);
@@ -109,7 +110,8 @@ async function checkGuideInteractions(h){
  await page.locator('[data-tj-day="3"]').click();await waitIndex(2);await page.locator('[data-tj-play]').click();await waitIndex(3);await page.locator('[data-tj-play]').click();
  assert.notEqual(await fill(),low);assert.match(await page.locator('.tj-badge').innerText(),/Illustration.*not your actual levels/);assert.match(await page.locator('#timberJourney').innerText(),/symbolic.*not medicine moving up your body/);
  await page.locator('[data-tj-date]').focus();await page.keyboard.press('End');await waitIndex(27);await page.locator('[data-tj-play]').click();await waitIndex(0);await page.locator('[data-tj-play]').click();
- await page.locator('[data-tj-back]').click();await page.locator('[data-tj-guide]').click();await waitIndex(0);await assertFill(.25);
+ await page.locator('[data-tj-back]').click();const today=await page.evaluate(()=>fetch('/v1/life-back/journey').then(r=>r.json()).then(d=>d.today));await page.locator('[data-tj-add=win]').click();assert.equal(await page.locator('[name=on]').inputValue(),today,'Exploring the example must not backdate a new win');await page.locator('[data-tj-back]').click();await page.locator('[data-tj-guide]').click();await waitIndex(0);await assertFill(.25);
+ await page.locator('[data-tj-add=feeling]').click();await page.locator('[data-tj-back]').click();await page.locator('[data-tj-add=win]').click();assert.equal(await page.locator('[name=on]').inputValue(),today,'Cancelling a guide-date entry must restore the normal new-record date');await page.locator('[data-tj-back]').click();await page.locator('[data-tj-guide]').click();await waitIndex(0);
  assert.equal(h.requests.filter(r=>r.method==='POST').length,posts,'Exploring the illustration must not create health records or treatment changes');
  results.push({width:page.viewportSize().width,case:'guide starts and reopens at Day 1; filled area rises/falls through drag, wheel, range, keyboard, day buttons and replay without writes',pass:true});
 }

@@ -81,6 +81,13 @@ async function deploy(mode){
  state.currentDeployment=published.id;save();const observed=await active(name);assert.equal(observed.id,published.id);assert.deepEqual(observed.versions,desired);
  state[mode+'VerifiedAt']=new Date().toISOString();state.deploymentIntent.finished=true;save();await guard();console.log('PUBLICATION_VERIFIED',mode,name,state.versionId,published.id);
 }
+async function revise(){
+ assert(state.zeroVerifiedAt&&!state.liveVerifiedAt);await guard();await verifiedCandidate();const before=await active(name);
+ assert(before.versions.some(v=>v.version_id===state.previousVersion&&v.percentage===100));assert(before.versions.some(v=>v.version_id===state.versionId&&v.percentage===0));
+ const source=JSON.parse(readFileSync('guide-fill-source.json','utf8'));assert.notEqual(source.commit,state.source);
+ state.replacedCandidates=[...(state.replacedCandidates||[]),{versionId:state.versionId,source:state.source,stagedVerifiedAt:state.stagedVerifiedAt,ordinaryTrafficPercent:0}];
+ for(const key of ['versionId','stagedVerifiedAt','zeroVerifiedAt','candidateAcceptanceAt','candidateAcceptance','uploadIntent','deploymentIntent'])delete state[key];save();await stage();
+}
 async function accept(){
  assert(state.zeroVerifiedAt);await guard();
  const receipts=['guide-fill-production-candidate.json','shop-browser-proof/guide-fill-served-candidate-chromium-20261101/receipt.json','shop-browser-proof/guide-fill-served-candidate-webkit-20261101/receipt.json'];
@@ -89,6 +96,6 @@ async function accept(){
  state.candidateAcceptanceAt=new Date().toISOString();save();console.log('SERVED_CANDIDATE_ACCEPTED',state.versionId);
 }
 try{
- if(phase==='baseline')await baseline();else if(phase==='stage')await stage();else if(phase==='zero'||phase==='live')await deploy(phase);else if(phase==='accept')await accept();else if(phase==='status'){for(const n of[name,documents]){const a=await active(n);console.log('CURRENT_PROVIDER_STATE',JSON.stringify({name:n,id:a.id,versions:a.versions,message:a.annotations?.['workers/message']}));}}else throw Error('Use baseline, stage, zero, accept, live or status');
+ if(phase==='revise')await revise();else if(phase==='baseline')await baseline();else if(phase==='stage')await stage();else if(phase==='zero'||phase==='live')await deploy(phase);else if(phase==='accept')await accept();else if(phase==='status'){for(const n of[name,documents]){const a=await active(n);console.log('CURRENT_PROVIDER_STATE',JSON.stringify({name:n,id:a.id,versions:a.versions,message:a.annotations?.['workers/message']}));}}else throw Error('Use baseline, stage, zero, accept, live or status');
  state.lastSuccessfulPhase=phase;state.updatedAt=new Date().toISOString();delete state.failure;save();
 }catch(e){state.failure={phase,message:e.message,at:new Date().toISOString()};save();console.error('SCOPED_CORRECTION_STOPPED',e.message);process.exitCode=1;}

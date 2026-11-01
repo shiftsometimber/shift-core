@@ -6,7 +6,7 @@ export function journeyPageClient(makeView) {
   'use strict';
   const V=makeView(),{esc,date,add,distance}=V,root=document.getElementById('timberJourney');if(!root)return;
   let data=null,account=null,generation=0,loading=false,saving=false,controller=null,pendingSave=null;
-  let page='main',selected='',medicineEnd='',showMedicine=false,recordKind='',editingId=null,snapshotDraft='',snapshotAccepted=false,guidePlaying=null,drag=null;
+  let page='main',selected='',guideReturnDate='',medicineEnd='',showMedicine=false,recordKind='',editingId=null,snapshotDraft='',snapshotAccepted=false,guidePlaying=null,drag=null;
   const query=new URLSearchParams(location.search);
   let measure=['weightKg','waistCm','clothes'].includes(query.get('measure'))?query.get('measure'):'weightKg',range=['7','28','all','custom'].includes(query.get('range'))?query.get('range'):'7',customFrom=query.get('from')||'',customTo=query.get('to')||'';
   const ready=()=>document.body.dataset.memberSession==='ready'&&document.body.dataset.accountDeleted!=='1'&&!document.hidden;
@@ -15,7 +15,7 @@ export function journeyPageClient(makeView) {
   const status=text=>{const box=$('[data-tj-status]');if(box)box.textContent=text;};
   const stop=()=>{clearInterval(guidePlaying);guidePlaying=null;};
   function clear() {
-    ++generation;controller?.abort();controller=null;stop();drag=null;pendingSave=null;data=null;account=null;loading=false;saving=false;page='main';selected='';medicineEnd='';snapshotDraft='';snapshotAccepted=false;recordKind='';editingId=null;showMedicine=false;root.replaceChildren();document.body.removeAttribute('data-tj-print');
+    ++generation;controller?.abort();controller=null;stop();drag=null;pendingSave=null;data=null;account=null;loading=false;saving=false;page='main';selected='';guideReturnDate='';medicineEnd='';snapshotDraft='';snapshotAccepted=false;recordKind='';editingId=null;showMedicine=false;root.replaceChildren();document.body.removeAttribute('data-tj-print');
   }
   async function identity(signal) {
     const response=await fetch('/v1/me',{credentials:'same-origin',cache:'no-store',signal});
@@ -36,7 +36,7 @@ export function journeyPageClient(makeView) {
       if(g!==generation||!ready())return;
       if(owner!==verified||String(fresh.accountId)!==owner||(account!==null&&account!==owner)){clear();window.SST_MEMBER_SESSION?.check();return;}
       account=owner;data=fresh;showMedicine=fresh.showMedicine;medicineEnd=medicineEnd&&medicineEnd<=fresh.today?medicineEnd:fresh.today;
-      selected=selected&&selected<=medicineEnd&&selected>=add(medicineEnd,-27)?selected:add(medicineEnd,-27);
+      selected=selected&&selected<=medicineEnd&&selected>=add(medicineEnd,-27)?selected:medicineEnd;
       if(!customFrom)customFrom=add(data.today,-27);if(!customTo)customTo=data.today;
       snapshotAccepted=false;if(location.hash==='#snapshot'&&page==='main'){snapshotDraft=V.snapshotText(data);page='snapshot';}
       render();
@@ -139,7 +139,7 @@ export function journeyPageClient(makeView) {
     root.innerHTML=(page==='guide'?guideMarkup():page==='form'?formMarkup():page==='records'?recordsMarkup():page==='snapshot'?snapshotMarkup():mainMarkup())+'<p class="tj-status" data-tj-status role="status"></p>'+(data.historyMayBeLimited?'<p class="tj-small">Up to 1,000 entries from each older log are shown. Your full export stays available in Journey tools.</p>':'')+'<p class="tj-small">'+(data.paused?'Journey tracking is paused. Your retained records are still available.':!data.trackingEnabled?'Optional tracking is off. Your retained records are still available.':'Your private record. Add only what helps you.')+'</p>';
     bindContinuous();
   }
-  function go(next) {stop();if(next==='guide')selected=add(medicineEnd,-27);page=next;snapshotAccepted=false;render();root.querySelector('h1')?.setAttribute('tabindex','-1');root.querySelector('h1')?.focus();window.scrollTo({top:0,behavior:'instant'});}
+  function go(next) {stop();if(next==='guide'){guideReturnDate=selected;selected=add(medicineEnd,-27);}else if(next==='main'&&guideReturnDate){selected=guideReturnDate;guideReturnDate='';}page=next;snapshotAccepted=false;render();root.querySelector('h1')?.setAttribute('tabindex','-1');root.querySelector('h1')?.focus();window.scrollTo({top:0,behavior:'instant'});}
   function openForm(kind,id=null) {recordKind=kind;editingId=id;go('form');}
   // Keep the native range input and plot container connected during a drag.
   function refreshSelection() {
@@ -203,7 +203,7 @@ export function journeyPageClient(makeView) {
     else if(button.hasAttribute('data-tj-rebuild')){snapshotDraft=V.snapshotText(data);snapshotAccepted=false;render();status('Rebuilt from your current records. Please check it again.');}
     else if(button.hasAttribute('data-tj-share'))await shareSnapshot();
     else if(button.hasAttribute('data-tj-pdf'))await shareSnapshot(true);
-    else if(button.dataset.tjWindow){stop();medicineEnd=button.dataset.tjWindow==='older'?add(medicineEnd,-28):[add(medicineEnd,28),data.today].sort()[0];selected=add(medicineEnd,-27);render();}
+    else if(button.dataset.tjWindow){stop();medicineEnd=button.dataset.tjWindow==='older'?add(medicineEnd,-28):[add(medicineEnd,28),data.today].sort()[0];selected=medicineEnd;render();}
     else if(button.dataset.tjDay){stop();const from=add(medicineEnd,-27),index=distance(from,selected),week=Math.floor(index/7);setDate(week*7+Number(button.dataset.tjDay)-1);}
     else if(button.hasAttribute('data-tj-play')){if(guidePlaying){stop();render();}else{if(distance(add(medicineEnd,-27),selected)>=27)selected=add(medicineEnd,-27);guidePlaying=setInterval(()=>{if(!ready()||page!=='guide'){stop();return;}const i=distance(add(medicineEnd,-27),selected);if(i>=27){stop();render();return;}setDate(i+1);},1600);render();}}
   });
