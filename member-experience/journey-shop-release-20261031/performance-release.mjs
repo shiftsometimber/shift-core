@@ -1,4 +1,5 @@
 // Scoped continuation of the existing Journey/Shop release lane.
+import{evaluateBudget}from'./performance-budget.mjs';
 import assert from'node:assert/strict';import{readFileSync,writeFileSync,existsSync}from'node:fs';import{createHash}from'node:crypto';
 const phase=process.argv[2],index=Number(process.argv[3]||0),path='performance-release-state.json',account='9e5386dcf455be34c582d93f8bfc79e6',zone='66ec3268950adcfc837b7b8b2f8356ed',prefix='member-performance-20261101/',baseline=JSON.parse(readFileSync('performance-serving-baseline.json')),build=JSON.parse(readFileSync('performance-build.json')),auth=readFileSync('/Users/shiftsometimberltd/Library/Preferences/.wrangler/config/default.toml','utf8'),token=process.env.CLOUDFLARE_API_TOKEN||auth.match(/^oauth_token\s*=\s*"([^"\n]+)"/m)?.[1],hash=b=>createHash('sha256').update(b).digest('hex'),hashes=ms=>Object.fromEntries(ms.map(m=>[m.name,hash(Buffer.from(m.content_base64,'base64'))]).sort(([a],[b])=>a.localeCompare(b))),sort=bs=>[...bs].sort((a,b)=>a.name.localeCompare(b.name));
 const ep=n=>'/accounts/'+account+'/workers/scripts/'+n,version=(n,id)=>cf('/accounts/'+account+'/workers/workers/'+n+'/versions/'+id+'?include=modules');
@@ -56,7 +57,7 @@ try{
  if(phase==='guard')await guard();
  else if(phase==='stage')await stage(state.owners[index],index);
  else if(['zero','live','rollback'].includes(phase))await deploy(state.owners[index],phase);
- else if(phase==='accept'){await guard();for(const engine of ['chromium','webkit']){const r=JSON.parse(readFileSync('performance-candidate-'+engine+'.json'));assert(r.verified&&r.source===state.source);}state.acceptedAt=new Date().toISOString();save();console.log('PERFORMANCE_CANDIDATE_ACCEPTED');}
+ else if(phase==='accept'){await guard();for(const engine of ['chromium','webkit']){const r=JSON.parse(readFileSync('performance-candidate-'+engine+'.json'));assert(r.verified&&r.source===state.source);}assert(evaluateBudget('candidate').passed,'Performance budget or privacy check failed');state.acceptedAt=new Date().toISOString();save();console.log('PERFORMANCE_CANDIDATE_ACCEPTED');}
  else if(phase==='status'){for(const o of state.owners){const a=await active(o.name);console.log('SERVING',o.name,a.id,JSON.stringify(a.versions));}}
  else throw Error('Unknown phase');state.updatedAt=new Date().toISOString();delete state.failure;save();
 }catch(e){state.failure={phase,index,at:new Date().toISOString(),message:e.message};save();console.error('PERFORMANCE_RELEASE_STOPPED',e.message);process.exitCode=1;}

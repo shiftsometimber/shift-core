@@ -1,0 +1,198 @@
+{
+  "at": "2026-11-01",
+  "source": "performance-current.json dashboard script references",
+  "count": 27,
+  "policy": "Keep approved functionality; retain each established runtime once per screen. Do not persist private pages or API responses. Fingerprint only proven public code owned by the scoped release; preserve unknown/newer query variants. No third-party script appears in these 27 references.",
+  "scripts": [
+    {
+      "path": "/analytics-bootstrap-v1.js",
+      "decision": "keep",
+      "reason": "Consent-bound analytics bootstrap; retain consent semantics and do not load analytics without permission.",
+      "capturedSHA256": "1c04156865c81cf052ba9dfd94022ad9c24bb4a2dcfd63a1f674e23c8562e5d3",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/assets/member-experience/passport.js",
+      "decision": "keep",
+      "reason": "Health Passport controls; required for member records, consent, export and deletion.",
+      "capturedSHA256": "a02141d476e16fd266e19e246975c48e42d5e6aacb34bcd0347532616956c0fd",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/assets/member-experience/programme-shop-navigation.mjs",
+      "decision": "keep",
+      "reason": "Approved seven-destination navigation and account-bound basket; share verified startup identity.",
+      "capturedSHA256": "f7059a9a901054be59bdf808d8fb043be513c907a78c029c47ea8f21d5dd00eb",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/assets/member-experience/session.mjs",
+      "decision": "keep",
+      "reason": "Session gate; keep authenticated startup, sign-out, expiry and resume protection.",
+      "capturedSHA256": "c35c367a2d82723604ae2632ff38548a94059f60ca97b9119762cc03d18570f2",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/assets/member-login-security-20260912.js",
+      "decision": "keep",
+      "reason": "Existing login security controls; keep server identity and account operations.",
+      "capturedSHA256": "ab4c12202142282824fbf1e453254cc35a51892a07fd51fd844c4ab27d6d4532",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/api-adapter-v33d.js?v=postpay-1",
+      "decision": "keep",
+      "reason": "Existing API adapter used by Today and native presentation; preserve endpoint contracts.",
+      "capturedSHA256": "eeb741d84aa1e8a9e27d75f1f065a0a7cf65efd378264c45294ba18f069a95bd",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/member-treatment-journey-v1.js?v=postpay-1",
+      "decision": "keep",
+      "reason": "Treatment journey data and clinical presentation; preserve existing records and gates.",
+      "capturedSHA256": "25aec39e710d192274da4e517a35f815c4c8a7f0cd07563e917bad62e40e677d",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/my-timber-v11.js?v=1",
+      "decision": "keep",
+      "reason": "Approved Today content and interactions; no replacement dashboard.",
+      "capturedSHA256": "6ea38a5410a64c7072d999f70f7fe9c47e4129369d6ee0cfca2b38fd8322fd4f",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/assets/ask-timber-sync-v1.js?v=3",
+      "decision": "keep",
+      "reason": "Ask Timber synchronisation; preserve existing support flow and no automatic outgoing messages.",
+      "capturedSHA256": "cb1434cc5fd0ea7b00aeea67767097ad1ed6c2ec6b29ac65a8c5f1681ad37e19",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/consent-v4a.js",
+      "decision": "keep",
+      "reason": "Consent controls and saved choices; must initialise before optional tracking.",
+      "capturedSHA256": "7ffe5454fd08374408f70784f6ddde0ba8a51c3d948a5034af083647b4ac38b4",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/analytics-events-v31b.js",
+      "decision": "keep",
+      "reason": "Consent-bound event implementation; preserve disabled-by-default analytics behaviour.",
+      "capturedSHA256": "135750c70453438dadfdfc8ace5027f80de99b12052a27cf65f8e1d791739873",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/assets/member-shell-v6.js?v=canonical-20260909",
+      "decision": "keep",
+      "reason": "Member shell and navigation dependencies; retain one copy only per document, remove duplicate copies on Fit/Grub.",
+      "capturedSHA256": "6e3a6c3d6d136bb2369ad132d90747cc85056804dba4e9355da7ced2a5375dd2",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/assets/v42.js?v=price-period-20261018-1314bdafe846",
+      "decision": "keep",
+      "reason": "Existing public/product bindings referenced by the serving template; retain until isolated removal has proved no dependencies.",
+      "capturedSHA256": "59ae9862ef8db94afc8d56f910981ebc43edd6fd0f7f43dc753a45af4163227d",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/assets/my-timber-welcome-20261021.js?v=3",
+      "decision": "keep",
+      "reason": "Existing welcome/onboarding controls; guard absent install controls in app-only fingerprinted copy.",
+      "capturedSHA256": "d7d5dd7e1f920392576e3c20a2f9cebb7e68581fe9ee11524f829e5de50570cb",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/assets/my-timber-onboarding-20261021.js",
+      "decision": "keep",
+      "reason": "Approved first visit onboarding; retain account setup state.",
+      "capturedSHA256": "cd7e07b96a8edf7f24d28aad01088f1dd1afaaff75e2b7d5110f9990ae846e9d",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/assets/member-experience/v1.mjs",
+      "decision": "keep",
+      "reason": "Member experience runtime; preserves current Today and utility functionality.",
+      "capturedSHA256": "0b1e048807b667abf8a3f3e6f446efe79b35e582d028ecea2d2597321f8723a7",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/assets/member-experience/health.mjs",
+      "decision": "keep",
+      "reason": "Optional tracking consent and health controls; preserve gates.",
+      "capturedSHA256": "79b9047d6ece00f509db7cb6b08fc673b33699dd28eea53a885601e7c4645088",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/assets/member-experience/checkin-followup.mjs",
+      "decision": "keep",
+      "reason": "Check-in follow-up and feedback continuity; preserve saved member state.",
+      "capturedSHA256": "82e2558060c5eda419ef0b39f7bdee1e32079b139906cf1ec8a020d7fc0edcd4",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/assets/member-experience/day-guide.mjs",
+      "decision": "keep",
+      "reason": "Selected-day data and guide; preserve the approved member day.",
+      "capturedSHA256": "b95b5dab3a09b57d0ff79f0db877198f2226fe98f995f3fd03dff070c73bdbd1",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/assets/member-experience/continuity-exposure.mjs",
+      "decision": "keep",
+      "reason": "Continuity exposure and resume handling; keep necessary checks.",
+      "capturedSHA256": "70e759ade9aaa9608eb98a27824ffd0d3cd9f09384b891fc1a8632d5e90e419f",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/assets/my-timber-pwa.js",
+      "decision": "keep",
+      "reason": "PWA compatibility; retain installation behaviour and native compatibility.",
+      "capturedSHA256": "79644feae7d6ef169e1c56166aa558b92cb09b89ee3d0760c6d3ceb6820f4806",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/assets/my-timber-layout.mjs",
+      "decision": "keep",
+      "reason": "Approved My Timber layout; preserve stable branding and colours.",
+      "capturedSHA256": "24fa200f1b2ea5335de778ada3e583ed2c8f5587b97527769afefa073aaa5c1c",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/assets/member-experience/programme-client.js",
+      "decision": "keep",
+      "reason": "Programme controls and existing data contracts.",
+      "capturedSHA256": "6cd179f6e9f35a3f35c97373a43956e53f4271f1ab7293b64f53be1d4e989ef7",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/assets/member-experience/programme-support-plan.mjs",
+      "decision": "keep",
+      "reason": "Member support plan, private feedback and saved words.",
+      "capturedSHA256": "677fc9d0a870c75be505efcd4519b41b9722d930f5aa216ed84fae1024ef2229",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/assets/member-experience/programme-shed.mjs",
+      "decision": "keep",
+      "reason": "Shed programme integration; preserve existing controls without automated posts.",
+      "capturedSHA256": "2b2d1f46dc3a4c06d23683b7174e2e3ef69856cfa5f84c73b1c50c12ae69ba45",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/assets/member-experience/programme-first-six-weeks.mjs",
+      "decision": "keep",
+      "reason": "Approved first-six-weeks flow and gates.",
+      "capturedSHA256": "c88bb148c9119a29540ca897f6ce8c08e4554ad90e4d15a2819cc2459235d974",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    },
+    {
+      "path": "/member/support/dashboard.js",
+      "decision": "keep",
+      "reason": "Current separately owned support dashboard; preserve its serving owner and updates rather than freezing it in the repair.",
+      "capturedSHA256": "bec02cd958788895e003f7ba24082c23b5dc8ade83620a49f24a704c1c16ad8d",
+      "delivery": "Retained primary screen does not reload this script on repeat tabs; matching public static code receives fingerprinted immutable delivery where owned by this scoped release."
+    }
+  ],
+  "otherScreenChange": "Duplicate member-shell-v6.js reference removed from Grub and Fit; Today has one copy."
+}

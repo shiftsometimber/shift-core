@@ -1,13 +1,73 @@
 {
-  "at": "2026-11-01T19:46:33.245Z",
-  "bundleSHA256": "1d1be84ccdb135df26f7c82b8b2929b53a39b810fd1af88282dbec5aaf25e2bb",
-  "assetsSHA256": "363d54434bcab90abad35124c38aa20641e65473404494a07f7080966ef3f2eb",
+  "at": "2026-11-01T21:02:28.159Z",
+  "bundleSHA256": "d7e1d8f59b080ea5d619f0b3f719ffed029209340381c7e6918ed8acd3b193ed",
+  "assetsSHA256": "652cc37848282e3f38f21b08e70ce2d13aee426a723baa5767b38cfa9eb2fdb0",
   "publicSourcesSHA256": "17ed9150cece1c044d9223dd0b04d0545332198d3948e05dc2508116217ee925",
   "staticAssets": {
     "/assets/member-experience/programme-shop-basket.js": {
       "owner": "programme",
       "sha256": "7c28d5220d010fd8fec217e16f52fdc8b80d1cb0cbb3211d17f8cbcc8f0b8343",
       "bytes": 30008
+    },
+    "/analytics-bootstrap-v1.js": {
+      "owner": "core",
+      "sha256": "1c04156865c81cf052ba9dfd94022ad9c24bb4a2dcfd63a1f674e23c8562e5d3",
+      "bytes": 8429
+    },
+    "/member-p0-v1.css": {
+      "owner": "core",
+      "sha256": "e40a57cef6cd7dec1c72f2e89c0204135ab7911862837c6c03bd4cc35c8868ae",
+      "bytes": 18636
+    },
+    "/member-today-premium-v1.css": {
+      "owner": "core",
+      "sha256": "942433f46cc0ed9aa76dd6c74ea7b9b911cea9bcc21a89650afc0a7b99ac2796",
+      "bytes": 16225
+    },
+    "/my-timber-v11.css": {
+      "owner": "core",
+      "sha256": "fa04bf4ba1971281145213d8a84e10c947c5f13b80a73c6162d57db50c636b0b",
+      "bytes": 10335
+    },
+    "/member-my-journey-v1.css": {
+      "owner": "core",
+      "sha256": "64efe8cd8fb3338e236ab58edf055c84d34c1165c756c9e58317c5e4d297e7d7",
+      "bytes": 4259
+    },
+    "/member-my-journey-checkin-v1.css": {
+      "owner": "core",
+      "sha256": "69a5f7fd9d8a18ccb3024acbcb984f9ef5efe98234bf38ea1f0a9db688ede55d",
+      "bytes": 3983
+    },
+    "/assets/v137-estate-closeout.css": {
+      "owner": "core",
+      "sha256": "a0e9927ac92becaf57f2c787985c78c5d4acea3b3b54c4a1c78b5f479358346f",
+      "bytes": 8288
+    },
+    "/assets/member-shell-v6.css": {
+      "owner": "core",
+      "sha256": "adbfc632e2bdd87aa173f56031e09bb1c61d3b47fe7e42505a1c9b12fc038e9f",
+      "bytes": 1213
+    },
+    "/assets/shift-recovery-v6.css": {
+      "owner": "core",
+      "sha256": "3edc9ac6a663ef3bd16bd7bc13215275dd8c86c46f2f550d3aac4cf0c500d632",
+      "bytes": 219158
+    },
+    "/assets/header-navigation-v2.css": {
+      "owner": "core",
+      "sha256": "83fcff138e0b3f88d5e6fb06c78bb334fb4073553652037e074f75223785ad94",
+      "bytes": 14940
+    },
+    "/assets/public-feedback-v1.css": {
+      "owner": "core",
+      "sha256": "db1c9c661a33f348ba6fc9474e8292deece52f71a7b6d63256c608a26c01f3c5",
+      "bytes": 2497
+    },
+    "/assets/my-timber-welcome-20261021.css": {
+      "owner": "core",
+      "sha256": "fbe31e415489de92d43f46aa7883bd0e7e0f5bb7f75c54442acd7c1651b2aeec",
+      "bytes": 16495
     },
     "/assets/member-experience/passport.css": {
       "owner": "core",
@@ -39,10 +99,50 @@
       "sha256": "c35c367a2d82723604ae2632ff38548a94059f60ca97b9119762cc03d18570f2",
       "bytes": 1876
     },
+    "/assets/member-login-security-20260912.js": {
+      "owner": "core",
+      "sha256": "ab4c12202142282824fbf1e453254cc35a51892a07fd51fd844c4ab27d6d4532",
+      "bytes": 4978
+    },
+    "/api-adapter-v33d.js": {
+      "owner": "core",
+      "sha256": "eeb741d84aa1e8a9e27d75f1f065a0a7cf65efd378264c45294ba18f069a95bd",
+      "bytes": 15757
+    },
+    "/member-treatment-journey-v1.js": {
+      "owner": "core",
+      "sha256": "25aec39e710d192274da4e517a35f815c4c8a7f0cd07563e917bad62e40e677d",
+      "bytes": 6562
+    },
     "/my-timber-v11.js": {
       "owner": "programme",
       "sha256": "6ea38a5410a64c7072d999f70f7fe9c47e4129369d6ee0cfca2b38fd8322fd4f",
       "bytes": 23240
+    },
+    "/assets/ask-timber-sync-v1.js": {
+      "owner": "core",
+      "sha256": "cb1434cc5fd0ea7b00aeea67767097ad1ed6c2ec6b29ac65a8c5f1681ad37e19",
+      "bytes": 4000
+    },
+    "/consent-v4a.js": {
+      "owner": "core",
+      "sha256": "7ffe5454fd08374408f70784f6ddde0ba8a51c3d948a5034af083647b4ac38b4",
+      "bytes": 7298
+    },
+    "/analytics-events-v31b.js": {
+      "owner": "core",
+      "sha256": "135750c70453438dadfdfc8ace5027f80de99b12052a27cf65f8e1d791739873",
+      "bytes": 9771
+    },
+    "/assets/member-shell-v6.js": {
+      "owner": "core",
+      "sha256": "6e3a6c3d6d136bb2369ad132d90747cc85056804dba4e9355da7ced2a5375dd2",
+      "bytes": 462
+    },
+    "/assets/my-timber-onboarding-20261021.js": {
+      "owner": "core",
+      "sha256": "cd7e07b96a8edf7f24d28aad01088f1dd1afaaff75e2b7d5110f9990ae846e9d",
+      "bytes": 10537
     },
     "/assets/member-experience/v1.css": {
       "owner": "core",
@@ -53,6 +153,11 @@
       "owner": "core",
       "sha256": "0b1e048807b667abf8a3f3e6f446efe79b35e582d028ecea2d2597321f8723a7",
       "bytes": 9708
+    },
+    "/member-plans-premium-v1.css": {
+      "owner": "core",
+      "sha256": "315b5eec8290131ebe83a40290b0bc29849db56fe29bdc5ebf4e61e0f3cda590",
+      "bytes": 5620
     },
     "/assets/member-experience/tools.css": {
       "owner": "core",
@@ -154,6 +259,36 @@
       "sha256": "971acb12a3b108f1b73f1e7576af6a59f5f1256bc3dd9f0780336285a6b16914",
       "bytes": 37859
     },
+    "/assets/my-shift-app-v8.css": {
+      "owner": "core",
+      "sha256": "8f86b8ab08e7e3b693d145b76370aa398d3b349ae4b5a536bb21147cef558fb1",
+      "bytes": 7170
+    },
+    "/assets/member-grub-v8.css": {
+      "owner": "core",
+      "sha256": "e596234e93a5b633eb08f4b01686d63d46a498d90f59e2c16e5f05259874334e",
+      "bytes": 3556
+    },
+    "/assets/ask-timber-drawer-v2.css": {
+      "owner": "core",
+      "sha256": "776b4381973eb9605e8b72f3fed61428c361b13702f35e35a02426376ec37142",
+      "bytes": 6959
+    },
+    "/assets/v136-desolation-recovery.css": {
+      "owner": "core",
+      "sha256": "28a814a60931993d1aab212058f889e11fc638608561c1dd091a76f78af43585",
+      "bytes": 6126
+    },
+    "/assets/member-grub-contrast-fix-v1.css": {
+      "owner": "core",
+      "sha256": "12d992fd08eb6173674f41fdd32cade1fecb4a13d5cf1c43ca47d4bc36422b83",
+      "bytes": 437
+    },
+    "/app.js": {
+      "owner": "core",
+      "sha256": "c42c5deca73a8948a117049324612cfa955e8669b0fbe83123cfa637bdd73606",
+      "bytes": 109157
+    },
     "/assets/member-experience/grub.mjs": {
       "owner": "programme",
       "sha256": "9a49e80fc012afa38d6f3f5759237d187e88a4523f316d5f6c8a158456e9f8cb",
@@ -163,6 +298,26 @@
       "owner": "core",
       "sha256": "e9150a904886918d5f9607dca8c5483ced5e1fc4771f28bfc9bcb9968dee37ec",
       "bytes": 6181
+    },
+    "/assets/member-fit-experience-v1.css": {
+      "owner": "core",
+      "sha256": "f3512f61d6b6d92382b19f8dbe19c8347cf0e38a57e06b7580570e68a3e5cdc8",
+      "bytes": 7914
+    },
+    "/assets/my-timber-layout-launch.mjs": {
+      "owner": "core",
+      "sha256": "573103a609c889b8aa5d87ce5bf5a3fc703d779365bc3736c3c1d9ad48bb3cef",
+      "bytes": 215
+    },
+    "/assets/my-timber-welcome-20261021.js": {
+      "owner": "core",
+      "sha256": "e0bf5c3e75048574ab0b16363d203f0073f36e90e47e5b7f77a7fbd69997193e",
+      "bytes": 10764
+    },
+    "/assets/member-experience/performance-welcome-e0bf5c3e75048574ab0b.js": {
+      "owner": "core",
+      "sha256": "e0bf5c3e75048574ab0b16363d203f0073f36e90e47e5b7f77a7fbd69997193e",
+      "bytes": 10764
     }
   },
   "publicSources": {
@@ -200,8 +355,8 @@
   "owners": [
     {
       "name": "shift-core",
-      "deployment": "a852dcaf-64fa-4a92-acda-7a9c1c3b763e",
-      "version": "632d2c61-45d1-41f0-9f86-2dd70a14ef91",
+      "deployment": "036996f8-7d3e-4252-822c-7daceaee0d2f",
+      "version": "ef0470b5-8557-4270-897a-9b92de3b18c3",
       "main": "sitewide-seo-20261101/entry.mjs"
     },
     {
@@ -225,7 +380,8 @@
     }
   ],
   "sourceInputs": {
-    "scoped-source/member-experience/performance-client.mjs": "c0339bbf2b80eb296204624348ad891a6a789bbf68c348b03e69f450fa42348b",
-    "scoped-source/member-experience/performance-delivery.mjs": "0587d715a7fdd9b67c3890feb483782a639a58b1511d872910e39caafb41d13f"
+    "scoped-source/member-experience/performance-client.mjs": "62282239da15b1b61082462c9acd5b4e98eed7f4f2db096025f2be4947de71d6",
+    "scoped-source/member-experience/performance-monitor.mjs": "b1abbf94451cfe4545738dc5b558022266a5ba33553380558a0d0e255f1c009d",
+    "scoped-source/member-experience/performance-delivery.mjs": "b3d7bbc46d86c9b904653bdd077cafeebc8df7ea0d5ff8cac87d846bf585f64f"
   }
 }
