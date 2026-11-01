@@ -15,7 +15,12 @@ export function deriveArticlePatch(before,after){
  assert.notEqual(oldText,newText,'Article correction is absent');
  assert(oldText.length<100000&&newText.length<100000,'Article module exceeds the bounded envelope');
  assert.match(newText,/function articleSource\d*\(/,'Tested source-label function missing');
- assert.equal(after.replace(newText,oldText),before,'Compiled changes outside the article module are forbidden');
+ const reverted=after.replace(newText,oldText);
+ if(reverted!==before){
+  let first=0;while(first<before.length&&first<reverted.length&&before[first]===reverted[first])first++;
+  let tail=0;while(tail<before.length-first&&tail<reverted.length-first&&before.at(-1-tail)===reverted.at(-1-tail))tail++;
+  throw Error('Compiled changes outside the article module are forbidden: '+JSON.stringify({first,beforeLength:before.length,afterLength:reverted.length,before:before.slice(Math.max(0,first-200),first+1000),after:reverted.slice(Math.max(0,first-200),first+1000),beforeEnd:before.slice(Math.max(0,before.length-tail-300),before.length-tail+100),afterEnd:reverted.slice(Math.max(0,reverted.length-tail-300),reverted.length-tail+100)}));
+ }
  return {oldText,newText,beforeSHA256:sha(before),afterSHA256:sha(after)};
 }
 export function applyArticlePatch(bytes,patch){
