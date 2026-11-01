@@ -88,14 +88,29 @@ rmSync(beforeFile);
 const dated=await query("SELECT a.slug,b.source_id,a.publish_at FROM knowledge_articles a JOIN babylove_receipts b ON b.slug=a.slug WHERE a.status='published' AND a.publish_at IS NOT NULL AND julianday(a.publish_at)<=julianday('now') ORDER BY a.publish_at DESC LIMIT 100");
 save('publication-samples',dated);
 const preferred=dated.filter(r=>String(r.publish_at).startsWith('2026-10-30'));
-const direct=preferred.find(r=>r.source_id==='shift-contributor')||dated.find(r=>r.source_id==='shift-contributor');
 const vendor=preferred.find(r=>r.source_id!=='shift-contributor')||dated.find(r=>r.source_id!=='shift-contributor');
-assert(direct&&vendor,'Both authenticated publication sources are required: '+JSON.stringify(dated));
-console.log('AUTHENTICATED_SOURCE_EXAMPLES '+JSON.stringify({direct,vendor}));
+assert(vendor,'Existing BabyLove receipt example is required');
+// The existing direct contributor publication is served by its own retained
+// route. It must be checked on actual traffic, not invented as a BabyLove receipt.
+const directSlug='type-2-diabetes-remission-men';
+function articleDates(html){
+ for(const m of html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)){
+  const parsed=JSON.parse(m[1]),rows=Array.isArray(parsed)?parsed:[parsed,...(parsed['@graph']||[])];
+  const a=rows.find(r=>[r['@type']].flat().some(t=>t==='Article'||t==='BlogPosting'));
+  if(a)return {publishedAt:a.datePublished||null,updatedAt:a.dateModified||null};
+ }
+ return {publishedAt:null,updatedAt:null};
+}
 const editorial=await query("SELECT a.slug FROM knowledge_articles a JOIN knowledge_editorial_releases r ON r.article_id=a.id AND r.slug=a.slug WHERE a.status='published' AND r.state IN ('published','verified') ORDER BY a.publish_at DESC LIMIT 1");
-const slugs=[...new Set(['glp-1-weight-regain',vendor.slug,direct.slug,...editorial.map(r=>r.slug)])];
+const slugs=[...new Set(['glp-1-weight-regain',vendor.slug,directSlug,...editorial.map(r=>r.slug)])];
 const articleBefore={},expectedArticles={},sourceProof={};
 for(const slug of slugs){
+ if(slug===directSlug){
+  const r=await get('/articles/'+slug);assert.equal(r.source,'shift-contributor','Existing direct publication route must retain its authenticated source label');
+  articleBefore[slug]=r;expectedArticles[slug]=r.text;
+  sourceProof[slug]={kind:'existing_direct_publication_route',expected:'shift-contributor',...articleDates(r.text),htmlSHA256:sha(r.text)};
+  continue;
+ }
  const row=await newRenderer.dynamicBabyLovePublication({DB},slug);assert(row,'Published authenticated article unavailable: '+slug);
  const oldBody=oldRenderer.renderMarkdown(row.body,row.title,row.slug),newBody=newRenderer.renderMarkdown(row.body,row.title,row.slug);
  const r=await get('/articles/'+slug);assert(r.text.includes(oldBody),'Live body does not match the authenticated published preimage: '+slug);
@@ -103,6 +118,7 @@ for(const slug of slugs){
  articleBefore[slug]=r;expectedArticles[slug]=r.text.replace(oldBody,()=>newBody);
  sourceProof[slug]={sourceId:row.source_id,editorial:!!row.editorial,expected:newRenderer.articleSource(row),publishedAt:row.publish_at,updatedAt:row.updated_at,bodySHA256:sha(row.body)};
 }
+console.log('AUTHENTICATED_SOURCE_EXAMPLES '+JSON.stringify({direct:{slug:directSlug,...sourceProof[directSlug]},vendor}));
 const beforePages=await protectedPages();save('protected-before',beforePages);save('images-before',await imageProof());save('article-sources',sourceProof);
 currentSource();assert.equal((await latest()).id,baseline.id);assert.deepEqual(await api('/workers/scripts/shift-core/settings'),settings);
 const metadata={main_module:original.main_module,compatibility_date:settings.compatibility_date,compatibility_flags:settings.compatibility_flags||[],bindings:original.bindings.map(b=>({type:'inherit',name:b.name})),keep_assets:true,annotations:{'workers/message':'Exact article renderer PR1509; source '+source,'workers/tag':'article-1509-'+run}};
@@ -127,7 +143,9 @@ try{
   assert.equal(sha(r.text),sha(expectedArticles[slug]),'Only the exact existing renderer repair may change live article HTML: '+slug);
   assert.deepEqual(r.headers,articleBefore[slug].headers,'Article security policy changed: '+slug);assert.equal(r.source,sourceProof[slug].expected,slug+' source');
   const head=await get('/articles/'+slug,'HEAD');assert.equal(head.source,r.source);assert.deepEqual(head.headers,r.headers);
-  const row=await newRenderer.dynamicBabyLovePublication({DB},slug);assert.equal(sha(row.body),sourceProof[slug].bodySHA256);assert.equal(row.publish_at,sourceProof[slug].publishedAt);assert.equal(row.updated_at,sourceProof[slug].updatedAt);
+  let row;
+  if(slug===directSlug){const dates=articleDates(r.text);assert.equal(dates.publishedAt,sourceProof[slug].publishedAt);assert.equal(dates.updatedAt,sourceProof[slug].updatedAt);row={publish_at:dates.publishedAt,updated_at:dates.updatedAt};}
+  else{row=await newRenderer.dynamicBabyLovePublication({DB},slug);assert.equal(sha(row.body),sourceProof[slug].bodySHA256);assert.equal(row.publish_at,sourceProof[slug].publishedAt);assert.equal(row.updated_at,sourceProof[slug].updatedAt);}
   const hrefs=[...r.text.matchAll(/<a\b[^>]*href="([^"]+)"/g)].map(m=>m[1]).filter(h=>h.includes('/journals/eclinm/'));
   if(slug==='glp-1-weight-regain'){const full='https://www.thelancet.com/journals/eclinm/article/PIIS2589-5370(25)00614-5/fulltext';assert.equal(hrefs.filter(h=>h===full).length,2,'Both complete eClinicalMedicine links required');assert(hrefs.every(h=>h.endsWith('/fulltext')));}
   articleAfter[slug]={httpStatus:r.status,getSource:r.source,headSource:head.source,securityPreserved:true,publishedAt:row.publish_at,updatedAt:row.updated_at,bodyUnchanged:true,htmlSHA256:sha(r.text),eClinicalMedicineLinks:hrefs};
