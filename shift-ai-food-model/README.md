@@ -409,3 +409,38 @@ benchmark. The fourth optional adapter argument selects the SigLIP model path;
 without it the older self-contained DeiT research candidate path is preserved.
 No timeout, release flag, model weight, acceptance threshold or runtime code is
 changed by these diagnostics.
+
+## Preloaded research worker and experimental food-presence gate
+
+The per-request Python launch is superseded locally by `local_worker.py` and
+`local_worker_client.mjs`: initialise once, await readiness, then pass requests
+through the existing shared adapter. Scans before readiness are refused; startup
+is not hidden inside a longer member request. Scan deadlines stay 14 seconds
+inside the unchanged 15-second adapter deadline. Startup has a separate bounded
+45-second ceiling. Timeout/abort kills the child and requires explicit recovery;
+there is no automatic retry, queue or remote fallback. Normal invocation refuses
+research models. This remains local stdin transport, not a hosted service.
+
+`food_gate.py` uses the same image features and fixed text/image concepts before
+returning food labels. The retained reference bank is in
+`references/food-presence-v1/`, with its original base licence. It is an
+experimental reference layer, not a newly trained foundation or recipe model.
+Its threshold was selected only on 200 validation food photos for a fixed 95%
+retention objective. It rejected all four known synthetic controls and kept
+189/200 food development-test images, but component recall fell from 31.03% to
+30.00%. Food precision is still about 71%. Real non-food and UK acceptance remain
+outstanding. Do not promote the prototype on the basis of four known controls.
+
+```bash
+python shift-ai-food-model/food_gate.py --base /absolute/base --output /absolute/initial-gate
+python shift-ai-food-model/food_gate.py --base /absolute/base --candidate /absolute/candidate-4 --gate /absolute/initial-gate --manifest /absolute/data/manifest.json --output /absolute/calibrated-gate
+python shift-ai-food-model/verify_gate.py --candidate /absolute/candidate-4 --base /absolute/base --gate shift-ai-food-model/references/food-presence-v1 --manifest /absolute/data/manifest.json --research
+node shift-ai-food-model/verify_warm_binding.mjs /absolute/python /absolute/candidate-4 /absolute/base shift-ai-food-model/references/food-presence-v1 /absolute/public-test.jpg
+node --test shift-ai-food-model/tests/local-worker-client.test.mjs
+```
+
+The warm-binding proof measures readiness separately, reuses the actual model
+for multiple requests, checks private-field refusal and closes the process.
+Its true-valued capability flags exist only in the local test object; it changes
+no Cloudflare configuration or production activation. The earlier process-launch
+failure and full-test quality failures remain in their original receipts.

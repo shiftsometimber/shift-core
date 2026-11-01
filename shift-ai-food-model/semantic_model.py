@@ -241,7 +241,7 @@ class SemanticPredictor:
         self.head = FoodHead(self.settings["width"], len(self.settings["labels"]))
         self.head.load_state_dict(load_file(directory / "head.safetensors"), strict=True); self.head.eval()
 
-    def scores(self, request):
+    def encode(self, request):
         raw = parse_request(request)
         Image.MAX_IMAGE_PIXELS = 1_000_000
         with Image.open(io.BytesIO(raw)) as image:
@@ -249,8 +249,14 @@ class SemanticPredictor:
                 raise ValueError("Resized JPEG required")
             x = view_tensors(image)[:self.settings["views"]]
         with torch.inference_mode():
-            embedding = self.model(pixel_values=x).pooler_output.reshape(1, -1)
+            return self.model(pixel_values=x).pooler_output.reshape(1, -1)
+
+    def score_features(self, embedding):
+        with torch.inference_mode():
             return torch.sigmoid(self.head(embedding))[0].tolist()
+
+    def scores(self, request):
+        return self.score_features(self.encode(request))
 
     def recognise(self, request):
         return food_response(self.scores(request), self.settings["labels"], self.settings["thresholds"])

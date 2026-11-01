@@ -1,0 +1,43 @@
+{
+  "schema": "shift-food-presence-gate-1",
+  "model_id": "google/siglip-base-patch16-224",
+  "revision": "7fd15f0689c79d79e38b1c2e2e2370a7bf2761ed",
+  "weight_sha256": "2c63cb7d1f2e95ba501893cbb8faeb4ea9a3af295498d35097126228659c2af8",
+  "base_licence": "Apache-2.0",
+  "food": [
+    "food served on a plate",
+    "a bowl of food",
+    "a meal",
+    "a sandwich",
+    "fruit and vegetables",
+    "a packaged food product"
+  ],
+  "other": [
+    "a blank image",
+    "a random noise pattern",
+    "an out of focus image",
+    "a screenshot",
+    "a person",
+    "an animal",
+    "a vehicle",
+    "clothing",
+    "an electronic device",
+    "a document",
+    "an empty plate",
+    "a landscape"
+  ],
+  "embeddings_sha256": "73d47a912962a97343b450c6fc21135162666d32473a10ccc56b475e70182d68",
+  "threshold": -0.02740558923611641,
+  "method": "Fixed food versus other text/image maximum cosine similarity; not supervised image training",
+  "production_ready": false,
+  "real_non_food_accuracy_measured": false,
+  "calibration": {
+    "split": "validation",
+    "images": 200,
+    "target_food_retention": 0.95,
+    "retained": 191,
+    "manifest_sha256": "860e0827cfc4e2ae046642990d91ec008cda746b48077f2f0083879da500b9d7",
+    "negative_images_used": 0,
+    "note": "Positive-food retention only. Not calibrated non-food rejection accuracy."
+  }
+}

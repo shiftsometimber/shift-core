@@ -1,0 +1,177 @@
+{
+  "scope": "Fixed concept semantic gate development check; same previously inspected 200 food images and four known synthetic controls. Not UK or real non-food acceptance.",
+  "head_weights_changed": false,
+  "head_thresholds_changed": false,
+  "gate_threshold_fixed_before_evaluation": 0.0,
+  "maximum_baseline_probability_difference": 8.106231689453125e-06,
+  "food_images": 200,
+  "accepted_as_food": 153,
+  "metrics": {
+    "images": 200,
+    "micro_precision": 0.7053571428571429,
+    "micro_recall": 0.27241379310344827,
+    "micro_f1": 0.39303482587064675,
+    "exact_match": 0.225,
+    "coverage": 0.405,
+    "classes": [
+      {
+        "label": "chicken",
+        "support": 34,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "beef",
+        "support": 7,
+        "predictions": 19,
+        "precision": 0.3684210526315789,
+        "recall": 1.0,
+        "f1": 0.5384615384615384
+      },
+      {
+        "label": "fish",
+        "support": 26,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "eggs",
+        "support": 28,
+        "predictions": 27,
+        "precision": 0.8518518518518519,
+        "recall": 0.8214285714285714,
+        "f1": 0.8363636363636363
+      },
+      {
+        "label": "rice",
+        "support": 22,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "potatoes",
+        "support": 46,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "broccoli",
+        "support": 24,
+        "predictions": 15,
+        "precision": 0.9333333333333333,
+        "recall": 0.5833333333333334,
+        "f1": 0.717948717948718
+      },
+      {
+        "label": "carrots",
+        "support": 9,
+        "predictions": 7,
+        "precision": 0.42857142857142855,
+        "recall": 0.3333333333333333,
+        "f1": 0.375
+      },
+      {
+        "label": "leafy salad",
+        "support": 46,
+        "predictions": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "label": "cauliflower",
+        "support": 12,
+        "predictions": 12,
+        "precision": 0.4166666666666667,
+        "recall": 0.4166666666666667,
+        "f1": 0.4166666666666667
+      },
+      {
+        "label": "pizza",
+        "support": 20,
+        "predictions": 21,
+        "precision": 0.8095238095238095,
+        "recall": 0.85,
+        "f1": 0.8292682926829268
+      },
+      {
+        "label": "bacon",
+        "support": 16,
+        "predictions": 11,
+        "precision": 0.9090909090909091,
+        "recall": 0.625,
+        "f1": 0.7407407407407407
+      }
+    ]
+  },
+  "warm_mean_ms": 230.4855140753716,
+  "synthetic_controls": [
+    {
+      "synthetic_control": "black",
+      "response": {
+        "items": [],
+        "nutrition": {}
+      },
+      "gate": {
+        "accept": false,
+        "food_similarity": -0.022107386961579323,
+        "other_similarity": 0.0758139118552208,
+        "margin": -0.09792129881680012,
+        "score_kind": "similarity_not_probability"
+      }
+    },
+    {
+      "synthetic_control": "white",
+      "response": {
+        "items": [],
+        "nutrition": {}
+      },
+      "gate": {
+        "accept": false,
+        "food_similarity": -0.007248099893331528,
+        "other_similarity": 0.1005968451499939,
+        "margin": -0.10784494504332542,
+        "score_kind": "similarity_not_probability"
+      }
+    },
+    {
+      "synthetic_control": "grey",
+      "response": {
+        "items": [],
+        "nutrition": {}
+      },
+      "gate": {
+        "accept": false,
+        "food_similarity": -0.0380944088101387,
+        "other_similarity": 0.07597146928310394,
+        "margin": -0.11406587809324265,
+        "score_kind": "similarity_not_probability"
+      }
+    },
+    {
+      "synthetic_control": "random-noise",
+      "response": {
+        "items": [],
+        "nutrition": {}
+      },
+      "gate": {
+        "accept": false,
+        "food_similarity": -0.017673831433057785,
+        "other_similarity": 0.13955903053283691,
+        "margin": -0.1572328619658947,
+        "score_kind": "similarity_not_probability"
+      }
+    }
+  ],
+  "synthetic_false_food_suggestions": 0,
+  "production_ready": false,
+  "gate_embeddings_sha256": "73d47a912962a97343b450c6fc21135162666d32473a10ccc56b475e70182d68"
+}

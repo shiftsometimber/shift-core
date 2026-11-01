@@ -5,6 +5,72 @@ He subsequently instructed that both food recognition and the MediSearch-style
 research capability belong inside Shift AI. No competitor trial, subscription
 or integration is part of this implementation.
 
+## Model startup and experimental rejection progress — 1 November 2026, Europe/London
+
+Matt flagged a stall and required faster progress. Source checkpoint was
+`6b5e4bd78ff1bfeba570f7e8a3fc45322c8ee05f`, verified on the existing feature
+branch. The existing full-test failures remain recorded below, not rewritten as
+passes. This continuation changes actual local inference behaviour and lifecycle;
+it is not another source audit or a production release.
+
+Implemented a research-only preloaded Python worker and bounded asynchronous
+Node client. Model files and a pinned food-presence reference bank load once,
+before a readiness handshake permits scans. The shared Shift AI adapter keeps
+its 15-second deadline and the child scan deadline remains 14 seconds. Startup
+has a separate bounded 45-second ceiling, with immediate refusal of scans before
+readiness. No scan waits in a cold-start queue. There is one in-flight request;
+timeout/cancellation kills the worker and suppresses late responses. No automatic
+retry/restart, HTTP listener, remote model fallback, raw-request logging or diary
+writer is introduced. The process is closed after each diagnostic.
+
+Actual candidate-4 proof through the shared adapter: initial readiness 6,472 ms;
+one real public food photo 470 ms and one blank control 428 ms. One model load
+served both requests in the same process; the food returned carrots, the blank
+returned no food or nutrition. Private identity fields were refused. Earlier
+zero-margin prototype timing was 5,595 ms startup and 364/335 ms scans. These are
+local process measurements, not hosted or phone acceptance. A final recheck
+using the retained source-reference files and strict output validation took
+11,580 ms before readiness, then 329/225 ms for food/blank scans; startup
+variability is retained rather than reporting only the fastest run. The earlier failed
+14-second process-per-scan launch remains valid historical evidence; it was not
+repeated with a longer request timeout to obtain a pass.
+
+Implemented a separate experimental food-presence gate using the same pinned
+SigLIP encoder and fixed food/other text concepts. Captions do not supply gate
+concepts. Cached reference vectors carry base revision/weight pins and licence.
+The first zero-margin setting rejected all four known synthetic controls but
+also rejected 47/200 food photos, so it was not selected as-is. A second gate was
+calibrated using ONLY 200 original validation food photos, with a fixed objective
+of retaining at least 95%. It retained 191/200 validation images. No negative
+controls or test labels selected the margin threshold (-0.02740558923611641).
+
+The calibrated gate then retained 189/200 food development-test photos (94.5%)
+and rejected all four known synthetic controls, compared with three false food
+suggestions in the baseline. Component precision/recall were 70.73%/30.00%,
+versus 70.87%/31.03% without the gate. Thus the gate improves these known controls
+at a small food-coverage cost; it does NOT improve the underlying food classifier
+or meet release accuracy floors. Both the food test and four controls were
+previously inspected development material, not independent acceptance. A real
+non-food benchmark and fresh UK exact-recipe data remain missing. No claim of
+reliable general non-food rejection is made.
+
+The gate cache is retained in shift-ai-food-model/references/food-presence-v1.
+The original food head weights and thresholds are unchanged; score differences
+remain at most 8.11e-6. Existing trained model archive version 3 is preserved;
+new source-backed gate references are stored with the code instead of duplicating
+that archive. Python qualification now has 42 passing checks and worker lifecycle
+has eight passing Node checks, including readiness, reuse, bounded startup,
+request timeout, abort, bad protocol and fixed endpoint/body limits. Existing
+member and release checks are retained by the workflow.
+
+Results: shift-ai-food-model/evidence/photo-model-progress-20261101.json, with
+full initial/calibrated gate and warm-adapter receipts beside it. Current state:
+startup reuse implemented and locally verified; semantic rejection experimental;
+food recognition remains below quality floors; nothing deployed or activated,
+no new paid service or gated licence accepted. Model work can continue
+independently of the historical CSV failures. Next work is stronger recognition
+and genuine non-food/UK-recipe data, then hosted/installed-device acceptance.
+
 ## Full test — 1 November 2026, Europe/London
 
 Matt explicitly requested a full test. Application source was verified at

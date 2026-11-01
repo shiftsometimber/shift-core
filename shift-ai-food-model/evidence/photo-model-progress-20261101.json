@@ -1,0 +1,61 @@
+{
+  "schema": "shift-photo-progress-20261101",
+  "source_checkpoint": "6b5e4bd78ff1bfeba570f7e8a3fc45322c8ee05f",
+  "progress": {
+    "preloaded_process": "Implemented and verified locally through existing shared adapter",
+    "initialization_before_ready_ms": 6472,
+    "real_food_scan_ms": 470,
+    "blank_control_scan_ms": 428,
+    "same_process_reused": true,
+    "model_loads": 1,
+    "request_deadline_ms": 14000,
+    "shared_deadline_ms": 15000,
+    "retries": 0,
+    "process_closed_after_check": true,
+    "reference_cache_recheck": {
+      "initialization_before_ready_ms": 11580,
+      "food_scan_ms": 329,
+      "blank_control_scan_ms": 225,
+      "same_process_reused": true,
+      "closed_after_check": true
+    }
+  },
+  "food_gate": {
+    "method": "Fixed text/image concept references plus validation-only positive-food retention calibration; not supervised non-food training",
+    "initial_zero_margin_rejected_food": 47,
+    "validation_images": 200,
+    "validation_retained": 191,
+    "validation_target_retention": 0.95,
+    "test_food_images": 200,
+    "test_food_retained": 189,
+    "test_food_retention": 0.945,
+    "known_synthetic_controls": 4,
+    "synthetic_false_food_before": 3,
+    "synthetic_false_food_after": 0,
+    "baseline_precision": 0.7086614173228346,
+    "baseline_recall": 0.3103448275862069,
+    "gated_precision": 0.7073170731707317,
+    "gated_recall": 0.3,
+    "not_independent_acceptance": true
+  },
+  "qualification": {
+    "python_pass": 42,
+    "worker_lifecycle_node_pass": 8,
+    "model_classifier_probabilities_unchanged_within": 8.106231689453125e-06
+  },
+  "unchanged": {
+    "classifier_weights": true,
+    "classifier_thresholds": true,
+    "production_flags": true,
+    "live_runtime": true,
+    "new_paid_services": false
+  },
+  "production_ready": false,
+  "remaining": [
+    "Food-component accuracy below release floors",
+    "Fresh UK recipe-labelled photos and actual non-food benchmark",
+    "Hosted service and installed-phone acceptance",
+    "Two separate historical CSV release-test failures"
+  ],
+  "next_model_work": "Improve recognition data and evaluate genuine non-food photographs; the local startup path no longer requires per-scan model loading."
+}
