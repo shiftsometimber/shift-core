@@ -106,16 +106,18 @@ await context.addInitScript(()=>{
 await context.route('**/*',async route=>{
 const r=route.request(),u=new URL(r.url());calls.push({path:u.pathname,search:u.search,method:r.method(),at:Date.now(),frame:r.frame().url()});
 if(u.pathname.startsWith('/v1/')){
+ const fixtureReply=options=>route.fulfill({...options,headers:{...options.headers,'Access-Control-Allow-Origin':origin,'Access-Control-Allow-Credentials':'true','Vary':'Origin'}});
+ if(r.method()==='OPTIONS')return fixtureReply({status:204,headers:{'Access-Control-Allow-Methods':'GET, HEAD, POST, DELETE, OPTIONS','Access-Control-Allow-Headers':r.headers()['access-control-request-headers']||'Content-Type'}});
  const fixtureId=state.id,fixtureSignedOut=state.signedOut,fixtureAttempts=structuredClone(state.attempts||[]);await new Promise(resolve=>setTimeout(resolve,state.delay));
- if(u.pathname==='/v1/me'){state.identityCount++;return route.fulfill({status:fixtureSignedOut?401:200,json:fixtureSignedOut?{error:'authentication_required'}:{user:{id:fixtureId,first_name:'Synthetic',email:'performance-fixture@example.invalid'}}});}
- if(u.pathname==='/v1/consents'&&r.method()==='GET')return route.fulfill({json:{consents:[{id:1,consent_type:'my_shift_health_tracking',granted:1}]}});
- if(fixtureSignedOut)return route.fulfill({status:401,json:{error:'authentication_required'}});
- if(u.pathname==='/v1/life-back/journey'||(u.pathname==='/v1/life-back'&&r.method()==='POST')){const headers=new Headers(r.headers());headers.set('Cookie','sst_session=test-only-member-'+fixtureId);const response=await service.fetch(new Request(r.url(),{method:r.method(),headers,...(r.method()==='POST'?{body:r.postData()}: {})}),f.env,{});return route.fulfill({status:response.status,headers:Object.fromEntries(response.headers),body:await response.text()});}
- if(u.pathname==='/v1/life-back'){const response=await lifeBackRoutes(new Request(r.url(),{headers:{Cookie:'sst_session=test-only-member-'+fixtureId}}),f.env);return route.fulfill({status:response.status,headers:Object.fromEntries(response.headers),body:await response.text()});}
- if(u.pathname==='/v1/commerce/active-checkout')return route.fulfill({json:{ok:true,accountReference:(fixtureId===1?'a':'b').repeat(64),attempts:fixtureAttempts}});
- if(u.pathname==='/v1/commerce/basket-quote')return route.fulfill({json:{ok:true,accountReference:(fixtureId===1?'a':'b').repeat(64),quote:{items:[],subtotalPence:0,totalPence:0,deliveries:[]},recommendations:[],products:[]}});
+ if(u.pathname==='/v1/me'){state.identityCount++;return fixtureReply({status:fixtureSignedOut?401:200,json:fixtureSignedOut?{error:'authentication_required'}:{user:{id:fixtureId,first_name:'Synthetic',email:'performance-fixture@example.invalid'}}});}
+ if(u.pathname==='/v1/consents'&&r.method()==='GET')return fixtureReply({json:{consents:[{id:1,consent_type:'my_shift_health_tracking',granted:1}]}});
+ if(fixtureSignedOut)return fixtureReply({status:401,json:{error:'authentication_required'}});
+ if(u.pathname==='/v1/life-back/journey'||(u.pathname==='/v1/life-back'&&r.method()==='POST')){const headers=new Headers(r.headers());headers.set('Cookie','sst_session=test-only-member-'+fixtureId);const response=await service.fetch(new Request(r.url(),{method:r.method(),headers,...(r.method()==='POST'?{body:r.postData()}: {})}),f.env,{});return fixtureReply({status:response.status,headers:Object.fromEntries(response.headers),body:await response.text()});}
+ if(u.pathname==='/v1/life-back'){const response=await lifeBackRoutes(new Request(r.url(),{headers:{Cookie:'sst_session=test-only-member-'+fixtureId}}),f.env);return fixtureReply({status:response.status,headers:Object.fromEntries(response.headers),body:await response.text()});}
+ if(u.pathname==='/v1/commerce/active-checkout')return fixtureReply({json:{ok:true,accountReference:(fixtureId===1?'a':'b').repeat(64),attempts:fixtureAttempts}});
+ if(u.pathname==='/v1/commerce/basket-quote')return fixtureReply({json:{ok:true,accountReference:(fixtureId===1?'a':'b').repeat(64),quote:{items:[],subtotalPence:0,totalPence:0,deliveries:[]},recommendations:[],products:[]}});
  const data={ok:true,user:{id:fixtureId,first_name:'Synthetic'},memory:null,journey:{records:[]},progress:{entries:[],count:0},entries:[],orders:[],consents:[],units:{weight:'kg'},support:{},profile:{first_name:'Synthetic'},state:{},preferences:{}};
- return route.fulfill({json:data});
+ return fixtureReply({json:data});
 }
 if(!['GET','HEAD'].includes(r.method()))throw Error('Unexpected non-fixture write '+u.pathname);
 if(mode!=='local'){

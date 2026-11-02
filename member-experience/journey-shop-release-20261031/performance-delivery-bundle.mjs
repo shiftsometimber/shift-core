@@ -62,8 +62,8 @@ function memberPerformanceClient(options) {
   }
   async function verified(force = false) {
     if (parentApp) return parentApp.identity(force);
-    if (!force && identity && Date.now() - identityAt < 15e3) return identity;
     if (inflight) return inflight;
+    if (!force && identity && Date.now() - identityAt < 15e3) return identity;
     const epoch = version;
     controller = new AbortController();
     const job = (async () => {
@@ -163,10 +163,10 @@ function memberPerformanceClient(options) {
   };
   async function revalidate() {
     await Promise.allSettled([...pendingReads]);
-    const before = version, proof = await verified();
+    const before = version, proof = verified();
     let changed = false;
     const checks = [...identityOrigins].map((origin) => verifiedOrigin(origin));
-    await Promise.all([...checks, ...[...reads].map(async ([path, body]) => {
+    await Promise.all([proof, ...checks, ...[...reads].map(async ([path, body]) => {
       const r = await originalFetch(path, { credentials: "include", cache: "no-store", signal: AbortSignal.timeout(12e3) });
       if (!r.ok) {
         if ([401, 403].includes(r.status)) (parentApp?.invalidate || wipe)("private-data-access-changed", true);
@@ -372,13 +372,15 @@ function memberPerformanceClient(options) {
     row.ackMs = Math.round(performance.now() - t);
     document.dispatchEvent(new CustomEvent("mt:screen-start", { detail: { row, started: t } }));
     try {
-      const identityStart = performance.now();
-      await verified(true);
+      const identityStart = performance.now(), identityJob = verified(true);
+      let entry = frames.get(key(u));
+      const rootCurrent = key(u) === rootKey && !document.documentElement.hasAttribute("data-mt-root-stale");
+      if (rootCurrent) entry = null;
+      const validationJob = rootCurrent || entry?.loaded ? windowOf(entry).MT_SCREEN.validate() : null;
+      const [, validated] = await Promise.all([identityJob, validationJob]);
       row.identityMs = Math.round(performance.now() - identityStart);
       if (ticket !== navigation) return;
-      let entry = frames.get(key(u));
-      if (key(u) === rootKey && !document.documentElement.hasAttribute("data-mt-root-stale")) entry = null;
-      else if (!entry) {
+      if (!rootCurrent && !entry) {
         const frame = document.createElement("iframe");
         frame.className = "mt-retained-screen";
         frame.title = ({ journey: "Journey", shop: "Shop", grub: "Grub", fit: "Fit" }[tab(u)] || "My Timber") + " screen";
@@ -392,7 +394,7 @@ function memberPerformanceClient(options) {
       row.warm = entry ? entry.loaded : true;
       const w = windowOf(entry), dataStart = performance.now();
       if (row.warm) {
-        const unchanged = await w.MT_SCREEN.validate();
+        const unchanged = validationJob ? validated : await w.MT_SCREEN.validate();
         if (!unchanged) {
           if (w.MT_SCREEN.dirty()) throw Error("Your draft is still here. Saved information has changed; finish or cancel the draft before reloading");
           if (entry) {
@@ -725,7 +727,7 @@ async function performanceDocumentText(response) {
   if (!/<!doctype html>/i.test(text)) throw Error("Member document is not decoded HTML");
   return text;
 }
-var memberTransportEnabled = true ? false : true;
+var memberTransportEnabled = true ? true : true;
 function augmentPerformanceDocument(html, assets = {}, stage = "cache") {
   if (!memberTransportEnabled) stage = "static";
   if (stage === "server") return html;

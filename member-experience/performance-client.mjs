@@ -24,8 +24,8 @@ function expiredView(){
 }
 async function verified(force=false){
  if(parentApp)return parentApp.identity(force);
- if(!force&&identity&&Date.now()-identityAt<15000)return identity;
  if(inflight)return inflight;
+ if(!force&&identity&&Date.now()-identityAt<15000)return identity;
  const epoch=version;controller=new AbortController();
  const job=(async()=>{
  const timer=setTimeout(()=>controller?.abort(),12000);
@@ -70,9 +70,11 @@ window.fetch=async function(input,init){
  }finally{release?.();}
 };
 async function revalidate(){
- await Promise.allSettled([...pendingReads]);const before=version,proof=await verified();let changed=false;
+ await Promise.allSettled([...pendingReads]);const before=version,proof=verified();let changed=false;
+ // Read current data alongside identity verification. Both proofs must finish
+ // before a retained screen is shown; response bodies never update its DOM.
  const checks=[...identityOrigins].map(origin=>verifiedOrigin(origin));
- await Promise.all([...checks,...[...reads].map(async([path,body])=>{const r=await originalFetch(path,{credentials:'include',cache:'no-store',signal:AbortSignal.timeout(12000)});if(!r.ok){if([401,403].includes(r.status))(parentApp?.invalidate||wipe)('private-data-access-changed',true);throw Error('Current information unavailable');}if(await r.text()!==body)changed=true;})]);
+ await Promise.all([proof,...checks,...[...reads].map(async([path,body])=>{const r=await originalFetch(path,{credentials:'include',cache:'no-store',signal:AbortSignal.timeout(12000)});if(!r.ok){if([401,403].includes(r.status))(parentApp?.invalidate||wipe)('private-data-access-changed',true);throw Error('Current information unavailable');}if(await r.text()!==body)changed=true;})]);
  if(before!==version)throw Error('Account changed');return !changed;
 }
 
@@ -129,17 +131,21 @@ async function navigate(href,options={}){
  status('Opening '+({today:'Today',journey:'Journey',shop:'Shop',grub:'Grub',fit:'Fit',support:'Support',more:'More'}[tab(u)]||'My Timber')+'…');
  document.querySelector('#mtShopChrome')?.setAttribute('aria-busy','true');row.ackMs=Math.round(performance.now()-t);document.dispatchEvent(new CustomEvent('mt:screen-start',{detail:{row,started:t}}));
  try{
- const identityStart=performance.now();await verified(true);row.identityMs=Math.round(performance.now()-identityStart);if(ticket!==navigation)return;
+ const identityStart=performance.now(),identityJob=verified(true);
  let entry=frames.get(key(u));
- if(key(u)===rootKey&&!document.documentElement.hasAttribute('data-mt-root-stale'))entry=null;
- else if(!entry){
+ const rootCurrent=key(u)===rootKey&&!document.documentElement.hasAttribute('data-mt-root-stale');
+ if(rootCurrent)entry=null;
+ const validationJob=(rootCurrent||entry?.loaded)?windowOf(entry).MT_SCREEN.validate():null;
+ const [,validated]=await Promise.all([identityJob,validationJob]);
+ row.identityMs=Math.round(performance.now()-identityStart);if(ticket!==navigation)return;
+ if(!rootCurrent&&!entry){
   const frame=document.createElement('iframe');frame.className='mt-retained-screen';frame.title=({journey:'Journey',shop:'Shop',grub:'Grub',fit:'Fit'}[tab(u)]||'My Timber')+' screen';frame.setAttribute('aria-label',frame.title);
   frame.style.visibility='hidden';frame.src=u.href;document.body.append(frame);entry={frame,url:u.href,loaded:false};frames.set(key(u),entry);
  }
  row.warm=entry?entry.loaded:true;
  const w=windowOf(entry),dataStart=performance.now();
  if(row.warm){
-  const unchanged=await w.MT_SCREEN.validate();
+  const unchanged=validationJob?validated:await w.MT_SCREEN.validate();
   if(!unchanged){
    if(w.MT_SCREEN.dirty())throw Error('Your draft is still here. Saved information has changed; finish or cancel the draft before reloading');
    if(entry){entry.loaded=false;entry.frame.src=u.href;await new Promise(r=>setTimeout(r,0));}
