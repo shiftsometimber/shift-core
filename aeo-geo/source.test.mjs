@@ -1,0 +1,77 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {recipeProjection,exerciseProjection,safeImage,finite} from './projection.mjs';
+import {recipeSchema,enhancePublicHtml,isPrivatePath} from './schema.mjs';
+import {indexPage,detail} from './content.mjs';
+import {withAeoGeo,ROBOTS,completeSitemap} from './delivery.mjs';
+const base='https://shiftsometimber.co.uk',shell={header:'<header>Shared header</header>',footer:'<footer>Shared footer</footer>'};
+const date='2026-11-02T08:00:00Z';
+const recipe={id:'r',title:'Egg & tomato',path:'/recipes/egg-tomato',description:'Ingredients and method.',ingredients:['100g egg','100g tomato'],method:['Cook the egg.','Serve with tomato.'],servings:1,minutes:10,prepMinutes:5,cookMinutes:5,nutrition:{kcal:150,protein_g:12,carbohydrate_g:3,fat_g:9,fibre_g:null,saturates_g:0},methodology:'Estimated nutrition.',allergens:['egg'],safety:[],storage:[],equipment:[],image:null};
+const data={publishedAt:date,recipes:[recipe],exercises:[]};
+test('projection retains unknown nutrients rather than coercing them to zero',()=>{
+ const r=recipeProjection({id:'r',title:'A meal',data:{servings:1,ingredients:[{amount:'1',item:'egg'}],method:['Cook.'],nutrition:{kcal:100,protein_g:0,fibre_g:null}}});
+ assert.equal(r.nutrition.protein_g,0);assert.equal(r.nutrition.fibre_g,null);assert.equal(finite(null),null);
+ const schema=recipeSchema({...r,path:'/recipes/a',description:'Meal'},date);assert.equal(schema.nutrition.proteinContent,'0 g');assert(!('fiberContent'in schema.nutrition));assert(!('image'in schema));assert(!('aggregateRating'in schema));
+});
+test('only public first-party images pass the projection',()=>{
+ assert.equal(safeImage('https://evil.example/x.png'),null);assert.equal(safeImage('/member/photos/me.png'),null);assert.equal(safeImage('javascript:alert(1)'),null);assert.equal(safeImage('/fit-v3-images/row.png'),base+'/fit-v3-images/row.png');
+});
+test('movement variants become one canonical page with visible example doses',()=>{
+ const rows=['a','b'].map((id,i)=>({id,title:'Sit to stand',data:{canonical_movement:'sit-to-stand',instructions:['Use a stable chair.'],dose_text:(i+1)+' sets',equipment:['chair']}}));
+ const result=exerciseProjection(rows);assert.equal(result.length,1);assert.equal(result[0].doses.length,2);assert.equal(result[0].sourceVariants,2);
+});
+test('recipe pages render content and matching JSON-LD without JavaScript',()=>{
+ const {html}=detail(recipe,'recipes',data,shell);assert(html.includes('<h1>Egg &amp; tomato</h1>'));assert(html.includes('100g egg'));assert(html.includes('id="step-1"'));assert(html.includes('Not available'));assert(html.includes('"@type":"Recipe"'));assert(html.includes('/member-register'));assert(!html.includes('medically reviewed'));
+});
+test('text and JSON-LD cannot break out of their containers',()=>{
+ const item={...recipe,title:'</script><img src=x onerror=alert(1)>',method:['<script>alert(2)</script>']};
+ const {html}=detail(item,'recipes',data,shell);assert(!html.includes('<img src=x'));assert(html.includes('\\u003c/script>'));assert(html.includes('&lt;script&gt;alert(2)&lt;/script&gt;'));
+});
+test('pagination is server rendered and search variants are noindex',()=>{
+ const d={...data,recipes:Array.from({length:50},(_,i)=>({...recipe,title:'Meal '+i,path:'/recipes/meal-'+i}))};
+ const a=indexPage('recipes',d,shell,new URL(base+'/recipes'));assert(a.html.includes('rel="next"'));assert(!a.html.includes('href="/recipes/meal-49"'));
+ const b=indexPage('recipes',d,shell,new URL(base+'/recipes?page=2'));assert(b.html.includes('<link rel="canonical" href="'+base+'/recipes?page=2">'));assert(b.html.includes('href="/recipes/meal-49"'));
+ const search=indexPage('recipes',d,shell,new URL(base+'/recipes?q=Meal'));assert(search.html.includes('noindex,follow'));
+});
+test('private routes bypass all catalogue access and all transformations',async()=>{
+ let count=0;const original={marker:1,async fetch(request){return new Response('private original',{headers:{'Cache-Control':'private, no-store','Set-Cookie':'same=1'}})}};
+ const worker=withAeoGeo(original,{catalogue(){count++;throw Error('Must not run')},shell});assert.equal(worker.marker,1);
+ for(const path of ['/member/dashboard','/member-login','/v1/member/me','/api/auth','/checkout','/treatment-order','/admin','/hq/x']){
+  assert(isPrivatePath(path));const r=await worker.fetch(new Request(base+path));assert.equal(await r.text(),'private original');assert.equal(r.headers.get('Set-Cookie'),'same=1');
+ }
+ assert.equal(count,0);
+});
+test('POST requests and external hosts pass through unchanged',async()=>{
+ let n=0;const worker=withAeoGeo({async fetch(){n++;return new Response('original')}},{catalogue(){throw Error('Must not run')},shell});
+ assert.equal(await(await worker.fetch(new Request(base+'/recipes',{method:'POST',body:'unchanged'}))).text(),'original');
+ assert.equal(await(await worker.fetch(new Request('https://other.example/robots.txt'))).text(),'original');assert.equal(n,2);
+});
+test('GET and HEAD provide the public catalogue without a session or cookies',async()=>{
+ const worker=withAeoGeo({fetch(){throw Error('No upstream for owned pages')}},{catalogue:async()=>data,shell});
+ for(const method of ['GET','HEAD']){
+  const response=await worker.fetch(new Request(base+recipe.path,{method,headers:{Cookie:'private=member'}}));assert.equal(response.status,200);assert.equal(response.headers.get('Set-Cookie'),null);assert.match(response.headers.get('Cache-Control'),/^public/);const text=await response.text();assert.equal(text.length>0,method==='GET');assert(!text.includes('private=member'));
+ }
+});
+test('owned unknown slugs return a genuine noindex 404 and aliases redirect once',async()=>{
+ const worker=withAeoGeo({fetch(){throw Error('not reached')}},{catalogue:async()=>data,shell});
+ const missing=await worker.fetch(new Request(base+'/recipes/unknown'));assert.equal(missing.status,404);assert((await missing.text()).includes('noindex,follow'));
+ const alias=await worker.fetch(new Request(base+recipe.path+'.html'));assert.equal(alias.status,301);assert.equal(alias.headers.get('Location'),base+recipe.path);
+});
+test('robots allow the requested bots but retain account, payment and admin disallows',()=>{
+ for(const agent of ['Googlebot','Bingbot','OAI-SearchBot','GPTBot','PerplexityBot','ClaudeBot','Google-Extended'])assert(ROBOTS.includes('User-agent: '+agent+'\n'));
+ assert(!/^Disallow: \/$/m.test(ROBOTS));for(const path of ['/member','/checkout','/admin','/v1/'])assert(ROBOTS.includes('Disallow: '+path+'\n'));
+});
+test('sitemap drops private URLs, duplicates and exclusions and retains real dates',()=>{
+ const node=path=>'<url><loc>'+base+path+'</loc><lastmod>2026-01-01</lastmod></url>';
+ const xml='<urlset>'+node('/about')+node('/about')+node('/member/dashboard')+node('/old')+'</urlset>';
+ const output=completeSitemap(xml,data,{'/about':{lastmod:'2026-10-24'},'/old':{exclude:true}});
+ assert.equal(output.split('<loc>'+base+'/about</loc>').length,2);assert(!output.includes('/member/'));assert(!output.includes('/old'));assert(output.includes('2026-10-24'));assert(output.includes(recipe.path));assert(output.includes(data.publishedAt));
+});
+test('existing organisational bylines and clinical claims are not invented',()=>{
+ const original='<html><head><script type="application/ld+json">'+JSON.stringify({'@type':'Article',author:{'@type':'Organization',name:'SHIFT Team'},dateModified:'2026-10-24'})+'</script></head><body><main><h1>A guide</h1><p>Original clinical words.</p></main></body></html>';
+ const result=enhancePublicHtml(original,'/articles/guide');assert(result.includes('Original clinical words.'));assert(result.includes('Last updated'));assert(result.includes('"@type":"Organization","name":"SHIFT Team"'));assert(!result.includes('reviewedBy'));assert(!result.includes('"@type":"Person"'));assert(result.includes('/expert-contributors'));
+});
+test('existing public organisation has one consistent legal identity',()=>{
+ const html='<html><head><script type="application/ld+json">'+JSON.stringify({'@type':'Organization','@id':base+'/#organization',name:'Other name'})+'</script></head><main><h1>Page</h1></main></html>';
+ const next=enhancePublicHtml(html,'/about');assert(!next.includes('Other name'));assert(next.includes('17393135'));assert(next.includes('"legalName":"Shift Some Timber Ltd"'));assert.equal(next.split('"@id":"'+base+'/#organization","name":').length,2);
+});

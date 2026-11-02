@@ -1,0 +1,45 @@
+name: AEO GEO public catalogue and technical qualification
+on:
+  push:
+    branches: [feat/aeo-geo-public-catalogue-20261102, main]
+    paths: ['aeo-geo/**', '.github/workflows/aeo-geo-technical.yml']
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Public-only rendering, publication boundaries and existing privacy guards
+        run: |
+          node --test aeo-geo/source.test.mjs tests/general-analytics-privacy.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/runtime-rollback-guard.test.mjs
+          node --check aeo-geo/build.mjs
+          node --check aeo-geo/capture.mjs
+          git diff --check
+  catalogue:
+    needs: source
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Read the existing public routing without changing a route
+        run: node aeo-geo/capture.mjs
+      - name: Project only current governed recipes and canonical movements
+        run: node aeo-geo/build.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aeo-geo-catalogue-${{ github.run_id }}
+          path: aeo-geo-proof/
+          if-no-files-found: warn
+          retention-days: 30
