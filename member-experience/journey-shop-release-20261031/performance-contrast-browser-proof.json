@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-02T02:28:52.306Z",
+  "verified": true,
+  "sourceFileSHA256": "4e14dcbdcaf5e84bd574867d27ec134d12f85847c3fe3dfa89fbd3af55168ca5",
+  "reports": [
+    {
+      "engine": "chromium",
+      "verified": true,
+      "geometryReadsBefore": 5028,
+      "geometryReadsAfter": 6,
+      "initialAndDynamicElementsCompared": 29,
+      "productionRequests": 0,
+      "productionWrites": 0
+    },
+    {
+      "engine": "webkit",
+      "verified": true,
+      "geometryReadsBefore": 5028,
+      "geometryReadsAfter": 6,
+      "initialAndDynamicElementsCompared": 29,
+      "productionRequests": 0,
+      "productionWrites": 0
+    }
+  ]
+}
