@@ -38,6 +38,7 @@ function memberPerformanceClient(options) {
     if (broadcast) channel?.postMessage({ invalidate: true });
   }
   function expiredView() {
+    clearPending();
     document.querySelectorAll("main").forEach((n) => n.replaceChildren());
     document.documentElement.dataset.mtAuthStale = "1";
     delete document.documentElement.dataset.mtScreenLocked;
@@ -325,6 +326,29 @@ function memberPerformanceClient(options) {
     if (pending) n.dataset.mtPending = "1";
     else delete n.dataset.mtPending;
   }
+  function clearPending() {
+    document.getElementById("mtPendingView")?.remove();
+  }
+  function pendingView(u) {
+    let n = document.getElementById("mtPendingView");
+    if (!n) {
+      n = document.createElement("section");
+      n.id = "mtPendingView";
+      n.setAttribute("aria-hidden", "true");
+      document.body.append(n);
+    }
+    n.replaceChildren();
+    const heading = document.createElement("h1");
+    heading.textContent = { today: "Today", journey: "Journey", shop: "Shop", grub: "Grub", fit: "Fit", support: "Support", more: "More" }[tab(u)] || "My Timber";
+    n.append(heading);
+    for (let i = 0; i < 3; i++) {
+      const card = document.createElement("div");
+      card.className = "mt-pending-card";
+      n.append(card);
+    }
+    const bottom = document.querySelector("#mtShopChrome .mt-shop-primary")?.getBoundingClientRect().bottom || 0;
+    n.style.top = Math.max(0, bottom) + "px";
+  }
   function lock() {
     document.documentElement.dataset.mtScreenLocked = "1";
     for (const { frame } of frames.values()) {
@@ -336,6 +360,7 @@ function memberPerformanceClient(options) {
     }
   }
   function discard() {
+    clearPending();
     ++navigation;
     for (const { frame } of frames.values()) frame.remove();
     frames.clear();
@@ -362,13 +387,19 @@ function memberPerformanceClient(options) {
       if (w.document?.body?.dataset.memberSession === "signed-out") throw Error("Sign-in required");
       if (ready(w) && w.MT_SCREEN?.pending() === 0) {
         await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
-        if (ready(w) && w.MT_SCREEN?.pending() === 0) return;
+        if (ready(w) && w.MT_SCREEN?.pending() === 0) {
+          await Promise.all([...identityOrigins].map(verifiedOrigin));
+          if (ticket !== navigation) throw Error("Navigation superseded");
+          if (ready(w) && w.MT_SCREEN?.pending() === 0) return;
+        }
       }
       await new Promise((r) => setTimeout(r, 20));
     }
     throw Error("This screen has not finished loading");
   }
   function finish(entry, u) {
+    clearPending();
+    document.querySelector("#mtShopChrome")?.removeAttribute("aria-busy");
     for (const e of frames.values()) e.frame.style.visibility = e === entry ? "visible" : "hidden";
     if (entry) {
       entry.frame.hidden = false;
@@ -386,19 +417,22 @@ function memberPerformanceClient(options) {
     const u = endpoint(href);
     if (!u || !screenPath(u)) return false;
     const ticket = ++navigation, t = performance.now(), row = { path: u.pathname + u.search, ackMs: 0, warm: false };
+    const previousEntry = active, previousURL = new URL(location.href), previousHistory = history.state;
     status("Opening " + ({ today: "Today", journey: "Journey", shop: "Shop", grub: "Grub", fit: "Fit", support: "Support", more: "More" }[tab(u)] || "My Timber") + "\u2026", true);
+    lock();
+    if (!options2.history) history.pushState({ mtRetained: true }, "", u.pathname + u.search + u.hash);
+    select(u);
+    pendingView(u);
     document.querySelector("#mtShopChrome")?.setAttribute("aria-busy", "true");
     row.ackMs = Math.round(performance.now() - t);
     document.dispatchEvent(new CustomEvent("mt:screen-start", { detail: { row, started: t } }));
     try {
       const identityStart = performance.now(), identityJob = verified(true);
       let entry = frames.get(key(u));
+      const retained = !!entry;
       const rootCurrent = key(u) === rootKey && !document.documentElement.hasAttribute("data-mt-root-stale");
       if (rootCurrent) entry = null;
-      const validationJob = rootCurrent || entry?.loaded ? windowOf(entry).MT_SCREEN.validate() : null;
-      const [, validated] = await Promise.all([identityJob, validationJob]);
-      row.identityMs = Math.round(performance.now() - identityStart);
-      if (ticket !== navigation) return;
+      const validationJob = rootCurrent || entry ? windowOf(entry).MT_SCREEN?.validate?.() : null;
       if (!rootCurrent && !entry) {
         const frame = document.createElement("iframe");
         frame.className = "mt-retained-screen";
@@ -410,9 +444,13 @@ function memberPerformanceClient(options) {
         entry = { frame, url: u.href, loaded: false };
         frames.set(key(u), entry);
       }
-      row.warm = entry ? entry.loaded : true;
+      const [, validated] = await Promise.all([identityJob, validationJob]);
+      row.identityMs = Math.round(performance.now() - identityStart);
+      if (ticket !== navigation) return;
+      row.warm = entry ? retained : true;
       const w = windowOf(entry), dataStart = performance.now();
       if (row.warm) {
+        if (!validationJob) await waitUsable(entry, ticket);
         const unchanged = validationJob ? validated : await w.MT_SCREEN.validate();
         if (!unchanged) {
           if (w.MT_SCREEN.dirty()) throw Error("Your draft is still here. Saved information has changed; finish or cancel the draft before reloading");
@@ -429,7 +467,6 @@ function memberPerformanceClient(options) {
       await waitUsable(entry, ticket);
       if (ticket !== navigation) return;
       row.dataAndScreenMs = Math.round(performance.now() - dataStart);
-      if (!options2.history) history.pushState({ mtRetained: true }, "", u.pathname + u.search + u.hash);
       if (!entry && u.hash !== initial.hash) {
         history.replaceState(history.state, "", u.pathname + u.search + u.hash);
         dispatchEvent(new Event("hashchange"));
@@ -452,7 +489,11 @@ function memberPerformanceClient(options) {
       row.error = e.message;
       samples.push(row);
       if (!identity) fail();
-      else status(e.message + ". Your saved information has not changed.");
+      else {
+        history.replaceState(previousHistory, "", previousURL.href);
+        finish(previousEntry, previousURL);
+        status(e.message + ". Your saved information has not changed.");
+      }
     } finally {
       if (ticket === navigation) document.querySelector("#mtShopChrome")?.removeAttribute("aria-busy");
     }
@@ -460,7 +501,7 @@ function memberPerformanceClient(options) {
   }
   window.MT_PERFORMANCE = { identity: verified, identityOrigin: verifiedOrigin, invalidate, navigate, samples, reflect: (source, href) => {
     const u = endpoint(href);
-    if (active && source === active.frame.contentWindow && u && screenPath(u)) {
+    if (!document.querySelector("#mtShopChrome[aria-busy=true]") && active && source === active.frame.contentWindow && u && screenPath(u)) {
       history.replaceState(history.state, "", u.pathname + u.search + u.hash);
       select(u);
     }
@@ -499,7 +540,7 @@ function memberPerformanceClient(options) {
   addEventListener("popstate", () => {
     if (internalRoute) return;
     const u = new URL(location.href);
-    if (u.pathname === initial.pathname && !active) {
+    if (u.pathname === initial.pathname && !active && !document.querySelector("#mtShopChrome[aria-busy=true]")) {
       select(u);
       return;
     }
@@ -560,7 +601,7 @@ function memberPerformanceClient(options) {
   else observe();
 }
 var performanceRuntime = "(" + memberPerformanceClient.toString() + ")();";
-var performanceStyles = "\nhtml[data-mt-contained-screen] :is(#mtShopChrome,#mtShopPending,#mtShopLoading){visibility:hidden!important;pointer-events:none!important}\nhtml[data-mt-contained-screen] :is(#myTimberApp,.my-timber-app-footer,#pwaReminderFirstRun,#pwaReminderSettings){display:none!important}\nhtml[data-mt-contained-screen] :is(header.site-header,#sst-header-c,#sst-footer-c,.site-footer,#todayBrand,.tj-brand,.mt-support-brand,#mtSixNav,#appBottomNav,nav.sst-member-tabs){display:none!important}\nhtml[data-mt-screen-locked] main,html[data-mt-screen-locked] .mt-retained-screen{visibility:hidden!important;pointer-events:none!important}\nhtml[data-mt-overlay-screen] body>main{visibility:hidden!important;pointer-events:none!important}\n.mt-retained-screen{position:fixed!important;inset:0!important;width:100%!important;height:100dvh!important;border:0!important;margin:0!important;background:#050505!important;z-index:2000!important}\n#mtShopChrome{position:relative;z-index:2200!important}\n#mtNavigationStatus{position:fixed;top:calc(108px + env(safe-area-inset-top));left:0;right:0;margin:0;padding:10px 16px;z-index:2150;background:#050505;color:#E7E3DA;font:14px/1.4 Arial,sans-serif}\n#mtNavigationStatus[data-mt-pending]{top:0;left:0;right:auto;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}\n#mtNavigationStatus[hidden]{display:none!important}\n#mtShopChrome[aria-busy=true] a:active{background:#707762}\n";
+var performanceStyles = "\nhtml[data-mt-contained-screen] :is(#mtShopChrome,#mtShopPending,#mtShopLoading){visibility:hidden!important;pointer-events:none!important}\nhtml[data-mt-contained-screen] :is(#myTimberApp,.my-timber-app-footer,#pwaReminderFirstRun,#pwaReminderSettings){display:none!important}\nhtml[data-mt-contained-screen] :is(header.site-header,#sst-header-c,#sst-footer-c,.site-footer,#todayBrand,.tj-brand,.mt-support-brand,#mtSixNav,#appBottomNav,nav.sst-member-tabs){display:none!important}\nhtml[data-mt-screen-locked] main,html[data-mt-screen-locked] .mt-retained-screen{visibility:hidden!important;pointer-events:none!important}\nhtml[data-mt-overlay-screen] body>main{visibility:hidden!important;pointer-events:none!important}\n.mt-retained-screen{position:fixed!important;inset:0!important;width:100%!important;height:100dvh!important;border:0!important;margin:0!important;background:#050505!important;z-index:2000!important}\n#mtShopChrome{position:relative;z-index:2200!important}\n#mtNavigationStatus{position:fixed;top:calc(108px + env(safe-area-inset-top));left:0;right:0;margin:0;padding:10px 16px;z-index:2150;background:#050505;color:#E7E3DA;font:14px/1.4 Arial,sans-serif}\n#mtPendingView{position:fixed;left:0;right:0;bottom:0;z-index:2050;background:#050505;color:#E7E3DA;padding:24px 20px;box-sizing:border-box;touch-action:none;overflow:hidden}#mtPendingView h1{font:700 28px/1.2 Arial,sans-serif;margin:0 0 24px;color:#E7E3DA}.mt-pending-card{height:116px;margin:0 0 18px;border:1px solid #424637;border-radius:16px;background:linear-gradient(110deg,#12140f,#1c2018)}\n#mtNavigationStatus[data-mt-pending]{top:0;left:0;right:auto;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}\n#mtNavigationStatus[hidden]{display:none!important}\n#mtShopChrome[aria-busy=true] a:active{background:#707762}\n";
 var identityOnlyRuntime = "(" + memberPerformanceClient.toString() + ")({retain:false});";
 
 // scoped-source/member-experience/performance-monitor.mjs
