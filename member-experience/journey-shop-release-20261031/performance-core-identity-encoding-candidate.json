@@ -1,0 +1,72 @@
+{
+  "kind": "CORE_INTERNAL_IDENTITY_ENCODING_REPAIR",
+  "createdAt": "2026-11-02T21:43:32.302Z",
+  "normalTrafficPercent": 0,
+  "measuredMismatch": "All3 anonymous internal requests asked identity while cf client encoding allowed gzip; Core returned gzip",
+  "mutationScope": "Honour explicit internal identity before existing client gzip negotiation; retain separately tested immutable public compatibility guard",
+  "loginSessionIdentityChanges": 0,
+  "completedPrivateResponseCacheAdded": false,
+  "diagnosticModulesIncluded": false,
+  "changedModules": [
+    "aeo-geo/delivery.mjs",
+    "worker.js"
+  ],
+  "workerPatch": {
+    "before": "const gzip = (request.cf?.clientAcceptEncoding ?? request.headers.get(\"Accept-Encoding\") ?? \"\").split(\",\").some((value) => {",
+    "after": "const gzip = request.headers.get(\"Accept-Encoding\")?.trim().toLowerCase() !== \"identity\" && (request.cf?.clientAcceptEncoding ?? request.headers.get(\"Accept-Encoding\") ?? \"\").split(\",\").some((value) => {",
+    "originalSHA256": "722bc50b31fb2aeaa627441dd293be06d124eb2e1f9a7c367773b9fe40b1c020",
+    "patchedSHA256": "b88b7a1d4f0e059c96b37f3dc16d9e213f4626ad0450aef5d62d2def27f1f2e4",
+    "byteForByteReconstruction": true,
+    "allOtherWorkerBytesUnchanged": true
+  },
+  "owners": [
+    {
+      "name": "shift-core",
+      "sourceVersion": "e6ab12fe-b178-450c-8a1b-9ed909f1d5de",
+      "sourceDeployment": "bf61c790-cf1e-4e5d-bf55-3e98cd5514c0",
+      "mainModule": "aeo-geo/entry.mjs",
+      "capture": "performance-static-text-current-shift-core.json.gz",
+      "package": "performance-core-identity-encoding-package.json.gz",
+      "packageSHA256": "b4dd5637c9f69749ab2972347ab5729a0ab769433e1e1e14e8f9817941592431",
+      "uploadIntent": {
+        "at": "2026-11-02T21:44:22.317Z",
+        "baseline": "bf61c790-cf1e-4e5d-bf55-3e98cd5514c0"
+      },
+      "versionId": "5f87bdb5-0516-45c4-95f3-55b801acd26d",
+      "stagedAt": "2026-11-02T21:44:54.593Z",
+      "originalDistribution": [
+        {
+          "version_id": "e6ab12fe-b178-450c-8a1b-9ed909f1d5de",
+          "percentage": 100
+        },
+        {
+          "version_id": "d6a13db3-fde0-42f6-b52c-ea9034c4ede9",
+          "percentage": 0
+        }
+      ],
+      "zeroDeployment": "40b951fc-8ce7-4a02-b57a-d4a99ff9af95",
+      "zeroAt": "2026-11-02T21:45:20.397Z"
+    }
+  ],
+  "httpProbe": {
+    "path": "performance-core-identity-encoding-http-qualification.json",
+    "verified": true,
+    "passed": false,
+    "summary": {
+      "control": {
+        "n": 20,
+        "medianFinalHeadersMs": 1417,
+        "p95FinalHeadersMs": 2972,
+        "medianCompleteMs": 1432,
+        "p95CompleteMs": 2985
+      },
+      "candidate": {
+        "n": 20,
+        "medianFinalHeadersMs": 1516,
+        "p95FinalHeadersMs": 4154,
+        "medianCompleteMs": 1529,
+        "p95CompleteMs": 4168
+      }
+    }
+  }
+}

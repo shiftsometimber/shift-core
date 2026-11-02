@@ -1,0 +1,73 @@
+import test from'node:test';import assert from'node:assert/strict';import vm from'node:vm';import{memberPerformanceClient}from'../performance-client.mjs';
+function harness(){
+ const listeners=new Map(),calls=[],events=[],state={id:1,apiId:1,expired:false,release:null,hold:false,reloads:0,clears:0};
+ const document={readyState:'loading',hidden:false,body:{dataset:{memberSession:'pending'}},documentElement:{dataset:{},hasAttribute:()=>false,toggleAttribute(){}},addEventListener:(name,fn)=>{const list=listeners.get(name)||[];list.push(fn);listeners.set(name,list)},dispatchEvent:e=>{for(const fn of listeners.get(e.type)||[])fn(e);return true},querySelectorAll:selector=>selector==='main'?[{replaceChildren:()=>state.clears++}]:[],getElementById:()=>null,querySelector:()=>null};
+ const location={origin:'https://shiftsometimber.co.uk',href:'https://shiftsometimber.co.uk/member/dashboard',reload:()=>state.reloads++};
+ const network=async(input)=>{const u=new URL(input instanceof Request?input.url:input,location.href);calls.push(u.origin);events.push(u.pathname);const gate=state.gates?.get(u.origin+u.pathname)||state.gates?.get(u.pathname);if(gate)await gate;const id=u.origin===location.origin?state.id:state.apiId;if(u.origin!==location.origin&&state.hold)await new Promise(r=>state.release=r);await new Promise(r=>setTimeout(r,5));return Response.json(state.expired?{error:'expired'}:{user:{id,source:u.origin}},{status:state.expired?401:200});};
+ const window={fetch:network},context=vm.createContext({window,parent:window,document,location,Request,Response,Headers,URL,AbortController,AbortSignal,Event,CustomEvent,performance,setTimeout,clearTimeout,queueMicrotask,addEventListener(){},BroadcastChannel:class{addEventListener(){}postMessage(){}},history:{},console});window.location=location;vm.runInContext('('+memberPerformanceClient.toString()+')()',context);return{window,document,state,calls,events};
+}
+test('startup shares only freshly verified matching identities, preserving each origin response',async()=>{
+ const h=harness(),same='/v1/me',api='https://api.shiftsometimber.co.uk/v1/me';
+ const replies=await Promise.all([h.window.fetch(same),h.window.fetch(same),h.window.fetch(api),h.window.fetch(api)]);
+ assert.deepEqual(h.calls.sort(),['https://api.shiftsometimber.co.uk','https://shiftsometimber.co.uk']);for(const r of replies){assert.equal(r.status,200);assert.match(r.headers.get('Cache-Control'),/no-store/);}
+ assert.equal((await replies[2].json()).user.source,'https://api.shiftsometimber.co.uk');
+ await h.window.fetch(api);assert.equal(h.calls.length,2);
+ await h.window.MT_MEMBER_IDENTITY(true);await h.window.fetch(api);assert.equal(h.calls.length,4,'A new server identity verification invalidates the origin result');
+});
+test('a different account on the API origin fails closed and clears the retained private view',async()=>{
+ const h=harness(),api='https://api.shiftsometimber.co.uk/v1/me';await h.window.fetch(api);h.document.body.dataset.memberSession='ready';h.state.apiId=2;
+ await h.window.MT_MEMBER_IDENTITY(true);const denied=await h.window.fetch(api);assert.equal(denied.status,401);assert.equal(h.document.body.dataset.memberSession,'signed-out');assert(h.state.clears>0);assert.equal(h.state.reloads,0);assert.doesNotMatch(await denied.text(),/"id":1/);
+});
+test('an old in-flight identity cannot reappear after account switch or session expiry',async()=>{
+ const h=harness(),api='https://api.shiftsometimber.co.uk/v1/me';await h.window.MT_MEMBER_IDENTITY();h.document.body.dataset.memberSession='ready';h.state.hold=true;const old=h.window.fetch(api);while(!h.state.release)await new Promise(r=>setTimeout(r,1));h.state.id=2;await assert.rejects(h.window.MT_MEMBER_IDENTITY(true));h.state.release();assert.equal((await old).status,401);assert(h.state.clears>0);h.state.expired=true;await assert.rejects(h.window.MT_MEMBER_IDENTITY(true));assert.equal(h.document.body.dataset.memberSession,'signed-out');
+});
+test('late denied API reads cannot relock the signed-out screen or repeat document reloads',async()=>{
+ const h=harness();await h.window.MT_MEMBER_IDENTITY();h.document.body.dataset.memberSession='ready';h.state.expired=true;const reloads=h.state.reloads;
+ await assert.rejects(h.window.MT_MEMBER_IDENTITY(true));assert.equal(h.document.body.dataset.memberSession,'signed-out');assert.equal(h.document.documentElement.dataset.mtScreenLocked,undefined);
+ const r=await h.window.fetch('/v1/profile');assert.equal(r.status,401);assert.equal(h.document.body.dataset.memberSession,'signed-out');assert.equal(h.document.documentElement.dataset.mtScreenLocked,undefined);assert.equal(h.state.reloads,reloads);assert(h.state.clears>0);
+});
+
+
+test('retained data is revalidated in parallel with fresh identity, and neither proof can release it alone',async()=>{
+ const h=harness();await h.window.MT_MEMBER_IDENTITY();await h.window.fetch('/v1/profile');
+ let releaseIdentity,releaseData;const identityGate=new Promise(r=>releaseIdentity=r),dataGate=new Promise(r=>releaseData=r);h.state.gates=new Map([['/v1/me',identityGate],['/v1/profile',dataGate]]);h.events.length=0;
+ const identity=h.window.MT_MEMBER_IDENTITY(true);let settled=false;const validation=h.window.MT_SCREEN.validate().finally(()=>settled=true);
+ while(!h.events.includes('/v1/profile'))await new Promise(r=>setTimeout(r,1));assert(h.events.includes('/v1/me'));assert.equal(settled,false);
+ releaseData();await new Promise(r=>setTimeout(r,15));assert.equal(settled,false,'Data alone cannot release a retained screen');releaseIdentity();await identity;assert.equal(await validation,true);
+});
+test('parallel retained-data validation rejects a changed account before any old view can be accepted',async()=>{
+ const h=harness();await h.window.MT_MEMBER_IDENTITY();await h.window.fetch('/v1/profile');h.document.body.dataset.memberSession='ready';
+ let releaseIdentity;h.state.gates=new Map([['/v1/me',new Promise(r=>releaseIdentity=r)]]);h.events.length=0;
+ const identity=h.window.MT_MEMBER_IDENTITY(true),validation=h.window.MT_SCREEN.validate();const denied=Promise.allSettled([identity,validation]);
+ while(!h.events.includes('/v1/profile'))await new Promise(r=>setTimeout(r,1));h.state.id=2;releaseIdentity();const results=await denied;assert(results.every(r=>r.status==='rejected'));assert(h.state.clears>0);
+});
+
+
+test('fresh identity checks start together across origins and both must pass before sharing', {timeout:2000}, async()=>{
+ const h=harness(),site='https://shiftsometimber.co.uk',api='https://api.shiftsometimber.co.uk';await h.window.fetch(api+'/v1/me');
+ let releaseParent,releaseOrigin;h.state.gates=new Map([[site+'/v1/me',new Promise(r=>releaseParent=r)],[api+'/v1/me',new Promise(r=>releaseOrigin=r)]]);const start=h.calls.length;
+ const identity=h.window.MT_MEMBER_IDENTITY(true);let settled=false;const remote=h.window.fetch(api+'/v1/me').finally(()=>settled=true);
+ try{await new Promise(r=>setTimeout(r,20));assert.deepEqual(h.calls.slice(start).sort(),[api,site],'Neither origin waits for the other network round trip');releaseOrigin();await new Promise(r=>setTimeout(r,15));assert.equal(settled,false,'An API identity cannot release the view before the fresh site identity');releaseParent();await identity;assert.equal((await remote).status,200);assert.equal(h.calls.length-start,2);}
+ finally{releaseOrigin();releaseParent();await Promise.allSettled([identity,remote]);}
+});
+test('parallel origin checks fail closed on an API account mismatch', {timeout:2000}, async()=>{
+ const h=harness(),site='https://shiftsometimber.co.uk',api='https://api.shiftsometimber.co.uk';await h.window.fetch(api+'/v1/me');h.document.body.dataset.memberSession='ready';h.state.apiId=2;
+ let releaseParent;h.state.gates=new Map([[site+'/v1/me',new Promise(r=>releaseParent=r)]]);const identity=h.window.MT_MEMBER_IDENTITY(true);let settled=false;const remote=h.window.fetch(api+'/v1/me').finally(()=>settled=true);
+ try{await new Promise(r=>setTimeout(r,20));assert.equal(settled,false);releaseParent();await identity;assert.equal((await remote).status,401);assert.equal(h.document.body.dataset.memberSession,'signed-out');assert(h.state.clears>0);assert.equal(h.state.reloads,0);}
+ finally{releaseParent();await Promise.allSettled([identity,remote]);}
+});
+
+
+test('only simultaneous equivalent GETs share a request, and each caller receives its own body',async()=>{
+ const h=harness();const replies=await Promise.all([h.window.fetch('/v1/profile'),h.window.fetch('/v1/profile')]);assert.equal(h.events.filter(x=>x==='/v1/profile').length,1);
+ assert.equal((await replies[0].json()).user.id,1);assert.equal((await replies[1].json()).user.id,1);
+ await h.window.fetch('/v1/profile');assert.equal(h.events.filter(x=>x==='/v1/profile').length,2,'Completed private responses are never reused');
+});
+test('different headers, caller abort signals and writes never share a private request',async()=>{
+ const h=harness();await Promise.all([h.window.fetch('/v1/profile',{headers:{'X-Test':'one'}}),h.window.fetch('/v1/profile',{headers:{'X-Test':'two'}})]);assert.equal(h.events.filter(x=>x==='/v1/profile').length,2);
+ const a=new AbortController(),b=new AbortController();await Promise.all([h.window.fetch('/v1/profile',{signal:a.signal}),h.window.fetch('/v1/profile',{signal:b.signal})]);assert.equal(h.events.filter(x=>x==='/v1/profile').length,4);
+ await Promise.all([h.window.fetch('/v1/profile',{method:'POST'}),h.window.fetch('/v1/profile',{method:'POST'})]);assert.equal(h.events.filter(x=>x==='/v1/profile').length,6);
+});
+test('an in-flight shared read cannot return an old private body after account invalidation', {timeout:2000},async()=>{
+ const h=harness();let release;h.state.gates=new Map([['/v1/profile',new Promise(r=>release=r)]]);const old=Promise.allSettled([h.window.fetch('/v1/profile'),h.window.fetch('/v1/profile')]);await new Promise(r=>setTimeout(r,10));h.window.MT_PERFORMANCE.invalidate('account-event');h.state.id=2;release();assert((await old).every(r=>r.status==='rejected'));h.state.gates.clear();assert.equal((await (await h.window.fetch('/v1/profile')).json()).user.id,2);
+});

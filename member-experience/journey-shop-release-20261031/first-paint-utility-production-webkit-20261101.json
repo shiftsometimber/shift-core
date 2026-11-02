@@ -1,0 +1,299 @@
+{
+  "kind": "MY_TIMBER_UTILITY_FIRST_PAINT",
+  "phase": "live",
+  "browser": "webkit",
+  "source": "9b473dd13daa9e55a88b25afbf2eae8ef680b6ad",
+  "at": "2026-11-01T10:30:58.491Z",
+  "productionWrites": 0,
+  "pages": [
+    {
+      "path": "/",
+      "status": 200,
+      "mainSHA256": "d3bef76bffe72c2905fac7a119371b760521104c6c493c3f3ecf21e5dc858cca",
+      "initial": null,
+      "hasSession": false
+    },
+    {
+      "path": "/tools",
+      "status": 200,
+      "mainSHA256": "6eaeba626d63c83a49d542655fd3c6808b5d3ea297d7d49d6f60fa0cf4bc45a0",
+      "initial": null,
+      "hasSession": false
+    },
+    {
+      "path": "/start-here",
+      "status": 200,
+      "mainSHA256": "bf1cf7e42269bec5c4ba84accf9664f72df9139398a2fbb380ee71d5093375d1",
+      "initial": null,
+      "hasSession": false
+    },
+    {
+      "path": "/treatment-centre",
+      "status": 200,
+      "mainSHA256": "a439d6a4986f3ec47034426bd2a27e776776537309b71221256e87cead28261e",
+      "initial": null,
+      "hasSession": false
+    },
+    {
+      "path": "/privacy",
+      "status": 200,
+      "mainSHA256": "b95b2eb5396f69602a816638ece6eb4571441e850571968cf1a9a6234d0670ca",
+      "initial": null,
+      "hasSession": false
+    },
+    {
+      "path": "/account-deletion",
+      "status": 200,
+      "mainSHA256": "b48a6cbf79cfcf4857e189f7e6876943dcf0029b78ce8b9ad83ea2a0a2535bb6",
+      "initial": null,
+      "hasSession": false
+    },
+    {
+      "path": "/clinic-gone-quiet",
+      "status": 200,
+      "mainSHA256": "cc5dd6f41353a3b8e0c453ce1512189d17a220ceb3482e3490d7cee10d226216",
+      "initial": null,
+      "hasSession": false
+    },
+    {
+      "path": "/shop",
+      "status": 200,
+      "mainSHA256": "32fbded1c774e63af287ffebe3c0fb185aff7f3595994722dea31751e8df4a35",
+      "initial": null,
+      "hasSession": false
+    },
+    {
+      "path": "/shift-health/testing/vitamin-d",
+      "status": 200,
+      "mainSHA256": "38690fcc167fa9eee471c20c0781ca1fab723cc2b85f4fb4dd002c5c5feb7d35",
+      "initial": null,
+      "hasSession": false
+    },
+    {
+      "path": "/member/settings",
+      "status": 200,
+      "mainSHA256": "fe5da7f1ee431177fead04d7f544b2928f5688336433c5ad778d5d1a347a4947",
+      "initial": "app-shell-20261101",
+      "hasSession": true
+    },
+    {
+      "path": "/member/orders",
+      "status": 200,
+      "mainSHA256": "50794a19d39dcbe83a742e90b793594f974a0abbaa4208670c5430a2acfbdd6d",
+      "initial": "app-shell-20261101",
+      "hasSession": true
+    },
+    {
+      "path": "/member/saved",
+      "status": 200,
+      "mainSHA256": "9d07c036ba12292a23c3205239bebec6d8c6ff4370832f1648cc6aba2a5afb78",
+      "initial": "app-shell-20261101",
+      "hasSession": true
+    },
+    {
+      "path": "/member/plans",
+      "status": 200,
+      "mainSHA256": "9191066c17843a4e2f1830800a1d34102ddc431c8e4c3ff0f04c4f4fe170a705",
+      "initial": "app-shell-20261101",
+      "hasSession": true
+    },
+    {
+      "path": "/member/my-shift",
+      "status": 200,
+      "mainSHA256": "e7bdba9849dca751834d7b37451ee5f509c1362b48948d89a295bf1076f5d27c",
+      "initial": "app-shell-20261101",
+      "hasSession": true
+    },
+    {
+      "path": "/member/my-target",
+      "status": 200,
+      "mainSHA256": "9d6262af8a074f2214889571d65be7a0ba4294bfe8d66f1e9a943400da95ad6d",
+      "initial": "app-shell-20261101",
+      "hasSession": true
+    },
+    {
+      "path": "/member/my-why",
+      "status": 200,
+      "mainSHA256": "81fb6afb9df823a2250de37d1506eb4d013c5d0d8b7b13e7600acff9d5921459",
+      "initial": "app-shell-20261101",
+      "hasSession": true
+    },
+    {
+      "path": "/member/achievements",
+      "status": 200,
+      "mainSHA256": "c97e698d037aeec38d53b828261b1909b976ce696f59cdcf25dd18764270e000",
+      "initial": "app-shell-20261101",
+      "hasSession": true
+    },
+    {
+      "path": "/member/check-in",
+      "status": 200,
+      "mainSHA256": "ba3ba18099b0eab739a7bbe904ec898b0bfb93799b3f710e50f07c76bb27ef06",
+      "initial": "app-shell-20261101",
+      "hasSession": true
+    },
+    {
+      "path": "/member/treatment",
+      "status": 200,
+      "mainSHA256": "cc677842bd585fd9eac183216d98ff1ffb6194adbba225b60ed4051acc183600",
+      "initial": "app-shell-20261101",
+      "hasSession": true
+    },
+    {
+      "path": "/member/timber-circle",
+      "status": 200,
+      "mainSHA256": "86cec6d012a0ebbeef190026ebec4f939581759c757a4313bec387cb60711a48",
+      "initial": "app-shell-20261101",
+      "hasSession": true
+    }
+  ],
+  "assets": [
+    {
+      "path": "/assets/favicon-shift-s-20261020.png",
+      "status": 200,
+      "type": "image/png",
+      "sha256": "97f754538a660372c62cf5a36c003b3082e672fa2a9de97d0fe4f1f288b56682"
+    },
+    {
+      "path": "/assets/apple-touch-icon.png",
+      "status": 200,
+      "type": "image/png",
+      "sha256": "dd44b112cc9e93a507fb9b7c7a107bbffc9e38402cd5b0f3af6db7573ec898d4"
+    },
+    {
+      "path": "/tools/assets/ct3-couple-20261031.webp",
+      "status": 200,
+      "type": "image/webp",
+      "sha256": "57d0f67319af5df93793705af75b6d4dcf4e24cda05f2bbbbdeaf5815834fefc"
+    }
+  ],
+  "privateApis": [
+    {
+      "path": "/v1/life-back/journey",
+      "status": 401
+    },
+    {
+      "path": "/v1/life-back",
+      "status": 401
+    },
+    {
+      "path": "/v1/commerce/active-checkout",
+      "status": 401
+    },
+    {
+      "path": "/v1/privacy/account",
+      "status": 404
+    }
+  ],
+  "firstPaintChecks": [
+    {
+      "path": "/member/settings",
+      "websiteFrames": 0,
+      "privateContentGuarded": true,
+      "anonymousSignInPreserved": true,
+      "signedOutDestination": "/member/settings",
+      "nativeCompatibility": true
+    },
+    {
+      "path": "/member/orders",
+      "websiteFrames": 0,
+      "privateContentGuarded": true,
+      "anonymousSignInPreserved": true,
+      "signedOutDestination": "/member/orders",
+      "nativeCompatibility": true
+    },
+    {
+      "path": "/member/saved",
+      "websiteFrames": 0,
+      "privateContentGuarded": true,
+      "anonymousSignInPreserved": true,
+      "signedOutDestination": "/member/saved",
+      "nativeCompatibility": true
+    },
+    {
+      "path": "/member/plans",
+      "websiteFrames": 0,
+      "privateContentGuarded": true,
+      "anonymousSignInPreserved": true,
+      "signedOutDestination": "/member/dashboard",
+      "nativeCompatibility": true
+    },
+    {
+      "path": "/member/my-shift",
+      "websiteFrames": 0,
+      "privateContentGuarded": true,
+      "anonymousSignInPreserved": true,
+      "signedOutDestination": "/member/my-shift",
+      "nativeCompatibility": true
+    },
+    {
+      "path": "/member/my-target",
+      "websiteFrames": 0,
+      "privateContentGuarded": true,
+      "anonymousSignInPreserved": true,
+      "signedOutDestination": "/member-login",
+      "nativeCompatibility": true
+    },
+    {
+      "path": "/member/my-why",
+      "websiteFrames": 0,
+      "privateContentGuarded": true,
+      "anonymousSignInPreserved": true,
+      "signedOutDestination": "/member/my-why",
+      "nativeCompatibility": true
+    },
+    {
+      "path": "/member/achievements",
+      "websiteFrames": 0,
+      "privateContentGuarded": true,
+      "anonymousSignInPreserved": true,
+      "signedOutDestination": "/member/achievements",
+      "nativeCompatibility": true
+    },
+    {
+      "path": "/member/check-in",
+      "websiteFrames": 0,
+      "privateContentGuarded": true,
+      "anonymousSignInPreserved": true,
+      "signedOutDestination": "/member/check-in",
+      "nativeCompatibility": true
+    },
+    {
+      "path": "/member/treatment",
+      "websiteFrames": 0,
+      "privateContentGuarded": true,
+      "anonymousSignInPreserved": true,
+      "signedOutDestination": "/member/treatment",
+      "nativeCompatibility": true
+    },
+    {
+      "path": "/member/timber-circle",
+      "websiteFrames": 0,
+      "privateContentGuarded": true,
+      "anonymousSignInPreserved": true,
+      "signedOutDestination": "/member/timber-circle",
+      "nativeCompatibility": true
+    }
+  ],
+  "errors": [
+    {
+      "path": "/member/plans",
+      "message": "null is not an object (evaluating 'btn.addEventListener')",
+      "stack": "TypeError: null is not an object (evaluating 'btn.addEventListener')\n    at unknown (https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:8:4)\n    at global code (https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:13:3)"
+    }
+  ],
+  "nativeScriptSha256": [
+    "00fe5e04f7e1ab9f757ba0106a95b6622314748f388ee17b40c2961f3958e88b",
+    "1a5a30528ac9fa41264df609811f2151ed7cf02a465a116cd0ac527b0b870872"
+  ],
+  "existingBaselineErrors": [
+    {
+      "path": "/member/plans",
+      "message": "null is not an object (evaluating 'btn.addEventListener')",
+      "stack": "TypeError: null is not an object (evaluating 'btn.addEventListener')\n    at unknown (https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:8:4)\n    at global code (https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:13:3)"
+    }
+  ],
+  "newErrors": [],
+  "verified": true,
+  "finishedAt": "2026-11-01T10:31:27.455Z"
+}

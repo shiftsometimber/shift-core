@@ -1,0 +1,143 @@
+{
+  "kind": "MY_TIMBER_SHOP_OFFLINE_BROWSER_ACCEPTANCE",
+  "at": "2026-10-29T08:08:26.815Z",
+  "browser": "chromium",
+  "live": false,
+  "productionWrites": 0,
+  "checkoutPosts": 0,
+  "fixtureSha256": {
+    "testing": "6577ade99660bb16a0f8e7ae442a9e0e00270697bdf3aee2ab816c4ebe818a5f",
+    "nutrition": "22f29dc190574cbaf8e4b4bafcad029a35471591f2abbfbf329c5e7da765d0c9",
+    "kit": "8c836628c479b89276866cbe733bda6562d047f4992d85c0ab75e7a4d0663805",
+    "basket": "eb0fefd276070d39dec5dced6d87fd90b3b52b6935947da5d1cfdb9e91b1de66"
+  },
+  "checks": 22,
+  "results": [
+    {
+      "width": 320,
+      "case": "approved hub, 8px spacing, seven tabs, icons and no horizontal overflow",
+      "pass": true
+    },
+    {
+      "width": 320,
+      "case": "all seven destinations navigate and More retains account/settings/orders",
+      "pass": true
+    },
+    {
+      "width": 320,
+      "case": "real product content, held purchase button, nutrition form and kit colour flow retained",
+      "pass": true
+    },
+    {
+      "width": 320,
+      "case": "basket count across pages, saved checkout and account-switch clearing; zero checkout POSTs",
+      "pass": true
+    },
+    {
+      "width": 320,
+      "case": "anonymous sign-in guard never reveals app chrome or catalogue",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "case": "approved hub, 8px spacing, seven tabs, icons and no horizontal overflow",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "case": "all seven destinations navigate and More retains account/settings/orders",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "case": "real product content, held purchase button, nutrition form and kit colour flow retained",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "case": "basket count across pages, saved checkout and account-switch clearing; zero checkout POSTs",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "case": "anonymous sign-in guard never reveals app chrome or catalogue",
+      "pass": true
+    },
+    {
+      "width": 768,
+      "case": "approved hub, 8px spacing, seven tabs, icons and no horizontal overflow",
+      "pass": true
+    },
+    {
+      "width": 768,
+      "case": "all seven destinations navigate and More retains account/settings/orders",
+      "pass": true
+    },
+    {
+      "width": 768,
+      "case": "real product content, held purchase button, nutrition form and kit colour flow retained",
+      "pass": true
+    },
+    {
+      "width": 768,
+      "case": "basket count across pages, saved checkout and account-switch clearing; zero checkout POSTs",
+      "pass": true
+    },
+    {
+      "width": 768,
+      "case": "anonymous sign-in guard never reveals app chrome or catalogue",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "case": "approved hub, 8px spacing, seven tabs, icons and no horizontal overflow",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "case": "all seven destinations navigate and More retains account/settings/orders",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "case": "real product content, held purchase button, nutrition form and kit colour flow retained",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "case": "basket count across pages, saved checkout and account-switch clearing; zero checkout POSTs",
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "case": "anonymous sign-in guard never reveals app chrome or catalogue",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "case": "late old-account basket response is discarded",
+      "pass": true
+    },
+    {
+      "width": 390,
+      "case": "unavailable identity check fails closed without repeated background requests",
+      "pass": true
+    }
+  ],
+  "sourceSha256": {
+    "member-experience/shop-navigation.mjs": "9bf9d73438d076e8f7d1957f907eb56f501bfdc904b7ba230dd44fda5e8acbb2",
+    "member-experience/shop-navigation-client.mjs": "fd38537e5c41f64203969f6a3006ee0245bad20f5a505dc614283b1e029201ad",
+    "member-experience/shop-routes.mjs": "46f6910488e89d3e6e7d3dca0608be6190dda76f49309dfe9c795f65e0c3a60e",
+    "member-experience/shop-basket.mjs": "93260f324f4660ca43ea4a2011084148a9664ebc157e618666d7ea053543fbd7",
+    "member-experience/support-release.mjs": "83fdbae2dc3d9d8c0353ab34da8d63f3c51f011354bbe73f1e19c88600a0f40a",
+    "member-experience/tests/shop-connected.test.mjs": "f52dfb424db343c3f5f9db115c757f486c38e24caa3e728264710f2855399ce9",
+    "member-experience/tests/shop-connected-browser.mjs": "7f1e2cef8ef933430c1e7236774386837ef9cd383da1aeea8dc95b3e7646f9f3",
+    "package.json": "17af9e79632b0deeec4d131321e594194634c9aa9cb75e890a73a8611886d40b"
+  },
+  "sourceRegression": {
+    "tests": 52,
+    "passed": 52,
+    "npmRunCheck": "pass",
+    "diffCheck": "pass"
+  }
+}

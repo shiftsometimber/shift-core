@@ -1,0 +1,361 @@
+{
+  "at": "2026-11-02T18:44:06.400194+00:00",
+  "source": "7914832e76daa4d81bae4361d94105f7b72b7317",
+  "state": "WITHHELD_P95_REGRESSION_PHONE_UNRESOLVED",
+  "productionPromotionsThisContinuation": 0,
+  "physicalPhoneVerified": false,
+  "candidateNormalComparisons": [
+    {
+      "screen": "today",
+      "visit": "fresh",
+      "before": {
+        "n": 20,
+        "medianMs": 2098,
+        "p95Ms": 3259
+      },
+      "after": {
+        "n": 20,
+        "medianMs": 1400,
+        "p95Ms": 4331
+      },
+      "passed": false
+    },
+    {
+      "screen": "today",
+      "visit": "warm",
+      "before": {
+        "n": 20,
+        "medianMs": 1705,
+        "p95Ms": 3529
+      },
+      "after": {
+        "n": 20,
+        "medianMs": 225,
+        "p95Ms": 227
+      },
+      "passed": true
+    },
+    {
+      "screen": "journey",
+      "visit": "fresh",
+      "before": {
+        "n": 20,
+        "medianMs": 733,
+        "p95Ms": 931
+      },
+      "after": {
+        "n": 20,
+        "medianMs": 450,
+        "p95Ms": 498
+      },
+      "passed": true
+    },
+    {
+      "screen": "journey",
+      "visit": "warm",
+      "before": {
+        "n": 20,
+        "medianMs": 774,
+        "p95Ms": 1335
+      },
+      "after": {
+        "n": 20,
+        "medianMs": 358,
+        "p95Ms": 360
+      },
+      "passed": true
+    },
+    {
+      "screen": "shop",
+      "visit": "fresh",
+      "before": {
+        "n": 20,
+        "medianMs": 407,
+        "p95Ms": 989
+      },
+      "after": {
+        "n": 20,
+        "medianMs": 382,
+        "p95Ms": 432
+      },
+      "passed": true
+    },
+    {
+      "screen": "shop",
+      "visit": "warm",
+      "before": {
+        "n": 20,
+        "medianMs": 406,
+        "p95Ms": 519
+      },
+      "after": {
+        "n": 20,
+        "medianMs": 358,
+        "p95Ms": 359
+      },
+      "passed": true
+    },
+    {
+      "screen": "grub",
+      "visit": "fresh",
+      "before": {
+        "n": 20,
+        "medianMs": 1200,
+        "p95Ms": 1678
+      },
+      "after": {
+        "n": 20,
+        "medianMs": 798,
+        "p95Ms": 1231
+      },
+      "passed": true
+    },
+    {
+      "screen": "grub",
+      "visit": "warm",
+      "before": {
+        "n": 20,
+        "medianMs": 1193,
+        "p95Ms": 2571
+      },
+      "after": {
+        "n": 20,
+        "medianMs": 208,
+        "p95Ms": 224
+      },
+      "passed": true
+    },
+    {
+      "screen": "fit",
+      "visit": "fresh",
+      "before": {
+        "n": 20,
+        "medianMs": 1157,
+        "p95Ms": 1463
+      },
+      "after": {
+        "n": 20,
+        "medianMs": 716,
+        "p95Ms": 998
+      },
+      "passed": true
+    },
+    {
+      "screen": "fit",
+      "visit": "warm",
+      "before": {
+        "n": 20,
+        "medianMs": 1178,
+        "p95Ms": 2018
+      },
+      "after": {
+        "n": 20,
+        "medianMs": 208,
+        "p95Ms": 224
+      },
+      "passed": true
+    },
+    {
+      "screen": "support",
+      "visit": "fresh",
+      "before": {
+        "n": 20,
+        "medianMs": 1568,
+        "p95Ms": 2102
+      },
+      "after": {
+        "n": 20,
+        "medianMs": 1181,
+        "p95Ms": 1647
+      },
+      "passed": true
+    },
+    {
+      "screen": "support",
+      "visit": "warm",
+      "before": {
+        "n": 20,
+        "medianMs": 1582,
+        "p95Ms": 2739
+      },
+      "after": {
+        "n": 20,
+        "medianMs": 224,
+        "p95Ms": 226
+      },
+      "passed": true
+    },
+    {
+      "screen": "more",
+      "visit": "fresh",
+      "before": {
+        "n": 20,
+        "medianMs": 1635,
+        "p95Ms": 2108
+      },
+      "after": {
+        "n": 20,
+        "medianMs": 1199,
+        "p95Ms": 1815
+      },
+      "passed": true
+    },
+    {
+      "screen": "more",
+      "visit": "warm",
+      "before": {
+        "n": 20,
+        "medianMs": 1690,
+        "p95Ms": 3262
+      },
+      "after": {
+        "n": 20,
+        "medianMs": 225,
+        "p95Ms": 227
+      },
+      "passed": true
+    }
+  ],
+  "candidateNormalPasses": 13,
+  "candidateNormalSamples": 280,
+  "slow4g": "Stopped through managed helper SIGINT after known normal-network rejection; partial rows retained, not qualification",
+  "httpPrivacyChecks": 101,
+  "coreImmutableTests": 6,
+  "chromiumAndWebkitFunctionalAndExpiryPassed": true,
+  "ordinaryLiveAndCoreOnlyAnonymousServerHeaders": {
+    "live": {
+      "n": 20,
+      "medianMs": 1310,
+      "p95Ms": 4063
+    },
+    "candidate": {
+      "n": 20,
+      "medianMs": 1325,
+      "p95Ms": 3725
+    }
+  },
+  "originalAnonymousHeaderBaseline": {
+    "n": 20,
+    "medianMs": 595,
+    "p95Ms": 1755
+  },
+  "coreOnlyStaticRepairAccepted": false,
+  "coreOnlyStaticRepairReason": "Candidate p95 3725ms exceeds unchanged original anonymous header baseline 1755ms; current control also regresses. Do not promote under existing hard gate.",
+  "supportAnonymousStageN20": {
+    "mt-core": {
+      "n": 20,
+      "medianMs": 160,
+      "p95Ms": 1574
+    },
+    "mt-support-member-headers": {
+      "n": 20,
+      "medianMs": 1004,
+      "p95Ms": 3512
+    },
+    "mt-support-member-body": {
+      "n": 20,
+      "medianMs": 3,
+      "p95Ms": 6
+    },
+    "mt-support-enhance": {
+      "n": 20,
+      "medianMs": 0,
+      "p95Ms": 0
+    },
+    "mt-support": {
+      "n": 20,
+      "medianMs": 1019,
+      "p95Ms": 3622
+    }
+  },
+  "supportDiagnostic": {
+    "version": "85f2005b-af8f-4361-8abf-26212bb90865",
+    "restoredProductionVersion": "6a027bed-24f9-4727-aae8-ed45e8f89eab",
+    "restoredDeployment": "dc6492ed-3359-4ed4-8fc4-b279b92a5cd1",
+    "verified": true,
+    "normalTrafficDiagnosticPercentage": 0
+  },
+  "interpretation": [
+    "The wait is predominantly before the Member service response headers. Support body read p95 is 6ms.",
+    "Server-Timing records elapsed I/O stages; a recorded 0ms enhancement is not an independent CPU profile.",
+    "The measurements do not yet isolate a slow database query, CPU limit, provider queue or the actual signed-in iPhone.",
+    "Captured startup timings and a local VM diagnostic do not demonstrate a capacity bottleneck."
+  ],
+  "planCheck": {
+    "at": "2026-11-02T18:42:28.953Z",
+    "status": 403,
+    "verified": false,
+    "errors": [
+      {
+        "code": 10000,
+        "message": "Authentication error"
+      }
+    ],
+    "plans": [],
+    "workerUsageModels": [
+      {
+        "name": "shift-core",
+        "model": "standard"
+      },
+      {
+        "name": "shift-programme-member-20261023",
+        "model": "standard"
+      },
+      {
+        "name": "shift-hq-member-comms-20261023",
+        "model": "standard"
+      }
+    ]
+  },
+  "blockers": [
+    {
+      "scope": "Detailed Workers trace query",
+      "httpStatus": 403,
+      "code": 10104,
+      "message": "workers_observability.api.error.authentication.no_access_to_workers_observability",
+      "next": "Enable the existing operator connection to read Workers Observability; do not retry unchanged or request secrets in chat."
+    },
+    {
+      "scope": "Exact account billing subscription",
+      "httpStatus": 403,
+      "code": 10000,
+      "next": "Read-only billing access needed to confirm the subscription; not required to implement an engineering fix."
+    },
+    {
+      "scope": "Physical signed-in iPhone",
+      "next": "Actual device access or a new user validation after an accepted release; fixture timings are not phone proof."
+    }
+  ],
+  "next": "Obtain detailed authorised server traces and fix the dominant measured backend stage. Keep current member release and withhold rejected navigation/Core-only candidates. No spending, messages, native changes or new watcher.",
+  "providerServingVerified": {
+    "core": {
+      "version": "e6ab12fe-b178-450c-8a1b-9ed909f1d5de",
+      "percentage": 100,
+      "deployment": "a00c3d4e-3e49-46be-9960-8a5dcb09550c"
+    },
+    "programme": {
+      "version": "c9771e70-bde3-4013-92df-f0698155caca",
+      "percentage": 100,
+      "deployment": "b45cc663-7e0c-42a3-a832-6129605dbaf7"
+    },
+    "documents": {
+      "version": "727fe8d9-c51d-4057-b013-f7ed9da36fb9",
+      "percentage": 100,
+      "deployment": "3fb822a6-4668-4eb5-8833-2f567147eb9f"
+    },
+    "support": {
+      "version": "6a027bed-24f9-4727-aae8-ed45e8f89eab",
+      "percentage": 100,
+      "deployment": "dc6492ed-3359-4ed4-8fc4-b279b92a5cd1"
+    },
+    "rejectedCandidatesRemainAtZero": true
+  },
+  "traceAccessRequirement": {
+    "permissionDocumentedByQueryAPI": "Workers Observability Write",
+    "purpose": "Read a narrowly scoped temporary telemetry query; no changes to application data or production release",
+    "source": "https://developers.cloudflare.com/api/resources/workers/subresources/observability/subresources/telemetry/methods/query/",
+    "denial": "403 code10104; existing operator access lacks Workers Observability"
+  },
+  "capacityConclusion": "No paid upgrade identified as a verified remedy. All three member delivery Workers use the Standard usage model; account billing subscription could not be read (403). Website Pro/Business billing is separate from Workers. Current official status page reports no known service issues.",
+  "noActiveCheckOrBackgroundRepair": true
+}

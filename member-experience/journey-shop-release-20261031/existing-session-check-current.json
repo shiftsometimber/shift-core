@@ -1,0 +1,13 @@
+{
+  "at": "2026-11-01T14:36:57.916Z",
+  "productionWrites": 0,
+  "profile": "existing authorised apple-review-browser-profile",
+  "journeyStatus": 200,
+  "appFirstHeader": "app-shell-20261101",
+  "identity": {
+    "status": 401,
+    "hasIdentity": false,
+    "explicitSyntheticFlag": false
+  },
+  "finishedAt": "2026-11-01T14:37:00.801Z"
+}

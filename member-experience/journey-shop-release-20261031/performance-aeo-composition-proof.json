@@ -1,0 +1,15 @@
+{
+  "at": "2026-11-02T18:11:16.939Z",
+  "source": "7914832e76daa4d81bae4361d94105f7b72b7317",
+  "coreVersion": "d6a13db3-fde0-42f6-b52c-ea9034c4ede9",
+  "rollback": "e6ab12fe-b178-450c-8a1b-9ed909f1d5de",
+  "main": "aeo-geo/entry.mjs",
+  "changedModules": [
+    "aeo-geo/delivery.mjs"
+  ],
+  "moduleCount": 92,
+  "allOtherModuleHashesUnchanged": true,
+  "privateHandlersUnchanged": true,
+  "bindingsAndSettingsPreserved": true,
+  "routesAndSchedulesPreserved": true
+}

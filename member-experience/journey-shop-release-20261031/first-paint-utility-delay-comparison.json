@@ -1,0 +1,157 @@
+[
+  {
+    "kind": "baseline",
+    "path": "/member/plans",
+    "errors": [
+      {
+        "message": "Cannot read properties of null (reading 'addEventListener')",
+        "stack": "TypeError: Cannot read properties of null (reading 'addEventListener')\n    at https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:8:5\n    at https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:13:3"
+      }
+    ],
+    "state": {
+      "url": "https://shiftsometimber.co.uk/member/dashboard#plans",
+      "paint": "20261101",
+      "style": true,
+      "welcome": "<section id=\"mtWelcome\" aria-label=\"Welcome to My Timber\">\n\n<div class=\"mtw-hero\">\n<div class=\"mtw-intro\"><p class=\"mtw-kicker\">FREE. YOURS. NO PURCHASE NEEDED.</p><h1>YOUR LIFE.<br>YOUR PACE.<br><span>MY TIMBER.</span></h1><p class=\"mtw-lead\">Practi",
+      "headers": [
+        {
+          "id": "shift-site-header",
+          "display": "none",
+          "style": null
+        },
+        {
+          "id": "sst-footer-c",
+          "display": "none",
+          "style": null
+        }
+      ]
+    }
+  },
+  {
+    "kind": "baseline",
+    "path": "/member/my-target",
+    "errors": [],
+    "state": {
+      "url": "https://shiftsometimber.co.uk/member-login",
+      "style": false,
+      "headers": [
+        {
+          "id": "",
+          "display": "block",
+          "style": null
+        }
+      ]
+    }
+  },
+  {
+    "kind": "baseline",
+    "path": "/member/my-shift",
+    "errors": [],
+    "state": {
+      "url": "https://shiftsometimber.co.uk/member/my-shift#overview",
+      "style": false,
+      "headers": [
+        {
+          "id": "sst-footer-c",
+          "display": "block",
+          "style": null
+        }
+      ]
+    }
+  },
+  {
+    "kind": "candidate",
+    "path": "/member/plans",
+    "errors": [
+      {
+        "message": "Cannot read properties of null (reading 'addEventListener')",
+        "stack": "TypeError: Cannot read properties of null (reading 'addEventListener')\n    at https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:8:5\n    at https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:13:3"
+      }
+    ],
+    "state": {
+      "url": "https://shiftsometimber.co.uk/member/dashboard#plans",
+      "paint": "20261101",
+      "style": true,
+      "welcome": "<section id=\"mtWelcome\" aria-label=\"Welcome to My Timber\">\n\n<div class=\"mtw-hero\">\n<div class=\"mtw-intro\"><p class=\"mtw-kicker\">FREE. YOURS. NO PURCHASE NEEDED.</p><h1>YOUR LIFE.<br>YOUR PACE.<br><span>MY TIMBER.</span></h1><p class=\"mtw-lead\">Practi",
+      "headers": [
+        {
+          "id": "shift-site-header",
+          "display": "none",
+          "style": null
+        },
+        {
+          "id": "sst-footer-c",
+          "display": "none",
+          "style": null
+        }
+      ]
+    }
+  },
+  {
+    "kind": "candidate",
+    "path": "/member/my-target",
+    "errors": [],
+    "state": {
+      "url": "https://shiftsometimber.co.uk/member-login",
+      "style": false,
+      "headers": [
+        {
+          "id": "shift-site-header",
+          "display": "block",
+          "style": null
+        },
+        {
+          "id": "sst-footer-c",
+          "display": "block",
+          "style": null
+        }
+      ]
+    }
+  },
+  {
+    "kind": "candidate",
+    "path": "/member/my-shift",
+    "errors": [],
+    "state": {
+      "url": "https://shiftsometimber.co.uk/member/my-shift#overview",
+      "paint": "20261101",
+      "style": true,
+      "headers": [
+        {
+          "id": "sst-footer-c",
+          "display": "none",
+          "style": null
+        }
+      ]
+    }
+  },
+  {
+    "kind": "baseline",
+    "path": "/member/plans",
+    "errors": [
+      {
+        "message": "null is not an object (evaluating 'btn.addEventListener')",
+        "stack": "TypeError: null is not an object (evaluating 'btn.addEventListener')\n    at unknown (https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:8:4)\n    at global code (https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:13:3)"
+      }
+    ],
+    "state": {
+      "url": "https://shiftsometimber.co.uk/member/dashboard#plans",
+      "paint": "20261101",
+      "style": true,
+      "welcome": "<section id=\"mtWelcome\" aria-label=\"Welcome to My Timber\">\n\n<div class=\"mtw-hero\">\n<div class=\"mtw-intro\"><p class=\"mtw-kicker\">FREE. YOURS. NO PURCHASE NEEDED.</p><h1>YOUR LIFE.<br>YOUR PACE.<br><span>MY TIMBER.</span></h1><p class=\"mtw-lead\">Practi",
+      "headers": [
+        {
+          "id": "shift-site-header",
+          "display": "none",
+          "style": null
+        },
+        {
+          "id": "sst-footer-c",
+          "display": "none",
+          "style": null
+        }
+      ]
+    },
+    "browser": "webkit"
+  }
+]

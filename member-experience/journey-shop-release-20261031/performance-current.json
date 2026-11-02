@@ -1,0 +1,520 @@
+{
+  "atUtc": "2026-11-01T18:50:04.907364+00:00",
+  "scope": "Anonymous HTTP from SST Mac; not a measurement of Matt signed-in iPhone; no auth, member records or production writes",
+  "requests": [
+    {
+      "key": "dashboard",
+      "path": "/member/dashboard?view=app",
+      "status": 200,
+      "ttfbSeconds": 4.279,
+      "totalSeconds": 4.294,
+      "wireBytes": 73801,
+      "decodedBytes": 442763,
+      "sha256": "791b10938084c02702d176ff5c6a6ba710faae9b398734572142b6c056ed611e",
+      "headers": [
+        "content-type: text/html; charset=utf-8",
+        "cache-control: no-store, private",
+        "content-encoding: gzip"
+      ],
+      "file": "/Users/shiftsometimberltd/SST/builds/apple-completion-20261024/journey-shop-release-20261031/public-fixtures/perf-current-dashboard.txt",
+      "scripts": [
+        "/analytics-bootstrap-v1.js",
+        "/assets/member-experience/passport.js",
+        "/assets/member-experience/programme-shop-navigation.mjs",
+        "/assets/member-experience/session.mjs",
+        "/assets/member-login-security-20260912.js",
+        "/api-adapter-v33d.js?v=postpay-1",
+        "/member-treatment-journey-v1.js?v=postpay-1",
+        "/my-timber-v11.js?v=1",
+        "/assets/ask-timber-sync-v1.js?v=3",
+        "/consent-v4a.js",
+        "/analytics-events-v31b.js",
+        "/assets/member-shell-v6.js?v=canonical-20260909",
+        "/assets/v42.js?v=price-period-20261018-1314bdafe846",
+        "/assets/my-timber-welcome-20261021.js?v=3",
+        "/assets/my-timber-onboarding-20261021.js",
+        "/assets/member-experience/v1.mjs",
+        "/assets/member-experience/health.mjs",
+        "/assets/member-experience/checkin-followup.mjs",
+        "/assets/member-experience/day-guide.mjs",
+        "/assets/member-experience/continuity-exposure.mjs",
+        "/assets/my-timber-pwa.js",
+        "/assets/my-timber-layout.mjs",
+        "/assets/member-experience/programme-client.js",
+        "/assets/member-experience/programme-support-plan.mjs",
+        "/assets/member-experience/programme-shed.mjs",
+        "/assets/member-experience/programme-first-six-weeks.mjs",
+        "/member/support/dashboard.js"
+      ],
+      "iframes": 0,
+      "newShopNav": true
+    },
+    {
+      "key": "grub",
+      "path": "/member/grub",
+      "status": 200,
+      "ttfbSeconds": 2.272,
+      "totalSeconds": 2.279,
+      "wireBytes": 36414,
+      "decodedBytes": 314337,
+      "sha256": "1915325effc22357fe15838c50bba8a4f660c41006c43d478342c0e14491e2eb",
+      "headers": [
+        "content-type: text/html; charset=utf-8",
+        "cache-control: no-store, private",
+        "content-encoding: gzip"
+      ],
+      "file": "/Users/shiftsometimberltd/SST/builds/apple-completion-20261024/journey-shop-release-20261031/public-fixtures/perf-current-grub.txt",
+      "scripts": [
+        "/analytics-bootstrap-v1.js",
+        "/assets/member-experience/programme-shop-navigation.mjs",
+        "/assets/member-experience/session.mjs",
+        "/api-adapter-v33d.js?v=33h",
+        "/assets/member-shell-v6.js?v=canonical-20260909",
+        "/consent-v4a.js",
+        "/analytics-events-v31b.js",
+        "/app.js?v=phase8v10&amp;member_worker=1",
+        "/assets/member-shell-v6.js?v=canonical-20260909",
+        "/assets/v42.js?v=price-period-20261018-1314bdafe846",
+        "/assets/member-experience/v1.mjs",
+        "/assets/member-experience/grub.mjs",
+        "/assets/member-experience/food-diary.mjs",
+        "/assets/member-experience/checkin-followup.mjs",
+        "/assets/my-timber-pwa.js",
+        "/assets/my-timber-layout.mjs",
+        "/assets/member-experience/programme-client.js",
+        "/assets/member-experience/programme-shed.mjs"
+      ],
+      "iframes": 0,
+      "newShopNav": true
+    },
+    {
+      "key": "fit",
+      "path": "/member/fit",
+      "status": 200,
+      "ttfbSeconds": 2.602,
+      "totalSeconds": 2.616,
+      "wireBytes": 45750,
+      "decodedBytes": 347243,
+      "sha256": "533fdc1d2934422acf0d685860c94773cf0e67e8af4042107a1ec73bda32c9b3",
+      "headers": [
+        "content-type: text/html; charset=utf-8",
+        "cache-control: no-store, private",
+        "content-encoding: gzip"
+      ],
+      "file": "/Users/shiftsometimberltd/SST/builds/apple-completion-20261024/journey-shop-release-20261031/public-fixtures/perf-current-fit.txt",
+      "scripts": [
+        "/analytics-bootstrap-v1.js",
+        "/assets/member-experience/programme-shop-navigation.mjs",
+        "/assets/member-experience/session.mjs",
+        "/api-adapter-v33d.js?v=qa3",
+        "/assets/member-shell-v6.js?v=canonical-20260909",
+        "/consent-v4a.js",
+        "/analytics-events-v31b.js",
+        "/app.js?v=phase8v10&amp;member_worker=1",
+        "/assets/member-shell-v6.js?v=canonical-20260909",
+        "/assets/v42.js?v=price-period-20261018-1314bdafe846",
+        "/assets/member-experience/v1.mjs",
+        "/assets/member-experience/health.mjs",
+        "/assets/member-experience/checkin-followup.mjs",
+        "/assets/my-timber-pwa.js",
+        "/assets/my-timber-layout.mjs",
+        "/assets/member-experience/programme-client.js",
+        "/assets/member-experience/programme-shed.mjs"
+      ],
+      "iframes": 0,
+      "newShopNav": true
+    },
+    {
+      "key": "journey",
+      "path": "/member/life-back/journey",
+      "status": 200,
+      "ttfbSeconds": 0.383,
+      "totalSeconds": 0.385,
+      "wireBytes": 4365,
+      "decodedBytes": 17783,
+      "sha256": "97f13be8817507f3e278bff17321871a54bb0503b6b1e441e559f2066f31fb69",
+      "headers": [
+        "content-type: text/html; charset=utf-8",
+        "cache-control: no-store, private",
+        "content-encoding: gzip"
+      ],
+      "file": "/Users/shiftsometimberltd/SST/builds/apple-completion-20261024/journey-shop-release-20261031/public-fixtures/perf-current-journey.txt",
+      "scripts": [
+        "/assets/member-experience/programme-shop-navigation.mjs",
+        "/assets/member-experience/session.mjs",
+        "/api-adapter-v33d.js",
+        "/assets/member-experience/health.mjs",
+        "/assets/member-experience/programme-journey.mjs",
+        "/assets/member-experience/programme-first-six-weeks.mjs"
+      ],
+      "iframes": 0,
+      "newShopNav": true
+    },
+    {
+      "key": "shop",
+      "path": "/member/life-back/shop",
+      "status": 200,
+      "ttfbSeconds": 1.294,
+      "totalSeconds": 1.296,
+      "wireBytes": 4540,
+      "decodedBytes": 18016,
+      "sha256": "ffac6e18d6048125af15db630815387163d59f7abb2c1f764a03eff402458477",
+      "headers": [
+        "content-type: text/html; charset=utf-8",
+        "cache-control: no-store, private",
+        "content-encoding: gzip"
+      ],
+      "file": "/Users/shiftsometimberltd/SST/builds/apple-completion-20261024/journey-shop-release-20261031/public-fixtures/perf-current-shop.txt",
+      "scripts": [
+        "/assets/member-experience/programme-shop-navigation.mjs",
+        "/assets/member-experience/session.mjs"
+      ],
+      "iframes": 0,
+      "newShopNav": true
+    },
+    {
+      "key": "layout",
+      "path": "/assets/my-timber-layout.mjs",
+      "status": 200,
+      "ttfbSeconds": 1.931,
+      "totalSeconds": 1.937,
+      "wireBytes": 41898,
+      "decodedBytes": 169503,
+      "sha256": "24fa200f1b2ea5335de778ada3e583ed2c8f5587b97527769afefa073aaa5c1c",
+      "headers": [
+        "content-type: text/javascript; charset=utf-8",
+        "cache-control: no-store, private",
+        "content-encoding: gzip"
+      ],
+      "file": "/Users/shiftsometimberltd/SST/builds/apple-completion-20261024/journey-shop-release-20261031/public-fixtures/perf-current-layout.txt"
+    },
+    {
+      "key": "session",
+      "path": "/assets/member-experience/session.mjs",
+      "status": 200,
+      "ttfbSeconds": 1.579,
+      "totalSeconds": 1.58,
+      "wireBytes": 931,
+      "decodedBytes": 1876,
+      "sha256": "c35c367a2d82723604ae2632ff38548a94059f60ca97b9119762cc03d18570f2",
+      "headers": [
+        "content-type: text/javascript; charset=utf-8",
+        "cache-control: no-store, must-revalidate",
+        "content-encoding: gzip"
+      ],
+      "file": "/Users/shiftsometimberltd/SST/builds/apple-completion-20261024/journey-shop-release-20261031/public-fixtures/perf-current-session.txt"
+    },
+    {
+      "key": "runtime",
+      "path": "/my-timber-v11.js",
+      "status": 200,
+      "ttfbSeconds": 2.078,
+      "totalSeconds": 2.081,
+      "wireBytes": 8185,
+      "decodedBytes": 23240,
+      "sha256": "6ea38a5410a64c7072d999f70f7fe9c47e4129369d6ee0cfca2b38fd8322fd4f",
+      "headers": [
+        "content-type: application/javascript; charset=utf-8",
+        "cf-cache-status: HIT",
+        "cache-control: no-store, private",
+        "content-encoding: gzip"
+      ],
+      "file": "/Users/shiftsometimberltd/SST/builds/apple-completion-20261024/journey-shop-release-20261031/public-fixtures/perf-current-runtime.txt"
+    },
+    {
+      "key": "api-adapter",
+      "path": "/api-adapter-v33d.js",
+      "status": 200,
+      "ttfbSeconds": 0.678,
+      "totalSeconds": 0.68,
+      "wireBytes": 4294,
+      "decodedBytes": 15757,
+      "sha256": "eeb741d84aa1e8a9e27d75f1f065a0a7cf65efd378264c45294ba18f069a95bd",
+      "headers": [
+        "content-type: application/javascript; charset=utf-8",
+        "cf-cache-status: HIT",
+        "cache-control: public, max-age=300, must-revalidate",
+        "content-encoding: gzip"
+      ],
+      "file": "/Users/shiftsometimberltd/SST/builds/apple-completion-20261024/journey-shop-release-20261031/public-fixtures/perf-current-api-adapter.txt"
+    },
+    {
+      "key": "shop-nav",
+      "path": "/assets/member-experience/programme-shop-navigation.mjs",
+      "status": 200,
+      "ttfbSeconds": 1.19,
+      "totalSeconds": 1.192,
+      "wireBytes": 3807,
+      "decodedBytes": 11181,
+      "sha256": "f7059a9a901054be59bdf808d8fb043be513c907a78c029c47ea8f21d5dd00eb",
+      "headers": [
+        "content-type: text/javascript; charset=utf-8",
+        "cache-control: no-store",
+        "content-encoding: gzip"
+      ],
+      "file": "/Users/shiftsometimberltd/SST/builds/apple-completion-20261024/journey-shop-release-20261031/public-fixtures/perf-current-shop-nav.txt"
+    }
+  ],
+  "productionChanges": 0,
+  "repeatedAtUtc": "2026-11-01T18:51:34.733799+00:00",
+  "repeatedTimings": [
+    {
+      "path": "/member/dashboard?view=app",
+      "samples": [
+        {
+          "sample": 1,
+          "status": 200,
+          "ttfb": 2.805,
+          "total": 2.82,
+          "dns": 0.004,
+          "connect": 0.024,
+          "tlsReady": 0.051,
+          "postConnectWait": 2.754,
+          "wireBytes": 73801
+        },
+        {
+          "sample": 2,
+          "status": 200,
+          "ttfb": 3.54,
+          "total": 3.553,
+          "dns": 0.004,
+          "connect": 0.018,
+          "tlsReady": 0.037,
+          "postConnectWait": 3.503,
+          "wireBytes": 73801
+        }
+      ]
+    },
+    {
+      "path": "/member/grub",
+      "samples": [
+        {
+          "sample": 1,
+          "status": 200,
+          "ttfb": 2.446,
+          "total": 2.449,
+          "dns": 0.004,
+          "connect": 0.023,
+          "tlsReady": 0.051,
+          "postConnectWait": 2.395,
+          "wireBytes": 36499
+        },
+        {
+          "sample": 2,
+          "status": 200,
+          "ttfb": 0.643,
+          "total": 0.645,
+          "dns": 0.005,
+          "connect": 0.019,
+          "tlsReady": 0.131,
+          "postConnectWait": 0.512,
+          "wireBytes": 36414
+        }
+      ]
+    },
+    {
+      "path": "/member/fit",
+      "samples": [
+        {
+          "sample": 1,
+          "status": 200,
+          "ttfb": 2.622,
+          "total": 2.625,
+          "dns": 0.004,
+          "connect": 0.018,
+          "tlsReady": 0.049,
+          "postConnectWait": 2.573,
+          "wireBytes": 45672
+        },
+        {
+          "sample": 2,
+          "status": 200,
+          "ttfb": 2.422,
+          "total": 2.425,
+          "dns": 0.005,
+          "connect": 0.019,
+          "tlsReady": 0.042,
+          "postConnectWait": 2.38,
+          "wireBytes": 45672
+        }
+      ]
+    },
+    {
+      "path": "/member/life-back/journey",
+      "samples": [
+        {
+          "sample": 1,
+          "status": 200,
+          "ttfb": 0.365,
+          "total": 0.365,
+          "dns": 0.005,
+          "connect": 0.02,
+          "tlsReady": 0.042,
+          "postConnectWait": 0.323,
+          "wireBytes": 4365
+        },
+        {
+          "sample": 2,
+          "status": 200,
+          "ttfb": 0.325,
+          "total": 0.326,
+          "dns": 0.004,
+          "connect": 0.017,
+          "tlsReady": 0.063,
+          "postConnectWait": 0.262,
+          "wireBytes": 4365
+        }
+      ]
+    },
+    {
+      "path": "/member/life-back/shop",
+      "samples": [
+        {
+          "sample": 1,
+          "status": 200,
+          "ttfb": 2.069,
+          "total": 2.07,
+          "dns": 0.004,
+          "connect": 0.02,
+          "tlsReady": 0.133,
+          "postConnectWait": 1.936,
+          "wireBytes": 4540
+        },
+        {
+          "sample": 2,
+          "status": 200,
+          "ttfb": 0.402,
+          "total": 0.402,
+          "dns": 0.005,
+          "connect": 0.021,
+          "tlsReady": 0.139,
+          "postConnectWait": 0.262,
+          "wireBytes": 4540
+        }
+      ]
+    },
+    {
+      "path": "/assets/member-experience/session.mjs",
+      "samples": [
+        {
+          "sample": 1,
+          "status": 200,
+          "ttfb": 0.402,
+          "total": 0.403,
+          "dns": 0.004,
+          "connect": 0.098,
+          "tlsReady": 0.126,
+          "postConnectWait": 0.276,
+          "wireBytes": 931
+        },
+        {
+          "sample": 2,
+          "status": 200,
+          "ttfb": 1.004,
+          "total": 1.005,
+          "dns": 0.004,
+          "connect": 0.019,
+          "tlsReady": 0.044,
+          "postConnectWait": 0.96,
+          "wireBytes": 931
+        }
+      ]
+    },
+    {
+      "path": "/v1/me",
+      "samples": [
+        {
+          "sample": 1,
+          "status": 401,
+          "ttfb": 2.086,
+          "total": 2.086,
+          "dns": 0.005,
+          "connect": 0.019,
+          "tlsReady": 0.042,
+          "postConnectWait": 2.044,
+          "wireBytes": 46
+        },
+        {
+          "sample": 2,
+          "status": 401,
+          "ttfb": 1.113,
+          "total": 1.114,
+          "dns": 0.004,
+          "connect": 0.02,
+          "tlsReady": 0.04,
+          "postConnectWait": 1.073,
+          "wireBytes": 46
+        }
+      ]
+    }
+  ],
+  "sourceFindings": {
+    "currentDashboardScriptTags": 27,
+    "fullDocumentLinks": true,
+    "sessionCheckThenNavigationRecheck": true,
+    "noMemberDataAccess": true
+  },
+  "authReproduction": {
+    "atUtc": "2026-11-01T18:52:49.772Z",
+    "method": "All network requests intercepted. Current live session/navigation scripts with fictional account and controlled 200ms identity replies. Not a physical phone or production account test.",
+    "identityRequests": 2,
+    "events": [
+      {
+        "kind": "identity-start",
+        "number": 1,
+        "ms": 47
+      },
+      {
+        "kind": "identity-end",
+        "number": 1,
+        "ms": 248
+      },
+      {
+        "kind": "identity-start",
+        "number": 2,
+        "ms": 255
+      },
+      {
+        "kind": "identity-end",
+        "number": 2,
+        "ms": 458
+      }
+    ],
+    "chromeVisibleMs": 871,
+    "errors": [],
+    "sessionSHA256": "c35c367a2d82723604ae2632ff38548a94059f60ca97b9119762cc03d18570f2",
+    "navigationSHA256": "f7059a9a901054be59bdf808d8fb043be513c907a78c029c47ea8f21d5dd00eb",
+    "productionRequests": 0,
+    "productionWrites": 0,
+    "secondIdentityStartsAfterFirstFinishes": true
+  },
+  "performanceFixDeployed": false,
+  "state": "PERFORMANCE_FAULT_REPRODUCED_NO_FIX_DEPLOYED",
+  "limitations": [
+    "Anonymous HTTP timings from SST Mac, three page samples including first capture; not an end-to-end signed-in iPhone benchmark",
+    "Two sequential identity checks proved in fully intercepted fictional browser fixture; synthetic 200ms replies are not live identity latency",
+    "No member account, payment, clinical flow or Apple review setting changed",
+    "No measured root-cause split within Cloudflare Workers yet; post-connection wait is not proof of one specific server component"
+  ],
+  "nextRepairScope": [
+    "Profile serving response chain; reduce repeated document work without caching private member responses",
+    "Reuse one fresh identity result for page bootstrap; preserve account-change, sign-out and resume revalidation",
+    "Keep the approved app navigation stable during screen changes and reduce whole-document/script reloads",
+    "Test true tap-to-usable-screen latency as well as first visual response; no spinner-only completion claim"
+  ],
+  "verifiedAtUtc": "2026-11-01T18:53:43.635930+00:00",
+  "repairCheckpoint": {
+    "at": "2026-11-01T23:06:20.442Z",
+    "source": "7d96852340bf81f14199506acce5d55d13420839",
+    "liveFrom": "2026-11-01T22:56:59.174Z",
+    "withdrawnAt": "2026-11-01T23:05:38.305Z",
+    "reason": "Support fresh-screen n20 p95 2102 -> 2235 ms; both fingerprinted and canonical dynamic module URLs loaded",
+    "privacyChecksPassed": 100,
+    "frameAndSharedIdentityEnabled": false,
+    "baselineMeasurement": "performance-distribution-baseline-chromium-good-cache-both-today-journey-shop-grub-fit-support-more.json",
+    "liveMeasurement": "performance-safe-v1-performance-distribution-live-chromium-good-static-both-today-journey-shop-grub-fit-support-more.json",
+    "sourceProof": "performance-safe-slice-source-proof.json",
+    "rollbackEvidence": "performance-automatic-rollback.json",
+    "nextAction": "Retain canonical URLs for dynamically loaded public modules, prove no mixed URL duplicate execution, then pass n20 candidate and live comparisons before retaining promotion."
+  }
+}
