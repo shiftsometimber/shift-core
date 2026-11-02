@@ -1,0 +1,85 @@
+{
+  "at": "2026-11-02T20:40:20.065Z",
+  "readOnly": true,
+  "publicArticleSamples": [
+    {
+      "url": "https://shiftsometimber.co.uk/articles/wegovy-injection-sites",
+      "registrySource": "1040441",
+      "expectedHeader": "babylovegrowth",
+      "actualHeader": "babylovegrowth",
+      "status": 200,
+      "pass": true,
+      "htmlSha256": "3a418b2def78c8981a62e265fbf142a7058c084c77cc7996fbf4aec3f436975e"
+    }
+  ],
+  "blogs": [
+    {
+      "url": "https://shiftsometimber.co.uk/male-obesity",
+      "status": 200,
+      "canonical": "https://shiftsometimber.co.uk/male-obesity",
+      "originalPublicationRetained": true,
+      "published": "2026-10-10",
+      "modified": "2026-10-22",
+      "indexable": true,
+      "sourcesPresent": true,
+      "images": [],
+      "htmlSha256": "225e1909379c2bb0b7992664c475f2309fa4d5a9ecd9e89c43e03994924f3675",
+      "bodyRefreshAcceptance": "Historical full acceptance retained; this check validates current metadata, references and image delivery without rewriting the body"
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/guides/mens-health-mot-guide",
+      "status": 200,
+      "canonical": "https://shiftsometimber.co.uk/guides/mens-health-mot-guide",
+      "originalPublicationRetained": true,
+      "published": "2026-05-04",
+      "modified": "2026-10-22",
+      "indexable": true,
+      "sourcesPresent": true,
+      "images": [
+        {
+          "path": "/uploads/blog/refresh-5632661e40cb.jpg",
+          "status": 200
+        }
+      ],
+      "htmlSha256": "4f7624780aab7167cd79c7e083512254e74c31e20122008417c7099999e7bcca",
+      "bodyRefreshAcceptance": "Historical full acceptance retained; this check validates current metadata, references and image delivery without rewriting the body"
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/testosterone-weight-men",
+      "status": 200,
+      "canonical": "https://shiftsometimber.co.uk/articles/testosterone-weight-men",
+      "originalPublicationRetained": true,
+      "published": "2026-08-26",
+      "modified": "2026-10-22",
+      "indexable": true,
+      "sourcesPresent": true,
+      "images": [
+        {
+          "path": "/uploads/blog/refresh-83e64f2e4849.jpg",
+          "status": 200
+        }
+      ],
+      "htmlSha256": "84ef197d1a8946248e5613af3443219291d9ed5b4ee71ee08e69170c93065ba9",
+      "bodyRefreshAcceptance": "Historical full acceptance retained; this check validates current metadata, references and image delivery without rewriting the body"
+    }
+  ],
+  "errors": [
+    {
+      "scope": "Direct contributor public sample",
+      "reason": "No eligible published sample found"
+    }
+  ],
+  "citationLinks": {
+    "url": "https://shiftsometimber.co.uk/articles/glp-1-weight-regain",
+    "status": 200,
+    "complete25": true,
+    "complete26": true
+  },
+  "mutations": {
+    "publications": 0,
+    "articleWrites": 0,
+    "memberReads": 0,
+    "memberWrites": 0,
+    "communications": 0
+  }
+}
