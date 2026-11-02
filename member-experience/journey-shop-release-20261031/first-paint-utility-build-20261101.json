@@ -1,0 +1,37 @@
+{
+  "at": "2026-11-01T09:50:13.311Z",
+  "bytes": 25730,
+  "sha256": "99ba9f697a333a53b3bea70f722e816e9430cdb303db165134bf7040a81890a9",
+  "inputs": {
+    "scoped-source/member-experience/shop-navigation-client.mjs": {
+      "bytes": 7733,
+      "imports": [],
+      "format": "esm",
+      "canonicalSourceSHA256": "9bb9e2fb15436d81166f24f5516f064ea95b6223dbe3a5819a82170b9a4204d1"
+    },
+    "scoped-source/member-experience/shop-navigation.mjs": {
+      "bytes": 17803,
+      "imports": [
+        {
+          "path": "scoped-source/member-experience/shop-navigation-client.mjs",
+          "kind": "import-statement",
+          "original": "./shop-navigation-client.mjs"
+        }
+      ],
+      "format": "esm",
+      "canonicalSourceSHA256": "ae5e2a5978b38ab03c3b0c1914c18a27ab34724da92d3db74d64843048d1d9f2"
+    },
+    "scoped-source/member-experience/member-first-paint-utilities.mjs": {
+      "bytes": 1512,
+      "imports": [
+        {
+          "path": "scoped-source/member-experience/shop-navigation.mjs",
+          "kind": "import-statement",
+          "original": "./shop-navigation.mjs"
+        }
+      ],
+      "format": "esm",
+      "canonicalSourceSHA256": "5462515ca7d02dee97849f0170af2d6bfcef2d302eb862b8d13454a533eb8420"
+    }
+  }
+}

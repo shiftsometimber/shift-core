@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-01T23:05:38.305Z",
+  "reason": "Live n20 Support fresh p95 regression: 2102 -> 2235 ms; fingerprinted and canonical module URLs both loaded",
+  "actions": [
+    {
+      "owner": "shift-hq-member-comms-20261023",
+      "status": 0,
+      "stdout": "PERFORMANCE_PUBLICATION_VERIFIED rollback shift-hq-member-comms-20261023 2dd2c676-25ee-45a5-9c0a-2735e1e3e1d8 5e946206-813d-4a19-ad89-b7ce0c3ddd8f\n",
+      "stderr": ""
+    },
+    {
+      "owner": "shift-programme-member-20261023",
+      "status": 0,
+      "stdout": "PERFORMANCE_PUBLICATION_VERIFIED rollback shift-programme-member-20261023 2445f34e-d959-4033-960c-c50b7cb6d8d0 0652b2ad-7eac-4372-9ab8-09e257e67b2a\n",
+      "stderr": ""
+    },
+    {
+      "owner": "shift-core",
+      "status": 0,
+      "stdout": "PERFORMANCE_PUBLICATION_VERIFIED rollback shift-core 1aa8564a-9620-4847-a084-64e2d2b3cf15 4c81fa45-78bf-4cd9-be2c-31140fc0b273\n",
+      "stderr": ""
+    }
+  ],
+  "verified": true
+}

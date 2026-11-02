@@ -1,0 +1,329 @@
+{
+  "kind": "MY_TIMBER_UTILITY_FIRST_PAINT_RELEASE",
+  "name": "shift-core",
+  "source": "9b473dd13daa9e55a88b25afbf2eae8ef680b6ad",
+  "previousVersion": "75f089f8-fcaa-4f46-b464-a642f2288a7e",
+  "baselineDeployment": "85d7e567-b823-42eb-8a9c-72cf3607c6cd",
+  "currentDeployment": "0c78f3c7-f5b0-4a4b-afac-cc96575c712f",
+  "oldMain": "public-image-repair/entry.mjs",
+  "baselineModuleHashes": {
+    "public-image-repair/delivery.mjs": "a3a6a64469adb0ac6cf1760ace2a6d491cbbba01cae94cab8f8ad998c2956a6a",
+    "public-image-repair/entry.mjs": "3f89f61dd15da23e04de34b752574d5d9e95b1e6982826172be6d7c15e069bcc",
+    "public-image-repair/tools-image.mjs": "60bc5d18776a7a63802d419ef19fac0c7f6aff1400d8186e6f19a3b11848bd35",
+    "quality-repair-20261101/config.mjs": "5eda317483d7590e6a937105807cf10e00a5df3ac75eb8208d07038b6728ac84",
+    "quality-repair-20261101/entry.mjs": "cfa33434cc2660c8642463c6b915495524d78a8532fb4a361f65e68344564933",
+    "quality-repair-20261101/graphics.mjs": "6db3f49a5ba2ccb05504f220288ff1db680c04e50332ae35f5f69b3d30c4f2f1",
+    "quality-repair-20261101/html.mjs": "efb7081f50337295361cb96d6b05f5f7d7d03df773f625609299ca4e86297146",
+    "quality-repair-20261101/media.mjs": "59eb016db4feed2c761fa3c6c550889eca438f87bcf91e5eaf958c1bcbabef11",
+    "quality-repair-20261101/photo-contributors.mjs": "012c6b690a45b03117b63e1ea1ca4ac61b80c872837ad316293cbddf1373dafc",
+    "quality-repair-20261101/photo-media.mjs": "e1f580f054625ae3b2dde12874fbce3cd815d7dd0c41866339b3116447e7e26c",
+    "quality-repair-20261101/photo-mot.mjs": "9c32d3e85460186e90ad885f10b67b8359fa67484a2013928d05715ad5ab52c4",
+    "quality-repair-20261101/photo-partners.mjs": "f03bc41b14209494bd867c4de71770e591b49cb242f8721669067538d4989673",
+    "quality-repair-20261101/photo-promise.mjs": "d91682069800e5de50735352d1627d2d91a488ac24783c7f77e2b3a544e2b61f",
+    "quality-repair-20261101/photo-research.mjs": "babd38eef415d025419fcf09bce38dbb8b99424ccb3c240b1ff8b0e87e7e3425",
+    "quality-repair-20261101/photo-roadmap.mjs": "ee63de509fa642bee1507b7a56495b7fc3c12bb0744c6380ea265ad270bbda30",
+    "quality-repair-20261101/presentation.mjs": "58c75e028d7dcd83c68b6cf452c530be4958071e8eaf42cacde0ff7e571579c4",
+    "quality-repair-20261101/restore-community-0.mjs": "06cd09e604a0eb2572cd2dc3849b19feab09e7196e623f93c76f7b82453b0062",
+    "quality-repair-20261101/restore-downloads-0.mjs": "87e10bc02412496ed78445755cf52121c3d690f222ef4de65a3440b8212c77ad",
+    "quality-repair-20261101/restore-family-0.mjs": "c10a2907258ea11e199d9c288e284a3fa4a25af3f173def8d9212baf9c217b31",
+    "quality-repair-20261101/restore-pending-0.mjs": "73bacebb2a59bb27fff7b10eab319e50656aab6dcb9205e3c19765aad2801ece",
+    "quality-repair-20261101/restore-pending-1.mjs": "147d0575e2ec32a6240c0d433669c7c697de6babd6a538ae219eff6537ac3089",
+    "quality-repair-20261101/restore-provider-0.mjs": "dedf2dddf492ce071935a4858dd7124c73b73ffe39a8fee0bd3ffa928cf56d14",
+    "quality-repair-20261101/restore-selected-0.mjs": "99d3112dcbfbac8594d596808ec3c0d6b0ab429d1354d738f2f056dd4806475f",
+    "quality-repair-20261101/restore-selected-1.mjs": "30564a9afeee3c37960ba58e29c58706bed0cd0df457e07fde7d579284261900",
+    "quality-repair-20261101/restored-media.mjs": "d9289e7f6bd2a2e0cae3252f9a5b03f24305842ee2569760dea0fd933e8048b7",
+    "quality-repair-20261101/runtime.mjs": "edbd957c7bfe3688376841251a53cfaaecdd151159ac8fdbf35bb7c87e8102f6",
+    "remaining-pages-20261101/config.mjs": "7d93a1f54f5a17ff704dc29b1d9c53e49ab0448a49855cf2857104576a7f1d57",
+    "remaining-pages-20261101/entry.mjs": "e1417abcdef6f812a98b03dd5ac5dfe3295279ee96dc45a70aa5dfeeb4103a8c",
+    "remaining-pages-20261101/graphics.mjs": "485410f6cab696cd1e77cea4bd504af852679833910319cf2b8fea8a513a8f85",
+    "remaining-pages-20261101/html.mjs": "efb7081f50337295361cb96d6b05f5f7d7d03df773f625609299ca4e86297146",
+    "remaining-pages-20261101/media.mjs": "992cf882511167ea034462ddac27d796c91b5671a739defdc618f3fbeba29ddd",
+    "remaining-pages-20261101/photo-editorial.mjs": "2efc8fd82e7bf38e5d04cb7fa51edca6a1d04fbcf106a1c7b5a66e1339947037",
+    "remaining-pages-20261101/photo-lifestyle.mjs": "ea8a9f263f0149ccd60d308b7e3793449941b2fef12396a335ba8b65a5a6075d",
+    "remaining-pages-20261101/photo-reviews.mjs": "3f56c9dd08d82aebaa5889e32ed5e0228b85d88e7ca964645815631c0c4b2348",
+    "remaining-pages-20261101/presentation.mjs": "3546ee3525c7735ea756165ebb4123c8c114f79a4612098d1f83eedf0a1a5750",
+    "remaining-pages-20261101/runtime.mjs": "ad96b916f6ade503663c3fd8fb6b62c5b290e88ade34703d7671bcae73ad4cea",
+    "worker.js": "9efe65d9679d413dcb5f7c6647e6d0edd19e4b7030e03c123a5af9fdd473052f"
+  },
+  "moduleHashes": {
+    "first-paint-utilities-20261101/documents.mjs": "99ba9f697a333a53b3bea70f722e816e9430cdb303db165134bf7040a81890a9",
+    "first-paint-utilities-20261101/entry.mjs": "ad2da9953a24b5592560209cbec111e3302c3eeb36388035e96b918122af3b31",
+    "public-image-repair/delivery.mjs": "a3a6a64469adb0ac6cf1760ace2a6d491cbbba01cae94cab8f8ad998c2956a6a",
+    "public-image-repair/entry.mjs": "3f89f61dd15da23e04de34b752574d5d9e95b1e6982826172be6d7c15e069bcc",
+    "public-image-repair/tools-image.mjs": "60bc5d18776a7a63802d419ef19fac0c7f6aff1400d8186e6f19a3b11848bd35",
+    "quality-repair-20261101/config.mjs": "5eda317483d7590e6a937105807cf10e00a5df3ac75eb8208d07038b6728ac84",
+    "quality-repair-20261101/entry.mjs": "cfa33434cc2660c8642463c6b915495524d78a8532fb4a361f65e68344564933",
+    "quality-repair-20261101/graphics.mjs": "6db3f49a5ba2ccb05504f220288ff1db680c04e50332ae35f5f69b3d30c4f2f1",
+    "quality-repair-20261101/html.mjs": "efb7081f50337295361cb96d6b05f5f7d7d03df773f625609299ca4e86297146",
+    "quality-repair-20261101/media.mjs": "59eb016db4feed2c761fa3c6c550889eca438f87bcf91e5eaf958c1bcbabef11",
+    "quality-repair-20261101/photo-contributors.mjs": "012c6b690a45b03117b63e1ea1ca4ac61b80c872837ad316293cbddf1373dafc",
+    "quality-repair-20261101/photo-media.mjs": "e1f580f054625ae3b2dde12874fbce3cd815d7dd0c41866339b3116447e7e26c",
+    "quality-repair-20261101/photo-mot.mjs": "9c32d3e85460186e90ad885f10b67b8359fa67484a2013928d05715ad5ab52c4",
+    "quality-repair-20261101/photo-partners.mjs": "f03bc41b14209494bd867c4de71770e591b49cb242f8721669067538d4989673",
+    "quality-repair-20261101/photo-promise.mjs": "d91682069800e5de50735352d1627d2d91a488ac24783c7f77e2b3a544e2b61f",
+    "quality-repair-20261101/photo-research.mjs": "babd38eef415d025419fcf09bce38dbb8b99424ccb3c240b1ff8b0e87e7e3425",
+    "quality-repair-20261101/photo-roadmap.mjs": "ee63de509fa642bee1507b7a56495b7fc3c12bb0744c6380ea265ad270bbda30",
+    "quality-repair-20261101/presentation.mjs": "58c75e028d7dcd83c68b6cf452c530be4958071e8eaf42cacde0ff7e571579c4",
+    "quality-repair-20261101/restore-community-0.mjs": "06cd09e604a0eb2572cd2dc3849b19feab09e7196e623f93c76f7b82453b0062",
+    "quality-repair-20261101/restore-downloads-0.mjs": "87e10bc02412496ed78445755cf52121c3d690f222ef4de65a3440b8212c77ad",
+    "quality-repair-20261101/restore-family-0.mjs": "c10a2907258ea11e199d9c288e284a3fa4a25af3f173def8d9212baf9c217b31",
+    "quality-repair-20261101/restore-pending-0.mjs": "73bacebb2a59bb27fff7b10eab319e50656aab6dcb9205e3c19765aad2801ece",
+    "quality-repair-20261101/restore-pending-1.mjs": "147d0575e2ec32a6240c0d433669c7c697de6babd6a538ae219eff6537ac3089",
+    "quality-repair-20261101/restore-provider-0.mjs": "dedf2dddf492ce071935a4858dd7124c73b73ffe39a8fee0bd3ffa928cf56d14",
+    "quality-repair-20261101/restore-selected-0.mjs": "99d3112dcbfbac8594d596808ec3c0d6b0ab429d1354d738f2f056dd4806475f",
+    "quality-repair-20261101/restore-selected-1.mjs": "30564a9afeee3c37960ba58e29c58706bed0cd0df457e07fde7d579284261900",
+    "quality-repair-20261101/restored-media.mjs": "d9289e7f6bd2a2e0cae3252f9a5b03f24305842ee2569760dea0fd933e8048b7",
+    "quality-repair-20261101/runtime.mjs": "edbd957c7bfe3688376841251a53cfaaecdd151159ac8fdbf35bb7c87e8102f6",
+    "remaining-pages-20261101/config.mjs": "7d93a1f54f5a17ff704dc29b1d9c53e49ab0448a49855cf2857104576a7f1d57",
+    "remaining-pages-20261101/entry.mjs": "e1417abcdef6f812a98b03dd5ac5dfe3295279ee96dc45a70aa5dfeeb4103a8c",
+    "remaining-pages-20261101/graphics.mjs": "485410f6cab696cd1e77cea4bd504af852679833910319cf2b8fea8a513a8f85",
+    "remaining-pages-20261101/html.mjs": "efb7081f50337295361cb96d6b05f5f7d7d03df773f625609299ca4e86297146",
+    "remaining-pages-20261101/media.mjs": "992cf882511167ea034462ddac27d796c91b5671a739defdc618f3fbeba29ddd",
+    "remaining-pages-20261101/photo-editorial.mjs": "2efc8fd82e7bf38e5d04cb7fa51edca6a1d04fbcf106a1c7b5a66e1339947037",
+    "remaining-pages-20261101/photo-lifestyle.mjs": "ea8a9f263f0149ccd60d308b7e3793449941b2fef12396a335ba8b65a5a6075d",
+    "remaining-pages-20261101/photo-reviews.mjs": "3f56c9dd08d82aebaa5889e32ed5e0228b85d88e7ca964645815631c0c4b2348",
+    "remaining-pages-20261101/presentation.mjs": "3546ee3525c7735ea756165ebb4123c8c114f79a4612098d1f83eedf0a1a5750",
+    "remaining-pages-20261101/runtime.mjs": "ad96b916f6ade503663c3fd8fb6b62c5b290e88ade34703d7671bcae73ad4cea",
+    "worker.js": "9efe65d9679d413dcb5f7c6647e6d0edd19e4b7030e03c123a5af9fdd473052f"
+  },
+  "bundleSHA256": "99ba9f697a333a53b3bea70f722e816e9430cdb303db165134bf7040a81890a9",
+  "baselineVerifiedAt": "2026-11-01T09:54:23.612Z",
+  "stagedVerifiedAt": "2026-11-01T09:57:11.138Z",
+  "zeroVerifiedAt": "2026-11-01T09:57:25.885Z",
+  "candidateAcceptedAt": "2026-11-01T10:30:09.209Z",
+  "liveVerifiedAt": "2026-11-01T10:30:24.380Z",
+  "acceptance": [
+    {
+      "path": "first-paint-utility-candidate-chromium.json",
+      "sha256": "3a0f29e932e957b46a1c32dcb9a5fa3802f7fdfadea07716a9843b3dd2b2ab20"
+    },
+    {
+      "path": "first-paint-utility-candidate-webkit.json",
+      "sha256": "f3ba0e2eab061958d904b35308c8702fcc0c3c499fdd9a44a646e4d3d3be461e"
+    }
+  ],
+  "bindings": [
+    {
+      "name": "ADMIN_API_KEY",
+      "type": "secret_text"
+    },
+    {
+      "name": "ADMIN_EMAIL_FROM",
+      "type": "plain_text"
+    },
+    {
+      "name": "ADMIN_NOTIFICATION_EMAIL",
+      "type": "plain_text"
+    },
+    {
+      "name": "AI",
+      "type": "ai"
+    },
+    {
+      "name": "ALLOWED_ORIGINS",
+      "type": "plain_text"
+    },
+    {
+      "name": "AUTH_EMAIL_FROM",
+      "type": "plain_text"
+    },
+    {
+      "name": "AUTO_VERIFY_EMAIL",
+      "type": "plain_text"
+    },
+    {
+      "name": "BABYLOVE_WEBHOOK_TOKEN_SHA256",
+      "type": "plain_text"
+    },
+    {
+      "name": "DAILY_CONTENT_BUDGET_VERIFIED",
+      "type": "plain_text"
+    },
+    {
+      "name": "DAILY_CONTENT_GATEWAY",
+      "type": "plain_text"
+    },
+    {
+      "name": "DAILY_EDITORIAL_MODEL",
+      "type": "plain_text"
+    },
+    {
+      "name": "DAILY_EDITORIAL_NOTIFY_ENABLED",
+      "type": "plain_text"
+    },
+    {
+      "name": "DAILY_EDITORIAL_NOTIFY_TEMPLATE",
+      "type": "plain_text"
+    },
+    {
+      "name": "DAILY_EDITORIAL_SUPPORT_MODEL",
+      "type": "plain_text"
+    },
+    {
+      "name": "DAILY_WEBSITE_CONTENT_ENABLED",
+      "type": "plain_text"
+    },
+    {
+      "name": "DAILY_WEBSITE_EDITORIAL_AUTOPUBLISH",
+      "type": "plain_text"
+    },
+    {
+      "name": "DB",
+      "type": "d1"
+    },
+    {
+      "name": "EMAIL",
+      "type": "send_email"
+    },
+    {
+      "name": "EVIDENCE_DESK_ALERT_TO",
+      "type": "plain_text"
+    },
+    {
+      "name": "EVIDENCE_DESK_READ_DB",
+      "type": "d1"
+    },
+    {
+      "name": "EVIDENCE_DESK_READ_ENV",
+      "type": "plain_text"
+    },
+    {
+      "name": "HEALTH_PASSPORT_V1_ENABLED",
+      "type": "plain_text"
+    },
+    {
+      "name": "HQ_MFA_ENCRYPTION_KEY",
+      "type": "secret_text"
+    },
+    {
+      "name": "MEMBER_ASSETS",
+      "type": "assets"
+    },
+    {
+      "name": "MEMBER_EXPERIENCE_V1_ENABLED",
+      "type": "plain_text"
+    },
+    {
+      "name": "MEMBER_GP_DIRECTORY_V2_ENABLED",
+      "type": "plain_text"
+    },
+    {
+      "name": "MEMBER_GP_LOOKUP_ENABLED",
+      "type": "plain_text"
+    },
+    {
+      "name": "MEMBER_SIGNUP_ALERTS_ENABLED",
+      "type": "plain_text"
+    },
+    {
+      "name": "MY_TIMBER_PWA_ENABLED",
+      "type": "plain_text"
+    },
+    {
+      "name": "MY_TIMBER_V6_RELEASE_ENABLED",
+      "type": "secret_text"
+    },
+    {
+      "name": "MY_TIMBER_WEEK_VIEW_ENABLED",
+      "type": "plain_text"
+    },
+    {
+      "name": "MY_TREATMENT_ENABLED",
+      "type": "plain_text"
+    },
+    {
+      "name": "ORDER_NOTIFICATION_EMAIL",
+      "type": "plain_text"
+    },
+    {
+      "name": "PUBLIC_SITE_URL",
+      "type": "plain_text"
+    },
+    {
+      "name": "RADAR_ALERT_TO",
+      "type": "plain_text"
+    },
+    {
+      "name": "RADAR_NOTIFICATION_MODE",
+      "type": "plain_text"
+    },
+    {
+      "name": "RADAR_PUBLICATION_EMAIL_SINCE",
+      "type": "plain_text"
+    },
+    {
+      "name": "RADAR_PUBLICATION_EMAIL_TO",
+      "type": "plain_text"
+    },
+    {
+      "name": "SHIFT_AI_CONVERSATION_MEMORY",
+      "type": "plain_text"
+    },
+    {
+      "name": "SHIFT_AI_MODEL",
+      "type": "plain_text"
+    },
+    {
+      "name": "SHIFT_AI_PRACTICAL_CONTEXT",
+      "type": "plain_text"
+    },
+    {
+      "name": "SITE_CONTENT_STATE",
+      "type": "durable_object_namespace"
+    },
+    {
+      "name": "STRIPE_MODE",
+      "type": "plain_text"
+    },
+    {
+      "name": "STRIPE_SECRET_KEY",
+      "type": "secret_text"
+    },
+    {
+      "name": "STRIPE_WEBHOOK_SECRET",
+      "type": "secret_text"
+    },
+    {
+      "name": "TAP_ROOM_MODERATION_BACKUP",
+      "type": "plain_text"
+    },
+    {
+      "name": "TAP_ROOM_MODERATION_OWNER",
+      "type": "plain_text"
+    },
+    {
+      "name": "TAP_ROOM_P0_EMAIL",
+      "type": "plain_text"
+    },
+    {
+      "name": "TURNSTILE_ALLOWED_HOSTNAMES",
+      "type": "secret_text"
+    },
+    {
+      "name": "TURNSTILE_REQUIRED",
+      "type": "secret_text"
+    },
+    {
+      "name": "TURNSTILE_SECRET_KEY",
+      "type": "secret_text"
+    },
+    {
+      "name": "TURNSTILE_SITE_KEY",
+      "type": "secret_text"
+    }
+  ],
+  "routesSHA256": "658c82d686b3de9eb410eb0866504c1d04224f8a2ad5676dd1bac0591db96e41",
+  "schedulesSHA256": "393917c41b0bfed07edc4a8fa8082f046fbed5e7dd8c408462f9405c28ee1463",
+  "relatedOwners": [
+    {
+      "name": "shift-programme-member-20261023",
+      "currentDeployment": "4513f2f2-1edc-428d-8e3d-625c81f5efc6",
+      "versionId": "cef30348-4ce4-4ed6-957d-d500863ec457"
+    },
+    {
+      "name": "shift-hq-member-comms-20261023",
+      "currentDeployment": "db8b698d-aec3-48cd-8c0d-049694813f9d",
+      "versionId": "d61a4a95-f5eb-425a-97ee-c16584b31766"
+    }
+  ]
+}

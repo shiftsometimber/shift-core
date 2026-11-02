@@ -1,0 +1,4158 @@
+{
+  "state": "PUBLISHED_AND_PRODUCTION_VERIFIED_AUTHENTICATED_PERSISTENCE_PENDING",
+  "fullyComplete": false,
+  "verifiedAtUtc": "2026-11-01T10:31:27.455Z",
+  "origin": "https://shiftsometimber.co.uk",
+  "approvedNavigation": {
+    "top": [
+      "Today",
+      "Journey",
+      "Shop"
+    ],
+    "bottom": [
+      "Grub",
+      "Fit",
+      "Support",
+      "More"
+    ]
+  },
+  "runtimeSource": "7b35640afe71bd4ef18dc305db6d160c57c3f0cb",
+  "verificationSource": "af48f2ff87596a410b6e2e95dad93c856bb5cfe1",
+  "sourceBranch": "work/my-timber-shop-connected-20261029",
+  "predecessors": {
+    "journey": "a67f1b3f1bdd51ca2b93997fa796a1e1202b390b",
+    "shop": "15c370ea58f1277ef838b1956da6dfbce90c72dc"
+  },
+  "sourceFiles": {
+    "member-experience/journey-shop-release.mjs": {
+      "gitBlob": "44f2f810d3522568af049554c98c0bb04e1f428d",
+      "sha256": "3cc6719744958298c4f6b2e0e43c0afe84b691331712f45c76f08766a79ebfe6",
+      "bytes": 3633
+    },
+    "member-experience/shop-document-release.mjs": {
+      "gitBlob": "898a2e38aee94ae54bdbd4fc80d656c1b05b3f51",
+      "sha256": "d4cf5cc9139ad55eaed5042b6d6ab8fd83fe1e3a1e9fcd66cd8c49ccda8383b3",
+      "bytes": 543
+    },
+    "member-experience/journey-shop-assets.mjs": {
+      "gitBlob": "5b7c1b378cea682d590b2029223d708349d5cac8",
+      "sha256": "c76d62279ee14f9b7c25e5a53fc21d4765d8ed20907c40f0cdbf99516f00708b",
+      "bytes": 5473
+    },
+    "member-experience/tests/journey-shop-release.test.mjs": {
+      "gitBlob": "317589b4e41dd620f406d2e5072eba0dafd3e3ef",
+      "sha256": "56b16fde5526694a5b981be5e47abc44059165998474ae25cb6d86f86405a819",
+      "bytes": 7612
+    },
+    "member-experience/tests/shop-connected-browser.mjs": {
+      "gitBlob": "229c86ae0d34360bd10198e578725f722758514d",
+      "sha256": "daff9efb46b9a1c570abbb33bf5870f1996cb237d4e37943db13ff65190d0286",
+      "bytes": 37807
+    },
+    "member-experience/shop-navigation-client.mjs": {
+      "gitBlob": "66393be63f58dfd2f33bbfbd6e003f32f0f8044b",
+      "sha256": "9bb9e2fb15436d81166f24f5516f064ea95b6223dbe3a5819a82170b9a4204d1",
+      "bytes": 7733
+    },
+    "member-experience/journey-shop-build.mjs": {
+      "gitBlob": "24571dadcc7d16b3be718b377a545c0f58dc9d60",
+      "sha256": "cff2090710f1601f07235b5fa905d719fb5c04b731276fd1bdcca15b8d039cdd",
+      "bytes": 2368
+    },
+    "member-experience/journey-shop-publish.mjs": {
+      "gitBlob": "f0ec5f34ffb3b108b5e897aebcae53e95dfd4c51",
+      "sha256": "3e5c487f45218d3537239e62516155164c641bf076c2fa25ddfeed23dc29b961",
+      "bytes": 11278
+    },
+    "member-experience/tests/fixtures/journey-shop-live-layout-20261031.txt": {
+      "gitBlob": "49314a1fbf4c265fa0d718fff090756cc9539508",
+      "sha256": "cf2fea148c1a2949dbbb6097ee6ed5e270149e8a4796cddc0e526d9fdc261f40",
+      "bytes": 167960
+    },
+    "member-experience/shop-catalogue-reader.mjs": {
+      "gitBlob": "939ab34fe71d067e5fe5ec5e3cebd257bfcaa894",
+      "sha256": "32c7cdfe73cf6d58917c7f643091bb90f1144248ac7670afbfc57fa3958eea93",
+      "bytes": 1291
+    },
+    "member-experience/tests/journey-shop-production-check.mjs": {
+      "gitBlob": "984135d936527aaf2e6e36f3e77b355e3fbf105d",
+      "sha256": "0ad2fb5f4b5522841f35c483a00ca1d0d211e44ebcb2286248748dd720d7cb8a",
+      "bytes": 14288
+    },
+    "member-experience/shop-basket.mjs": {
+      "gitBlob": "4b97e407f8a6f18da40fec031d4520a65dd2e169",
+      "sha256": "c1b00634ee293073cb49b2eb11bccedcf908181a63314d77ec56c3e507cd6db5",
+      "bytes": 5061
+    },
+    "member-experience/tests/shop-connected.test.mjs": {
+      "gitBlob": "08ff93a8a3d975e9deccc1209f027a57bafec6b8",
+      "sha256": "648562545d76ebb3c23a5d994ebec2955064730fd919f03d832d32da7f36f7f7",
+      "bytes": 9971
+    },
+    "member-experience/journey-shop-replace-candidate.mjs": {
+      "gitBlob": "9e1ac6d71959cc1ff32d60ca4e249bcee0008e39",
+      "sha256": "a3d9f14817d48293c121e2a061ca63c9c9b52d2aa8419820b73b55735b9e10a1",
+      "bytes": 4650
+    },
+    "member-experience/journey-page-client.mjs": {
+      "gitBlob": "5abc1bb17ae2f808ee8846dc8cf46cacf96165ac",
+      "sha256": "3567d8c3d34dd8fbbc61ec36061c1addcc413fbffc7c6d7717e39b6bd9cf0161",
+      "bytes": 37975
+    },
+    "member-experience/shop-routes.mjs": {
+      "gitBlob": "8a644f89701f10e4c2dda583966a5c5d8e79e81f",
+      "sha256": "2133f139dc7950ce8a0bff74d8b844c888ad5d8fb41e8965901ff94ea7a04783",
+      "bytes": 8073
+    },
+    "member-experience/ui-corrections-release-20261101.mjs": {
+      "gitBlob": "1885dc6f220eb92538d336ebdca84bfbb60dd575",
+      "sha256": "c350153f38abd42cadd508de099f5a5993b5ba2878de00ca2d3959206441f143",
+      "bytes": 10454
+    },
+    "member-experience/guide-fill-release-20261101.mjs": {
+      "gitBlob": "494be9bf41741719ac70bff19c74a0ee43722138",
+      "sha256": "78912975d205e5a3a835f65436968475d083c3a3e4c6b52cc3fbf3d64bb55a96",
+      "bytes": 11332
+    },
+    "member-experience/journey-page.mjs": {
+      "gitBlob": "f1e23604ed92e766b0693687db453848ee05a2df",
+      "sha256": "bf1ea37eb45e1d645ccbff90e7eec3f699c0554af4997d207faf6c81c8f849f5",
+      "bytes": 11968
+    },
+    "member-experience/day-buttons-release-20261101.mjs": {
+      "gitBlob": "b6fd3e7216a9a14b7f0be39ca527f5a31b3ed665",
+      "sha256": "4678b2ba872fc6df32af34aafea428df497eea386deeb5d80fa289365414fba8",
+      "bytes": 11351
+    },
+    "member-experience/shop-navigation.mjs": {
+      "gitBlob": "3cf944276fa78b0eaef7fc133c46579217490c24",
+      "sha256": "ae5e2a5978b38ab03c3b0c1914c18a27ab34724da92d3db74d64843048d1d9f2",
+      "bytes": 17803
+    },
+    "member-experience/brand-mark-release-20261101.mjs": {
+      "gitBlob": "b195c0f7971d522aa99d79af59676d714a0f12e6",
+      "sha256": "c5b44008c1ac8637d9a9d2557aacde69907b922f285823c7d1a0aa12ae9b008d",
+      "bytes": 11326
+    },
+    "member-experience/tests/fixtures/shift-s-20261020.png": {
+      "gitBlob": "1d676a6f5a3beeb79b254ea5d5b7af817e5c9adc",
+      "sha256": "97f754538a660372c62cf5a36c003b3082e672fa2a9de97d0fe4f1f288b56682",
+      "bytes": 1709
+    },
+    "member-experience/tests/member-first-paint.test.mjs": {
+      "gitBlob": "acc99a819862596294c2b9696fa25f923fe650d5",
+      "sha256": "0bf32d0e50c12e60101242569ae4331caac3122c582dc72db9197a2a23e71c31",
+      "bytes": 4013
+    },
+    "member-experience/first-paint-release-20261101.mjs": {
+      "gitBlob": "26d7e34c3d679781536fcc88fde14a099b501682",
+      "sha256": "7f004d2a15d589eea521bd0cb3b7c80ec4db70824696860ca138313873e3385c",
+      "bytes": 10731
+    },
+    "member-experience/member-first-paint-utilities.mjs": {
+      "gitBlob": "a0addee3e65f5bc6401f43195b45826bd8b4805b",
+      "sha256": "5462515ca7d02dee97849f0170af2d6bfcef2d302eb862b8d13454a533eb8420",
+      "bytes": 1512
+    },
+    "member-experience/tests/member-first-paint-utilities.test.mjs": {
+      "gitBlob": "a0959438bb8a5f048314802af3987485ee339f70",
+      "sha256": "7e6aeb50e5258fa38564644e96bde5cfa32ef4a6d79cf9e1fcebf49966675373",
+      "bytes": 3651
+    },
+    "member-experience/first-paint-utilities-release-20261101.mjs": {
+      "gitBlob": "d75324a4c3a87177822d37710afd99b0aa930497",
+      "sha256": "268c13d77cd58b07a34227c4ca46309ce4f52daf6d056d6faf7347e1ec6260c6",
+      "bytes": 9802
+    },
+    "member-experience/tests/member-first-paint-utilities-production.mjs": {
+      "gitBlob": "4301e4d3c4c7d3d7a6a3b95abbd241f214c0a491",
+      "sha256": "3eb826b778b8f02d959bcf4740f367ebb9a49e841e9bb123f2538612570286ab",
+      "bytes": 10540
+    }
+  },
+  "sourceChecks": {
+    "passed": 35,
+    "failed": 0,
+    "logs": [
+      "first-paint-source-20261101.log",
+      "first-paint-utility-source-tests.log"
+    ]
+  },
+  "isolatedAcceptance": {
+    "chromium": {
+      "kind": "MY_TIMBER_SHOP_OFFLINE_BROWSER_ACCEPTANCE",
+      "at": "2026-11-01T09:34:01.942Z",
+      "browser": "chromium",
+      "nativeScriptSha256": [
+        "00fe5e04f7e1ab9f757ba0106a95b6622314748f388ee17b40c2961f3958e88b",
+        "1a5a30528ac9fa41264df609811f2151ed7cf02a465a116cd0ac527b0b870872"
+      ],
+      "live": false,
+      "productionWrites": 0,
+      "checkoutPosts": 0,
+      "fixtureSha256": {
+        "testing": "37dcc2914eb57989a5defecb3a6f108fd9e4c2dfc2d50d837289bbc9c424099d",
+        "testing-vitamin-d": "8ea8757559a0ae8d2ebc3ca185b40f109c719bf6d8a800782c4ad47840403e0c",
+        "nutrition": "1212d50d473075477d480ea46d9b2c31d8fccf273ca054c896906a4d8557da7b",
+        "kit": "2562bda3cf82a650f2bcd35adf6dfe32b13afaebf7c201e18c94f77358454bba",
+        "kit-product": "b90ec41d856243903ebd078ed0d137cd7ed02586fa72d38746842c7400de96be",
+        "basket": "ef92a52d7aaddc8ecd06fa79efeea83ac7ef85df633d1c06a789f817886904fe"
+      },
+      "checks": 39,
+      "results": [
+        {
+          "width": 320,
+          "case": "all seven destinations paint the app opening shell before delayed navigation loads, never website chrome; verified content replaces it without duplicate bars",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "approved hub, 8px spacing, seven tabs, icons and no horizontal overflow",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "all seven destinations navigate and More retains account/settings/orders",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "refresh, resize and rotation retain one unobscured navigation",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "all seven days visible and usable without sideways scroll; Day 1, changing fill, drag, wheel, range, keyboard and replay work without writes",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "real integrated Journey handlers save all six dated record types, refresh, correction, deletion and Snapshot safeguards in isolated SQLite",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "real product content, held purchase button, nutrition form and kit colour flow retained",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "basket count across pages, saved checkout and account-switch clearing; zero checkout POSTs",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "anonymous sign-in guard never reveals app chrome or catalogue",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "all seven destinations paint the app opening shell before delayed navigation loads, never website chrome; verified content replaces it without duplicate bars",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "approved hub, 8px spacing, seven tabs, icons and no horizontal overflow",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "all seven destinations navigate and More retains account/settings/orders",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "refresh, resize and rotation retain one unobscured navigation",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "all seven days visible and usable without sideways scroll; Day 1, changing fill, drag, wheel, range, keyboard and replay work without writes",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "real integrated Journey handlers save all six dated record types, refresh, correction, deletion and Snapshot safeguards in isolated SQLite",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "real product content, held purchase button, nutrition form and kit colour flow retained",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "basket count across pages, saved checkout and account-switch clearing; zero checkout POSTs",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "anonymous sign-in guard never reveals app chrome or catalogue",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "all seven destinations paint the app opening shell before delayed navigation loads, never website chrome; verified content replaces it without duplicate bars",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "approved hub, 8px spacing, seven tabs, icons and no horizontal overflow",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "all seven destinations navigate and More retains account/settings/orders",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "refresh, resize and rotation retain one unobscured navigation",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "all seven days visible and usable without sideways scroll; Day 1, changing fill, drag, wheel, range, keyboard and replay work without writes",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "real integrated Journey handlers save all six dated record types, refresh, correction, deletion and Snapshot safeguards in isolated SQLite",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "real product content, held purchase button, nutrition form and kit colour flow retained",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "basket count across pages, saved checkout and account-switch clearing; zero checkout POSTs",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "anonymous sign-in guard never reveals app chrome or catalogue",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "all seven destinations paint the app opening shell before delayed navigation loads, never website chrome; verified content replaces it without duplicate bars",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "approved hub, 8px spacing, seven tabs, icons and no horizontal overflow",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "all seven destinations navigate and More retains account/settings/orders",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "refresh, resize and rotation retain one unobscured navigation",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "all seven days visible and usable without sideways scroll; Day 1, changing fill, drag, wheel, range, keyboard and replay work without writes",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "real integrated Journey handlers save all six dated record types, refresh, correction, deletion and Snapshot safeguards in isolated SQLite",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "real product content, held purchase button, nutrition form and kit colour flow retained",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "basket count across pages, saved checkout and account-switch clearing; zero checkout POSTs",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "anonymous sign-in guard never reveals app chrome or catalogue",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "signed-out access, failed navigation download and disabled JavaScript and embedded tools stay private and show usable sign-in/reload/help fallbacks without website chrome",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "late old-account basket response is discarded",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "unavailable identity check fails closed without repeated background requests",
+          "pass": true
+        }
+      ]
+    },
+    "webkitWithExactBuild8Scripts": {
+      "kind": "MY_TIMBER_SHOP_OFFLINE_BROWSER_ACCEPTANCE",
+      "at": "2026-11-01T09:34:51.190Z",
+      "browser": "webkit",
+      "nativeScriptSha256": [
+        "00fe5e04f7e1ab9f757ba0106a95b6622314748f388ee17b40c2961f3958e88b",
+        "1a5a30528ac9fa41264df609811f2151ed7cf02a465a116cd0ac527b0b870872"
+      ],
+      "live": false,
+      "productionWrites": 0,
+      "checkoutPosts": 0,
+      "fixtureSha256": {
+        "testing": "37dcc2914eb57989a5defecb3a6f108fd9e4c2dfc2d50d837289bbc9c424099d",
+        "testing-vitamin-d": "8ea8757559a0ae8d2ebc3ca185b40f109c719bf6d8a800782c4ad47840403e0c",
+        "nutrition": "1212d50d473075477d480ea46d9b2c31d8fccf273ca054c896906a4d8557da7b",
+        "kit": "2562bda3cf82a650f2bcd35adf6dfe32b13afaebf7c201e18c94f77358454bba",
+        "kit-product": "b90ec41d856243903ebd078ed0d137cd7ed02586fa72d38746842c7400de96be",
+        "basket": "ef92a52d7aaddc8ecd06fa79efeea83ac7ef85df633d1c06a789f817886904fe"
+      },
+      "checks": 39,
+      "results": [
+        {
+          "width": 320,
+          "case": "all seven destinations paint the app opening shell before delayed navigation loads, never website chrome; verified content replaces it without duplicate bars",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "approved hub, 8px spacing, seven tabs, icons and no horizontal overflow",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "all seven destinations navigate and More retains account/settings/orders",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "refresh, resize and rotation retain one unobscured navigation",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "all seven days visible and usable without sideways scroll; Day 1, changing fill, drag, wheel, range, keyboard and replay work without writes",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "real integrated Journey handlers save all six dated record types, refresh, correction, deletion and Snapshot safeguards in isolated SQLite",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "real product content, held purchase button, nutrition form and kit colour flow retained",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "basket count across pages, saved checkout and account-switch clearing; zero checkout POSTs",
+          "pass": true
+        },
+        {
+          "width": 320,
+          "case": "anonymous sign-in guard never reveals app chrome or catalogue",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "all seven destinations paint the app opening shell before delayed navigation loads, never website chrome; verified content replaces it without duplicate bars",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "approved hub, 8px spacing, seven tabs, icons and no horizontal overflow",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "all seven destinations navigate and More retains account/settings/orders",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "refresh, resize and rotation retain one unobscured navigation",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "all seven days visible and usable without sideways scroll; Day 1, changing fill, drag, wheel, range, keyboard and replay work without writes",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "real integrated Journey handlers save all six dated record types, refresh, correction, deletion and Snapshot safeguards in isolated SQLite",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "real product content, held purchase button, nutrition form and kit colour flow retained",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "basket count across pages, saved checkout and account-switch clearing; zero checkout POSTs",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "anonymous sign-in guard never reveals app chrome or catalogue",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "all seven destinations paint the app opening shell before delayed navigation loads, never website chrome; verified content replaces it without duplicate bars",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "approved hub, 8px spacing, seven tabs, icons and no horizontal overflow",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "all seven destinations navigate and More retains account/settings/orders",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "refresh, resize and rotation retain one unobscured navigation",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "all seven days visible and usable without sideways scroll; Day 1, changing fill, drag, wheel, range, keyboard and replay work without writes",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "real integrated Journey handlers save all six dated record types, refresh, correction, deletion and Snapshot safeguards in isolated SQLite",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "real product content, held purchase button, nutrition form and kit colour flow retained",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "basket count across pages, saved checkout and account-switch clearing; zero checkout POSTs",
+          "pass": true
+        },
+        {
+          "width": 768,
+          "case": "anonymous sign-in guard never reveals app chrome or catalogue",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "all seven destinations paint the app opening shell before delayed navigation loads, never website chrome; verified content replaces it without duplicate bars",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "approved hub, 8px spacing, seven tabs, icons and no horizontal overflow",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "all seven destinations navigate and More retains account/settings/orders",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "refresh, resize and rotation retain one unobscured navigation",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "all seven days visible and usable without sideways scroll; Day 1, changing fill, drag, wheel, range, keyboard and replay work without writes",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "real integrated Journey handlers save all six dated record types, refresh, correction, deletion and Snapshot safeguards in isolated SQLite",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "real product content, held purchase button, nutrition form and kit colour flow retained",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "basket count across pages, saved checkout and account-switch clearing; zero checkout POSTs",
+          "pass": true
+        },
+        {
+          "width": 1440,
+          "case": "anonymous sign-in guard never reveals app chrome or catalogue",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "signed-out access, failed navigation download and disabled JavaScript and embedded tools stay private and show usable sign-in/reload/help fallbacks without website chrome",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "late old-account basket response is discarded",
+          "pass": true
+        },
+        {
+          "width": 390,
+          "case": "unavailable identity check fails closed without repeated background requests",
+          "pass": true
+        }
+      ]
+    }
+  },
+  "build": {
+    "at": "2026-11-01T09:28:31.030Z",
+    "esbuildVersion": "0.28.1",
+    "externalServingModule": "support-service-prior.mjs",
+    "overrides": {
+      "grub-uk-full-publication-20261018.mjs": {
+        "contents": "export {UK_FULL_PUBLICATION} from '../support-service-prior.mjs';\n",
+        "sha256": "036ec09c9a67cf45b608dc8a56e2e3d719b06ba96e455e7190d883683b010587"
+      }
+    },
+    "bundles": {
+      "programme": {
+        "sha256": "53856d89a00a4c5d0309c2d1cd41f8e9bd8736b5c06f09d1382e76ded5e5497c",
+        "bytes": 7088894,
+        "inputs": {
+          "scoped-source/member-state-fast-v1.js": {
+            "bytes": 6158,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "d8dcf15f7b66da7cfbb67fa859ed68d1bd2525f3f1ff760d37b223d2c14dc8e9"
+          },
+          "scoped-source/member-experience/journey-portability.mjs": {
+            "bytes": 7451,
+            "imports": [
+              {
+                "path": "scoped-source/member-state-fast-v1.js",
+                "kind": "import-statement",
+                "original": "../member-state-fast-v1.js"
+              },
+              {
+                "path": "scoped-source/member-experience/health-routes.mjs",
+                "kind": "import-statement",
+                "original": "./health-routes.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "fcb10700268d4b710a86c192bd1df998a5fe1ad7d9241db6b1b7624c1bc5f580"
+          },
+          "scoped-source/member-experience/unit-settings.mjs": {
+            "bytes": 4440,
+            "imports": [
+              {
+                "path": "scoped-source/member-state-fast-v1.js",
+                "kind": "import-statement",
+                "original": "../member-state-fast-v1.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "a0ce445fc33c1304a0b9c18dfbfe607b52e278bd038a2e8ef96f0e13f9d0cbe9"
+          },
+          "scoped-source/member-experience/device-health.mjs": {
+            "bytes": 7872,
+            "imports": [
+              {
+                "path": "scoped-source/member-state-fast-v1.js",
+                "kind": "import-statement",
+                "original": "../member-state-fast-v1.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "22baa39275ebb7e96b5af357a25a52f8ebb97b181637083da74eb4831a0eb0cb"
+          },
+          "scoped-source/member-experience/support-records.mjs": {
+            "bytes": 4961,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "d04e916804316ff193ed05a413e4e3979eeb52c54da05f266800c43fdbabca52"
+          },
+          "scoped-source/member-experience/support-review.mjs": {
+            "bytes": 5800,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/support-records.mjs",
+                "kind": "import-statement",
+                "original": "./support-records.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "8c30b44874a6443c2be472e3d67b3f1b517c083125cb1c5f6c2cfe5e7940f188"
+          },
+          "scoped-source/member-experience/support-plan.mjs": {
+            "bytes": 15200,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/support-records.mjs",
+                "kind": "import-statement",
+                "original": "./support-records.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/support-review.mjs",
+                "kind": "import-statement",
+                "original": "./support-review.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "6dde00ca9820d29a032f3332f8983a0602fd793823ceb31a25a87eff0aee5848"
+          },
+          "scoped-source/member-experience/life-back/next-shift.mjs": {
+            "bytes": 13665,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/support-plan.mjs",
+                "kind": "import-statement",
+                "original": "../support-plan.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "8d160c06bd307d599e947c10bea7feddc7824d0be7a12ca3095484de014c9fc0"
+          },
+          "scoped-source/member-experience/life-back/model.mjs": {
+            "bytes": 4576,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "7ca76d9b7a9727ae175664dc20f4fc02f85d87088c14a5f20be7485f86d22b8a"
+          },
+          "scoped-source/member-experience/journey-context.mjs": {
+            "bytes": 5091,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/life-back/next-shift.mjs",
+                "kind": "import-statement",
+                "original": "./life-back/next-shift.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/life-back/model.mjs",
+                "kind": "import-statement",
+                "original": "./life-back/model.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "fee09b4f46403ea56cbd277809a992e544fa3bfab8a102df9e402f372b1c154f"
+          },
+          "scoped-source/member-experience/checkin-followup.mjs": {
+            "bytes": 5607,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/journey-context.mjs",
+                "kind": "import-statement",
+                "original": "./journey-context.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/life-back/next-shift.mjs",
+                "kind": "import-statement",
+                "original": "./life-back/next-shift.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "511f11aeeb533b57b6abc2ab9bada6ccf87c2da4639abd5784f3ced0b0953285"
+          },
+          "scoped-source/member-experience/health-interest-store.mjs": {
+            "bytes": 3498,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "55b8813b86e8c75639d9b2b7130a09f97816d049f81d6db9bb161c9c7b4e5ed4"
+          },
+          "scoped-source/member-experience/health-routes.mjs": {
+            "bytes": 10368,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/journey-portability.mjs",
+                "kind": "import-statement",
+                "original": "./journey-portability.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/unit-settings.mjs",
+                "kind": "import-statement",
+                "original": "./unit-settings.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/device-health.mjs",
+                "kind": "import-statement",
+                "original": "./device-health.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/checkin-followup.mjs",
+                "kind": "import-statement",
+                "original": "./checkin-followup.mjs"
+              },
+              {
+                "path": "scoped-source/member-state-fast-v1.js",
+                "kind": "import-statement",
+                "original": "../member-state-fast-v1.js"
+              },
+              {
+                "path": "scoped-source/member-experience/health-interest-store.mjs",
+                "kind": "import-statement",
+                "original": "./health-interest-store.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "8d1c3d34ed8af0f02defec02d8cc5bec2fa19018214a5551b08fcea5a35020b7"
+          },
+          "scoped-source/member-experience/journey-records.mjs": {
+            "bytes": 6140,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "e21a48d9fbbedfb2406b3e492111668c24f8b2cddd2a58f15d90ecd5e5fefba0"
+          },
+          "scoped-source/member-experience/journey-data.mjs": {
+            "bytes": 5551,
+            "imports": [
+              {
+                "path": "scoped-source/member-state-fast-v1.js",
+                "kind": "import-statement",
+                "original": "../member-state-fast-v1.js"
+              },
+              {
+                "path": "scoped-source/member-experience/health-routes.mjs",
+                "kind": "import-statement",
+                "original": "./health-routes.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/journey-records.mjs",
+                "kind": "import-statement",
+                "original": "./journey-records.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "ac098bbbe9b1e90b35648c7d69f6155ffa62694c35afffbaea6ae4b9d20af8df"
+          },
+          "scoped-source/member-experience/session-state.mjs": {
+            "bytes": 4870,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "9cdfe92b4a3e14ff1ebbc3ad8d3d844ea48a8ce7c84e328be5970bc9f97ebd65"
+          },
+          "scoped-source/member-experience/journey-presentation.mjs": {
+            "bytes": 8685,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "9581091090fceb537ea05ca2c49b074e3f1e680acf22a39d2bfef76691fed4f2"
+          },
+          "scoped-source/member-experience/journey-page-client.mjs": {
+            "bytes": 37975,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/journey-presentation.mjs",
+                "kind": "import-statement",
+                "original": "./journey-presentation.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "3567d8c3d34dd8fbbc61ec36061c1addcc413fbffc7c6d7717e39b6bd9cf0161"
+          },
+          "scoped-source/member-experience/journey-page.mjs": {
+            "bytes": 11968,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/session-state.mjs",
+                "kind": "import-statement",
+                "original": "./session-state.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/journey-page-client.mjs",
+                "kind": "import-statement",
+                "original": "./journey-page-client.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "bf1ea37eb45e1d645ccbff90e7eec3f699c0554af4997d207faf6c81c8f849f5"
+          },
+          "scoped-source/industrial-catalogue-v1.js": {
+            "bytes": 23464,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "e9156f27fd2eb199944af021c4d78157c3da5686630b2f8446e2a664aea47a4f"
+          },
+          "scoped-source/industrial-catalogue-v2.js": {
+            "bytes": 1510,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v1.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v1.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "0db7e93b5cec79df41188ab3b2c46ef95f42f2f573f4869bd28790a40215881d"
+          },
+          "scoped-source/industrial-catalogue-v3.js": {
+            "bytes": 20456,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v2.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v2.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "3f5e9561d6403d190af874ef1847059c8d36ded213f69c90b6a4c9df9e3c4b43"
+          },
+          "scoped-source/industrial-catalogue-v4.js": {
+            "bytes": 4265,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v3.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v3.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "608bf7c2b1ad7d752fb055d5157e44d801f165a3295b53d8ba38144ed72eb867"
+          },
+          "scoped-source/industrial-catalogue-v5.js": {
+            "bytes": 1392,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v4.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v4.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "2b3b1e7f8049af83438fcaede4cda878a6b3cca3d1919938134d5443e096d539"
+          },
+          "scoped-source/industrial-catalogue-v6.js": {
+            "bytes": 2146,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v5.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v5.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "c42e212782b3edaf1d3d9b7a77f7afc0c91b28e63a1c9113478d942dd078a34a"
+          },
+          "scoped-source/industrial-catalogue-v7.js": {
+            "bytes": 1937,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v6.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v6.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "1d70fca6f6cacf0c523196b753c80f008cf525a6d0682624b0b437219f696f2f"
+          },
+          "scoped-source/industrial-catalogue-v8.js": {
+            "bytes": 7447,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v7.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v7.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "8e5108f27c4084b8b662f4531bbedb6e0586895dc302916f234b845c1ba62fba"
+          },
+          "scoped-source/industrial-catalogue-v9.js": {
+            "bytes": 4345,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v8.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v8.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "ef1c48132cb816fa333309c989c87b3a6c66cf7f518c099d53f51f0a670e576f"
+          },
+          "scoped-source/industrial-catalogue-v10.js": {
+            "bytes": 4446,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v9.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v9.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "f069559df379fa209566b73408e6f447038cc58063ca191d433714f5299d7c55"
+          },
+          "scoped-source/industrial-grub-semantic-quality-v1.mjs": {
+            "bytes": 5890,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "8fa55d634559f7bc7d8f03287255ac286de870ac429f9ec368f099ee0968b2b7"
+          },
+          "scoped-source/industrial-catalogue-v11.js": {
+            "bytes": 7241,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v10.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v10.js"
+              },
+              {
+                "path": "scoped-source/industrial-grub-semantic-quality-v1.mjs",
+                "kind": "import-statement",
+                "original": "./industrial-grub-semantic-quality-v1.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "3327faa61a37ac471ac2df14a2c0fdf8081f6bc59440b1af6ca04c22b27820c3"
+          },
+          "scoped-source/industrial-catalogue-v12.js": {
+            "bytes": 5009,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v11.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v11.js"
+              },
+              {
+                "path": "scoped-source/industrial-grub-semantic-quality-v1.mjs",
+                "kind": "import-statement",
+                "original": "./industrial-grub-semantic-quality-v1.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "a6a51be39aaf9dbb202d42fbfc95fa448bc80f4ccc6dfe957e773458981525d7"
+          },
+          "scoped-source/industrial-catalogue-v13.js": {
+            "bytes": 10975,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v12.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v12.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "219223dc52af235ad200848974b375e82c928153d262d296192efed28e7a6bc4"
+          },
+          "scoped-source/industrial-catalogue-v14.js": {
+            "bytes": 9670,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v13.js",
+                "kind": "import-statement",
+                "original": "./industrial-catalogue-v13.js"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "082796344c07fa09f1356679dae7aeda5a2d02aba599b7b19db3a74fa7268db8"
+          },
+          "scoped-source/member-experience/grub-image-map.mjs": {
+            "bytes": 5261759,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "82cbb550bafe6f587e009eb044f9c796eafcdf3207ba0a4600e995c48af00d69"
+          },
+          "scoped-source/member-experience/grub-discovery-manifest-20261017.mjs": {
+            "bytes": 1126013,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "a05afad0d77a2d11eaef400d50da02e6363ace838e19963db6fe15bcb813fdbc"
+          },
+          "scoped-source/member-experience/grub-discovery.mjs": {
+            "bytes": 1679,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/grub-discovery-manifest-20261017.mjs",
+                "kind": "import-statement",
+                "original": "./grub-discovery-manifest-20261017.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "7c61aae81555251927d8ad1ce75b89b893977c0c39b902e73569334e9854ab2e"
+          },
+          "scoped-source/member-experience/grub-search.mjs": {
+            "bytes": 8540,
+            "imports": [
+              {
+                "path": "scoped-source/industrial-catalogue-v14.js",
+                "kind": "import-statement",
+                "original": "../industrial-catalogue-v14.js"
+              },
+              {
+                "path": "scoped-source/member-experience/grub-image-map.mjs",
+                "kind": "import-statement",
+                "original": "./grub-image-map.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/grub-discovery.mjs",
+                "kind": "import-statement",
+                "original": "./grub-discovery.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "968b1e6de5c0eeddfda00a2a67d6854fa1c05ab6154e1edc063ebbd3a4030f36"
+          },
+          "scoped-source/member-experience/grub-ingredients.mjs": {
+            "bytes": 6672,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "cf5e2ed2e9cf9b65463f44a334ea9ba3c54556a5768415fb8059adf4a70557be"
+          },
+          "scoped-source/member-experience/grub-intelligence.mjs": {
+            "bytes": 11420,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/grub-search.mjs",
+                "kind": "import-statement",
+                "original": "./grub-search.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/grub-discovery.mjs",
+                "kind": "import-statement",
+                "original": "./grub-discovery.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "eaeded910ad9b8fb6987b3d31853c830acaff4045343cb1713fcedb6c86a64f9"
+          },
+          "scoped-source/member-experience/grub-workspace.mjs": {
+            "bytes": 12863,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/grub-ingredients.mjs",
+                "kind": "import-statement",
+                "original": "./grub-ingredients.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/grub-discovery.mjs",
+                "kind": "import-statement",
+                "original": "./grub-discovery.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/grub-search.mjs",
+                "kind": "import-statement",
+                "original": "./grub-search.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/grub-intelligence.mjs",
+                "kind": "import-statement",
+                "original": "./grub-intelligence.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "cba12f8a764d946aa7091b49cd4ba1392d486e42661551722fac68b37f766261"
+          },
+          "scoped-source/grub-everyday-publication-v1.mjs": {
+            "bytes": 78689,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "1aa0ee0d7a766596a7debb567bb4225c5a67750be8988f80e023241e9aad26d6"
+          },
+          "scoped-source/grub-everyday-authority-v1.mjs": {
+            "bytes": 3699,
+            "imports": [
+              {
+                "path": "scoped-source/grub-everyday-publication-v1.mjs",
+                "kind": "import-statement",
+                "original": "./grub-everyday-publication-v1.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "05ce28a30c0c384cadbda726185fe91448aef9001a306ac9df25addfc2e09524"
+          },
+          "scoped-source/grub-uk-full-publication-20261018.mjs": {
+            "bytes": 66,
+            "imports": [
+              {
+                "path": "../support-service-prior.mjs",
+                "kind": "import-statement",
+                "external": true
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "8a2285269526c955dfde5e657e96031ac24cbdd7a673bcd92c430decbda81a3b"
+          },
+          "scoped-source/grub-uk-full-authority-20261018.mjs": {
+            "bytes": 2357,
+            "imports": [
+              {
+                "path": "scoped-source/grub-uk-full-publication-20261018.mjs",
+                "kind": "import-statement",
+                "original": "./grub-uk-full-publication-20261018.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "5a71784f94f4b1edef8b74066f1b5bb6c2bc5131791b27daecebfcc8416d6349"
+          },
+          "scoped-source/grub-uk-core-publication-20261017.mjs": {
+            "bytes": 93259,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "1213caeaf4253da8e05fc94fc1324917c0fdfc583851d69c45a7c17f707c45e9"
+          },
+          "scoped-source/grub-uk-core-authority-20261017.mjs": {
+            "bytes": 2299,
+            "imports": [
+              {
+                "path": "scoped-source/grub-uk-core-publication-20261017.mjs",
+                "kind": "import-statement",
+                "original": "./grub-uk-core-publication-20261017.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "156287d6eb04393d77bf1c8f3523e50449b55910252f62f9c949101b7a5b4dc4"
+          },
+          "scoped-source/grub-expansion-serving-manifest-v1.mjs": {
+            "bytes": 362347,
+            "imports": [
+              {
+                "path": "node:zlib",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "node:buffer",
+                "kind": "import-statement",
+                "external": true
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "fdc923cb77e7b46a02c4be3be107d078af3256b361f8e0dcf683e14348c42d20"
+          },
+          "scoped-source/grub-expansion-authority-v1.mjs": {
+            "bytes": 9331,
+            "imports": [
+              {
+                "path": "scoped-source/grub-everyday-authority-v1.mjs",
+                "kind": "import-statement",
+                "original": "./grub-everyday-authority-v1.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/grub-discovery.mjs",
+                "kind": "import-statement",
+                "original": "./member-experience/grub-discovery.mjs"
+              },
+              {
+                "path": "scoped-source/grub-uk-full-authority-20261018.mjs",
+                "kind": "import-statement",
+                "original": "./grub-uk-full-authority-20261018.mjs"
+              },
+              {
+                "path": "scoped-source/grub-uk-core-authority-20261017.mjs",
+                "kind": "import-statement",
+                "original": "./grub-uk-core-authority-20261017.mjs"
+              },
+              {
+                "path": "scoped-source/grub-expansion-serving-manifest-v1.mjs",
+                "kind": "import-statement",
+                "original": "./grub-expansion-serving-manifest-v1.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "9184b98f149ff084ee1e237ea0d1ce6b4db550467cf402506a16b8fb467a5060"
+          },
+          "scoped-source/member-experience/grub-routes.mjs": {
+            "bytes": 3742,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/journey-context.mjs",
+                "kind": "import-statement",
+                "original": "./journey-context.mjs"
+              },
+              {
+                "path": "scoped-source/member-state-fast-v1.js",
+                "kind": "import-statement",
+                "original": "../member-state-fast-v1.js"
+              },
+              {
+                "path": "scoped-source/member-experience/grub-search.mjs",
+                "kind": "import-statement",
+                "original": "./grub-search.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/grub-workspace.mjs",
+                "kind": "import-statement",
+                "original": "./grub-workspace.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/grub-intelligence.mjs",
+                "kind": "import-statement",
+                "original": "./grub-intelligence.mjs"
+              },
+              {
+                "path": "scoped-source/grub-expansion-authority-v1.mjs",
+                "kind": "import-statement",
+                "original": "../grub-expansion-authority-v1.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "f907c825d4267c8335356698f625b22bb745950d26f4c3c75bc4eb5b5adb5f1f"
+          },
+          "scoped-source/member-experience/support-prepared-options.mjs": {
+            "bytes": 8715,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/grub-routes.mjs",
+                "kind": "import-statement",
+                "original": "./grub-routes.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/grub-workspace.mjs",
+                "kind": "import-statement",
+                "original": "./grub-workspace.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/grub-intelligence.mjs",
+                "kind": "import-statement",
+                "original": "./grub-intelligence.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/support-records.mjs",
+                "kind": "import-statement",
+                "original": "./support-records.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "57e3da6b81f8828f4f4c5c334c6b3e5781e55988ea98e6c69e9df664afa554af"
+          },
+          "scoped-source/member-experience/shed-pilot-access.mjs": {
+            "bytes": 797,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "763f708d2b80c2772535f69abb6f20dd02c05ed931f2bd4aea73dc01ce783cce"
+          },
+          "scoped-source/member-experience/timber-shed-privacy-signals.mjs": {
+            "bytes": 637,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "ee06b61b9057764172c5033c6d6dd6220e5e8a5e1315760651181332f69c81a2"
+          },
+          "scoped-source/member-experience/timber-shed-community-bouncer.mjs": {
+            "bytes": 7606,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/timber-shed-privacy-signals.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-privacy-signals.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "6551357918181d2d7815e00390dfc674f5a5dbcf89a972e400b646ff976a4819"
+          },
+          "scoped-source/member-experience/timber-shed-routine-publication.mjs": {
+            "bytes": 2626,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/timber-shed-community-bouncer.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-community-bouncer.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "92fe90e8a302bbb7e587395009db4bad2a5eeff65da02aef81bec6d97768f292"
+          },
+          "scoped-source/member-experience/timber-shed-governance.mjs": {
+            "bytes": 8367,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "41f6139883275aa6785380f1529640714e7fced45b298e071fe181d3b052d145"
+          },
+          "scoped-source/member-experience/timber-shed-forums.mjs": {
+            "bytes": 4159,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "3ec36ff9ae9da3d91180e3afc51add9a6aa7a5f0cb6499a9bf31934c1ab45668"
+          },
+          "scoped-source/member-experience/timber-shed-ai-moderation.mjs": {
+            "bytes": 3892,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "3b75c1d32faa6d2312c91dafdfa73fc3c257c3bdeafb5296b6b5798e2ae5368a"
+          },
+          "scoped-source/member-experience/timber-shed-forum-appeals.mjs": {
+            "bytes": 5280,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "fb9b735cc2696e0226bd374d75a39bd20b83d35816baabcd256074c578cb462e"
+          },
+          "scoped-source/member-experience/timber-shed-forum-protection.mjs": {
+            "bytes": 9864,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "da2c801f4c090f819df4a5298b3e8fdf8ed3a9520108e9307a46ce7dd7c370b4"
+          },
+          "scoped-source/member-experience/timber-shed-forum-privacy.mjs": {
+            "bytes": 3805,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "a5f3933115bc2a2e98140819481e8393d92a9e76f536fad40486b0bb14fafee3"
+          },
+          "scoped-source/member-experience/timber-shed-forum-notifications.mjs": {
+            "bytes": 1668,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "08fa4eefb35f348729614f4ac963fc525c7d2461953510421f3b1a131bf0a1f9"
+          },
+          "scoped-source/member-experience/timber-shed-forum-routes.mjs": {
+            "bytes": 28471,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/timber-shed-routine-publication.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-routine-publication.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-governance.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-governance.mjs"
+              },
+              {
+                "path": "scoped-source/member-state-fast-v1.js",
+                "kind": "import-statement",
+                "original": "../member-state-fast-v1.js"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-forums.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-forums.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-community-bouncer.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-community-bouncer.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-ai-moderation.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-ai-moderation.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-forum-appeals.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-forum-appeals.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-forum-protection.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-forum-protection.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-forum-privacy.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-forum-privacy.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-forum-notifications.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-forum-notifications.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "b24715e6de4a6efca785298fa5033a55b6a8e7b51558341753f98d1cd738fced"
+          },
+          "scoped-source/member-experience/timber-shed-retention.mjs": {
+            "bytes": 4085,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/timber-shed-governance.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-governance.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "e84685b89ee69afbaf69a9902b8c775c794931446c609be20780bbc36421a091"
+          },
+          "scoped-source/member-experience/shed-support-loop.mjs": {
+            "bytes": 25542,
+            "imports": [
+              {
+                "path": "scoped-source/member-state-fast-v1.js",
+                "kind": "import-statement",
+                "original": "../member-state-fast-v1.js"
+              },
+              {
+                "path": "scoped-source/member-experience/health-routes.mjs",
+                "kind": "import-statement",
+                "original": "./health-routes.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/shed-pilot-access.mjs",
+                "kind": "import-statement",
+                "original": "./shed-pilot-access.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-forum-routes.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-forum-routes.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-governance.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-governance.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-community-bouncer.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-community-bouncer.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-forum-protection.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-forum-protection.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/support-records.mjs",
+                "kind": "import-statement",
+                "original": "./support-records.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/timber-shed-retention.mjs",
+                "kind": "import-statement",
+                "original": "./timber-shed-retention.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "3bb4d45485ff9286a277265ce6a579e92723703572c6a14ee0b5724e3bc24a56"
+          },
+          "scoped-source/shift-coach/safety.mjs": {
+            "bytes": 3632,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "166eb97fb0c294a9a410b075268d239954da863ef28416cb61107c588588e5d4"
+          },
+          "scoped-source/shift-coach/support.mjs": {
+            "bytes": 6156,
+            "imports": [
+              {
+                "path": "scoped-source/shift-coach/safety.mjs",
+                "kind": "import-statement",
+                "original": "./safety.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "7edbbc4fc57d4360a93c7989b7cc3e65de8bfb9eea68064a69a06d7d34cdceed"
+          },
+          "scoped-source/member-experience/support-policy.mjs": {
+            "bytes": 1895,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "6537e1ae994fb906ccbc548cfc16979d4a534a5488202266607826688f04465b"
+          },
+          "scoped-source/member-experience/member-support-contact.mjs": {
+            "bytes": 5105,
+            "imports": [
+              {
+                "path": "scoped-source/member-state-fast-v1.js",
+                "kind": "import-statement",
+                "original": "../member-state-fast-v1.js"
+              },
+              {
+                "path": "scoped-source/shift-coach/safety.mjs",
+                "kind": "import-statement",
+                "original": "../shift-coach/safety.mjs"
+              },
+              {
+                "path": "scoped-source/shift-coach/support.mjs",
+                "kind": "import-statement",
+                "original": "../shift-coach/support.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/support-policy.mjs",
+                "kind": "import-statement",
+                "original": "./support-policy.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/support-policy.mjs",
+                "kind": "import-statement",
+                "original": "./support-policy.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "0be0d077666785fd97ab87689b3b5dcbbf8053b78cc9a4ce7b79d86be9586048"
+          },
+          "scoped-source/member-experience/life-back-routes.mjs": {
+            "bytes": 8848,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/support-prepared-options.mjs",
+                "kind": "import-statement",
+                "original": "./support-prepared-options.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/shed-support-loop.mjs",
+                "kind": "import-statement",
+                "original": "./shed-support-loop.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/member-support-contact.mjs",
+                "kind": "import-statement",
+                "original": "./member-support-contact.mjs"
+              },
+              {
+                "path": "scoped-source/member-state-fast-v1.js",
+                "kind": "import-statement",
+                "original": "../member-state-fast-v1.js"
+              },
+              {
+                "path": "scoped-source/member-experience/health-routes.mjs",
+                "kind": "import-statement",
+                "original": "./health-routes.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/life-back/model.mjs",
+                "kind": "import-statement",
+                "original": "./life-back/model.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/life-back/next-shift.mjs",
+                "kind": "import-statement",
+                "original": "./life-back/next-shift.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/journey-context.mjs",
+                "kind": "import-statement",
+                "original": "./journey-context.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/support-plan.mjs",
+                "kind": "import-statement",
+                "original": "./support-plan.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/journey-records.mjs",
+                "kind": "import-statement",
+                "original": "./journey-records.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "e403e3f07dfe2006434cdef0bd7bbb247f2ad7d3580bab7d7b3098551ab210b1"
+          },
+          "scoped-source/member-experience/shop-navigation-client.mjs": {
+            "bytes": 7733,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "9bb9e2fb15436d81166f24f5516f064ea95b6223dbe3a5819a82170b9a4204d1"
+          },
+          "scoped-source/member-experience/shop-navigation.mjs": {
+            "bytes": 17803,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/shop-navigation-client.mjs",
+                "kind": "import-statement",
+                "original": "./shop-navigation-client.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "ae5e2a5978b38ab03c3b0c1914c18a27ab34724da92d3db74d64843048d1d9f2"
+          },
+          "scoped-source/member-experience/shop-routes.mjs": {
+            "bytes": 8073,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/session-state.mjs",
+                "kind": "import-statement",
+                "original": "./session-state.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/shop-navigation.mjs",
+                "kind": "import-statement",
+                "original": "./shop-navigation.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "2133f139dc7950ce8a0bff74d8b844c888ad5d8fb41e8965901ff94ea7a04783"
+          },
+          "scoped-source/member-experience/shop-basket.mjs": {
+            "bytes": 5061,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/shop-navigation.mjs",
+                "kind": "import-statement",
+                "original": "./shop-navigation.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "c1b00634ee293073cb49b2eb11bccedcf908181a63314d77ec56c3e507cd6db5"
+          },
+          "scoped-source/member-experience/journey-shop-assets.mjs": {
+            "bytes": 5473,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "c76d62279ee14f9b7c25e5a53fc21d4765d8ed20907c40f0cdbf99516f00708b"
+          },
+          "scoped-source/member-experience/shop-catalogue-reader.mjs": {
+            "bytes": 1291,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "32c7cdfe73cf6d58917c7f643091bb90f1144248ac7670afbfc57fa3958eea93"
+          },
+          "scoped-source/member-experience/journey-shop-release.mjs": {
+            "bytes": 3633,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/journey-data.mjs",
+                "kind": "import-statement",
+                "original": "./journey-data.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/journey-page.mjs",
+                "kind": "import-statement",
+                "original": "./journey-page.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/life-back-routes.mjs",
+                "kind": "import-statement",
+                "original": "./life-back-routes.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/shop-routes.mjs",
+                "kind": "import-statement",
+                "original": "./shop-routes.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/shop-navigation.mjs",
+                "kind": "import-statement",
+                "original": "./shop-navigation.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/shop-basket.mjs",
+                "kind": "import-statement",
+                "original": "./shop-basket.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/journey-shop-assets.mjs",
+                "kind": "import-statement",
+                "original": "./journey-shop-assets.mjs"
+              },
+              {
+                "path": "scoped-source/member-experience/shop-catalogue-reader.mjs",
+                "kind": "import-statement",
+                "original": "./shop-catalogue-reader.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "3cc6719744958298c4f6b2e0e43c0afe84b691331712f45c76f08766a79ebfe6"
+          },
+          "scoped-source/journey-shop-programme-factory.mjs": {
+            "bytes": 84,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/journey-shop-release.mjs",
+                "kind": "import-statement",
+                "original": "./member-experience/journey-shop-release.mjs"
+              }
+            ],
+            "format": "esm",
+            "generatedEntry": true
+          }
+        }
+      },
+      "documents": {
+        "sha256": "656cd82212e1fdbf21bc285a38e9b59dfdb82b5088e37b122200b651e1fb0ccb",
+        "bytes": 23285,
+        "inputs": {
+          "scoped-source/member-experience/shop-navigation-client.mjs": {
+            "bytes": 7733,
+            "imports": [],
+            "format": "esm",
+            "canonicalSourceSHA256": "9bb9e2fb15436d81166f24f5516f064ea95b6223dbe3a5819a82170b9a4204d1"
+          },
+          "scoped-source/member-experience/shop-navigation.mjs": {
+            "bytes": 17803,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/shop-navigation-client.mjs",
+                "kind": "import-statement",
+                "original": "./shop-navigation-client.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "ae5e2a5978b38ab03c3b0c1914c18a27ab34724da92d3db74d64843048d1d9f2"
+          },
+          "scoped-source/member-experience/shop-document-release.mjs": {
+            "bytes": 543,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/shop-navigation.mjs",
+                "kind": "import-statement",
+                "original": "./shop-navigation.mjs"
+              }
+            ],
+            "format": "esm",
+            "canonicalSourceSHA256": "d4cf5cc9139ad55eaed5042b6d6ab8fd83fe1e3a1e9fcd66cd8c49ccda8383b3"
+          },
+          "scoped-source/journey-shop-documents-factory.mjs": {
+            "bytes": 87,
+            "imports": [
+              {
+                "path": "scoped-source/member-experience/shop-document-release.mjs",
+                "kind": "import-statement",
+                "original": "./member-experience/shop-document-release.mjs"
+              }
+            ],
+            "format": "esm",
+            "generatedEntry": true
+          }
+        }
+      }
+    }
+  },
+  "firstPublicationVerification": {
+    "kind": "ORDINARY_PRODUCTION_PROGRAMME_OWNER_VERIFICATION",
+    "source": "037a7f89834659af6735326c6f34a76963ff8a60",
+    "owner": "shift-programme-member-20261023",
+    "version": "d908e3e1-58e3-4c8f-b639-6fb8a852f6b2",
+    "deployment": "9199c398-896d-4606-a1b6-b2e08f3b5088",
+    "pages": [
+      {
+        "path": "/member/life-back/journey",
+        "status": 200
+      },
+      {
+        "path": "/member/life-back/shop",
+        "status": 200
+      },
+      {
+        "path": "/member/life-back/shop/testing/vitamin-d",
+        "status": 200
+      },
+      {
+        "path": "/member/life-back/shop/nutrition",
+        "status": 200
+      },
+      {
+        "path": "/member/life-back/shop/kit?item=heavyweight-tee&colour=ash-green",
+        "status": 200
+      }
+    ],
+    "assets": [
+      {
+        "path": "/assets/member-experience/programme-shop-navigation.mjs",
+        "status": 200,
+        "sha256": "d3f89a982809ff7bdfe7de8ed80ffa5076f3e5bc7ef3c3bc8a5cf92549fcd42e"
+      },
+      {
+        "path": "/assets/member-experience/programme-shop.css",
+        "status": 200,
+        "sha256": "277c614059127a203da15a8982f601a9679f5f30b04ddc474e52275b28ef9930"
+      },
+      {
+        "path": "/assets/member-experience/programme-shop-basket.js",
+        "status": 200,
+        "sha256": "7c28d5220d010fd8fec217e16f52fdc8b80d1cb0cbb3211d17f8cbcc8f0b8343"
+      },
+      {
+        "path": "/assets/member-experience/programme-journey.mjs",
+        "status": 200,
+        "sha256": "27d8af7196746de9a2be63852710d501eef5a31a9466098e5e76257afb3fb82d"
+      },
+      {
+        "path": "/assets/member-experience/programme-journey.css",
+        "status": 200,
+        "sha256": "c4f34cb29518da70318a98e7dad402be85a4a230b92e85cb3063612227f1272b"
+      },
+      {
+        "path": "/assets/my-timber-layout.mjs",
+        "status": 200,
+        "sha256": "ba1f1f6dbfa68df272202bc4eb2efdc537bb74ca3096214423289c2740799582"
+      },
+      {
+        "path": "/my-timber-v11.js",
+        "status": 200,
+        "sha256": "0b7d2f525f7ec1868e335e29dc848ca6129e071e9ab09d9a75f90dc3e2428a3b"
+      }
+    ],
+    "productionWrites": 0,
+    "versionOverrideUsed": false,
+    "verified": true,
+    "verifiedAt": "2026-10-31T23:34:19.257Z"
+  },
+  "freshProduction": {
+    "chromium": {
+      "phase": "live",
+      "browser": "chromium",
+      "source": "7b35640afe71bd4ef18dc305db6d160c57c3f0cb",
+      "checkedAt": "2026-11-01T09:36:08.223Z",
+      "productionWrites": 0,
+      "pages": [
+        {
+          "path": "/",
+          "status": 200,
+          "mainSHA256": "d3bef76bffe72c2905fac7a119371b760521104c6c493c3f3ecf21e5dc858cca"
+        },
+        {
+          "path": "/clinic-gone-quiet",
+          "status": 200,
+          "mainSHA256": "cc5dd6f41353a3b8e0c453ce1512189d17a220ceb3482e3490d7cee10d226216"
+        },
+        {
+          "path": "/shift-health",
+          "status": 200,
+          "mainSHA256": "438871af5f5e9e812e5b84515d287ed778c76f2bb5fcdc96e9b2e01c7b948ad5"
+        },
+        {
+          "path": "/start-here",
+          "status": 200,
+          "mainSHA256": "bf1cf7e42269bec5c4ba84accf9664f72df9139398a2fbb380ee71d5093375d1"
+        },
+        {
+          "path": "/treatment-centre",
+          "status": 200,
+          "mainSHA256": "a439d6a4986f3ec47034426bd2a27e776776537309b71221256e87cead28261e"
+        },
+        {
+          "path": "/privacy",
+          "status": 200,
+          "mainSHA256": "b95b2eb5396f69602a816638ece6eb4571441e850571968cf1a9a6234d0670ca"
+        },
+        {
+          "path": "/account-deletion",
+          "status": 200,
+          "mainSHA256": "b48a6cbf79cfcf4857e189f7e6876943dcf0029b78ce8b9ad83ea2a0a2535bb6"
+        },
+        {
+          "path": "/member/settings",
+          "status": 200,
+          "mainSHA256": "fe5da7f1ee431177fead04d7f544b2928f5688336433c5ad778d5d1a347a4947"
+        },
+        {
+          "path": "/member/orders",
+          "status": 200,
+          "mainSHA256": "50794a19d39dcbe83a742e90b793594f974a0abbaa4208670c5430a2acfbdd6d"
+        },
+        {
+          "path": "/member/saved",
+          "status": 200,
+          "mainSHA256": "9d07c036ba12292a23c3205239bebec6d8c6ff4370832f1648cc6aba2a5afb78"
+        },
+        {
+          "path": "/member/life-back/journey?view=first-six-weeks",
+          "status": 200,
+          "mainSHA256": "d9de6f71c910eaffbf5eafb4b151a760c7259a309d75e84f1ed5925a5cd5776d"
+        },
+        {
+          "path": "/member/dashboard",
+          "status": 200,
+          "shopMarker": "connected-source-v1"
+        },
+        {
+          "path": "/member/dashboard?timber=support#today",
+          "status": 200,
+          "shopMarker": "connected-source-v1"
+        },
+        {
+          "path": "/member/dashboard?timber=stuff#today",
+          "status": 200,
+          "shopMarker": "connected-source-v1"
+        },
+        {
+          "path": "/member/grub",
+          "status": 200,
+          "shopMarker": "connected-source-v1"
+        },
+        {
+          "path": "/member/fit",
+          "status": 200,
+          "shopMarker": "connected-source-v1"
+        },
+        {
+          "path": "/member/life-back/journey",
+          "status": 200,
+          "shopMarker": "connected-source-v1",
+          "journeyShopMarker": "journey-shop-20261031-v1"
+        },
+        {
+          "path": "/member/life-back/shop",
+          "status": 200,
+          "shopMarker": "connected-source-v1",
+          "journeyShopMarker": "journey-shop-20261031-v1"
+        },
+        {
+          "path": "/member/life-back/shop/testing",
+          "status": 200,
+          "sha256": "7a44df99b957ef868376b63beb8394a72fabc13c5fba832c6df1ec2b54eacf5c"
+        },
+        {
+          "path": "/member/life-back/shop/testing/vitamin-d",
+          "status": 200,
+          "sha256": "749c54b47a44efe3c75612df89885a4548d7a47680911a7a6eb1f705dbda5a28"
+        },
+        {
+          "path": "/member/life-back/shop/nutrition",
+          "status": 200,
+          "sha256": "799e0e6490ebc80139ab9583b2a2742f33be6155d9c4425b4e319afda7433022"
+        },
+        {
+          "path": "/member/life-back/shop/care",
+          "status": 200,
+          "sha256": "eabb5ed65812a44a8fac57f21d32aff7ec55f8542f2f8e73c985db73fbad212f"
+        },
+        {
+          "path": "/member/life-back/shop/kit",
+          "status": 200,
+          "sha256": "e97cabd30b198780240c432a61df2d5713d691b0f2a4b6c3d1006a4a89668086"
+        },
+        {
+          "path": "/member/life-back/shop/kit?item=heavyweight-tee&colour=ash-green",
+          "status": 200,
+          "sha256": "e66c2ea7f9ba6dc87651de5eeac6b896ca4dcd0edfc3125415384f7f2ec9e21f"
+        }
+      ],
+      "assets": [
+        {
+          "path": "/assets/member-experience/programme-shop-navigation.mjs",
+          "status": 200,
+          "sha256": "f7059a9a901054be59bdf808d8fb043be513c907a78c029c47ea8f21d5dd00eb",
+          "integration": null
+        },
+        {
+          "path": "/assets/member-experience/programme-shop.css",
+          "status": 200,
+          "sha256": "fc3f4f794a846265182d9706ff791c958dcda1d597d2b2fa04df8d81ac0ed0fb",
+          "integration": null
+        },
+        {
+          "path": "/assets/member-experience/programme-shop-basket.js",
+          "status": 200,
+          "sha256": "7c28d5220d010fd8fec217e16f52fdc8b80d1cb0cbb3211d17f8cbcc8f0b8343",
+          "integration": null
+        },
+        {
+          "path": "/assets/member-experience/programme-journey.mjs",
+          "status": 200,
+          "sha256": "971acb12a3b108f1b73f1e7576af6a59f5f1256bc3dd9f0780336285a6b16914",
+          "integration": null
+        },
+        {
+          "path": "/assets/member-experience/programme-journey.css",
+          "status": 200,
+          "sha256": "03368124f96fd2af3cdf8b91e30bd2f23aa3fb008b48b8c7ce2c2354dd9edce0",
+          "integration": null
+        },
+        {
+          "path": "/assets/my-timber-layout.mjs",
+          "status": 200,
+          "sha256": "24fa200f1b2ea5335de778ada3e583ed2c8f5587b97527769afefa073aaa5c1c",
+          "integration": "approved-journey-applied"
+        },
+        {
+          "path": "/my-timber-v11.js",
+          "status": 200,
+          "sha256": "6ea38a5410a64c7072d999f70f7fe9c47e4129369d6ee0cfca2b38fd8322fd4f",
+          "integration": "owned-bootstrap"
+        }
+      ],
+      "privateApis": [
+        {
+          "path": "/v1/life-back/journey",
+          "status": 401,
+          "method": "GET"
+        },
+        {
+          "path": "/v1/life-back",
+          "status": 401,
+          "method": "GET"
+        },
+        {
+          "path": "/v1/privacy/export",
+          "status": 401,
+          "method": "POST"
+        },
+        {
+          "path": "/v1/commerce/active-checkout",
+          "status": 401,
+          "method": "GET"
+        }
+      ],
+      "errors": [],
+      "blockedPosts": 0,
+      "authenticatedProductionAcceptance": false,
+      "sixWeeksAssets": [
+        {
+          "path": "/assets/member-experience/programme-first-six-weeks.mjs",
+          "status": 200,
+          "contentType": "text/javascript; charset=utf-8",
+          "sha256": "c88bb148c9119a29540ca897f6ce8c08e4554ad90e4d15a2819cc2459235d974"
+        },
+        {
+          "path": "/assets/member-experience/programme-first-six-weeks.css",
+          "status": 200,
+          "contentType": "text/css; charset=utf-8",
+          "sha256": "d71d87c027b538f06096a9ba1881968930984f74e89b8f7eaf7d0a5b92c8d8e9"
+        },
+        {
+          "path": "/assets/member-experience/programme-first-six-weeks.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "sha256": "91fc1d0494674890a4003935ed5774cd64f0cd5f698cd94ded0d47995f9c1314"
+        }
+      ],
+      "brandMark": {
+        "path": "/assets/favicon-shift-s-20261020.png",
+        "status": 200,
+        "contentType": "image/png",
+        "sha256": "97f754538a660372c62cf5a36c003b3082e672fa2a9de97d0fe4f1f288b56682"
+      },
+      "renderChecks": [
+        {
+          "path": "/member/dashboard",
+          "status": 200,
+          "domContentLoaded": true,
+          "signedOutProtection": true,
+          "identityRequests": 2
+        },
+        {
+          "path": "/member/dashboard?timber=support#today",
+          "status": 200,
+          "domContentLoaded": true,
+          "signedOutProtection": true,
+          "identityRequests": 2
+        },
+        {
+          "path": "/member/dashboard?timber=stuff#today",
+          "status": 200,
+          "domContentLoaded": true,
+          "signedOutProtection": true,
+          "identityRequests": 2
+        },
+        {
+          "path": "/member/grub",
+          "status": 200,
+          "domContentLoaded": true,
+          "signedOutProtection": true,
+          "identityRequests": 1
+        },
+        {
+          "path": "/member/fit",
+          "status": 200,
+          "domContentLoaded": true,
+          "signedOutProtection": true,
+          "identityRequests": 1
+        },
+        {
+          "path": "/member/life-back/journey",
+          "status": 200,
+          "domContentLoaded": true,
+          "signedOutProtection": true,
+          "identityRequests": 1
+        },
+        {
+          "path": "/member/life-back/shop",
+          "status": 200,
+          "domContentLoaded": true,
+          "signedOutProtection": true,
+          "identityRequests": 1
+        }
+      ],
+      "firstPaintChecks": [
+        {
+          "path": "/member/dashboard",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        },
+        {
+          "path": "/member/life-back/journey",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        },
+        {
+          "path": "/member/life-back/shop",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        },
+        {
+          "path": "/member/grub",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        },
+        {
+          "path": "/member/fit",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        },
+        {
+          "path": "/member/dashboard?timber=support#today",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        },
+        {
+          "path": "/member/dashboard?timber=stuff#today",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        }
+      ],
+      "verified": true,
+      "finishedAt": "2026-11-01T09:36:37.665Z"
+    },
+    "webkit": {
+      "phase": "live",
+      "browser": "webkit",
+      "source": "7b35640afe71bd4ef18dc305db6d160c57c3f0cb",
+      "checkedAt": "2026-11-01T09:36:37.843Z",
+      "productionWrites": 0,
+      "pages": [
+        {
+          "path": "/",
+          "status": 200,
+          "mainSHA256": "d3bef76bffe72c2905fac7a119371b760521104c6c493c3f3ecf21e5dc858cca"
+        },
+        {
+          "path": "/clinic-gone-quiet",
+          "status": 200,
+          "mainSHA256": "cc5dd6f41353a3b8e0c453ce1512189d17a220ceb3482e3490d7cee10d226216"
+        },
+        {
+          "path": "/shift-health",
+          "status": 200,
+          "mainSHA256": "438871af5f5e9e812e5b84515d287ed778c76f2bb5fcdc96e9b2e01c7b948ad5"
+        },
+        {
+          "path": "/start-here",
+          "status": 200,
+          "mainSHA256": "bf1cf7e42269bec5c4ba84accf9664f72df9139398a2fbb380ee71d5093375d1"
+        },
+        {
+          "path": "/treatment-centre",
+          "status": 200,
+          "mainSHA256": "a439d6a4986f3ec47034426bd2a27e776776537309b71221256e87cead28261e"
+        },
+        {
+          "path": "/privacy",
+          "status": 200,
+          "mainSHA256": "b95b2eb5396f69602a816638ece6eb4571441e850571968cf1a9a6234d0670ca"
+        },
+        {
+          "path": "/account-deletion",
+          "status": 200,
+          "mainSHA256": "b48a6cbf79cfcf4857e189f7e6876943dcf0029b78ce8b9ad83ea2a0a2535bb6"
+        },
+        {
+          "path": "/member/settings",
+          "status": 200,
+          "mainSHA256": "fe5da7f1ee431177fead04d7f544b2928f5688336433c5ad778d5d1a347a4947"
+        },
+        {
+          "path": "/member/orders",
+          "status": 200,
+          "mainSHA256": "50794a19d39dcbe83a742e90b793594f974a0abbaa4208670c5430a2acfbdd6d"
+        },
+        {
+          "path": "/member/saved",
+          "status": 200,
+          "mainSHA256": "9d07c036ba12292a23c3205239bebec6d8c6ff4370832f1648cc6aba2a5afb78"
+        },
+        {
+          "path": "/member/life-back/journey?view=first-six-weeks",
+          "status": 200,
+          "mainSHA256": "d9de6f71c910eaffbf5eafb4b151a760c7259a309d75e84f1ed5925a5cd5776d"
+        },
+        {
+          "path": "/member/dashboard",
+          "status": 200,
+          "shopMarker": "connected-source-v1"
+        },
+        {
+          "path": "/member/dashboard?timber=support#today",
+          "status": 200,
+          "shopMarker": "connected-source-v1"
+        },
+        {
+          "path": "/member/dashboard?timber=stuff#today",
+          "status": 200,
+          "shopMarker": "connected-source-v1"
+        },
+        {
+          "path": "/member/grub",
+          "status": 200,
+          "shopMarker": "connected-source-v1"
+        },
+        {
+          "path": "/member/fit",
+          "status": 200,
+          "shopMarker": "connected-source-v1"
+        },
+        {
+          "path": "/member/life-back/journey",
+          "status": 200,
+          "shopMarker": "connected-source-v1",
+          "journeyShopMarker": "journey-shop-20261031-v1"
+        },
+        {
+          "path": "/member/life-back/shop",
+          "status": 200,
+          "shopMarker": "connected-source-v1",
+          "journeyShopMarker": "journey-shop-20261031-v1"
+        },
+        {
+          "path": "/member/life-back/shop/testing",
+          "status": 200,
+          "sha256": "7a44df99b957ef868376b63beb8394a72fabc13c5fba832c6df1ec2b54eacf5c"
+        },
+        {
+          "path": "/member/life-back/shop/testing/vitamin-d",
+          "status": 200,
+          "sha256": "749c54b47a44efe3c75612df89885a4548d7a47680911a7a6eb1f705dbda5a28"
+        },
+        {
+          "path": "/member/life-back/shop/nutrition",
+          "status": 200,
+          "sha256": "799e0e6490ebc80139ab9583b2a2742f33be6155d9c4425b4e319afda7433022"
+        },
+        {
+          "path": "/member/life-back/shop/care",
+          "status": 200,
+          "sha256": "eabb5ed65812a44a8fac57f21d32aff7ec55f8542f2f8e73c985db73fbad212f"
+        },
+        {
+          "path": "/member/life-back/shop/kit",
+          "status": 200,
+          "sha256": "e97cabd30b198780240c432a61df2d5713d691b0f2a4b6c3d1006a4a89668086"
+        },
+        {
+          "path": "/member/life-back/shop/kit?item=heavyweight-tee&colour=ash-green",
+          "status": 200,
+          "sha256": "e66c2ea7f9ba6dc87651de5eeac6b896ca4dcd0edfc3125415384f7f2ec9e21f"
+        }
+      ],
+      "assets": [
+        {
+          "path": "/assets/member-experience/programme-shop-navigation.mjs",
+          "status": 200,
+          "sha256": "f7059a9a901054be59bdf808d8fb043be513c907a78c029c47ea8f21d5dd00eb",
+          "integration": null
+        },
+        {
+          "path": "/assets/member-experience/programme-shop.css",
+          "status": 200,
+          "sha256": "fc3f4f794a846265182d9706ff791c958dcda1d597d2b2fa04df8d81ac0ed0fb",
+          "integration": null
+        },
+        {
+          "path": "/assets/member-experience/programme-shop-basket.js",
+          "status": 200,
+          "sha256": "7c28d5220d010fd8fec217e16f52fdc8b80d1cb0cbb3211d17f8cbcc8f0b8343",
+          "integration": null
+        },
+        {
+          "path": "/assets/member-experience/programme-journey.mjs",
+          "status": 200,
+          "sha256": "971acb12a3b108f1b73f1e7576af6a59f5f1256bc3dd9f0780336285a6b16914",
+          "integration": null
+        },
+        {
+          "path": "/assets/member-experience/programme-journey.css",
+          "status": 200,
+          "sha256": "03368124f96fd2af3cdf8b91e30bd2f23aa3fb008b48b8c7ce2c2354dd9edce0",
+          "integration": null
+        },
+        {
+          "path": "/assets/my-timber-layout.mjs",
+          "status": 200,
+          "sha256": "24fa200f1b2ea5335de778ada3e583ed2c8f5587b97527769afefa073aaa5c1c",
+          "integration": "approved-journey-applied"
+        },
+        {
+          "path": "/my-timber-v11.js",
+          "status": 200,
+          "sha256": "6ea38a5410a64c7072d999f70f7fe9c47e4129369d6ee0cfca2b38fd8322fd4f",
+          "integration": "owned-bootstrap"
+        }
+      ],
+      "privateApis": [
+        {
+          "path": "/v1/life-back/journey",
+          "status": 401,
+          "method": "GET"
+        },
+        {
+          "path": "/v1/life-back",
+          "status": 401,
+          "method": "GET"
+        },
+        {
+          "path": "/v1/privacy/export",
+          "status": 401,
+          "method": "POST"
+        },
+        {
+          "path": "/v1/commerce/active-checkout",
+          "status": 401,
+          "method": "GET"
+        }
+      ],
+      "errors": [],
+      "blockedPosts": 0,
+      "authenticatedProductionAcceptance": false,
+      "sixWeeksAssets": [
+        {
+          "path": "/assets/member-experience/programme-first-six-weeks.mjs",
+          "status": 200,
+          "contentType": "text/javascript; charset=utf-8",
+          "sha256": "c88bb148c9119a29540ca897f6ce8c08e4554ad90e4d15a2819cc2459235d974"
+        },
+        {
+          "path": "/assets/member-experience/programme-first-six-weeks.css",
+          "status": 200,
+          "contentType": "text/css; charset=utf-8",
+          "sha256": "d71d87c027b538f06096a9ba1881968930984f74e89b8f7eaf7d0a5b92c8d8e9"
+        },
+        {
+          "path": "/assets/member-experience/programme-first-six-weeks.webp",
+          "status": 200,
+          "contentType": "image/webp",
+          "sha256": "91fc1d0494674890a4003935ed5774cd64f0cd5f698cd94ded0d47995f9c1314"
+        }
+      ],
+      "brandMark": {
+        "path": "/assets/favicon-shift-s-20261020.png",
+        "status": 200,
+        "contentType": "image/png",
+        "sha256": "97f754538a660372c62cf5a36c003b3082e672fa2a9de97d0fe4f1f288b56682"
+      },
+      "renderChecks": [
+        {
+          "path": "/member/dashboard",
+          "status": 200,
+          "domContentLoaded": true,
+          "signedOutProtection": true,
+          "identityRequests": 2
+        },
+        {
+          "path": "/member/dashboard?timber=support#today",
+          "status": 200,
+          "domContentLoaded": true,
+          "signedOutProtection": true,
+          "identityRequests": 2
+        },
+        {
+          "path": "/member/dashboard?timber=stuff#today",
+          "status": 200,
+          "domContentLoaded": true,
+          "signedOutProtection": true,
+          "identityRequests": 2
+        },
+        {
+          "path": "/member/grub",
+          "status": 200,
+          "domContentLoaded": true,
+          "signedOutProtection": true,
+          "identityRequests": 1
+        },
+        {
+          "path": "/member/fit",
+          "status": 200,
+          "domContentLoaded": true,
+          "signedOutProtection": true,
+          "identityRequests": 1
+        },
+        {
+          "path": "/member/life-back/journey",
+          "status": 200,
+          "domContentLoaded": true,
+          "signedOutProtection": true,
+          "identityRequests": 1
+        },
+        {
+          "path": "/member/life-back/shop",
+          "status": 200,
+          "domContentLoaded": true,
+          "signedOutProtection": true,
+          "identityRequests": 1
+        }
+      ],
+      "firstPaintChecks": [
+        {
+          "path": "/member/dashboard",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        },
+        {
+          "path": "/member/life-back/journey",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        },
+        {
+          "path": "/member/life-back/shop",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        },
+        {
+          "path": "/member/grub",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        },
+        {
+          "path": "/member/fit",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        },
+        {
+          "path": "/member/dashboard?timber=support#today",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        },
+        {
+          "path": "/member/dashboard?timber=stuff#today",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        }
+      ],
+      "verified": true,
+      "finishedAt": "2026-11-01T09:36:58.522Z"
+    }
+  },
+  "preservation": {
+    "runtimeSource": "7b35640afe71bd4ef18dc305db6d160c57c3f0cb",
+    "owners": [
+      {
+        "name": "shift-programme-member-20261023",
+        "versionId": "cef30348-4ce4-4ed6-957d-d500863ec457",
+        "deploymentId": "4513f2f2-1edc-428d-8e3d-625c81f5efc6",
+        "rollbackVersion": "742bfb7e-7743-4cbc-84d5-187177488ce9",
+        "rollbackVerified": true,
+        "originalModulesPreserved": 13,
+        "originalBindingsPreserved": 4,
+        "newCatalogueReadBindings": [
+          {
+            "name": "MY_TIMBER_PUBLIC_KIT",
+            "type": "service",
+            "service": "shift-timber-mill-presentation-20261021"
+          },
+          {
+            "name": "MY_TIMBER_PUBLIC_NUTRITION",
+            "type": "service",
+            "service": "shift-health-heroes-20261029"
+          },
+          {
+            "name": "MY_TIMBER_PUBLIC_TESTING",
+            "type": "service",
+            "service": "shift-health-nutrition-20261027"
+          }
+        ],
+        "compatibilityPreserved": true,
+        "schedulesPreserved": true,
+        "existingModulesUnchanged": 20,
+        "existingBindingsUnchanged": 7,
+        "entryPoint": "first-six-weeks-20261101/entry.mjs",
+        "preservedSixWeeksSource": "684077208a7ee059ae315ed39c4ed1a39946aed0",
+        "unchangedByCorrection": false,
+        "changedOwnedModuleOnly": "journey-shop-release-20261031/programme.mjs"
+      },
+      {
+        "name": "shift-hq-member-comms-20261023",
+        "versionId": "d61a4a95-f5eb-425a-97ee-c16584b31766",
+        "deploymentId": "db8b698d-aec3-48cd-8c0d-049694813f9d",
+        "rollbackVersion": "459dd83d-9ade-461f-997a-6e11a4d7d3ff",
+        "rollbackVerified": true,
+        "originalModulesPreserved": 8,
+        "originalBindingsPreserved": 6,
+        "newCatalogueReadBindings": [],
+        "compatibilityPreserved": true,
+        "schedulesPreserved": true,
+        "unchangedByCorrection": false,
+        "existingModulesUnchanged": 15,
+        "existingBindingsUnchanged": 6,
+        "entryPoint": "first-six-weeks-20261101/entry.mjs",
+        "changedOwnedModuleOnly": "journey-shop-release-20261031/documents.mjs"
+      },
+      {
+        "name": "shift-core",
+        "versionId": "7de3a164-ad02-432a-aa3c-fa34bed48710",
+        "deploymentId": "0c78f3c7-f5b0-4a4b-afac-cc96575c712f",
+        "rollbackVersion": "75f089f8-fcaa-4f46-b464-a642f2288a7e",
+        "rollbackVerified": true,
+        "existingModulesUnchanged": 37,
+        "existingBindingsUnchanged": 52,
+        "entryPoint": "first-paint-utilities-20261101/entry.mjs",
+        "previousEntryPoint": "public-image-repair/entry.mjs",
+        "addedModules": [
+          "first-paint-utilities-20261101/documents.mjs",
+          "first-paint-utilities-20261101/entry.mjs"
+        ],
+        "unchangedByCorrection": false
+      }
+    ],
+    "routesChanged": 0,
+    "appleActions": 0,
+    "productionMemberWrites": 0,
+    "routeCount": 915,
+    "verified": true,
+    "verifiedAt": "2026-11-01T10:31:27.455Z"
+  },
+  "authenticatedJourneyPersistence": {
+    "isolatedIntegratedHandlers": "PASSED: synthetic accounts, isolated SQLite, all six record kinds, refresh, corrections, deletion, Snapshot safeguards and account isolation",
+    "ordinaryProduction": "NOT VERIFIED",
+    "evidence": "Fresh retained authorised test browser GET /v1/me returned HTTP 401 at 2026-11-01T14:36:57.916Z; existing-session-check.log. GET Journey returned HTTP 200 and app-shell-20261101.",
+    "smallestNextAction": "Sign an existing synthetic test member into the retained authorised test browser on the SST Mac using normal login. Physical-device acceptance requires an accessible connected iPhone; no Apple submission change is needed."
+  },
+  "physicalDeviceAcceptance": {
+    "performed": false,
+    "pwaInstalledOperationVerified": false,
+    "nativePhysicalOperationVerified": false,
+    "webkitIsPhysicalIphoneProof": false,
+    "latestDiscovery": {
+      "atUtc": "2026-11-01T14:38:02.210534+00:00",
+      "result": "TIMED_OUT_AFTER_30_SECONDS",
+      "physicalConnectionConfirmed": false
+    }
+  },
+  "apple": {
+    "actions": 0,
+    "binaryChanged": false,
+    "resubmitted": false,
+    "reviewNotesChanged": false,
+    "releaseSettingsChanged": false,
+    "messagesSent": 0,
+    "build8Preserved": true
+  },
+  "productionOrdersCreated": 0,
+  "productionPaymentsCreated": 0,
+  "productionCustomerRecordsCreated": 0,
+  "emailsSent": 0,
+  "resourceControl": {
+    "maximumConcurrentManagedChecks": 1,
+    "browserContextsClosed": true,
+    "unusedTemplateIncident": {
+      "description": "A provider capture command unexpectedly invoked Create Cloudflare and created template dependencies. No template code was used or deployed. Removed only those unchanged files created by this run.",
+      "removedFiles": 6800,
+      "removedBytes": 1167295735,
+      "originalReleaseWorkspacePreserved": true
+    }
+  },
+  "technicalReceiptDirectory": "/Users/shiftsometimberltd/SST/builds/apple-completion-20261024/journey-shop-release-20261031",
+  "rejectedZeroTrafficEvidence": [
+    "journey-shop-zero-rejection-e44ca066.json",
+    "journey-shop-publication-state.json"
+  ],
+  "resolvedServingFailure": "Cloudflare edge rejects Request redirect:error. Catalogue and basket reads now use manual; 302/307 rejection tests remain and were strengthened. Finite catalogue service reads forward no member credentials.",
+  "receiptUrl": "https://github.com/shiftsometimber/shift-core/blob/work/my-timber-shop-connected-20261029/member-experience/journey-shop-release-20261031/verification.json",
+  "uiCorrections": {
+    "state": "LIVE_AND_VERIFIED",
+    "at": "2026-11-01T10:31:27.455Z",
+    "source": "7b35640afe71bd4ef18dc305db6d160c57c3f0cb",
+    "worker": "shift-programme-member-20261023",
+    "versionId": "cef30348-4ce4-4ed6-957d-d500863ec457",
+    "deploymentId": "4513f2f2-1edc-428d-8e3d-625c81f5efc6",
+    "rollbackVersion": "742bfb7e-7743-4cbc-84d5-187177488ce9",
+    "changedServingModules": [
+      "journey-shop-release-20261031/programme.mjs",
+      "journey-shop-release-20261031/documents.mjs"
+    ],
+    "otherServingModuleHashes": {
+      "continuity-review-20261031/entry.mjs": "69349447b3584bf8a34717f2946badb999c245d79a53b4c5ff47feece48c875a",
+      "continuity-review-20261031/handoff.mjs": "6aae38134d1aa1c9f66b12b64ab3b6808eb71d9bb26f69db988fe3f7684d92b5",
+      "continuity-review-20261031/html.mjs": "6fc6472132ab06a69fb99bdeaf1e74cb006827db5e8798270104177d5c6ea92e",
+      "continuity-review-20261031/runtime.mjs": "d4480c7fe2455d3f87ecb1e57863218fb466f8e624ba0a364f5d4d421779d42c",
+      "data.mjs": "04eeffcded2e2365a76a73e914c0ed4deb461b7001eb43697cddcd63d51df40e",
+      "first-six-weeks-20261101/entry.mjs": "5c61072e72e77d76144bd1db186509f284aa641b4c9c9a4523c8a5fe8e624876",
+      "first-six-weeks-20261101/first-six-weeks-client.mjs": "2a01de6bece21bd394e25ed5078a8759f28f7b694c563602696039dfd42ab3da",
+      "first-six-weeks-20261101/first-six-weeks-content.mjs": "6ea4b21126a5de2c61dc2d93b0a87097e91af0a2f001948124f0615650de0300",
+      "first-six-weeks-20261101/first-six-weeks-photo.mjs": "6d349982995b08efb1f43dcefe5b3c6e3388ae831f54263bbf33e3efec7c005e",
+      "first-six-weeks-20261101/first-six-weeks-styles.mjs": "bd5e717519104f51a55e3a95ca710f26b3884bdb01cef59fcb52a3393ab63ef6",
+      "first-six-weeks-20261101/first-six-weeks.mjs": "c1d5e793f555613924cd71679a216e405a3c21263a05add18f6484af54b18ea2",
+      "journey-shop-release-20261031/entry.mjs": "2523d634b2979f52339014672f12ab88716b46c96ed56b49f7c1c33e694f5fea",
+      "presentation-entry.mjs": "28154046175263fad23dfdb139acdeb2a637c0daf32d64134e1121bfe1ab56f5",
+      "presentation.mjs": "f3411974c4a5f9c417077a7e6de4298ea96254135137426d8c1f980c2c346c39",
+      "support-release-gate.mjs": "a66f8d44b1a409fbfd94e209e0c138dd1cfeb812f3f89089683d0be85ace3798",
+      "support-service-next.mjs": "4d5232198f92e6e1fc528b3e385921a9c675861a9d5bd5878a667776e2db12c3",
+      "support-service-prior.mjs": "cc8f3f834acebddfefe8c9e6bda52f05d7f7131cf4882ebbfa4abb7fd1032bf4",
+      "support-service.mjs": "257023e78469382031e9da3654ebf879fa352f4d3c3c47897618e95b3bd206cf",
+      "urgent-phone-link.mjs": "2959b38f5259960d18af0cdef8cbeb17f5063048a0e000bf1e229499629a2a04",
+      "worker.mjs": "a8e356b3eb5f991473bb3c9e0971407fdac5c4b5840d625f7cbc95da72e8fc95"
+    },
+    "bundleSHA256": "53856d89a00a4c5d0309c2d1cd41f8e9bd8736b5c06f09d1382e76ded5e5497c",
+    "baselineVerifiedAt": "2026-11-01T09:29:20.348Z",
+    "zeroVerifiedAt": "2026-11-01T08:59:42.369Z",
+    "candidateAcceptanceAt": "2026-11-01T09:34:56.344Z",
+    "liveVerifiedAt": "2026-11-01T09:36:02.528Z",
+    "resolved": [
+      "Shop category emoji arrows remain removed",
+      "Figure uses a changing clipped filled area, not opacity or colour changes",
+      "Guide opens and reopens at Day 1; Play restarts from Day 1 at the end",
+      "Guide date is restored when returning to Journey, including cancelling a dated entry; new-record dates remain unchanged",
+      "Pointer, wheel, range, keyboard, day buttons and Play keep the figure and chart synchronised",
+      "All seven day buttons visible without horizontal scrolling; Day 7 directly selectable; touch targets at least 44 by 44 CSS pixels",
+      "Existing SHIFT S mark restored beside My Timber in shared member header; 30px mark, 10px gap, unchanged header height and navigation",
+      "Member pages now render the app styling and non-private opening shell in the initial head; no website or legacy navigation frame precedes the verified app"
+    ],
+    "educationalBoundary": "Symbolic illustration, not measured medicine level, anatomical flow, personal symptom prediction or a dosing tool",
+    "sourceCheck": {
+      "url": "https://www.medicines.org.uk/emc/product/15484/smpc",
+      "section": "5.2",
+      "checkedOn": "2026-11-01",
+      "exampleCurveIsNotSourceData": true
+    },
+    "servedInputs": {
+      "at": "2026-11-01T09:33:14.244592+00:00",
+      "source": "7b35640afe71bd4ef18dc305db6d160c57c3f0cb",
+      "sha256": {
+        "first-paint-candidate-shop.html": "ffac6e18d6048125af15db630815387163d59f7abb2c1f764a03eff402458477",
+        "first-paint-candidate-journey.mjs": "971acb12a3b108f1b73f1e7576af6a59f5f1256bc3dd9f0780336285a6b16914",
+        "first-paint-candidate-journey.css": "03368124f96fd2af3cdf8b91e30bd2f23aa3fb008b48b8c7ce2c2354dd9edce0",
+        "first-paint-candidate-navigation.mjs": "f7059a9a901054be59bdf808d8fb043be513c907a78c029c47ea8f21d5dd00eb",
+        "first-paint-candidate-shop.css": "fc3f4f794a846265182d9706ff791c958dcda1d597d2b2fa04df8d81ac0ed0fb",
+        "first-paint-candidate-shift-s.png": "97f754538a660372c62cf5a36c003b3082e672fa2a9de97d0fe4f1f288b56682",
+        "scoped-source/member-experience/tests/shop-connected-browser.mjs": "daff9efb46b9a1c570abbb33bf5870f1996cb237d4e37943db13ff65190d0286"
+      }
+    },
+    "preservedFirstSixWeeksEntry": "first-six-weeks-20261101/entry.mjs",
+    "preservedFirstSixWeeksModules": [
+      "first-six-weeks-20261101/entry.mjs",
+      "first-six-weeks-20261101/first-six-weeks-client.mjs",
+      "first-six-weeks-20261101/first-six-weeks-content.mjs",
+      "first-six-weeks-20261101/first-six-weeks-photo.mjs",
+      "first-six-weeks-20261101/first-six-weeks-styles.mjs",
+      "first-six-weeks-20261101/first-six-weeks.mjs"
+    ],
+    "preservedFirstSixWeeksHttpAndAssets": [
+      {
+        "path": "/assets/member-experience/programme-first-six-weeks.mjs",
+        "status": 200,
+        "contentType": "text/javascript; charset=utf-8",
+        "sha256": "c88bb148c9119a29540ca897f6ce8c08e4554ad90e4d15a2819cc2459235d974"
+      },
+      {
+        "path": "/assets/member-experience/programme-first-six-weeks.css",
+        "status": 200,
+        "contentType": "text/css; charset=utf-8",
+        "sha256": "d71d87c027b538f06096a9ba1881968930984f74e89b8f7eaf7d0a5b92c8d8e9"
+      },
+      {
+        "path": "/assets/member-experience/programme-first-six-weeks.webp",
+        "status": 200,
+        "contentType": "image/webp",
+        "sha256": "91fc1d0494674890a4003935ed5774cd64f0cd5f698cd94ded0d47995f9c1314"
+      }
+    ],
+    "dashboardDeploymentPreserved": null,
+    "routesPreserved": 915,
+    "newRoutes": 0,
+    "schedulesAndRuntimeConfigurationPreserved": true,
+    "appleActions": 0,
+    "productionCustomerWrites": 0,
+    "replacedZeroTrafficCandidates": [],
+    "dayButtonLayout": {
+      "sevenColumnsWhenTheyFit": true,
+      "fourThenThreeBelow375px": true,
+      "testedWidths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "noHorizontalScrolling": true,
+      "allButtonsVisibleAndUnobscured": true,
+      "day7SelectedByPointerWithoutAutomaticScroll": true,
+      "stylesheetCapturedFromServedCandidateAndMatchesLive": true
+    },
+    "brandMark": {
+      "path": "/assets/favicon-shift-s-20261020.png",
+      "status": 200,
+      "contentType": "image/png",
+      "sha256": "97f754538a660372c62cf5a36c003b3082e672fa2a9de97d0fe4f1f288b56682"
+    },
+    "owners": [
+      {
+        "name": "shift-programme-member-20261023",
+        "kind": "programme",
+        "versionId": "cef30348-4ce4-4ed6-957d-d500863ec457",
+        "currentDeployment": "4513f2f2-1edc-428d-8e3d-625c81f5efc6",
+        "previousVersion": "742bfb7e-7743-4cbc-84d5-187177488ce9",
+        "baselineDeployment": "0d7e4ed6-2be3-4b4a-bf68-ca64d7bb3804",
+        "mainModule": "first-six-weeks-20261101/entry.mjs",
+        "ownedModule": "journey-shop-release-20261031/programme.mjs",
+        "bundleSHA256": "53856d89a00a4c5d0309c2d1cd41f8e9bd8736b5c06f09d1382e76ded5e5497c",
+        "baselineModuleHashes": {
+          "continuity-review-20261031/entry.mjs": "69349447b3584bf8a34717f2946badb999c245d79a53b4c5ff47feece48c875a",
+          "continuity-review-20261031/handoff.mjs": "6aae38134d1aa1c9f66b12b64ab3b6808eb71d9bb26f69db988fe3f7684d92b5",
+          "continuity-review-20261031/html.mjs": "6fc6472132ab06a69fb99bdeaf1e74cb006827db5e8798270104177d5c6ea92e",
+          "continuity-review-20261031/runtime.mjs": "d4480c7fe2455d3f87ecb1e57863218fb466f8e624ba0a364f5d4d421779d42c",
+          "data.mjs": "04eeffcded2e2365a76a73e914c0ed4deb461b7001eb43697cddcd63d51df40e",
+          "first-six-weeks-20261101/entry.mjs": "5c61072e72e77d76144bd1db186509f284aa641b4c9c9a4523c8a5fe8e624876",
+          "first-six-weeks-20261101/first-six-weeks-client.mjs": "2a01de6bece21bd394e25ed5078a8759f28f7b694c563602696039dfd42ab3da",
+          "first-six-weeks-20261101/first-six-weeks-content.mjs": "6ea4b21126a5de2c61dc2d93b0a87097e91af0a2f001948124f0615650de0300",
+          "first-six-weeks-20261101/first-six-weeks-photo.mjs": "6d349982995b08efb1f43dcefe5b3c6e3388ae831f54263bbf33e3efec7c005e",
+          "first-six-weeks-20261101/first-six-weeks-styles.mjs": "bd5e717519104f51a55e3a95ca710f26b3884bdb01cef59fcb52a3393ab63ef6",
+          "first-six-weeks-20261101/first-six-weeks.mjs": "c1d5e793f555613924cd71679a216e405a3c21263a05add18f6484af54b18ea2",
+          "journey-shop-release-20261031/entry.mjs": "2523d634b2979f52339014672f12ab88716b46c96ed56b49f7c1c33e694f5fea",
+          "journey-shop-release-20261031/programme.mjs": "f4c0a6e6de80d123a94c1d709891c2106a279ea844baead7ec4a0424e8072321",
+          "presentation-entry.mjs": "28154046175263fad23dfdb139acdeb2a637c0daf32d64134e1121bfe1ab56f5",
+          "presentation.mjs": "f3411974c4a5f9c417077a7e6de4298ea96254135137426d8c1f980c2c346c39",
+          "support-release-gate.mjs": "a66f8d44b1a409fbfd94e209e0c138dd1cfeb812f3f89089683d0be85ace3798",
+          "support-service-next.mjs": "4d5232198f92e6e1fc528b3e385921a9c675861a9d5bd5878a667776e2db12c3",
+          "support-service-prior.mjs": "cc8f3f834acebddfefe8c9e6bda52f05d7f7131cf4882ebbfa4abb7fd1032bf4",
+          "support-service.mjs": "257023e78469382031e9da3654ebf879fa352f4d3c3c47897618e95b3bd206cf",
+          "urgent-phone-link.mjs": "2959b38f5259960d18af0cdef8cbeb17f5063048a0e000bf1e229499629a2a04",
+          "worker.mjs": "a8e356b3eb5f991473bb3c9e0971407fdac5c4b5840d625f7cbc95da72e8fc95"
+        },
+        "moduleHashes": {
+          "continuity-review-20261031/entry.mjs": "69349447b3584bf8a34717f2946badb999c245d79a53b4c5ff47feece48c875a",
+          "continuity-review-20261031/handoff.mjs": "6aae38134d1aa1c9f66b12b64ab3b6808eb71d9bb26f69db988fe3f7684d92b5",
+          "continuity-review-20261031/html.mjs": "6fc6472132ab06a69fb99bdeaf1e74cb006827db5e8798270104177d5c6ea92e",
+          "continuity-review-20261031/runtime.mjs": "d4480c7fe2455d3f87ecb1e57863218fb466f8e624ba0a364f5d4d421779d42c",
+          "data.mjs": "04eeffcded2e2365a76a73e914c0ed4deb461b7001eb43697cddcd63d51df40e",
+          "first-six-weeks-20261101/entry.mjs": "5c61072e72e77d76144bd1db186509f284aa641b4c9c9a4523c8a5fe8e624876",
+          "first-six-weeks-20261101/first-six-weeks-client.mjs": "2a01de6bece21bd394e25ed5078a8759f28f7b694c563602696039dfd42ab3da",
+          "first-six-weeks-20261101/first-six-weeks-content.mjs": "6ea4b21126a5de2c61dc2d93b0a87097e91af0a2f001948124f0615650de0300",
+          "first-six-weeks-20261101/first-six-weeks-photo.mjs": "6d349982995b08efb1f43dcefe5b3c6e3388ae831f54263bbf33e3efec7c005e",
+          "first-six-weeks-20261101/first-six-weeks-styles.mjs": "bd5e717519104f51a55e3a95ca710f26b3884bdb01cef59fcb52a3393ab63ef6",
+          "first-six-weeks-20261101/first-six-weeks.mjs": "c1d5e793f555613924cd71679a216e405a3c21263a05add18f6484af54b18ea2",
+          "journey-shop-release-20261031/entry.mjs": "2523d634b2979f52339014672f12ab88716b46c96ed56b49f7c1c33e694f5fea",
+          "journey-shop-release-20261031/programme.mjs": "53856d89a00a4c5d0309c2d1cd41f8e9bd8736b5c06f09d1382e76ded5e5497c",
+          "presentation-entry.mjs": "28154046175263fad23dfdb139acdeb2a637c0daf32d64134e1121bfe1ab56f5",
+          "presentation.mjs": "f3411974c4a5f9c417077a7e6de4298ea96254135137426d8c1f980c2c346c39",
+          "support-release-gate.mjs": "a66f8d44b1a409fbfd94e209e0c138dd1cfeb812f3f89089683d0be85ace3798",
+          "support-service-next.mjs": "4d5232198f92e6e1fc528b3e385921a9c675861a9d5bd5878a667776e2db12c3",
+          "support-service-prior.mjs": "cc8f3f834acebddfefe8c9e6bda52f05d7f7131cf4882ebbfa4abb7fd1032bf4",
+          "support-service.mjs": "257023e78469382031e9da3654ebf879fa352f4d3c3c47897618e95b3bd206cf",
+          "urgent-phone-link.mjs": "2959b38f5259960d18af0cdef8cbeb17f5063048a0e000bf1e229499629a2a04",
+          "worker.mjs": "a8e356b3eb5f991473bb3c9e0971407fdac5c4b5840d625f7cbc95da72e8fc95"
+        },
+        "zeroVerifiedAt": "2026-11-01T09:32:28.474Z",
+        "liveVerifiedAt": "2026-11-01T09:35:12.521Z"
+      },
+      {
+        "name": "shift-hq-member-comms-20261023",
+        "kind": "documents",
+        "versionId": "d61a4a95-f5eb-425a-97ee-c16584b31766",
+        "currentDeployment": "db8b698d-aec3-48cd-8c0d-049694813f9d",
+        "previousVersion": "459dd83d-9ade-461f-997a-6e11a4d7d3ff",
+        "baselineDeployment": "05b5f637-5ac3-4920-a87f-062772124160",
+        "mainModule": "first-six-weeks-20261101/entry.mjs",
+        "ownedModule": "journey-shop-release-20261031/documents.mjs",
+        "bundleSHA256": "656cd82212e1fdbf21bc285a38e9b59dfdb82b5088e37b122200b651e1fb0ccb",
+        "baselineModuleHashes": {
+          "data.mjs": "04eeffcded2e2365a76a73e914c0ed4deb461b7001eb43697cddcd63d51df40e",
+          "first-six-weeks-20261101/entry.mjs": "5c61072e72e77d76144bd1db186509f284aa641b4c9c9a4523c8a5fe8e624876",
+          "first-six-weeks-20261101/first-six-weeks-client.mjs": "2a01de6bece21bd394e25ed5078a8759f28f7b694c563602696039dfd42ab3da",
+          "first-six-weeks-20261101/first-six-weeks-content.mjs": "6ea4b21126a5de2c61dc2d93b0a87097e91af0a2f001948124f0615650de0300",
+          "first-six-weeks-20261101/first-six-weeks-photo.mjs": "6d349982995b08efb1f43dcefe5b3c6e3388ae831f54263bbf33e3efec7c005e",
+          "first-six-weeks-20261101/first-six-weeks-styles.mjs": "bd5e717519104f51a55e3a95ca710f26b3884bdb01cef59fcb52a3393ab63ef6",
+          "first-six-weeks-20261101/first-six-weeks.mjs": "c1d5e793f555613924cd71679a216e405a3c21263a05add18f6484af54b18ea2",
+          "journey-shop-release-20261031/documents.mjs": "4e8e63f984a5a266aee61fa6d76fcca2a9d4050d433c23d1f945bc5647ed1841",
+          "journey-shop-release-20261031/entry.mjs": "74489e3e90b435cc9dd35b62996b84f0b1f18ef289aa2d2bc003f544719dc528",
+          "presentation-entry.mjs": "de73cf1ae340ebad4dc6c72214d38a8a4706838c707c1f2f53ea8fbda13f6857",
+          "presentation.mjs": "5b87498f0fd0a69363177f71502a96a42790f5072178ac653d8de6fdf5c7ad9f",
+          "support-markup-next.mjs": "03977c34506c2b3aefe7f1d9945712400fe6d44a1ecd24a252a0606e1c8c80da",
+          "support-markup-prior.mjs": "28f7d1dbf1d9fc27d65fbd4a5ff1edef79cbe001bb7921e1a6a5113ce34aea73",
+          "support-markup.mjs": "71a0ab7b49a09e86050c672c7eda4920f0234738f6d3d4f213da0700740d38ed",
+          "support-release-gate.mjs": "a66f8d44b1a409fbfd94e209e0c138dd1cfeb812f3f89089683d0be85ace3798",
+          "worker.js": "42ff6cc0794618ea9521c532f06f8562f6f467588345ddb75be7732a138aa793"
+        },
+        "moduleHashes": {
+          "data.mjs": "04eeffcded2e2365a76a73e914c0ed4deb461b7001eb43697cddcd63d51df40e",
+          "first-six-weeks-20261101/entry.mjs": "5c61072e72e77d76144bd1db186509f284aa641b4c9c9a4523c8a5fe8e624876",
+          "first-six-weeks-20261101/first-six-weeks-client.mjs": "2a01de6bece21bd394e25ed5078a8759f28f7b694c563602696039dfd42ab3da",
+          "first-six-weeks-20261101/first-six-weeks-content.mjs": "6ea4b21126a5de2c61dc2d93b0a87097e91af0a2f001948124f0615650de0300",
+          "first-six-weeks-20261101/first-six-weeks-photo.mjs": "6d349982995b08efb1f43dcefe5b3c6e3388ae831f54263bbf33e3efec7c005e",
+          "first-six-weeks-20261101/first-six-weeks-styles.mjs": "bd5e717519104f51a55e3a95ca710f26b3884bdb01cef59fcb52a3393ab63ef6",
+          "first-six-weeks-20261101/first-six-weeks.mjs": "c1d5e793f555613924cd71679a216e405a3c21263a05add18f6484af54b18ea2",
+          "journey-shop-release-20261031/documents.mjs": "656cd82212e1fdbf21bc285a38e9b59dfdb82b5088e37b122200b651e1fb0ccb",
+          "journey-shop-release-20261031/entry.mjs": "74489e3e90b435cc9dd35b62996b84f0b1f18ef289aa2d2bc003f544719dc528",
+          "presentation-entry.mjs": "de73cf1ae340ebad4dc6c72214d38a8a4706838c707c1f2f53ea8fbda13f6857",
+          "presentation.mjs": "5b87498f0fd0a69363177f71502a96a42790f5072178ac653d8de6fdf5c7ad9f",
+          "support-markup-next.mjs": "03977c34506c2b3aefe7f1d9945712400fe6d44a1ecd24a252a0606e1c8c80da",
+          "support-markup-prior.mjs": "28f7d1dbf1d9fc27d65fbd4a5ff1edef79cbe001bb7921e1a6a5113ce34aea73",
+          "support-markup.mjs": "71a0ab7b49a09e86050c672c7eda4920f0234738f6d3d4f213da0700740d38ed",
+          "support-release-gate.mjs": "a66f8d44b1a409fbfd94e209e0c138dd1cfeb812f3f89089683d0be85ace3798",
+          "worker.js": "42ff6cc0794618ea9521c532f06f8562f6f467588345ddb75be7732a138aa793"
+        },
+        "zeroVerifiedAt": "2026-11-01T09:32:45.166Z",
+        "liveVerifiedAt": "2026-11-01T09:36:02.528Z"
+      }
+    ],
+    "firstPaint": {
+      "inlineInitialStyles": true,
+      "nonPrivateOpeningShell": true,
+      "legacyChromeHiddenBeforeNavigationDownload": true,
+      "privateContentRemainsGuarded": true,
+      "nativeBuild8InsetCompatibility": true,
+      "noJavaScriptFailureAndEmbeddedFallbacksPassed": true,
+      "actualProductionChromium": [
+        {
+          "path": "/member/dashboard",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        },
+        {
+          "path": "/member/life-back/journey",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        },
+        {
+          "path": "/member/life-back/shop",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        },
+        {
+          "path": "/member/grub",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        },
+        {
+          "path": "/member/fit",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        },
+        {
+          "path": "/member/dashboard?timber=support#today",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        },
+        {
+          "path": "/member/dashboard?timber=stuff#today",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        }
+      ],
+      "actualProductionWebkit": [
+        {
+          "path": "/member/dashboard",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        },
+        {
+          "path": "/member/life-back/journey",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        },
+        {
+          "path": "/member/life-back/shop",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        },
+        {
+          "path": "/member/grub",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        },
+        {
+          "path": "/member/fit",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        },
+        {
+          "path": "/member/dashboard?timber=support#today",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        },
+        {
+          "path": "/member/dashboard?timber=stuff#today",
+          "openingShellVisible": true,
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "navigationDelayedWithoutResponseSubstitution": true
+        }
+      ],
+      "networkDelaysWithoutResponseSubstitution": true,
+      "newIdentityApiOrDataWrites": false,
+      "programmeVerifiedBeforeDashboardPromotion": "2026-11-01T09:35:50.819Z",
+      "guardedUtilityExtension": {
+        "state": "LIVE_AND_VERIFIED",
+        "runtimeSource": "9b473dd13daa9e55a88b25afbf2eae8ef680b6ad",
+        "verificationSource": "af48f2ff87596a410b6e2e95dad93c856bb5cfe1",
+        "owner": {
+          "name": "shift-core",
+          "versionId": "7de3a164-ad02-432a-aa3c-fa34bed48710",
+          "deploymentId": "0c78f3c7-f5b0-4a4b-afac-cc96575c712f",
+          "rollbackVersion": "75f089f8-fcaa-4f46-b464-a642f2288a7e",
+          "rollbackVerified": true,
+          "existingModulesUnchanged": 37,
+          "existingBindingsUnchanged": 52,
+          "entryPoint": "first-paint-utilities-20261101/entry.mjs",
+          "previousEntryPoint": "public-image-repair/entry.mjs",
+          "addedModules": [
+            "first-paint-utilities-20261101/documents.mjs",
+            "first-paint-utilities-20261101/entry.mjs"
+          ],
+          "unchangedByCorrection": false
+        },
+        "verifiedAt": "2026-11-01T10:31:27.455Z",
+        "firstPaintChecks": {
+          "chromium": [
+            {
+              "path": "/member/settings",
+              "websiteFrames": 0,
+              "privateContentGuarded": true,
+              "anonymousSignInPreserved": true,
+              "signedOutDestination": "/member/settings",
+              "nativeCompatibility": true
+            },
+            {
+              "path": "/member/orders",
+              "websiteFrames": 0,
+              "privateContentGuarded": true,
+              "anonymousSignInPreserved": true,
+              "signedOutDestination": "/member/orders",
+              "nativeCompatibility": true
+            },
+            {
+              "path": "/member/saved",
+              "websiteFrames": 0,
+              "privateContentGuarded": true,
+              "anonymousSignInPreserved": true,
+              "signedOutDestination": "/member/saved",
+              "nativeCompatibility": true
+            },
+            {
+              "path": "/member/plans",
+              "websiteFrames": 0,
+              "privateContentGuarded": true,
+              "anonymousSignInPreserved": true,
+              "signedOutDestination": "/member/dashboard",
+              "nativeCompatibility": true
+            },
+            {
+              "path": "/member/my-shift",
+              "websiteFrames": 0,
+              "privateContentGuarded": true,
+              "anonymousSignInPreserved": true,
+              "signedOutDestination": "/member/my-shift",
+              "nativeCompatibility": true
+            },
+            {
+              "path": "/member/my-target",
+              "websiteFrames": 0,
+              "privateContentGuarded": true,
+              "anonymousSignInPreserved": true,
+              "signedOutDestination": "/member-login",
+              "nativeCompatibility": true
+            },
+            {
+              "path": "/member/my-why",
+              "websiteFrames": 0,
+              "privateContentGuarded": true,
+              "anonymousSignInPreserved": true,
+              "signedOutDestination": "/member/my-why",
+              "nativeCompatibility": true
+            },
+            {
+              "path": "/member/achievements",
+              "websiteFrames": 0,
+              "privateContentGuarded": true,
+              "anonymousSignInPreserved": true,
+              "signedOutDestination": "/member/achievements",
+              "nativeCompatibility": true
+            },
+            {
+              "path": "/member/check-in",
+              "websiteFrames": 0,
+              "privateContentGuarded": true,
+              "anonymousSignInPreserved": true,
+              "signedOutDestination": "/member/check-in",
+              "nativeCompatibility": true
+            },
+            {
+              "path": "/member/treatment",
+              "websiteFrames": 0,
+              "privateContentGuarded": true,
+              "anonymousSignInPreserved": true,
+              "signedOutDestination": "/member/treatment",
+              "nativeCompatibility": true
+            },
+            {
+              "path": "/member/timber-circle",
+              "websiteFrames": 0,
+              "privateContentGuarded": true,
+              "anonymousSignInPreserved": true,
+              "signedOutDestination": "/member/timber-circle",
+              "nativeCompatibility": true
+            }
+          ],
+          "webkit": [
+            {
+              "path": "/member/settings",
+              "websiteFrames": 0,
+              "privateContentGuarded": true,
+              "anonymousSignInPreserved": true,
+              "signedOutDestination": "/member/settings",
+              "nativeCompatibility": true
+            },
+            {
+              "path": "/member/orders",
+              "websiteFrames": 0,
+              "privateContentGuarded": true,
+              "anonymousSignInPreserved": true,
+              "signedOutDestination": "/member/orders",
+              "nativeCompatibility": true
+            },
+            {
+              "path": "/member/saved",
+              "websiteFrames": 0,
+              "privateContentGuarded": true,
+              "anonymousSignInPreserved": true,
+              "signedOutDestination": "/member/saved",
+              "nativeCompatibility": true
+            },
+            {
+              "path": "/member/plans",
+              "websiteFrames": 0,
+              "privateContentGuarded": true,
+              "anonymousSignInPreserved": true,
+              "signedOutDestination": "/member/dashboard",
+              "nativeCompatibility": true
+            },
+            {
+              "path": "/member/my-shift",
+              "websiteFrames": 0,
+              "privateContentGuarded": true,
+              "anonymousSignInPreserved": true,
+              "signedOutDestination": "/member/my-shift",
+              "nativeCompatibility": true
+            },
+            {
+              "path": "/member/my-target",
+              "websiteFrames": 0,
+              "privateContentGuarded": true,
+              "anonymousSignInPreserved": true,
+              "signedOutDestination": "/member-login",
+              "nativeCompatibility": true
+            },
+            {
+              "path": "/member/my-why",
+              "websiteFrames": 0,
+              "privateContentGuarded": true,
+              "anonymousSignInPreserved": true,
+              "signedOutDestination": "/member/my-why",
+              "nativeCompatibility": true
+            },
+            {
+              "path": "/member/achievements",
+              "websiteFrames": 0,
+              "privateContentGuarded": true,
+              "anonymousSignInPreserved": true,
+              "signedOutDestination": "/member/achievements",
+              "nativeCompatibility": true
+            },
+            {
+              "path": "/member/check-in",
+              "websiteFrames": 0,
+              "privateContentGuarded": true,
+              "anonymousSignInPreserved": true,
+              "signedOutDestination": "/member/check-in",
+              "nativeCompatibility": true
+            },
+            {
+              "path": "/member/treatment",
+              "websiteFrames": 0,
+              "privateContentGuarded": true,
+              "anonymousSignInPreserved": true,
+              "signedOutDestination": "/member/treatment",
+              "nativeCompatibility": true
+            },
+            {
+              "path": "/member/timber-circle",
+              "websiteFrames": 0,
+              "privateContentGuarded": true,
+              "anonymousSignInPreserved": true,
+              "signedOutDestination": "/member/timber-circle",
+              "nativeCompatibility": true
+            }
+          ]
+        },
+        "newErrors": 0,
+        "existingBaselineErrors": {
+          "chromium": [
+            {
+              "path": "/member/plans",
+              "message": "Cannot read properties of null (reading 'addEventListener')",
+              "stack": "TypeError: Cannot read properties of null (reading 'addEventListener')\n    at https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:8:5\n    at https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:13:3"
+            }
+          ],
+          "webkit": [
+            {
+              "path": "/member/plans",
+              "message": "null is not an object (evaluating 'btn.addEventListener')",
+              "stack": "TypeError: null is not an object (evaluating 'btn.addEventListener')\n    at unknown (https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:8:4)\n    at global code (https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:13:3)"
+            }
+          ]
+        },
+        "signedOutRedirectsPreserved": true,
+        "productionWrites": 0,
+        "bindingsRoutesSchedulesAssetsOperatingFlagsPreserved": true,
+        "currentToolsImageRepairPreserved": true
+      }
+    },
+    "utilityExtension": {
+      "state": "LIVE_AND_VERIFIED",
+      "runtimeSource": "9b473dd13daa9e55a88b25afbf2eae8ef680b6ad",
+      "verificationSource": "af48f2ff87596a410b6e2e95dad93c856bb5cfe1",
+      "owner": {
+        "name": "shift-core",
+        "versionId": "7de3a164-ad02-432a-aa3c-fa34bed48710",
+        "deploymentId": "0c78f3c7-f5b0-4a4b-afac-cc96575c712f",
+        "rollbackVersion": "75f089f8-fcaa-4f46-b464-a642f2288a7e",
+        "rollbackVerified": true,
+        "existingModulesUnchanged": 37,
+        "existingBindingsUnchanged": 52,
+        "entryPoint": "first-paint-utilities-20261101/entry.mjs",
+        "previousEntryPoint": "public-image-repair/entry.mjs",
+        "addedModules": [
+          "first-paint-utilities-20261101/documents.mjs",
+          "first-paint-utilities-20261101/entry.mjs"
+        ],
+        "unchangedByCorrection": false
+      },
+      "verifiedAt": "2026-11-01T10:31:27.455Z",
+      "firstPaintChecks": {
+        "chromium": [
+          {
+            "path": "/member/settings",
+            "websiteFrames": 0,
+            "privateContentGuarded": true,
+            "anonymousSignInPreserved": true,
+            "signedOutDestination": "/member/settings",
+            "nativeCompatibility": true
+          },
+          {
+            "path": "/member/orders",
+            "websiteFrames": 0,
+            "privateContentGuarded": true,
+            "anonymousSignInPreserved": true,
+            "signedOutDestination": "/member/orders",
+            "nativeCompatibility": true
+          },
+          {
+            "path": "/member/saved",
+            "websiteFrames": 0,
+            "privateContentGuarded": true,
+            "anonymousSignInPreserved": true,
+            "signedOutDestination": "/member/saved",
+            "nativeCompatibility": true
+          },
+          {
+            "path": "/member/plans",
+            "websiteFrames": 0,
+            "privateContentGuarded": true,
+            "anonymousSignInPreserved": true,
+            "signedOutDestination": "/member/dashboard",
+            "nativeCompatibility": true
+          },
+          {
+            "path": "/member/my-shift",
+            "websiteFrames": 0,
+            "privateContentGuarded": true,
+            "anonymousSignInPreserved": true,
+            "signedOutDestination": "/member/my-shift",
+            "nativeCompatibility": true
+          },
+          {
+            "path": "/member/my-target",
+            "websiteFrames": 0,
+            "privateContentGuarded": true,
+            "anonymousSignInPreserved": true,
+            "signedOutDestination": "/member-login",
+            "nativeCompatibility": true
+          },
+          {
+            "path": "/member/my-why",
+            "websiteFrames": 0,
+            "privateContentGuarded": true,
+            "anonymousSignInPreserved": true,
+            "signedOutDestination": "/member/my-why",
+            "nativeCompatibility": true
+          },
+          {
+            "path": "/member/achievements",
+            "websiteFrames": 0,
+            "privateContentGuarded": true,
+            "anonymousSignInPreserved": true,
+            "signedOutDestination": "/member/achievements",
+            "nativeCompatibility": true
+          },
+          {
+            "path": "/member/check-in",
+            "websiteFrames": 0,
+            "privateContentGuarded": true,
+            "anonymousSignInPreserved": true,
+            "signedOutDestination": "/member/check-in",
+            "nativeCompatibility": true
+          },
+          {
+            "path": "/member/treatment",
+            "websiteFrames": 0,
+            "privateContentGuarded": true,
+            "anonymousSignInPreserved": true,
+            "signedOutDestination": "/member/treatment",
+            "nativeCompatibility": true
+          },
+          {
+            "path": "/member/timber-circle",
+            "websiteFrames": 0,
+            "privateContentGuarded": true,
+            "anonymousSignInPreserved": true,
+            "signedOutDestination": "/member/timber-circle",
+            "nativeCompatibility": true
+          }
+        ],
+        "webkit": [
+          {
+            "path": "/member/settings",
+            "websiteFrames": 0,
+            "privateContentGuarded": true,
+            "anonymousSignInPreserved": true,
+            "signedOutDestination": "/member/settings",
+            "nativeCompatibility": true
+          },
+          {
+            "path": "/member/orders",
+            "websiteFrames": 0,
+            "privateContentGuarded": true,
+            "anonymousSignInPreserved": true,
+            "signedOutDestination": "/member/orders",
+            "nativeCompatibility": true
+          },
+          {
+            "path": "/member/saved",
+            "websiteFrames": 0,
+            "privateContentGuarded": true,
+            "anonymousSignInPreserved": true,
+            "signedOutDestination": "/member/saved",
+            "nativeCompatibility": true
+          },
+          {
+            "path": "/member/plans",
+            "websiteFrames": 0,
+            "privateContentGuarded": true,
+            "anonymousSignInPreserved": true,
+            "signedOutDestination": "/member/dashboard",
+            "nativeCompatibility": true
+          },
+          {
+            "path": "/member/my-shift",
+            "websiteFrames": 0,
+            "privateContentGuarded": true,
+            "anonymousSignInPreserved": true,
+            "signedOutDestination": "/member/my-shift",
+            "nativeCompatibility": true
+          },
+          {
+            "path": "/member/my-target",
+            "websiteFrames": 0,
+            "privateContentGuarded": true,
+            "anonymousSignInPreserved": true,
+            "signedOutDestination": "/member-login",
+            "nativeCompatibility": true
+          },
+          {
+            "path": "/member/my-why",
+            "websiteFrames": 0,
+            "privateContentGuarded": true,
+            "anonymousSignInPreserved": true,
+            "signedOutDestination": "/member/my-why",
+            "nativeCompatibility": true
+          },
+          {
+            "path": "/member/achievements",
+            "websiteFrames": 0,
+            "privateContentGuarded": true,
+            "anonymousSignInPreserved": true,
+            "signedOutDestination": "/member/achievements",
+            "nativeCompatibility": true
+          },
+          {
+            "path": "/member/check-in",
+            "websiteFrames": 0,
+            "privateContentGuarded": true,
+            "anonymousSignInPreserved": true,
+            "signedOutDestination": "/member/check-in",
+            "nativeCompatibility": true
+          },
+          {
+            "path": "/member/treatment",
+            "websiteFrames": 0,
+            "privateContentGuarded": true,
+            "anonymousSignInPreserved": true,
+            "signedOutDestination": "/member/treatment",
+            "nativeCompatibility": true
+          },
+          {
+            "path": "/member/timber-circle",
+            "websiteFrames": 0,
+            "privateContentGuarded": true,
+            "anonymousSignInPreserved": true,
+            "signedOutDestination": "/member/timber-circle",
+            "nativeCompatibility": true
+          }
+        ]
+      },
+      "newErrors": 0,
+      "existingBaselineErrors": {
+        "chromium": [
+          {
+            "path": "/member/plans",
+            "message": "Cannot read properties of null (reading 'addEventListener')",
+            "stack": "TypeError: Cannot read properties of null (reading 'addEventListener')\n    at https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:8:5\n    at https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:13:3"
+          }
+        ],
+        "webkit": [
+          {
+            "path": "/member/plans",
+            "message": "null is not an object (evaluating 'btn.addEventListener')",
+            "stack": "TypeError: null is not an object (evaluating 'btn.addEventListener')\n    at unknown (https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:8:4)\n    at global code (https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:13:3)"
+          }
+        ]
+      },
+      "signedOutRedirectsPreserved": true,
+      "productionWrites": 0,
+      "bindingsRoutesSchedulesAssetsOperatingFlagsPreserved": true,
+      "currentToolsImageRepairPreserved": true
+    }
+  },
+  "buildPublicationScope": {
+    "publishedFactories": [
+      "programme",
+      "documents"
+    ],
+    "documentsCandidatePublished": true,
+    "reason": "Both serving owners render the initial document head and non-private app opening shell",
+    "guardedUtilityFactoryPublished": true
+  },
+  "utilityRuntimeSource": "9b473dd13daa9e55a88b25afbf2eae8ef680b6ad",
+  "freshUtilityProduction": {
+    "chromium": {
+      "kind": "MY_TIMBER_UTILITY_FIRST_PAINT",
+      "phase": "live",
+      "browser": "chromium",
+      "source": "9b473dd13daa9e55a88b25afbf2eae8ef680b6ad",
+      "at": "2026-11-01T10:30:29.921Z",
+      "productionWrites": 0,
+      "pages": [
+        {
+          "path": "/",
+          "status": 200,
+          "mainSHA256": "d3bef76bffe72c2905fac7a119371b760521104c6c493c3f3ecf21e5dc858cca",
+          "initial": null,
+          "hasSession": false
+        },
+        {
+          "path": "/tools",
+          "status": 200,
+          "mainSHA256": "6eaeba626d63c83a49d542655fd3c6808b5d3ea297d7d49d6f60fa0cf4bc45a0",
+          "initial": null,
+          "hasSession": false
+        },
+        {
+          "path": "/start-here",
+          "status": 200,
+          "mainSHA256": "bf1cf7e42269bec5c4ba84accf9664f72df9139398a2fbb380ee71d5093375d1",
+          "initial": null,
+          "hasSession": false
+        },
+        {
+          "path": "/treatment-centre",
+          "status": 200,
+          "mainSHA256": "a439d6a4986f3ec47034426bd2a27e776776537309b71221256e87cead28261e",
+          "initial": null,
+          "hasSession": false
+        },
+        {
+          "path": "/privacy",
+          "status": 200,
+          "mainSHA256": "b95b2eb5396f69602a816638ece6eb4571441e850571968cf1a9a6234d0670ca",
+          "initial": null,
+          "hasSession": false
+        },
+        {
+          "path": "/account-deletion",
+          "status": 200,
+          "mainSHA256": "b48a6cbf79cfcf4857e189f7e6876943dcf0029b78ce8b9ad83ea2a0a2535bb6",
+          "initial": null,
+          "hasSession": false
+        },
+        {
+          "path": "/clinic-gone-quiet",
+          "status": 200,
+          "mainSHA256": "cc5dd6f41353a3b8e0c453ce1512189d17a220ceb3482e3490d7cee10d226216",
+          "initial": null,
+          "hasSession": false
+        },
+        {
+          "path": "/shop",
+          "status": 200,
+          "mainSHA256": "32fbded1c774e63af287ffebe3c0fb185aff7f3595994722dea31751e8df4a35",
+          "initial": null,
+          "hasSession": false
+        },
+        {
+          "path": "/shift-health/testing/vitamin-d",
+          "status": 200,
+          "mainSHA256": "38690fcc167fa9eee471c20c0781ca1fab723cc2b85f4fb4dd002c5c5feb7d35",
+          "initial": null,
+          "hasSession": false
+        },
+        {
+          "path": "/member/settings",
+          "status": 200,
+          "mainSHA256": "fe5da7f1ee431177fead04d7f544b2928f5688336433c5ad778d5d1a347a4947",
+          "initial": "app-shell-20261101",
+          "hasSession": true
+        },
+        {
+          "path": "/member/orders",
+          "status": 200,
+          "mainSHA256": "50794a19d39dcbe83a742e90b793594f974a0abbaa4208670c5430a2acfbdd6d",
+          "initial": "app-shell-20261101",
+          "hasSession": true
+        },
+        {
+          "path": "/member/saved",
+          "status": 200,
+          "mainSHA256": "9d07c036ba12292a23c3205239bebec6d8c6ff4370832f1648cc6aba2a5afb78",
+          "initial": "app-shell-20261101",
+          "hasSession": true
+        },
+        {
+          "path": "/member/plans",
+          "status": 200,
+          "mainSHA256": "9191066c17843a4e2f1830800a1d34102ddc431c8e4c3ff0f04c4f4fe170a705",
+          "initial": "app-shell-20261101",
+          "hasSession": true
+        },
+        {
+          "path": "/member/my-shift",
+          "status": 200,
+          "mainSHA256": "e7bdba9849dca751834d7b37451ee5f509c1362b48948d89a295bf1076f5d27c",
+          "initial": "app-shell-20261101",
+          "hasSession": true
+        },
+        {
+          "path": "/member/my-target",
+          "status": 200,
+          "mainSHA256": "9d6262af8a074f2214889571d65be7a0ba4294bfe8d66f1e9a943400da95ad6d",
+          "initial": "app-shell-20261101",
+          "hasSession": true
+        },
+        {
+          "path": "/member/my-why",
+          "status": 200,
+          "mainSHA256": "81fb6afb9df823a2250de37d1506eb4d013c5d0d8b7b13e7600acff9d5921459",
+          "initial": "app-shell-20261101",
+          "hasSession": true
+        },
+        {
+          "path": "/member/achievements",
+          "status": 200,
+          "mainSHA256": "c97e698d037aeec38d53b828261b1909b976ce696f59cdcf25dd18764270e000",
+          "initial": "app-shell-20261101",
+          "hasSession": true
+        },
+        {
+          "path": "/member/check-in",
+          "status": 200,
+          "mainSHA256": "ba3ba18099b0eab739a7bbe904ec898b0bfb93799b3f710e50f07c76bb27ef06",
+          "initial": "app-shell-20261101",
+          "hasSession": true
+        },
+        {
+          "path": "/member/treatment",
+          "status": 200,
+          "mainSHA256": "cc677842bd585fd9eac183216d98ff1ffb6194adbba225b60ed4051acc183600",
+          "initial": "app-shell-20261101",
+          "hasSession": true
+        },
+        {
+          "path": "/member/timber-circle",
+          "status": 200,
+          "mainSHA256": "86cec6d012a0ebbeef190026ebec4f939581759c757a4313bec387cb60711a48",
+          "initial": "app-shell-20261101",
+          "hasSession": true
+        }
+      ],
+      "assets": [
+        {
+          "path": "/assets/favicon-shift-s-20261020.png",
+          "status": 200,
+          "type": "image/png",
+          "sha256": "97f754538a660372c62cf5a36c003b3082e672fa2a9de97d0fe4f1f288b56682"
+        },
+        {
+          "path": "/assets/apple-touch-icon.png",
+          "status": 200,
+          "type": "image/png",
+          "sha256": "dd44b112cc9e93a507fb9b7c7a107bbffc9e38402cd5b0f3af6db7573ec898d4"
+        },
+        {
+          "path": "/tools/assets/ct3-couple-20261031.webp",
+          "status": 200,
+          "type": "image/webp",
+          "sha256": "57d0f67319af5df93793705af75b6d4dcf4e24cda05f2bbbbdeaf5815834fefc"
+        }
+      ],
+      "privateApis": [
+        {
+          "path": "/v1/life-back/journey",
+          "status": 401
+        },
+        {
+          "path": "/v1/life-back",
+          "status": 401
+        },
+        {
+          "path": "/v1/commerce/active-checkout",
+          "status": 401
+        },
+        {
+          "path": "/v1/privacy/account",
+          "status": 404
+        }
+      ],
+      "firstPaintChecks": [
+        {
+          "path": "/member/settings",
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "signedOutDestination": "/member/settings",
+          "nativeCompatibility": true
+        },
+        {
+          "path": "/member/orders",
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "signedOutDestination": "/member/orders",
+          "nativeCompatibility": true
+        },
+        {
+          "path": "/member/saved",
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "signedOutDestination": "/member/saved",
+          "nativeCompatibility": true
+        },
+        {
+          "path": "/member/plans",
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "signedOutDestination": "/member/dashboard",
+          "nativeCompatibility": true
+        },
+        {
+          "path": "/member/my-shift",
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "signedOutDestination": "/member/my-shift",
+          "nativeCompatibility": true
+        },
+        {
+          "path": "/member/my-target",
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "signedOutDestination": "/member-login",
+          "nativeCompatibility": true
+        },
+        {
+          "path": "/member/my-why",
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "signedOutDestination": "/member/my-why",
+          "nativeCompatibility": true
+        },
+        {
+          "path": "/member/achievements",
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "signedOutDestination": "/member/achievements",
+          "nativeCompatibility": true
+        },
+        {
+          "path": "/member/check-in",
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "signedOutDestination": "/member/check-in",
+          "nativeCompatibility": true
+        },
+        {
+          "path": "/member/treatment",
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "signedOutDestination": "/member/treatment",
+          "nativeCompatibility": true
+        },
+        {
+          "path": "/member/timber-circle",
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "signedOutDestination": "/member/timber-circle",
+          "nativeCompatibility": true
+        }
+      ],
+      "errors": [
+        {
+          "path": "/member/plans",
+          "message": "Cannot read properties of null (reading 'addEventListener')",
+          "stack": "TypeError: Cannot read properties of null (reading 'addEventListener')\n    at https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:8:5\n    at https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:13:3"
+        }
+      ],
+      "nativeScriptSha256": [
+        "00fe5e04f7e1ab9f757ba0106a95b6622314748f388ee17b40c2961f3958e88b",
+        "1a5a30528ac9fa41264df609811f2151ed7cf02a465a116cd0ac527b0b870872"
+      ],
+      "existingBaselineErrors": [
+        {
+          "path": "/member/plans",
+          "message": "Cannot read properties of null (reading 'addEventListener')",
+          "stack": "TypeError: Cannot read properties of null (reading 'addEventListener')\n    at https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:8:5\n    at https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:13:3"
+        }
+      ],
+      "newErrors": [],
+      "verified": true,
+      "finishedAt": "2026-11-01T10:30:58.286Z"
+    },
+    "webkit": {
+      "kind": "MY_TIMBER_UTILITY_FIRST_PAINT",
+      "phase": "live",
+      "browser": "webkit",
+      "source": "9b473dd13daa9e55a88b25afbf2eae8ef680b6ad",
+      "at": "2026-11-01T10:30:58.491Z",
+      "productionWrites": 0,
+      "pages": [
+        {
+          "path": "/",
+          "status": 200,
+          "mainSHA256": "d3bef76bffe72c2905fac7a119371b760521104c6c493c3f3ecf21e5dc858cca",
+          "initial": null,
+          "hasSession": false
+        },
+        {
+          "path": "/tools",
+          "status": 200,
+          "mainSHA256": "6eaeba626d63c83a49d542655fd3c6808b5d3ea297d7d49d6f60fa0cf4bc45a0",
+          "initial": null,
+          "hasSession": false
+        },
+        {
+          "path": "/start-here",
+          "status": 200,
+          "mainSHA256": "bf1cf7e42269bec5c4ba84accf9664f72df9139398a2fbb380ee71d5093375d1",
+          "initial": null,
+          "hasSession": false
+        },
+        {
+          "path": "/treatment-centre",
+          "status": 200,
+          "mainSHA256": "a439d6a4986f3ec47034426bd2a27e776776537309b71221256e87cead28261e",
+          "initial": null,
+          "hasSession": false
+        },
+        {
+          "path": "/privacy",
+          "status": 200,
+          "mainSHA256": "b95b2eb5396f69602a816638ece6eb4571441e850571968cf1a9a6234d0670ca",
+          "initial": null,
+          "hasSession": false
+        },
+        {
+          "path": "/account-deletion",
+          "status": 200,
+          "mainSHA256": "b48a6cbf79cfcf4857e189f7e6876943dcf0029b78ce8b9ad83ea2a0a2535bb6",
+          "initial": null,
+          "hasSession": false
+        },
+        {
+          "path": "/clinic-gone-quiet",
+          "status": 200,
+          "mainSHA256": "cc5dd6f41353a3b8e0c453ce1512189d17a220ceb3482e3490d7cee10d226216",
+          "initial": null,
+          "hasSession": false
+        },
+        {
+          "path": "/shop",
+          "status": 200,
+          "mainSHA256": "32fbded1c774e63af287ffebe3c0fb185aff7f3595994722dea31751e8df4a35",
+          "initial": null,
+          "hasSession": false
+        },
+        {
+          "path": "/shift-health/testing/vitamin-d",
+          "status": 200,
+          "mainSHA256": "38690fcc167fa9eee471c20c0781ca1fab723cc2b85f4fb4dd002c5c5feb7d35",
+          "initial": null,
+          "hasSession": false
+        },
+        {
+          "path": "/member/settings",
+          "status": 200,
+          "mainSHA256": "fe5da7f1ee431177fead04d7f544b2928f5688336433c5ad778d5d1a347a4947",
+          "initial": "app-shell-20261101",
+          "hasSession": true
+        },
+        {
+          "path": "/member/orders",
+          "status": 200,
+          "mainSHA256": "50794a19d39dcbe83a742e90b793594f974a0abbaa4208670c5430a2acfbdd6d",
+          "initial": "app-shell-20261101",
+          "hasSession": true
+        },
+        {
+          "path": "/member/saved",
+          "status": 200,
+          "mainSHA256": "9d07c036ba12292a23c3205239bebec6d8c6ff4370832f1648cc6aba2a5afb78",
+          "initial": "app-shell-20261101",
+          "hasSession": true
+        },
+        {
+          "path": "/member/plans",
+          "status": 200,
+          "mainSHA256": "9191066c17843a4e2f1830800a1d34102ddc431c8e4c3ff0f04c4f4fe170a705",
+          "initial": "app-shell-20261101",
+          "hasSession": true
+        },
+        {
+          "path": "/member/my-shift",
+          "status": 200,
+          "mainSHA256": "e7bdba9849dca751834d7b37451ee5f509c1362b48948d89a295bf1076f5d27c",
+          "initial": "app-shell-20261101",
+          "hasSession": true
+        },
+        {
+          "path": "/member/my-target",
+          "status": 200,
+          "mainSHA256": "9d6262af8a074f2214889571d65be7a0ba4294bfe8d66f1e9a943400da95ad6d",
+          "initial": "app-shell-20261101",
+          "hasSession": true
+        },
+        {
+          "path": "/member/my-why",
+          "status": 200,
+          "mainSHA256": "81fb6afb9df823a2250de37d1506eb4d013c5d0d8b7b13e7600acff9d5921459",
+          "initial": "app-shell-20261101",
+          "hasSession": true
+        },
+        {
+          "path": "/member/achievements",
+          "status": 200,
+          "mainSHA256": "c97e698d037aeec38d53b828261b1909b976ce696f59cdcf25dd18764270e000",
+          "initial": "app-shell-20261101",
+          "hasSession": true
+        },
+        {
+          "path": "/member/check-in",
+          "status": 200,
+          "mainSHA256": "ba3ba18099b0eab739a7bbe904ec898b0bfb93799b3f710e50f07c76bb27ef06",
+          "initial": "app-shell-20261101",
+          "hasSession": true
+        },
+        {
+          "path": "/member/treatment",
+          "status": 200,
+          "mainSHA256": "cc677842bd585fd9eac183216d98ff1ffb6194adbba225b60ed4051acc183600",
+          "initial": "app-shell-20261101",
+          "hasSession": true
+        },
+        {
+          "path": "/member/timber-circle",
+          "status": 200,
+          "mainSHA256": "86cec6d012a0ebbeef190026ebec4f939581759c757a4313bec387cb60711a48",
+          "initial": "app-shell-20261101",
+          "hasSession": true
+        }
+      ],
+      "assets": [
+        {
+          "path": "/assets/favicon-shift-s-20261020.png",
+          "status": 200,
+          "type": "image/png",
+          "sha256": "97f754538a660372c62cf5a36c003b3082e672fa2a9de97d0fe4f1f288b56682"
+        },
+        {
+          "path": "/assets/apple-touch-icon.png",
+          "status": 200,
+          "type": "image/png",
+          "sha256": "dd44b112cc9e93a507fb9b7c7a107bbffc9e38402cd5b0f3af6db7573ec898d4"
+        },
+        {
+          "path": "/tools/assets/ct3-couple-20261031.webp",
+          "status": 200,
+          "type": "image/webp",
+          "sha256": "57d0f67319af5df93793705af75b6d4dcf4e24cda05f2bbbbdeaf5815834fefc"
+        }
+      ],
+      "privateApis": [
+        {
+          "path": "/v1/life-back/journey",
+          "status": 401
+        },
+        {
+          "path": "/v1/life-back",
+          "status": 401
+        },
+        {
+          "path": "/v1/commerce/active-checkout",
+          "status": 401
+        },
+        {
+          "path": "/v1/privacy/account",
+          "status": 404
+        }
+      ],
+      "firstPaintChecks": [
+        {
+          "path": "/member/settings",
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "signedOutDestination": "/member/settings",
+          "nativeCompatibility": true
+        },
+        {
+          "path": "/member/orders",
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "signedOutDestination": "/member/orders",
+          "nativeCompatibility": true
+        },
+        {
+          "path": "/member/saved",
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "signedOutDestination": "/member/saved",
+          "nativeCompatibility": true
+        },
+        {
+          "path": "/member/plans",
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "signedOutDestination": "/member/dashboard",
+          "nativeCompatibility": true
+        },
+        {
+          "path": "/member/my-shift",
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "signedOutDestination": "/member/my-shift",
+          "nativeCompatibility": true
+        },
+        {
+          "path": "/member/my-target",
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "signedOutDestination": "/member-login",
+          "nativeCompatibility": true
+        },
+        {
+          "path": "/member/my-why",
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "signedOutDestination": "/member/my-why",
+          "nativeCompatibility": true
+        },
+        {
+          "path": "/member/achievements",
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "signedOutDestination": "/member/achievements",
+          "nativeCompatibility": true
+        },
+        {
+          "path": "/member/check-in",
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "signedOutDestination": "/member/check-in",
+          "nativeCompatibility": true
+        },
+        {
+          "path": "/member/treatment",
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "signedOutDestination": "/member/treatment",
+          "nativeCompatibility": true
+        },
+        {
+          "path": "/member/timber-circle",
+          "websiteFrames": 0,
+          "privateContentGuarded": true,
+          "anonymousSignInPreserved": true,
+          "signedOutDestination": "/member/timber-circle",
+          "nativeCompatibility": true
+        }
+      ],
+      "errors": [
+        {
+          "path": "/member/plans",
+          "message": "null is not an object (evaluating 'btn.addEventListener')",
+          "stack": "TypeError: null is not an object (evaluating 'btn.addEventListener')\n    at unknown (https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:8:4)\n    at global code (https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:13:3)"
+        }
+      ],
+      "nativeScriptSha256": [
+        "00fe5e04f7e1ab9f757ba0106a95b6622314748f388ee17b40c2961f3958e88b",
+        "1a5a30528ac9fa41264df609811f2151ed7cf02a465a116cd0ac527b0b870872"
+      ],
+      "existingBaselineErrors": [
+        {
+          "path": "/member/plans",
+          "message": "null is not an object (evaluating 'btn.addEventListener')",
+          "stack": "TypeError: null is not an object (evaluating 'btn.addEventListener')\n    at unknown (https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:8:4)\n    at global code (https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.js?v=3:13:3)"
+        }
+      ],
+      "newErrors": [],
+      "verified": true,
+      "finishedAt": "2026-11-01T10:31:27.455Z"
+    }
+  },
+  "utilityBuild": {
+    "at": "2026-11-01T09:50:13.311Z",
+    "bytes": 25730,
+    "sha256": "99ba9f697a333a53b3bea70f722e816e9430cdb303db165134bf7040a81890a9",
+    "inputs": {
+      "scoped-source/member-experience/shop-navigation-client.mjs": {
+        "bytes": 7733,
+        "imports": [],
+        "format": "esm",
+        "canonicalSourceSHA256": "9bb9e2fb15436d81166f24f5516f064ea95b6223dbe3a5819a82170b9a4204d1"
+      },
+      "scoped-source/member-experience/shop-navigation.mjs": {
+        "bytes": 17803,
+        "imports": [
+          {
+            "path": "scoped-source/member-experience/shop-navigation-client.mjs",
+            "kind": "import-statement",
+            "original": "./shop-navigation-client.mjs"
+          }
+        ],
+        "format": "esm",
+        "canonicalSourceSHA256": "ae5e2a5978b38ab03c3b0c1914c18a27ab34724da92d3db74d64843048d1d9f2"
+      },
+      "scoped-source/member-experience/member-first-paint-utilities.mjs": {
+        "bytes": 1512,
+        "imports": [
+          {
+            "path": "scoped-source/member-experience/shop-navigation.mjs",
+            "kind": "import-statement",
+            "original": "./shop-navigation.mjs"
+          }
+        ],
+        "format": "esm",
+        "canonicalSourceSHA256": "5462515ca7d02dee97849f0170af2d6bfcef2d302eb862b8d13454a533eb8420"
+      }
+    }
+  },
+  "outstandingAcceptanceRecheck": {
+    "atUtc": "2026-11-01T14:37:00.801Z",
+    "journeyHttpStatus": 200,
+    "appFirstHeader": "app-shell-20261101",
+    "authorisedExistingTestProfileIdentity": {
+      "status": 401,
+      "hasIdentity": false,
+      "explicitSyntheticFlag": false
+    },
+    "productionWrites": 0,
+    "physicalDeviceDiscovery": {
+      "command": "xcrun devicectl list devices",
+      "result": "TIMED_OUT_AFTER_30_SECONDS",
+      "physicalConnectionConfirmed": false,
+      "doesNotEstablishNoDevice": true
+    },
+    "smallestNextAction": "Sign an existing synthetic test member into the retained authorised test browser on the SST Mac using normal login. Physical-device acceptance requires an accessible connected iPhone; no Apple submission change is needed."
+  }
+}
