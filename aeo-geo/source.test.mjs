@@ -70,6 +70,12 @@ test('owned unknown slugs return a genuine noindex 404 and aliases redirect once
  const missing=await worker.fetch(new Request(base+'/recipes/unknown'));assert.equal(missing.status,404);assert((await missing.text()).includes('noindex,follow'));
  const alias=await worker.fetch(new Request(base+recipe.path+'.html'));assert.equal(alias.status,301);assert.equal(alias.headers.get('Location'),base+recipe.path);
 });
+test('public HTTP routes redirect directly to the canonical HTTPS host without loading content',async()=>{
+ const worker=withAeoGeo({fetch(){throw Error('Not reached')}},{catalogue(){throw Error('No public content over HTTP')},shell});
+ for(const [from,to] of [['http://shiftsometimber.co.uk/recipes',base+'/recipes'],['http://www.shiftsometimber.co.uk'+recipe.path+'.html/',base+recipe.path],['http://shiftsometimber.co.uk/robots.txt',base+'/robots.txt'],['http://shiftsometimber.co.uk/llms.txt',base+'/llms.txt']]){
+  const r=await worker.fetch(new Request(from));assert.equal(r.status,301);assert.equal(r.headers.get('Location'),to);assert.equal(await r.text(),'');
+ }
+});
 test('robots allow the requested bots but retain account, payment and admin disallows',()=>{
  for(const agent of ['Googlebot','Bingbot','OAI-SearchBot','GPTBot','PerplexityBot','ClaudeBot','Google-Extended'])assert(ROBOTS.includes('User-agent: '+agent+'\n'));
  assert(!/^Disallow: \/$/m.test(ROBOTS));for(const path of ['/member','/checkout','/admin','/v1/'])assert(ROBOTS.includes('Disallow: '+path+'\n'));

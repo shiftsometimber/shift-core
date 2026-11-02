@@ -78,10 +78,17 @@ export function withAeoGeo(original,{catalogue,shell,metadata={}}){
  return {...original,async fetch(request,...args){
   const url=new URL(request.url),host=url.hostname,path=url.pathname;
   if(!['shiftsometimber.co.uk','www.shiftsometimber.co.uk'].includes(host)||!['GET','HEAD'].includes(request.method)||isPrivatePath(path))return original.fetch(request,...args);
+  // The owned public routes run before the retained origin handler, so they
+  // must retain its HTTP-to-HTTPS policy instead of returning an HTTP body.
+  if(url.protocol==='http:'){
+   const target=new URL(url);target.protocol='https:';target.hostname='shiftsometimber.co.uk';
+   if(/^\/(?:recipes|exercises)(?:\/|$)/.test(path)||path==='/experts')target.pathname=path.replace(/\/+$/,'').replace(/\.html$/,'');
+   return new Response(null,{status:301,headers:{Location:target.href,'Cache-Control':'public, max-age=300'}});
+  }
   if(path==='/robots.txt')return textResponse(ROBOTS,'text/plain; charset=utf-8',request);
   const owned=/^\/(?:recipes|exercises)(?:\/|$)/.test(path)||path==='/experts';
   if(owned){
-   const normalized=path.replace(/\.html$/,'').replace(/\/+$/,'');
+   const normalized=path.replace(/\/+$/,'').replace(/\.html$/,'');
    if(host!=='shiftsometimber.co.uk'||path!==normalized){const target=new URL(url);target.hostname='shiftsometimber.co.uk';target.pathname=normalized;return new Response(null,{status:301,headers:{Location:target.href,'Cache-Control':'public, max-age=300'}});}
    const data=await catalogue();
    if(path==='/experts')return new Response(null,{status:301,headers:{Location:ORIGIN+'/expert-contributors','Cache-Control':'public, max-age=300'}});
