@@ -18,7 +18,7 @@ async function preserve(o,v){const b=baseline.owners.find(x=>x.name===o.name),pr
  const settings=await cf(ep(o.name)+'/settings');
  for(const k of ['usage_model','limits','placement','cache_options','observability','tail_consumers','logpush']){const expected=prior[k]??prior.resources?.script_runtime?.[k]??b.settings[k],actual=v[k]??v.resources?.script_runtime?.[k]??settings[k];if(expected!==undefined)assert.deepEqual(actual,expected,k+' changed');}
 }
-async function verify(o){const v=await version(o.name,o.versionId);await preserve(o,v);assert.equal(v.main_module,prefix+'entry.mjs');assert.deepEqual(hashes(v.modules),o.moduleHashes);}
+async function verify(o){const v=await version(o.name,o.versionId);await preserve(o,v);assert.equal(v.main_module,o.candidateMain||prefix+'entry.mjs');if(o.candidateMain)assert(o.name==='shift-core'&&o.candidateMain==='aeo-geo/entry.mjs'&&o.previousVersion==='e6ab12fe-b178-450c-8a1b-9ed909f1d5de','Unrecognised retained Core composition');assert.deepEqual(hashes(v.modules),o.moduleHashes);}
 async function stage(o,i){
  await guard();if(o.versionId){await verify(o);return;}assert(!o.uploadIntent,'Unknown upload outcome; inspect provider');
  const source=JSON.parse(readFileSync('performance-source.json'));assert.match(source.commit,/^[a-f0-9]{40}$/);assert.equal(source.bundleSHA256,build.bundleSHA256);

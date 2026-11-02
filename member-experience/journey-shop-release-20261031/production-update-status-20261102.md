@@ -1,65 +1,61 @@
-# Production Update Status — verified release
+# Production Update Status — 2 November 2026
 
-Verified 2 November 2026. All three workers serve the qualified versions at 100%. Runtime source: `0eac5a654929a962932d8777e3a19db1b2385d9c`. Core's retained public-resource source is `ee287e38c997fc3a712c82811e084e515ac1ee13`.
+**Unresolved. New candidates withheld; no production promotion in this continuation.**
 
-| Worker | Release/version ID | Publication deployment ID |
-| --- | --- | --- |
-| shift-core | `ab3b4d50-6b45-4893-829f-2bb4c282a5c1` | `a2b67107-746a-4f97-bdfa-4df149f0b446` |
-| shift-programme-member-20261023 | `f7fdb690-b1a0-47a5-ad0e-6f501fbb1f32` | `0efe518a-67f0-49dd-ad24-97460fea9e21` |
-| shift-hq-member-comms-20261023 | `3742484b-fd3f-4dea-8e13-7e6536163ccf` | `fc9db836-e5a4-4f79-8675-7b2760e27f56` |
+Matt's signed-in iPhone remains unverified and reported slow. Controlled browser tests do not override that evidence.
 
-Candidate: 28/28 p95 comparisons passed, 560 before and 560 after samples across normal and Slow 4G profiles. Live: 14/14 p95 comparisons passed, 280 samples. Every comparison has n=20 before and after. Live privacy/auth: 101/101. Chromium and WebKit functional and expired-session fresh re-entry: pass, zero browser errors. Unit checks: 15/15. Public code/page preservation: 71/71. Production p95 rollback was armed throughout admission; no rollback was triggered for this qualified release.
+## Release state
 
-## Live screen measurements
+- Composite source: `7914832e76daa4d81bae4361d94105f7b72b7317`; navigation runtime retained from `e39f31a5277a803d784eb84a5d423f2c1daff2a1`.
+- Core candidate `d6a13db3-fde0-42f6-b52c-ea9034c4ede9`, Programme `f324b890-24db-4bb7-9701-579e24c59f63`, Documents `1de51cbd-6931-4076-a18f-2b64d425b61f`: all 0%.
+- Current live Core `e6ab12fe-b178-450c-8a1b-9ed909f1d5de`; Programme `c9771e70-bde3-4013-92df-f0698155caca`; Documents `727fe8d9-c51d-4057-b013-f7ed9da36fb9`.
+- Support diagnostic `85f2005b-af8f-4361-8abf-26212bb90865` received only anonymous explicitly overridden requests. Normal production source `6a027bed-24f9-4727-aae8-ed45e8f89eab` restored and verified in deployment `dc6492ed-3359-4ed4-8fc4-b279b92a5cd1`.
 
-Milliseconds; each cell is median / p95. Fresh means first visit to that screen inside the app; public HTTP cache may already contain resources. Return means revisiting a retained screen. Percentiles use nearest rank (10th and 19th observations of 20).
+## Qualification and rejection
 
-| Screen | Fresh before | Fresh live | Return before | Return live |
-| --- | ---: | ---: | ---: | ---: |
-| Today | 2098 / 3259 | 1082 / 1367 | 1705 / 3529 | 375 / 376 |
-| Journey | 733 / 931 | 481 / 515 | 774 / 1335 | 208 / 209 |
-| Shop | 407 / 989 | 565 / 580 | 406 / 519 | 208 / 208 |
-| Grub | 1200 / 1678 | 765 / 881 | 1193 / 2571 | 359 / 374 |
-| Fit | 1157 / 1463 | 831 / 931 | 1178 / 2018 | 358 / 375 |
-| Support | 1568 / 2102 | 1131 / 1314 | 1582 / 2739 | 374 / 376 |
-| More | 1635 / 2108 | 1081 / 1283 | 1690 / 3262 | 374 / 375 |
+6/6 immutable-asset tests, 101/101 HTTP privacy checks, Chromium/WebKit functional checks and expiry/fresh re-entry passed. Normal connection distribution: 280 samples, 20 per tab/visit, 13/14 p95 comparisons passed. **Today fresh p95 failed: 3259 → 4331 ms.** Slow4G was stopped through the managed runner after this known rejection. Partial rows are preserved and are not qualification evidence. No unchanged retry was used to replace the failed result.
 
-These UI measurements use real production documents/static assets, Chromium mobile emulation (390×844) on the SST Mac, and fictional intercepted APIs with a fixed 150 ms response delay. Candidate Slow 4G used 300 ms API delay, 1.6 Mbps down / 750 kbps up, 150 ms network latency and 4× CPU slowdown. Candidate/baseline use version overrides; the live run has none. Production member API requests/writes: 0. Physical-phone samples and real signed-in member latency samples: 0. Chromium/WebKit recovery checks use fictional account data.
+The tab change immediately selects the target and shows a neutral layout while keeping private content locked; loading begins alongside mandatory identity checks. Empty layout is not counted as usable. This change has not been promoted.
 
-## Ordinary production HTTP
+## Ordinary HTTP and server stages
 
-Twenty new HTTPS connections before and after, with no cookies, version overrides, API stubs or production writes. Final HTTP 200 headers are measured separately from any 103 Early Hints.
+Anonymous HTTPS from SST Mac, new TLS connection per sample, real final HTTP 200 headers separated from interim 103 hints. No API fixtures, cookies or member-data reads.
 
-| Stage | Before median / p95 ms | Live median / p95 ms |
+| Composition | n | Median final headers | p95 final headers |
+| --- | ---: | ---: | ---: |
+| Retained original baseline | 20 | 595 ms | 1755 ms |
+| Current ordinary production | 20 | 1310 ms | 4063 ms |
+| Core immutable repair only, current member services | 20 | 1325 ms | 3725 ms |
+
+The isolated static repair is also withheld under the unchanged original p95 gate. Its simultaneous live control was slow too; this does not prove the static patch caused that delay.
+
+A separate temporary zero-traffic Support diagnostic collected 20 anonymous requests:
+
+| Stage | Median | p95 |
 | --- | ---: | ---: |
-| Final response headers | 595 / 1755 | 497 / 743 |
-| Complete response | 609 / 1769 | 516 / 756 |
+| Support waiting for Member response headers | 1004 ms | 3512 ms |
+| Member response body read | 3 ms | 6 ms |
+| Support enhancement (recorded elapsed timing) | 0 ms | 0 ms |
+| Nested Core service wait | 160 ms | 1574 ms |
 
-TLS handshake median: 44 → 43 ms. Body transfer median: 13 → 14 ms. The original 2.8–4.3 second wait was not reproduced in this ordinary anonymous n=20 run. Internal worker/DB/queue attribution remains blocked by Cloudflare HTTP 403, code 10104, `workers_observability.api.error.authentication.no_access_to_workers_observability`. Smallest next action: grant the existing operator Workers Observability access, then run the prepared stage query. No retries until access changes.
+The header wait is the dominant measured stage. These timings do not identify a specific SQL query, CPU limit or provider queue. A recorded 0 ms is not a CPU profile. A local Node VM startup diagnostic is diagnostic only and cannot establish Cloudflare or phone performance.
 
-## Remaining performance targets
+## Compatibility repair prepared
 
-All p95 regression gates pass. Eight Slow 4G median engineering targets remain above their 2,000 ms fresh / 500 ms return targets:
+The current AEO publication preserves the earlier performance modules. Its outer public wrapper rewrites fingerprinted immutable analytics bytes. The narrow patch preserves exact immutable bytes while keeping canonical public analytics/content repairs. Only `aeo-geo/delivery.mjs` differs from the captured current Core graph; the other 91 modules, bindings, settings, routes and schedules are retained. Member/API handlers are unchanged. This later compatibility fault does not explain the user's earlier 06:59 complaint by itself.
 
-| Screen | Visit | Median ms | Target ms |
-| --- | --- | ---: | ---: |
-| today | fresh | 3746 | 2000 |
-| today | warm | 858 | 500 |
-| grub | warm | 826 | 500 |
-| fit | warm | 826 | 500 |
-| support | fresh | 3427 | 2000 |
-| support | warm | 850 | 500 |
-| more | fresh | 3325 | 2000 |
-| more | warm | 837 | 500 |
+## Access and spending
 
-Normal-network live median targets all pass. Slow 4G targets and internal stage telemetry are recorded as remaining work, with no privacy/auth/recovery failures accepted.
+Detailed Workers Observability queries were denied: HTTP 403, code 10104, `workers_observability.api.error.authentication.no_access_to_workers_observability`. Do not retry unchanged. The official telemetry-query API documents `Workers Observability Write` as its accepted permission even for an ad-hoc query: https://developers.cloudflare.com/api/resources/workers/subresources/observability/subresources/telemetry/methods/query/
 
-## Implementation and evidence
+The existing operator credential needs that capability, scoped to the affected Workers where supported. No keys should be supplied through chat. Exact billing subscription lookup was separately denied 403 code 10000. All three delivery Workers use Standard. No paid upgrade has been established as a remedy, purchased or agreed. Website plan upgrades are separate from Workers pricing: https://developers.cloudflare.com/workers/platform/pricing/
 
-Public-resource compression/content fingerprints, duplicate module removal and reusable public document bases reduce repeated delivery work. Retained member screens overlap fresh identity with data revalidation, and keep private controls blocked until both succeed. Fresh in-flight identity takes precedence over cached identity. The contrast guard now rejects invisible elements before style/geometry work. Chromium and WebKit preserve original contrast corrections, dynamic reveal behaviour and visible controls; isolated geometry reads fall from 5,028 to 6 per engine.
+The official Cloudflare status page showed no known service issues at the check: https://www.cloudflarestatus.com/
 
-Earlier candidates were rejected rather than promoted: warm Shop p95 519 → 592 ms; then Slow 4G Today p95 5,726 → 7,024 ms and 5,726 → 7,687 ms. Historical failures and rollback receipts remain preserved; unchanged failed distributions were not relabelled or resampled for acceptance.
+No external messages, private data writes, native/store changes, paid services or new watchers were created. Managed checks and browser process groups completed or were cleaned up. No repair is running in the background.
 
-[Full evidence JSON](performance-final-evidence-20261102.json) contains all 42 comparison summaries, every n=20 UI usable-time sample, ordinary HTTP rows, privacy/re-entry proofs, source hashes and provider receipts. JSON SHA-256: `41cc2384a3eb28e30019d27044ba6422a5aecbef5d09105bf5fa4465e59a10c0`.
+## Next action
 
-No emails/messages, spending, store changes or real member-data writes were made.
+Restore authorised access to detailed server telemetry, identify the dominant backend operation, then prepare a targeted change. Retain the original privacy, expiry, n20 p95 and rollback gates. Keep the rejected release off. Do not claim the physical phone fixed.
+
+Raw evidence: `performance-withheld-evidence-20261102.json.gz`, 191910 bytes, SHA-256 `936e48aaaf9dff92c9ec443708dfddb4b1fe8afbbfc9db5f53bcdca313ca37e9`. Earlier passing 041 browser evidence and initial release evidence remain historical; they did not establish real-phone acceptance.
