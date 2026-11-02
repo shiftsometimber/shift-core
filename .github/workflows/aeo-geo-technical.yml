@@ -22,7 +22,7 @@ jobs:
           git diff --check
   catalogue:
     needs: source
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 45
     concurrency:
       group: ${{ github.ref == 'refs/heads/main' && 'cloudflare-production-promote' || github.ref }}
