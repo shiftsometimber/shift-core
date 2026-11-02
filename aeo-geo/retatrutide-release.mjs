@@ -31,11 +31,12 @@ async function protectedDocuments(){
   const {response,text}=await document(path);documents[path]={status:response.status,sha256:hash(clean(text)),cache:response.headers.get('Cache-Control')};
  }return documents;
 }
-function routeOwner(routes,path){
+function matchingRoutes(routes,path){
  const url='shiftsometimber.co.uk'+path;
  const matched=routes.filter(r=>r.script).filter(r=>{const pattern=r.pattern.replace(/^https?:\/\//,'');return new RegExp('^'+pattern.split('*').map(s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('.*')+'$').test(url)}).sort((a,b)=>b.pattern.replaceAll('*','').length-a.pattern.replaceAll('*','').length);
- assert(matched.length,'No owner for '+path);return matched[0].script;
+ return matched;
 }
+function routeOwner(routes,path){const matched=matchingRoutes(routes,path);assert(matched.length,'No owner for '+path);return matched[0].script;}
 const receiptsPath=directory+'/deployments.json';
 const pageOwner='shift-public-presentation-batch-20261022';
 const inspectedPageDeployment='40aedacb-3a72-46f8-940e-23930ac57c36';
@@ -59,6 +60,16 @@ if(process.argv[2]==='rollback'){
  // the inspected page module; keep those serving packages untouched.
  const selected=[pageOwner];
  save('route-owners.json',{ownership,routeWrites:0});console.log(JSON.stringify({routeOwnership:ownership}));
+ if(process.argv[2]==='inspect'){
+  const inspection={readOnly:true,matchingRoutes:matchingRoutes(routes,RETA_PATH),workers:[]};
+  for(const script of [...new Set(Object.values(ownership))]){
+   const active=await latest(script),source=await version(script,active.versions[0].version_id),settings=await api('/workers/scripts/'+script+'/settings');
+   const modules=source.modules.map(m=>{const text=Buffer.from(m.content_base64,'base64').toString('utf8');return {name:m.name,sha256:hash(Buffer.from(m.content_base64,'base64')),hasCaptionRepair:text.includes("return html.replace('note.textContent=d.rr-note;','note.textContent=d.note;')"),mainSource:m.name===source.main_module?text.slice(0,4000):undefined}});
+   inspection.workers.push({script,deploymentId:active.id,activeVersion:active.versions[0].version_id,main:source.main_module,modules,serviceBindings:settings.bindings.filter(b=>b.type==='service').map(b=>({name:b.name,service:b.service,environment:b.environment}))});
+  }
+  const served=await document(RETA_PATH);inspection.served={status:served.response.status,bytes:Buffer.byteLength(served.text),captionFixed:served.text.includes('note.textContent=d.note;'),captionOld:served.text.includes('note.textContent=d.rr-note;'),headers:Object.fromEntries([...served.response.headers].filter(([name])=>name.startsWith('x-shift-')||['cache-control','cf-ray','cf-cache-status','age'].includes(name)))};
+  save('serving-inspection.json',inspection);writeFileSync(directory+'/guide-inspected.html',served.text);console.log(JSON.stringify(inspection));process.exit(0);
+ }
  const unexpected=selected.filter(s=>s!==pageOwner&&!targets.some(t=>t.script===s));
  for(const script of unexpected){const active=await latest(script),source=await version(script,active.versions[0].version_id);const inspection={script,deploymentId:active.id,main:source.main_module,ownedModules:source.modules.filter(m=>m.name.startsWith('aeo-geo/')).map(m=>({name:m.name,sha256:hash(Buffer.from(m.content_base64,'base64'))}))};save('owner-inspection-'+script+'.json',inspection);console.log(JSON.stringify({ownerInspection:inspection}));}
  assert.equal(unexpected.length,0,'An unknown serving owner needs inspection before staging: '+JSON.stringify(unexpected));
