@@ -49,8 +49,8 @@ if(process.argv[2]==='rollback'){
  const privateBefore=await privateDocuments();save('private-before.json',privateBefore);
  const planned=[];
  // Stage every exact provider package before changing any production traffic.
- const amendment=process.argv[2]==='amend-public-shell';
- const selected=amendment?targets.filter(t=>['shift-core','shift-seo-followup-v3-20261024','shift-public-review-fixes-20261029'].includes(t.script)):targets;
+ const amendment=['amend-public-shell','amend-public-https'].includes(process.argv[2]);
+ const selected=process.argv[2]==='amend-public-shell'?targets.filter(t=>['shift-core','shift-seo-followup-v3-20261024','shift-public-review-fixes-20261029'].includes(t.script)):targets;
  for(const {script} of selected){
   const before=await latest(script),original=await version(script,before.versions[0].version_id),settings=await api('/workers/scripts/'+script+'/settings');
   if(amendment)assert(original.main_module==='aeo-geo/entry.mjs','Amendment requires the inspected, published public wrapper');

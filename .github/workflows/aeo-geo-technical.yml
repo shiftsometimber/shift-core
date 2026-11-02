@@ -60,7 +60,7 @@ jobs:
           PYVERIFY
       - name: Stage exact provider packages and publish the qualified public-only wrappers
         if: github.ref == 'refs/heads/main'
-        run: node aeo-geo/release.mjs amend-public-shell
+        run: node aeo-geo/release.mjs amend-public-https
       - name: Restore only deployments still owned by this exact release if verification fails
         if: failure() && github.ref == 'refs/heads/main'
         run: node aeo-geo/release.mjs rollback
