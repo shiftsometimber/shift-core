@@ -41,6 +41,13 @@ test('bounded recipe search snippets preserve unique variants, full H1 and truth
   assert(!metadata.metaDescription.includes('medically reviewed'));
  }
  assert.notEqual(first.metaTitle,second.metaTitle,'Relevant variant must remain identifiable');
+ const longer='Apple and banana chocolate fruit dessert to share — banana, apple, mixed berries, rolled oats, pumpkin seeds, ';
+ const longA=recipeSearchMetadata({title:longer+'dark chocolate, chopped'});
+ const longB=recipeSearchMetadata({title:longer+'milk chocolate, chopped'});
+ assert.notEqual(longA.metaTitle,longB.metaTitle,'Long dish names must retain the distinguishing ingredient');
+ assert(longA.metaTitle.includes('dark chocolate'));
+ assert(longB.metaTitle.includes('milk chocolate'));
+ assert(longA.metaTitle.length<=70&&longB.metaTitle.length<=70);
  const html=detail(a,'recipes',data,shell).html;
  assert(html.includes('<h1>'+a.title+'</h1>'));
  assert(html.includes('<title>'+first.metaTitle+' | SHIFT</title>'));
