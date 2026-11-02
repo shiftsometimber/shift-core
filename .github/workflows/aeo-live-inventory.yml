@@ -1,0 +1,40 @@
+name: Read public serving versions
+on:
+  push:
+    branches: [feat/aeo-geo-public-catalogue-20261102]
+    paths: [.github/workflows/aeo-live-inventory.yml]
+permissions:
+  contents: read
+jobs:
+  inventory:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Read only provider traffic and route owners
+        run: |
+          mkdir -p aeo-inventory
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {writeFileSync} from 'node:fs';
+          import targets from './aeo-geo/targets.json' with {type:'json'};
+          const root='https://api.cloudflare.com/client/v4',account=process.env.CLOUDFLARE_ACCOUNT_ID,token=process.env.CLOUDFLARE_API_TOKEN;
+          const api=async path=>{const r=await fetch(root+path,{headers:{Authorization:'Bearer '+token}});const j=await r.json();assert(r.ok&&j.success,JSON.stringify(j.errors));return j.result};
+          const serving={};
+          for(const {script} of targets){const {deployments}=await api('/accounts/'+account+'/workers/scripts/'+script+'/deployments');const d=deployments.toSorted((a,b)=>b.created_on.localeCompare(a.created_on))[0];serving[script]={id:d.id,versions:d.versions};}
+          const routes=await api('/zones/66ec3268950adcfc837b7b8b2f8356ed/workers/routes');
+          const owners={};for(const path of ['/member/dashboard','/assets/v42.js','/analytics-bootstrap-v1.js']){
+            const matches=routes.filter(r=>r.pattern.startsWith('shiftsometimber.co.uk/')&&new RegExp('^'+r.pattern.replace(/[.+?^$\{\}()|[\]\\]/g,'\\$&').replace(/\*/g,'.*')+'$').test('shiftsometimber.co.uk'+path)).sort((a,b)=>b.pattern.length-a.pattern.length);owners[path]=matches.slice(0,3);
+          }
+          const report={at:new Date().toISOString(),serving,owners,writes:0};writeFileSync('aeo-inventory/traffic.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));
+          JS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aeo-serving-inventory-${{ github.run_id }}
+          path: aeo-inventory/
