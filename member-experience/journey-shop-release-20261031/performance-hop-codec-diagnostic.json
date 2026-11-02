@@ -1,0 +1,62 @@
+{
+  "kind": "FINITE_ANONYMOUS_HOP_ENCODING_DIAGNOSTIC",
+  "at": "2026-11-02T21:39:58.666Z",
+  "normalTrafficPercent": 0,
+  "samples": [
+    {
+      "sample": 0,
+      "status": 200,
+      "finalHeadersMs": 3292,
+      "completeMs": 3305,
+      "wireBytes": 82122,
+      "codec": {
+        "identityRequested": true,
+        "headerAllowsGzip": false,
+        "cfEncodingPresent": true,
+        "cfAllowsGzip": true,
+        "returnedEncoding": "gzip"
+      },
+      "serverTiming": "mt-public-base;dur=0, mt-document;dur=1044.0, mt-inject;dur=0.0, mt-core;dur=1043.0, mt-document;dur=2754.0, mt-inject;dur=0.0, mt-support;dur=2752.0"
+    },
+    {
+      "sample": 1,
+      "status": 200,
+      "finalHeadersMs": 3871,
+      "completeMs": 3886,
+      "wireBytes": 82122,
+      "codec": {
+        "identityRequested": true,
+        "headerAllowsGzip": false,
+        "cfEncodingPresent": true,
+        "cfAllowsGzip": true,
+        "returnedEncoding": "gzip"
+      },
+      "serverTiming": "mt-public-base;dur=0, mt-document;dur=1350.0, mt-inject;dur=0.0, mt-core;dur=1350.0, mt-document;dur=3230.0, mt-inject;dur=0.0, mt-support;dur=3226.0"
+    },
+    {
+      "sample": 2,
+      "status": 200,
+      "finalHeadersMs": 1208,
+      "completeMs": 1223,
+      "wireBytes": 82122,
+      "codec": {
+        "identityRequested": true,
+        "headerAllowsGzip": false,
+        "cfEncodingPresent": true,
+        "cfAllowsGzip": true,
+        "returnedEncoding": "gzip"
+      },
+      "serverTiming": "mt-public-base;dur=0, mt-document;dur=112.0, mt-inject;dur=0.0, mt-core;dur=111.0, mt-document;dur=700.0, mt-inject;dur=0.0, mt-support;dur=698.0"
+    }
+  ],
+  "verified": true,
+  "uploadIntent": {
+    "at": "2026-11-02T21:40:17.788Z",
+    "sourceVersion": "e6ab12fe-b178-450c-8a1b-9ed909f1d5de",
+    "sourceDeployment": "554b415a-87ea-4159-b76e-3b7b00059ee9"
+  },
+  "version": "9482288f-b880-49fa-b9e5-83931aa702b0",
+  "zeroDeployment": "a94daf9d-efb2-45a7-bda6-24d2306fea0e",
+  "restoredDeployment": "bf61c790-cf1e-4e5d-bf55-3e98cd5514c0",
+  "finishedAt": "2026-11-02T21:41:16.683Z"
+}

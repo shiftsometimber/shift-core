@@ -1,0 +1,31 @@
+{
+  "recipient": "Cloudflare Technical Support through the Support dashboard for the SHIFT account",
+  "subject": "My Timber Workers: multi-second response delay — request runtime trace",
+  "body": "Please investigate intermittent multi-second response latency affecting My Timber on shiftsometimber.co.uk.\n\nCloudflare account: 9e5386dcf455be34c582d93f8bfc79e6\nZone: shiftsometimber.co.uk (66ec3268950adcfc837b7b8b2f8356ed)\n\nReproducible anonymous incident:\n2 November 2026, 20:59:55.720 UTC\nGET https://shiftsometimber.co.uk/member/dashboard?view=app\nCF-Ray: a54610c94f810c18-LHR\nHTTP 200; final response headers 2,654ms; complete response 2,667ms.\n\nThe matched Core execution used 39ms CPU and 41ms wall time, while its caller recorded an 827ms Core wait. Programme used 280ms CPU / 1,114ms wall time; Support 9ms / 2,152ms; Documents 19ms / 2,220ms. Exact Worker names, versions and timestamps are attached.\n\nA production Programme CPU profile recorded 3,761ms garbage collection out of 4,079ms sampled CPU. Reducing fixed-data artifacts from 93.61MB to 23.05MB did not meet our retained 1,755ms p95 requirement. We also reproduced an internal identity/gzip mismatch and tested a narrow correction: 12 correctness checks passed, but n20 p95 was 4,154ms against a 2,972ms simultaneous control. Neither candidate was promoted.\n\nPlease trace the missing time through Worker dispatch, cold initialisation, scheduling/garbage collection and response streaming/compression. Identify the specific application or platform cause and the corrective action supported by that trace.\n\nUse only the supplied anonymous incident; no member records are needed. Please investigate under our existing support entitlement. Obtain our approval before any chargeable work, plan change or production change.\n\nShift Some Timber Ltd",
+  "status": "DRAFT_NOT_SENT",
+  "chargesAuthorised": false,
+  "attachments": [
+    {
+      "fileName": "my-timber-slow-request-20261102.json",
+      "mimeType": "application/json",
+      "bytes": 2566,
+      "sha256": "90d165d7a21abc1d4bceb88655e767c09add6c1958d2d083632e614d254d46f0",
+      "repositoryPath": "member-experience/journey-shop-release-20261031/my-timber-slow-request-20261102.json"
+    },
+    {
+      "fileName": "my-timber-encoding-test-20261102.json",
+      "mimeType": "application/json",
+      "bytes": 14351,
+      "sha256": "df3a26c5b4753ddb752d32f28043d853ccd6454159c14538b0b33e92ce14e62f",
+      "repositoryPath": "member-experience/journey-shop-release-20261031/my-timber-encoding-test-20261102.json"
+    },
+    {
+      "fileName": "my-timber-programme-cpu-20261102.pprof",
+      "mimeType": "application/vnd.google.protobuf",
+      "bytes": 47084,
+      "sha256": "472ee26d5dad7c8ef1bcc1173d2ecd1fa976fecaeb9dde4fdfc37b7d7b714421",
+      "repositoryPath": "member-experience/journey-shop-release-20261031/my-timber-programme-cpu-20261102.pprof"
+    }
+  ],
+  "version": "MYTIMBER-WORKERS-LATENCY-20261102-v1"
+}

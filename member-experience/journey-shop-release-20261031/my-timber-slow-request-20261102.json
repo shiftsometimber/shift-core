@@ -1,0 +1,92 @@
+{
+  "kind": "BOUNDED_MATCHED_ANONYMOUS_SLOW_REQUEST_INCIDENT",
+  "at": "2026-11-02T20:59:48.037Z",
+  "normalProduction": true,
+  "maximumRequests": 6,
+  "slowThresholdMs": 2000,
+  "requests": [
+    {
+      "sample": 0,
+      "at": "2026-11-02T20:59:55.720Z",
+      "status": 200,
+      "finalHeadersMs": 2654,
+      "completeMs": 2667,
+      "wireBytes": 82122,
+      "cfRay": "a54610c94f810c18-LHR",
+      "serverTiming": "mt-public-base;dur=0, mt-document;dur=828.0, mt-inject;dur=0.0, mt-core;dur=827.0, mt-document;dur=2200.0, mt-inject;dur=0.0, mt-support;dur=2199.0"
+    }
+  ],
+  "events": [
+    {
+      "sample": 0,
+      "scriptName": "shift-core",
+      "version": "e6ab12fe-b178-450c-8a1b-9ed909f1d5de",
+      "outcome": "ok",
+      "cpuTimeMs": 39,
+      "wallTimeMs": 41,
+      "eventTimestamp": 1793653194505,
+      "exceptionsCount": 0
+    },
+    {
+      "sample": 0,
+      "scriptName": "shift-programme-member-20261023",
+      "version": "c9771e70-bde3-4013-92df-f0698155caca",
+      "outcome": "ok",
+      "cpuTimeMs": 280,
+      "wallTimeMs": 1114,
+      "eventTimestamp": 1793653193483,
+      "exceptionsCount": 0
+    },
+    {
+      "sample": 0,
+      "scriptName": "shift-mytimber-support-20261023",
+      "version": "6a027bed-24f9-4727-aae8-ed45e8f89eab",
+      "outcome": "ok",
+      "cpuTimeMs": 9,
+      "wallTimeMs": 2152,
+      "eventTimestamp": 1793653193439,
+      "exceptionsCount": 0
+    },
+    {
+      "sample": 0,
+      "scriptName": "shift-hq-member-comms-20261023",
+      "version": "727fe8d9-c51d-4057-b013-f7ed9da36fb9",
+      "outcome": "ok",
+      "cpuTimeMs": 19,
+      "wallTimeMs": 2220,
+      "eventTimestamp": 1793653193365,
+      "exceptionsCount": 0
+    }
+  ],
+  "discarded": 0,
+  "verified": true,
+  "slowSample": 0,
+  "slowFound": true,
+  "tails": [
+    {
+      "name": "shift-core",
+      "closed": true,
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "name": "shift-programme-member-20261023",
+      "closed": true,
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "name": "shift-mytimber-support-20261023",
+      "closed": true,
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "name": "shift-hq-member-comms-20261023",
+      "closed": true,
+      "exit": 0,
+      "error": ""
+    }
+  ],
+  "privacy": "Own anonymous GETs only. CF-Ray is an incident identifier. Only numeric timing/version/outcome and the matched anonymous request reference are retained. No other headers, cookies, IPs, log bodies, member records or exception text retained. No deployment, API reads, writes or acceptance retry."
+}

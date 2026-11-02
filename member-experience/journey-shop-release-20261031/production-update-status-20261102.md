@@ -6,7 +6,7 @@
 
 | Service | Version at 100% | Restored deployment |
 | --- | --- | --- |
-| shift-core | `e6ab12fe-b178-450c-8a1b-9ed909f1d5de` | `554b415a-87ea-4159-b76e-3b7b00059ee9` |
+| shift-core | `e6ab12fe-b178-450c-8a1b-9ed909f1d5de` | `4a160116-839b-4511-8307-dfe16bbe011f` |
 | shift-programme-member-20261023 | `c9771e70-bde3-4013-92df-f0698155caca` | `36ebd3f3-fdce-4a2c-852c-86c901a20ff5` |
 | shift-hq-member-comms-20261023 | `727fe8d9-c51d-4057-b013-f7ed9da36fb9` | `e8a7db9d-f1bd-41c1-995b-6d8247c02cf1` |
 | Support | `6a027bed-24f9-4727-aae8-ed45e8f89eab` | `dc6492ed-3359-4ed4-8fc4-b279b92a5cd1` |
@@ -30,6 +30,8 @@ New TLS connection per request; final HTTP 200 headers separated from interim 10
 | Static string-reuse candidate | 803ms | 3100ms | Withheld; restored |
 | Compressed-data control | 1304ms | 3364ms | Original source |
 | Compressed-data candidate | 924ms | 3362ms | Withheld; restored |
+| Internal-encoding control | 1417ms | 2972ms | Original source |
+| Internal-encoding candidate | 1516ms | 4154ms | Withheld; restored |
 
 No unchanged qualification retry replaced a failed result. Four distinct packaging variants were measured; all failed the retained 1755ms p95 gate. Lower artifact size or one fast request is not acceptance.
 
@@ -73,6 +75,18 @@ The earlier 791 composite normal-network Today fresh p95 failed 3259→4331ms, d
 No full browser/privacy/expiry qualification was started for the new static-data candidates after their initial HTTP gate failed. Those earlier passes must not be carried forward as acceptance. The real signed-in iPhone remains unverified and reported slow.
 
 Retain the original p95, privacy, expiry/fresh re-entry, source-pinning and automatic live rollback requirements. Do not rerun these rejected candidates unchanged or waive the gate. Isolate the remaining wait with a slow matched request before another implementation.
+
+## Latest response-delivery investigation
+
+Three finite zero-traffic anonymous probes established the same encoding mismatch: `Accept-Encoding: identity`, original-client gzip allowed in `request.cf`, and Core returned `Content-Encoding: gzip`. Diagnostic version `9482288f-b880-49fa-b9e5-83931aa702b0` was closed and its prior distribution restored.
+
+A narrow Core candidate honours explicit identity before the existing client gzip negotiation. It also retains the separately tested immutable-public-resource guard. Only `worker.js` and `aeo-geo/delivery.mjs` differ; all other module bytes, login/session/identity code, settings, bindings, routes and schedules are retained. All 12 correctness tests pass with Node's required experimental VM-module flag. The initial immutable-test invocation omitted that flag and failed as a harness configuration error; the corrected invocation passed all 12 tests.
+
+Candidate `5f87bdb5-0516-45c4-95f3-55b801acd26d` was measured at 0% normal traffic with n20 control and n20 candidate requests. It failed p95 4154ms against the retained 1755ms limit (simultaneous control 2972ms). This confirms that correcting the encoding mismatch alone is insufficient; it does not establish that the change caused the higher p95. The original Core distribution is restored in deployment `4a160116-839b-4511-8307-dfe16bbe011f`; the managed probe ended successfully. No full browser/privacy/expiry qualification or promotion followed the failed initial gate.
+
+The prepared next action is a technical case to Cloudflare for the specific anonymous incident and runtime gap, using existing support entitlement and authorising no charges or production changes. `performance-cloudflare-support-case-20261102.json` contains the complete recipient, subject, body and exact attachment hashes. Status: **DRAFT — NOT SENT — MATT'S SIGN-OFF REQUIRED**. This is an external-communication approval boundary, not a claim that application engineering or diagnosis is complete.
+
+Additional receipts: `performance-hop-codec-diagnostic.json`, `performance-core-identity-encoding-candidate.json`, `performance-core-identity-encoding-http-qualification.json`. The source preparation, regression tests and guarded stage/probe code are retained. No permanent watcher or performance job remains running.
 
 ## Access and costs
 
