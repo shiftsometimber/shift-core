@@ -7,7 +7,7 @@ const assetExt=/\.(?:css|js|mjs|png|jpe?g|webp|svg|gif|ico|woff2?|ttf|pdf)(?:\?|
 
 function normalise(raw,base){
   if(!raw||/^(?:mailto:|tel:|sms:|javascript:|data:|blob:|#)/i.test(raw))return null;
-  try{const u=new URL(raw,base);u.hash='';if(!/^https?:$/.test(u.protocol))return null;if(u.pathname.startsWith('/cdn-cgi/l/email-protection'))return null;return u}catch{return null}
+  try{const u=new URL(raw.replace(/&amp;|&#(?:0*38|x0*26);/gi,'&'),base);u.hash='';if(!/^https?:$/.test(u.protocol))return null;if(u.pathname.startsWith('/cdn-cgi/l/email-protection'))return null;return u}catch{return null}
 }
 function extract(html,base){
   const scan=String(html||'')
@@ -59,7 +59,9 @@ while(queue.length&&visited.size<MAX_PAGES){
     if(/(?:internal server error|application error|something went wrong\s*$)/i.test(visible)&&visible.length<800)failures.push({url,discoveredFrom:parent,status,error:'generic_error_page_detected'});
     for(const child of extract(body,final)){
       const root=new URL(START);
-      if(child.host===root.host){if(!/\/image\/?$/.test(child.pathname))child.search='';const href=child.href;if(!queued.has(href)&&!visited.has(href)&&queued.size<MAX_PAGES*4){queued.add(href);discoveredFrom.set(href,final);queue.push(href)}}
+      if(child.host===root.host){// Asset queries are part of the declared resource URL (for example mtv).
+        // Retain them so the sweep tests the resource a browser actually loads.
+        if(!assetExt.test(child.href)&&!/\/image\/?$/.test(child.pathname))child.search='';const href=child.href;if(!queued.has(href)&&!visited.has(href)&&queued.size<MAX_PAGES*4){queued.add(href);discoveredFrom.set(href,final);queue.push(href)}}
       else externalHosts.set(child.host,(externalHosts.get(child.host)||0)+1);
     }
   }
@@ -77,3 +79,4 @@ if(!visited.has(START+'/'))throw new Error('Homepage was not swept');
 if(checked.length<2)throw new Error('Sweep discovered too little estate surface to be meaningful');
 if(report.truncated)throw new Error(`Whole-estate sweep exceeded ${MAX_PAGES} same-origin URLs; increase SHIFT_SWEEP_MAX rather than accepting partial evidence.`);
 console.log(`::notice title=M10 production sweep GREEN::${checked.length} same-origin URLs checked · ${report.htmlPages} HTML pages · 0 critical route/asset/blank-page failures · discovery exhausted`);
+
