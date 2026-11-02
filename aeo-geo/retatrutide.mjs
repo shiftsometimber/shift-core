@@ -58,7 +58,8 @@ export async function withRetatrutideEvidence(html,rawPath){
  if(path===COMPARISON_PATH){
   return html.replace('UK-authorised prescription medicine — check the page for current access and product information.','This comparison includes authorised and investigational medicines. Check each option’s dated UK status.').replace('August 2026. Sources and review detail remain in the guide.','Sources and review detail remain in each medicine’s guide.').replace('Updated 26 August 2026','Updated 2 November 2026');
  }
- if(path!==RETA_PATH||html.includes('data-reta-evidence="20261102"'))return html;
+ if(path!==RETA_PATH)return html;
+ if(html.includes('data-reta-evidence="20261102"'))return html.replace('note.textContent=d.rr-note;','note.textContent=d.note;');
  if((html.match(/<main\b/gi)||[]).length!==1)return html;
  let result=html.replace(/<main\b[\s\S]*?<\/main>/i,()=>renderRetatrutideGuide());
  result=rewriteMedicalSchema(result);

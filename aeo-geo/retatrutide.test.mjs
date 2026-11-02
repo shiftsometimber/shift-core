@@ -24,11 +24,19 @@ test('switching analyses updates the readable explanation and accessible chart i
 });
 test('the caption correction changes exactly one inspected module and preserves all other source and settings',()=>{
  const module=(name,text)=>({name,content_type:'application/javascript+module',content_base64:Buffer.from(text).toString('base64')});
- const published=readFileSync(new URL('./retatrutide.mjs',import.meta.url),'utf8').replace("import {evidence} from './retatrutide-evidence.mjs';","import {evidence} from './evidence.mjs';").replace('note.textContent=d.note;','note.textContent=d.rr-note;');
+ const current=readFileSync(new URL('./retatrutide.mjs',import.meta.url),'utf8').replace("import {evidence} from './retatrutide-evidence.mjs';","import {evidence} from './evidence.mjs';");
+ const published=current.replace(" if(path!==RETA_PATH)return html;\n if(html.includes('data-reta-evidence=\"20261102\"'))return html.replace('note.textContent=d.rr-note;','note.textContent=d.note;');"," if(path!==RETA_PATH||html.includes('data-reta-evidence=\"20261102\"'))return html;");
  const before={main_module:'retatrutide-evidence/entry.mjs',bindings:[{type:'d1',name:'DB'}],compatibility_date:'2026-08-09',modules:[module('retatrutide-evidence/guide.mjs',published),module('retatrutide-evidence/entry.mjs','unchanged entry'),module('sitewide-seo-20261101/entry.mjs','unchanged underlying worker')]};
  const planned=prepareRetatrutideChartCorrection(before);assert.equal(planned.modules.length,before.modules.length);assert.equal(verifyRetatrutideChartCorrection(before,{...before,...planned},planned).correctedCaptionModules,1);
  const changed=structuredClone(before);changed.modules[0].content_base64=Buffer.from(published+'// unexpected').toString('base64');assert.throws(()=>prepareRetatrutideChartCorrection(changed));
  const bad=structuredClone({...before,...planned});bad.modules[2].content_base64='wrong';assert.throws(()=>verifyRetatrutideChartCorrection(before,bad,planned));
+});
+test('an underlying renderer supplying the existing guide still receives the caption repair',async()=>{
+ const previouslyRendered=after.replace('note.textContent=d.note;','note.textContent=d.rr-note;');assert.notEqual(previouslyRendered,after);
+ assert.equal(await withRetatrutideEvidence(previouslyRendered,RETA_PATH),after);
+ assert.equal(await withRetatrutideEvidence(previouslyRendered,'/member/dashboard'),previouslyRendered);
+ const wrapped=withRetatrutideWorker({fetch(){return new Response(previouslyRendered,{headers:{'Content-Type':'text/html'}})}});
+ const response=await wrapped.fetch(new Request('https://shiftsometimber.co.uk'+RETA_PATH));assert.equal(await response.text(),after);
 });
 test('the inspected page owner gains only a public wrapper; every original module and private fetch is preserved',async()=>{
  const module=(name,text,type='application/javascript+module')=>({name,content_type:type,content_base64:Buffer.from(text).toString('base64')});

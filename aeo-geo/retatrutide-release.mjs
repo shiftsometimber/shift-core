@@ -38,7 +38,7 @@ function routeOwner(routes,path){
 }
 const receiptsPath=directory+'/deployments.json';
 const pageOwner='shift-public-presentation-batch-20261022';
-const inspectedPageDeployment='ae8ee4ce-f310-4447-9109-2cfc5d70693e';
+const inspectedPageDeployment='40aedacb-3a72-46f8-940e-23930ac57c36';
 if(process.argv[2]==='rollback'){
  if(!existsSync(receiptsPath)){console.log('No owned production deployment to restore');process.exit(0)}
  const receipts=JSON.parse(readFileSync(receiptsPath)),results=[];
@@ -91,6 +91,7 @@ if(process.argv[2]==='rollback'){
  const guide=await document(RETA_PATH),comparison=await document(COMPARISON_PATH);assert.equal(guide.response.status,200);assert.equal(comparison.response.status,200);
  assert.equal(guide.response.headers.get('X-Shift-Retatrutide-Evidence'),RETA_RELEASE);assert(guide.text.includes('data-reta-evidence="20261102"'));assert(comparison.text.includes('authorised and investigational medicines'));
  assert.equal((guide.text.match(/<h1\b/gi)||[]).length,1);assert(guide.text.includes('25.0%')&&guide.text.includes('3.9%')&&guide.text.includes('28.3%'));assert(!guide.text.includes('PRIVATE REVIEW DRAFT'));
+ assert(guide.text.includes('note.textContent=d.note;'),'The served chart must use its readable analysis caption');assert(!guide.text.includes('note.textContent=d.rr-note;'),'The old chart expression must not reach the served document');
  const element=(s,tag)=>s.match(new RegExp('<'+tag+'\\b[\\s\\S]*?</'+tag+'>','i'))?.[0];
  for(const tag of ['header','footer'])assert.equal(element(guide.text,tag),element(beforeGuide.text,tag),'Public '+tag+' changed');
  const image=await fetch('https://shiftsometimber.co.uk'+RETA_IMAGE_PATH,{signal:AbortSignal.timeout(30000)});assert.equal(image.status,200);assert.equal(image.headers.get('Content-Type'),'image/png');
