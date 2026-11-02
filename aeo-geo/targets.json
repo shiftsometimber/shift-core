@@ -1,0 +1,98 @@
+[
+  {
+    "script": "shift-help-guided-presentation-20261021",
+    "path": "/help"
+  },
+  {
+    "script": "shift-newsroom-presentation-20261022",
+    "path": "/shift-newsroom"
+  },
+  {
+    "script": "shift-core",
+    "path": "/"
+  },
+  {
+    "script": "shift-treatments-presentation-20261021",
+    "path": "/treatment-centre"
+  },
+  {
+    "script": "shift-ask-guided-presentation-20261021",
+    "path": "/ask-timber"
+  },
+  {
+    "script": "shift-bloods-public",
+    "path": "/shift-health/blood-tests"
+  },
+  {
+    "script": "shift-timber-mill-presentation-20261021",
+    "path": "/shop"
+  },
+  {
+    "script": "shift-final-pages-presentation-20261021",
+    "path": "/comparisons/surgery/gastric-band-vs-sleeve"
+  },
+  {
+    "script": "shift-about-presentation-20261022",
+    "path": "/about"
+  },
+  {
+    "script": "shift-blog-publisher",
+    "path": "/articles/weight-loss-medication-eligibility-uk"
+  },
+  {
+    "script": "shift-work-with-us-presentation-20261022",
+    "path": "/work-with-us"
+  },
+  {
+    "script": "shift-contact-presentation-20261022",
+    "path": "/contact"
+  },
+  {
+    "script": "shift-start-questions-20261022",
+    "path": "/start-here"
+  },
+  {
+    "script": "shift-tools-presentation-20261022",
+    "path": "/tools"
+  },
+  {
+    "script": "shift-mental-health-pathway-20261023",
+    "path": "/how-are-you-feeling"
+  },
+  {
+    "script": "shift-support-presentation-20261022",
+    "path": "/weight-loss-support-for-men"
+  },
+  {
+    "script": "shift-treatment-options-presentation-20261022",
+    "path": "/treatment-options"
+  },
+  {
+    "script": "shift-quiet-presentation-20261022",
+    "path": "/clinic-gone-quiet"
+  },
+  {
+    "script": "shift-mytimber-support-20261023",
+    "path": "/mens-mental-health"
+  },
+  {
+    "script": "shift-husband-presentation-20261022",
+    "path": "/husband-help"
+  },
+  {
+    "script": "shift-provider-presentation-20261022",
+    "path": "/provider-switch"
+  },
+  {
+    "script": "shift-life-presentation-20261022",
+    "path": "/life-back"
+  },
+  {
+    "script": "shift-health-nutrition-20261027",
+    "path": "/shift-health"
+  },
+  {
+    "script": "shift-seo-followup-v3-20261024",
+    "path": "/shift-for-work"
+  }
+]

@@ -23,7 +23,10 @@ jobs:
   catalogue:
     needs: source
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 45
+    concurrency:
+      group: ${{ github.ref == 'refs/heads/main' && 'cloudflare-production-promote' || github.ref }}
+      cancel-in-progress: false
     env:
       CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -36,6 +39,27 @@ jobs:
         run: node aeo-geo/capture.mjs
       - name: Project only current governed recipes and canonical movements
         run: node aeo-geo/build.mjs
+      - name: Qualify every generated document and visible structured-data projection
+        run: node aeo-geo/qualify.mjs
+      - name: Prepare the existing mobile lab engine
+        if: github.ref == 'refs/heads/main'
+        run: |
+          npm install --prefix "$RUNNER_TEMP/aeo-lab" --no-package-lock --no-audit --no-fund playwright@1.58.2 lighthouse@12.8.2
+          "$RUNNER_TEMP/aeo-lab/node_modules/.bin/playwright" install --with-deps chromium
+          echo "CHROME_PATH=$(node -e "console.log(require('$RUNNER_TEMP/aeo-lab/node_modules/playwright').chromium.executablePath())")" >> "$GITHUB_ENV"
+          echo "LIGHTHOUSE_CLI=$RUNNER_TEMP/aeo-lab/node_modules/lighthouse/cli/index.js" >> "$GITHUB_ENV"
+      - name: Measure mobile before publication
+        if: github.ref == 'refs/heads/main'
+        run: node aeo-geo/performance.mjs before
+      - name: Stage exact provider packages and publish the qualified public-only wrappers
+        if: github.ref == 'refs/heads/main'
+        run: node aeo-geo/release.mjs
+      - name: Measure mobile after publication
+        if: github.ref == 'refs/heads/main'
+        run: node aeo-geo/performance.mjs after
+      - name: Restore only deployments still owned by this exact release if verification fails
+        if: failure() && github.ref == 'refs/heads/main'
+        run: node aeo-geo/release.mjs rollback
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -39,7 +39,7 @@ export function graph(nodes){return {'@context':'https://schema.org','@graph':[O
 export const TRUST_LINKS='<nav class="aeo-trust" aria-label="Editorial information"><a href="/editorial-standards">Editorial standards</a><a href="/clinical-governance">Clinical governance</a><a href="/expert-contributors">Authors and review transparency</a><a href="/medical-disclaimer">Medical disclaimer</a></nav>';
 const strip=s=>String(s||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
 const decode=s=>s.replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>');
-const privatePath=/^\/(?:member(?:[-/]|$)|v1(?:\/|$)|api(?:\/|$)|hq(?:\/|$)|admin(?:\/|$)|account(?:\/|$)|auth(?:\/|$)|checkout(?:\/|$)|treatment-order(?:\/|$)|reset-password(?:\/|$)|email-templates(?:\/|$))/;
+const privatePath=/^\/(?:member(?:[-/]|$)|v1(?:\/|$)|api(?:\/|$)|hq(?:\/|$)|admin(?:\/|$)|account(?:\/|$)|auth(?:\/|$)|checkout(?:\/|$)|treatment-order(?:\/|$)|treatment-assessment(?:\/|$)|clinical-review(?:\/|$)|reset-password(?:\/|$)|email-templates(?:\/|$))/;
 export const isPrivatePath=path=>privatePath.test(path);
 export function enhancePublicHtml(html,path,metadata={}){
  if(isPrivatePath(path)||/name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html))return html;
@@ -78,6 +78,7 @@ export function enhancePublicHtml(html,path,metadata={}){
   const items=[['/','Home']];if(/^\/(?:articles|guides)\//.test(path))items.push(['/explore-knowledge','Knowledge']);items.push([path,h1]);additions.push(breadcrumbs(items));
  }
  if(additions.length)html=html.replace(/<\/head>/i,jsonLd({'@context':'https://schema.org','@graph':additions})+'</head>');
+ html=html.replace(/<footer\b[^>]*>[\s\S]*?<\/footer>/gi,footer=>footer.includes('href="/recipes"')?footer:footer.replace(/(<h2>Explore<\/h2>)/i,'$1<a href="/recipes">Recipes</a><a href="/exercises">Exercises</a>'));
  if(/^\/(?:articles|guides|medicine-news)\//.test(path)){
   let info='';
   if(article?.dateModified && Number.isFinite(Date.parse(article.dateModified))&&!html.includes('data-aeo-updated')){
