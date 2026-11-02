@@ -52,8 +52,11 @@ if(process.argv[2]==='rollback'){
  const zones=await provider('/zones?name=shiftsometimber.co.uk');assert.equal(zones.length,1);
  const routes=await provider('/zones/'+zones[0].id+'/workers/routes');
  const paths=[RETA_PATH,COMPARISON_PATH,'/sitemap.xml',RETA_IMAGE_PATH],ownership=Object.fromEntries(paths.map(path=>[path,routeOwner(routes,path)]));
- const selected=[...new Set(Object.values(ownership))];assert(selected.every(s=>targets.some(t=>t.script===s)),'An unknown serving owner needs inspection before staging');
- save('route-owners.json',{ownership,routeWrites:0});
+ const selected=[...new Set(Object.values(ownership))];
+ save('route-owners.json',{ownership,routeWrites:0});console.log(JSON.stringify({routeOwnership:ownership}));
+ const unexpected=selected.filter(s=>!targets.some(t=>t.script===s));
+ for(const script of unexpected){const active=await latest(script),source=await version(script,active.versions[0].version_id);const inspection={script,deploymentId:active.id,main:source.main_module,ownedModules:source.modules.filter(m=>m.name.startsWith('aeo-geo/')).map(m=>({name:m.name,sha256:hash(Buffer.from(m.content_base64,'base64'))}))};save('owner-inspection-'+script+'.json',inspection);console.log(JSON.stringify({ownerInspection:inspection}));}
+ assert.equal(unexpected.length,0,'An unknown serving owner needs inspection before staging: '+JSON.stringify(unexpected));
  const privateBefore=await protectedDocuments();save('protected-before.json',privateBefore);
  const beforeGuide=await document(RETA_PATH),beforeComparison=await document(COMPARISON_PATH);assert.equal(beforeGuide.response.status,200);assert.equal(beforeComparison.response.status,200);
  writeFileSync(directory+'/guide-before.html',beforeGuide.text);writeFileSync(directory+'/comparison-before.html',beforeComparison.text);
