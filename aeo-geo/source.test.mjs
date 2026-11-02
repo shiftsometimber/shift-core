@@ -2,9 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {recipeProjection,exerciseProjection,safeImage,finite} from './projection.mjs';
 import {recipeSchema,enhancePublicHtml,isPrivatePath} from './schema.mjs';
-import {indexPage,detail} from './content.mjs';
+import {indexPage,detail,recipeSearchMetadata} from './content.mjs';
 import {withAeoGeo,ROBOTS,completeSitemap} from './delivery.mjs';
-import {safeAiReferrer,repairAnalytics} from './analytics.mjs';
+import {safeAiReferrer,safeSearchOrigin,repairAnalytics} from './analytics.mjs';
 import {activeDeployment,replaceActiveTraffic} from './deployment.mjs';
 import {repairCoverChrome,repairPublicChrome,FRAME_SIGNATURE} from './chrome.mjs';
 import {verifyPackage,ENTRY,capturedOriginal} from './package.mjs';
@@ -28,6 +28,29 @@ test('movement variants become one canonical page with visible example doses',()
 });
 test('recipe pages render content and matching JSON-LD without JavaScript',()=>{
  const {html}=detail(recipe,'recipes',data,shell);assert(html.includes('<h1>Egg &amp; tomato</h1>'));assert(html.includes('100g egg'));assert(html.includes('id="step-1"'));assert(html.includes('Not available'));assert(html.includes('"@type":"Recipe"'));assert(html.includes('/member-register'));assert(!html.includes('medically reviewed'));
+});
+test('bounded recipe search snippets preserve unique variants, full H1 and truthful image data',()=>{
+ const prefix='Apple and berries chocolate fruit dessert to share — apple, mixed berries, rolled oats, pumpkin seeds, ';
+ const a={...recipe,title:prefix+'dark chocolate chips',path:'/recipes/variant-chocolate'};
+ const b={...recipe,title:prefix+'honey',path:'/recipes/variant-honey'};
+ const first=recipeSearchMetadata(a),second=recipeSearchMetadata(b);
+ for(const metadata of [first,second]){
+  assert(metadata.metaTitle.length<=70);
+  assert(metadata.metaDescription.length<=155);
+  assert(!metadata.metaDescription.includes('medically reviewed'));
+ }
+ assert.notEqual(first.metaTitle,second.metaTitle,'Relevant variant must remain identifiable');
+ const html=detail(a,'recipes',data,shell).html;
+ assert(html.includes('<h1>'+a.title+'</h1>'));
+ assert(html.includes('<title>'+first.metaTitle+' | SHIFT</title>'));
+ const nodes=JSON.parse(html.match(/<script type="application\\/ld\\+json">(.*?)<\\/script>/s)[1])['@graph'];
+ const rich=nodes.find(n=>n['@type']==='Recipe');
+ assert.equal(rich.name,a.title);
+ assert.equal(rich.image,undefined,'No approved food photograph must be invented');
+ const withImage=detail({...a,image:base+'/assets/verified-dish.webp'},'recipes',data,shell).html;
+ const richWithImage=JSON.parse(withImage.match(/<script type="application\\/ld\\+json">(.*?)<\\/script>/s)[1])['@graph'].find(n=>n['@type']==='Recipe');
+ assert.deepEqual(richWithImage.image,[base+'/assets/verified-dish.webp']);
+ assert(withImage.includes('src="'+base+'/assets/verified-dish.webp"'));
 });
 test('text and JSON-LD cannot break out of their containers',()=>{
  const item={...recipe,title:'</script><img src=x onerror=alert(1)>',method:['<script>alert(2)</script>']};
@@ -102,6 +125,19 @@ test('existing public organisation has one consistent legal identity',()=>{
 test('AI measurement recognises only the named HTTPS origins and never the private URL',()=>{
  for(const host of ['chat.openai.com','chatgpt.com','perplexity.ai','gemini.google.com','copilot.microsoft.com'])assert.equal(safeAiReferrer('https://'+host+'/private-conversation?health=PRIVATE#secret'),'https://'+host+'/');
  for(const url of ['https://chatgpt.com.attacker.example/','http://chatgpt.com/private','https://unknown.example/','data:text/html,secret','https://shiftsometimber.co.uk/member/dashboard'])assert.equal(safeAiReferrer(url),'');
+});
+test('search-origin attribution retains only exact HTTPS Google/Bing origins',()=>{
+ for(const host of ['google.com','www.google.com','google.co.uk','www.google.co.uk','bing.com','www.bing.com']){
+  assert.equal(safeSearchOrigin('https://'+host+'/search?q=private-weight&email=private@example.com#details'),'https://'+host+'/');
+ }
+ for(const raw of ['https://google.co.uk.attacker.example/search?q=private','http://www.google.co.uk/search?q=private','https://www.google.co.uk.evil.example/','https://other.example/sensitive','javascript:alert(1)','https://shiftsometimber.co.uk/member/dashboard']){
+  assert.equal(safeSearchOrigin(raw),'');
+ }
+ const patched=repairAnalytics("if(!allowed||loaded)return;window.gtag('set',{page_referrer:''});");
+ assert(patched.includes('function safeSearchOrigin'));
+ assert(patched.includes('function safeAiReferrer'));
+ assert(!patched.includes('page_referrer:document.referrer'));
+ assert(!patched.includes('page_referrer:location.href'));
 });
 test('the existing consent, private-page suppression and tag-manager guards survive the referrer repair',()=>{
  const script="if(!allowed||loaded)return;window.gtag('set',{page_location:location.origin+path,page_referrer:'',allow_google_signals:false});";
