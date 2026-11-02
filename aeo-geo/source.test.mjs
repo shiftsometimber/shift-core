@@ -113,6 +113,7 @@ test('long recipe metadata is concise without changing the full heading, canonic
  const html=detail(item,'recipes',data,shell).html;
  const title=html.match(/<title>([^<]*)<\/title>/)?.[1],meta=html.match(/<meta name="description" content="([^"]*)"/)?.[1];
  assert(title&&title.length<=62,title);assert(meta&&meta.length<=155,meta);
+ assert(!/[—–…]\\s*\\| SHIFT/.test(title),title);assert(!/[—–…]\\./.test(meta),meta);
  assert(html.includes('<h1>'+full+'</h1>'));assert(html.includes('"name":"'+full+'"'));
  assert(html.includes('href="'+base+item.path+'"'));assert(!html.includes('class="aeo-photo"'));
  const graph=JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1]||'{}')['@graph'];
