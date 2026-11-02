@@ -4,6 +4,7 @@ import {execFileSync} from 'node:child_process';
 import {runtimeRollbackDecision} from '../release/runtime-rollback-guard.mjs';
 import {preparePackage,verifyPackage,hash} from './package.mjs';
 import targets from './targets.json' with {type:'json'};
+import {activeDeployment,replaceActiveTraffic} from './deployment.mjs';
 const directory='aeo-geo-proof',account=process.env.CLOUDFLARE_ACCOUNT_ID,token=process.env.CLOUDFLARE_API_TOKEN;
 assert.equal(account,'9e5386dcf455be34c582d93f8bfc79e6');assert(token);mkdirSync(directory,{recursive:true});
 const save=(name,value)=>writeFileSync(directory+'/'+name,JSON.stringify(value,null,2));
@@ -13,7 +14,7 @@ const api=async(path,init={})=>{
 };
 const latest=async script=>{
  const {deployments}=await api('/workers/scripts/'+script+'/deployments');
- const d=deployments.toSorted((a,b)=>b.created_on.localeCompare(a.created_on))[0];assert.equal(d.versions.length,1);assert.equal(d.versions[0].percentage,100);return d;
+ const d=deployments.toSorted((a,b)=>b.created_on.localeCompare(a.created_on))[0];return activeDeployment(d);
 };
 const version=(script,id)=>api('/workers/workers/'+script+'/versions/'+id+'?include=modules');
 function currentMain(){
@@ -37,7 +38,7 @@ if(process.argv[2]==='rollback'){
    const active=await latest(receipt.script);
    const decision=runtimeRollbackDecision({before:receipt.before,active,receipt,source:process.env.GITHUB_SHA,run:process.env.GITHUB_RUN_ID});
    if(decision.action==='restore'){
-    await api('/workers/scripts/'+receipt.script+'/deployments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({strategy:'percentage',versions:[{version_id:decision.versionId,percentage:100}]})});
+    await api('/workers/scripts/'+receipt.script+'/deployments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({strategy:'percentage',versions:receipt.before.providerVersions||[{version_id:decision.versionId,percentage:100}]})});
     assert.equal((await latest(receipt.script)).versions[0].version_id,decision.versionId);
    }
    results.push({script:receipt.script,...decision});
@@ -65,7 +66,7 @@ if(process.argv[2]==='rollback'){
  for(const p of planned){
   assert.equal((await latest(p.script)).id,p.before.id,'Serving lease changed before promotion: '+p.script);
   save('promotion-intent.json',{source:process.env.GITHUB_SHA,run:process.env.GITHUB_RUN_ID,script:p.script,versionId:p.versionId,previous:p.before.versions[0].version_id});
-  const deployed=await api('/workers/scripts/'+p.script+'/deployments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({strategy:'percentage',versions:[{version_id:p.versionId,percentage:100}]})});
+  const deployed=await api('/workers/scripts/'+p.script+'/deployments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({strategy:'percentage',versions:replaceActiveTraffic(p.before,p.versionId)})});
   const receipt={kind:'owned_runtime_deployment',source:process.env.GITHUB_SHA,run:process.env.GITHUB_RUN_ID,script:p.script,deploymentId:deployed.id,versionId:p.versionId,before:p.before};receipts.push(receipt);save('deployments.json',receipts);
   assert.equal((await latest(p.script)).id,deployed.id);
  }

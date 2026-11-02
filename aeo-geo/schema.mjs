@@ -9,7 +9,7 @@ export const ORGANIZATION={
  logo:{'@type':'ImageObject',url:ORIGIN+'/assets/shift-wordmark.png'},
  identifier:{'@type':'PropertyValue',propertyID:'UK Companies House company number',value:'17393135'},
  email:'hello@shiftsometimber.co.uk',telephone:'0330 311 0981',
- sameAs:['https://instagram.com/ShiftSomeTimber','https://facebook.com/ShiftSomeTimber','https://x.com/ShiftSomeTimber']
+ sameAs:['https://instagram.com/ShiftSomeTimber','https://facebook.com/ShiftSomeTimber','https://x.com/ShiftSomeTimber','https://www.youtube.com/@ShiftSomeTimber']
 };
 export const WEBSITE={'@type':'WebSite','@id':ORIGIN+'/#website',name:'Shift Some Timber',url:ORIGIN+'/',publisher:{'@id':ORIGIN+'/#organization'},inLanguage:'en-GB'};
 export function breadcrumbs(items){return {'@type':'BreadcrumbList',itemListElement:items.map(([path,name],i)=>({'@type':'ListItem',position:i+1,name,item:ORIGIN+path}))};}

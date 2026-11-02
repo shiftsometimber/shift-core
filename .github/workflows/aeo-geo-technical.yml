@@ -5,6 +5,7 @@ on:
     paths: ['aeo-geo/**', '.github/workflows/aeo-geo-technical.yml']
 permissions:
   contents: read
+  actions: read
 jobs:
   source:
     runs-on: ubuntu-latest
@@ -48,9 +49,20 @@ jobs:
           "$RUNNER_TEMP/aeo-lab/node_modules/.bin/playwright" install --with-deps chromium
           echo "CHROME_PATH=$(node -e "console.log(require('$RUNNER_TEMP/aeo-lab/node_modules/playwright').chromium.executablePath())")" >> "$GITHUB_ENV"
           echo "LIGHTHOUSE_CLI=$RUNNER_TEMP/aeo-lab/node_modules/lighthouse/cli/index.js" >> "$GITHUB_ENV"
-      - name: Measure mobile before publication
+      - name: Retain the original successful mobile baseline
         if: github.ref == 'refs/heads/main'
-        run: node aeo-geo/performance.mjs before
+        uses: actions/download-artifact@v4
+        with:
+          name: aeo-geo-catalogue-41413253660
+          run-id: 41413253660
+          github-token: ${{ github.token }}
+          path: aeo-original-baseline
+      - name: Keep the original baseline without repeating a completed measurement
+        if: github.ref == 'refs/heads/main'
+        run: |
+          mkdir -p aeo-geo-proof/lighthouse
+          cp aeo-original-baseline/lighthouse/*before*.json aeo-geo-proof/lighthouse/
+          node -e "const fs=require('fs'),r=JSON.parse(fs.readFileSync('aeo-geo-proof/lighthouse/before-summary.json'));require('node:assert/strict').equal(r.reports.length,9)"
       - name: Stage exact provider packages and publish the qualified public-only wrappers
         if: github.ref == 'refs/heads/main'
         run: node aeo-geo/release.mjs

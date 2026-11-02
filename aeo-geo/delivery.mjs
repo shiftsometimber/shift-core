@@ -1,6 +1,7 @@
 import {ORIGIN,esc,isPrivatePath,enhancePublicHtml,TRUST_LINKS,breadcrumbs} from './schema.mjs';
 import {detail,indexPage,page} from './content.mjs';
 import {repairAnalytics} from './analytics.mjs';
+import {repairCoverChrome} from './chrome.mjs';
 export const RELEASE='aeo-geo-20261102-v1';
 export const ROBOTS=`# Public search and AI crawling; account, payment and administration routes stay private.
 User-agent: *
@@ -41,6 +42,13 @@ const LLMS_BLOCK=`## Public food and movement libraries
 
 Public information may be cited with its canonical URL and recorded update date. Account records, health logs, check-ins, saved plans, checkout and administration routes are private. This file is a discovery aid, not a permission to access private data or a guarantee of search visibility.
 `;
+export function repairLlms(text){
+ const expanded=text.includes('## Public food and movement libraries')?text:text.trimEnd()+'\n\n'+LLMS_BLOCK;
+ return expanded.replace(/^- (https:\/\/shiftsometimber\.co\.uk\/[^\s]*)\s*$/gm,(_,href)=>{
+  const path=new URL(href).pathname,label=path.split('/').filter(Boolean).at(-1)?.replace(/-/g,' ')||'Shift Some Timber';
+  return '- ['+label[0].toUpperCase()+label.slice(1)+']('+href+')';
+ });
+}
 const secured={'X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin','Strict-Transport-Security':'max-age=31536000; includeSubDomains','X-Frame-Options':'SAMEORIGIN'};
 const freshHeaders=()=>new Headers({...secured,'X-Shift-AEO-GEO':RELEASE});
 function textResponse(body,type,request,{status=200,cache='public, max-age=300',headers={}}={}){
@@ -83,14 +91,15 @@ export function withAeoGeo(original,{catalogue,shell,metadata={}}){
   }
   const response=await original.fetch(request,...args);
   if(response.status!==200)return response;
-  const isSitemap=path==='/sitemap.xml',isLlms=path==='/llms.txt',isAnalytics=path==='/analytics-bootstrap-v1.js',isHtml=(response.headers.get('Content-Type')||'').includes('text/html');
-  if(!isSitemap&&!isLlms&&!isAnalytics&&!isHtml)return response;
+  const isSitemap=path==='/sitemap.xml',isLlms=path==='/llms.txt',isAnalytics=path==='/analytics-bootstrap-v1.js',isChrome=path==='/assets/v42.js',isHtml=(response.headers.get('Content-Type')||'').includes('text/html');
+  if(!isSitemap&&!isLlms&&!isAnalytics&&!isChrome&&!isHtml)return response;
   // HEAD and GET must share the same response policy, but HEAD never has a body.
   if(request.method==='HEAD')return response;
   const before=await response.text();let after=before;
   if(isAnalytics)after=repairAnalytics(before);
+  else if(isChrome)after=repairCoverChrome(before);
   else if(isSitemap)after=completeSitemap(before,await catalogue(),metadata);
-  else if(isLlms&&!before.includes('## Public food and movement libraries'))after=before.trimEnd()+'\n\n'+LLMS_BLOCK;
+  else if(isLlms)after=repairLlms(before);
   else if(isHtml)after=enhancePublicHtml(before,path,metadata[path]);
   const headers=new Headers(response.headers);
   if(after!==before){for(const h of ['Content-Length','Content-Encoding','ETag','Content-MD5','Digest'])headers.delete(h);headers.set('X-Shift-AEO-GEO',RELEASE);}

@@ -5,6 +5,10 @@ import {recipeSchema,enhancePublicHtml,isPrivatePath} from './schema.mjs';
 import {indexPage,detail} from './content.mjs';
 import {withAeoGeo,ROBOTS,completeSitemap} from './delivery.mjs';
 import {safeAiReferrer,repairAnalytics} from './analytics.mjs';
+import {activeDeployment,replaceActiveTraffic} from './deployment.mjs';
+import {repairCoverChrome,FRAME_SIGNATURE} from './chrome.mjs';
+import {repairLlms} from './delivery.mjs';
+import vm from 'node:vm';
 const base='https://shiftsometimber.co.uk',shell={header:'<header>Shared header</header>',footer:'<footer>Shared footer</footer>'};
 const date='2026-11-02T08:00:00Z';
 const recipe={id:'r',title:'Egg & tomato',path:'/recipes/egg-tomato',description:'Ingredients and method.',ingredients:['100g egg','100g tomato'],method:['Cook the egg.','Serve with tomato.'],servings:1,minutes:10,prepMinutes:5,cookMinutes:5,nutrition:{kcal:150,protein_g:12,carbohydrate_g:3,fat_g:9,fibre_g:null,saturates_g:0},methodology:'Estimated nutrition.',allergens:['egg'],safety:[],storage:[],equipment:[],image:null};
@@ -83,4 +87,21 @@ test('AI measurement recognises only the named HTTPS origins and never the priva
 test('the existing consent, private-page suppression and tag-manager guards survive the referrer repair',()=>{
  const script="if(!allowed||loaded)return;window.gtag('set',{page_location:location.origin+path,page_referrer:'',allow_google_signals:false});";
  const patched=repairAnalytics(script);assert(patched.startsWith('if(!allowed||loaded)return;'));assert(patched.includes('page_location:location.origin+path'));assert(patched.includes('allow_google_signals:false'));assert(!patched.includes('page_referrer:document.referrer'));assert.equal(repairAnalytics('different source'),'different source');
+});
+test('a retained zero-percent version never becomes the selected live source',()=>{
+ const d=activeDeployment({id:'deployment',versions:[{version_id:'old-zero',percentage:0},{version_id:'actual-live',percentage:100}]});
+ assert.equal(d.versions[0].version_id,'actual-live');assert.deepEqual(replaceActiveTraffic(d,'new-live'),[{version_id:'old-zero',percentage:0},{version_id:'new-live',percentage:100}]);
+ assert.throws(()=>activeDeployment({versions:[{version_id:'a',percentage:50},{version_id:'b',percentage:50}]}));
+ assert.throws(()=>activeDeployment({versions:[{version_id:'a',percentage:0}]}));
+});
+test('only the signed-out or pending dashboard cover avoids the late wrapper',()=>{
+ const code=repairCoverChrome(FRAME_SIGNATURE+'body.wrapped++;}\nframeBody();');
+ for(const [path,state,welcome,expected] of [['/member/dashboard','pending',true,0],['/member/dashboard','signed-out',true,0],['/member/dashboard','ready',true,1],['/member/dashboard','signed-out',false,1],['/recipes/test','signed-out',true,1]]){
+  const body={dataset:{memberSession:state},wrapped:0};vm.runInNewContext(code,{location:{pathname:path},document:{body,querySelector:()=>welcome?{}:null}});assert.equal(body.wrapped,expected,path+' '+state);
+ }
+ assert.equal(repairCoverChrome('unrelated original'), 'unrelated original');
+});
+test('llms discovery has labelled links and does not duplicate its added sections',()=>{
+ const result=repairLlms('# SHIFT\n\n## Pages\n- https://shiftsometimber.co.uk/about\n');
+ assert(result.includes('- [About](https://shiftsometimber.co.uk/about)'));assert(!/^- https:/m.test(result));assert.equal(repairLlms(result),result);
 });

@@ -94,5 +94,9 @@
   {
     "script": "shift-seo-followup-v3-20261024",
     "path": "/shift-for-work"
+  },
+  {
+    "script": "shift-public-review-fixes-20261029",
+    "path": "/assets/v42.js"
   }
 ]
