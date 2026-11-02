@@ -1,0 +1,22 @@
+{
+  "method": "Actual cloud-browser public Start Here comparison, hypothetical anonymous inputs; authoritative public API captured during this continuation",
+  "source": "https://api.shiftsometimber.co.uk/v1/catalogue/medicines",
+  "selectedPriceChecks": 29,
+  "matched": 29,
+  "failed": 0,
+  "starterStrengthsLocked": [
+    "wegovy-injection",
+    "mounjaro",
+    "liraglutide",
+    "wegovy-tablets",
+    "foundayo"
+  ],
+  "orlistatPackSelectionEnabled": true,
+  "continuingVariantsSelected": 29,
+  "initialSixOrderingButtonsDisabled": true,
+  "budgetSelectorPresent": false,
+  "limitation": "Exact quantities and supply periods for some non-weekly packs remain absent from the public catalogue; price equality is not pack equivalence or purchase readiness. Final accordion interaction was unavailable in the cloud browser; no-payment wording is separately verified in the HTTP source. No order, account or payment was created.",
+  "communications": 0,
+  "orders": 0,
+  "recordedAt": "2026-11-02T20:48:06.598Z"
+}

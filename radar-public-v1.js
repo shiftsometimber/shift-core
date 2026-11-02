@@ -1,3 +1,4 @@
+import {newsPublicationDate} from './radar-newsroom-sort-v1.js';
 import {readRadarFreshness} from './radar-freshness-v2.js';
 import {readPublishedTickerEdition} from './radar-published-ticker-v1.js';
 import {RADAR_MEDICINE_SEED} from './radar-medicine-seed-v1.js';
@@ -9,8 +10,9 @@ const evidenceDate=row=>safe(row.source_evidence_json,[]).map(x=>x.source_date).
 const contentFor=row=>safe(row.content_package_json,{});
 const destinationsFor=row=>safe(contentFor(row).destinations,[]);
 const hasDestination=(row,name)=>destinationsFor(row).includes(name);
-const publishedAt=row=>row.reviewed_at||row.updated_at;
-const publicEvent=row=>{const content=contentFor(row),evidence=safe(row.source_evidence_json,[]);return{id:row.id,headline:content.headline||row.headline,standfirst:content.standfirst||'',what_changed:content.what_changed||'',uk_meaning:content.why_it_matters_to_uk||'',known_facts:content.known_facts||[],unknowns:content.unknowns||[],safety:content.safety||'',article_markdown:content.article_markdown||'',metadata:content.seo||{},ticker_line:content.ticker_line||content.headline||row.headline,region:row.region,event_type:row.event_type,evidence_level:Math.min(...evidence.map(x=>Number(x.source_tier)||4),4),sources:evidence.map(x=>({authority:x.authority,title:x.title,url:x.url,source_published_at:x.source_date,retrieved_at:x.retrieved_at})),source_published_at:evidenceDate(row),published_at:publishedAt(row),destinations:destinationsFor(row)}};
+// Match the article's immutable first-publication audit; revisions stay separate.
+const publishedAt=newsPublicationDate;
+const publicEvent=row=>{const content=contentFor(row),evidence=safe(row.source_evidence_json,[]);return{id:row.id,headline:content.headline||row.headline,standfirst:content.standfirst||'',what_changed:content.what_changed||'',uk_meaning:content.why_it_matters_to_uk||'',known_facts:content.known_facts||[],unknowns:content.unknowns||[],safety:content.safety||'',article_markdown:content.article_markdown||'',metadata:{...content.seo,datePublished:publishedAt(row),dateModified:content.seo?.dateModified||row.updated_at||publishedAt(row)},ticker_line:content.ticker_line||content.headline||row.headline,region:row.region,event_type:row.event_type,evidence_level:Math.min(...evidence.map(x=>Number(x.source_tier)||4),4),sources:evidence.map(x=>({authority:x.authority,title:x.title,url:x.url,source_published_at:x.source_date,retrieved_at:x.retrieved_at})),source_published_at:evidenceDate(row),published_at:publishedAt(row),destinations:destinationsFor(row)}};
 
 async function ensureWegovyTabletPublication(DB){
  const key='owner-approved:mhra-wegovy-tablet-2026-06-11';
@@ -48,7 +50,7 @@ export function uniquePublishedArticles(rows=[]){
  });
 }
 export function sortPublishedEvents(rows=[]){return [...rows].sort((a,b)=>String(publishedAt(b)).localeCompare(String(publishedAt(a)))||String(evidenceDate(b)||'').localeCompare(String(evidenceDate(a)||''))||Number(b.id)-Number(a.id))}
-async function publishedEvents(DB,limit=100){const {results=[]}=await DB.prepare(`SELECT id,headline,region,event_type,urgency_score,medicine_patch_json,content_package_json,source_evidence_json,reviewed_at,updated_at FROM radar_events WHERE status='published' ORDER BY COALESCE(reviewed_at,updated_at) DESC, id DESC LIMIT ?`).bind(limit).all();return sortPublishedEvents(results)}
+async function publishedEvents(DB,limit=100){const {results=[]}=await DB.prepare(`SELECT e.id,e.headline,e.region,e.event_type,e.urgency_score,e.medicine_patch_json,e.content_package_json,e.source_evidence_json,e.reviewed_at,e.updated_at,p.first_published_at FROM radar_events e LEFT JOIN (SELECT event_id,MIN(created_at) first_published_at FROM radar_audit WHERE action='published' GROUP BY event_id) p ON p.event_id=e.id WHERE e.status='published' ORDER BY COALESCE(e.reviewed_at,e.updated_at) DESC, e.id DESC LIMIT ?`).bind(limit).all();return sortPublishedEvents(results)}
 
 export async function radarPublicRoutes(request,env){
  const url=new URL(request.url),path=url.pathname.replace(/\/+$/,'')||'/';if(request.method!=='GET'||!path.startsWith('/v1/radar/'))return null;

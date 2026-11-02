@@ -94,3 +94,19 @@ test('public newsroom and published articles replace the retired shell noindex f
   assert.match(await missing.text(),/<meta name="robots" content="noindex,follow">/);
  }finally{globalThis.fetch=original}
 });
+
+test('public news feed uses the same original publication date as its article', async () => {
+ const {radarPublicRoutes}=await import('../radar-public-v1.js');
+ const changed={...row(1263,'UK','Revised article'),first_published_at:'2026-10-19 19:55:33',reviewed_at:'2026-10-20T07:09:44.184Z',updated_at:'2026-10-20T07:09:41.617Z'};
+ const pkg=JSON.parse(changed.content_package_json);
+ pkg.seo.datePublished='2026-10-20T07:09:41.617Z';pkg.seo.dateModified=pkg.seo.datePublished;
+ changed.content_package_json=JSON.stringify(pkg);
+ let query='';
+ const DB={prepare(sql){return {bind(){return this},async first(){return {id:1,status:'published'}},async all(){query=sql;return {results:[changed]}}}}};
+ const result=await (await radarPublicRoutes(new Request('https://shiftsometimber.co.uk/v1/radar/news'),{DB})).json();
+ assert.match(query,/MIN\(created_at\) first_published_at/);
+ assert.equal(result.items[0].published_at,'2026-10-19T19:55:33.000Z');
+ assert.equal(result.items[0].metadata.datePublished,'2026-10-19T19:55:33.000Z');
+ assert.equal(result.items[0].metadata.dateModified,'2026-10-20T07:09:41.617Z');
+ assert.equal(pkg.seo.datePublished,'2026-10-20T07:09:41.617Z','input package is unchanged');
+});

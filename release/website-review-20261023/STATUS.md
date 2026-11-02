@@ -36,3 +36,47 @@ Evidence in ./evidence is public/sanitised, including exact deployment receipts,
 ## Owner clarification — 24 October evening
 
 THE TIMBER SHED — SOON is intentional non-link navigation. Do not report it as a defect, missing approval or contradictory instruction. Keep this presentation unchanged.
+
+
+## Continuation — 2 November 2026, public review owner
+
+Scope: Matt's “Action all” continuation. Prepare the remaining approved correction, complete independent live acceptance, preserve the sole IP release manager's merge/deployment control. No website mutation, homepage edit, purchasing activation, member-record write, publication or external communication was performed here.
+
+### Implemented and tested; NOT DEPLOYED
+The full SST footer is hidden on the signed-out My Timber cover because later member-chrome `!important` rules outrank the earlier welcome-footer exception. A narrow cascade-layer rule restores only the direct public footer when the session is explicitly signed out and the welcome cover exists. Embedded and contained screens are excluded.
+
+- Candidate files: `welcome-footer-repair-20261102.css`, `welcome-footer-repair-20261102.mjs`, `welcome-footer-repair-20261102.test.mjs`, plus public before-image and evidence below.
+- Exact serving CSS SHA-256: `fbe31e415489de92d43f46aa7883bd0e7e0f5bb7f75c54442acd7c1651b2aeec`.
+- Exact tested candidate CSS SHA-256: `b041ec74007bb4a13280e7f7886ccf9fc0776d1d32565fb9b2e11a36dc59a8bc`.
+- The patcher preserves every original CSS byte, rejects changed input, and is idempotent on its own exact output. Four source checks PASS.
+- Managed Chromium/WebKit acceptance PASS: 22 cases, including live baseline/candidate footer comparisons at 390/1440px, cookie-control and social-link visibility, no overflow, and synthetic ready/pending/embedded/contained/non-cover exclusions. The same fragment hash is recorded in the receipt.
+- Earlier harness failures (cookie-banner interception and an ambiguous two-link selector) remain preserved on the Mac. Four already-passed Chromium footer cases were reused only after rechecking exact CSS and fragment hashes; the corrected check completed with process-group cleanup.
+- Evidence: `evidence/welcome-footer-candidate-browser-20261102.json`.
+- Existing task directory: `/Users/shiftsometimberltd/SST/builds/apple-completion-20261024/journey-shop-release-20261031`. Executed proof: `website-review-footer-20261102-proof.mjs`, PID 57780, exit 0, 28.31s, governed runner. No browser contexts were retained.
+- Repository preparation remains on this existing isolated public-review branch. Do not deploy this older branch wholesale.
+
+### Release-manager next action and overlap
+The current My Timber performance owner is modifying Core/Programme/Documents delivery and immutable public assets. The cover's CSS is referenced with an `mtv` fingerprint, so a Pages-only CSS update is insufficient evidence that users receive the new bytes. Compose ONLY this exact CSS addition through the current serving asset owner, update its fingerprint as required, retain all current performance/AEO modules, public/private boundaries, source checks, production lock and owned rollback.
+
+Re-capture the live CSS. If its digest changed, this patcher must stop for reconciliation. Qualify the composed current package, then the sole IP release manager promotes through the existing guarded sequence. Verify the actual production cover at desktop/mobile widths, one visible SST footer, social links, cookie controls, no private member information and no overflow. Keep the app's signed-in/embedded layout and homepage unchanged. No merge, deployment or new watcher was started by this continuation.
+
+### Independent live acceptance completed
+- Shop: desktop CUA plus Chromium/WebKit at 390/1440px confirm six featured items, sixteen full range, two Accessories, clearing back to sixteen, unique product names, and Cream changes only the tee's image/label/destination. These were intentional defaults, not a confirmed catalogue data bug. No rewrite is needed.
+- Three approved refreshes: the original full 23 October acceptance is recovered above. Fresh public GETs retain each self-canonical, original publication date, 22 October modified date, indexability and references; both original refresh JPEGs return 200. No duplicate publication or artificial new revision date is warranted. See `evidence/public-source-acceptance-20261102.json`.
+- Article renderer: both complete eClinicalMedicine destinations are live on `/articles/glp-1-weight-regain`. A current BabyLove sample, `/articles/wegovy-injection-sites`, matches its authenticated public-article receipt and `babylovegrowth` header. A bounded read-only query found no eligible currently published `shift-contributor` sample; do not create a fake publication to manufacture live acceptance. The existing merged PR1509 and its unit evidence are retained.
+- Start Here: all 29 real UI-selected variant prices match the current public catalogue. Five medicines lock new starters to their starting strengths; Orlistat remains a pack-size choice. All six initial ordering actions are disabled. The catalogue still lacks exact quantities/periods for some non-weekly packs: this remains a purchase-release dependency, not permission to guess or enable ordering. See `evidence/price-checks-20261102.json`.
+- Shed “SOON” is explicitly intentional under the 24 October owner clarification above. Do not reopen it as an approval question or remove it as part of this repair.
+- The five redirects, Work sitemap/indexability, icon delivery and closed cart/checkout were freshly checked in the preceding 2 November review. Preserve those successful results.
+
+### Remaining genuine dependencies
+1. Performance release remains with its current owner. The separate 20-sample interned-static-data trial completed and restored all ordinary traffic: control p95 3759ms, candidate p95 3100ms, retained gate 1755ms; not accepted, not phone proof. Earlier 403/idle-profile notes are not grounds to restart jobs or request secrets.
+2. Physical iPhone/Safari home-screen appearance and real-account acceptance remain unverified; desktop WebKit does not substitute for either.
+3. The two alleged duplicate-guide pairs remain unidentified despite the retained comparison of 30 pages. No consolidation is justified by similarity alone.
+4. Recipe-photo rich-result eligibility remains under the existing dish/portion QA hold; no stock-photo substitution or blanket hold removal is authorised.
+5. Exact non-weekly pack quantities/periods need authoritative catalogue/fulfilment data before the coordinated purchase gate can open. Existing approval for public fixes does not activate purchasing.
+
+These are specific evidence, source or release-owner dependencies. No new generic “go” or renewed approval for the existing scoped fix is requested.
+
+### Exact prepared source
+
+Repository: `shiftsometimber/shift-core`. Isolated existing branch: `fix/review-footer-colour-20261027`. Exact tested preparation commit: `767161dfada1232396d485131ebf5b7e59714e48`. This subsequent checkpoint-only update changes no candidate CSS, patcher or acceptance evidence. Deployment remains unperformed and assigned to the existing sole IP release manager.

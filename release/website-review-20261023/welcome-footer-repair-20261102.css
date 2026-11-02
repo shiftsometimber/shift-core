@@ -1,0 +1,9 @@
+/* Restore only the confirmed signed-out public cover footer.
+   Important declarations in this layer take priority over the later, unlayered
+   member chrome rules. Signed-in, embedded and contained app screens stay owned
+   by their existing styles. */
+@layer mt-welcome-public-footer {
+  html:not([data-mt-contained-screen]) body[data-member-session="signed-out"]:not([data-app-panel="1"]):has(> #mtWelcome) > footer#sst-footer-c {
+    display: block !important;
+  }
+}

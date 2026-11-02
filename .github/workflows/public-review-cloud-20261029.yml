@@ -1,0 +1,50 @@
+name: Approved public review cloud release
+# Preserve the default production service binding exactly; extend only the existing publication-date projection; preserve source and rollback gates.
+on:
+  push:
+    branches: [fix/review-footer-colour-20261027]
+    paths: [.github/workflows/public-review-cloud-20261029.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  readiness:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run retained newsroom and exact canonical projection regressions
+        run: |
+          node --test tests/radar-newsroom-page-v1.test.mjs tests/radar-newsroom-sort-v1.test.mjs
+          LOCAL_TEST_ONLY=1 node release/public-news-date-rollover-20261101.mjs
+      - name: Load successful existing Worker and owned rollback receipt
+        uses: actions/download-artifact@v4
+        with:
+          name: public-review-cloud-readiness-01ac88748021c866b6590e5386afd6b057e73aa8
+          run-id: 40869756565
+          github-token: ${{ github.token }}
+          path: previous-public-review/
+      - name: Install isolated browser runtime
+        run: |
+          npm install --prefix "$RUNNER_TEMP/public-review-runtime" --no-audit --no-fund playwright@1.56.1
+          "$RUNNER_TEMP/public-review-runtime/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Qualify exact preview, extend owned date projection, verify or roll back
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          node --check release/public-news-date-rollover-20261101.mjs
+          PLAYWRIGHT_MODULE="$RUNNER_TEMP/public-review-runtime/node_modules/playwright" node release/public-news-date-rollover-20261101.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: public-review-cloud-readiness-${{ github.sha }}
+          path: public-review-cloud-evidence/
+          if-no-files-found: warn
+          retention-days: 30

@@ -1,0 +1,702 @@
+{
+  "at": "2026-11-02T20:42:04.154Z",
+  "kind": "PUBLIC_FOOTER_CANDIDATE_RENDERED_ACCEPTANCE",
+  "deployed": false,
+  "fragmentSha256": "47d6c309d971425b3d7be306b1124dfc6af9e31c00b0b76f1009cf60f44aab48",
+  "rows": [
+    {
+      "engine": "chromium",
+      "width": 390,
+      "candidate": false,
+      "pass": true,
+      "session": "signed-out",
+      "footerVisible": false,
+      "footerCount": 0,
+      "visibleHeaders": 1,
+      "overflow": false,
+      "privateMemberVisible": false,
+      "welcomeVisible": true,
+      "socialLinks": [
+        {
+          "href": "https://www.instagram.com/shiftsometimber",
+          "visible": false
+        },
+        {
+          "href": "https://www.facebook.com/ShiftSomeTimber",
+          "visible": false
+        },
+        {
+          "href": "https://x.com/ShiftSomeTimber",
+          "visible": false
+        },
+        {
+          "href": "https://www.youtube.com/@ShiftSomeTimber",
+          "visible": false
+        }
+      ],
+      "matched": [
+        {
+          "source": "https://shiftsometimber.co.uk/assets/v137-estate-closeout.css?v=footer-wire-20260911b&mtv=a0e9927ac92becaf57f2",
+          "selector": "body .site-footer",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/header-navigation-v2.css?mtv=83fcff138e0b3f88d5e6",
+          "selector": "html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.css?v=3&mtv=fbe31e415489de92d43f",
+          "selector": "html body:has(#mtWelcome)[data-member-session=\"signed-out\"] > :is(header, aside, nav, main, footer, #memberSessionStatus, #myTimberApp, #memberUtilities, #appBottomNav, .drawer-backdrop, .sst-member-tabs), html body:has(#mtWelcome):not([data-member-session]):not(.member-ready) > :is(header, aside, nav, main, footer, #myTimberApp)",
+          "display": "none",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.css?v=3&mtv=fbe31e415489de92d43f",
+          "selector": "html body[data-member-session=\"signed-out\"]:has(#mtWelcome):is(#mtWelcomeFooter, [data-member-session]) > footer#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "inline",
+          "selector": "html[data-mt-member-paint] body:not([data-app-panel=\"1\"]):is(#approved-member-design, body):is(#approved-member-palette, body):is(#approved-member-layout, body):is(#approved-member-experience, body):is(#mtShopChrome, body) :is(header.site-header, #sst-header-c, #sst-footer-c, .site-footer, #appBottomNav, #mtSixNav, .tj-bottom, .mt-support-nav, #todayBrand, .tj-brand, .mt-support-brand, .orders-header, nav.sst-member-tabs)",
+          "display": "none",
+          "priority": "important"
+        },
+        {
+          "source": "inline",
+          "selector": "html body footer#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "candidate": true,
+      "pass": true,
+      "session": "signed-out",
+      "footerVisible": true,
+      "footerCount": 1,
+      "visibleHeaders": 1,
+      "overflow": false,
+      "privateMemberVisible": false,
+      "welcomeVisible": true,
+      "socialLinks": [
+        {
+          "href": "https://www.instagram.com/shiftsometimber",
+          "visible": true
+        },
+        {
+          "href": "https://www.facebook.com/ShiftSomeTimber",
+          "visible": true
+        },
+        {
+          "href": "https://x.com/ShiftSomeTimber",
+          "visible": true
+        },
+        {
+          "href": "https://www.youtube.com/@ShiftSomeTimber",
+          "visible": true
+        }
+      ],
+      "matched": [
+        {
+          "source": "https://shiftsometimber.co.uk/assets/v137-estate-closeout.css?v=footer-wire-20260911b&mtv=a0e9927ac92becaf57f2",
+          "selector": "body .site-footer",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/header-navigation-v2.css?mtv=83fcff138e0b3f88d5e6",
+          "selector": "html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.css?v=3&mtv=fbe31e415489de92d43f",
+          "selector": "html body:has(#mtWelcome)[data-member-session=\"signed-out\"] > :is(header, aside, nav, main, footer, #memberSessionStatus, #myTimberApp, #memberUtilities, #appBottomNav, .drawer-backdrop, .sst-member-tabs), html body:has(#mtWelcome):not([data-member-session]):not(.member-ready) > :is(header, aside, nav, main, footer, #myTimberApp)",
+          "display": "none",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.css?v=3&mtv=fbe31e415489de92d43f",
+          "selector": "html body[data-member-session=\"signed-out\"]:has(#mtWelcome):is(#mtWelcomeFooter, [data-member-session]) > footer#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.css?v=3&mtv=fbe31e415489de92d43f",
+          "selector": "html:not([data-mt-contained-screen]) body[data-member-session=\"signed-out\"]:not([data-app-panel=\"1\"]):has(> #mtWelcome) > footer#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "inline",
+          "selector": "html[data-mt-member-paint] body:not([data-app-panel=\"1\"]):is(#approved-member-design, body):is(#approved-member-palette, body):is(#approved-member-layout, body):is(#approved-member-experience, body):is(#mtShopChrome, body) :is(header.site-header, #sst-header-c, #sst-footer-c, .site-footer, #appBottomNav, #mtSixNav, .tj-bottom, .mt-support-nav, #todayBrand, .tj-brand, .mt-support-brand, .orders-header, nav.sst-member-tabs)",
+          "display": "none",
+          "priority": "important"
+        },
+        {
+          "source": "inline",
+          "selector": "html body footer#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "candidate": false,
+      "pass": true,
+      "session": "signed-out",
+      "footerVisible": false,
+      "footerCount": 0,
+      "visibleHeaders": 1,
+      "overflow": false,
+      "privateMemberVisible": false,
+      "welcomeVisible": true,
+      "socialLinks": [
+        {
+          "href": "https://www.instagram.com/shiftsometimber",
+          "visible": false
+        },
+        {
+          "href": "https://www.facebook.com/ShiftSomeTimber",
+          "visible": false
+        },
+        {
+          "href": "https://x.com/ShiftSomeTimber",
+          "visible": false
+        },
+        {
+          "href": "https://www.youtube.com/@ShiftSomeTimber",
+          "visible": false
+        }
+      ],
+      "matched": [
+        {
+          "source": "https://shiftsometimber.co.uk/assets/v137-estate-closeout.css?v=footer-wire-20260911b&mtv=a0e9927ac92becaf57f2",
+          "selector": "body .site-footer",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/header-navigation-v2.css?mtv=83fcff138e0b3f88d5e6",
+          "selector": "html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.css?v=3&mtv=fbe31e415489de92d43f",
+          "selector": "html body:has(#mtWelcome)[data-member-session=\"signed-out\"] > :is(header, aside, nav, main, footer, #memberSessionStatus, #myTimberApp, #memberUtilities, #appBottomNav, .drawer-backdrop, .sst-member-tabs), html body:has(#mtWelcome):not([data-member-session]):not(.member-ready) > :is(header, aside, nav, main, footer, #myTimberApp)",
+          "display": "none",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.css?v=3&mtv=fbe31e415489de92d43f",
+          "selector": "html body[data-member-session=\"signed-out\"]:has(#mtWelcome):is(#mtWelcomeFooter, [data-member-session]) > footer#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "inline",
+          "selector": "html[data-mt-member-paint] body:not([data-app-panel=\"1\"]):is(#approved-member-design, body):is(#approved-member-palette, body):is(#approved-member-layout, body):is(#approved-member-experience, body):is(#mtShopChrome, body) :is(header.site-header, #sst-header-c, #sst-footer-c, .site-footer, #appBottomNav, #mtSixNav, .tj-bottom, .mt-support-nav, #todayBrand, .tj-brand, .mt-support-brand, .orders-header, nav.sst-member-tabs)",
+          "display": "none",
+          "priority": "important"
+        },
+        {
+          "source": "inline",
+          "selector": "html body footer#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "candidate": true,
+      "pass": true,
+      "session": "signed-out",
+      "footerVisible": true,
+      "footerCount": 1,
+      "visibleHeaders": 1,
+      "overflow": false,
+      "privateMemberVisible": false,
+      "welcomeVisible": true,
+      "socialLinks": [
+        {
+          "href": "https://www.instagram.com/shiftsometimber",
+          "visible": true
+        },
+        {
+          "href": "https://www.facebook.com/ShiftSomeTimber",
+          "visible": true
+        },
+        {
+          "href": "https://x.com/ShiftSomeTimber",
+          "visible": true
+        },
+        {
+          "href": "https://www.youtube.com/@ShiftSomeTimber",
+          "visible": true
+        }
+      ],
+      "matched": [
+        {
+          "source": "https://shiftsometimber.co.uk/assets/v137-estate-closeout.css?v=footer-wire-20260911b&mtv=a0e9927ac92becaf57f2",
+          "selector": "body .site-footer",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/header-navigation-v2.css?mtv=83fcff138e0b3f88d5e6",
+          "selector": "html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.css?v=3&mtv=fbe31e415489de92d43f",
+          "selector": "html body:has(#mtWelcome)[data-member-session=\"signed-out\"] > :is(header, aside, nav, main, footer, #memberSessionStatus, #myTimberApp, #memberUtilities, #appBottomNav, .drawer-backdrop, .sst-member-tabs), html body:has(#mtWelcome):not([data-member-session]):not(.member-ready) > :is(header, aside, nav, main, footer, #myTimberApp)",
+          "display": "none",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.css?v=3&mtv=fbe31e415489de92d43f",
+          "selector": "html body[data-member-session=\"signed-out\"]:has(#mtWelcome):is(#mtWelcomeFooter, [data-member-session]) > footer#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.css?v=3&mtv=fbe31e415489de92d43f",
+          "selector": "html:not([data-mt-contained-screen]) body[data-member-session=\"signed-out\"]:not([data-app-panel=\"1\"]):has(> #mtWelcome) > footer#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "inline",
+          "selector": "html[data-mt-member-paint] body:not([data-app-panel=\"1\"]):is(#approved-member-design, body):is(#approved-member-palette, body):is(#approved-member-layout, body):is(#approved-member-experience, body):is(#mtShopChrome, body) :is(header.site-header, #sst-header-c, #sst-footer-c, .site-footer, #appBottomNav, #mtSixNav, .tj-bottom, .mt-support-nav, #todayBrand, .tj-brand, .mt-support-brand, .orders-header, nav.sst-member-tabs)",
+          "display": "none",
+          "priority": "important"
+        },
+        {
+          "source": "inline",
+          "selector": "html body footer#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "case": "Live Shop: six featured, sixteen full range, two accessories, clear back to sixteen; independent Cream image/name/link; unique product names",
+      "live": true,
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "case": "Live Shop: six featured, sixteen full range, two accessories, clear back to sixteen; independent Cream image/name/link; unique product names",
+      "live": true,
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "state": "ready",
+      "synthetic": true,
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "state": "pending",
+      "synthetic": true,
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "state": "embedded",
+      "synthetic": true,
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "state": "contained",
+      "synthetic": true,
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "state": "public-without-cover",
+      "synthetic": true,
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "candidate": false,
+      "pass": true,
+      "session": "signed-out",
+      "footerVisible": false,
+      "footerCount": 0,
+      "visibleHeaders": 1,
+      "overflow": false,
+      "privateMemberVisible": false,
+      "welcomeVisible": true,
+      "socialLinks": [
+        {
+          "href": "https://www.instagram.com/shiftsometimber",
+          "visible": false
+        },
+        {
+          "href": "https://www.facebook.com/ShiftSomeTimber",
+          "visible": false
+        },
+        {
+          "href": "https://x.com/ShiftSomeTimber",
+          "visible": false
+        },
+        {
+          "href": "https://www.youtube.com/@ShiftSomeTimber",
+          "visible": false
+        }
+      ],
+      "matched": [
+        {
+          "source": "https://shiftsometimber.co.uk/assets/v137-estate-closeout.css?v=footer-wire-20260911b&mtv=a0e9927ac92becaf57f2",
+          "selector": "body .site-footer",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/header-navigation-v2.css?mtv=83fcff138e0b3f88d5e6",
+          "selector": "html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.css?v=3&mtv=fbe31e415489de92d43f",
+          "selector": "html body:has(#mtWelcome)[data-member-session=\"signed-out\"] > :is(header, aside, nav, main, footer, #memberSessionStatus, #myTimberApp, #memberUtilities, #appBottomNav, .drawer-backdrop, .sst-member-tabs), html body:has(#mtWelcome):not([data-member-session]):not(.member-ready) > :is(header, aside, nav, main, footer, #myTimberApp)",
+          "display": "none",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.css?v=3&mtv=fbe31e415489de92d43f",
+          "selector": "html body[data-member-session=\"signed-out\"]:has(#mtWelcome):is(#mtWelcomeFooter, [data-member-session]) > footer#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "inline",
+          "selector": "html[data-mt-member-paint] body:not([data-app-panel=\"1\"]):is(#approved-member-design, body):is(#approved-member-palette, body):is(#approved-member-layout, body):is(#approved-member-experience, body):is(#mtShopChrome, body) :is(header.site-header, #sst-header-c, #sst-footer-c, .site-footer, #appBottomNav, #mtSixNav, .tj-bottom, .mt-support-nav, #todayBrand, .tj-brand, .mt-support-brand, .orders-header, nav.sst-member-tabs)",
+          "display": "none",
+          "priority": "important"
+        },
+        {
+          "source": "inline",
+          "selector": "html body footer#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "candidate": true,
+      "pass": true,
+      "session": "signed-out",
+      "footerVisible": true,
+      "footerCount": 1,
+      "visibleHeaders": 1,
+      "overflow": false,
+      "privateMemberVisible": false,
+      "welcomeVisible": true,
+      "socialLinks": [
+        {
+          "href": "https://www.instagram.com/shiftsometimber",
+          "visible": true
+        },
+        {
+          "href": "https://www.facebook.com/ShiftSomeTimber",
+          "visible": true
+        },
+        {
+          "href": "https://x.com/ShiftSomeTimber",
+          "visible": true
+        },
+        {
+          "href": "https://www.youtube.com/@ShiftSomeTimber",
+          "visible": true
+        }
+      ],
+      "matched": [
+        {
+          "source": "https://shiftsometimber.co.uk/assets/v137-estate-closeout.css?v=footer-wire-20260911b&mtv=a0e9927ac92becaf57f2",
+          "selector": "body .site-footer",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/header-navigation-v2.css?mtv=83fcff138e0b3f88d5e6",
+          "selector": "html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.css?v=3&mtv=fbe31e415489de92d43f",
+          "selector": "html body:has(#mtWelcome)[data-member-session=\"signed-out\"] > :is(header, aside, nav, main, footer, #memberSessionStatus, #myTimberApp, #memberUtilities, #appBottomNav, .drawer-backdrop, .sst-member-tabs), html body:has(#mtWelcome):not([data-member-session]):not(.member-ready) > :is(header, aside, nav, main, footer, #myTimberApp)",
+          "display": "none",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.css?v=3&mtv=fbe31e415489de92d43f",
+          "selector": "html body[data-member-session=\"signed-out\"]:has(#mtWelcome):is(#mtWelcomeFooter, [data-member-session]) > footer#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.css?v=3&mtv=fbe31e415489de92d43f",
+          "selector": "html:not([data-mt-contained-screen]) body[data-member-session=\"signed-out\"]:not([data-app-panel=\"1\"]):has(> #mtWelcome) > footer#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "inline",
+          "selector": "html[data-mt-member-paint] body:not([data-app-panel=\"1\"]):is(#approved-member-design, body):is(#approved-member-palette, body):is(#approved-member-layout, body):is(#approved-member-experience, body):is(#mtShopChrome, body) :is(header.site-header, #sst-header-c, #sst-footer-c, .site-footer, #appBottomNav, #mtSixNav, .tj-bottom, .mt-support-nav, #todayBrand, .tj-brand, .mt-support-brand, .orders-header, nav.sst-member-tabs)",
+          "display": "none",
+          "priority": "important"
+        },
+        {
+          "source": "inline",
+          "selector": "html body footer#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "candidate": false,
+      "pass": true,
+      "session": "signed-out",
+      "footerVisible": false,
+      "footerCount": 0,
+      "visibleHeaders": 1,
+      "overflow": false,
+      "privateMemberVisible": false,
+      "welcomeVisible": true,
+      "socialLinks": [
+        {
+          "href": "https://www.instagram.com/shiftsometimber",
+          "visible": false
+        },
+        {
+          "href": "https://www.facebook.com/ShiftSomeTimber",
+          "visible": false
+        },
+        {
+          "href": "https://x.com/ShiftSomeTimber",
+          "visible": false
+        },
+        {
+          "href": "https://www.youtube.com/@ShiftSomeTimber",
+          "visible": false
+        }
+      ],
+      "matched": [
+        {
+          "source": "https://shiftsometimber.co.uk/assets/v137-estate-closeout.css?v=footer-wire-20260911b&mtv=a0e9927ac92becaf57f2",
+          "selector": "body .site-footer",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/header-navigation-v2.css?mtv=83fcff138e0b3f88d5e6",
+          "selector": "html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.css?v=3&mtv=fbe31e415489de92d43f",
+          "selector": "html body:has(#mtWelcome)[data-member-session=\"signed-out\"] > :is(header, aside, nav, main, footer, #memberSessionStatus, #myTimberApp, #memberUtilities, #appBottomNav, .drawer-backdrop, .sst-member-tabs), html body:has(#mtWelcome):not([data-member-session]):not(.member-ready) > :is(header, aside, nav, main, footer, #myTimberApp)",
+          "display": "none",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.css?v=3&mtv=fbe31e415489de92d43f",
+          "selector": "html body[data-member-session=\"signed-out\"]:has(#mtWelcome):is(#mtWelcomeFooter, [data-member-session]) > footer#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "inline",
+          "selector": "html[data-mt-member-paint] body:not([data-app-panel=\"1\"]):is(#approved-member-design, body):is(#approved-member-palette, body):is(#approved-member-layout, body):is(#approved-member-experience, body):is(#mtShopChrome, body) :is(header.site-header, #sst-header-c, #sst-footer-c, .site-footer, #appBottomNav, #mtSixNav, .tj-bottom, .mt-support-nav, #todayBrand, .tj-brand, .mt-support-brand, .orders-header, nav.sst-member-tabs)",
+          "display": "none",
+          "priority": "important"
+        },
+        {
+          "source": "inline",
+          "selector": "html body footer#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "candidate": true,
+      "pass": true,
+      "session": "signed-out",
+      "footerVisible": true,
+      "footerCount": 1,
+      "visibleHeaders": 1,
+      "overflow": false,
+      "privateMemberVisible": false,
+      "welcomeVisible": true,
+      "socialLinks": [
+        {
+          "href": "https://www.instagram.com/shiftsometimber",
+          "visible": true
+        },
+        {
+          "href": "https://www.facebook.com/ShiftSomeTimber",
+          "visible": true
+        },
+        {
+          "href": "https://x.com/ShiftSomeTimber",
+          "visible": true
+        },
+        {
+          "href": "https://www.youtube.com/@ShiftSomeTimber",
+          "visible": true
+        }
+      ],
+      "matched": [
+        {
+          "source": "https://shiftsometimber.co.uk/assets/v137-estate-closeout.css?v=footer-wire-20260911b&mtv=a0e9927ac92becaf57f2",
+          "selector": "body .site-footer",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/header-navigation-v2.css?mtv=83fcff138e0b3f88d5e6",
+          "selector": "html body footer#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.css?v=3&mtv=fbe31e415489de92d43f",
+          "selector": "html body:has(#mtWelcome)[data-member-session=\"signed-out\"] > :is(header, aside, nav, main, footer, #memberSessionStatus, #myTimberApp, #memberUtilities, #appBottomNav, .drawer-backdrop, .sst-member-tabs), html body:has(#mtWelcome):not([data-member-session]):not(.member-ready) > :is(header, aside, nav, main, footer, #myTimberApp)",
+          "display": "none",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.css?v=3&mtv=fbe31e415489de92d43f",
+          "selector": "html body[data-member-session=\"signed-out\"]:has(#mtWelcome):is(#mtWelcomeFooter, [data-member-session]) > footer#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "https://shiftsometimber.co.uk/assets/my-timber-welcome-20261021.css?v=3&mtv=fbe31e415489de92d43f",
+          "selector": "html:not([data-mt-contained-screen]) body[data-member-session=\"signed-out\"]:not([data-app-panel=\"1\"]):has(> #mtWelcome) > footer#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        },
+        {
+          "source": "inline",
+          "selector": "html[data-mt-member-paint] body:not([data-app-panel=\"1\"]):is(#approved-member-design, body):is(#approved-member-palette, body):is(#approved-member-layout, body):is(#approved-member-experience, body):is(#mtShopChrome, body) :is(header.site-header, #sst-header-c, #sst-footer-c, .site-footer, #appBottomNav, #mtSixNav, .tj-bottom, .mt-support-nav, #todayBrand, .tj-brand, .mt-support-brand, .orders-header, nav.sst-member-tabs)",
+          "display": "none",
+          "priority": "important"
+        },
+        {
+          "source": "inline",
+          "selector": "html body footer#sst-footer-c",
+          "display": "block",
+          "priority": "important"
+        }
+      ]
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "case": "Live Shop: six featured, sixteen full range, two accessories, clear back to sixteen; independent Cream image/name/link; unique product names",
+      "live": true,
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "case": "Live Shop: six featured, sixteen full range, two accessories, clear back to sixteen; independent Cream image/name/link; unique product names",
+      "live": true,
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "state": "ready",
+      "synthetic": true,
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "state": "pending",
+      "synthetic": true,
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "state": "embedded",
+      "synthetic": true,
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "state": "contained",
+      "synthetic": true,
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "state": "public-without-cover",
+      "synthetic": true,
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "blocked": [
+    {
+      "method": "DELETE",
+      "path": "/v1/acquisition-attribution"
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/acquisition-attribution"
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/acquisition-attribution"
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/acquisition-attribution"
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/acquisition-attribution"
+    },
+    {
+      "method": "DELETE",
+      "path": "/v1/acquisition-attribution"
+    }
+  ],
+  "pass": true,
+  "cssBeforeSha256": "fbe31e415489de92d43f46aa7883bd0e7e0f5bb7f75c54442acd7c1651b2aeec",
+  "cssCandidateSha256": "b041ec74007bb4a13280e7f7886ccf9fc0776d1d32565fb9b2e11a36dc59a8bc"
+}
