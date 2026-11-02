@@ -52,12 +52,13 @@ if(process.argv[2]==='rollback'){
  for(const {script} of targets){
   const before=await latest(script),original=await version(script,before.versions[0].version_id),settings=await api('/workers/scripts/'+script+'/settings');
   const candidate=preparePackage(original,{includeCatalogue:['shift-core','shift-seo-followup-v3-20261024'].includes(script)});
-  const metadata={main_module:candidate.main_module,compatibility_date:settings.compatibility_date,compatibility_flags:settings.compatibility_flags||[],bindings:original.bindings.map(b=>({type:'inherit',name:b.name})),keep_assets:true,annotations:{'workers/message':'AEO public catalogue and accurate structured data; preserve all existing source modules'}};
+  const metadata={main_module:candidate.main_module,compatibility_date:original.compatibility_date,compatibility_flags:original.compatibility_flags||[],bindings:original.bindings.map(b=>({type:'inherit',name:b.name})),keep_assets:true,annotations:{'workers/message':'AEO public catalogue and accurate structured data; preserve all existing source modules'}};
+  if(original.usage_model)metadata.usage_model=original.usage_model;
   for(const key of ['placement','limits','observability','logpush'])if(settings[key]!==undefined)metadata[key]=settings[key];
   const form=new FormData();form.set('metadata',new Blob([JSON.stringify(metadata)],{type:'application/json'}),'metadata.json');
-  for(const module of candidate.modules){assert(/\.m?js$/.test(module.name),'Unexpected non-JavaScript module; preserve without retyping');form.set(module.name,new Blob([Buffer.from(module.content_base64,'base64')],{type:'application/javascript+module'}),module.name);}
+  for(const module of candidate.modules){assert(module.content_type,'Module content type must come from the captured provider package: '+module.name);form.set(module.name,new Blob([Buffer.from(module.content_base64,'base64')],{type:module.content_type}),module.name);}
   assert.equal((await latest(script)).id,before.id,'Serving version moved during preparation: '+script);
-  const staged=await api('/workers/scripts/'+script+'/versions?bindings_inheritance=strict',{method:'POST',body:form});
+  const staged=await api('/workers/scripts/'+script+'/versions?bindings_inherit=strict',{method:'POST',body:form});
   const proof=verifyPackage(original,await version(script,staged.id),candidate);
   planned.push({script,before,versionId:staged.id,...proof});save('staged.json',planned);
  }

@@ -1,7 +1,7 @@
 import {ORIGIN,esc,isPrivatePath,enhancePublicHtml,TRUST_LINKS,breadcrumbs} from './schema.mjs';
 import {detail,indexPage,page} from './content.mjs';
 import {repairAnalytics} from './analytics.mjs';
-import {repairCoverChrome} from './chrome.mjs';
+import {repairPublicChrome} from './chrome.mjs';
 export const RELEASE='aeo-geo-20261102-v1';
 export const ROBOTS=`# Public search and AI crawling; account, payment and administration routes stay private.
 User-agent: *
@@ -97,7 +97,7 @@ export function withAeoGeo(original,{catalogue,shell,metadata={}}){
   if(request.method==='HEAD')return response;
   const before=await response.text();let after=before;
   if(isAnalytics)after=repairAnalytics(before);
-  else if(isChrome)after=repairCoverChrome(before);
+  else if(isChrome)after=repairPublicChrome(before);
   else if(isSitemap)after=completeSitemap(before,await catalogue(),metadata);
   else if(isLlms)after=repairLlms(before);
   else if(isHtml)after=enhancePublicHtml(before,path,metadata[path]);

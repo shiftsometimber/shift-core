@@ -6,7 +6,8 @@ import {indexPage,detail} from './content.mjs';
 import {withAeoGeo,ROBOTS,completeSitemap} from './delivery.mjs';
 import {safeAiReferrer,repairAnalytics} from './analytics.mjs';
 import {activeDeployment,replaceActiveTraffic} from './deployment.mjs';
-import {repairCoverChrome,FRAME_SIGNATURE} from './chrome.mjs';
+import {repairCoverChrome,repairPublicChrome,FRAME_SIGNATURE} from './chrome.mjs';
+import {verifyPackage,ENTRY} from './package.mjs';
 import {repairLlms} from './delivery.mjs';
 import vm from 'node:vm';
 const base='https://shiftsometimber.co.uk',shell={header:'<header>Shared header</header>',footer:'<footer>Shared footer</footer>'};
@@ -104,4 +105,17 @@ test('only the signed-out or pending dashboard cover avoids the late wrapper',()
 test('llms discovery has labelled links and does not duplicate its added sections',()=>{
  const result=repairLlms('# SHIFT\n\n## Pages\n- https://shiftsometimber.co.uk/about\n');
  assert(result.includes('- [About](https://shiftsometimber.co.uk/about)'));assert(!/^- https:/m.test(result));assert.equal(repairLlms(result),result);
+});
+test('the client-rendered shared footer retains the new library links',()=>{
+ const master={header:'UNCHANGED',footer:'<footer><h2>Explore</h2><a href="/tools">Tools</a></footer>'};
+ const before='const master='+JSON.stringify(master)+',css="unchanged";';const after=repairPublicChrome(before);
+ const parsed=JSON.parse(after.slice('const master='.length,after.indexOf(',css=')));assert.equal(parsed.header,'UNCHANGED');assert(parsed.footer.includes('href="/recipes"'));assert(parsed.footer.includes('href="/exercises"'));assert(parsed.footer.includes('href="/tools"'));assert.equal(repairPublicChrome(after),after);
+});
+test('binary modules, content types, assets and bindings must survive provider verification',()=>{
+ const module={name:'font.bin',content_type:'application/octet-stream',content_base64:Buffer.from([0,255,128,1]).toString('base64')};
+ const before={main_module:'original.mjs',bindings:[],compatibility_date:'2026-10-01',assets:{id:'same'},modules:[module]};
+ const planned={main_module:ENTRY,modules:[module,{name:ENTRY,content_type:'application/javascript+module',content_base64:Buffer.from('export default {};').toString('base64')}]};
+ const staged={...before,...planned};assert(verifyPackage(before,staged,planned));
+ assert.throws(()=>verifyPackage(before,{...staged,modules:[{...module,content_type:'application/javascript+module'},planned.modules[1]]},planned));
+ assert.throws(()=>verifyPackage(before,{...staged,assets:{id:'different'}},planned));
 });

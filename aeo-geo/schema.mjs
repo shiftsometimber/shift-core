@@ -36,7 +36,7 @@ export function exerciseSchema(e,date){
   ...(e.image?{image:e.image}:{}),step:e.steps.map((text,i)=>({'@type':'HowToStep',text,url:ORIGIN+e.path+'#step-'+(i+1)}))};
 }
 export function graph(nodes){return {'@context':'https://schema.org','@graph':[ORGANIZATION,WEBSITE,...nodes]};}
-export const TRUST_LINKS='<nav class="aeo-trust" aria-label="Editorial information"><a href="/editorial-standards">Editorial standards</a><a href="/clinical-governance">Clinical governance</a><a href="/expert-contributors">Authors and review transparency</a><a href="/medical-disclaimer">Medical disclaimer</a></nav>';
+export const TRUST_LINKS='<nav class="aeo-trust" style="display:flex;flex-wrap:wrap;gap:14px;margin:22px 0;font-size:14px" aria-label="Editorial information"><a href="/editorial-standards">Editorial standards</a><a href="/clinical-governance">Clinical governance</a><a href="/expert-contributors">Authors and review transparency</a><a href="/medical-disclaimer">Medical disclaimer</a></nav>';
 const strip=s=>String(s||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
 const decode=s=>s.replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>');
 const privatePath=/^\/(?:member(?:[-/]|$)|v1(?:\/|$)|api(?:\/|$)|hq(?:\/|$)|admin(?:\/|$)|account(?:\/|$)|auth(?:\/|$)|checkout(?:\/|$)|treatment-order(?:\/|$)|treatment-assessment(?:\/|$)|clinical-review(?:\/|$)|reset-password(?:\/|$)|email-templates(?:\/|$))/;
