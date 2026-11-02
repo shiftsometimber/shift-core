@@ -1,10 +1,12 @@
 {
+  "staticMode": "public-resource-only",
+  "privateDocumentPassThrough": true,
   "scope": "static",
   "transportEnabled": false,
-  "at": "2026-11-01T23:32:44.703Z",
-  "bundleSHA256": "9d746fb0c42fc93c7e8f8818c49f0f1a9e83185367898e80368fd6b1745fcb49",
+  "at": "2026-11-02T00:03:05.405Z",
+  "bundleSHA256": "64ff8b8cb10b974c9ab6522a873c179e879abda09beb26f9c79385d8cbf4f93a",
   "assetsSHA256": "c9da34b4378ad2c6be2cbb54ee16af5a8f5645194bbfd8a83836ea2dbb6a699a",
-  "publicSourcesSHA256": "17ed9150cece1c044d9223dd0b04d0545332198d3948e05dc2508116217ee925",
+  "publicSourcesSHA256": "5260ac0dbc8d3e84d8b875841609b27c1efacf95b45ed44bf032ec8d4f1b8372",
   "staticAssets": {
     "/assets/member-experience/programme-shop-basket.js": {
       "owner": "programme",
@@ -374,6 +376,6 @@
   "sourceInputs": {
     "scoped-source/member-experience/performance-client.mjs": "c84819db586e22ab41d695d8ca4b478f2192c9d6c64c993a7d2ae8470079252a",
     "scoped-source/member-experience/performance-monitor.mjs": "b1abbf94451cfe4545738dc5b558022266a5ba33553380558a0d0e255f1c009d",
-    "scoped-source/member-experience/performance-delivery.mjs": "d2868b9ddf5167d6e8da15f88ab79cc19b29b888ea2bd79e456f5c7449afbc33"
+    "scoped-source/member-experience/performance-delivery.mjs": "ca0faed2bf8d33915d104d8fd230c6c82723bece660e1023958a1237e325febd"
   }
 }

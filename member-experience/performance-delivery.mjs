@@ -38,7 +38,7 @@ export function wrapMemberPerformance(original,templates,assets,kind){
   if(request.headers.get('If-None-Match')===headers.ETag)return new Response(null,{status:304,headers});
   return new Response(request.method==='HEAD'?null:asset.body,{headers});
  }
- if(kind==='core'||request.method!=='GET'||!finite.test(u.pathname))return original.fetch(request,env,ctx);
+ if(!memberTransportEnabled||kind==='core'||request.method!=='GET'||!finite.test(u.pathname))return original.fetch(request,env,ctx);
  const t=performance.now(),key=u.pathname+u.search,template=templates[key],upstream=[];
  let response;
  if(request.method==='GET'&&template&&template.owner===kind&&request.headers.get('X-My-Timber-Profile-Original')!=='1'){

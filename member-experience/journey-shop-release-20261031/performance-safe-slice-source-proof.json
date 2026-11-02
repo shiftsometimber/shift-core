@@ -1,6 +1,7 @@
 {
-  "at": "2026-11-01T23:32:44.743Z",
+  "at": "2026-11-02T00:03:05.460Z",
   "verified": true,
+  "privateDocumentPassThrough": true,
   "transportEnabled": false,
   "loginSessionIdentityChanges": 0,
   "resources": [

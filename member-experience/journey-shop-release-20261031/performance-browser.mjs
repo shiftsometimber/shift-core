@@ -123,7 +123,7 @@ if(mode!=='local'){
  if(r.isNavigationRequest()){
  const headers={...r.headers()};if(mode==='candidate'){const state=JSON.parse(readFileSync('performance-release-state.json'));headers['Cloudflare-Workers-Version-Overrides']=state.owners.map(o=>o.name+'="'+o.versionId+'"').join(', ');}
  const res=await route.fetch({headers,timeout:30000}),h=res.headers();let body=await res.body();
- if((h['content-type']||'').includes('text/html')){if(['candidate','live'].includes(mode)&&!['/member/settings','/member/orders'].includes(u.pathname))assert.equal(h['x-my-timber-performance'],safeSlice?'static-20261101':'20261101',u.pathname+' serving repair');body=Buffer.from(body.toString().replace('</body>',(r.frame().parentFrame()===null?native:[]).map(content=>'<script>'+content+'</script>').join('')+'</body>'));}
+ if((h['content-type']||'').includes('text/html')){if(JSON.parse(readFileSync('performance-build.json')).staticMode!=='public-resource-only'&&['candidate','live'].includes(mode)&&!['/member/settings','/member/orders'].includes(u.pathname))assert.equal(h['x-my-timber-performance'],safeSlice?'static-20261101':'20261101',u.pathname+' serving repair');body=Buffer.from(body.toString().replace('</body>',(r.frame().parentFrame()===null?native:[]).map(content=>'<script>'+content+'</script>').join('')+'</body>'));}
  return route.fulfill({response:res,body});
  }
  if(mode==='candidate'){const state=JSON.parse(readFileSync('performance-release-state.json'));return route.continue({headers:{...r.headers(),'Cloudflare-Workers-Version-Overrides':state.owners.map(o=>o.name+'="'+o.versionId+'"').join(', ')}});}
