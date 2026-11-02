@@ -7,7 +7,7 @@ import {withAeoGeo,ROBOTS,completeSitemap} from './delivery.mjs';
 import {safeAiReferrer,repairAnalytics} from './analytics.mjs';
 import {activeDeployment,replaceActiveTraffic} from './deployment.mjs';
 import {repairCoverChrome,repairPublicChrome,FRAME_SIGNATURE} from './chrome.mjs';
-import {verifyPackage,ENTRY} from './package.mjs';
+import {verifyPackage,ENTRY,capturedOriginal} from './package.mjs';
 import {repairLlms} from './delivery.mjs';
 import vm from 'node:vm';
 const base='https://shiftsometimber.co.uk',shell={header:'<header>Shared header</header>',footer:'<footer>Shared footer</footer>'};
@@ -80,6 +80,11 @@ test('sitemap drops private URLs, duplicates and exclusions and retains real dat
  const output=completeSitemap(xml,data,{'/about':{lastmod:'2026-10-24'},'/old':{exclude:true}});
  assert.equal(output.split('<loc>'+base+'/about</loc>').length,2);assert(!output.includes('/member/'));assert(!output.includes('/old'));assert(output.includes('2026-10-24'));assert(output.includes(recipe.path));assert(output.includes(data.publishedAt));
 });
+test('audited product query pages retain their distinct sitemap canonicals',()=>{
+ const node=path=>'<url><loc>'+base+path+'</loc></url>';
+ const result=completeSitemap('<urlset>'+node('/shift-health/supplements-nutrition?product=whey')+node('/about?utm_source=tracking')+'</urlset>',data);
+ assert(result.includes('?product=whey'));assert(!result.includes('utm_source'));
+});
 test('existing organisational bylines and clinical claims are not invented',()=>{
  const original='<html><head><script type="application/ld+json">'+JSON.stringify({'@type':'Article',author:{'@type':'Organization',name:'SHIFT Team'},dateModified:'2026-10-24'})+'</script></head><body><main><h1>A guide</h1><p>Original clinical words.</p></main></body></html>';
  const result=enhancePublicHtml(original,'/articles/guide');assert(result.includes('Original clinical words.'));assert(result.includes('Last updated'));assert(result.includes('"@type":"Organization","name":"SHIFT Team"'));assert(!result.includes('reviewedBy'));assert(!result.includes('"@type":"Person"'));assert(result.includes('/expert-contributors'));
@@ -117,6 +122,22 @@ test('the client-rendered shared footer retains the new library links',()=>{
  const master={header:'UNCHANGED',footer:'<footer><h2>Explore</h2><a href="/tools">Tools</a></footer>'};
  const before='const master='+JSON.stringify(master)+',css="unchanged";';const after=repairPublicChrome(before);
  const parsed=JSON.parse(after.slice('const master='.length,after.indexOf(',css=')));assert.equal(parsed.header,'UNCHANGED');assert(parsed.footer.includes('href="/recipes"'));assert(parsed.footer.includes('href="/exercises"'));assert(parsed.footer.includes('href="/tools"'));assert.equal(repairPublicChrome(after),after);
+});
+test('the public homepage shell leaves the member app header alone',()=>{
+ const signature="/* Shared homepage shell. No API, account or communications operations. */\n;(()=>{'use strict';\n";
+ const before=signature+"window.publicShellRan=true;})();";
+ const after=repairPublicChrome(before);assert.equal(repairPublicChrome(after),after);
+ for(const [path,welcome,expected] of [['/member/dashboard',true,false],['/member/dashboard',false,true],['/recipes/meal',true,true],['/',false,true]]){
+  const window={};vm.runInNewContext(after,{window,location:{pathname:path},document:{querySelector:()=>welcome?{}:null}});assert.equal(!!window.publicShellRan,expected,path);
+ }
+});
+test('an inspected owned wrapper can be updated without stacking wrappers or changing its original module',()=>{
+ const entry='import original from "../original.mjs";\nexport * from "../original.mjs";\nimport {withAeoGeo} from "./delivery.mjs";\nimport {catalogue} from "./data.mjs";\nimport * as shell from "./shell.mjs";\nimport metadata from "./sitemap-metadata.mjs";\nexport default withAeoGeo(original,{catalogue,shell,metadata});\n';
+ const original={name:'original.mjs',content_base64:Buffer.from('ORIGINAL').toString('base64')};
+ const modules=[original,...['entry.mjs','delivery.mjs','schema.mjs','content.mjs','analytics.mjs','chrome.mjs','sitemap-metadata.mjs','data.mjs','shell.mjs'].map(n=>({name:'aeo-geo/'+n,content_base64:Buffer.from(n==='entry.mjs'?entry:n).toString('base64')}))];
+ const before={main_module:ENTRY,modules};assert.throws(()=>capturedOriginal(before));const captured=capturedOriginal(before,{allowOwned:true});assert.equal(captured.main,'original.mjs');assert.deepEqual(captured.modules,[original]);assert.equal(captured.owned.length,9);
+ assert.throws(()=>capturedOriginal({...before,modules:[...modules,{name:'aeo-geo/unknown.mjs'}]},{allowOwned:true}));
+ assert.throws(()=>capturedOriginal({...before,modules:modules.map(m=>m.name===ENTRY?{...m,content_base64:Buffer.from(entry+'unknown();').toString('base64')}:m)},{allowOwned:true}));
 });
 test('binary modules, content types, assets and bindings must survive provider verification',()=>{
  const module={name:'font.bin',content_type:'application/octet-stream',content_base64:Buffer.from([0,255,128,1]).toString('base64')};

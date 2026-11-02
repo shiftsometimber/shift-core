@@ -49,9 +49,12 @@ if(process.argv[2]==='rollback'){
  const privateBefore=await privateDocuments();save('private-before.json',privateBefore);
  const planned=[];
  // Stage every exact provider package before changing any production traffic.
- for(const {script} of targets){
+ const amendment=process.argv[2]==='amend-public-shell';
+ const selected=amendment?targets.filter(t=>['shift-core','shift-seo-followup-v3-20261024','shift-public-review-fixes-20261029'].includes(t.script)):targets;
+ for(const {script} of selected){
   const before=await latest(script),original=await version(script,before.versions[0].version_id),settings=await api('/workers/scripts/'+script+'/settings');
-  const candidate=preparePackage(original,{includeCatalogue:['shift-core','shift-seo-followup-v3-20261024'].includes(script)});
+  if(amendment)assert(original.main_module==='aeo-geo/entry.mjs','Amendment requires the inspected, published public wrapper');
+  const candidate=preparePackage(original,{includeCatalogue:['shift-core','shift-seo-followup-v3-20261024'].includes(script),allowOwned:amendment});
   const metadata={main_module:candidate.main_module,compatibility_date:original.compatibility_date,compatibility_flags:original.compatibility_flags||[],bindings:original.bindings.map(b=>({type:'inherit',name:b.name})),keep_assets:true,annotations:{'workers/message':'AEO public catalogue and accurate structured data; preserve all existing source modules'}};
   if(original.usage_model)metadata.usage_model=original.usage_model;
   for(const key of ['placement','limits','observability','logpush'])if(settings[key]!==undefined)metadata[key]=settings[key];

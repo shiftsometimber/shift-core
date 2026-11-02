@@ -4,6 +4,7 @@ const phase=process.argv[2];if(!['before','after'].includes(phase))throw Error('
 const directory='aeo-geo-proof/lighthouse';mkdirSync(directory,{recursive:true});
 const paths={home:'/',guide:'/articles/weight-loss-medication-eligibility-uk',memberSignedOut:'/member/dashboard'};
 if(phase==='after'&&existsSync('aeo-geo-proof/public-catalogue.json'))paths.recipe=JSON.parse(readFileSync('aeo-geo-proof/public-catalogue.json')).recipes[0].path;
+if(process.env.AEO_PERFORMANCE_TARGETS){const selected=process.env.AEO_PERFORMANCE_TARGETS.split(',');for(const name of Object.keys(paths))if(!selected.includes(name))delete paths[name];if(!Object.keys(paths).length)throw Error('No known performance targets selected');}
 const reports=[];
 for(const [name,path] of Object.entries(paths))for(let sample=1;sample<=3;sample++){
  const file=directory+'/'+name+'-'+phase+'-'+sample+'.json';

@@ -61,7 +61,10 @@ export function completeSitemap(xml,data,metadata={}){
  const seen=new Set();
  const cleaned=xml.replace(/<url\b[^>]*>[\s\S]*?<\/url>/gi,node=>{
   const raw=node.match(/<loc>([^<]+)<\/loc>/i)?.[1];let u;try{u=new URL(raw.replace(/&amp;/g,'&'))}catch{return '';}
-  if(u.origin!==ORIGIN||isPrivatePath(u.pathname)||u.search||u.hash||seen.has(u.href))return '';
+  // Existing sitemap entries include eight distinct, canonical supplement
+  // guides selected by ?product=. Preserve those audited public documents.
+  const productGuide=u.pathname==='/shift-health/supplements-nutrition'&&/^\?product=(?:chunky|clear|creatine|crunch|skill|sticks|tablets|whey)$/.test(u.search);
+  if(u.origin!==ORIGIN||isPrivatePath(u.pathname)||(u.search&&!productGuide)||u.hash||seen.has(u.href))return '';
   const fix=metadata[u.pathname];if(fix?.exclude)return '';
   seen.add(u.href);
   if(fix?.lastmod){node=node.replace(/<lastmod>[^<]*<\/lastmod>/gi,'');node=node.replace('</url>','<lastmod>'+esc(fix.lastmod)+'</lastmod></url>');}

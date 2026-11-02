@@ -6,6 +6,10 @@ export function repairCoverChrome(script){
 }
 export function repairPublicChrome(script){
  let result=repairCoverChrome(script);
+ const shellStart="/* Shared homepage shell. No API, account or communications operations. */\n;(()=>{'use strict';\n";
+ // The member app already supplies its own header and navigation. Running
+ // this public shell there inserts and moves a second header after paint.
+ if(result.includes(shellStart)&&!result.includes('aeo-member-public-shell-20261102'))result=result.replace(shellStart,shellStart+"// aeo-member-public-shell-20261102: keep the member app's own chrome.\nif(location.pathname.replace(/\\/+$/,'')==='/member/dashboard'&&document.querySelector('#mtWelcome'))return;\n");
  const start=result.indexOf('const master='),end=start<0?-1:result.indexOf(',css=',start);
  if(start>=0&&end>start){
   try{

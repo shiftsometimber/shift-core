@@ -65,10 +65,10 @@ jobs:
           node -e "const fs=require('fs'),r=JSON.parse(fs.readFileSync('aeo-geo-proof/lighthouse/before-summary.json'));require('node:assert/strict').equal(r.reports.length,9)"
       - name: Stage exact provider packages and publish the qualified public-only wrappers
         if: github.ref == 'refs/heads/main'
-        run: node aeo-geo/release.mjs
+        run: node aeo-geo/release.mjs amend-public-shell
       - name: Measure mobile after publication
         if: github.ref == 'refs/heads/main'
-        run: node aeo-geo/performance.mjs after
+        run: AEO_PERFORMANCE_TARGETS=memberSignedOut node aeo-geo/performance.mjs after
       - name: Restore only deployments still owned by this exact release if verification fails
         if: failure() && github.ref == 'refs/heads/main'
         run: node aeo-geo/release.mjs rollback
