@@ -26,6 +26,8 @@ Anonymous real HTTPS, new TLS connection per sample, final HTTP 200 headers sepa
 | String-only packaging candidate | 20 | 1011ms | 4100ms | Withheld; original distribution restored |
 | Structured-data packaging control | 20 | 1005ms | 4493ms | Current source |
 | Structured-data packaging candidate | 20 | 1164ms | 3163ms | Withheld; original distribution restored |
+| Iterative string-reuse control | 20 | 1061ms | 3759ms | Current source |
+| Iterative string-reuse candidate | 20 | 803ms | 3100ms | Withheld; original distribution restored |
 
 No unchanged retry replaced a failed percentile result. Lower code size is not a speed acceptance.
 
@@ -54,7 +56,11 @@ The first structured-data candidate still failed p95 3163ms and was restored. It
 
 The next candidate reuses immutable strings only and preserves separate mutable objects. Its reviver-based initialisation was rejected by Cloudflare 10021/startup CPU limit before Programme deployment. No normal traffic was promoted. An iterative implementation avoids one JSON reviver callback per value. Eleven data-equivalence, isolation, serialisation and immutable-resource tests pass.
 
-At this checkpoint, finite controller PID 57686 is building/staging the iterative candidate and will run one interleaved n20 control/candidate HTTP comparison. Each managed step has a 600-second deadline; no automatic promotion is included. Any failed HTTP gate restores the original distribution.
+The iterative string-reuse build passed initialisation and all 11 correctness tests, but its n20 p95 was 3100ms versus the original 1755ms limit. It was not promoted; all original distributions were restored.
+
+The current candidate stores fixed data in native compressed binary modules. It uses existing native zlib support, preserves exact values and separate mutable objects, and retains no decoded JSON input cache. Total artifact size falls from 93.61MB to 23.05MB; executable JavaScript is 11.45MB. All 11 equivalence, isolation, serialisation and immutable-asset checks pass. Compressed resources also pass exact decompression-roundtrip checks.
+
+Versions staged: Core `942f3d58-6b28-4ab5-a977-7b085403dc3e`; Programme `fd140d52-bf02-4e93-81d1-7a31900fd9db`; Documents `fcd250d6-5f7b-422a-bb53-3ce24cec7241`. Normal traffic remains on the original serving versions. Finite controller PID 57844 is running the single interleaved n20 control/candidate comparison. Each managed step has a 600-second deadline. No automatic promotion is included; a failed gate restores the original distribution.
 
 ## Remaining gates
 
