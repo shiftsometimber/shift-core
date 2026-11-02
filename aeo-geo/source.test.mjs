@@ -10,6 +10,7 @@ import {repairCoverChrome,repairPublicChrome,FRAME_SIGNATURE} from './chrome.mjs
 import {verifyPackage,ENTRY,capturedOriginal} from './package.mjs';
 import {repairLlms} from './delivery.mjs';
 import vm from 'node:vm';
+import {bootstrap as consentBootstrap} from '../activation-measurement/assets.mjs';
 const base='https://shiftsometimber.co.uk',shell={header:'<header>Shared header</header>',footer:'<footer>Shared footer</footer>'};
 const date='2026-11-02T08:00:00Z';
 const recipe={id:'r',title:'Egg & tomato',path:'/recipes/egg-tomato',description:'Ingredients and method.',ingredients:['100g egg','100g tomato'],method:['Cook the egg.','Serve with tomato.'],servings:1,minutes:10,prepMinutes:5,cookMinutes:5,nutrition:{kcal:150,protein_g:12,carbohydrate_g:3,fat_g:9,fibre_g:null,saturates_g:0},methodology:'Estimated nutrition.',allergens:['egg'],safety:[],storage:[],equipment:[],image:null};
@@ -139,6 +140,32 @@ test('search-origin attribution retains only exact HTTPS Google/Bing origins',()
  assert(patched.includes('function safeAiReferrer'));
  assert(!patched.includes('page_referrer:document.referrer'));
  assert(!patched.includes('page_referrer:location.href'));
+});
+test('actual consent bootstrap uses origin-only Google referrer and preserves account suppression',()=>{
+ const patched=repairAnalytics(consentBootstrap);
+ const simulate=(pathname,referrer,grant)=>{
+  const injected=[];
+  const w={dataLayer:[],addEventListener(){}},values=new Map([['sstConsentV3',JSON.stringify({analytics:grant})]]);
+  const context={window:w,document:{referrer,head:{appendChild:node=>injected.push(node)},createElement:()=>({})},
+   location:new URL('https://shiftsometimber.co.uk'+pathname),URLSearchParams,URL,Date,
+   localStorage:{getItem:k=>values.get(k)||null,removeItem:k=>values.delete(k),setItem:(k,v)=>values.set(k,v)},
+   sessionStorage:{getItem:()=>null,setItem(){},removeItem(){}}};
+  vm.runInNewContext(patched,context);return{w,injected};
+ };
+ const secretRef='https://www.google.co.uk/search?q=private-medical-text&email=private@example.com#sensitive';
+ const publicPage=simulate('/programme',secretRef,true);
+ assert.equal(publicPage.injected.length,1,'Existing single tag manager only, after consent');
+ const set=publicPage.w.dataLayer.find(x=>x[0]==='set');
+ assert.equal(set[1].page_referrer,'https://www.google.co.uk/');
+ assert.equal(set[1].page_location,'https://shiftsometimber.co.uk/programme');
+ assert(!JSON.stringify(set).includes('private-medical-text'));
+ assert.equal(publicPage.w['ga-disable-G-Y7BV5KY6RR'],false);
+ const withheld=simulate('/programme',secretRef,false);
+ assert.equal(withheld.injected.length,0);
+ assert.equal(withheld.w['ga-disable-G-Y7BV5KY6RR'],true);
+ const member=simulate('/member/dashboard',secretRef,true);
+ assert.equal(member.injected.length,0);
+ assert.equal(member.w['ga-disable-G-Y7BV5KY6RR'],true);
 });
 test('the existing consent, private-page suppression and tag-manager guards survive the referrer repair',()=>{
  const script="if(!allowed||loaded)return;window.gtag('set',{page_location:location.origin+path,page_referrer:'',allow_google_signals:false});";
