@@ -4,11 +4,32 @@ export const styles=`:root{color-scheme:dark;--ink:#050505;--cream:#E7E3DA;--gre
 const dateText=date=>new Date(date).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'Europe/London'});
 const list=(items,ordered=false)=>'<'+(ordered?'ol':'ul')+'>'+items.map((s,i)=>'<li'+(ordered?' id="step-'+(i+1)+'"':'')+'>'+esc(s)+'</li>').join('')+'</'+(ordered?'ol':'ul')+'>';
 const cta='<aside class="aeo-cta"><h2>Useful on its own. Easier to keep going with My Timber.</h2><p>Keep your plans, tracking and check-ins together. Your account stays private.</p><a href="/member-register">Start My Timber</a></aside>';
-export function page({title,description,path,body,nodes=[],date,shell,status=200,noindex=false}){
+// Short search snippets do not replace the complete, visible recipe identity.
+const shortAtWord=(value,limit)=>{
+ const text=String(value||'').replace(/\s+/g,' ').trim();
+ if(text.length<=limit)return text;
+ const slice=text.slice(0,limit-1),end=slice.lastIndexOf(' ');
+ return (end>limit*0.6?slice.slice(0,end):slice).replace(/[\s,:;—-]+$/,'')+'…';
+};
+export function recipeSearchMetadata(item){
+ const full=String(item.title||'').replace(/\s+/g,' ').trim();
+ let candidate=full;
+ if(full.length>70&&full.includes(' — ')){
+  const split=full.indexOf(' — '),base=full.slice(0,split).replace(/\s+to share$/i,''),parts=full.slice(split+3).split(',').map(v=>v.trim()).filter(Boolean);
+  const last=parts.at(-1)||'',variant=/^(?:chopped|diced|sliced|grated|ground)$/i.test(last)&&parts.length>1?parts.slice(-2).join(', '):last;
+  const concise=base+' — '+variant;
+  if(variant&&concise.length<=70)candidate=concise;
+ }
+ const metaTitle=shortAtWord(candidate,70);
+ const name=metaTitle.replace(/…$/,'');
+ const metaDescription=shortAtWord('Ingredients, step-by-step method and estimated nutrition per serving for '+name+'.',155);
+ return {metaTitle,metaDescription};
+}
+export function page({title,description,path,body,nodes=[],date,shell,status=200,noindex=false,metaTitle=title,metaDescription=description}){
  const metadata=jsonLd(graph([{'@type':'WebPage','@id':ORIGIN+path+'#webpage',url:ORIGIN+path,name:title,description,datePublished:date,dateModified:date,isPartOf:{'@id':ORIGIN+'/#website'},inLanguage:'en-GB'},...nodes]));
  const css=['programme-treatment-handoff-v1.css?v=1','header-navigation-v2.css','shift-compact-entry-v1.css?v=1'].map(x=>'<link rel="stylesheet" href="/assets/'+x+'">').join('');
  const scripts=['/analytics-bootstrap-v1.js','/assets/v42.js','/consent-v4a.js','/analytics-events-v31b.js','/assets/shift-purchase-basket-v1.js'].map(x=>'<script defer src="'+x+'"></script>').join('');
- return {status,html:'<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#050505"><title>'+esc(title)+' | SHIFT</title><meta name="description" content="'+esc(description)+'"><meta name="robots" content="'+(noindex?'noindex,follow':'index,follow,max-image-preview:large')+'"><link rel="canonical" href="'+ORIGIN+esc(path)+'"><meta property="og:title" content="'+esc(title)+'"><meta property="og:description" content="'+esc(description)+'"><meta property="og:url" content="'+ORIGIN+esc(path)+'"><meta property="og:type" content="website">'+metadata+css+'<style>'+styles+'</style></head><body class="sst-fullsite-v35 sst-site-v31 one-shift"><a class="skip-link-v30f" href="#main-content">Skip to main content</a>'+shell.header+'<main id="main-content" class="aeo-main">'+body+'</main>'+shell.footer+scripts+'</body></html>'};
+ return {status,html:'<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#050505"><title>'+esc(metaTitle)+' | SHIFT</title><meta name="description" content="'+esc(metaDescription)+'"><meta name="robots" content="'+(noindex?'noindex,follow':'index,follow,max-image-preview:large')+'"><link rel="canonical" href="'+ORIGIN+esc(path)+'"><meta property="og:title" content="'+esc(metaTitle)+'"><meta property="og:description" content="'+esc(metaDescription)+'"><meta property="og:url" content="'+ORIGIN+esc(path)+'"><meta property="og:type" content="website">'+metadata+css+'<style>'+styles+'</style></head><body class="sst-fullsite-v35 sst-site-v31 one-shift"><a class="skip-link-v30f" href="#main-content">Skip to main content</a>'+shell.header+'<main id="main-content" class="aeo-main">'+body+'</main>'+shell.footer+scripts+'</body></html>'};
 }
 const crumb=(kind,title)=>'<nav class="aeo-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/'+kind+'">'+(kind==='recipes'?'Recipes':'Exercises')+'</a>'+(title?'<span>/</span><span aria-current="page">'+esc(title)+'</span>':'')+'</nav>';
 const byline=date=>'<p class="aeo-meta">By <a href="/authors/shift-some-timber-editorial-team">Shift Some Timber editorial team</a> · Published <time datetime="'+esc(date)+'">'+dateText(date)+'</time> · Updated '+dateText(date)+'</p>';
@@ -31,7 +52,7 @@ export function detail(item,kind,data,shell){
   body+='<p class="aeo-note">General movement information, not an individual exercise prescription. Independent trainer or clinical review is not claimed. Use appropriate support and seek individual advice for an injury or restriction.</p>';
  }
  body+='<nav class="aeo-trust" aria-label="Related tools"><a href="/recipes">Browse recipes</a><a href="/exercises">Browse exercises</a><a href="/tools">Everyday tools</a><a href="/explore-knowledge">Health guides</a></nav>'+cta+TRUST_LINKS;
- return page({title:item.title,description:item.description,path:item.path,body,nodes,date:data.publishedAt,shell});
+ return page({title:item.title,description:item.description,path:item.path,body,nodes,date:data.publishedAt,shell,...(recipe?recipeSearchMetadata(item):{})});
 }
 export function indexPage(kind,data,shell,url){
  const recipe=kind==='recipes',title=recipe?'Recipes for ordinary life':'Movement, at your pace',all=recipe?data.recipes:data.exercises;
