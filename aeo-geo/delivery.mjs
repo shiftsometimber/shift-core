@@ -2,6 +2,7 @@ import {ORIGIN,esc,isPrivatePath,enhancePublicHtml,TRUST_LINKS,breadcrumbs} from
 import {detail,indexPage,page} from './content.mjs';
 import {repairAnalytics} from './analytics.mjs';
 import {repairPublicChrome} from './chrome.mjs';
+import {withRetatrutideEvidence,retatrutideImage,isRetaDocument,RETA_RELEASE} from './retatrutide.mjs';
 export const RELEASE='aeo-geo-20261102-v1';
 export const ROBOTS=`# Public search and AI crawling; account, payment and administration routes stay private.
 User-agent: *
@@ -86,6 +87,7 @@ export function withAeoGeo(original,{catalogue,shell,metadata={}}){
    return new Response(null,{status:301,headers:{Location:target.href,'Cache-Control':'public, max-age=300'}});
   }
   if(path==='/robots.txt')return textResponse(ROBOTS,'text/plain; charset=utf-8',request);
+  const retaImage=retatrutideImage(request);if(retaImage)return retaImage;
   const owned=/^\/(?:recipes|exercises)(?:\/|$)/.test(path)||path==='/experts';
   if(owned){
    const normalized=path.replace(/\/+$/,'').replace(/\.html$/,'');
@@ -104,17 +106,18 @@ export function withAeoGeo(original,{catalogue,shell,metadata={}}){
   const isSitemap=path==='/sitemap.xml',isLlms=path==='/llms.txt',isAnalytics=path==='/analytics-bootstrap-v1.js',isChrome=path==='/assets/v42.js',isHtml=(response.headers.get('Content-Type')||'').includes('text/html');
   if(!isSitemap&&!isLlms&&!isAnalytics&&!isChrome&&!isHtml)return response;
   // HEAD and GET must share the same response policy, but HEAD never has a body.
-  if(request.method==='HEAD'){const headers=new Headers(response.headers);headers.set('X-Shift-AEO-GEO',RELEASE);return new Response(null,{status:response.status,statusText:response.statusText,headers});}
+  if(request.method==='HEAD'){const headers=new Headers(response.headers);headers.set('X-Shift-AEO-GEO',RELEASE);if(isRetaDocument(path)){headers.set('X-Shift-Retatrutide-Evidence',RETA_RELEASE);headers.delete('Last-Modified');}return new Response(null,{status:response.status,statusText:response.statusText,headers});}
   const before=await response.text();let after=before;
   if(isAnalytics)after=repairAnalytics(before);
   else if(isChrome)after=repairPublicChrome(before);
   else if(isSitemap)after=completeSitemap(before,await catalogue(),metadata);
   else if(isLlms)after=repairLlms(before);
-  else if(isHtml)after=enhancePublicHtml(before,path,metadata[path]);
+  else if(isHtml)after=await withRetatrutideEvidence(enhancePublicHtml(before,path,metadata[path]),path);
   const headers=new Headers(response.headers);
   // The marker confirms this wrapper inspected the public response, including
   // already-correct documents. It does not claim that its content changed.
   headers.set('X-Shift-AEO-GEO',RELEASE);
+  if(isHtml&&isRetaDocument(path)){headers.set('X-Shift-Retatrutide-Evidence',RETA_RELEASE);headers.delete('Last-Modified');}
   if(after!==before){for(const h of ['Content-Length','Content-Encoding','ETag','Content-MD5','Digest'])headers.delete(h);}
   return new Response(after,{status:response.status,statusText:response.statusText,headers});
  }};
