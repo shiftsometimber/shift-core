@@ -108,7 +108,7 @@ test('the existing consent, private-page suppression and tag-manager guards surv
  const patched=repairAnalytics(script);assert(patched.startsWith('if(!allowed||loaded)return;'));assert(patched.includes('page_location:location.origin+path'));assert(patched.includes('allow_google_signals:false'));assert(!patched.includes('page_referrer:document.referrer'));assert.equal(repairAnalytics('different source'),'different source');
 });
 test('long recipe metadata is concise without changing the full heading, canonical, image approval or Recipe identity',()=>{
- const full='Apple and banana chocolate fruit dessert to share with berries, oats, pumpkin seeds and dark chocolate';
+ const full='Apple and banana chocolate fruit dessert to share — banana, apple, mixed berries, rolled oats, pumpkin seeds, dark chocolate, chopped';
  const item={...recipe,path:'/recipes/apple-and-banana-dessert',title:full,description:full+'. Ingredients, step-by-step method and estimated nutrition per serving. Save your food plans in My Timber.',image:null};
  const html=detail(item,'recipes',data,shell).html;
  const title=html.match(/<title>([^<]*)<\/title>/)?.[1],meta=html.match(/<meta name="description" content="([^"]*)"/)?.[1];
