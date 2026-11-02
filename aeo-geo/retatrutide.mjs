@@ -2,7 +2,7 @@ import {evidence} from './retatrutide-evidence.mjs';
 export const RETA_PATH='/guides/retatrutide-uk-guide';
 export const COMPARISON_PATH='/future-medicines-comparison';
 export const RETA_IMAGE_PATH='/assets/retatrutide-receptor-mechanism-20261102.png';
-export const RETA_RELEASE='retatrutide-evidence-20261102';
+export const RETA_RELEASE='retatrutide-evidence-20261102-caption1';
 export function withRetatrutideWorker(original){
  return {...original,async fetch(request,...args){
   const url=new URL(request.url);

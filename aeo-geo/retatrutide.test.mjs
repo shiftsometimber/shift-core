@@ -24,7 +24,7 @@ test('switching analyses updates the readable explanation and accessible chart i
 });
 test('the caption correction changes exactly one inspected module and preserves all other source and settings',()=>{
  const module=(name,text)=>({name,content_type:'application/javascript+module',content_base64:Buffer.from(text).toString('base64')});
- const current=readFileSync(new URL('./retatrutide.mjs',import.meta.url),'utf8').replace("import {evidence} from './retatrutide-evidence.mjs';","import {evidence} from './evidence.mjs';");
+ const current=readFileSync(new URL('./retatrutide.mjs',import.meta.url),'utf8').replace("import {evidence} from './retatrutide-evidence.mjs';","import {evidence} from './evidence.mjs';").replace("RETA_RELEASE='retatrutide-evidence-20261102-caption1'","RETA_RELEASE='retatrutide-evidence-20261102'");
  const published=current.replace(" if(path!==RETA_PATH)return html;\n if(html.includes('data-reta-evidence=\"20261102\"'))return html.replace('note.textContent=d.rr-note;','note.textContent=d.note;');"," if(path!==RETA_PATH||html.includes('data-reta-evidence=\"20261102\"'))return html;");
  const before={main_module:'retatrutide-evidence/entry.mjs',bindings:[{type:'d1',name:'DB'}],compatibility_date:'2026-08-09',modules:[module('retatrutide-evidence/guide.mjs',published),module('retatrutide-evidence/entry.mjs','unchanged entry'),module('sitewide-seo-20261101/entry.mjs','unchanged underlying worker')]};
  const planned=prepareRetatrutideChartCorrection(before);assert.equal(planned.modules.length,before.modules.length);assert.equal(verifyRetatrutideChartCorrection(before,{...before,...planned},planned).correctedCaptionModules,1);
@@ -41,7 +41,7 @@ test('an underlying renderer supplying the existing guide still receives the cap
 test('the CORE correction changes only its inspected medicine module',()=>{
  const previous=" if(path!==RETA_PATH||html.includes('data-reta-evidence=\"20261102\"'))return html;";
  const repaired=" if(path!==RETA_PATH)return html;\n if(html.includes('data-reta-evidence=\"20261102\"'))return html.replace('note.textContent=d.rr-note;','note.textContent=d.note;');";
- const published=readFileSync(new URL('./retatrutide.mjs',import.meta.url),'utf8').replace(repaired,previous).replace('note.textContent=d.note;','note.textContent=d.rr-note;');
+ const published=readFileSync(new URL('./retatrutide.mjs',import.meta.url),'utf8').replace(repaired,previous).replace('note.textContent=d.note;','note.textContent=d.rr-note;').replace("RETA_RELEASE='retatrutide-evidence-20261102-caption1'","RETA_RELEASE='retatrutide-evidence-20261102'");
  const module=(name,text)=>({name,content_type:'application/javascript+module',content_base64:Buffer.from(text).toString('base64')});
  const before={main_module:'aeo-geo/entry.mjs',bindings:[{name:'DB',type:'d1'}],compatibility_date:'2026-08-09',modules:[module('aeo-geo/retatrutide.mjs',published),module('aeo-geo/entry.mjs','unchanged public wrapper'),module('member-performance-20261101/entry.mjs','unchanged member worker'),module('aeo-geo/data.mjs','unchanged catalogue')]};
  const planned=prepareRetatrutideCoreChartCorrection(before);assert.equal(planned.modules.length,before.modules.length);verifyRetatrutideCoreChartCorrection(before,{...before,...planned},planned);

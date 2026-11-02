@@ -78,7 +78,7 @@ export function prepareRetatrutideChartCorrection(before){
  const corrected=readFileSync(new URL('./retatrutide.mjs',import.meta.url),'utf8').replace("import {evidence} from './retatrutide-evidence.mjs';","import {evidence} from './evidence.mjs';");
  const previous=" if(path!==RETA_PATH||html.includes('data-reta-evidence=\"20261102\"'))return html;";
  const repaired=" if(path!==RETA_PATH)return html;\n if(html.includes('data-reta-evidence=\"20261102\"'))return html.replace('note.textContent=d.rr-note;','note.textContent=d.note;');";
- assert.equal(corrected,original.replace(previous,repaired),'This release changes only the caption repair for an already-rendered guide');
+ assert.equal(corrected,original.replace(previous,repaired).replace("RETA_RELEASE='retatrutide-evidence-20261102'","RETA_RELEASE='retatrutide-evidence-20261102-caption1'"),'This release changes only the caption repair and its public version marker');
  return {main_module:before.main_module,modules:before.modules.map(m=>m.name===name?{...m,content_base64:Buffer.from(corrected).toString('base64')}:m)};
 }
 export function verifyRetatrutideChartCorrection(before,staged,planned){
@@ -91,7 +91,7 @@ export function prepareRetatrutideCoreChartCorrection(before){
  const previous=" if(path!==RETA_PATH||html.includes('data-reta-evidence=\"20261102\"'))return html;";
  const repaired=" if(path!==RETA_PATH)return html;\n if(html.includes('data-reta-evidence=\"20261102\"'))return html.replace('note.textContent=d.rr-note;','note.textContent=d.note;');";
  const corrected=readFileSync(new URL('./retatrutide.mjs',import.meta.url),'utf8');
- assert.equal(corrected,original.replace('note.textContent=d.rr-note;','note.textContent=d.note;').replace(previous,repaired),'Amend only the two reviewed caption expressions');
+ assert.equal(corrected,original.replace('note.textContent=d.rr-note;','note.textContent=d.note;').replace(previous,repaired).replace("RETA_RELEASE='retatrutide-evidence-20261102'","RETA_RELEASE='retatrutide-evidence-20261102-caption1'"),'Amend only the reviewed caption expressions and their public version marker');
  return {main_module:before.main_module,modules:before.modules.map(m=>m.name===name?{...m,content_base64:Buffer.from(corrected).toString('base64')}:m)};
 }
 export function verifyRetatrutideCoreChartCorrection(before,staged,planned){

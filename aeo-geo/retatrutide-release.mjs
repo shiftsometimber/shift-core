@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {readFileSync,writeFileSync,mkdirSync,existsSync} from 'node:fs';
-import {prepareRetatrutideCoreChartCorrection,verifyRetatrutideCoreChartCorrection,hash} from './package.mjs';
+import {prepareRetatrutideChartCorrection,verifyRetatrutideChartCorrection,prepareRetatrutideCoreChartCorrection,verifyRetatrutideCoreChartCorrection,hash} from './package.mjs';
 import {activeDeployment,replaceActiveTraffic} from './deployment.mjs';
 import {runtimeRollbackDecision} from '../release/runtime-rollback-guard.mjs';
 import {verifyRetatrutideScope} from './retatrutide-scope.mjs';
@@ -39,7 +39,8 @@ function matchingRoutes(routes,path){
 function routeOwner(routes,path){const matched=matchingRoutes(routes,path);assert(matched.length,'No owner for '+path);return matched[0].script;}
 const receiptsPath=directory+'/deployments.json';
 const pageOwner='shift-public-presentation-batch-20261022';
-const coreOwner='shift-core',inspectedCoreDeployment='436aaa90-ccf5-435f-9b7d-8be57bacac6c';
+const coreOwner='shift-core';
+const inspectedVersions={[pageOwner]:'4c6e783f-5ed8-47e2-8e6d-14c67bb03bdd',[coreOwner]:'95b0032f-a8ee-49e4-adf2-5eff2a53a564'};
 if(process.argv[2]==='rollback'){
  if(!existsSync(receiptsPath)){console.log('No owned production deployment to restore');process.exit(0)}
  const receipts=JSON.parse(readFileSync(receiptsPath)),results=[];
@@ -59,7 +60,7 @@ if(process.argv[2]==='rollback'){
  // The inspected public page delegates to CORE. Correct its medicine module
  // while preserving every other module, binding, route and data source.
  assert.equal(ownership[RETA_IMAGE_PATH],coreOwner);
- const selected=[coreOwner];
+ const selected=[pageOwner,coreOwner];
  save('route-owners.json',{ownership,routeWrites:0});console.log(JSON.stringify({routeOwnership:ownership}));
  if(process.argv[2]==='inspect'){
   const inspection={readOnly:true,matchingRoutes:matchingRoutes(routes,RETA_PATH),workers:[]};
@@ -80,8 +81,9 @@ if(process.argv[2]==='rollback'){
  const planned=[];
  for(const script of selected){
   const before=await latest(script),original=await version(script,before.versions[0].version_id),settings=await api('/workers/scripts/'+script+'/settings');
-  assert.equal(before.id,inspectedCoreDeployment,'The inspected shared public renderer moved; stop before staging');assert.equal(original.main_module,'aeo-geo/entry.mjs');
-  const candidate=prepareRetatrutideCoreChartCorrection(original);
+  assert.equal(before.versions[0].version_id,inspectedVersions[script],'The inspected immutable serving version moved; stop before staging');
+  const isPageOwner=script===pageOwner;
+  const candidate=isPageOwner?prepareRetatrutideChartCorrection(original):prepareRetatrutideCoreChartCorrection(original);
   const metadata={main_module:candidate.main_module,compatibility_date:original.compatibility_date,compatibility_flags:original.compatibility_flags||[],bindings:original.bindings.map(b=>({type:'inherit',name:b.name})),keep_assets:true,annotations:{'workers/message':'Owner-approved retatrutide evidence guide; retain all existing source, data, settings and routes'}};
   if(original.usage_model)metadata.usage_model=original.usage_model;
   for(const key of ['placement','limits','observability','logpush'])if(settings[key]!==undefined)metadata[key]=settings[key];
@@ -89,7 +91,7 @@ if(process.argv[2]==='rollback'){
   for(const m of candidate.modules)form.set(m.name,new Blob([Buffer.from(m.content_base64,'base64')],{type:m.content_type}),m.name);
   currentMain();assert.equal((await latest(script)).id,before.id,'Serving lease changed before staging');
   const staged=await api('/workers/scripts/'+script+'/versions?bindings_inherit=strict',{method:'POST',body:form});
-  const proof=verifyRetatrutideCoreChartCorrection(original,await version(script,staged.id),candidate);
+  const proof=(isPageOwner?verifyRetatrutideChartCorrection:verifyRetatrutideCoreChartCorrection)(original,await version(script,staged.id),candidate);
   planned.push({script,before,versionId:staged.id,...proof});save('staged.json',planned);
  }
  currentMain();for(const p of planned)assert.equal((await latest(p.script)).id,p.before.id,'Serving lease changed');
@@ -100,7 +102,16 @@ if(process.argv[2]==='rollback'){
   const receipt={kind:'owned_runtime_deployment',source:process.env.GITHUB_SHA,run:process.env.GITHUB_RUN_ID,script:p.script,versionId:p.versionId,deploymentId:promoted.id,before:p.before};receipts.push(receipt);save('deployments.json',receipts);
   assert.equal((await latest(p.script)).id,promoted.id);
  }
- const guide=await document(RETA_PATH),comparison=await document(COMPARISON_PATH);assert.equal(guide.response.status,200);assert.equal(comparison.response.status,200);
+ const captionReady=page=>page.response.status===200&&page.response.headers.get('X-Shift-Retatrutide-Evidence')===RETA_RELEASE&&page.text.includes('note.textContent=d.note;')&&!page.text.includes('note.textContent=d.rr-note;');
+ let guide=await document(RETA_PATH),cachePurged=false;const propagation=[];
+ for(let attempt=0;!captionReady(guide)&&attempt<8;attempt++){
+  const fresh=await document(RETA_PATH+'?shift_reta_verify='+process.env.GITHUB_RUN_ID+'-'+attempt);
+  propagation.push({attempt,canonicalReady:captionReady(guide),freshReady:captionReady(fresh),canonicalVersion:guide.response.headers.get('X-Shift-Retatrutide-Evidence'),freshVersion:fresh.response.headers.get('X-Shift-Retatrutide-Evidence')});save('propagation.json',propagation);console.log(JSON.stringify({propagation:propagation.at(-1)}));
+  writeFileSync(directory+'/guide-latest-canonical.html',guide.text);writeFileSync(directory+'/guide-latest-fresh.html',fresh.text);
+  if(captionReady(fresh)&&!cachePurged){cachePurged=true;try{await provider('/zones/'+zones[0].id+'/purge_cache',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({files:['https://shiftsometimber.co.uk'+RETA_PATH]})});save('cache-refresh.json',{url:RETA_PATH,purged:true});}catch(error){save('cache-refresh.json',{url:RETA_PATH,purged:false,error:error.message});}}
+  await new Promise(resolve=>setTimeout(resolve,10000));guide=await document(RETA_PATH);
+ }
+ const comparison=await document(COMPARISON_PATH);assert.equal(guide.response.status,200);assert.equal(comparison.response.status,200);
  assert.equal(guide.response.headers.get('X-Shift-Retatrutide-Evidence'),RETA_RELEASE);assert(guide.text.includes('data-reta-evidence="20261102"'));assert(comparison.text.includes('authorised and investigational medicines'));
  assert.equal((guide.text.match(/<h1\b/gi)||[]).length,1);assert(guide.text.includes('25.0%')&&guide.text.includes('3.9%')&&guide.text.includes('28.3%'));assert(!guide.text.includes('PRIVATE REVIEW DRAFT'));
  assert(guide.text.includes('note.textContent=d.note;'),'The served chart must use its readable analysis caption');assert(!guide.text.includes('note.textContent=d.rr-note;'),'The old chart expression must not reach the served document');
@@ -111,6 +122,6 @@ if(process.argv[2]==='rollback'){
  const sitemap=await document('/sitemap.xml');assert.equal(sitemap.response.status,200);assert(new RegExp('<loc>https://shiftsometimber\\.co\\.uk'+RETA_PATH+'</loc>[\\s\\S]*?<lastmod>2026-11-02</lastmod>').test(sitemap.text));
  const privateAfter=await protectedDocuments();save('protected-after.json',privateAfter);assert.deepEqual(privateAfter,privateBefore,'Unrelated public or private document changed');
  writeFileSync(directory+'/guide-after.html',guide.text);writeFileSync(directory+'/comparison-after.html',comparison.text);
- const result={verified:true,source:process.env.GITHUB_SHA,guide:RETA_PATH,htmlBytesBefore:Buffer.byteLength(beforeGuide.text),htmlBytesAfter:Buffer.byteLength(guide.text),headerFooterUnchanged:true,protectedDocumentsUnchanged:true,catalogueDataChanged:false,routeWrites:0,databaseWrites:0,independentClinicalReviewClaimed:false,releases:receipts.map(r=>({script:r.script,versionId:r.versionId,deploymentId:r.deploymentId}))};
+ const result={verified:true,source:process.env.GITHUB_SHA,guide:RETA_PATH,renderer:RETA_RELEASE,settleAttempts:propagation.length,cacheRefreshAttempted:cachePurged,htmlBytesBefore:Buffer.byteLength(beforeGuide.text),htmlBytesAfter:Buffer.byteLength(guide.text),headerFooterUnchanged:true,protectedDocumentsUnchanged:true,catalogueDataChanged:false,routeWrites:0,databaseWrites:0,independentClinicalReviewClaimed:false,releases:receipts.map(r=>({script:r.script,versionId:r.versionId,deploymentId:r.deploymentId}))};
  save('live-verification.json',result);console.log(JSON.stringify(result));
 }
