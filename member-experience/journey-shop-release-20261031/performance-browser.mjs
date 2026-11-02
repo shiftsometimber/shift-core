@@ -76,7 +76,14 @@ await context.addInitScript(()=>{
  window.__MT_PERF_TEST__=true;window.__fixtureDocumentId=crypto.randomUUID();
  window.__profilePending=0;window.__profileRequests=[];const fetchOriginal=window.fetch.bind(window);
  window.fetch=async(input,init)=>{let u;try{u=new URL(input instanceof Request?input.url:input,location.href)}catch{}const method=(init?.method||(input instanceof Request?input.method:'GET')).toUpperCase(),track=u?.pathname.startsWith('/v1/')&&method==='GET',at=Date.now();if(track)window.__profilePending++;
- try{const r=await fetchOriginal(input,init);if(track){await r.clone().arrayBuffer();window.__profileRequests.push({path:u.pathname,ms:Date.now()-at,status:r.status});}return r;}finally{if(track)window.__profilePending--;}};
+ try{let r;
+ if(u?.pathname.startsWith('/v1/')){
+  let body=init?.body;if(body===undefined&&input instanceof Request&&!['GET','HEAD'].includes(method))body=await input.clone().text();
+  const headers=new Headers(init?.headers||(input instanceof Request?input.headers:undefined));headers.set('Origin',location.origin);
+  const reply=await window.__mtFunctionalAPI({url:u.href,method,body,headers:Object.fromEntries(headers)});
+  r=new Response([204,304].includes(reply.status)?null:reply.body,{status:reply.status,headers:reply.headers});
+ }else r=await fetchOriginal(input,init);
+ if(track){await r.clone().arrayBuffer();window.__profileRequests.push({path:u.pathname,ms:Date.now()-at,status:r.status});}return r;}finally{if(track)window.__profilePending--;}};
  if(parent!==window)return;
  window.__profileSamples=[];window.__firstUsable=null;window.__perfFrames=[];let stable=0,ack=null;
  document.addEventListener('click',e=>{const a=e.target.closest?.('[data-mt-shop-tab]');if(a){sessionStorage.setItem('__mt_benchmark_tap',JSON.stringify({tab:a.dataset.mtShopTab,at:Date.now()}));stable=0;ack=null;}},true);
@@ -103,7 +110,7 @@ await context.addInitScript(()=>{
  }requestAnimationFrame(tick);
  };requestAnimationFrame(tick);
 });
-await context.route('**/*',async route=>{
+const handleFixtureRoute=async route=>{
 const r=route.request(),u=new URL(r.url());calls.push({path:u.pathname,search:u.search,method:r.method(),at:Date.now(),frame:r.frame().url()});
 if(u.pathname.startsWith('/v1/')){
  const fixtureReply=options=>route.fulfill({...options,headers:{...options.headers,'Access-Control-Allow-Origin':origin,'Access-Control-Allow-Credentials':'true','Vary':'Origin'}});
@@ -144,6 +151,15 @@ if(u.pathname==='/assets/favicon-shift-s-20261020.png')return route.fulfill({con
 if(/\.(?:png|webp|jpe?g|svg|woff2?)$/.test(u.pathname))return route.fulfill({status:204,body:''});
 if(/\.(?:m?js|css)$/.test(u.pathname))return route.fulfill({contentType:u.pathname.endsWith('.css')?'text/css':'text/javascript',body:''});
 return route.fulfill({status:404,body:'Fixture missing '+u.pathname});
+};
+await context.route('**/*',handleFixtureRoute);
+await context.exposeBinding('__mtFunctionalAPI',async(source,input)=>{
+ assert(new URL(input.url).pathname.startsWith('/v1/'));
+ let result;
+ const request={url:()=>input.url,method:()=>input.method,headers:()=>input.headers||{},postData:()=>input.body,frame:()=>({url:()=>source.frame.url()})};
+ await handleFixtureRoute({request:()=>request,fulfill:async options=>{result=options;}});
+ assert(result);
+ return {status:result.status||200,headers:{'Content-Type':'application/json','Cache-Control':'no-store',...result.headers},body:result.json!==undefined?JSON.stringify(result.json):result.body||''};
 });
 const page=await context.newPage();page.on('pageerror',e=>errors.push(e.stack));
 
@@ -208,7 +224,8 @@ if(process.env.MY_TIMBER_FUNCTIONAL_CASE==='expiry'){
  if(!safeSlice){await page.locator('#mtShopChrome [data-mt-shop-tab=journey]').click();await usable('journey');await page.locator('#mtShopChrome [data-mt-shop-tab=today]').click();await usable('today');assert(await page.locator('.mt-retained-screen').count()>0);}
  await page.evaluate(()=>{const n=document.createElement('p');n.dataset.safePrivateProbe='1';n.textContent='Synthetic private member data';document.querySelector('#previewMember')?.append(n);});state.signedOut=true;const proof=await page.evaluate(()=>window.MT_MEMBER_IDENTITY?window.MT_MEMBER_IDENTITY(true).then(()=>({accepted:true})).catch(e=>({denied:true,message:e.message})):window.SST_MEMBER_SESSION.check().then(()=>({legacyCheck:true})));await page.waitForFunction(()=>['signed-out','error'].includes(document.body?.dataset.memberSession),null,{timeout:12000}).catch(()=>{});await page.locator(safeSlice?'a[href^="/member-login?returnTo="]:visible':'#memberSessionStatus a[href*="member-login"]').waitFor({state:'visible',timeout:5000}).catch(()=>{});const authVisible=await page.locator(safeSlice?'a[href^="/member-login?returnTo="]:visible':'#memberSessionStatus a[href*="member-login"]').isVisible().catch(()=>false);if(authVisible)await page.locator(safeSlice?'a[href^="/member-login?returnTo="]:visible':'#memberSessionStatus a[href*="member-login"]').click({trial:true});const detail=await page.evaluate(()=>({body:document.body?.dataset,pending:window.__profilePending,html:document.documentElement.dataset,mainVisible:document.querySelector('main')?getComputedStyle(document.querySelector('main')).visibility:null,mainText:document.querySelector('main')?.innerText.slice(0,250),visibleAuth:[...document.querySelectorAll('a,button,input,form')].filter(n=>n.getClientRects().length&&getComputedStyle(n).visibility!=='hidden').map(n=>({tag:n.tagName,id:n.id,text:(n.innerText||n.getAttribute('aria-label')||n.type||'').slice(0,100),href:n.getAttribute('href')})).filter(n=>/sign|email|password|login|auth/i.test(JSON.stringify(n))),status:document.querySelector('#memberSessionStatus')?.innerText,statusDisplay:document.querySelector('#memberSessionStatus')&&getComputedStyle(document.querySelector('#memberSessionStatus')).display,statusVisibility:document.querySelector('#memberSessionStatus')&&getComputedStyle(document.querySelector('#memberSessionStatus')).visibility,statusHidden:document.querySelector('#memberSessionStatus')?.hidden,signIn:document.querySelector('#memberSessionStatus a')?.outerHTML,frames:document.querySelectorAll('.mt-retained-screen').length}));const privateVisible=await page.locator('[data-safe-private-probe]').isVisible();const diagnostic={source:JSON.parse(readFileSync('performance-release-state.json')).source,engine,proof,authVisible,privateVisible,detail,documentRequests:calls.filter(r=>r.path==='/member/dashboard').length,calls:calls.slice(-15),verified:detail.body?.memberSession==='signed-out'&&detail.frames===0&&authVisible&&!privateVisible};writeFileSync('performance-expiry-'+(localTransport?'transport-local-':'diagnostic-')+engine+'.json',JSON.stringify(diagnostic,null,2));console.log('EXPIRY_DIAGNOSTIC',JSON.stringify(diagnostic));if(!diagnostic.verified)throw Error('Expiry diagnosis requires resolution');if(!safeSlice){state.signedOut=false;state.id=2;await page.goto(origin+paths.today);await usable('today');const restored=await page.evaluate(()=>window.MT_MEMBER_IDENTITY(true));assert.equal(restored.user.id,2);assert.equal(await page.locator('.mt-retained-screen').count(),0);assert.equal(await page.locator('[data-safe-private-probe]').count(),0);diagnostic.reauthenticationRecovered=true;writeFileSync('performance-expiry-'+(localTransport?'transport-local-':'diagnostic-')+engine+'.json',JSON.stringify(diagnostic,null,2));console.log('EXPIRED_SESSION_FRESH_REAUTHENTICATION_PASSED',engine);}
 }
-const report={at:new Date().toISOString(),engine,mode,before,verified:true,source:mode==='candidate'||mode==='live'?JSON.parse(readFileSync('performance-release-state.json')).source:null,conditions:{viewport:'390x844',network:mode==='local'?'Fully intercepted captured documents and scripts':'Actual '+mode+' documents and static resources from SST Mac through London connection; no artificial bandwidth throttle',identityAndData:'Fictional account, all API traffic intercepted with 150ms response delay',nativePresentation:'Actual build-8 bundled scripts, injected unchanged',physicalIphone:false},measurements,functionalChecks:results,identityRequests:state.identityCount,errors,productionRequests:mode==='local'?0:'GET documents and static resources only',productionWrites:0};
+const report={at:new Date().toISOString(),engine,mode,before,verified:errors.length===0,source:mode==='candidate'||mode==='live'?JSON.parse(readFileSync('performance-release-state.json')).source:null,conditions:{viewport:'390x844',network:mode==='local'?'Fully intercepted captured documents and scripts':'Actual '+mode+' documents and static resources from SST Mac through London connection; no artificial bandwidth throttle',identityAndData:'Fictional account, all API traffic intercepted with 150ms response delay',nativePresentation:'Actual build-8 bundled scripts, injected unchanged',physicalIphone:false},measurements,functionalChecks:results,identityRequests:state.identityCount,errors,productionRequests:mode==='local'?0:'GET documents and static resources only',productionWrites:0};
 writeFileSync(process.env.MY_TIMBER_FUNCTIONAL_CASE?'performance-expiry-'+(localTransport?'transport-local-acceptance-':'acceptance-')+engine+'.json':mode==='candidate'?'performance-candidate-'+engine+'.json':mode==='live'?'performance-live-'+engine+'.json':'performance-browser-'+(before?'before':'after')+'-'+engine+'.json',JSON.stringify(report,null,2));console.log('BENCHMARK',JSON.stringify({engine,before,samples:measurements.length,identityRequests:state.identityCount,errors}));
+assert.deepEqual(errors,[],'Uncaught browser errors must be resolved before release');
 await page.screenshot({path:'performance-browser-'+engine+'.png',fullPage:false});
 }finally{await context?.unrouteAll({behavior:'ignoreErrors'});await context?.close();await browser.close();f.close();}
