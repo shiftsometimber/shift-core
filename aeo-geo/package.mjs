@@ -82,12 +82,28 @@ export function prepareRetatrutideChartCorrection(before){
  return {main_module:before.main_module,modules:before.modules.map(m=>m.name===name?{...m,content_base64:Buffer.from(corrected).toString('base64')}:m)};
 }
 export function verifyRetatrutideChartCorrection(before,staged,planned){
+ return verifySingleMedicineModule(before,staged,planned,'retatrutide-evidence/guide.mjs');
+}
+export function prepareRetatrutideCoreChartCorrection(before){
+ assert.equal(before.main_module,ENTRY);
+ const name='aeo-geo/retatrutide.mjs',published=before.modules.find(m=>m.name===name);assert(published,'The inspected public renderer must contain the guide');
+ const original=Buffer.from(published.content_base64,'base64').toString('utf8');assert.equal(hash(original),'5994a8eb3991b4f26d3a6d5dec8b11f4eb900d6e60f4faa2be30252f29b59eb2');
+ const previous=" if(path!==RETA_PATH||html.includes('data-reta-evidence=\"20261102\"'))return html;";
+ const repaired=" if(path!==RETA_PATH)return html;\n if(html.includes('data-reta-evidence=\"20261102\"'))return html.replace('note.textContent=d.rr-note;','note.textContent=d.note;');";
+ const corrected=readFileSync(new URL('./retatrutide.mjs',import.meta.url),'utf8');
+ assert.equal(corrected,original.replace('note.textContent=d.rr-note;','note.textContent=d.note;').replace(previous,repaired),'Amend only the two reviewed caption expressions');
+ return {main_module:before.main_module,modules:before.modules.map(m=>m.name===name?{...m,content_base64:Buffer.from(corrected).toString('base64')}:m)};
+}
+export function verifyRetatrutideCoreChartCorrection(before,staged,planned){
+ return verifySingleMedicineModule(before,staged,planned,'aeo-geo/retatrutide.mjs');
+}
+function verifySingleMedicineModule(before,staged,planned,name){
  assert.equal(staged.main_module,before.main_module);assert.equal(staged.main_module,planned.main_module);
  for(const field of ['bindings','compatibility_date','compatibility_flags','assets','usage_model','migration_tag'])assert.deepEqual(staged[field],before[field],'Preserve page-owner configuration: '+field);
  assert.deepEqual(staged.modules.map(m=>m.name).sort(),before.modules.map(m=>m.name).sort());
  for(const original of before.modules){
   const expected=planned.modules.find(m=>m.name===original.name),actual=staged.modules.find(m=>m.name===original.name);assert(expected&&actual);
-  if(original.name!=='retatrutide-evidence/guide.mjs')assert.deepEqual(expected,original,'Retain every unrelated module');
+  if(original.name!==name)assert.deepEqual(expected,original,'Retain every unrelated module');
   assert.equal(actual.content_type,original.content_type);assert.equal(hash(Buffer.from(actual.content_base64,'base64')),hash(Buffer.from(expected.content_base64,'base64')),original.name);
  }
  return {existingModulesUnchanged:before.modules.length-1,addedModules:0,correctedCaptionModules:1,originalPageOwnerPreserved:true};

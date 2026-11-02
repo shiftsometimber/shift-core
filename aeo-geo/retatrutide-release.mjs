@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {readFileSync,writeFileSync,mkdirSync,existsSync} from 'node:fs';
-import {prepareRetatrutideChartCorrection,verifyRetatrutideChartCorrection,hash} from './package.mjs';
+import {prepareRetatrutideCoreChartCorrection,verifyRetatrutideCoreChartCorrection,hash} from './package.mjs';
 import {activeDeployment,replaceActiveTraffic} from './deployment.mjs';
 import {runtimeRollbackDecision} from '../release/runtime-rollback-guard.mjs';
 import {verifyRetatrutideScope} from './retatrutide-scope.mjs';
@@ -39,7 +39,7 @@ function matchingRoutes(routes,path){
 function routeOwner(routes,path){const matched=matchingRoutes(routes,path);assert(matched.length,'No owner for '+path);return matched[0].script;}
 const receiptsPath=directory+'/deployments.json';
 const pageOwner='shift-public-presentation-batch-20261022';
-const inspectedPageDeployment='40aedacb-3a72-46f8-940e-23930ac57c36';
+const coreOwner='shift-core',inspectedCoreDeployment='436aaa90-ccf5-435f-9b7d-8be57bacac6c';
 if(process.argv[2]==='rollback'){
  if(!existsSync(receiptsPath)){console.log('No owned production deployment to restore');process.exit(0)}
  const receipts=JSON.parse(readFileSync(receiptsPath)),results=[];
@@ -56,9 +56,10 @@ if(process.argv[2]==='rollback'){
  const routes=await provider('/zones/'+zones[0].id+'/workers/routes');
  const paths=[RETA_PATH,COMPARISON_PATH,'/sitemap.xml',RETA_IMAGE_PATH],ownership=Object.fromEntries(paths.map(path=>[path,routeOwner(routes,path)]));
  assert.equal(ownership[RETA_PATH],pageOwner);assert.equal(ownership[COMPARISON_PATH],pageOwner);
- // The first release already published the sitemap and image. Correct only
- // the inspected page module; keep those serving packages untouched.
- const selected=[pageOwner];
+ // The inspected public page delegates to CORE. Correct its medicine module
+ // while preserving every other module, binding, route and data source.
+ assert.equal(ownership[RETA_IMAGE_PATH],coreOwner);
+ const selected=[coreOwner];
  save('route-owners.json',{ownership,routeWrites:0});console.log(JSON.stringify({routeOwnership:ownership}));
  if(process.argv[2]==='inspect'){
   const inspection={readOnly:true,matchingRoutes:matchingRoutes(routes,RETA_PATH),workers:[]};
@@ -79,8 +80,8 @@ if(process.argv[2]==='rollback'){
  const planned=[];
  for(const script of selected){
   const before=await latest(script),original=await version(script,before.versions[0].version_id),settings=await api('/workers/scripts/'+script+'/settings');
-  assert.equal(before.id,inspectedPageDeployment,'The inspected public page owner moved; stop before staging');assert.equal(original.main_module,'retatrutide-evidence/entry.mjs');
-  const candidate=prepareRetatrutideChartCorrection(original);
+  assert.equal(before.id,inspectedCoreDeployment,'The inspected shared public renderer moved; stop before staging');assert.equal(original.main_module,'aeo-geo/entry.mjs');
+  const candidate=prepareRetatrutideCoreChartCorrection(original);
   const metadata={main_module:candidate.main_module,compatibility_date:original.compatibility_date,compatibility_flags:original.compatibility_flags||[],bindings:original.bindings.map(b=>({type:'inherit',name:b.name})),keep_assets:true,annotations:{'workers/message':'Owner-approved retatrutide evidence guide; retain all existing source, data, settings and routes'}};
   if(original.usage_model)metadata.usage_model=original.usage_model;
   for(const key of ['placement','limits','observability','logpush'])if(settings[key]!==undefined)metadata[key]=settings[key];
@@ -88,7 +89,7 @@ if(process.argv[2]==='rollback'){
   for(const m of candidate.modules)form.set(m.name,new Blob([Buffer.from(m.content_base64,'base64')],{type:m.content_type}),m.name);
   currentMain();assert.equal((await latest(script)).id,before.id,'Serving lease changed before staging');
   const staged=await api('/workers/scripts/'+script+'/versions?bindings_inherit=strict',{method:'POST',body:form});
-  const proof=verifyRetatrutideChartCorrection(original,await version(script,staged.id),candidate);
+  const proof=verifyRetatrutideCoreChartCorrection(original,await version(script,staged.id),candidate);
   planned.push({script,before,versionId:staged.id,...proof});save('staged.json',planned);
  }
  currentMain();for(const p of planned)assert.equal((await latest(p.script)).id,p.before.id,'Serving lease changed');

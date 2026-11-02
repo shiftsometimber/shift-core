@@ -6,7 +6,7 @@ import {runInNewContext} from 'node:vm';
 import {evidence} from './retatrutide-evidence.mjs';
 import {withRetatrutideEvidence,renderRetatrutideGuide,retatrutideImage,withRetatrutideWorker,RETA_PATH,COMPARISON_PATH,RETA_IMAGE_PATH} from './retatrutide.mjs';
 import {withAeoGeo} from './delivery.mjs';
-import {prepareRetatrutidePackage,verifyPackage,prepareRetatrutidePagePackage,verifyRetatrutidePagePackage,prepareRetatrutideChartCorrection,verifyRetatrutideChartCorrection} from './package.mjs';
+import {prepareRetatrutidePackage,verifyPackage,prepareRetatrutidePagePackage,verifyRetatrutidePagePackage,prepareRetatrutideChartCorrection,verifyRetatrutideChartCorrection,prepareRetatrutideCoreChartCorrection,verifyRetatrutideCoreChartCorrection} from './package.mjs';
 const before=readFileSync(new URL('./retatrutide-before-20261102.html',import.meta.url),'utf8');
 const after=await withRetatrutideEvidence(before,RETA_PATH);
 const fragment=(s,tag)=>s.match(new RegExp('<'+tag+'\\b[\\s\\S]*?</'+tag+'>','i'))?.[0];
@@ -37,6 +37,15 @@ test('an underlying renderer supplying the existing guide still receives the cap
  assert.equal(await withRetatrutideEvidence(previouslyRendered,'/member/dashboard'),previouslyRendered);
  const wrapped=withRetatrutideWorker({fetch(){return new Response(previouslyRendered,{headers:{'Content-Type':'text/html'}})}});
  const response=await wrapped.fetch(new Request('https://shiftsometimber.co.uk'+RETA_PATH));assert.equal(await response.text(),after);
+});
+test('the CORE correction changes only its inspected medicine module',()=>{
+ const previous=" if(path!==RETA_PATH||html.includes('data-reta-evidence=\"20261102\"'))return html;";
+ const repaired=" if(path!==RETA_PATH)return html;\n if(html.includes('data-reta-evidence=\"20261102\"'))return html.replace('note.textContent=d.rr-note;','note.textContent=d.note;');";
+ const published=readFileSync(new URL('./retatrutide.mjs',import.meta.url),'utf8').replace(repaired,previous).replace('note.textContent=d.note;','note.textContent=d.rr-note;');
+ const module=(name,text)=>({name,content_type:'application/javascript+module',content_base64:Buffer.from(text).toString('base64')});
+ const before={main_module:'aeo-geo/entry.mjs',bindings:[{name:'DB',type:'d1'}],compatibility_date:'2026-08-09',modules:[module('aeo-geo/retatrutide.mjs',published),module('aeo-geo/entry.mjs','unchanged public wrapper'),module('member-performance-20261101/entry.mjs','unchanged member worker'),module('aeo-geo/data.mjs','unchanged catalogue')]};
+ const planned=prepareRetatrutideCoreChartCorrection(before);assert.equal(planned.modules.length,before.modules.length);verifyRetatrutideCoreChartCorrection(before,{...before,...planned},planned);
+ assert.deepEqual(planned.modules.slice(1),before.modules.slice(1));const bad=structuredClone({...before,...planned});bad.bindings=[];assert.throws(()=>verifyRetatrutideCoreChartCorrection(before,bad,planned));
 });
 test('the inspected page owner gains only a public wrapper; every original module and private fetch is preserved',async()=>{
  const module=(name,text,type='application/javascript+module')=>({name,content_type:type,content_base64:Buffer.from(text).toString('base64')});

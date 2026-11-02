@@ -54,7 +54,7 @@ jobs:
           node --test aeo-geo/retatrutide.test.mjs aeo-geo/source.test.mjs tests/general-analytics-privacy.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/runtime-rollback-guard.test.mjs
           node --check aeo-geo/retatrutide-release.mjs
       - name: Amend only captured public modules and verify the live guide
-        run: node aeo-geo/retatrutide-release.mjs inspect
+        run: node aeo-geo/retatrutide-release.mjs
       - name: Restore only this release's owned deployments if verification fails
         if: failure()
         run: node aeo-geo/retatrutide-release.mjs rollback
