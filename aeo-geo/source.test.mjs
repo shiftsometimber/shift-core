@@ -115,11 +115,11 @@ test('long recipe metadata is concise without changing the full heading, canonic
  assert(title&&title.length<=62,title);assert(meta&&meta.length<=155,meta);
  assert(html.includes('<h1>'+full+'</h1>'));assert(html.includes('"name":"'+full+'"'));
  assert(html.includes('href="'+base+item.path+'"'));assert(!html.includes('class="aeo-photo"'));
- const graph=JSON.parse(html.match(/<script type="application\/ld\\+json">([\\s\\S]*?)<\\/script>/)?.[1]||'{}')['@graph'];
+ const graph=JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1]||'{}')['@graph'];
  const r=graph?.find(x=>x['@type']==='Recipe');assert(r);assert.equal(r.name,full);assert(!('image' in r));
  const approved={...item,image:base+'/assets/approved-recipe.webp'};
  const approvedHtml=detail(approved,'recipes',data,shell).html;
- const approvedGraph=JSON.parse(approvedHtml.match(/<script type="application\/ld\\+json">([\\s\\S]*?)<\\/script>/)?.[1]||'{}')['@graph'];
+ const approvedGraph=JSON.parse(approvedHtml.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1]||'{}')['@graph'];
  assert.deepEqual(approvedGraph.find(x=>x['@type']==='Recipe').image,[approved.image]);
  assert(approvedHtml.includes('src="'+approved.image+'"'));
  assert.equal(recipeSearchMetadata('Short meal','Short meal.').title,'Short meal');
