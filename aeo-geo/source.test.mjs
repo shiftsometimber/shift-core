@@ -58,6 +58,13 @@ test('GET and HEAD provide the public catalogue without a session or cookies',as
   const response=await worker.fetch(new Request(base+recipe.path,{method,headers:{Cookie:'private=member'}}));assert.equal(response.status,200);assert.equal(response.headers.get('Set-Cookie'),null);assert.match(response.headers.get('Cache-Control'),/^public/);const text=await response.text();assert.equal(text.length>0,method==='GET');assert(!text.includes('private=member'));
  }
 });
+test('inspection marker also covers already-correct public documents and HEAD',async()=>{
+ const html='<html><head><meta name="robots" content="noindex"></head><main>Existing noindex page.</main></html>';
+ const worker=withAeoGeo({fetch:async request=>new Response(request.method==='HEAD'?null:html,{headers:{'Content-Type':'text/html','ETag':'same'}})},{catalogue(){throw Error('Not needed')},shell});
+ for(const method of ['GET','HEAD']){
+  const response=await worker.fetch(new Request(base+'/already-correct',{method}));assert.equal(response.headers.get('X-Shift-AEO-GEO'),'aeo-geo-20261102-v1');assert.equal(response.headers.get('ETag'),'same');assert.equal(await response.text(),method==='GET'?html:'');
+ }
+});
 test('owned unknown slugs return a genuine noindex 404 and aliases redirect once',async()=>{
  const worker=withAeoGeo({fetch(){throw Error('not reached')}},{catalogue:async()=>data,shell});
  const missing=await worker.fetch(new Request(base+'/recipes/unknown'));assert.equal(missing.status,404);assert((await missing.text()).includes('noindex,follow'));

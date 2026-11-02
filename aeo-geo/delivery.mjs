@@ -94,7 +94,7 @@ export function withAeoGeo(original,{catalogue,shell,metadata={}}){
   const isSitemap=path==='/sitemap.xml',isLlms=path==='/llms.txt',isAnalytics=path==='/analytics-bootstrap-v1.js',isChrome=path==='/assets/v42.js',isHtml=(response.headers.get('Content-Type')||'').includes('text/html');
   if(!isSitemap&&!isLlms&&!isAnalytics&&!isChrome&&!isHtml)return response;
   // HEAD and GET must share the same response policy, but HEAD never has a body.
-  if(request.method==='HEAD')return response;
+  if(request.method==='HEAD'){const headers=new Headers(response.headers);headers.set('X-Shift-AEO-GEO',RELEASE);return new Response(null,{status:response.status,statusText:response.statusText,headers});}
   const before=await response.text();let after=before;
   if(isAnalytics)after=repairAnalytics(before);
   else if(isChrome)after=repairPublicChrome(before);
@@ -102,7 +102,10 @@ export function withAeoGeo(original,{catalogue,shell,metadata={}}){
   else if(isLlms)after=repairLlms(before);
   else if(isHtml)after=enhancePublicHtml(before,path,metadata[path]);
   const headers=new Headers(response.headers);
-  if(after!==before){for(const h of ['Content-Length','Content-Encoding','ETag','Content-MD5','Digest'])headers.delete(h);headers.set('X-Shift-AEO-GEO',RELEASE);}
+  // The marker confirms this wrapper inspected the public response, including
+  // already-correct documents. It does not claim that its content changed.
+  headers.set('X-Shift-AEO-GEO',RELEASE);
+  if(after!==before){for(const h of ['Content-Length','Content-Encoding','ETag','Content-MD5','Digest'])headers.delete(h);}
   return new Response(after,{status:response.status,statusText:response.statusText,headers});
  }};
 }
