@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {readFileSync,writeFileSync,mkdirSync,existsSync} from 'node:fs';
-import {prepareRetatrutidePackage,verifyPackage,hash} from './package.mjs';
+import {prepareRetatrutidePackage,verifyPackage,prepareRetatrutidePagePackage,verifyRetatrutidePagePackage,hash} from './package.mjs';
 import {activeDeployment,replaceActiveTraffic} from './deployment.mjs';
 import {runtimeRollbackDecision} from '../release/runtime-rollback-guard.mjs';
 import {verifyRetatrutideScope} from './retatrutide-scope.mjs';
@@ -37,6 +37,8 @@ function routeOwner(routes,path){
  assert(matched.length,'No owner for '+path);return matched[0].script;
 }
 const receiptsPath=directory+'/deployments.json';
+const pageOwner='shift-public-presentation-batch-20261022';
+const inspectedPageDeployment='6687992b-a3bb-49e8-a278-5550d1da1c5d';
 if(process.argv[2]==='rollback'){
  if(!existsSync(receiptsPath)){console.log('No owned production deployment to restore');process.exit(0)}
  const receipts=JSON.parse(readFileSync(receiptsPath)),results=[];
@@ -54,7 +56,7 @@ if(process.argv[2]==='rollback'){
  const paths=[RETA_PATH,COMPARISON_PATH,'/sitemap.xml',RETA_IMAGE_PATH],ownership=Object.fromEntries(paths.map(path=>[path,routeOwner(routes,path)]));
  const selected=[...new Set(Object.values(ownership))];
  save('route-owners.json',{ownership,routeWrites:0});console.log(JSON.stringify({routeOwnership:ownership}));
- const unexpected=selected.filter(s=>!targets.some(t=>t.script===s));
+ const unexpected=selected.filter(s=>s!==pageOwner&&!targets.some(t=>t.script===s));
  for(const script of unexpected){const active=await latest(script),source=await version(script,active.versions[0].version_id);const inspection={script,deploymentId:active.id,main:source.main_module,ownedModules:source.modules.filter(m=>m.name.startsWith('aeo-geo/')).map(m=>({name:m.name,sha256:hash(Buffer.from(m.content_base64,'base64'))}))};save('owner-inspection-'+script+'.json',inspection);console.log(JSON.stringify({ownerInspection:inspection}));}
  assert.equal(unexpected.length,0,'An unknown serving owner needs inspection before staging: '+JSON.stringify(unexpected));
  const privateBefore=await protectedDocuments();save('protected-before.json',privateBefore);
@@ -63,9 +65,10 @@ if(process.argv[2]==='rollback'){
  const planned=[];
  for(const script of selected){
   const before=await latest(script),original=await version(script,before.versions[0].version_id),settings=await api('/workers/scripts/'+script+'/settings');
-  const oldDelivery=original.modules.find(m=>m.name==='aeo-geo/delivery.mjs');assert(oldDelivery,'Published AEO wrapper required');
-  assert.equal(hash(Buffer.from(oldDelivery.content_base64,'base64')),evidence.approval.baselineDeliverySha256,'Inspected public wrapper changed; stop before staging');
-  const candidate=prepareRetatrutidePackage(original);
+  const isPageOwner=script===pageOwner;
+  if(isPageOwner){assert.equal(before.id,inspectedPageDeployment,'The inspected public page owner moved; stop before staging');assert.equal(original.main_module,'sitewide-seo-20261101/entry.mjs');}
+  else {const oldDelivery=original.modules.find(m=>m.name==='aeo-geo/delivery.mjs');assert(oldDelivery,'Published AEO wrapper required');assert.equal(hash(Buffer.from(oldDelivery.content_base64,'base64')),evidence.approval.baselineDeliverySha256,'Inspected public wrapper changed; stop before staging');}
+  const candidate=isPageOwner?prepareRetatrutidePagePackage(original):prepareRetatrutidePackage(original);
   const metadata={main_module:candidate.main_module,compatibility_date:original.compatibility_date,compatibility_flags:original.compatibility_flags||[],bindings:original.bindings.map(b=>({type:'inherit',name:b.name})),keep_assets:true,annotations:{'workers/message':'Owner-approved retatrutide evidence guide; retain all existing source, data, settings and routes'}};
   if(original.usage_model)metadata.usage_model=original.usage_model;
   for(const key of ['placement','limits','observability','logpush'])if(settings[key]!==undefined)metadata[key]=settings[key];
@@ -73,7 +76,7 @@ if(process.argv[2]==='rollback'){
   for(const m of candidate.modules)form.set(m.name,new Blob([Buffer.from(m.content_base64,'base64')],{type:m.content_type}),m.name);
   currentMain();assert.equal((await latest(script)).id,before.id,'Serving lease changed before staging');
   const staged=await api('/workers/scripts/'+script+'/versions?bindings_inherit=strict',{method:'POST',body:form});
-  const proof=verifyPackage(original,await version(script,staged.id),candidate);
+  const proof=(isPageOwner?verifyRetatrutidePagePackage:verifyPackage)(original,await version(script,staged.id),candidate);
   planned.push({script,before,versionId:staged.id,...proof});save('staged.json',planned);
  }
  currentMain();for(const p of planned)assert.equal((await latest(p.script)).id,p.before.id,'Serving lease changed');

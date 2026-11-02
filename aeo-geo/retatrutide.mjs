@@ -3,6 +3,17 @@ export const RETA_PATH='/guides/retatrutide-uk-guide';
 export const COMPARISON_PATH='/future-medicines-comparison';
 export const RETA_IMAGE_PATH='/assets/retatrutide-receptor-mechanism-20261102.png';
 export const RETA_RELEASE='retatrutide-evidence-20261102';
+export function withRetatrutideWorker(original){
+ return {...original,async fetch(request,...args){
+  const url=new URL(request.url);
+  if(!['shiftsometimber.co.uk','www.shiftsometimber.co.uk'].includes(url.hostname)||!['GET','HEAD'].includes(request.method)||!isRetaDocument(url.pathname))return original.fetch(request,...args);
+  const response=await original.fetch(request,...args);
+  if(response.status!==200||!(response.headers.get('Content-Type')||'').includes('text/html'))return response;
+  const headers=new Headers(response.headers);headers.set('X-Shift-Retatrutide-Evidence',RETA_RELEASE);
+  for(const key of ['Content-Length','Content-Encoding','ETag','Content-MD5','Digest','Last-Modified'])headers.delete(key);
+  return new Response(request.method==='HEAD'?null:await withRetatrutideEvidence(await response.text(),url.pathname),{status:response.status,statusText:response.statusText,headers});
+ }};
+}
 const ORIGIN='https://shiftsometimber.co.uk';
 const normalized=path=>path.replace(/\/+$/,'').replace(/\.html$/,'');
 export const isRetaDocument=path=>[RETA_PATH,COMPARISON_PATH].includes(normalized(path));

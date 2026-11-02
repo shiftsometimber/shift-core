@@ -54,3 +54,19 @@ export function verifyPackage(before,staged,planned){
  for(const module of planned.modules){const actual=staged.modules.find(x=>x.name===module.name);assert.equal(actual.content_type,module.content_type,'Preserve module content type: '+module.name);assert.equal(hash(Buffer.from(actual.content_base64,'base64')),hash(Buffer.from(module.content_base64,'base64')),module.name);}
  return {existingModulesUnchanged:originals.length,addedModules:planned.modules.length-before.modules.length,ownedWrapperModules:planned.modules.filter(m=>m.name.startsWith('aeo-geo/')).length};
 }
+export function prepareRetatrutidePagePackage(before){
+ const main=before.main_module;assert.equal(main,'sitewide-seo-20261101/entry.mjs','Use only the inspected public page owner');
+ assert(before.modules.some(m=>m.name===main));assert(!before.modules.some(m=>m.name.startsWith('retatrutide-evidence/')),'Do not stack an existing medicine wrapper');
+ const guide=readFileSync(new URL('./retatrutide.mjs',import.meta.url),'utf8'),marker="import {evidence} from './retatrutide-evidence.mjs';";assert(guide.includes(marker));
+ const entry='import original from '+JSON.stringify('../'+main)+';\nexport * from '+JSON.stringify('../'+main)+';\nimport {withRetatrutideWorker} from "./guide.mjs";\nexport default withRetatrutideWorker(original);\n';
+ const additions=[['entry.mjs',entry],['guide.mjs',guide.replace(marker,"import {evidence} from './evidence.mjs';")],['evidence.mjs',readFileSync(new URL('./retatrutide-evidence.mjs',import.meta.url),'utf8')]].map(([name,content])=>({name:'retatrutide-evidence/'+name,content_type:'application/javascript+module',content_base64:Buffer.from(content).toString('base64')}));
+ return {main_module:'retatrutide-evidence/entry.mjs',modules:[...before.modules,...additions]};
+}
+export function verifyRetatrutidePagePackage(before,staged,planned){
+ assert.equal(staged.main_module,'retatrutide-evidence/entry.mjs');assert.equal(planned.main_module,staged.main_module);
+ for(const field of ['bindings','compatibility_date','compatibility_flags','assets','usage_model','migration_tag'])assert.deepEqual(staged[field],before[field],'Preserve original page-owner configuration: '+field);
+ assert.deepEqual(staged.modules.map(m=>m.name).sort(),planned.modules.map(m=>m.name).sort());
+ for(const original of before.modules){const p=planned.modules.find(m=>m.name===original.name),a=staged.modules.find(m=>m.name===original.name);assert.deepEqual(p,original,'Never change original page-owner source');assert.equal(a.content_base64,original.content_base64);assert.equal(a.content_type,original.content_type);}
+ for(const module of planned.modules){const actual=staged.modules.find(m=>m.name===module.name);assert.equal(actual.content_type,module.content_type);assert.equal(hash(Buffer.from(actual.content_base64,'base64')),hash(Buffer.from(module.content_base64,'base64')));}
+ return {existingModulesUnchanged:before.modules.length,addedModules:3,originalPageOwnerPreserved:true};
+}

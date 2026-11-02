@@ -3,12 +3,22 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {brotliCompressSync} from 'node:zlib';
 import {evidence} from './retatrutide-evidence.mjs';
-import {withRetatrutideEvidence,renderRetatrutideGuide,retatrutideImage,RETA_PATH,COMPARISON_PATH,RETA_IMAGE_PATH} from './retatrutide.mjs';
+import {withRetatrutideEvidence,renderRetatrutideGuide,retatrutideImage,withRetatrutideWorker,RETA_PATH,COMPARISON_PATH,RETA_IMAGE_PATH} from './retatrutide.mjs';
 import {withAeoGeo} from './delivery.mjs';
-import {prepareRetatrutidePackage,verifyPackage} from './package.mjs';
+import {prepareRetatrutidePackage,verifyPackage,prepareRetatrutidePagePackage,verifyRetatrutidePagePackage} from './package.mjs';
 const before=readFileSync(new URL('./retatrutide-before-20261102.html',import.meta.url),'utf8');
 const after=await withRetatrutideEvidence(before,RETA_PATH);
 const fragment=(s,tag)=>s.match(new RegExp('<'+tag+'\\b[\\s\\S]*?</'+tag+'>','i'))?.[0];
+test('the inspected page owner gains only a public wrapper; every original module and private fetch is preserved',async()=>{
+ const module=(name,text,type='application/javascript+module')=>({name,content_type:type,content_base64:Buffer.from(text).toString('base64')});
+ const original={main_module:'sitewide-seo-20261101/entry.mjs',bindings:[{type:'d1',name:'DB'}],compatibility_date:'2026-08-09',modules:[module('sitewide-seo-20261101/entry.mjs','export default {};'),module('font.bin','unchanged binary','application/octet-stream')]};
+ const planned=prepareRetatrutidePagePackage(original);assert.equal(planned.modules.length,5);verifyRetatrutidePagePackage(original,{...original,...planned},planned);
+ const wrong=structuredClone({...original,...planned});wrong.modules[0].content_base64='wrong';assert.throws(()=>verifyRetatrutidePagePackage(original,wrong,planned));
+ let calls=0;const unchanged=new Response('member state',{headers:{'Cache-Control':'no-store'}});const wrapped=withRetatrutideWorker({fetch(){calls++;return unchanged}});
+ assert.equal(await wrapped.fetch(new Request('https://shiftsometimber.co.uk/member/dashboard')),unchanged);assert.equal(calls,1);
+ const page=withRetatrutideWorker({fetch(){return new Response(before,{headers:{'Content-Type':'text/html','Content-Length':String(before.length)}})}});
+ const changed=await page.fetch(new Request('https://shiftsometimber.co.uk'+RETA_PATH));assert.equal(changed.headers.get('Content-Length'),null);assert((await changed.text()).includes('data-reta-evidence'));
+});
 test('approved informational page preserves actual header, footer, drawer and original publication history',()=>{
  assert.equal(fragment(after,'header'),fragment(before,'header'));
  assert.equal(fragment(after,'footer'),fragment(before,'footer'));
