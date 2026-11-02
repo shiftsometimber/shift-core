@@ -76,3 +76,7 @@ Re-capture the live CSS. If its digest changed, this patcher must stop for recon
 5. Exact non-weekly pack quantities/periods need authoritative catalogue/fulfilment data before the coordinated purchase gate can open. Existing approval for public fixes does not activate purchasing.
 
 These are specific evidence, source or release-owner dependencies. No new generic “go” or renewed approval for the existing scoped fix is requested.
+
+### Exact prepared source
+
+Repository: `shiftsometimber/shift-core`. Isolated existing branch: `fix/review-footer-colour-20261027`. Exact tested preparation commit: `767161dfada1232396d485131ebf5b7e59714e48`. This subsequent checkpoint-only update changes no candidate CSS, patcher or acceptance evidence. Deployment remains unperformed and assigned to the existing sole IP release manager.
