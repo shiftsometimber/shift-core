@@ -1,0 +1,39 @@
+import assert from'node:assert/strict';import vm from'node:vm';import{readFileSync,writeFileSync}from'node:fs';import{gunzipSync,gzipSync}from'node:zlib';import{createHash}from'node:crypto';import posix from'node:path/posix';import{literals}from'./performance-static-data-inventory.mjs';import{dataNodes}from'./performance-static-object-inventory.mjs';
+const digest=x=>createHash('sha256').update(x).digest('hex'),a={};vm.runInNewContext(process.binding('natives')['internal/deps/acorn/acorn/dist/acorn'],{exports:a,module:{exports:a}});
+function functionHashes(source){const ast=a.parse(source,{ecmaVersion:'latest',sourceType:'module'}),hashes=[];function walk(n,anc){if(!n||!n.type)return;const p=anc.at(-1),obj=anc.at(-2),call=anc.at(-3),initialiser=n.type==='FunctionExpression'&&p?.type==='Property'&&obj?.type==='ObjectExpression'&&call?.type==='CallExpression'&&call.callee?.type==='Identifier'&&['__esm','__commonJS'].includes(call.callee.name);if(/Function(?:Declaration|Expression)$/.test(n.type)||n.type==='ArrowFunctionExpression'){if(!initialiser){hashes.push(digest(source.slice(n.start,n.end)));return;}}for(const[k,x]of Object.entries(n)){if(['type','start','end','loc'].includes(k))continue;if(Array.isArray(x))for(const y of x)walk(y,[...anc,n]);else if(x&&typeof x==='object')walk(x,[...anc,n]);}}walk(ast,[]);return hashes.sort();}
+export function packageDataModules(original){
+ const resources=new Map(),proof=[],modules=original.map(m=>({...m}));
+ for(const m of modules){
+  if(!(m.content_type||'').includes('javascript'))continue;
+  const bytes=Buffer.from(m.content_base64,'base64'),source=bytes.toString();assert(Buffer.from(source).equals(bytes));
+  const candidates=[...dataNodes(source).map(x=>({...x,kind:'json',text:x.json})),...literals(source).map(x=>({...x,kind:'text',text:x.value}))].sort((x,y)=>x.start-y.start||y.end-x.end),selected=[];let end=-1;
+  for(const x of candidates){if(x.start<end)continue;selected.push(x);end=x.end;}if(!selected.length)continue;
+  const names=new Map(),replacements=selected.map((x,i)=>{
+   const content=Buffer.from(x.text),sha=digest(content),name='member-static-data-20261102/'+sha+'.txt',id='__mt_static_data_20261102_'+i;assert(!source.includes(id));
+   if(resources.has(name))assert.equal(resources.get(name).content_base64,content.toString('base64'));else resources.set(name,{name,content_type:'text/plain',content_base64:content.toString('base64')});
+   const sharedId=names.get(name)||id;names.set(name,sharedId);let spec=posix.relative(posix.dirname(m.name),name);if(!spec.startsWith('.'))spec='./'+spec;
+   if(x.kind==='json'){const evaluated=vm.runInNewContext('('+source.slice(x.start,x.end)+')',Object.create(null),{timeout:10000});assert.equal(JSON.stringify(evaluated),x.text,'Original literal and JSON values differ');}
+   return{...x,id:sharedId,name,spec,raw:source.slice(x.start,x.end),replacement:x.kind==='json'?'__mt_parse_static_data_20261102('+sharedId+')':sharedId};
+  });
+  let rewritten=source;for(const x of [...replacements].reverse())rewritten=rewritten.slice(0,x.start)+x.replacement+rewritten.slice(x.end);
+  const parserName='member-static-data-20261102/parse.mjs';let parserSpec=posix.relative(posix.dirname(m.name),parserName);if(!parserSpec.startsWith('.'))parserSpec='./'+parserSpec;assert(!source.includes('__mt_parse_static_data_20261102'));const parserImport=replacements.some(x=>x.kind==='json')?'import {parseStaticData as __mt_parse_static_data_20261102} from '+JSON.stringify(parserSpec)+';\n':'';const unique=[...new Map(replacements.map(x=>[x.name,x])).values()],imports=parserImport+unique.map(x=>'import '+x.id+' from '+JSON.stringify(x.spec)+';').join('\n')+'\n',output=imports+rewritten;new vm.SourceTextModule(output);
+  assert.deepEqual(functionHashes(output),functionHashes(source),'Non-initialiser function source changed');
+  let reconstructed='',at=imports.length,originalAt=0;
+  for(const x of replacements){const unchanged=source.slice(originalAt,x.start);assert.equal(output.slice(at,at+unchanged.length),unchanged);reconstructed+=unchanged;at+=unchanged.length;assert.equal(output.slice(at,at+x.replacement.length),x.replacement);at+=x.replacement.length;reconstructed+=x.raw;originalAt=x.end;}
+  reconstructed+=output.slice(at);assert.equal(reconstructed,source);
+  m.content_base64=Buffer.from(output).toString('base64');proof.push({module:m.name,originalSHA256:digest(bytes),packagedSHA256:digest(output),originalBytes:bytes.length,packagedJsBytes:Buffer.byteLength(output),dataObjects:replacements.filter(x=>x.kind==='json').length,textLiterals:replacements.filter(x=>x.kind==='text').length,exactDataValuesVerified:true,distinctObjectInstances:true,nonInitializerFunctionSourceByteIdentical:true,byteForByteReconstruction:true});
+ }
+ for(const m of resources.values()){assert(!modules.some(x=>x.name===m.name));modules.push(m);}
+ const helper=readFileSync('performance-intern-static-data.mjs');modules.push({name:'member-static-data-20261102/parse.mjs',content_type:'application/javascript+module',content_base64:helper.toString('base64')});
+ return{modules,proof,summary:{originalModules:original.length,modules:modules.length,originalJsBytes:original.filter(m=>(m.content_type||'').includes('javascript')).reduce((n,m)=>n+Buffer.from(m.content_base64,'base64').length,0),packagedJsBytes:modules.filter(m=>(m.content_type||'').includes('javascript')).reduce((n,m)=>n+Buffer.from(m.content_base64,'base64').length,0),uniqueTextBytes:[...resources.values()].reduce((n,m)=>n+Buffer.from(m.content_base64,'base64').length,0),textModules:resources.size,changedJsModules:proof.length,exactDataValuesVerified:true,distinctObjectInstances:true,nonInitializerFunctionSourceByteIdentical:true,loginSessionIdentityChanges:0,completedPrivateResponseCacheAdded:false,staticPrimitiveStringsInterned:true,objectIdentityShared:false}};
+}
+if(process.argv[1]?.endsWith('performance-interned-static-data-packaging.mjs')){
+ const old=JSON.parse(readFileSync('performance-static-text-candidate.json')),state=JSON.parse(readFileSync('performance-release-state.json')),c={kind:'STATIC_DATA_MEMORY_STRING_REUSE_CANDIDATE',createdAt:new Date().toISOString(),sourceComposition:'Current serving source plus validated immutable-public-asset guard; exact-value static data packaging only',normalTrafficPercent:0,owners:[]};
+ for(const o of old.owners){
+  const v=JSON.parse(gunzipSync(readFileSync(o.capture)));assert.equal(v.id,o.sourceVersion);let compatibilityPatch;
+  if(o.name==='shift-core'){const patch=readFileSync('performance-retained-aeo-delivery.mjs');assert.equal(digest(patch),'247931a4879087fefa431de5554222171493afc9214bb7d29fddd484e1bfc215');v.modules.find(m=>m.name==='aeo-geo/delivery.mjs').content_base64=patch.toString('base64');compatibilityPatch={module:'aeo-geo/delivery.mjs',sha256:digest(patch),purpose:'Preserve immutable fingerprinted public asset bytes; member/API early-pass unchanged'};}
+  const output=packageDataModules(v.modules),file='performance-interned-static-data-package-'+o.name+'.json.gz';writeFileSync(file,gzipSync(JSON.stringify({...v,modules:output.modules})));
+  const serving=state.owners.find(x=>x.name===o.name);c.owners.push({name:o.name,sourceVersion:o.sourceVersion,sourceDeployment:serving.currentDeployment,mainModule:v.main_module,capture:o.capture,settings:o.settings,package:file,packageSHA256:digest(readFileSync(file)),summary:output.summary,proof:output.proof,compatibilityPatch});console.log('STATIC_DATA_PACKAGE',o.name,JSON.stringify(output.summary));
+ }
+ c.packagedAt=new Date().toISOString();writeFileSync('performance-interned-static-data-candidate.json',JSON.stringify(c,null,2)+'\n');
+}

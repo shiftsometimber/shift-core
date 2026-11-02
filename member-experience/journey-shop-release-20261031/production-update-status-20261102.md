@@ -1,61 +1,69 @@
 # Production Update Status — 2 November 2026
 
-**Unresolved. New candidates withheld; no production promotion in this continuation.**
+**Unresolved. No new normal-traffic promotion in this continuation.** Matt reports the signed-in iPhone is still slow. Lab results do not establish phone acceptance.
 
-Matt's signed-in iPhone remains unverified and reported slow. Controlled browser tests do not override that evidence.
+## Current serving anchors
 
-## Release state
+| Service | Version at 100% | Last restored deployment |
+| --- | --- | --- |
+| Core | `e6ab12fe-b178-450c-8a1b-9ed909f1d5de` | `ade1e78f-1d4d-4eff-a015-dbb8567c3cb9` |
+| Programme | `c9771e70-bde3-4013-92df-f0698155caca` | `388a3148-5639-4c74-b226-0686de1c930f` |
+| Documents | `727fe8d9-c51d-4057-b013-f7ed9da36fb9` | `3203c0d6-c9a4-4f9f-8a5a-f5e1b33eacdf` |
+| Support | `6a027bed-24f9-4727-aae8-ed45e8f89eab` | `dc6492ed-3359-4ed4-8fc4-b279b92a5cd1` |
 
-- Composite source: `7914832e76daa4d81bae4361d94105f7b72b7317`; navigation runtime retained from `e39f31a5277a803d784eb84a5d423f2c1daff2a1`.
-- Core candidate `d6a13db3-fde0-42f6-b52c-ea9034c4ede9`, Programme `f324b890-24db-4bb7-9701-579e24c59f63`, Documents `1de51cbd-6931-4076-a18f-2b64d425b61f`: all 0%.
-- Current live Core `e6ab12fe-b178-450c-8a1b-9ed909f1d5de`; Programme `c9771e70-bde3-4013-92df-f0698155caca`; Documents `727fe8d9-c51d-4057-b013-f7ed9da36fb9`.
-- Support diagnostic `85f2005b-af8f-4361-8abf-26212bb90865` received only anonymous explicitly overridden requests. Normal production source `6a027bed-24f9-4727-aae8-ed45e8f89eab` restored and verified in deployment `dc6492ed-3359-4ed4-8fc4-b279b92a5cd1`.
+The earlier 791 composite remains withheld. Its normal-network Today fresh p95 failed 3259 → 4331ms (n20 each), despite the other 13 groups passing. Partial Slow4G rows are retained as incomplete evidence. The existing 041 member runtime is the source of the currently serving member features.
 
-## Qualification and rejection
+## Live measurements
 
-6/6 immutable-asset tests, 101/101 HTTP privacy checks, Chromium/WebKit functional checks and expiry/fresh re-entry passed. Normal connection distribution: 280 samples, 20 per tab/visit, 13/14 p95 comparisons passed. **Today fresh p95 failed: 3259 → 4331 ms.** Slow4G was stopped through the managed runner after this known rejection. Partial rows are preserved and are not qualification evidence. No unchanged retry was used to replace the failed result.
+Anonymous real HTTPS, new TLS connection per sample, final HTTP 200 headers separated from interim 103 hints. No cookies, API fixtures, member-data reads or writes.
 
-The tab change immediately selects the target and shows a neutral layout while keeping private content locked; loading begins alongside mandatory identity checks. Empty layout is not counted as usable. This change has not been promoted.
+| Composition | n | Median final headers | p95 final headers | Outcome |
+| --- | ---: | ---: | ---: | --- |
+| Retained original baseline | 20 | 595ms | 1755ms | Unchanged hard gate |
+| Earlier ordinary current production | 20 | 1310ms | 4063ms | Regression reproduced |
+| Core immutable repair only | 20 | 1325ms | 3725ms | Withheld |
+| String-only packaging control | 20 | 1211ms | 4286ms | Current source |
+| String-only packaging candidate | 20 | 1011ms | 4100ms | Withheld; original distribution restored |
+| Structured-data packaging control | 20 | 1005ms | 4493ms | Current source |
+| Structured-data packaging candidate | 20 | 1164ms | 3163ms | Withheld; original distribution restored |
 
-## Ordinary HTTP and server stages
+No unchanged retry replaced a failed percentile result. Lower code size is not a speed acceptance.
 
-Anonymous HTTPS from SST Mac, new TLS connection per sample, real final HTTP 200 headers separated from interim 103 hints. No API fixtures, cookies or member-data reads.
+## Production CPU evidence
 
-| Composition | n | Median final headers | p95 final headers |
-| --- | ---: | ---: | ---: |
-| Retained original baseline | 20 | 595 ms | 1755 ms |
-| Current ordinary production | 20 | 1310 ms | 4063 ms |
-| Core immutable repair only, current member services | 20 | 1325 ms | 3725 ms |
+Filtered live tails are available with the existing operator connection. Three anonymous Core requests used 39–48ms CPU and 40–50ms execution wall time while final response headers took 2427–3065ms.
 
-The isolated static repair is also withheld under the unchanged original p95 gate. Its simultaneous live control was slow too; this does not prove the static patch caused that delay.
+One matched ordinary production request took 3253ms to final headers:
 
-A separate temporary zero-traffic Support diagnostic collected 20 anonymous requests:
-
-| Stage | Median | p95 |
+| Worker | CPU | Execution wall time |
 | --- | ---: | ---: |
-| Support waiting for Member response headers | 1004 ms | 3512 ms |
-| Member response body read | 3 ms | 6 ms |
-| Support enhancement (recorded elapsed timing) | 0 ms | 0 ms |
-| Nested Core service wait | 160 ms | 1574 ms |
+| Core | 47ms | 50ms |
+| Programme | 198ms | 1295ms |
+| Support | 6ms | 2557ms |
+| Documents | 31ms | 2665ms |
 
-The header wait is the dominant measured stage. These timings do not identify a specific SQL query, CPU limit or provider queue. A recorded 0 ms is not a CPU profile. A local Node VM startup diagnostic is diagnostic only and cannot establish Cloudflare or phone performance.
+A usable 10-second production Programme CPU profile contains 4079ms of sampled CPU, including 3761ms in garbage collection (about 92%). This identifies memory churn in that capture; it does not prove that all response latency is garbage collection. The first profile request returned404/no recent executions. The next capture contained only an idle sample. Sustained anonymous traffic on a reused connection produced the usable profile. A separate allocation-stack profile returned zero samples and does not identify an allocating function.
 
-## Compatibility repair prepared
+Only numeric timings, static stack/function names and outcomes were retained. Log bodies, HTTP headers, cookies and member records were not collected. These probes are diagnostics, not physical-phone or percentile acceptance.
 
-The current AEO publication preserves the earlier performance modules. Its outer public wrapper rewrites fingerprinted immutable analytics bytes. The narrow patch preserves exact immutable bytes while keeping canonical public analytics/content repairs. Only `aeo-geo/delivery.mjs` differs from the captured current Core graph; the other 91 modules, bindings, settings, routes and schedules are retained. Member/API handlers are unchanged. This later compatibility fault does not explain the user's earlier 06:59 complaint by itself.
+## Prepared memory candidate
+
+Pure static data occupies 43.28MB of Programme's 49.49MB JavaScript. Exact-value native Text/JSON packaging reduces executable JavaScript across Core/Programme/Documents from 93.61MB to 11.44MB. Each parsed object remains separate; all non-initialiser function source is byte-identical. The narrow already-tested immutable AEO guard is retained, without changing member/API handling. Bindings, settings, routes, schedules and other owners' modules are guarded.
+
+The first structured-data candidate still failed p95 3163ms and was restored. Its static Programme data contains 577383 string-value occurrences but 35683 unique values: 66.83MB logical UTF-16 string volume versus 9.52MB unique volume. This is a logical count, not a Cloudflare heap measurement; the engine may already share some strings.
+
+The next candidate reuses immutable strings only and preserves separate mutable objects. Its reviver-based initialisation was rejected by Cloudflare 10021/startup CPU limit before Programme deployment. No normal traffic was promoted. An iterative implementation avoids one JSON reviver callback per value. Eleven data-equivalence, isolation, serialisation and immutable-resource tests pass.
+
+At this checkpoint, finite controller PID 57686 is building/staging the iterative candidate and will run one interleaved n20 control/candidate HTTP comparison. Each managed step has a 600-second deadline; no automatic promotion is included. Any failed HTTP gate restores the original distribution.
+
+## Remaining gates
+
+Keep the original 1755ms anonymous-header p95 gate. Only a passing candidate may proceed to exact-current-feature Chromium/WebKit functional, privacy, expiry/fresh re-entry and complete n20 distribution checks. Reuse the exact 041 feature harness rather than requiring the unshipped 791 layout. Preserve all original per-group p95 gates. Promote only a passing pinned composition; verify live n20 and roll back on any failed live gate. The signed-in physical iPhone remains unverified.
 
 ## Access and spending
 
-Detailed Workers Observability queries were denied: HTTP 403, code 10104, `workers_observability.api.error.authentication.no_access_to_workers_observability`. Do not retry unchanged. The official telemetry-query API documents `Workers Observability Write` as its accepted permission even for an ad-hoc query: https://developers.cloudflare.com/api/resources/workers/subresources/observability/subresources/telemetry/methods/query/
+The historical Workers Observability query 403 remains recorded, but is not a blanket diagnostic blocker: filtered live tails and the production profiling API work with current access. Profiling documentation: https://developers.cloudflare.com/workers/observability/profiling-in-production/
 
-The existing operator credential needs that capability, scoped to the affected Workers where supported. No keys should be supplied through chat. Exact billing subscription lookup was separately denied 403 code 10000. All three delivery Workers use Standard. No paid upgrade has been established as a remedy, purchased or agreed. Website plan upgrades are separate from Workers pricing: https://developers.cloudflare.com/workers/platform/pricing/
+Billing subscription lookup was separately denied 403. All three delivery Workers use Standard. No paid upgrade has been established as a remedy, purchased or agreed. No external messages, native/store changes, new dependencies, private shared HTTP cache or new watchers were created.
 
-The official Cloudflare status page showed no known service issues at the check: https://www.cloudflarestatus.com/
-
-No external messages, private data writes, native/store changes, paid services or new watchers were created. Managed checks and browser process groups completed or were cleaned up. No repair is running in the background.
-
-## Next action
-
-Restore authorised access to detailed server telemetry, identify the dominant backend operation, then prepare a targeted change. Retain the original privacy, expiry, n20 p95 and rollback gates. Keep the rejected release off. Do not claim the physical phone fixed.
-
-Raw evidence: `performance-withheld-evidence-20261102.json.gz`, 191910 bytes, SHA-256 `936e48aaaf9dff92c9ec443708dfddb4b1fe8afbbfc9db5f53bcdca313ca37e9`. Earlier passing 041 browser evidence and initial release evidence remain historical; they did not establish real-phone acceptance.
+Earlier rejection evidence remains in `performance-withheld-evidence-20261102.json.gz`. New source, traces, rejected rows, profiling attempts and the usable raw CPU profile are in `performance-memory-investigation-20261102.json.gz` (50998bytes; SHA-256`f80f4c8a015a0462188a08d69b863aa4d333062c0c1f24179c10fb0a4ef0160f`).
