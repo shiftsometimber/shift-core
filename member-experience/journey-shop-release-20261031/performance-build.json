@@ -3,8 +3,8 @@
   "privateDocumentPassThrough": false,
   "scope": "transport",
   "transportEnabled": true,
-  "at": "2026-11-02T00:45:37.688Z",
-  "bundleSHA256": "7f936aebe444187a17766eaa53f345d2920b959c2dbdcada4b644662911edb58",
+  "at": "2026-11-02T01:46:55.777Z",
+  "bundleSHA256": "f83aef4db55eb569069160a6dd54e660d7689f2ce925486486360dbff194a086",
   "assetsSHA256": "6641a00ee7fcf8e7543a37be455ff10fc5be211eca8d05455062761abfd9cf99",
   "publicSourcesSHA256": "17ed9150cece1c044d9223dd0b04d0545332198d3948e05dc2508116217ee925",
   "staticAssets": {
@@ -386,6 +386,6 @@
   "sourceInputs": {
     "scoped-source/member-experience/performance-client.mjs": "567f2927031615e8fb718909e453f7a81934fef50b915bd62e51ad6b6da7fe6c",
     "scoped-source/member-experience/performance-monitor.mjs": "b1abbf94451cfe4545738dc5b558022266a5ba33553380558a0d0e255f1c009d",
-    "scoped-source/member-experience/performance-delivery.mjs": "ca0faed2bf8d33915d104d8fd230c6c82723bece660e1023958a1237e325febd"
+    "scoped-source/member-experience/performance-delivery.mjs": "4a308f97954f59d98845bf874216079f589db6461bee32c97ba6f5b3beea7a07"
   }
 }

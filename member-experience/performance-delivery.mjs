@@ -11,9 +11,14 @@ export async function performanceDocumentText(response){
  if(!/<!doctype html>/i.test(text))throw Error('Member document is not decoded HTML');return text;
 }
 export const memberTransportEnabled=typeof __MT_MEMBER_TRANSPORT__==='boolean'?__MT_MEMBER_TRANSPORT__:true;
+export function optimiseMemberContrastGuard(html){
+ const before="  function fix(el){if(!(el instanceof Element)||el.matches('script,style,svg,svg *'))return;const s=getComputedStyle(el),r=el.getBoundingClientRect();if(s.display==='none'||s.visibility==='hidden'||+s.opacity<=.02||r.width<=1||r.height<=1||!hasOwnText(el))return;const fg=rgb(s.color),bg=background(el);if(!fg||!bg)return;const effective=fg.a<1?blend(fg,bg):fg;if(ratio(effective,bg)>=2)return;const pick=ratio(BLACK,bg)>=ratio(CREAM,bg)?BLACK:CREAM;el.style.setProperty('color',pick.hex,'important');el.style.setProperty('-webkit-text-fill-color',pick.hex,'important');el.dataset.shiftContrastGuard='1'}",after="  function fix(el){if(!(el instanceof Element)||el.matches('script,style,svg,svg *')||!hasOwnText(el))return;const s=getComputedStyle(el);if(s.display==='none'||s.visibility==='hidden'||+s.opacity<=.02)return;const fg=rgb(s.color),bg=background(el);if(!fg||!bg)return;const effective=fg.a<1?blend(fg,bg):fg;if(ratio(effective,bg)>=2)return;const r=el.getBoundingClientRect();if(r.width<=1||r.height<=1)return;const pick=ratio(BLACK,bg)>=ratio(CREAM,bg)?BLACK:CREAM;el.style.setProperty('color',pick.hex,'important');el.style.setProperty('-webkit-text-fill-color',pick.hex,'important');el.dataset.shiftContrastGuard='1'}";
+ return html.replace(/<script\b[^>]*data-shift-contrast-guard=["']public-contrast-20260917-r2["'][^>]*>[\s\S]*?<\/script>/gi,script=>script.replace(before,after));
+}
 export function augmentPerformanceDocument(html,assets={},stage='cache'){
  if(!memberTransportEnabled)stage='static';if(stage==='server')return html;
  if(html.includes('data-mt-performance="20261101"')||html.includes('data-mt-performance="static-20261101"'))return html;
+ if(memberTransportEnabled)html=optimiseMemberContrastGuard(html);
  const boot=stage==='static'?'<meta data-mt-performance="static-20261101" name="my-timber-delivery" content="static-20261101">':'<style data-mt-performance="20261101">'+performanceStyles+'</style><script>'+(stage==='identity'?identityOnlyRuntime:performanceRuntime)+(stage==='cache'?performanceMonitorRuntime:'')+'</script>';
  html=html.replace(/<head\b[^>]*>/i,m=>m+boot);
  const seen=new Set();
