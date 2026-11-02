@@ -43,12 +43,13 @@ test('bounded recipe search snippets preserve unique variants, full H1 and truth
  const html=detail(a,'recipes',data,shell).html;
  assert(html.includes('<h1>'+a.title+'</h1>'));
  assert(html.includes('<title>'+first.metaTitle+' | SHIFT</title>'));
- const nodes=JSON.parse(html.match(/<script type="application\\/ld\\+json">(.*?)<\\/script>/s)[1])['@graph'];
+ const extractGraph=page=>JSON.parse(page.split('<script type="application/ld+json">')[1].split('</script>')[0])['@graph'];
+ const nodes=extractGraph(html);
  const rich=nodes.find(n=>n['@type']==='Recipe');
  assert.equal(rich.name,a.title);
  assert.equal(rich.image,undefined,'No approved food photograph must be invented');
  const withImage=detail({...a,image:base+'/assets/verified-dish.webp'},'recipes',data,shell).html;
- const richWithImage=JSON.parse(withImage.match(/<script type="application\\/ld\\+json">(.*?)<\\/script>/s)[1])['@graph'].find(n=>n['@type']==='Recipe');
+ const richWithImage=extractGraph(withImage).find(n=>n['@type']==='Recipe');
  assert.deepEqual(richWithImage.image,[base+'/assets/verified-dish.webp']);
  assert(withImage.includes('src="'+base+'/assets/verified-dish.webp"'));
 });
