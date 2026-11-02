@@ -70,3 +70,23 @@ export function verifyRetatrutidePagePackage(before,staged,planned){
  for(const module of planned.modules){const actual=staged.modules.find(m=>m.name===module.name);assert.equal(actual.content_type,module.content_type);assert.equal(hash(Buffer.from(actual.content_base64,'base64')),hash(Buffer.from(module.content_base64,'base64')));}
  return {existingModulesUnchanged:before.modules.length,addedModules:3,originalPageOwnerPreserved:true};
 }
+export function prepareRetatrutideChartCorrection(before){
+ assert.equal(before.main_module,'retatrutide-evidence/entry.mjs');
+ const name='retatrutide-evidence/guide.mjs',published=before.modules.find(m=>m.name===name);assert(published,'The published guide module is required');
+ const original=Buffer.from(published.content_base64,'base64').toString('utf8');
+ assert.equal(hash(original),'226c340ffdfc0690c0a95347b4415c6e34869d67aed7558e5bd79f3f116d0da1','Only the inspected published guide may receive this correction');
+ const corrected=readFileSync(new URL('./retatrutide.mjs',import.meta.url),'utf8').replace("import {evidence} from './retatrutide-evidence.mjs';","import {evidence} from './evidence.mjs';");
+ assert.equal(corrected,original.replace('note.textContent=d.rr-note;','note.textContent=d.note;'),'This release changes only the chart caption assignment');
+ return {main_module:before.main_module,modules:before.modules.map(m=>m.name===name?{...m,content_base64:Buffer.from(corrected).toString('base64')}:m)};
+}
+export function verifyRetatrutideChartCorrection(before,staged,planned){
+ assert.equal(staged.main_module,before.main_module);assert.equal(staged.main_module,planned.main_module);
+ for(const field of ['bindings','compatibility_date','compatibility_flags','assets','usage_model','migration_tag'])assert.deepEqual(staged[field],before[field],'Preserve page-owner configuration: '+field);
+ assert.deepEqual(staged.modules.map(m=>m.name).sort(),before.modules.map(m=>m.name).sort());
+ for(const original of before.modules){
+  const expected=planned.modules.find(m=>m.name===original.name),actual=staged.modules.find(m=>m.name===original.name);assert(expected&&actual);
+  if(original.name!=='retatrutide-evidence/guide.mjs')assert.deepEqual(expected,original,'Retain every unrelated module');
+  assert.equal(actual.content_type,original.content_type);assert.equal(hash(Buffer.from(actual.content_base64,'base64')),hash(Buffer.from(expected.content_base64,'base64')),original.name);
+ }
+ return {existingModulesUnchanged:before.modules.length-1,addedModules:0,correctedCaptionModules:1,originalPageOwnerPreserved:true};
+}

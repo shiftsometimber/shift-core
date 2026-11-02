@@ -2,13 +2,34 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {brotliCompressSync} from 'node:zlib';
+import {runInNewContext} from 'node:vm';
 import {evidence} from './retatrutide-evidence.mjs';
 import {withRetatrutideEvidence,renderRetatrutideGuide,retatrutideImage,withRetatrutideWorker,RETA_PATH,COMPARISON_PATH,RETA_IMAGE_PATH} from './retatrutide.mjs';
 import {withAeoGeo} from './delivery.mjs';
-import {prepareRetatrutidePackage,verifyPackage,prepareRetatrutidePagePackage,verifyRetatrutidePagePackage} from './package.mjs';
+import {prepareRetatrutidePackage,verifyPackage,prepareRetatrutidePagePackage,verifyRetatrutidePagePackage,prepareRetatrutideChartCorrection,verifyRetatrutideChartCorrection} from './package.mjs';
 const before=readFileSync(new URL('./retatrutide-before-20261102.html',import.meta.url),'utf8');
 const after=await withRetatrutideEvidence(before,RETA_PATH);
 const fragment=(s,tag)=>s.match(new RegExp('<'+tag+'\\b[\\s\\S]*?</'+tag+'>','i'))?.[0];
+test('switching analyses updates the readable explanation and accessible chart in both directions',()=>{
+ const element=()=>({textContent:'',attributes:{},setAttribute(name,value){this.attributes[name]=value}});
+ const heading=element(),note=element(),title=element(),description=element(),rects=[element(),element()],values=[element(),element()];
+ const svg={...element(),querySelectorAll(selector){return selector==='rect'?rects:values},querySelector(selector){return selector==='title'?title:description}};
+ const buttons=['treatment','efficacy'].map(analysis=>({...element(),dataset:{analysis},addEventListener(event,handler){assert.equal(event,'click');this.click=handler}}));
+ const document={getElementById(id){return {'main-chart':{querySelector(){return svg}},'analysis-heading':heading,'analysis-note':note}[id]},querySelectorAll(){return buttons}};
+ const script=renderRetatrutideGuide().match(/<script data-retatrutide-chart>([\s\S]*?)<\/script>/)[1];runInNewContext(script,{document});
+ buttons[1].click();assert.equal(heading.textContent,'Efficacy analysis · sponsor-reported');assert.deepEqual(values.map(v=>v.textContent),['28.3%','2.2%']);
+ assert.match(note.textContent,/^Estimates outcomes with continued study treatment/);assert.match(description.textContent,/28\.3%; placebo 2\.2%/);assert.equal(buttons[1].attributes['aria-pressed'],'true');
+ buttons[0].click();assert.equal(heading.textContent,'Treatment-regimen analysis · peer-reviewed');assert.deepEqual(values.map(v=>v.textContent),['25.0%','3.9%']);
+ assert.match(note.textContent,/^Includes outcomes regardless of adherence/);assert.match(description.textContent,/25\.0%; placebo 3\.9%/);assert.equal(buttons[0].attributes['aria-pressed'],'true');assert.equal(buttons[1].attributes['aria-pressed'],'false');
+});
+test('the caption correction changes exactly one inspected module and preserves all other source and settings',()=>{
+ const module=(name,text)=>({name,content_type:'application/javascript+module',content_base64:Buffer.from(text).toString('base64')});
+ const published=readFileSync(new URL('./retatrutide.mjs',import.meta.url),'utf8').replace("import {evidence} from './retatrutide-evidence.mjs';","import {evidence} from './evidence.mjs';").replace('note.textContent=d.note;','note.textContent=d.rr-note;');
+ const before={main_module:'retatrutide-evidence/entry.mjs',bindings:[{type:'d1',name:'DB'}],compatibility_date:'2026-08-09',modules:[module('retatrutide-evidence/guide.mjs',published),module('retatrutide-evidence/entry.mjs','unchanged entry'),module('sitewide-seo-20261101/entry.mjs','unchanged underlying worker')]};
+ const planned=prepareRetatrutideChartCorrection(before);assert.equal(planned.modules.length,before.modules.length);assert.equal(verifyRetatrutideChartCorrection(before,{...before,...planned},planned).correctedCaptionModules,1);
+ const changed=structuredClone(before);changed.modules[0].content_base64=Buffer.from(published+'// unexpected').toString('base64');assert.throws(()=>prepareRetatrutideChartCorrection(changed));
+ const bad=structuredClone({...before,...planned});bad.modules[2].content_base64='wrong';assert.throws(()=>verifyRetatrutideChartCorrection(before,bad,planned));
+});
 test('the inspected page owner gains only a public wrapper; every original module and private fetch is preserved',async()=>{
  const module=(name,text,type='application/javascript+module')=>({name,content_type:type,content_base64:Buffer.from(text).toString('base64')});
  const original={main_module:'sitewide-seo-20261101/entry.mjs',bindings:[{type:'d1',name:'DB'}],compatibility_date:'2026-08-09',modules:[module('sitewide-seo-20261101/entry.mjs','export default {};'),module('font.bin','unchanged binary','application/octet-stream')]};
