@@ -1,5 +1,7 @@
 name: AEO GEO public catalogue and technical qualification
 on:
+  pull_request:
+    paths: ['aeo-geo/**', '.github/workflows/aeo-geo-technical.yml']
   push:
     branches: [feat/aeo-geo-public-catalogue-20261102, main]
     paths: ['aeo-geo/**', '.github/workflows/aeo-geo-technical.yml']
@@ -10,19 +12,62 @@ jobs:
   source:
     runs-on: ubuntu-latest
     timeout-minutes: 8
+    outputs:
+      retatrutide: ${{ steps.scope.outputs.retatrutide }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
       - name: Public-only rendering, publication boundaries and existing privacy guards
         run: |
-          node --test aeo-geo/source.test.mjs acquisition-activation/ai-referrals.test.mjs tests/general-analytics-privacy.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/runtime-rollback-guard.test.mjs
+          node --test aeo-geo/source.test.mjs aeo-geo/retatrutide.test.mjs acquisition-activation/ai-referrals.test.mjs tests/general-analytics-privacy.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/runtime-rollback-guard.test.mjs
           node --check aeo-geo/build.mjs
           node --check aeo-geo/capture.mjs
           git diff --check
+      - id: scope
+        name: Select only the finite owner-approved medicine amendment
+        run: node aeo-geo/retatrutide-scope.mjs
+  retatrutide:
+    needs: source
+    if: github.ref == 'refs/heads/main' && needs.source.outputs.retatrutide == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    concurrency:
+      group: cloudflare-production-promote
+      cancel-in-progress: false
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Verify approved public content and unchanged privacy boundaries
+        run: |
+          node --test aeo-geo/retatrutide.test.mjs aeo-geo/source.test.mjs tests/general-analytics-privacy.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/runtime-rollback-guard.test.mjs
+          node --check aeo-geo/retatrutide-release.mjs
+      - name: Amend only captured public modules and verify the live guide
+        run: node aeo-geo/retatrutide-release.mjs
+      - name: Restore only this release's owned deployments if verification fails
+        if: failure()
+        run: node aeo-geo/retatrutide-release.mjs rollback
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: retatrutide-evidence-${{ github.run_id }}
+          path: retatrutide-evidence-proof/
+          if-no-files-found: warn
+          retention-days: 90
   catalogue:
     needs: source
+    if: github.event_name == 'push' && needs.source.outputs.retatrutide != 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     concurrency:
