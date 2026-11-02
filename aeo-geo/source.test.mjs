@@ -2,9 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {recipeProjection,exerciseProjection,safeImage,finite} from './projection.mjs';
 import {recipeSchema,enhancePublicHtml,isPrivatePath} from './schema.mjs';
-import {indexPage,detail} from './content.mjs';
+import {indexPage,detail,recipeSearchMetadata} from './content.mjs';
 import {withAeoGeo,ROBOTS,completeSitemap} from './delivery.mjs';
-import {safeAiReferrer,repairAnalytics} from './analytics.mjs';
+import {safeAiReferrer,safeSearchReferrer,repairAnalytics} from './analytics.mjs';
 import {activeDeployment,replaceActiveTraffic} from './deployment.mjs';
 import {repairCoverChrome,repairPublicChrome,FRAME_SIGNATURE} from './chrome.mjs';
 import {verifyPackage,ENTRY,capturedOriginal} from './package.mjs';
@@ -106,6 +106,37 @@ test('AI measurement recognises only the named HTTPS origins and never the priva
 test('the existing consent, private-page suppression and tag-manager guards survive the referrer repair',()=>{
  const script="if(!allowed||loaded)return;window.gtag('set',{page_location:location.origin+path,page_referrer:'',allow_google_signals:false});";
  const patched=repairAnalytics(script);assert(patched.startsWith('if(!allowed||loaded)return;'));assert(patched.includes('page_location:location.origin+path'));assert(patched.includes('allow_google_signals:false'));assert(!patched.includes('page_referrer:document.referrer'));assert.equal(repairAnalytics('different source'),'different source');
+});
+test('long recipe metadata is concise without changing the full heading, canonical, image approval or Recipe identity',()=>{
+ const full='Apple and banana chocolate fruit dessert to share with berries, oats, pumpkin seeds and dark chocolate';
+ const item={...recipe,path:'/recipes/apple-and-banana-dessert',title:full,description:full+'. Ingredients, step-by-step method and estimated nutrition per serving. Save your food plans in My Timber.',image:null};
+ const html=detail(item,'recipes',data,shell).html;
+ const title=html.match(/<title>([^<]*)<\/title>/)?.[1],meta=html.match(/<meta name="description" content="([^"]*)"/)?.[1];
+ assert(title&&title.length<=62,title);assert(meta&&meta.length<=155,meta);
+ assert(html.includes('<h1>'+full+'</h1>'));assert(html.includes('"name":"'+full+'"'));
+ assert(html.includes('href="'+base+item.path+'"'));assert(!html.includes('class="aeo-photo"'));
+ const graph=JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1]||'{}')['@graph'];
+ const r=graph?.find(x=>x['@type']==='Recipe');assert(r);assert.equal(r.name,full);assert(!('image' in r));
+ const approved={...item,image:base+'/assets/approved-recipe.webp'};
+ const approvedHtml=detail(approved,'recipes',data,shell).html;
+ const approvedGraph=JSON.parse(approvedHtml.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1]||'{}')['@graph'];
+ assert.deepEqual(approvedGraph.find(x=>x['@type']==='Recipe').image,[approved.image]);
+ assert(approvedHtml.includes('src="'+approved.image+'"'));
+ assert.equal(recipeSearchMetadata('Short meal','Short meal.').title,'Short meal');
+});
+test('Google and Bing organic referrers retain only verified HTTPS origins, never search terms or other domains',()=>{
+ for(const [raw,expected] of [
+  ['https://www.google.co.uk/search?q=PRIVATE','https://www.google.co.uk/'],
+  ['https://www.google.com/search?q=PRIVATE','https://www.google.com/'],
+  ['https://www.bing.com/search?q=PRIVATE','https://www.bing.com/'],
+  ['https://www.google.co.uk.evil.example/search?q=PRIVATE',''],
+  ['https://private.example/record?search=PRIVATE',''],
+  ['http://www.google.co.uk/search?q=PRIVATE',''],
+  ['https://shiftsometimber.co.uk/member/dashboard?health=PRIVATE','']
+ ])assert.equal(safeSearchReferrer(raw),expected);
+ const patched=repairAnalytics("page_referrer:''");
+ assert(!patched.includes('page_referrer:document.referrer'));
+ assert(!patched.includes('PRIVATE'));assert(patched.includes('www.google.co.uk'));
 });
 test('a retained zero-percent version never becomes the selected live source',()=>{
  const d=activeDeployment({id:'deployment',versions:[{version_id:'old-zero',percentage:0},{version_id:'actual-live',percentage:100}]});
