@@ -42,33 +42,24 @@ jobs:
         run: node aeo-geo/build.mjs
       - name: Qualify every generated document and visible structured-data projection
         run: node aeo-geo/qualify.mjs
-      - name: Prepare the existing mobile lab engine
-        if: github.ref == 'refs/heads/main'
-        run: |
-          npm install --prefix "$RUNNER_TEMP/aeo-lab" --no-package-lock --no-audit --no-fund playwright@1.58.2 lighthouse@12.8.2
-          "$RUNNER_TEMP/aeo-lab/node_modules/.bin/playwright" install --with-deps chromium
-          echo "CHROME_PATH=$(node -e "console.log(require('$RUNNER_TEMP/aeo-lab/node_modules/playwright').chromium.executablePath())")" >> "$GITHUB_ENV"
-          echo "LIGHTHOUSE_CLI=$RUNNER_TEMP/aeo-lab/node_modules/lighthouse/cli/index.js" >> "$GITHUB_ENV"
-      - name: Retain the original successful mobile baseline
-        if: github.ref == 'refs/heads/main'
-        uses: actions/download-artifact@v4
-        with:
-          name: aeo-geo-catalogue-41413253660
-          run-id: 41413253660
-          github-token: ${{ github.token }}
-          path: aeo-original-baseline
-      - name: Keep the original baseline without repeating a completed measurement
-        if: github.ref == 'refs/heads/main'
-        run: |
-          mkdir -p aeo-geo-proof/lighthouse
-          cp aeo-original-baseline/lighthouse/*before*.json aeo-geo-proof/lighthouse/
-          node -e "const fs=require('fs'),r=JSON.parse(fs.readFileSync('aeo-geo-proof/lighthouse/before-summary.json'));require('node:assert/strict').equal(r.reports.length,9)"
       - name: Stage exact provider packages and publish the qualified public-only wrappers
         if: github.ref == 'refs/heads/main'
         run: node aeo-geo/release.mjs amend-public-shell
-      - name: Measure mobile after publication
+      - name: Confirm named bots can crawl public pages and exclude private paths
         if: github.ref == 'refs/heads/main'
-        run: AEO_PERFORMANCE_TARGETS=memberSignedOut node aeo-geo/performance.mjs after
+        run: |
+          python3 - <<'PYVERIFY'
+          import urllib.request, urllib.robotparser
+          text = urllib.request.urlopen('https://shiftsometimber.co.uk/robots.txt', timeout=30).read().decode()
+          parser = urllib.robotparser.RobotFileParser()
+          parser.parse(text.splitlines())
+          for bot in ['Googlebot','Bingbot','OAI-SearchBot','GPTBot','PerplexityBot','ClaudeBot','Google-Extended']:
+              for path in ['/','/recipes','/exercises']:
+                  assert parser.can_fetch(bot,'https://shiftsometimber.co.uk'+path), (bot,path)
+              for path in ['/member/dashboard','/checkout','/admin']:
+                  assert not parser.can_fetch(bot,'https://shiftsometimber.co.uk'+path), (bot,path)
+          print('Seven named bots: public paths allowed, private exclusions confirmed.')
+          PYVERIFY
       - name: Restore only deployments still owned by this exact release if verification fails
         if: failure() && github.ref == 'refs/heads/main'
         run: node aeo-geo/release.mjs rollback

@@ -12,7 +12,6 @@ User-agent: GPTBot
 User-agent: PerplexityBot
 User-agent: ClaudeBot
 User-agent: Google-Extended
-Allow: /
 Disallow: /member
 Disallow: /account/
 Disallow: /checkout
@@ -24,6 +23,7 @@ Disallow: /auth/
 Disallow: /reset-password
 Disallow: /treatment-order
 Disallow: /email-templates
+Allow: /
 
 Sitemap: https://shiftsometimber.co.uk/sitemap.xml
 Sitemap: https://shiftsometimber.co.uk/recipes/sitemap.xml
