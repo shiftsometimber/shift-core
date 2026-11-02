@@ -8,9 +8,9 @@ const cta='<aside class="aeo-cta"><h2>Useful on its own. Easier to keep going wi
 // unchanged in the H1 and Recipe identity. Never add unapproved dish photos.
 export function recipeSearchMetadata(title,description){
  const tidy=value=>String(value??'').replace(/\s+/g,' ').trim();
- const shorten=(value,max)=>{const text=tidy(value);if(text.length<=max)return text;const slice=text.slice(0,max-1),space=slice.lastIndexOf(' ');return slice.slice(0,space>=Math.floor(max*.6)?space:max-1).replace(/[,:;\s-]+$/,'')+'…';};
+ const shorten=(value,max)=>{const text=tidy(value);if(text.length<=max)return text;const slice=text.slice(0,max),space=slice.lastIndexOf(' ');return slice.slice(0,space>=Math.floor(max*.6)?space:max).replace(/[,:;\s\-–—]+$/,'');};
  const full=tidy(title),original=tidy(description),short=shorten(full,54);
- const snippetName=shorten(full,59).replace(/…$/,'');
+ const snippetName=shorten(full,59);
  return {title:short,description:original.length<=155?original:'Recipe ingredients, method and estimated nutrition for '+snippetName+'. Plan meals with My Timber.'};
 }
 export function page({title,description,path,body,nodes=[],date,shell,status=200,noindex=false}){
