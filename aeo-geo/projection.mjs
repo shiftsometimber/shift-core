@@ -29,14 +29,15 @@ export function exerciseProjection(rows){
   if(!groups.has(key))groups.set(key,[]);groups.get(key).push(row);
  }
  return [...groups].map(([key,group])=>{
-  const ordered=group.toSorted((a,b)=>(String(a.data?.level)==='beginner'?-1:1)-(String(b.data?.level)==='beginner'?-1:1)||a.id.localeCompare(b.id));
+  const level=row=>row.data?.level||row.data?.intensity?.level||row.data?.selection_constraints?.minimum_level;
+  const ordered=group.toSorted((a,b)=>(String(level(a))==='beginner'?-1:1)-(String(level(b))==='beginner'?-1:1)||a.id.localeCompare(b.id));
   const row=ordered.find(r=>strings(r.data?.instructions||r.data?.how_to||r.data?.how||r.data?.steps).length)||ordered[0],d=row.data||{};
   const steps=strings(d.instructions||d.how_to||d.how||d.steps);
   if(!steps.length)return null;
   const name=d.movement_name||d.name||key.replace(/[-_]/g,' ').replace(/^./,s=>s.toUpperCase());
   const doses=[...new Map(ordered.map(r=>{
    const x=r.data||{},dose=x.dose_text||x.dosage?.prescription_text||[x.sets?x.sets+' sets':null,x.reps?x.reps+' repetitions':null,x.minutes?x.minutes+' minutes':null].filter(Boolean).join(', ');
-   const value={level:x.level||null,dose:dose||null,equipment:strings(x.equipment||x.required_equipment||x.selection_constraints?.required_equipment)};
+   const value={level:level(r)||null,dose:dose||null,equipment:strings(x.equipment||x.required_equipment||x.selection_constraints?.required_equipment)};
    return [JSON.stringify(value),value];
   })).values()].filter(x=>x.dose);
   return {id:key,title:name,steps,doses,image:safeImage(d.visual),imageAlt:d.visual?.alt_text||name,

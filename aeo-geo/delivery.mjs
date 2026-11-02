@@ -1,5 +1,6 @@
 import {ORIGIN,esc,isPrivatePath,enhancePublicHtml,TRUST_LINKS,breadcrumbs} from './schema.mjs';
 import {detail,indexPage,page} from './content.mjs';
+import {repairAnalytics} from './analytics.mjs';
 export const RELEASE='aeo-geo-20261102-v1';
 export const ROBOTS=`# Public search and AI crawling; account, payment and administration routes stay private.
 User-agent: *
@@ -56,6 +57,7 @@ export function completeSitemap(xml,data,metadata={}){
   const fix=metadata[u.pathname];if(fix?.exclude)return '';
   seen.add(u.href);
   if(fix?.lastmod){node=node.replace(/<lastmod>[^<]*<\/lastmod>/gi,'');node=node.replace('</url>','<lastmod>'+esc(fix.lastmod)+'</lastmod></url>');}
+  else node=node.replace(/<lastmod>2026-08-27<\/lastmod>/gi,'');
   return node;
  });
  const rows=[{path:'/recipes'},{path:'/exercises'},...data.recipes,...data.exercises].filter(r=>!seen.has(ORIGIN+r.path));
@@ -81,12 +83,13 @@ export function withAeoGeo(original,{catalogue,shell,metadata={}}){
   }
   const response=await original.fetch(request,...args);
   if(response.status!==200)return response;
-  const isSitemap=path==='/sitemap.xml',isLlms=path==='/llms.txt',isHtml=(response.headers.get('Content-Type')||'').includes('text/html');
-  if(!isSitemap&&!isLlms&&!isHtml)return response;
+  const isSitemap=path==='/sitemap.xml',isLlms=path==='/llms.txt',isAnalytics=path==='/analytics-bootstrap-v1.js',isHtml=(response.headers.get('Content-Type')||'').includes('text/html');
+  if(!isSitemap&&!isLlms&&!isAnalytics&&!isHtml)return response;
   // HEAD and GET must share the same response policy, but HEAD never has a body.
   if(request.method==='HEAD')return response;
   const before=await response.text();let after=before;
-  if(isSitemap)after=completeSitemap(before,await catalogue(),metadata);
+  if(isAnalytics)after=repairAnalytics(before);
+  else if(isSitemap)after=completeSitemap(before,await catalogue(),metadata);
   else if(isLlms&&!before.includes('## Public food and movement libraries'))after=before.trimEnd()+'\n\n'+LLMS_BLOCK;
   else if(isHtml)after=enhancePublicHtml(before,path,metadata[path]);
   const headers=new Headers(response.headers);

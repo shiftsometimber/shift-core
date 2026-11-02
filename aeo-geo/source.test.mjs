@@ -4,6 +4,7 @@ import {recipeProjection,exerciseProjection,safeImage,finite} from './projection
 import {recipeSchema,enhancePublicHtml,isPrivatePath} from './schema.mjs';
 import {indexPage,detail} from './content.mjs';
 import {withAeoGeo,ROBOTS,completeSitemap} from './delivery.mjs';
+import {safeAiReferrer,repairAnalytics} from './analytics.mjs';
 const base='https://shiftsometimber.co.uk',shell={header:'<header>Shared header</header>',footer:'<footer>Shared footer</footer>'};
 const date='2026-11-02T08:00:00Z';
 const recipe={id:'r',title:'Egg & tomato',path:'/recipes/egg-tomato',description:'Ingredients and method.',ingredients:['100g egg','100g tomato'],method:['Cook the egg.','Serve with tomato.'],servings:1,minutes:10,prepMinutes:5,cookMinutes:5,nutrition:{kcal:150,protein_g:12,carbohydrate_g:3,fat_g:9,fibre_g:null,saturates_g:0},methodology:'Estimated nutrition.',allergens:['egg'],safety:[],storage:[],equipment:[],image:null};
@@ -74,4 +75,12 @@ test('existing organisational bylines and clinical claims are not invented',()=>
 test('existing public organisation has one consistent legal identity',()=>{
  const html='<html><head><script type="application/ld+json">'+JSON.stringify({'@type':'Organization','@id':base+'/#organization',name:'Other name'})+'</script></head><main><h1>Page</h1></main></html>';
  const next=enhancePublicHtml(html,'/about');assert(!next.includes('Other name'));assert(next.includes('17393135'));assert(next.includes('"legalName":"Shift Some Timber Ltd"'));assert.equal(next.split('"@id":"'+base+'/#organization","name":').length,2);
+});
+test('AI measurement recognises only the named HTTPS origins and never the private URL',()=>{
+ for(const host of ['chat.openai.com','chatgpt.com','perplexity.ai','gemini.google.com','copilot.microsoft.com'])assert.equal(safeAiReferrer('https://'+host+'/private-conversation?health=PRIVATE#secret'),'https://'+host+'/');
+ for(const url of ['https://chatgpt.com.attacker.example/','http://chatgpt.com/private','https://unknown.example/','data:text/html,secret','https://shiftsometimber.co.uk/member/dashboard'])assert.equal(safeAiReferrer(url),'');
+});
+test('the existing consent, private-page suppression and tag-manager guards survive the referrer repair',()=>{
+ const script="if(!allowed||loaded)return;window.gtag('set',{page_location:location.origin+path,page_referrer:'',allow_google_signals:false});";
+ const patched=repairAnalytics(script);assert(patched.startsWith('if(!allowed||loaded)return;'));assert(patched.includes('page_location:location.origin+path'));assert(patched.includes('allow_google_signals:false'));assert(!patched.includes('page_referrer:document.referrer'));assert.equal(repairAnalytics('different source'),'different source');
 });

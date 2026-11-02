@@ -45,6 +45,18 @@ for(const row of eligible){
 const recipes=[...unique.values()].sort((a,b)=>a.title.localeCompare(b.title,'en-GB'));
 const exercises=exerciseProjection(fit.rows).map(e=>({...e,path:'/exercises/'+slug(e.id),description:e.title+': written movement steps, equipment and example doses. General information to help you choose an appropriate starting point.'})).sort((a,b)=>a.title.localeCompare(b.title,'en-GB'));
 assert.equal(exercises.length,300,'Do not silently drop canonical movement instructions');
+const unavailableVisuals=[];
+if(!process.env.AEO_FIXTURE){
+ let cursor=0;
+ await Promise.all(Array.from({length:8},async()=>{
+  while(cursor<exercises.length){
+   const item=exercises[cursor++];if(!item.image)continue;
+   try{const response=await fetch(item.image,{method:'HEAD',signal:AbortSignal.timeout(20000)});if(response.status!==200||!response.headers.get('Content-Type')?.startsWith('image/'))throw Error('Image not publicly available');}
+   catch{unavailableVisuals.push({path:item.path,image:item.image});item.image=null;}
+  }
+ }));
+}
+writeFileSync(directory+'/unavailable-visuals.json',JSON.stringify(unavailableVisuals,null,2));
 const publishedAt=new Date().toISOString();
 const data={publishedAt,recipes,exercises,aliases:alias};
 const json=JSON.stringify(data),packed=gzipSync(json,{level:9});
@@ -53,5 +65,5 @@ writeFileSync(directory+'/data.mjs','const packed='+JSON.stringify(packed.toStri
 const linkedFooter=publicFooter.replace('<h2>Explore</h2>','<h2>Explore</h2><a href="/recipes">Recipes</a><a href="/exercises">Exercises</a>');
 writeFileSync(directory+'/shell.mjs','export const header='+JSON.stringify(publicHeader+publicDrawer+'<div class="drawer-backdrop" hidden></div>')+';\nexport const footer='+JSON.stringify(linkedFooter)+';\n');
 writeFileSync(directory+'/public-urls.csv','type,url\n'+[...recipes.map(r=>['recipe',r.path]),...exercises.map(r=>['exercise',r.path])].map(([type,path])=>type+',https://shiftsometimber.co.uk'+path).join('\n')+'\n');
-const proof={at:publishedAt,source:process.env.GITHUB_SHA,readOnlyQueries:calls,memberTablesRead:0,databaseWrites:0,governedRecipes:grub.rows.length,eligibleRecipes:eligible.length,excludedRecipes:grub.rows.length-eligible.length,duplicateRecipes:eligible.length-recipes.length-incomplete,incompleteRecipes:incomplete,publicRecipes:recipes.length,recipesWithImages:recipes.filter(r=>r.image).length,governedExerciseVariants:fit.rows.length,publicExercises:exercises.length,uncompressedBytes:Buffer.byteLength(json),compressedBytes:packed.length,projectionSHA256:hash(data),independentClinicalReviewClaimed:false};
+const proof={at:publishedAt,source:process.env.GITHUB_SHA,readOnlyQueries:calls,memberTablesRead:0,databaseWrites:0,governedRecipes:grub.rows.length,eligibleRecipes:eligible.length,excludedRecipes:grub.rows.length-eligible.length,duplicateRecipes:eligible.length-recipes.length-incomplete,incompleteRecipes:incomplete,publicRecipes:recipes.length,recipesWithImages:recipes.filter(r=>r.image).length,governedExerciseVariants:fit.rows.length,publicExercises:exercises.length,unavailableExerciseVisuals:unavailableVisuals.length,uncompressedBytes:Buffer.byteLength(json),compressedBytes:packed.length,projectionSHA256:hash(data),independentClinicalReviewClaimed:false};
 writeFileSync(directory+'/catalogue-proof.json',JSON.stringify(proof,null,2));console.log(JSON.stringify(proof));

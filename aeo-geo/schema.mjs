@@ -53,7 +53,7 @@ export function enhancePublicHtml(html,path,metadata={}){
     if(Array.isArray(value))return value.map(visit);
     if(!value||typeof value!=='object')return value;
     const n={...value},types=[n['@type']].flat();
-    if(types.includes('Organization')&&n['@id']===ORIGIN+'/#organization'){hasOrg=true;return {...n,...ORGANIZATION};}
+    if(types.includes('Organization')&&(n['@id']===ORIGIN+'/#organization'||[ORIGIN,ORIGIN+'/'].includes(n.url)&&/^(?:Shift Some Timber|Shift Some Timber Ltd)$/i.test(n.name||''))){hasOrg=true;return {...n,...ORGANIZATION};}
     if(types.includes('WebSite'))hasWebsite=true;
     if(types.includes('BreadcrumbList'))hasBreadcrumb=true;
     if(types.includes('FAQPage'))hasFaq=true;
