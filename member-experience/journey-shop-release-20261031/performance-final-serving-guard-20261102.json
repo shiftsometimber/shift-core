@@ -1,0 +1,41 @@
+{
+  "kind": "FINAL_READ_ONLY_SERVING_GUARD",
+  "observedAt": "2026-11-02T21:09:46.709Z",
+  "managedCheckPid": 58036,
+  "exitCode": 0,
+  "timeout": false,
+  "elapsedSeconds": 8.54,
+  "verified": true,
+  "checks": [
+    "Owner deployment IDs",
+    "Dependent deployment IDs",
+    "Zone routes",
+    "Owner schedules"
+  ],
+  "productionAnchors": [
+    {
+      "name": "shift-core",
+      "version": "e6ab12fe-b178-450c-8a1b-9ed909f1d5de",
+      "deployment": "554b415a-87ea-4159-b76e-3b7b00059ee9",
+      "percentage": 100
+    },
+    {
+      "name": "shift-programme-member-20261023",
+      "version": "c9771e70-bde3-4013-92df-f0698155caca",
+      "deployment": "36ebd3f3-fdce-4a2c-852c-86c901a20ff5",
+      "percentage": 100
+    },
+    {
+      "name": "shift-hq-member-comms-20261023",
+      "version": "727fe8d9-c51d-4057-b013-f7ed9da36fb9",
+      "deployment": "e8a7db9d-f1bd-41c1-995b-6d8247c02cf1",
+      "percentage": 100
+    }
+  ],
+  "supportAnchor": {
+    "version": "6a027bed-24f9-4727-aae8-ed45e8f89eab",
+    "deployment": "dc6492ed-3359-4ed4-8fc4-b279b92a5cd1",
+    "percentage": 100
+  },
+  "noActivePerformanceCheckAfter": true
+}
