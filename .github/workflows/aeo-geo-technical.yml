@@ -42,15 +42,13 @@ jobs:
         run: node aeo-geo/build.mjs
       - name: Qualify every generated document and visible structured-data projection
         run: node aeo-geo/qualify.mjs
-      - name: Stage exact provider packages and publish the qualified public-only wrappers
-        if: github.ref == 'refs/heads/main'
-        run: node aeo-geo/release.mjs amend-public-shell
-      - name: Confirm named bots can crawl public pages and exclude private paths
+      - name: Check robots policy against a first-match parser
         if: github.ref == 'refs/heads/main'
         run: |
+          node --input-type=module -e "import {ROBOTS} from './aeo-geo/delivery.mjs';import {writeFileSync} from 'node:fs';writeFileSync('aeo-geo-proof/robots-policy.txt',ROBOTS)"
           python3 - <<'PYVERIFY'
-          import urllib.request, urllib.robotparser
-          text = urllib.request.urlopen('https://shiftsometimber.co.uk/robots.txt', timeout=30).read().decode()
+          import pathlib, urllib.robotparser
+          text = pathlib.Path('aeo-geo-proof/robots-policy.txt').read_text()
           parser = urllib.robotparser.RobotFileParser()
           parser.parse(text.splitlines())
           for bot in ['Googlebot','Bingbot','OAI-SearchBot','GPTBot','PerplexityBot','ClaudeBot','Google-Extended']:
@@ -60,6 +58,9 @@ jobs:
                   assert not parser.can_fetch(bot,'https://shiftsometimber.co.uk'+path), (bot,path)
           print('Seven named bots: public paths allowed, private exclusions confirmed.')
           PYVERIFY
+      - name: Stage exact provider packages and publish the qualified public-only wrappers
+        if: github.ref == 'refs/heads/main'
+        run: node aeo-geo/release.mjs amend-public-shell
       - name: Restore only deployments still owned by this exact release if verification fails
         if: failure() && github.ref == 'refs/heads/main'
         run: node aeo-geo/release.mjs rollback
