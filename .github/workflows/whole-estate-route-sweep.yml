@@ -11,6 +11,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
+      - name: Verify exact asset URLs and review-only recipe preparation
+        run: node --test tests/whole-estate-query-preservation.test.mjs tests/recipe-family-pilot.test.mjs
       - name: Whole-estate production routes, links and blank-page sweep
         env:
           SHIFT_SWEEP_MAX: '2000'
