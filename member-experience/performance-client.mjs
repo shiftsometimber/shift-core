@@ -2,7 +2,7 @@
 export function memberPerformanceClient(options){
 'use strict';options=options||{};
 if(window.__mtPerformance)return;window.__mtPerformance=true;
-const originalFetch=window.fetch.bind(window),reads=new Map(),pendingReads=new Set(),identityOrigins=new Set(),originIdentities=new Map();
+const originalFetch=window.fetch.bind(window),reads=new Map(),apiReads=new Map(),pendingReads=new Set(),identityOrigins=new Set(),originIdentities=new Map();
 let version=0,identity=null,lastOwner=null,identityAt=0,inflight=null,controller=null;
 const authorisedOrigin=u=>u.origin===location.origin;
 const firstParty=u=>[location.origin,'https://api.shiftsometimber.co.uk','https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk'].includes(u.origin);
@@ -11,7 +11,7 @@ let parentApp;try{if(parent!==window&&parent.location.origin===location.origin)p
 if(window.SST_API_BASE==='null')window.SST_API_BASE=location.origin;
 const channel=typeof BroadcastChannel==='function'?new BroadcastChannel('my-timber-session-invalidated'):null;
 function wipe(reason,broadcast=false){
- ++version;identity=null;identityAt=0;originIdentities.clear();controller?.abort();inflight=null;if(reason!=='background'){reads.clear();lastOwner=null;}
+ ++version;identity=null;identityAt=0;originIdentities.clear();apiReads.clear();controller?.abort();inflight=null;if(reason!=='background'){reads.clear();lastOwner=null;}
  document.dispatchEvent(new CustomEvent('mt:identity-invalidated',{detail:{reason}}));
  if(broadcast)channel?.postMessage({invalidate:true});
 }
@@ -51,6 +51,15 @@ async function verifiedOrigin(origin){
 if(!parentApp)channel?.addEventListener('message',()=>wipe('another-window'));
 const identityPath=u=>authorisedOrigin(u)&&u.pathname==='/v1/me';
 window.MT_MEMBER_IDENTITY=verified;
+function readRequest(input,init,u,method){
+ const allowed=new Set(['method','credentials','cache','headers']);
+ if(!u||!firstParty(u)||!u.pathname.startsWith('/v1/')||method!=='GET'||input instanceof Request||Object.keys(init||{}).some(k=>!allowed.has(k)))return originalFetch(input,init);
+ const epoch=version,key=JSON.stringify([epoch,u.href,init?.credentials||'same-origin',init?.cache||'default',[...new Headers(init?.headers)].sort(([a],[b])=>a.localeCompare(b))]);
+ let job=apiReads.get(key);
+ if(!job){job=originalFetch(input,init).finally(()=>{if(apiReads.get(key)===job)apiReads.delete(key);});apiReads.set(key,job);}
+ return job.then(r=>{if(epoch!==version)throw Error('Account changed');return r.clone();});
+}
+
 window.fetch=async function(input,init){
  const u=endpoint(input),method=(init?.method||(input instanceof Request?input.method:'GET')).toUpperCase();
  if(u&&firstParty(u)&&u.pathname==='/v1/me'&&method==='GET'){
@@ -60,7 +69,7 @@ window.fetch=async function(input,init){
  const tracked=u&&firstParty(u)&&u.pathname.startsWith('/v1/')&&u.pathname!=='/v1/me'&&method==='GET';
  let release;if(tracked){const job=new Promise(r=>release=r);pendingReads.add(job);job.finally(()=>pendingReads.delete(job));}
  try{
- const r=await originalFetch(input,init);
+ const r=await readRequest(input,init,u,method);
  if(u&&firstParty(u)&&u.pathname.startsWith('/v1/')){
   if(u.pathname==='/v1/me'&&r.ok){const account=await r.clone().json(),proof=await verified();if(String(account?.user?.id)!==String(proof.user.id)){(parentApp?.invalidate||wipe)('identity-origin-mismatch',true);throw Error('Account changed');}identityOrigins.add(u.origin);}
   if(r.status===401){(parentApp?.invalidate||wipe)('api-session-expired',true);}

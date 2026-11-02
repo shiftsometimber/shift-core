@@ -4,7 +4,7 @@ function memberPerformanceClient(options) {
   options = options || {};
   if (window.__mtPerformance) return;
   window.__mtPerformance = true;
-  const originalFetch = window.fetch.bind(window), reads = /* @__PURE__ */ new Map(), pendingReads = /* @__PURE__ */ new Set(), identityOrigins = /* @__PURE__ */ new Set(), originIdentities = /* @__PURE__ */ new Map();
+  const originalFetch = window.fetch.bind(window), reads = /* @__PURE__ */ new Map(), apiReads = /* @__PURE__ */ new Map(), pendingReads = /* @__PURE__ */ new Set(), identityOrigins = /* @__PURE__ */ new Set(), originIdentities = /* @__PURE__ */ new Map();
   let version = 0, identity = null, lastOwner = null, identityAt = 0, inflight = null, controller = null;
   const authorisedOrigin = (u) => u.origin === location.origin;
   const firstParty = (u) => [location.origin, "https://api.shiftsometimber.co.uk", "https://shiftsometimber.co.uk", "https://www.shiftsometimber.co.uk"].includes(u.origin);
@@ -27,6 +27,7 @@ function memberPerformanceClient(options) {
     identity = null;
     identityAt = 0;
     originIdentities.clear();
+    apiReads.clear();
     controller?.abort();
     inflight = null;
     if (reason !== "background") {
@@ -120,6 +121,22 @@ function memberPerformanceClient(options) {
   if (!parentApp) channel?.addEventListener("message", () => wipe("another-window"));
   const identityPath = (u) => authorisedOrigin(u) && u.pathname === "/v1/me";
   window.MT_MEMBER_IDENTITY = verified;
+  function readRequest(input, init, u, method) {
+    const allowed = /* @__PURE__ */ new Set(["method", "credentials", "cache", "headers"]);
+    if (!u || !firstParty(u) || !u.pathname.startsWith("/v1/") || method !== "GET" || input instanceof Request || Object.keys(init || {}).some((k) => !allowed.has(k))) return originalFetch(input, init);
+    const epoch = version, key2 = JSON.stringify([epoch, u.href, init?.credentials || "same-origin", init?.cache || "default", [...new Headers(init?.headers)].sort(([a], [b]) => a.localeCompare(b))]);
+    let job = apiReads.get(key2);
+    if (!job) {
+      job = originalFetch(input, init).finally(() => {
+        if (apiReads.get(key2) === job) apiReads.delete(key2);
+      });
+      apiReads.set(key2, job);
+    }
+    return job.then((r) => {
+      if (epoch !== version) throw Error("Account changed");
+      return r.clone();
+    });
+  }
   window.fetch = async function(input, init) {
     const u = endpoint(input), method = (init?.method || (input instanceof Request ? input.method : "GET")).toUpperCase();
     if (u && firstParty(u) && u.pathname === "/v1/me" && method === "GET") {
@@ -137,7 +154,7 @@ function memberPerformanceClient(options) {
       job.finally(() => pendingReads.delete(job));
     }
     try {
-      const r = await originalFetch(input, init);
+      const r = await readRequest(input, init, u, method);
       if (u && firstParty(u) && u.pathname.startsWith("/v1/")) {
         if (u.pathname === "/v1/me" && r.ok) {
           const account = await r.clone().json(), proof = await verified();

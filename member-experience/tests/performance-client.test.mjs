@@ -56,3 +56,18 @@ test('parallel origin checks fail closed on an API account mismatch', {timeout:2
  try{await new Promise(r=>setTimeout(r,20));assert.equal(settled,false);releaseParent();await identity;assert.equal((await remote).status,401);assert.equal(h.document.body.dataset.memberSession,'signed-out');assert(h.state.clears>0);assert.equal(h.state.reloads,0);}
  finally{releaseParent();await Promise.allSettled([identity,remote]);}
 });
+
+
+test('only simultaneous equivalent GETs share a request, and each caller receives its own body',async()=>{
+ const h=harness();const replies=await Promise.all([h.window.fetch('/v1/profile'),h.window.fetch('/v1/profile')]);assert.equal(h.events.filter(x=>x==='/v1/profile').length,1);
+ assert.equal((await replies[0].json()).user.id,1);assert.equal((await replies[1].json()).user.id,1);
+ await h.window.fetch('/v1/profile');assert.equal(h.events.filter(x=>x==='/v1/profile').length,2,'Completed private responses are never reused');
+});
+test('different headers, caller abort signals and writes never share a private request',async()=>{
+ const h=harness();await Promise.all([h.window.fetch('/v1/profile',{headers:{'X-Test':'one'}}),h.window.fetch('/v1/profile',{headers:{'X-Test':'two'}})]);assert.equal(h.events.filter(x=>x==='/v1/profile').length,2);
+ const a=new AbortController(),b=new AbortController();await Promise.all([h.window.fetch('/v1/profile',{signal:a.signal}),h.window.fetch('/v1/profile',{signal:b.signal})]);assert.equal(h.events.filter(x=>x==='/v1/profile').length,4);
+ await Promise.all([h.window.fetch('/v1/profile',{method:'POST'}),h.window.fetch('/v1/profile',{method:'POST'})]);assert.equal(h.events.filter(x=>x==='/v1/profile').length,6);
+});
+test('an in-flight shared read cannot return an old private body after account invalidation', {timeout:2000},async()=>{
+ const h=harness();let release;h.state.gates=new Map([['/v1/profile',new Promise(r=>release=r)]]);const old=Promise.allSettled([h.window.fetch('/v1/profile'),h.window.fetch('/v1/profile')]);await new Promise(r=>setTimeout(r,10));h.window.MT_PERFORMANCE.invalidate('account-event');h.state.id=2;release();assert((await old).every(r=>r.status==='rejected'));h.state.gates.clear();assert.equal((await (await h.window.fetch('/v1/profile')).json()).user.id,2);
+});

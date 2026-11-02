@@ -200,6 +200,13 @@ for(let cycle=0;cycle<(safeSlice?1:3);cycle++)for(const tab of ['journey','shop'
  const m={kind:cycle===0?'first-navigation':'repeat-navigation',cycle,tab,usableMs:actual.profile?.usableMs??Math.round(performance.now()-t),ackMs:actual.profile?.ackMs??actual.metrics?.ackMs??null,documentRequests:calls.slice(beforeRequests).filter(c=>!c.path.startsWith('/v1/')&&c.path.startsWith('/member/')&&!/\.(?:m?js|css)$/.test(c.path)).length};measurements.push(m);console.log('TAP',JSON.stringify(m));
 }
 if(!before){
+ const previousDelay=state.delay;state.delay=1000;
+ try{
+  await page.goto(origin+paths.fit,{waitUntil:'domcontentloaded'});await usable('fit');await page.locator('#mtShopChrome [data-mt-shop-tab=support]').click();
+  const overlay=await page.evaluate(()=>{const n=document.getElementById('mtNavigationStatus'),s=n&&getComputedStyle(n),r=n&&n.getBoundingClientRect();return {text:n?.textContent,pending:n?.dataset.mtPending,hidden:n?.hidden,width:r?.width,height:r?.height,clip:s?.clipPath,overflow:s?.overflow};});
+  assert.equal(overlay.pending,'1');assert.equal(overlay.hidden,false);assert(overlay.width<=1&&overlay.height<=1&&overlay.clip==='inset(50%)'&&overlay.overflow==='hidden','Pending navigation must not overlay the previous screen');await usable('support');
+  results.push({name:'Fit to Support has no visible Opening overlay under slow identity/data',passed:true,overlay});console.log('PENDING_NAVIGATION_OVERLAY_HIDDEN',JSON.stringify(overlay));
+ }finally{state.delay=previousDelay;}
  await checkJourney({page,state,requests:calls});console.log('JOURNEY_SIX_TYPES_EDIT_DELETE_SNAPSHOT_GUIDE_PASSED');
  await page.goto(origin+paths.today,{waitUntil:'domcontentloaded'});await usable('today');await page.locator('#mtShopChrome [data-mt-shop-tab=journey]').click();await usable('journey');
  const frame=scope(),scrollBefore=await frame.evaluate(()=>{scrollTo(0,Math.min(350,document.documentElement.scrollHeight-innerHeight));return scrollY;});await page.locator('#mtShopChrome [data-mt-shop-tab=shop]').click();await usable('shop');await page.locator('#mtShopChrome [data-mt-shop-tab=journey]').click();await usable('journey');assert(Math.abs(await frame.evaluate(()=>scrollY)-scrollBefore)<2,'Visited screen scroll position must survive switching tabs');console.log('SCROLL_RESTORED',scrollBefore);await frame.locator('[data-tj-add=win]').click();await frame.locator('[name=text]').fill('Retained unsaved synthetic draft');
