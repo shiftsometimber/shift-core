@@ -1,0 +1,53 @@
+{
+  "at": "2026-11-02T21:22:56.916Z",
+  "kind": "PRECOMPILED_DOCUMENT_FRESH_SOURCE_LEASE",
+  "productionMutations": 0,
+  "owners": [
+    {
+      "name": "shift-core",
+      "deployment": "554b415a-87ea-4159-b76e-3b7b00059ee9",
+      "version": "e6ab12fe-b178-450c-8a1b-9ed909f1d5de",
+      "percentage": 100,
+      "flags": {
+        "MEMBER_EXPERIENCE_V1_ENABLED": "true"
+      },
+      "rolloutBinding": {
+        "type": "secret_text",
+        "valueRead": false
+      }
+    },
+    {
+      "name": "shift-programme-member-20261023",
+      "deployment": "36ebd3f3-fdce-4a2c-852c-86c901a20ff5",
+      "version": "c9771e70-bde3-4013-92df-f0698155caca",
+      "percentage": 100,
+      "flags": {
+        "MEMBER_EXPERIENCE_V1_ENABLED": "true"
+      },
+      "rolloutBinding": {
+        "type": "secret_text",
+        "valueRead": false
+      }
+    },
+    {
+      "name": "shift-hq-member-comms-20261023",
+      "deployment": "e8a7db9d-f1bd-41c1-995b-6d8247c02cf1",
+      "version": "727fe8d9-c51d-4057-b013-f7ed9da36fb9",
+      "percentage": 100,
+      "flags": {},
+      "rolloutBinding": {
+        "type": "secret_text",
+        "valueRead": false
+      }
+    },
+    {
+      "name": "shift-mytimber-support-20261023",
+      "deployment": "dc6492ed-3359-4ed4-8fc4-b279b92a5cd1",
+      "version": "6a027bed-24f9-4727-aae8-ed45e8f89eab",
+      "percentage": 100,
+      "flags": {},
+      "rolloutBinding": null
+    }
+  ],
+  "verified": true
+}
