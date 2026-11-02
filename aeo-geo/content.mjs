@@ -16,9 +16,16 @@ export function recipeSearchMetadata(item){
  let candidate=full;
  if(full.length>70&&full.includes(' — ')){
   const split=full.indexOf(' — '),base=full.slice(0,split).replace(/\s+to share$/i,''),parts=full.slice(split+3).split(',').map(v=>v.trim()).filter(Boolean);
-  const last=parts.at(-1)||'',variant=/^(?:chopped|diced|sliced|grated|ground)$/i.test(last)&&parts.length>1?parts.slice(-2).join(', '):last;
-  const concise=base+' — '+variant;
-  if(variant&&concise.length<=70)candidate=concise;
+  // Keep a distinguishing ingredient at the end, even when the original
+  // dish name itself needs shortening. Otherwise hundreds of long variants
+  // risk receiving the same truncated metadata.
+  const last=parts.at(-1)||'',pair=parts.slice(-2).join(', '),variant=pair.length<=37?pair:last;
+  const maxBase=70-3-variant.length;
+  if(variant&&maxBase>=20){
+   const shorter=base.length>maxBase?base.slice(0,maxBase).replace(/\s+\S*$/,''):base;
+   const head=shorter.replace(/[\s,:;—-]+$/,'');
+   if(head)candidate=head+' — '+variant;
+  }
  }
  const metaTitle=shortAtWord(candidate,70);
  const name=metaTitle.replace(/…$/,'');
