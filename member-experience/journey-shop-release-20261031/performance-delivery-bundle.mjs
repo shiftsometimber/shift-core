@@ -65,6 +65,7 @@ function memberPerformanceClient(options) {
     if (inflight) return inflight;
     if (!force && identity && Date.now() - identityAt < 15e3) return identity;
     const epoch = version;
+    originIdentities.clear();
     controller = new AbortController();
     const job = (async () => {
       const timer = setTimeout(() => controller?.abort(), 12e3);
@@ -78,7 +79,6 @@ function memberPerformanceClient(options) {
           wipe("account-switch");
           throw Error("Account changed");
         }
-        originIdentities.clear();
         identity = data;
         lastOwner = String(data.user.id);
         identityAt = Date.now();
@@ -98,12 +98,12 @@ function memberPerformanceClient(options) {
     if (!firstParty(new URL(origin)) || origin === location.origin) throw Error("Unrecognised identity origin");
     identityOrigins.add(origin);
     if (parentApp?.identityOrigin) return parentApp.identityOrigin(origin);
-    const proof = await verified(), epoch = version, existing = originIdentities.get(origin);
+    const proof = verified(), epoch = version, existing = originIdentities.get(origin);
     if (existing && existing.epoch === epoch && Date.now() - existing.at < 15e3) return existing.promise;
     const job = (async () => {
-      const r = await originalFetch(origin + "/v1/me", { credentials: "include", cache: "no-store", signal: AbortSignal.timeout(12e3) }), data = await r.json();
+      const [account, r] = await Promise.all([proof, originalFetch(origin + "/v1/me", { credentials: "include", cache: "no-store", signal: AbortSignal.timeout(12e3) })]), data = await r.json();
       if (epoch !== version) throw Error("Account changed");
-      if (!r.ok || String(data?.user?.id) !== String(proof.user.id)) {
+      if (!r.ok || String(data?.user?.id) !== String(account.user.id)) {
         (parentApp?.invalidate || wipe)("identity-origin-mismatch", true);
         throw Error("Account changed");
       }
@@ -295,7 +295,7 @@ function memberPerformanceClient(options) {
       else a.removeAttribute("aria-current");
     });
   }
-  function status(text) {
+  function status(text, pending = false) {
     let n = document.getElementById("mtNavigationStatus");
     if (!n) {
       n = document.createElement("p");
@@ -305,6 +305,8 @@ function memberPerformanceClient(options) {
     }
     n.textContent = text;
     n.hidden = !text;
+    if (pending) n.dataset.mtPending = "1";
+    else delete n.dataset.mtPending;
   }
   function lock() {
     document.documentElement.dataset.mtScreenLocked = "1";
@@ -367,7 +369,7 @@ function memberPerformanceClient(options) {
     const u = endpoint(href);
     if (!u || !screenPath(u)) return false;
     const ticket = ++navigation, t = performance.now(), row = { path: u.pathname + u.search, ackMs: 0, warm: false };
-    status("Opening " + ({ today: "Today", journey: "Journey", shop: "Shop", grub: "Grub", fit: "Fit", support: "Support", more: "More" }[tab(u)] || "My Timber") + "\u2026");
+    status("Opening " + ({ today: "Today", journey: "Journey", shop: "Shop", grub: "Grub", fit: "Fit", support: "Support", more: "More" }[tab(u)] || "My Timber") + "\u2026", true);
     document.querySelector("#mtShopChrome")?.setAttribute("aria-busy", "true");
     row.ackMs = Math.round(performance.now() - t);
     document.dispatchEvent(new CustomEvent("mt:screen-start", { detail: { row, started: t } }));
@@ -541,7 +543,7 @@ function memberPerformanceClient(options) {
   else observe();
 }
 var performanceRuntime = "(" + memberPerformanceClient.toString() + ")();";
-var performanceStyles = "\nhtml[data-mt-contained-screen] :is(#mtShopChrome,#mtShopPending,#mtShopLoading){visibility:hidden!important;pointer-events:none!important}\nhtml[data-mt-contained-screen] :is(#myTimberApp,.my-timber-app-footer,#pwaReminderFirstRun,#pwaReminderSettings){display:none!important}\nhtml[data-mt-contained-screen] :is(header.site-header,#sst-header-c,#sst-footer-c,.site-footer,#todayBrand,.tj-brand,.mt-support-brand,#mtSixNav,#appBottomNav,nav.sst-member-tabs){display:none!important}\nhtml[data-mt-screen-locked] main,html[data-mt-screen-locked] .mt-retained-screen{visibility:hidden!important;pointer-events:none!important}\nhtml[data-mt-overlay-screen] body>main{visibility:hidden!important;pointer-events:none!important}\n.mt-retained-screen{position:fixed!important;inset:0!important;width:100%!important;height:100dvh!important;border:0!important;margin:0!important;background:#050505!important;z-index:2000!important}\n#mtShopChrome{position:relative;z-index:2200!important}\n#mtNavigationStatus{position:fixed;top:calc(108px + env(safe-area-inset-top));left:0;right:0;margin:0;padding:10px 16px;z-index:2150;background:#050505;color:#E7E3DA;font:14px/1.4 Arial,sans-serif}\n#mtNavigationStatus[hidden]{display:none!important}\n#mtShopChrome[aria-busy=true] a:active{background:#707762}\n";
+var performanceStyles = "\nhtml[data-mt-contained-screen] :is(#mtShopChrome,#mtShopPending,#mtShopLoading){visibility:hidden!important;pointer-events:none!important}\nhtml[data-mt-contained-screen] :is(#myTimberApp,.my-timber-app-footer,#pwaReminderFirstRun,#pwaReminderSettings){display:none!important}\nhtml[data-mt-contained-screen] :is(header.site-header,#sst-header-c,#sst-footer-c,.site-footer,#todayBrand,.tj-brand,.mt-support-brand,#mtSixNav,#appBottomNav,nav.sst-member-tabs){display:none!important}\nhtml[data-mt-screen-locked] main,html[data-mt-screen-locked] .mt-retained-screen{visibility:hidden!important;pointer-events:none!important}\nhtml[data-mt-overlay-screen] body>main{visibility:hidden!important;pointer-events:none!important}\n.mt-retained-screen{position:fixed!important;inset:0!important;width:100%!important;height:100dvh!important;border:0!important;margin:0!important;background:#050505!important;z-index:2000!important}\n#mtShopChrome{position:relative;z-index:2200!important}\n#mtNavigationStatus{position:fixed;top:calc(108px + env(safe-area-inset-top));left:0;right:0;margin:0;padding:10px 16px;z-index:2150;background:#050505;color:#E7E3DA;font:14px/1.4 Arial,sans-serif}\n#mtNavigationStatus[data-mt-pending]{top:0;left:0;right:auto;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}\n#mtNavigationStatus[hidden]{display:none!important}\n#mtShopChrome[aria-busy=true] a:active{background:#707762}\n";
 var identityOnlyRuntime = "(" + memberPerformanceClient.toString() + ")({retain:false});";
 
 // scoped-source/member-experience/performance-monitor.mjs

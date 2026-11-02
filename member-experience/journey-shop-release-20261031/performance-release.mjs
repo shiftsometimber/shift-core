@@ -23,7 +23,7 @@ async function stage(o,i){
  await guard();if(o.versionId){await verify(o);return;}assert(!o.uploadIntent,'Unknown upload outcome; inspect provider');
  const source=JSON.parse(readFileSync('performance-source.json'));assert.match(source.commit,/^[a-f0-9]{40}$/);assert.equal(source.bundleSHA256,build.bundleSHA256);
  state.source??=source.commit;assert.equal(state.source,source.commit);
- const v=await version(o.name,o.previousVersion);await preserve(o,v);assert.deepEqual(hashes(v.modules),o.baselineModuleHashes);
+ const v=await version(o.name,o.sourceVersion||o.previousVersion);await preserve(o,v);assert.deepEqual(hashes(v.modules),o.baselineModuleHashes);
  const modules=v.modules.map(m=>({...m})),kind=['core','programme','documents'][i];
  const add=(name,body)=>{assert(!modules.some(m=>m.name===prefix+name),'Do not layer another performance wrapper');modules.push({name:prefix+name,content_type:'application/javascript+module',content_base64:Buffer.from(body).toString('base64')});};
  const bundle=readFileSync('performance-delivery-bundle.mjs'),assets=readFileSync('performance-assets.mjs');

@@ -3,7 +3,7 @@ function harness(){
  const listeners=new Map(),calls=[],events=[],state={id:1,apiId:1,expired:false,release:null,hold:false,reloads:0,clears:0};
  const document={readyState:'loading',hidden:false,body:{dataset:{memberSession:'pending'}},documentElement:{dataset:{},hasAttribute:()=>false,toggleAttribute(){}},addEventListener:(name,fn)=>{const list=listeners.get(name)||[];list.push(fn);listeners.set(name,list)},dispatchEvent:e=>{for(const fn of listeners.get(e.type)||[])fn(e);return true},querySelectorAll:selector=>selector==='main'?[{replaceChildren:()=>state.clears++}]:[],getElementById:()=>null,querySelector:()=>null};
  const location={origin:'https://shiftsometimber.co.uk',href:'https://shiftsometimber.co.uk/member/dashboard',reload:()=>state.reloads++};
- const network=async(input)=>{const u=new URL(input instanceof Request?input.url:input,location.href);calls.push(u.origin);events.push(u.pathname);const gate=state.gates?.get(u.pathname);if(gate)await gate;const id=u.origin===location.origin?state.id:state.apiId;if(u.origin!==location.origin&&state.hold)await new Promise(r=>state.release=r);await new Promise(r=>setTimeout(r,5));return Response.json(state.expired?{error:'expired'}:{user:{id,source:u.origin}},{status:state.expired?401:200});};
+ const network=async(input)=>{const u=new URL(input instanceof Request?input.url:input,location.href);calls.push(u.origin);events.push(u.pathname);const gate=state.gates?.get(u.origin+u.pathname)||state.gates?.get(u.pathname);if(gate)await gate;const id=u.origin===location.origin?state.id:state.apiId;if(u.origin!==location.origin&&state.hold)await new Promise(r=>state.release=r);await new Promise(r=>setTimeout(r,5));return Response.json(state.expired?{error:'expired'}:{user:{id,source:u.origin}},{status:state.expired?401:200});};
  const window={fetch:network},context=vm.createContext({window,parent:window,document,location,Request,Response,Headers,URL,AbortController,AbortSignal,Event,CustomEvent,performance,setTimeout,clearTimeout,queueMicrotask,addEventListener(){},BroadcastChannel:class{addEventListener(){}postMessage(){}},history:{},console});window.location=location;vm.runInContext('('+memberPerformanceClient.toString()+')()',context);return{window,document,state,calls,events};
 }
 test('startup shares only freshly verified matching identities, preserving each origin response',async()=>{
@@ -40,4 +40,19 @@ test('parallel retained-data validation rejects a changed account before any old
  let releaseIdentity;h.state.gates=new Map([['/v1/me',new Promise(r=>releaseIdentity=r)]]);h.events.length=0;
  const identity=h.window.MT_MEMBER_IDENTITY(true),validation=h.window.MT_SCREEN.validate();const denied=Promise.allSettled([identity,validation]);
  while(!h.events.includes('/v1/profile'))await new Promise(r=>setTimeout(r,1));h.state.id=2;releaseIdentity();const results=await denied;assert(results.every(r=>r.status==='rejected'));assert(h.state.clears>0);
+});
+
+
+test('fresh identity checks start together across origins and both must pass before sharing', {timeout:2000}, async()=>{
+ const h=harness(),site='https://shiftsometimber.co.uk',api='https://api.shiftsometimber.co.uk';await h.window.fetch(api+'/v1/me');
+ let releaseParent,releaseOrigin;h.state.gates=new Map([[site+'/v1/me',new Promise(r=>releaseParent=r)],[api+'/v1/me',new Promise(r=>releaseOrigin=r)]]);const start=h.calls.length;
+ const identity=h.window.MT_MEMBER_IDENTITY(true);let settled=false;const remote=h.window.fetch(api+'/v1/me').finally(()=>settled=true);
+ try{await new Promise(r=>setTimeout(r,20));assert.deepEqual(h.calls.slice(start).sort(),[api,site],'Neither origin waits for the other network round trip');releaseOrigin();await new Promise(r=>setTimeout(r,15));assert.equal(settled,false,'An API identity cannot release the view before the fresh site identity');releaseParent();await identity;assert.equal((await remote).status,200);assert.equal(h.calls.length-start,2);}
+ finally{releaseOrigin();releaseParent();await Promise.allSettled([identity,remote]);}
+});
+test('parallel origin checks fail closed on an API account mismatch', {timeout:2000}, async()=>{
+ const h=harness(),site='https://shiftsometimber.co.uk',api='https://api.shiftsometimber.co.uk';await h.window.fetch(api+'/v1/me');h.document.body.dataset.memberSession='ready';h.state.apiId=2;
+ let releaseParent;h.state.gates=new Map([[site+'/v1/me',new Promise(r=>releaseParent=r)]]);const identity=h.window.MT_MEMBER_IDENTITY(true);let settled=false;const remote=h.window.fetch(api+'/v1/me').finally(()=>settled=true);
+ try{await new Promise(r=>setTimeout(r,20));assert.equal(settled,false);releaseParent();await identity;assert.equal((await remote).status,401);assert.equal(h.document.body.dataset.memberSession,'signed-out');assert(h.state.clears>0);assert.equal(h.state.reloads,0);}
+ finally{releaseParent();await Promise.allSettled([identity,remote]);}
 });
