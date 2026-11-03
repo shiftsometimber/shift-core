@@ -20,7 +20,7 @@ export function matchingRoutes(routes,url){
 export function patchKnowledgeSitemapBundle(source){
  const start=source.indexOf('async function withDynamicBabyLoveDiscovery(');
  assert(start>=0,'Serving Knowledge discovery function not identified');
- const pattern=/if\s*\(\s*row\.editorial\s*&&\s*(text\d*)\.includes\(/g;
+ const pattern=/if\s*\(\s*(?:row\.editorial|\(row\.editorial\s*\|\|\s*row\.contributor\))\s*&&\s*(text\d*)\.includes\(/g;
  const matches=[...source.matchAll(pattern)];
  assert.equal(matches.length,1,'Require one exact existing sitemap predicate');
  const match=matches[0];assert(match.index>start&&match.index-start<7000,'Predicate outside reviewed discovery function');
@@ -88,8 +88,8 @@ async function run(){
   const previous=selectedVersion,original=await version(name,previous),settings=await api('/accounts/'+account+'/workers/scripts/'+name+'/settings');
   writeFileSync(dir+'/deployment-before.json',JSON.stringify(before));writeFileSync(dir+'/provider-before.json',JSON.stringify(original));writeFileSync(dir+'/settings-before.json',JSON.stringify(settings));
   const patches=new Map();
-  if(name==='shift-core'){
-   const targets=[['worker.js',patchKnowledgeSitemapBundle,'722bc50b31fb2aeaa627441dd293be06d124eb2e1f9a7c367773b9fe40b1c020'],['aeo-geo/delivery.mjs',patchOuterSitemapSnapshot,'f459d7d72b975715a3eaf1af0333c3b3ba53f413dfc26aa532c1e7cf5a2a6195']];
+  if(name==='shift-core'||name==='shift-blog-publisher'){
+   const targets=[['worker.js',patchKnowledgeSitemapBundle,name==='shift-blog-publisher'?'b7d406c35f54a034b8fa54c264ad3d02e5279147ea96f26619698a14e8ac0961':'722bc50b31fb2aeaa627441dd293be06d124eb2e1f9a7c367773b9fe40b1c020'],['aeo-geo/delivery.mjs',patchOuterSitemapSnapshot,'f459d7d72b975715a3eaf1af0333c3b3ba53f413dfc26aa532c1e7cf5a2a6195']];
    for(const [file,apply,sha] of targets){const m=original.modules.find(m=>m.name===file);assert(m,'Reviewed native module missing: '+file);const src=Buffer.from(m.content_base64,'base64').toString();assert.equal(digest(src),sha,'Native source changed: '+file);patches.set(file,apply(src));}
   }else if(name==='shift-seo-followup-v3-20261024'){
    const m=original.modules.find(m=>m.name==='aeo-geo/delivery.mjs');assert(m);patches.set(m.name,patchOuterSitemapSnapshot(Buffer.from(m.content_base64,'base64').toString()));
@@ -124,11 +124,23 @@ async function run(){
    throw error;
   }
  }
- const core=process.argv.includes('--ticker-only')?null:await release('shift-core',patchKnowledgeSitemapBundle,{expectedVersion:'632ae7ba-ac02-4a9c-8db3-3a818cb9c80c',existingVersion:'e21cdda6-22e1-4c82-b4db-acaccfdc4f8f',verify:async()=>{
+ const core=(process.argv.includes('--ticker-only')||process.argv.includes('--sitemap-chain'))?null:await release('shift-core',patchKnowledgeSitemapBundle,{expectedVersion:'632ae7ba-ac02-4a9c-8db3-3a818cb9c80c',existingVersion:'e21cdda6-22e1-4c82-b4db-acaccfdc4f8f',verify:async()=>{
   // The exact sitemap route is owned by the SEO component. Verify the Core
   // module/configuration and public preservation here; verify delivery after both.
   assert.deepEqual(await capturePages(),beforePages,'Core changed published page content');
  }});
+ let blog=null;
+ if(process.argv.includes('--sitemap-chain')){
+  assert.equal(soleServingVersion(await active('shift-core')),'e21cdda6-22e1-4c82-b4db-acaccfdc4f8f','Verified Core moved; reconcile');
+  assert.equal(soleServingVersion(await active('shift-latest-news-ticker-20261024')),'dea18839-6db9-4649-941e-ca8c602e4ab2','Verified shared ticker moved; reconcile');
+  const data=await api('/accounts/'+account+'/d1/database/88f40aed-cb23-4372-8c94-8a73f48bc847/query',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sql:"SELECT a.id,a.slug,a.status,a.publish_at,a.updated_at,(SELECT COUNT(*) FROM babylove_receipts b WHERE b.slug=a.slug) receipts FROM knowledge_articles a WHERE a.id=47 AND a.slug='mounjaro-injection-sites'",params:[]})});
+  const row=data[0].results[0];assert(row&&row.status==='published'&&row.receipts>0,'Published guide must be in existing receipt-joined discovery');
+  assert.equal(row.publish_at,'2026-10-29T05:00:37.839Z');assert.equal(row.updated_at,'2026-11-03T14:17:37.188Z');
+  writeFileSync(proofDir+'/guide-source-row.json',JSON.stringify(data));
+  blog=await release('shift-blog-publisher',patchKnowledgeSitemapBundle,{expectedVersion:'878372a7-8346-431a-946f-55030e5e9fe1',verify:async()=>{
+   assert.deepEqual(await capturePages(),beforePages,'Blog publisher changed approved public content');
+  }});
+ }
  const seo=process.argv.includes('--ticker-only')?null:await release('shift-seo-followup-v3-20261024',patchOuterSitemapSnapshot,{expectedVersion:'0ea38c4a-e778-4733-a4d5-a9ebe84c7561',verify:async()=>{
   const after=await awaitReadOnly(async()=>{const xml=await get('/sitemap.xml');assert.equal(item(xml,loc).length,1);assert.match(item(xml,loc)[0],/<lastmod>2026-11-03<\/lastmod>/);return xml;});
   writeFileSync(proofDir+'/sitemap-after.xml',after);
@@ -138,7 +150,7 @@ async function run(){
   assert.deepEqual(await capturePages(),beforePages,'A published HTML response changed');
  }});
  const fixture=readFileSync('tests/fixtures/approved-shared-ticker-before-20261031.mjs','utf8');
- const ticker=await release('shift-latest-news-ticker-20261024',s=>patchTwoApprovedTickerLines(s,fixture),{expectedVersion:'25f226a5-018d-42f6-abf5-4bec085b9986',existingVersion:'dea18839-6db9-4649-941e-ca8c602e4ab2',verify:async patch=>{
+ const ticker=process.argv.includes('--sitemap-chain')?null:await release('shift-latest-news-ticker-20261024',s=>patchTwoApprovedTickerLines(s,fixture),{expectedVersion:'25f226a5-018d-42f6-abf5-4bec085b9986',existingVersion:'dea18839-6db9-4649-941e-ca8c602e4ab2',verify:async patch=>{
   await awaitReadOnly(async()=>{const r=await fetch(origin+'/assets/public-news-ticker-v1.js?v=public-news-20260917-r4',{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(25000)});assert.equal(r.status,200);assert.equal(await r.text(),patch.body);assert.equal(r.headers.get('X-Shift-Ticker-Release'),'shift-news-shared-v3');});
   const h=await fetch(origin+'/assets/public-news-ticker-v1.js',{method:'HEAD',signal:AbortSignal.timeout(25000)});assert.equal(h.status,200);assert.equal(await h.text(),'');
  }});
@@ -147,6 +159,6 @@ async function run(){
  const rows=ledger[0].results;assert.deepEqual(rows.map(x=>x.event_id),[1700,1701]);for(const row of rows){assert.equal(row.status,'sent');assert.equal(row.recipient,'matt@shiftsometimber.co.uk');assert.equal(row.attempts,1);assert(!row.last_error);}
  for(const row of ledger[1].results)assert.equal(row.publications,1,'Unexpected publication replay');
  console.log('NOTIFICATION_LEDGER '+JSON.stringify(ledger));
- console.log('DELIVERY_REPAIR_COMPLETE '+JSON.stringify({core,seo,ticker,mailboxReceiptVerifiedSeparately:true}));
+ console.log('DELIVERY_REPAIR_COMPLETE '+JSON.stringify({core,blog,seo,ticker,mailboxReceiptVerifiedSeparately:true}));
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href)await run();
