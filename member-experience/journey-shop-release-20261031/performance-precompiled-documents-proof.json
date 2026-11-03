@@ -1,23 +1,25 @@
 {
-  "at": "2026-11-02T21:21:26.910Z",
+  "at": "2026-11-03T13:51:28.684Z",
   "kind": "EXACT_CURRENT_MEMBER_DOCUMENT_PRECOMPILATION_PROOF",
   "productionMutations": 0,
-  "sourceBaselineSHA256": "9fd353941ca71ff520d1a9cebd51e150165b618c5bb95bec41725b6458370e29",
+  "sourceBaselineSHA256": "1cb9e43fbb0fdd448031e5b27952c7696557f43ebb3044d29042ea921001cefd",
   "sourceOwners": [
     {
       "name": "shift-core",
       "main": "aeo-geo/entry.mjs",
-      "version": "e6ab12fe-b178-450c-8a1b-9ed909f1d5de",
+      "version": "f5108264-2b56-498a-864a-635210fa0541",
       "moduleHashes": {
-        "aeo-geo/analytics.mjs": "e63dbd8d7feab9e2d1b7b2fa817e098ba36cc550cf1eab8ef47701c2a84f15ed",
+        "aeo-geo/analytics.mjs": "f07d45393dee68cbf7e29c74b7ab064fef422bdc66255cf0301d23290d634e88",
         "aeo-geo/chrome.mjs": "673cdfc9b48409d7f8a5f7d2dcb9fd2a36f3d804bd1dafd5c3508e18c754ca02",
-        "aeo-geo/content.mjs": "2402daaf7df904861a677245328f7bb316cc3a22cee82edf8b4031ba336ccef5",
+        "aeo-geo/content.mjs": "f5476c12105b188db5efae635fbd4b82e451a1567ecde33b43cd0c4a1ec0e324",
         "aeo-geo/data.mjs": "4985c260cc11862d19fc242c3d3a414461ea52285118885d1f8ecd7fc2fc6453",
-        "aeo-geo/delivery.mjs": "95734dc7e3df3efbb64b945e3e428027d84b9e0657c342f88be8f03117c405b3",
+        "aeo-geo/delivery.mjs": "f459d7d72b975715a3eaf1af0333c3b3ba53f413dfc26aa532c1e7cf5a2a6195",
         "aeo-geo/entry.mjs": "ddcd5a50e80f49db1b6ecdf884d67b83bc94b6b5f9ed02fe0fd1e20af2f77918",
+        "aeo-geo/retatrutide-evidence.mjs": "9e3376eaf14e1149696ec8a9844bc091575169f0e83998caf268ec3ea7052270",
+        "aeo-geo/retatrutide.mjs": "eb010233f02dc38ec3951c1e5fb1bcdc30b619b29097836c23a4f630f0b417cf",
         "aeo-geo/schema.mjs": "947f366bcf36adabe2ff92a1fb498001b197c9d36b6ae1aa7c9ea2912c123dea",
         "aeo-geo/shell.mjs": "114c6a1c93fd79425e330774061b2fd60abe72b61fd3f39e185ba29d83c58a43",
-        "aeo-geo/sitemap-metadata.mjs": "76fdde8a93d5074f7b8e5b19ff1dbbd8f06cb80c50249166ec3369b527f8f775",
+        "aeo-geo/sitemap-metadata.mjs": "5bb9db8a3d649afc0b81d9e569e4f4dd17017efefff1558dca1aeb065e41e3a8",
         "decision-pages-20261101/config.mjs": "9d62f08c80bd100c41121ff089e1f81adef0f5c559c36bcf85dd8ab809009b58",
         "decision-pages-20261101/entry.mjs": "b1389d00a72c975ca594462024f2ce2a55c0a5e144df73e3610aef6cd1aeed45",
         "decision-pages-20261101/graphics.mjs": "71f7e45fc06e21007481aa2d7bfc975f6a6251084730753518dcadfc30a726ef",
@@ -163,11 +165,11 @@
     {
       "name": "shift-mytimber-support-20261023",
       "main": "aeo-geo/entry.mjs",
-      "version": "6a027bed-24f9-4727-aae8-ed45e8f89eab",
+      "version": "be19dea7-d895-46bb-beae-4b02f44333ef",
       "moduleHashes": {
-        "aeo-geo/analytics.mjs": "e63dbd8d7feab9e2d1b7b2fa817e098ba36cc550cf1eab8ef47701c2a84f15ed",
+        "aeo-geo/analytics.mjs": "f07d45393dee68cbf7e29c74b7ab064fef422bdc66255cf0301d23290d634e88",
         "aeo-geo/chrome.mjs": "673cdfc9b48409d7f8a5f7d2dcb9fd2a36f3d804bd1dafd5c3508e18c754ca02",
-        "aeo-geo/content.mjs": "2402daaf7df904861a677245328f7bb316cc3a22cee82edf8b4031ba336ccef5",
+        "aeo-geo/content.mjs": "f5476c12105b188db5efae635fbd4b82e451a1567ecde33b43cd0c4a1ec0e324",
         "aeo-geo/data.mjs": "0d93459ac42f31c0b60b53e5a0681d1f3fb1e1b39a1e515ac5f8d468e03e72b8",
         "aeo-geo/delivery.mjs": "95734dc7e3df3efbb64b945e3e428027d84b9e0657c342f88be8f03117c405b3",
         "aeo-geo/entry.mjs": "d8c62ce5a0c21077ff20ad36828b1463f0db3cbb5e1201df7b8ec4307d633e45",
@@ -700,7 +702,7 @@
         "main": "member-precompiled-documents-20261102/entry.mjs",
         "addedModuleHashes": {
           "member-precompiled-documents-20261102/runtime.mjs": "f9a702d8b216606718ef200a6c869af3be16f805abc850861db1b9af8e5a8d98",
-          "member-precompiled-documents-20261102/documents.mjs": "67448460ab1bd48827ea55d97065d096695558a51cbcb95ca08e1259a459330f",
+          "member-precompiled-documents-20261102/documents.mjs": "ca1e4d334d877ca196649453aca8d862feff13c1ec33e2af7d0befa0823e13c0",
           "member-precompiled-documents-20261102/entry.mjs": "b440b5dd9677144ea3db6e03203b1cc5b384311abdf10daef9f471363b0c4562"
         },
         "changedOriginalModules": []
@@ -712,7 +714,7 @@
         "main": "member-precompiled-documents-20261102/entry.mjs",
         "addedModuleHashes": {
           "member-precompiled-documents-20261102/runtime.mjs": "f9a702d8b216606718ef200a6c869af3be16f805abc850861db1b9af8e5a8d98",
-          "member-precompiled-documents-20261102/documents.mjs": "ffdd6323fe26ccbfaf60969ab233d3ea963f4f8003cf5bed87738a502d8b9c08",
+          "member-precompiled-documents-20261102/documents.mjs": "f29ef79a2ee1913764cba40c611c88f0c888ae24b0a65411473941f1faeb61f6",
           "member-precompiled-documents-20261102/entry.mjs": "d90774d5de71b141628991680e086eb01bee7be1d6eeedebf30e6182a9c18c75"
         },
         "changedOriginalModules": []

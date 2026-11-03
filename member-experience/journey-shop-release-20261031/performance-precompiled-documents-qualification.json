@@ -1,24 +1,23 @@
 {
   "kind": "PRECOMPILED_MEMBER_DOCUMENT_LOCAL_QUALIFICATION",
-  "started": "2026-11-02T21:21:54.041Z",
-  "finished": "2026-11-02T21:21:54.339Z",
+  "started": "2026-11-03T13:51:36.858Z",
+  "finished": "2026-11-03T13:51:37.152Z",
   "verified": true,
   "status": 0,
-  "signal": null,
   "testsPassed": 6,
   "sourceHashes": {
     "performance-precompiled-documents-runtime.mjs": "f9a702d8b216606718ef200a6c869af3be16f805abc850861db1b9af8e5a8d98",
     "performance-precompiled-documents-runtime.test.mjs": "623a5d10d3fca3af78712bec88846afe532fed94bce5d7ffaf95a85df27f031a",
     "performance-precompiled-documents-prepare.mjs": "3b617c2a63e60ef11f710e46a9e883adc5e226a259d3d221e91e62d5daf6bf32",
     "performance-precompiled-documents-prepare.test.mjs": "7615652b60e7dd141a7b67382b2495b7f7b4ef732b596e8dd7b803ff2524a23c",
-    "performance-precompiled-documents-proof.mjs": "d998aa24e1b80d4ad9c7fa768f9683ff0f6397a4917cbec35f140b8d664a5ae3",
-    "performance-precompiled-documents.json": "eb170fe39b6ebb321979fc788d5b97924fe59d028fa6a7cf09ac8283cfe44c04",
-    "performance-precompiled-documents-proof.json": "caac65ed18ae4db92253aa523041611dcc05f2931b78c7901ffd580bf860acd0"
+    "performance-precompiled-documents-proof-20261103.mjs": "624d75bc74a9d72c469c3ccc57d68b4b55da5d4b9ec52c65696d553f500db950",
+    "performance-precompiled-documents.json": "835a90a06454f4848819494fc12f997a22df94d255882cbcadfafd71a4f547a0",
+    "performance-precompiled-documents-proof.json": "7a3aa1fba4d78d2d66c81f8836a0be400d77d91fe42eaee7879e91b13bbac0d8"
   },
   "sourceOwners": [
     {
       "name": "shift-core",
-      "version": "e6ab12fe-b178-450c-8a1b-9ed909f1d5de",
+      "version": "f5108264-2b56-498a-864a-635210fa0541",
       "main": "aeo-geo/entry.mjs"
     },
     {
@@ -33,7 +32,7 @@
     },
     {
       "name": "shift-mytimber-support-20261023",
-      "version": "6a027bed-24f9-4727-aae8-ed45e8f89eab",
+      "version": "be19dea7-d895-46bb-beae-4b02f44333ef",
       "main": "aeo-geo/entry.mjs"
     }
   ],
@@ -42,6 +41,6 @@
   "productionMutations": 0,
   "productionSpeedQualified": false,
   "physicalIPhoneVerified": false,
-  "stdout": "✔ shift-programme-member-20261023 preserves every existing module, binding and version setting (184.266084ms)\n✔ shift-hq-member-comms-20261023 preserves every existing module, binding and version setting (17.901792ms)\n✔ every compiled body exactly preserves its proven current source (34.697916ms)\n✔ homepage, private APIs, commerce, unknown views, methods and rollout hold are exact pass-through (0.552667ms)\n✔ wrong source, route and embedded private cookies are refused (0.205208ms)\n✔ response and account headers are not shared mutably between requests (3.29ms)\nℹ tests 6\nℹ suites 0\nℹ pass 6\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 262.752666\n",
+  "stdout": "✔ shift-programme-member-20261023 preserves every existing module, binding and version setting (184.255333ms)\n✔ shift-hq-member-comms-20261023 preserves every existing module, binding and version setting (15.415917ms)\n✔ every compiled body exactly preserves its proven current source (34.48725ms)\n✔ homepage, private APIs, commerce, unknown views, methods and rollout hold are exact pass-through (0.603083ms)\n✔ wrong source, route and embedded private cookies are refused (0.214666ms)\n✔ response and account headers are not shared mutably between requests (3.298833ms)\nℹ tests 6\nℹ suites 0\nℹ pass 6\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 255.497875\n",
   "stderr": ""
 }
