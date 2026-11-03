@@ -1,0 +1,29 @@
+name: Medication evidence read-only serving inventory
+on:
+  push:
+    branches: [audit/medication-inventory-20261103]
+    paths: ['medication-evidence-capture/**', '.github/workflows/medication-evidence-inventory.yml']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Inspect public route owners and immutable modules without production writes
+        run: node medication-evidence-capture/inspect.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: medication-inventory-${{ github.run_id }}
+          path: medication-inventory-proof/
+          retention-days: 90
