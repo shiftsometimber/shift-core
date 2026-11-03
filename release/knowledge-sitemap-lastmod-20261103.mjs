@@ -74,12 +74,14 @@ async function run(){
   for(const [file,p] of patches){const safe=file.replace(/[^a-zA-Z0-9_.-]/g,'_');writeFileSync(dir+'/'+safe+'-before.mjs',Buffer.from(original.modules.find(m=>m.name===file).content_base64,'base64'));writeFileSync(dir+'/'+safe+'-after.mjs',p.module);writeFileSync(dir+'/'+safe+'-inverse-proof.json',JSON.stringify(p.proof));}
   const metadata={main_module:original.main_module,compatibility_date:original.compatibility_date||settings.compatibility_date,compatibility_flags:original.compatibility_flags||settings.compatibility_flags||[],bindings:original.bindings.map(b=>({type:'inherit',name:b.name})),annotations:{'workers/message':'Approved publication delivery repair; exact retained content and source/notification guards preserved'}};
   for(const key of ['placement','limits','observability','logpush','tail_consumers','tags'])if(settings[key]!==undefined)metadata[key]=settings[key];
+  if(original.assets)metadata.keep_assets=true;
+  if(original.usage_model)metadata.usage_model=original.usage_model;
   const form=new FormData();form.set('metadata',new Blob([JSON.stringify(metadata)],{type:'application/json'}),'metadata.json');
-  for(const m of original.modules){const content=patches.has(m.name)?Buffer.from(patches.get(m.name).module):Buffer.from(m.content_base64,'base64');form.set(m.name,new Blob([content],{type:m.content_type||'application/javascript+module'}),m.name);}
+  for(const m of original.modules){const content=patches.has(m.name)?Buffer.from(patches.get(m.name).module):Buffer.from(m.content_base64,'base64');assert(m.content_type,'Captured native content type required: '+m.name);form.set(m.name,new Blob([content],{type:m.content_type}),m.name);}
   assert.equal((await active(name)).id,before.id,'Component moved before staging');
   const uploaded=await api('/accounts/'+account+'/workers/scripts/'+name+'/versions?bindings_inheritance=strict',{method:'POST',body:form}),owned=uploaded.id;assert.match(owned,/^[a-f0-9-]{36}$/);
   writeFileSync(dir+'/staged-version.json',JSON.stringify({owned,previous,source:process.env.GITHUB_SHA}));
-  const staged=await version(name,owned);assert.equal(staged.main_module,original.main_module);assert.deepEqual(staged.bindings,original.bindings);assert.equal(staged.compatibility_date,original.compatibility_date);assert.deepEqual(staged.compatibility_flags||[],original.compatibility_flags||[]);
+  const staged=await version(name,owned);assert.equal(staged.main_module,original.main_module);assert.deepEqual(staged.bindings,original.bindings);assert.equal(staged.compatibility_date,original.compatibility_date);assert.deepEqual(staged.compatibility_flags||[],original.compatibility_flags||[]);for(const field of ['assets','usage_model','migration_tag'])assert.deepEqual(staged[field],original[field],'Preserve captured '+field);
   assert.deepEqual(staged.modules.map(m=>m.name).sort(),original.modules.map(m=>m.name).sort());
   for(const m of original.modules){const actual=staged.modules.find(x=>x.name===m.name),expected=patches.has(m.name)?Buffer.from(patches.get(m.name).module):Buffer.from(m.content_base64,'base64');assert.equal(digest(Buffer.from(actual.content_base64,'base64')),digest(expected),'Unintended module delta: '+m.name);}
   assert.equal((await active(name)).id,before.id,'Component moved during staging');
