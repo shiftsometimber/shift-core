@@ -1,0 +1,13 @@
+import {spawnSync} from 'node:child_process';import {readFileSync,writeFileSync,existsSync} from 'node:fs';import {gzipSync} from 'node:zlib';import assert from 'node:assert/strict';
+const state=JSON.parse(readFileSync('performance-precompiled-documents-v2-release-20261103.json')),view=JSON.parse(readFileSync('performance-precompiled-browser-state-20261103.json'));assert.equal(state.source,view.source);assert(state.httpGatePassed&&state.owners.every(o=>!o.restoredAt));
+const prior={};for(const f of ['performance-precompiled-candidate-20261103-chromium.json','performance-precompiled-candidate-20261103-webkit.json','performance-precompiled-expiry-20261103-diagnostic-chromium.json','performance-precompiled-expiry-20261103-diagnostic-webkit.json','performance-precompiled-http-privacy-20261103.json'])if(existsSync(f)){const j=JSON.parse(readFileSync(f));if(j.source!==view.source)prior[f]=j;}
+if(Object.keys(prior).length&&!existsSync('performance-precompiled-prior-browser-proof-20261103.json.gz'))writeFileSync('performance-precompiled-prior-browser-proof-20261103.json.gz',gzipSync(JSON.stringify(prior)));
+const results=[];let failed=false;
+try{
+ for(const engine of ['chromium','webkit'])for(const testcase of ['functional','expiry']){
+  const r=spawnSync(process.execPath,['performance-precompiled-browser-20261103.mjs','candidate'],{encoding:'utf8',env:{...process.env,MY_TIMBER_BROWSER_ENGINE:engine,MY_TIMBER_FUNCTIONAL_CASE:testcase==='expiry'?'expiry':''},timeout:180000,maxBuffer:4194304});
+  console.log(r.stdout);if(r.stderr)console.error(r.stderr);results.push({engine,testcase,status:r.status,signal:r.signal,stdout:r.stdout,stderr:r.stderr});assert.equal(r.status,0,engine+' '+testcase);
+ }
+ const p=spawnSync(process.execPath,['performance-precompiled-http-privacy-v2-20261103.mjs'],{encoding:'utf8',timeout:180000,maxBuffer:1048576});console.log(p.stdout);if(p.stderr)console.error(p.stderr);results.push({testcase:'HTTP privacy',status:p.status,stdout:p.stdout,stderr:p.stderr});assert.equal(p.status,0,'HTTP privacy');
+}catch(e){failed=true;console.error('V2_BROWSER_QUALIFICATION_FAILED',e.message);const r=spawnSync(process.execPath,['--experimental-vm-modules','performance-precompiled-v2-phase-20261103.mjs','close'],{stdio:'inherit',timeout:150000});assert.equal(r.status,0,'Original-distribution restoration');}
+finally{writeFileSync('performance-precompiled-v2-browser-qualification-20261103.json',JSON.stringify({source:view.source,at:new Date().toISOString(),verified:!failed,results,productionWrites:0,realMemberRecordsRead:0},null,2)+'\n');if(failed)process.exitCode=1;}
