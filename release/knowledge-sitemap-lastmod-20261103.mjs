@@ -5,6 +5,11 @@ import {pathToFileURL} from 'node:url';
 import {approvedTickerModule,APPROVED_TICKER_PATHS} from './approved-shared-ticker-wording-20261031.mjs';
 export const EXTRA_TICKER_PATHS=Object.freeze(['/medicine-news/scotland-glp1-prescribing-variation-october-2026','/medicine-news/offshore-travel-weight-limit-november-2026']);
 export const digest=s=>createHash('sha256').update(s).digest('hex');
+export function soleServingVersion(deployment){
+ const rows=deployment.versions;assert(Array.isArray(rows)&&rows.length>0);for(const row of rows)assert(Number.isFinite(row.percentage)&&row.percentage>=0);
+ assert.equal(rows.reduce((n,r)=>n+r.percentage,0),100,'Deployment traffic does not account for 100%');
+ const live=rows.filter(r=>r.percentage>0);assert.equal(live.length,1,'Split live traffic requires separate reconciliation');assert.equal(live[0].percentage,100);return live[0].version_id;
+}
 export function patchKnowledgeSitemapBundle(source){
  const start=source.indexOf('async function withDynamicBabyLoveDiscovery(');
  assert(start>=0,'Serving Knowledge discovery function not identified');
@@ -50,8 +55,8 @@ async function run(){
  assert.equal(item(beforeSitemap,loc).length,1);assert.match(item(beforeSitemap,loc)[0],/<lastmod>2026-10-29T05:00:37.839Z<\/lastmod>/,'Live evidence no longer matches; reconcile before repair');
  async function release(name,patcher,{expectedVersion,verify}){
   const dir=proofDir+'/'+name;mkdirSync(dir,{recursive:true});
-  const before=await active(name);assert.equal(before.versions.length,1);assert.equal(before.versions[0].percentage,100);if(expectedVersion)assert.equal(before.versions[0].version_id,expectedVersion,'Serving component moved; reconcile before staging');
-  const previous=before.versions[0].version_id,original=await version(name,previous),settings=await api('/accounts/'+account+'/workers/scripts/'+name+'/settings');
+  const before=await active(name),selectedVersion=soleServingVersion(before);if(expectedVersion)assert.equal(selectedVersion,expectedVersion,'Serving component moved; reconcile before staging');
+  const previous=selectedVersion,original=await version(name,previous),settings=await api('/accounts/'+account+'/workers/scripts/'+name+'/settings');
   writeFileSync(dir+'/deployment-before.json',JSON.stringify(before));writeFileSync(dir+'/provider-before.json',JSON.stringify(original));writeFileSync(dir+'/settings-before.json',JSON.stringify(settings));
   const module=original.modules.find(m=>m.name===original.main_module);assert(module,'Native main module missing');
   const bytes=Buffer.from(module.content_base64,'base64'),source=bytes.toString();assert.equal(Buffer.from(source).length,bytes.length,'Native main module is not UTF-8');
@@ -71,14 +76,14 @@ async function run(){
   writeFileSync(dir+'/promotion-intent.json',JSON.stringify({owned,previous,before:before.id}));
   try{
    await promote(name,owned,'Publish approved current content: sitemap dates and exact scoped ticker lines');
-   const live=await active(name);assert.deepEqual(live.versions,[{version_id:owned,percentage:100}]);
+   const live=await active(name);assert.equal(soleServingVersion(live),owned);
    await verify(patch);
    assert.equal((await active(name)).id,live.id,'Another writer moved the component during verification');
    const receipt={verified:true,at:new Date().toISOString(),component:name,version:owned,deployment:live.id,previous,source:process.env.GITHUB_SHA,modules:original.modules.length,changedModules:[module.name],inverse:patch.proof,noCmsMutation:true,noEmail:true,noRoutesChanged:true};
    writeFileSync(dir+'/verification.json',JSON.stringify(receipt,null,2));console.log('COMPONENT_VERIFIED '+JSON.stringify(receipt));return receipt;
   }catch(error){
    const now=await active(name);
-   if(now.versions.length===1&&now.versions[0].version_id===owned&&now.versions[0].percentage===100){await promote(name,previous,'Restore owned previous version after failed publication-delivery verification');assert.deepEqual((await active(name)).versions,[{version_id:previous,percentage:100}]);writeFileSync(dir+'/rollback.json',JSON.stringify({restored:previous,failed:owned,reason:String(error)}));}
+   if(now.versions.filter(v=>v.percentage>0).length===1&&soleServingVersion(now)===owned){await promote(name,previous,'Restore owned previous version after failed publication-delivery verification');assert.equal(soleServingVersion(await active(name)),previous);writeFileSync(dir+'/rollback.json',JSON.stringify({restored:previous,failed:owned,reason:String(error)}));}
    throw error;
   }
  }

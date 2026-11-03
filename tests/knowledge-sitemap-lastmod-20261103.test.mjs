@@ -1,5 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';import vm from 'node:vm';
-import {patchKnowledgeSitemapBundle,patchTwoApprovedTickerLines,EXTRA_TICKER_PATHS} from '../release/knowledge-sitemap-lastmod-20261103.mjs';
+import {patchKnowledgeSitemapBundle,patchTwoApprovedTickerLines,EXTRA_TICKER_PATHS,soleServingVersion} from '../release/knowledge-sitemap-lastmod-20261103.mjs';
 import {approvedTickerModule,APPROVED_TICKER_PATHS} from '../release/approved-shared-ticker-wording-20261031.mjs';
 test('native Knowledge repair changes one discovery predicate and preserves every other byte',()=>{
  const before='UNRELATED HEADER\nasync function withDynamicBabyLoveDiscovery(response, request, env) {\n const q="knowledge_articles";\n if (row.editorial && text.includes("<loc>" + loc + "</loc>")) { const d=articleModifiedDate(row); }\n}\nUNRELATED FOOTER';
@@ -19,4 +19,10 @@ test('unapproved destinations and native publication, foreign, future and duplic
  const r=row(EXTRA_TICKER_PATHS[0],1);assert.equal(current([r,r],true,now).length,1);assert.throws(()=>patchTwoApprovedTickerLines(baseline.module+' ',fixture));
  for(const s of ['env.CORE.fetch(request)','shift-news-shared-v3','public, max-age=60, must-revalidate','SHIFT News:','ask-timber|shift-health','copy.cloneNode(true)'])assert(patch.module.includes(s));
  assert(patch.proof.fullInverseVerified);
+});
+
+test('a retained zero-traffic version is distinct from split or unaccounted live traffic',()=>{
+ assert.equal(soleServingVersion({versions:[{version_id:'live',percentage:100},{version_id:'retained',percentage:0}]}),'live');
+ assert.throws(()=>soleServingVersion({versions:[{version_id:'one',percentage:50},{version_id:'two',percentage:50}]}));
+ assert.throws(()=>soleServingVersion({versions:[{version_id:'one',percentage:90}]}));
 });
