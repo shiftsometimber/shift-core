@@ -42,23 +42,10 @@ jobs:
           assert subprocess.check_output(['git','rev-parse','HEAD:radar-source-review-v1.js'],text=True).strip()=='6af066c4bccf0d2e57796624bd62a9659ec1f74f'
           PY
           node --check release/primary-document-review-20261103.mjs
-      # The unchanged HQ UI-string suite failed in 41655345331 because it expects
-      # the retired blanket "Nothing publishes ... until you approve it" text.
-      # This finite data-only appraisal does not change that UI or its runtime.
-      # Its failure remains recorded; use source and publisher-permission checks.
-      - name: Prove document classification, immutable originals and retained source/publication gates
-        run: node --test tests/primary-document-review-20261103.test.mjs tests/radar-auto-news-publisher-permissions.test.mjs tests/radar-official-intake-v1.test.mjs tests/radar-source-snapshots-v1.test.mjs
-      - name: Read originals and exact existing CMS snapshots without writes
-        run: node release/primary-document-review-20261103.mjs --snapshot
-      - name: Retain exact original rows and documents before observation writes
-        uses: actions/upload-artifact@v4
-        with:
-          name: primary-document-review-before-${{ github.run_id }}-${{ github.run_attempt }}
-          path: primary-document-review-proof/
-          if-no-files-found: error
-          retention-days: 90
-      - name: Record only the two qualified source observations
-        run: node release/primary-document-review-20261103.mjs --apply
+      # Source appraisals completed successfully in 41655909187. Do not replay.
+      # This follow-up performs read-only live configuration and dedup checks.
+      - name: Verify native owner-only notification route without sending
+        run: node release/primary-document-review-20261103.mjs --notifications
       - name: Retain source appraisal and original-preservation receipts
         if: always()
         uses: actions/upload-artifact@v4
