@@ -73,18 +73,23 @@ async function run(mode){
   const headers={Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN};
   const get=async path=>{const r=await fetch(base+path,{headers,signal:AbortSignal.timeout(30000)}),j=await r.json();assert(r.ok&&j.success,'Cannot read native serving notification state');return j.result};
   const latest=data=>{const list=Array.isArray(data)?data:data.deployments;assert(list?.length,'No native deployment');return [...list].sort((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0]};
-  const deployment=latest(await get('/scripts/shift-core/deployments'));assert.equal(deployment.versions.length,1);assert.equal(deployment.versions[0].percentage,100);const versionId=deployment.versions[0].version_id;
-  const version=await get('/workers/shift-core/versions/'+versionId+'?include=modules');assert.equal(version.id,versionId);
+  const deployment=latest(await get('/scripts/shift-core/deployments')),active=deployment.versions.filter(v=>Number(v.percentage)>0);assert(active.length>0);assert.equal(active.reduce((n,v)=>n+Number(v.percentage),0),100,'All serving traffic must be accounted for');
   const allowed=['RADAR_NOTIFICATION_MODE','RADAR_SUPPRESS_NOTIFICATIONS','RADAR_PUBLICATION_EMAIL_TO','RADAR_PUBLICATION_EMAIL_SINCE','ADMIN_EMAIL_FROM'];
-  const bindings=version.bindings||[],values=Object.fromEntries(bindings.filter(b=>allowed.includes(b.name)&&b.type==='plain_text').map(b=>[b.name,b.text]));
-  assert.equal(values.RADAR_NOTIFICATION_MODE,'publication_only');assert.equal(values.RADAR_PUBLICATION_EMAIL_TO,'matt@shiftsometimber.co.uk');assert.equal(values.ADMIN_EMAIL_FROM,'hq@shiftsometimber.co.uk');assert(!values.RADAR_SUPPRESS_NOTIFICATIONS,'Notification route is suppressed');assert(bindings.some(b=>b.type==='send_email'&&b.name==='EMAIL'),'Native email binding unavailable');
-  writeFileSync(dir+'/notification-configuration-before.json',JSON.stringify({deploymentId:deployment.id,versionId,liveConfiguration:values},null,2));
-  const module=version.modules.find(m=>m.name==='worker.js');assert(module?.content_base64,'Cannot inspect native serving publisher policy');const bundle=Buffer.from(module.content_base64,'base64').toString('utf8');
-  const markers=['not_first_publication','publication_before_notification_policy','Now live: ','Hi Matt,','This is a publication confirmation. No approval is needed.'];for(const marker of markers)assert(bundle.includes(marker),'Native publisher policy marker missing: '+marker);
+  const markers=['not_first_publication','publication_before_notification_policy','Now live: ','Hi Matt,','This is a publication confirmation. No approval is needed.'],serving=[];
+  writeFileSync(dir+'/notification-configuration-before.json',JSON.stringify({deploymentId:deployment.id,versions:deployment.versions},null,2));
+  for(const selected of active){
+   const version=await get('/workers/shift-core/versions/'+selected.version_id+'?include=modules');assert.equal(version.id,selected.version_id);
+   const bindings=version.bindings||[],values=Object.fromEntries(bindings.filter(b=>allowed.includes(b.name)&&b.type==='plain_text').map(b=>[b.name,b.text]));
+   assert.equal(values.RADAR_NOTIFICATION_MODE,'publication_only');assert.equal(values.RADAR_PUBLICATION_EMAIL_TO,'matt@shiftsometimber.co.uk');assert.equal(values.ADMIN_EMAIL_FROM,'hq@shiftsometimber.co.uk');assert(!values.RADAR_SUPPRESS_NOTIFICATIONS,'Notification route is suppressed');assert(bindings.some(b=>b.type==='send_email'&&b.name==='EMAIL'),'Native email binding unavailable');
+   const db=bindings.find(b=>b.type==='d1'&&b.name==='DB');assert.equal(db?.id||db?.database_id,process.env.PRIMARY_REVIEW_DB_ID,'Native deduplication database differs');
+   const module=version.modules.find(m=>m.name==='worker.js');assert(module?.content_base64,'Cannot inspect native serving publisher policy');const bundle=Buffer.from(module.content_base64,'base64').toString('utf8');
+   for(const marker of markers)assert(bundle.includes(marker),'Native publisher policy marker missing: '+marker);
+   serving.push({versionId:version.id,percentage:selected.percentage,liveConfiguration:values,nativeBundleSha256:digest(bundle),nativePolicyMarkers:markers});
+  }
   const ledger=await DB.prepare('SELECT event_id,recipient,status,attempts,sent_at,provider_message_id,last_error FROM radar_live_email WHERE event_id IN (1660,1661,1700,1701) ORDER BY event_id').all();
   for(const row of ledger.results||[])assert.equal(row.recipient,'matt@shiftsometimber.co.uk');
   assert.equal(latest(await get('/scripts/shift-core/deployments')).id,deployment.id,'Serving runtime moved during notification proof');
-  const proof={verified:true,at:new Date().toISOString(),principal,deploymentId:deployment.id,versionId,liveConfiguration:values,sender:'SHIFT Newsroom <hq@shiftsometimber.co.uk>',to:['matt@shiftsometimber.co.uk'],cc:[],bcc:[],subject:'Now live: [article title]',template:'radar-live-email-v1.js',templateSourceSha256:digest(readFileSync('radar-live-email-v1.js','utf8')),nativeBundleSha256:digest(bundle),nativePolicyMarkers:markers,ledger:ledger.results,ledgerStatusIsNotMailboxDelivery:true,publicationsPerformed:0,emailsSent:0,configurationChanged:false};
+  const proof={verified:true,at:new Date().toISOString(),principal,deploymentId:deployment.id,serving,sender:'SHIFT Newsroom <hq@shiftsometimber.co.uk>',to:['matt@shiftsometimber.co.uk'],cc:[],bcc:[],subject:'Now live: [article title]',template:'radar-live-email-v1.js',templateSourceSha256:digest(readFileSync('radar-live-email-v1.js','utf8')),ledger:ledger.results,ledgerStatusIsNotMailboxDelivery:true,publicationsPerformed:0,emailsSent:0,configurationChanged:false};
   writeFileSync(dir+'/notification-route.json',JSON.stringify(proof,null,2));console.log(JSON.stringify(proof));return;
  }
  if(mode==='--snapshot'){
