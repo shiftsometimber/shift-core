@@ -41,8 +41,23 @@ const strip=s=>String(s||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
 const decode=s=>s.replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>');
 const privatePath=/^\/(?:member(?:[-/]|$)|v1(?:\/|$)|api(?:\/|$)|hq(?:\/|$)|admin(?:\/|$)|account(?:\/|$)|auth(?:\/|$)|checkout(?:\/|$)|treatment-order(?:\/|$)|treatment-assessment(?:\/|$)|clinical-review(?:\/|$)|reset-password(?:\/|$)|email-templates(?:\/|$))/;
 export const isPrivatePath=path=>privatePath.test(path);
+// Exact owner-approved context link, 3 November 2026. Render only in the
+// existing public Newsroom article, after its verified UK-access explanation.
+// No article source, evidence, authorship, clinical wording or dates change.
+export const APPROVED_FOUNDAYO_NEWS_PATH='/medicine-news/foundayo-european-recommendation-october-2026';
+export const APPROVED_FOUNDAYO_LINK_TEXT='For the separate UK position, including authorisation, evidence and what remains unconfirmed about availability, see our ';
+const FOUNDAYO_CONTEXT_ANCHOR='<p>This European development does not itself change UK prescribing eligibility, NHS funding or pharmacy stock. Those require separate UK evidence.</p>';
+const FOUNDAYO_CONTEXT_INSERT='<p>'+APPROVED_FOUNDAYO_LINK_TEXT+'<a href="'+ORIGIN+'/foundayo">Foundayo UK evidence and availability guide</a>.</p>';
+export function addApprovedFoundayoContext(html,path){
+ if(path!==APPROVED_FOUNDAYO_NEWS_PATH||html.includes(APPROVED_FOUNDAYO_LINK_TEXT))return html;
+ const article=html.match(/<article\b[^>]*\bclass=["'][^"']*\bradar-article\b[^"']*["'][^>]*>[\s\S]*?<\/article>/i)?.[0];
+ if(!article||article.split(FOUNDAYO_CONTEXT_ANCHOR).length!==2)return html;
+ return html.replace(article,article.replace(FOUNDAYO_CONTEXT_ANCHOR,FOUNDAYO_CONTEXT_ANCHOR+FOUNDAYO_CONTEXT_INSERT));
+}
+
 export function enhancePublicHtml(html,path,metadata={}){
  if(isPrivatePath(path)||/name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html))return html;
+ html=addApprovedFoundayoContext(html,path);
  let hasOrg=false,hasWebsite=false,hasBreadcrumb=false,hasFaq=false,article=null;
  if(metadata.description){
   html=html.replace(/<meta\b(?=[^>]*(?:name=["']description["']|property=["']og:description["']|name=["']twitter:description["']))[^>]*>/gi,tag=>tag.replace(/content=["'][\s\S]*?["'](?=\s|\/?>)/i,'content="'+esc(metadata.description)+'"'));

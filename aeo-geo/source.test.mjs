@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {recipeProjection,exerciseProjection,safeImage,finite} from './projection.mjs';
-import {recipeSchema,enhancePublicHtml,isPrivatePath} from './schema.mjs';
+import {recipeSchema,enhancePublicHtml,isPrivatePath,addApprovedFoundayoContext,APPROVED_FOUNDAYO_NEWS_PATH,APPROVED_FOUNDAYO_LINK_TEXT} from './schema.mjs';
 import {indexPage,detail,recipeSearchMetadata} from './content.mjs';
 import {withAeoGeo,ROBOTS,completeSitemap} from './delivery.mjs';
 import {safeAiReferrer,safeSearchReferrer,repairAnalytics} from './analytics.mjs';
@@ -98,6 +98,31 @@ test('existing organisational bylines and clinical claims are not invented',()=>
 test('existing public organisation has one consistent legal identity',()=>{
  const html='<html><head><script type="application/ld+json">'+JSON.stringify({'@type':'Organization','@id':base+'/#organization',name:'Other name'})+'</script></head><main><h1>Page</h1></main></html>';
  const next=enhancePublicHtml(html,'/about');assert(!next.includes('Other name'));assert(next.includes('17393135'));assert(next.includes('"legalName":"Shift Some Timber Ltd"'));assert.equal(next.split('"@id":"'+base+'/#organization","name":').length,2);
+});
+test('3 November approved Foundayo link is exact, single, idempotent, source-guarded and public-only',async()=>{
+ const original='<html><head><title>Foundayo receives European recommendation; EU decision pending</title><meta name="description" content="Unchanged summary"></head><body><main><article class="radar-article"><h1>Foundayo receives European recommendation</h1><p>This European development does not itself change UK prescribing eligibility, NHS funding or pharmacy stock. Those require separate UK evidence.</p><p>Existing evidence and clinical words remain unchanged.</p></article></main><footer>Existing footer</footer></body></html>';
+ const expected='<p>'+APPROVED_FOUNDAYO_LINK_TEXT+'<a href="'+base+'/foundayo">Foundayo UK evidence and availability guide</a>.</p>';
+ const after=addApprovedFoundayoContext(original,APPROVED_FOUNDAYO_NEWS_PATH);
+ assert.equal(after.split(expected).length,2);
+ assert(after.includes('<p>This European development does not itself change UK prescribing eligibility, NHS funding or pharmacy stock. Those require separate UK evidence.</p>'+expected));
+ assert.equal(after.replace(expected,''),original,'The only change is the one approved paragraph');
+ assert.equal(addApprovedFoundayoContext(after,APPROVED_FOUNDAYO_NEWS_PATH),after,'Do not duplicate on repeat calls');
+ assert.equal(addApprovedFoundayoContext(original,'/foundayo'),original);
+ assert.equal(addApprovedFoundayoContext(original,'/medicine-news/other'),original);
+ assert.equal(addApprovedFoundayoContext(original.replace('UK prescribing','EU prescribing'),APPROVED_FOUNDAYO_NEWS_PATH),original.replace('UK prescribing','EU prescribing'),'Changed clinical source fails closed');
+ assert.equal(addApprovedFoundayoContext(original.replace('radar-article','other-article'),APPROVED_FOUNDAYO_NEWS_PATH),original.replace('radar-article','other-article'),'Require the original Newsroom article container');
+ assert.equal(addApprovedFoundayoContext(original.replace('</article>','<p>This European development does not itself change UK prescribing eligibility, NHS funding or pharmacy stock. Those require separate UK evidence.</p></article>'),APPROVED_FOUNDAYO_NEWS_PATH),original.replace('</article>','<p>This European development does not itself change UK prescribing eligibility, NHS funding or pharmacy stock. Those require separate UK evidence.</p></article>'),'Ambiguous source refuses a rewrite');
+ const full=enhancePublicHtml(original,APPROVED_FOUNDAYO_NEWS_PATH);
+ assert(full.includes(expected));assert(full.includes('Existing evidence and clinical words remain unchanged.'));
+ assert(full.includes('Foundayo receives European recommendation; EU decision pending'));
+ assert(full.includes('data-aeo-trust-footer'));
+ const privateResponse=enhancePublicHtml(original,'/member/dashboard');assert.equal(privateResponse,original);
+ const noindex=original.replace('<head>','<head><meta name="robots" content="noindex,follow">');
+ assert.equal(enhancePublicHtml(noindex,APPROVED_FOUNDAYO_NEWS_PATH),noindex);
+ const wrapped=withAeoGeo({async fetch(){return new Response(original,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'}})}},{catalogue(){throw Error('No catalogue required for Newsroom context');},shell});
+ const response=await wrapped.fetch(new Request(base+APPROVED_FOUNDAYO_NEWS_PATH));
+ assert.equal(response.status,200);assert.equal(response.headers.get('Cache-Control'),'no-store');
+ assert((await response.text()).includes(expected));
 });
 test('AI measurement recognises only the named HTTPS origins and never the private URL',()=>{
  for(const host of ['chat.openai.com','chatgpt.com','perplexity.ai','gemini.google.com','copilot.microsoft.com'])assert.equal(safeAiReferrer('https://'+host+'/private-conversation?health=PRIVATE#secret'),'https://'+host+'/');
