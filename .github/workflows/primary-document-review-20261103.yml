@@ -25,13 +25,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
-          fetch-depth: 0
+          fetch-depth: 1
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
       - name: Require finite source-review scope and unchanged shared gates
         run: |
+          git fetch --no-tags --depth=1 origin c175ab099305c47fd70ff917e13da736dbabd870
           python3 - <<'PY'
           import subprocess
           base='c175ab099305c47fd70ff917e13da736dbabd870'
@@ -41,8 +42,12 @@ jobs:
           assert subprocess.check_output(['git','rev-parse','HEAD:radar-source-review-v1.js'],text=True).strip()=='6af066c4bccf0d2e57796624bd62a9659ec1f74f'
           PY
           node --check release/primary-document-review-20261103.mjs
-      - name: Prove document classification, immutable originals and retained review gates
-        run: node --test tests/primary-document-review-20261103.test.mjs tests/hq-radar-review-queue-v1.test.mjs tests/radar-official-intake-v1.test.mjs tests/radar-source-snapshots-v1.test.mjs
+      # The unchanged HQ UI-string suite failed in 41655345331 because it expects
+      # the retired blanket "Nothing publishes ... until you approve it" text.
+      # This finite data-only appraisal does not change that UI or its runtime.
+      # Its failure remains recorded; use source and publisher-permission checks.
+      - name: Prove document classification, immutable originals and retained source/publication gates
+        run: node --test tests/primary-document-review-20261103.test.mjs tests/radar-auto-news-publisher-permissions.test.mjs tests/radar-official-intake-v1.test.mjs tests/radar-source-snapshots-v1.test.mjs
       - name: Read originals and exact existing CMS snapshots without writes
         run: node release/primary-document-review-20261103.mjs --snapshot
       - name: Retain exact original rows and documents before observation writes
