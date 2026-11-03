@@ -1,0 +1,72 @@
+// The authorised single member release. Uploads are guarded and do not split
+// members into cohorts. Existing commerce, clinical bindings and assets inherit.
+import fs from 'node:fs';import zlib from 'node:zlib';import crypto from 'node:crypto';import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';
+import {cloudflareRequest as cf} from '/Users/shiftsometimberltd/SST/builds/apple-completion-20261024/journey-shop-release-20261031/performance-precompiled-cloudflare-client-20261103.mjs';
+const A='9e5386dcf455be34c582d93f8bfc79e6',Z='66ec3268950adcfc837b7b8b2f8356ed',DB='88f40aed-cb23-4372-8c94-8a73f48bc847';
+const FRONT='shift-programme-member-20261023',CORE='shift-core',LEGACY='shift-programme-v7-retained-live',OPERATOR='shift-my-timber-v7-release-operator';
+const anchors={[FRONT]:'8500f880-3e8a-49ff-b74e-c2cd83c36f27',[CORE]:'e21cdda6-22e1-4c82-b4db-acaccfdc4f8f','shift-hq-member-comms-20261023':'67958f58-8712-49ec-bcf0-2e513c1fd5d2','shift-mytimber-support-20261023':'1ff41acd-546e-431a-ab7f-fbc1f6f65b68'};
+const file='member-experience/v7-release-evidence/production-release.json',command=process.argv[2]||'inspect';
+const state=fs.existsSync(file)?JSON.parse(fs.readFileSync(file)):{createdAt:new Date().toISOString(),packSHA256:'3b4f6f7303938fab378dcc023b1a26ef532207b42a8fbee2c8f2b73767bb4c5f',owners:[],routeChanges:[],scheduleChanges:[],evidenceLimitations:['Physical iPhone/Android recordings have not been independently obtained; Chromium and WebKit evidence is labelled separately.']};
+const save=()=>fs.writeFileSync(file,JSON.stringify(state,null,2)+'\n');const ep=n=>'/accounts/'+A+'/workers/scripts/'+n;
+const active=async n=>[...(await cf(ep(n)+'/deployments')).deployments].sort((a,b)=>b.created_on.localeCompare(a.created_on))[0];
+const hash=b=>crypto.createHash('sha256').update(b).digest('hex'),hashes=v=>Object.fromEntries(v.modules.map(m=>[m.name,hash(Buffer.from(m.content_base64,'base64'))]).sort(([a],[b])=>a.localeCompare(b)));
+const capture=n=>JSON.parse(zlib.gunzipSync(fs.readFileSync('/private/tmp/v7-live-'+n+'.json.gz'))),packet=n=>JSON.parse(zlib.gunzipSync(fs.readFileSync('/private/tmp/my-timber-v7-test-package/'+n+'.json.gz')));
+async function guard(){for(const [name,originalVersion]of Object.entries(anchors)){const d=await active(name),live=d.versions.filter(v=>v.percentage>0);assert.equal(live.length,1,'Unexpected traffic distribution');const owner=state.owners.find(o=>o.name===name);assert([originalVersion,owner?.promotedAt&&owner.candidateVersion].filter(Boolean).includes(live[0].version_id),'Another release changed '+name);assert.equal(live[0].percentage,100);}}
+const module=(name,text)=>({name,content_type:'application/javascript+module',content_base64:Buffer.from(text).toString('base64')});
+async function privateWorker(name,source,bindings){assert([LEGACY,OPERATOR].includes(name));const form=new FormData();form.set('metadata',JSON.stringify({main_module:source.main_module,compatibility_date:source.compatibility_date,compatibility_flags:source.compatibility_flags||[],bindings}));for(const m of source.modules)form.set(m.name,new Blob([Buffer.from(m.content_base64,'base64')],{type:m.content_type}),m.name);const result=await cf(ep(name),'PUT',form);await cf(ep(name)+'/subdomain','POST',{enabled:name===OPERATOR});return {name,version:result.id||result.version_id,at:new Date().toISOString()};}
+function projection(b){const x={...b};if(x.type==='secret_text')delete x.text;delete x.version_id;if(x.environment==='production')delete x.environment;return x;}
+async function upload(name,source,additions){
+ await guard();let o=state.owners.find(x=>x.name===name);const original=capture(name),settings=JSON.parse(fs.readFileSync('/private/tmp/v7-production-'+name+'-settings.json'));
+ if(!o){o={name,originalVersion:anchors[name],originalSchedules:JSON.parse(fs.readFileSync('/private/tmp/v7-production-'+name+'-schedules.json')).schedules};state.owners.push(o);save();}
+ const expected=hashes(source);const reusable=o.candidateVersion&&JSON.stringify(o.expectedHashes)===JSON.stringify(expected);if(reusable&&o.verifiedAt){console.log('CANDIDATE_REUSED',name,o.candidateVersion);return;}
+ assert(!o.promotedAt,'Do not replace a promoted candidate without explicit recovery');
+ // Existing release tooling uses same-worker strict inheritance and keep_assets.
+ // No secret is read, serialised, recreated or copied into another Worker.
+ const operating={};for(const k of ['usage_model','limits','placement','cache_options','observability','tail_consumers','logpush']){const v=original[k]??settings[k];if(v!==undefined)operating[k]=v;}
+ const meta={main_module:source.main_module,compatibility_date:original.compatibility_date,compatibility_flags:original.compatibility_flags||[],bindings:[...original.bindings.map(b=>({type:'inherit',name:b.name})),...additions],keep_assets:true,...operating,annotations:{'workers/message':'Matt-approved My Timber V7, native shell and speed repair; one member release'}};
+ if(!reusable){const form=new FormData();form.set('metadata',new Blob([JSON.stringify(meta)],{type:'application/json'}),'metadata.json');for(const m of source.modules)form.set(m.name,new Blob([Buffer.from(m.content_base64,'base64')],{type:m.content_type}),m.name);
+ o.uploadIntentAt=new Date().toISOString();o.expectedHashes=expected;o.expectedMain=source.main_module;save();const result=await cf(ep(name)+'/versions?bindings_inheritance=strict','POST',form);o.candidateVersion=result.id;save();}
+ const v=await cf('/accounts/'+A+'/workers/workers/'+name+'/versions/'+o.candidateVersion+'?include=modules');assert.equal(v.main_module,o.expectedMain);assert.deepEqual(hashes(v),expected,'Provider changed candidate bytes');
+ for(const b of original.bindings)assert.deepEqual(projection(v.bindings.find(x=>x.name===b.name)),projection(b),'Existing binding changed: '+name+'/'+b.name);
+ for(const b of additions)assert.deepEqual(projection(v.bindings.find(x=>x.name===b.name)),projection(b),'New binding mismatch');
+ assert(!v.bindings.some(b=>b.id==='247b065f-fea4-4891-945b-b707f2417656'||b.database_id==='247b065f-fea4-4891-945b-b707f2417656'||/my-timber-v7-(test|backend|legacy)$/.test(b.service||'')),'Test dependency in member candidate');
+ if(original.assets)assert.deepEqual(v.assets?.config,original.assets.config,'Existing asset configuration changed');o.verifiedAt=new Date().toISOString();save();console.log('CANDIDATE_VERIFIED',name,o.candidateVersion);
+}
+async function promote(name){await guard();const o=state.owners.find(x=>x.name===name);assert(o?.verifiedAt);if(o.promotedAt)return;state.deployedAt||=new Date().toISOString();o.promotionIntentAt=new Date().toISOString();save();await cf(ep(name)+'/deployments','POST',{strategy:'percentage',versions:[{version_id:o.candidateVersion,percentage:100}],annotations:{'workers/message':'Authorised single My Timber V7 release'}});const d=await active(name);assert.deepEqual(d.versions,[{version_id:o.candidateVersion,percentage:100}]);o.promotedAt=new Date().toISOString();save();console.log('LIVE_VERSION_VERIFIED',name,o.candidateVersion);}
+const query=async(sql,params=[])=>{const r=await cf('/accounts/'+A+'/d1/database/'+DB+'/query','POST',{sql,params});assert(r.every(x=>x.success!==false));return r[0];};
+async function schema(){
+ if(state.schemaPreparedAt)return;await guard();for(const f of ['v7-food-schema.sql','v7-crew-schema.sql'])await query(fs.readFileSync('member-experience/'+f,'utf8'));
+ const lines=fs.readFileSync('/private/tmp/my-timber-cofid-2021.sql','utf8').split('\n').filter(s=>s.startsWith('INSERT '));assert.equal(lines.length,2887);assert(lines.every(s=>s.startsWith('INSERT INTO member_food_catalogue')),'Only public food catalogue may be copied');
+ for(let i=0;i<lines.length;i+=100)await query(lines.slice(i,i+100).join('\n'));
+ state.schemaPreparedAt=new Date().toISOString();state.publicFoodCatalogueRows=(await query('SELECT COUNT(*) n FROM member_food_catalogue')).results[0].n;save();console.log('ADDITIVE_SCHEMA_READY',state.publicFoodCatalogueRows);
+}
+async function routes(){
+ const target=[];for(const host of ['shiftsometimber.co.uk','www.shiftsometimber.co.uk'])for(const path of ['/member/dashboard*','/member/more*','/member/settings*','/member/orders*','/member/saved*','/member/plans*','/member/check-in*','/member/treatment*','/member/support*','/member/app-shell.html*','/member/manifest.webmanifest*','/assets/member-experience/v7-*','/v1/my-timber/*','/v1/grub/eaten*','/v1/grub/food-search*','/v1/grub/barcode*','/treatment-sw.js*'])target.push(host+path);
+ for(const path of ['/v1/my-timber/*','/v1/grub/eaten*','/v1/grub/food-search*','/v1/grub/barcode*'])target.push('api.shiftsometimber.co.uk'+path);
+ const current=await cf('/zones/'+Z+'/workers/routes');for(const pattern of target){const before=current.find(r=>r.pattern===pattern);if(before?.script===FRONT)continue;let c=state.routeChanges.find(c=>c.pattern===pattern);if(!c){c={pattern,before:before?{id:before.id,pattern:before.pattern,script:before.script}:null,after:{pattern,script:FRONT},intentAt:new Date().toISOString()};state.routeChanges.push(c);save();}
+  const out=await cf('/zones/'+Z+'/workers/routes'+(before?'/'+before.id:''),before?'PUT':'POST',{pattern,script:FRONT});c.appliedAt=new Date().toISOString();c.id=out.id||before?.id;save();}
+ const actual=await cf('/zones/'+Z+'/workers/routes');assert(target.every(p=>actual.some(r=>r.pattern===p&&r.script===FRONT)));state.routesVerifiedAt=new Date().toISOString();save();
+}
+async function initialise(){
+ if(state.initialisedAt)return;const keyFile='/private/tmp/my-timber-v7-production-operator-key',key=fs.existsSync(keyFile)?fs.readFileSync(keyFile,'utf8'):crypto.randomBytes(32).toString('hex');fs.writeFileSync(keyFile,key,{mode:0o600});
+ const source=String.raw`export default {async fetch(request,env){if(request.method!=='POST'||new URL(request.url).pathname!=='/initialise'||request.headers.get('X-Release-Key')!==KEY)return new Response('Not found',{status:404});const rows=(await env.DB.prepare("SELECT user_id FROM member_state WHERE (SELECT granted FROM consents WHERE user_id=member_state.user_id AND consent_type='my_shift_health_tracking' ORDER BY id DESC LIMIT 1)=1 AND COALESCE(json_extract(preferences,'$.myJourney.setup.paused'),0)<>1 ORDER BY user_id").all()).results;let cursor=0,done=0,skipped=0;const errors=[];async function run(){while(cursor<rows.length){const id=rows[cursor++].user_id;try{const r=await env.PLANNER.initialiseMember({userId:id});if(r.initialised)done++;else skipped++;}catch(e){errors.push({userId:id,message:e.message})}}}await Promise.all(Array.from({length:2},run));return Response.json({total:rows.length,done,skipped,errors})}};`.replace('KEY',JSON.stringify(key));
+ await privateWorker(OPERATOR,{main_module:'operator.mjs',compatibility_date:'2026-08-09',modules:[module('operator.mjs',source)]},[{type:'d1',name:'DB',id:DB},{type:'service',name:'PLANNER',service:CORE,entrypoint:'V7Planner'}]);
+ const r=await fetch('https://'+OPERATOR+'.matobrien.workers.dev/initialise',{method:'POST',headers:{'X-Release-Key':key},signal:AbortSignal.timeout(600000)});assert(r.ok,'Initial preparation operator unavailable');const report=await r.json();fs.writeFileSync('/private/tmp/my-timber-v7-production-initialisation.json',JSON.stringify(report),{mode:0o600});assert.equal(report.errors.length,0,'Member preparation failed; private report saved');
+ state.initialisation={total:report.total,prepared:report.done,retained:report.skipped};state.initialisedAt=new Date().toISOString();save();await cf(ep(OPERATOR)+'/subdomain','POST',{enabled:false});console.log('MEMBER_PREPARATION_COMPLETE',JSON.stringify(state.initialisation));
+}
+try{
+ await guard();
+ if(command==='prepare'){
+  const legacy=packet('legacy'),front=packet('programme'),core=packet('core'),original=capture(FRONT);legacy.modules=legacy.modules.filter(m=>!m.name.includes('test-entry'));front.modules=front.modules.filter(m=>m.name==='v7-release-20261103/programme.mjs');front.main_module='v7-release-20261103/programme.mjs';core.modules=core.modules.filter(m=>!['v7-release-20261103/assets-entrypoint.mjs','v7-release-20261103/assets.mjs'].includes(m.name));
+  assert.equal(front.modules.length,1);for(const p of [front,legacy,core])assert(p.modules.every(m=>!/(?:test-entry|test-start|assets-entrypoint)/.test(m.name)));
+  if(state.retainedService?.sourceHash!==hash(JSON.stringify(hashes(legacy)))){state.retainedService=await privateWorker(LEGACY,legacy,original.bindings.filter(b=>b.type!=='secret_text').map(b=>b.type==='d1'?{type:'d1',name:b.name,id:b.id||b.database_id}:b));state.retainedService.sourceHash=hash(JSON.stringify(hashes(legacy)));save();}
+  await upload(CORE,core,[{type:'service',name:'V7_OFFERS',service:LEGACY,entrypoint:'V7Offers'}]);
+  await upload(FRONT,front,[{type:'service',name:'MEMBER_LEGACY',service:LEGACY},{type:'service',name:'V7_OFFERS',service:LEGACY,entrypoint:'V7Offers'},{type:'service',name:'V7_PLANNER',service:CORE,entrypoint:'V7Planner'},{type:'service',name:'SUPPORT',service:'shift-mytimber-support-20261023'}]);
+  state.preparedAt=new Date().toISOString();state.sourceCommit=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();save();console.log('MEMBER_RELEASE_PREPARED_NO_TRAFFIC_CHANGE');
+ }else if(command==='live'){
+  assert(state.preparedAt);await schema();await promote(CORE);await initialise();await promote(FRONT);await routes();
+  if(!state.overnightScheduleAt){state.scheduleChanges.push({name:FRONT,before:[],after:[{cron:'0,15,30,45 0-5 * * *'}]});save();await cf(ep(FRONT)+'/schedules','PUT',[{cron:'0,15,30,45 0-5 * * *'}]);state.overnightScheduleAt=new Date().toISOString();save();}
+  await guard();state.liveAt=new Date().toISOString();save();console.log('LIVE_AT',state.liveAt);
+ }else if(command==='inspect'){console.log(JSON.stringify({preparedAt:state.preparedAt,liveAt:state.liveAt,owners:state.owners.map(o=>({name:o.name,candidate:o.candidateVersion,promotedAt:o.promotedAt}))}));}
+ else throw Error('Unknown release operation');
+}catch(error){state.failure={at:new Date().toISOString(),command,message:error.message};save();console.error('V7_RELEASE_FAILED',error.message);if(command==='live'&&state.deployedAt){try{execFileSync(process.execPath,['member-experience/tools/v7-rollback.mjs','--execute'],{stdio:'inherit'});}catch(e){console.error('ROLLBACK_NEEDS_ATTENTION',e.message);}}process.exitCode=1;}

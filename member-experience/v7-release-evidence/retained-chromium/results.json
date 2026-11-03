@@ -1,0 +1,61 @@
+{
+  "engine": "chromium",
+  "at": "2026-11-03T22:20:34.788Z",
+  "account": "v7-choose@example.invalid",
+  "checks": [
+    {
+      "name": "Account settings available in shared frame",
+      "result": "PASS"
+    },
+    {
+      "name": "Account form loaded its saved synthetic values",
+      "result": "PASS"
+    },
+    {
+      "name": "Account settings controller no exception",
+      "result": "PASS",
+      "detail": []
+    },
+    {
+      "name": "Private photos available in shared frame",
+      "result": "PASS"
+    },
+    {
+      "name": "Photo upload controller attached",
+      "result": "PASS"
+    },
+    {
+      "name": "Private photos controller no exception",
+      "result": "PASS",
+      "detail": []
+    },
+    {
+      "name": "Grub tools available in shared frame",
+      "result": "PASS"
+    },
+    {
+      "name": "Grub tools controller no exception",
+      "result": "PASS",
+      "detail": []
+    },
+    {
+      "name": "Fit tools available in shared frame",
+      "result": "PASS"
+    },
+    {
+      "name": "Fit tools controller no exception",
+      "result": "PASS",
+      "detail": []
+    },
+    {
+      "name": "Life Back available in shared frame",
+      "result": "PASS"
+    },
+    {
+      "name": "Life Back controller no exception",
+      "result": "PASS",
+      "detail": []
+    }
+  ],
+  "errors": []
+}

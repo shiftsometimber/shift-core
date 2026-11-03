@@ -1,0 +1,210 @@
+{
+  "engine": "webkit",
+  "device": "390 × 844 mobile browser profile; not a physical phone",
+  "testAccount": "v7-choose@example.invalid",
+  "origin": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev",
+  "at": "2026-11-03T21:49:05.686Z",
+  "checks": [
+    {
+      "name": "journey keeps the shared frame",
+      "result": "PASS",
+      "detail": {
+        "sameFrame": true,
+        "sameHeader": true,
+        "sameBottom": true,
+        "iframes": 0,
+        "active": [
+          "journey"
+        ],
+        "text": "LEAD WITH\n\nWeight\nStrength\nEnergy\nYour progress.\nAdd a reading\nWeight\nWaist\nClothes size\nDates\n\nNo weight readings in these dates. Add what you know, whenever it suits you.\n\nYOUR A"
+      }
+    },
+    {
+      "name": "shop keeps the shared frame",
+      "result": "PASS",
+      "detail": {
+        "sameFrame": true,
+        "sameHeader": true,
+        "sameBottom": true,
+        "iframes": 0,
+        "active": [
+          "shop"
+        ],
+        "text": "Useful things.\nProperly explained.\n\nA bit more help, on your terms.\n\nSHOP & SERVICES\n\nYour orders\nTesting & wellbeing\nHome tests, lab tests and what each can tell you.\nExplore test"
+      }
+    },
+    {
+      "name": "grub keeps the shared frame",
+      "result": "PASS",
+      "detail": {
+        "sameFrame": true,
+        "sameHeader": true,
+        "sameBottom": true,
+        "iframes": 0,
+        "active": [
+          "grub"
+        ],
+        "text": "TODAY’S MEALS\n+ Snack\nProtein\n0g of 120g\nCalories\n0 kcal of 2200 kcal\n\nBreakfast\n\nRecord breakfast\n\nLunch\n\nRecord lunch\n\nDinner\n\nRecord dinner\n\nSnacks\n\nRecord snacks\n\nTONIGHT’S DIN"
+      }
+    },
+    {
+      "name": "fit keeps the shared frame",
+      "result": "PASS",
+      "detail": {
+        "sameFrame": true,
+        "sameHeader": true,
+        "sameBottom": true,
+        "iframes": 0,
+        "active": [
+          "fit"
+        ],
+        "text": "TODAY’S SESSION\n\n20-MINUTE FULL-BODY STRENGTH SESSION\n\n20 mins · dumbbells · home\n\nTIME\n10 min\n20 min\n40 min\nKIT\nNone\nDumbbells\nGym\nSTART\nSWAP IT\nWALKS COUNT\n\nWalks record activity"
+      }
+    },
+    {
+      "name": "support keeps the shared frame",
+      "result": "PASS",
+      "detail": {
+        "sameFrame": true,
+        "sameHeader": true,
+        "sameBottom": true,
+        "iframes": 0,
+        "active": [
+          "support"
+        ],
+        "text": "SUPPORT\n\nIn your corner.\n\nA starting point when things feel difficult.\n\nNeed urgent help?\n\nMy Timber is not monitored for urgent help.\n\nCall 999\nLife-threatening emergency\nCall NHS"
+      }
+    },
+    {
+      "name": "more keeps the shared frame",
+      "result": "PASS",
+      "detail": {
+        "sameFrame": true,
+        "sameHeader": true,
+        "sameBottom": true,
+        "iframes": 0,
+        "active": [
+          "more"
+        ],
+        "text": "MORE\n\nMore. In your corner.\nPreferences\nWeight display and your app preferences\nSupport\nEveryday help, treatment contacts and your snapshot\n\nYOUR STUFF\n\nSaved & plans\nIdeas and pla"
+      }
+    },
+    {
+      "name": "today keeps the shared frame",
+      "result": "PASS",
+      "detail": {
+        "sameFrame": true,
+        "sameHeader": true,
+        "sameBottom": true,
+        "iframes": 0,
+        "active": [
+          "today"
+        ],
+        "text": "Feeling?\nGood\nSo-so\nA bit flat\nHistory ›\n\nTODAY’S ONE THING\n\nMAKE TONIGHT’S DINNER: CHICKEN WITH ROASTED POTATOES AND VEGETABLES\n\nYour protein target: 120g · Change\n\nLogged today: "
+      }
+    },
+    {
+      "name": "Seven destinations do not reload the document",
+      "result": "PASS",
+      "detail": {
+        "documentsBefore": 2,
+        "documentsAfter": 2
+      }
+    },
+    {
+      "name": "More active on Preferences",
+      "result": "PASS"
+    },
+    {
+      "name": "Shell service worker installed",
+      "result": "PASS",
+      "detail": {
+        "controller": true,
+        "caches": [
+          "my-timber-shell-9177604c619a24494ee4"
+        ]
+      }
+    },
+    {
+      "name": "Repeat shell has fewer than ten requests before content",
+      "result": "PASS",
+      "detail": {
+        "requests": [
+          {
+            "path": "/member/dashboard",
+            "type": "document"
+          },
+          {
+            "path": "/member/manifest.webmanifest",
+            "type": "other"
+          },
+          {
+            "path": "/assets/member-experience/v7-heading-font.woff2",
+            "type": "font"
+          },
+          {
+            "path": "/assets/member-experience/v7-native.css",
+            "type": "stylesheet"
+          },
+          {
+            "path": "/assets/member-experience/v7-native.mjs",
+            "type": "script"
+          },
+          {
+            "path": "/v1/my-timber/boot",
+            "type": "fetch"
+          }
+        ],
+        "resources": [
+          {
+            "name": "/assets/member-experience/v7-heading-font.woff2",
+            "transferSize": 0,
+            "workerStart": 5
+          },
+          {
+            "name": "/member/manifest.webmanifest",
+            "transferSize": 0,
+            "workerStart": 5
+          },
+          {
+            "name": "/assets/member-experience/v7-native.css",
+            "transferSize": 0,
+            "workerStart": 5
+          },
+          {
+            "name": "/assets/member-experience/v7-native.mjs",
+            "transferSize": 0,
+            "workerStart": 5
+          },
+          {
+            "name": "/v1/my-timber/boot",
+            "transferSize": 7428,
+            "workerStart": 21
+          }
+        ]
+      }
+    },
+    {
+      "name": "CacheStorage contains no private API responses",
+      "result": "PASS",
+      "detail": [
+        "/assets/member-experience/v7-brand.svg",
+        "/member/manifest.webmanifest",
+        "/assets/member-experience/v7-native.mjs",
+        "/member/app-shell.html",
+        "/assets/member-experience/v7-heading-font.woff2",
+        "/assets/member-experience/v7-native.css"
+      ]
+    },
+    {
+      "name": "Browser run completes",
+      "result": "FAIL",
+      "detail": "page.goto: WebKit encountered an internal error\nCall log:\n\u001b[2m  - navigating to \"https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/dashboard#today\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    },
+    {
+      "name": "No browser exceptions or failed HTTP responses",
+      "result": "PASS",
+      "detail": []
+    }
+  ]
+}

@@ -2,16 +2,22 @@
 // Life Back response; mounting V7 does not fetch another page-load endpoint.
 export function v7Browser(services){
  'use strict';
- const {esc}=services;let view=null,modal=null,busy=false,pending=null,source=null;
+ const {esc}=services;let view=null,modal=null,busy=false,pending=null,source=null,saveTail=Promise.resolve(),shareFile=null,shareURL=null;
  const bound=new WeakSet();
  const text=s=>esc(s??'');
+ const icon=name=>services.icon?.(name)||'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="'+({tick:'m4 12 5 5L20 6',swap:'M4 7h15m-4-4 4 4-4 4M20 17H5m4-4-4 4 4 4',close:'m5 5 14 14M19 5 5 19',play:'m9 5 7 7-7 7'}[name]||'m9 5 7 7-7 7')+'"/></svg>';
  const ready=()=>services.ready()&&!document.hidden;
  const status=s=>{const n=(modal||document).querySelector('[data-v7-status]');if(n)n.textContent=s;};
  const button=(label,action,extra='')=>'<button type="button" data-v7="'+action+'" '+extra+'>'+label+'</button>';
  function accept(v){view=v||null;document.documentElement.dataset.mtShowWeight=view?.preferences?.showWeight===false?'off':'on';}
- function clear(){view=null;pending=null;busy=false;if(modal){modal.remove();modal=null;}delete document.documentElement.dataset.mtShowWeight;}
- async function save(action,extra={}){
-  if(busy||!ready()||!view)return null;
+ function clear(){view=null;pending=null;busy=false;if(modal){modal.remove();modal=null;}if(shareURL)URL.revokeObjectURL(shareURL);shareURL=null;shareFile=null;delete document.documentElement.dataset.mtShowWeight;}
+ function save(action,extra={}){
+  const queuedOwner=String(services.account()),queuedGeneration=services.generation();
+  const task=()=>{if(queuedGeneration!==services.generation()||queuedOwner!==String(services.account()))return null;return performSave(action,extra);};
+  const result=saveTail.then(task);saveTail=result.catch(()=>{});return result;
+ }
+ async function performSave(action,extra={}){
+  if(!ready()||!view)return null;
   const owner=String(services.account()),generation=services.generation(),intent=JSON.stringify({owner,action,extra});
   if(!pending||pending.intent!==intent)pending={intent,id:crypto.randomUUID()};
   busy=true;status('Saving…');
@@ -25,7 +31,7 @@ export function v7Browser(services){
   }catch(e){if(generation===services.generation())status(e.message||'That save could not be confirmed. Your pile has not been guessed.');return null;}
   finally{busy=false;}
  }
- function title(a){return a.kind==='food'&&!a.pending?'Make tonight’s dinner: '+a.name:a.name;}
+ function title(a){return a.kind==='food'&&!a.pending?'Make tonight’s dinner: '+a.name.split(' — ')[0]:a.name;}
  function todayMarkup(){
   if(!view)return '<p role="status">Opening your saved action…</p>';
   const a=view.action,p=view.proteinG,target=view.proteinTarget;
@@ -35,13 +41,13 @@ export function v7Browser(services){
    (a.reason?'<p class="mt-v7-reason">'+text(a.reason)+'</p>':'')+
    (a.items?.length||a.steps?.length?'<details><summary>'+text(a.time||'Instructions')+' · '+text(a.label||'Recipe')+'</summary><ul>'+a.items.map(i=>'<li>'+text(i)+'</li>').join('')+'</ul><ol>'+a.steps.map(i=>'<li>'+text(i)+'</li>').join('')+'</ol>'+(a.allergenNote?'<p>'+text(a.allergenNote)+'</p>':'')+'</details>':'<p><a href="'+text(a.href)+'">'+text(a.label||'Open this step')+'</a></p>')+
    (a.kind==='food'?'<p><a href="/member/grub#record-eaten">Record what you ate</a></p>':'')+
-   '<div class="mt-v7-actions">'+button(view.completedToday?'✓ SAVED TODAY':'✓ DONE','done',view.completedToday||a.pending?'disabled':'')+button('⇄ SWAP IT','swap',view.completedToday?'disabled':'')+'</div>'+
+   '<div class="mt-v7-actions">'+button(icon('tick')+(view.completedToday?'SAVED TODAY':'DONE'),'done',view.completedToday||a.pending?'disabled':'')+button(icon('swap')+'SWAP IT','swap',view.completedToday?'disabled':'')+'</div>'+
    '<p class="mt-v7-small"><a href="/member/ask-timber#about='+encodeURIComponent(title(a))+'">Ask Timber about this ›</a></p>'+
    '<div class="mt-v7-saved"><p class="mt-v7-eyebrow">MY NEXT STEP · SAVED</p><strong>'+text(a.name)+'</strong><p><a href="/member/life-back/support">Open my saved step and reminders</a></p><p class="mt-v7-small">Private and optional. This is not clinical monitoring.</p></div><p role="status" data-v7-status></p></section>'+
-   (view.goal?'<section class="mt-v7-card mt-v7-why"><p class="mt-v7-eyebrow">DOING THIS FOR:</p><strong>'+text(view.goal)+'</strong> <a href="/member/life-back">Change</a></section>':'')+
-   '<nav class="mt-v7-quick" aria-label="Quick records">'+button('Pint','food','data-food="Pint"')+button('Takeaway','food','data-food="Takeaway"')+
-   '<a href="/member/fit">Gym done</a>'+button('Rough night','quick','data-quick-note="Rough night"')+
-   (view.preferences.showWeight?button('Weigh in','quick'):'')+'</nav>';
+   (view.goal&&services.goalVisible?.()!==false?'<section class="mt-v7-card mt-v7-why"><p class="mt-v7-eyebrow">DOING THIS FOR:</p><strong>'+text(view.goal)+'</strong> <a href="/member/life-back">Change</a></section>':'')+
+   '<p class="mt-v7-eyebrow">Quick log</p><nav class="mt-v7-quick" aria-label="Quick records">'+button('Pint','food','data-food="Pint"')+button('Takeaway','food','data-food="Takeaway"')+
+   button('Gym done','quick','data-quick-kind="Gym done"')+button('Rough night','quick','data-quick-kind="Rough night"')+
+   (view.preferences.showWeight?button('Weigh in','quick','data-quick-kind="Weigh in"'):'')+'</nav><p class="mt-v7-small">Helps Timber learn. Doesn&#39;t add a pile log.</p>';
  }
  function stackMarkup(){
   if(!view)return '';
@@ -52,10 +58,10 @@ export function v7Browser(services){
    (view.milestone?button('View your 30-log milestone','preview'):'')+
    (view.insights?.recap?button('Your week','recap'):'')+'</section>';
  }
- function close(){const old=modal;modal=null;old?.close();old?.remove();if(source?.isConnected)source.focus();}
+ function close(){const old=modal;modal=null;old?.close();old?.remove();if(shareURL)URL.revokeObjectURL(shareURL);shareURL=null;shareFile=null;if(source?.isConnected)source.focus();}
  function sheet(label,html){
   close();source=document.activeElement;modal=document.createElement('dialog');modal.className='mt-v7-sheet';modal.setAttribute('aria-label',label);
-  modal.innerHTML='<button type="button" data-v7="close" class="mt-v7-close" aria-label="Close">×</button>'+html+'<p data-v7-status role="status"></p>';document.body.append(modal);bind(modal);
+  modal.innerHTML='<button type="button" data-v7="close" class="mt-v7-close" aria-label="Close">'+icon('close')+'</button>'+html+'<p data-v7-status role="status"></p>';document.body.append(modal);bind(modal);
   modal.addEventListener('cancel',e=>{e.preventDefault();close();});modal.addEventListener('click',e=>{if(e.target===modal)close();});modal.showModal();modal.querySelector('button')?.focus();
  }
  function swap(){
@@ -68,7 +74,7 @@ export function v7Browser(services){
  async function done(){
   if(!view||view.completedToday)return;
   const count=view.count,d=await save('v7-complete',{actionId:view.action.id});if(!d)return;
-  const day=d.progress.v7.days[view.today],awarded=view.count>count;
+  const day=d.progress.v7.days[view.today],awarded=d.awarded===true;
   sheet('Your action is saved','<p class="mt-v7-eyebrow">DONE</p><h2>'+(awarded?'+1 log':'Saved today')+'</h2><p><strong>'+text(day.log.action.completedLabel||'Your action is saved.')+'</strong></p><p>'+text(view.count)+' of 30 logs on your pile.</p><h3>HOW DID IT GO? <small>OPTIONAL</small></h3><div class="mt-v7-feedback">'+
    [['helped','Helped'],['not-helped','Tried it, didn’t help'],['later','Ask me later']].map(([key,label])=>button(label,'feedback','data-outcome="'+key+'" data-log="'+text(day.log.id)+'" data-day="'+text(day.on)+'"')).join('')+
    '</div><p>Your log is safe either way. This shapes tomorrow’s suggestion.</p>'+
@@ -76,13 +82,23 @@ export function v7Browser(services){
    (view.count===30?'<p>Your first pile is complete.</p>'+button('Preview your milestone','preview'):''));
  }
  function preview(){
-  if(!view)return;const s=view.share;
-  sheet('Share preview','<p class="mt-v7-eyebrow">SHARE PREVIEW</p><div class="mt-v7-share"><p>MY TIMBER</p><h2>'+text(s.logs)+' LOGS.<br>STILL STACKING.</h2><p>'+text(s.weekCount)+' logs this week.</p></div><p>This shares your effort only. Check the preview before sharing.</p>'+button('Share this card','share'));
+  if(!view)return;const s={logs:view.share.logs,target:view.share.target,weekCount:view.share.weekCount},owner=services.account(),generation=services.generation();
+  sheet('Share preview','<p class="mt-v7-eyebrow">SHARE PREVIEW</p><div class="mt-v7-share"><p>MY TIMBER</p><h2>'+text(s.logs)+' LOGS.<br>STILL STACKING.</h2><p>'+text(s.weekCount)+' logs this week.</p></div><p>This shares your effort only. Check the preview before sharing.</p>'+button('Share this card','share','disabled'));
+  const opened=modal;makeShareCard(s).then(file=>{if(modal!==opened||owner!==services.account()||generation!==services.generation()||!ready())return;shareFile=file;shareURL=URL.createObjectURL(file);const img=new Image();img.src=shareURL;img.alt=s.logs+' logs stacked, '+s.weekCount+' this week, '+(s.target-s.logs)+' to go.';img.className='mt-v7-share-image';opened.querySelector('.mt-v7-share').replaceWith(img);opened.querySelector('[data-v7=share]').disabled=false;}).catch(()=>status('The share card could not be prepared. Your pile is safe.'));
+ }
+ async function makeShareCard(s){
+  await document.fonts.ready;const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1920;const c=canvas.getContext('2d');
+  const cream='#E7E3DA',green='#AEBF92',ash='#707762',black='#050505';c.fillStyle=black;c.fillRect(0,0,1080,1920);
+  const mark=document.querySelector('#mtShopChrome .mt-shop-mark');if(mark){const img=new Image();img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(new XMLSerializer().serializeToString(mark));await img.decode();c.drawImage(img,88,90,96,96);}
+  c.fillStyle=cream;c.font='700 48px MyTimberHeading,Arial';c.fillText('MY TIMBER',218,158);c.font='700 164px MyTimberHeading,Arial';c.fillText('LOG '+s.logs+'.',88,414);c.fillStyle=green;c.fillText('STILL',88,580);c.fillStyle=cream;c.fillText('STACKING.',88,746);
+  let index=0;for(let row=0;row<5;row++){const count=[8,7,6,5,4][row],y=1305-row*91;for(let col=0;col<count;col++,index++){const x=540-(count-1)*48+col*96;if(index<s.logs){c.fillStyle=ash;c.beginPath();c.ellipse(x+24,y-13,43,37,-.4,0,Math.PI*2);c.fill();c.fillStyle=cream;c.strokeStyle='#414733';c.lineWidth=9;c.beginPath();c.arc(x,y,38,0,Math.PI*2);c.fill();c.stroke();c.fillStyle='#9DA590';c.beginPath();c.arc(x,y,4,0,Math.PI*2);c.fill();}else{c.strokeStyle='#414733';c.lineWidth=3;c.setLineDash([10,8]);c.beginPath();c.arc(x,y,38,0,Math.PI*2);c.stroke();c.setLineDash([]);}}}
+  for(const [i,value,label]of [[0,s.logs,'logs stacked'],[1,s.weekCount,'this week'],[2,s.target-s.logs,'to go']]){const x=88+i*310;c.fillStyle=i===0?'#879174':black;c.strokeStyle=i===0?green:'#272c23';c.lineWidth=3;c.beginPath();c.roundRect(x,1430,280,260,32);c.fill();c.stroke();c.fillStyle=i===0?black:cream;c.font='700 108px MyTimberHeading,Arial';c.fillText(String(value),x+34,1562);c.font='700 34px Arial';c.fillText(label,x+30,1630);}
+  c.fillStyle=cream;c.font='700 44px MyTimberHeading,Arial';c.fillText('SHIFT SOME TIMBER',88,1790);c.font='30px Arial';c.fillStyle='#BFC6B5';c.fillText('shiftsometimber.co.uk',88,1834);c.fillText('Every log counts. The pile stays.',88,1880);
+  const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));if(!blob)throw Error('Share image unavailable');return new File([blob],'My-Timber.png',{type:'image/png'});
  }
  async function share(){
-  if(!ready()||!modal||!view)return;const s=view.share;
-  const data={title:'My Timber',text:s.logs+' logs. Still stacking. '+s.weekCount+' logs this week.'};
-  try{if(navigator.share)await navigator.share(data);else if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(data.text);status('Copied. Choose where to share it.');}else status('Sharing is unavailable in this browser. Your preview is still here.');}
+  if(!ready()||!modal||!shareFile)return;
+  try{if(navigator.share&&navigator.canShare?.({files:[shareFile]}))await navigator.share({title:'My Timber',files:[shareFile]});else{const a=document.createElement('a');a.href=shareURL;a.download=shareFile.name;a.click();status('Card downloaded. You choose where to share it.');}}
   catch(e){if(e.name!=='AbortError')status('Sharing did not finish. Your pile is safe.');}
  }
  function recap(){
@@ -107,12 +123,12 @@ export function v7Browser(services){
    else if(key==='decline'){if(await save('v7-decline',{actionId:view.action.id,outcome:b.dataset.outcome}))close();}
    else if(key==='feedback'){if(await save('v7-feedback',{on:b.dataset.day,logId:b.dataset.log,outcome:b.dataset.outcome}))close();}
    else if(key==='preview')preview();else if(key==='share')await share();else if(key==='recap')recap();
-   else if(key==='food')foodForm(b.dataset.food);
-   else if(key==='quick')await window.SST_QUICK_LOG?.open(b);
+   else if(key==='food'){if(services.quickLog)services.quickLog(b.dataset.food);else foodForm(b.dataset.food);}
+   else if(key==='quick'){if(services.quickRecord)await services.quickRecord(b.dataset.quickKind);else await window.SST_QUICK_LOG?.open(b);}
   });
  }
- return {accept,clear,todayMarkup,stackMarkup,bind};
+ return {accept,clear,todayMarkup,stackMarkup,bind,save,sheet,sheetRoot:()=>modal,close};
 }
 export const v7Styles=String.raw`
-.mt-v7-card{border:1px solid #707762;border-radius:20px;background:#10120f;color:#E7E3DA;padding:18px;margin:14px 0;line-height:1.45}.mt-v7-card h2,.mt-v7-sheet h2{font-size:clamp(26px,6vw,36px);line-height:1.1;margin:12px 0;text-transform:uppercase}.mt-v7-eyebrow{font-size:12px!important;letter-spacing:.12em;font-weight:700}.mt-v7-cream{background:#E7E3DA;color:#050505}.mt-v7-cream :is(a,summary){color:#414733!important}.mt-v7-cream h2{color:#050505!important}.mt-v7-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0}.mt-v7-actions button,.mt-v7-sheet button{font:700 16px/1.25 inherit;min-height:44px;border:1px solid #707762;border-radius:12px;padding:12px;background:#151713;color:#E7E3DA}.mt-v7-cream .mt-v7-actions button{background:#050505;color:#E7E3DA}.mt-v7-cream .mt-v7-actions button+button{background:transparent;color:#050505;border:2px solid #050505}.mt-v7-card [disabled]{opacity:.65;cursor:default}.mt-v7-saved{border-top:1px solid #bcb9ad;padding-top:12px}.mt-v7-small{font-size:13px}.mt-v7-reason{color:#414733;font-weight:600}.mt-v7-why{background:#050505}.mt-v7-why a{float:right}.mt-v7-quick{display:flex;gap:6px;flex-wrap:wrap}.mt-v7-quick :is(a,button){flex:1;min-width:55px;min-height:44px;background:#151713!important;color:#E7E3DA!important;border:1px solid #414733;border-radius:12px;padding:10px 6px!important;text-align:center;font:600 13px/1.3 Arial,sans-serif;text-decoration:none}.mt-v7-pile{max-width:320px;margin:20px auto}.mt-v7-log-row{display:flex;justify-content:center;margin-top:-2px;gap:3px}.mt-v7-log{width:29px;height:29px;border:2px dashed #707762;border-radius:50%;box-sizing:border-box;display:block}.mt-v7-log.is-filled{background:#E7E3DA;border:5px solid #707762;box-shadow:6px -3px 0 #414733}.mt-v7-sheet{box-sizing:border-box;position:fixed;inset:auto 0 0;width:100%;max-width:636px;margin:auto;max-height:90dvh;overflow:auto;background:#10120f;color:#E7E3DA;border:1px solid #707762;border-radius:24px 24px 0 0;padding:24px 18px calc(24px + env(safe-area-inset-bottom));font:16px/1.45 Arial,sans-serif}.mt-v7-sheet::backdrop{background:#050505b8}.mt-v7-sheet a{color:#E7E3DA}.mt-v7-close{float:right}.mt-v7-choice{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid #414733;border-radius:16px;padding:14px;margin:12px 0}.mt-v7-choice p{font-size:14px;margin:6px 0}.mt-v7-feedback{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.mt-v7-sheet input{display:block;width:100%;box-sizing:border-box;min-height:44px;font:inherit;background:#050505;color:#E7E3DA;border:1px solid #707762;padding:10px}.mt-v7-sheet label{display:block;margin:14px 0}.mt-v7-share{background:#050505;color:#E7E3DA;border:1px solid #707762;padding:24px}.mt-v7-sheet small{font-size:12px}.mt-support.mt-v7-host{border:0;padding:0}.mt-v7-host>details{border:1px solid #707762;border-radius:16px;padding:12px;margin:16px 0}
+.mt-v7-card{border:1px solid #707762;border-radius:20px;background:#10120f;color:#E7E3DA;padding:18px;margin:14px 0;line-height:1.45}.mt-v7-card h2,.mt-v7-sheet h2{font-size:clamp(26px,6vw,36px);line-height:1.1;margin:12px 0;text-transform:uppercase}.mt-v7-eyebrow{font-size:12px!important;letter-spacing:.12em;font-weight:700}.mt-v7-cream{background:#E7E3DA;color:#050505}.mt-v7-cream :is(a,summary){color:#414733!important}.mt-v7-cream h2{color:#050505!important}.mt-v7-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0}.mt-v7-actions button,.mt-v7-sheet button{font:700 16px/1.25 inherit;min-height:44px;border:1px solid #707762;border-radius:12px;padding:12px;background:#151713;color:#E7E3DA}.mt-v7-cream .mt-v7-actions button{background:#050505;color:#E7E3DA}.mt-v7-cream .mt-v7-actions button+button{background:transparent;color:#050505;border:2px solid #050505}.mt-v7-card [disabled]{opacity:.65;cursor:default}.mt-v7-saved{border-top:1px solid #bcb9ad;padding-top:12px}.mt-v7-small{font-size:13px}.mt-v7-reason{color:#414733;font-weight:600}.mt-v7-why{background:#050505}.mt-v7-why a{float:right}.mt-v7-quick{display:flex;gap:6px;flex-wrap:wrap}.mt-v7-quick :is(a,button){flex:1;min-width:55px;min-height:44px;background:#151713!important;color:#E7E3DA!important;border:1px solid #414733;border-radius:12px;padding:10px 6px!important;text-align:center;font:600 13px/1.3 Arial,sans-serif;text-decoration:none}.mt-v7-pile{max-width:320px;margin:20px auto}.mt-v7-log-row{display:flex;justify-content:center;margin-top:-2px;gap:3px}.mt-v7-log{width:29px;height:29px;border:2px dashed #707762;border-radius:50%;box-sizing:border-box;display:block}.mt-v7-log.is-filled{background:#E7E3DA;border:5px solid #707762;box-shadow:6px -3px 0 #414733}.mt-v7-sheet{box-sizing:border-box;position:fixed;inset:auto 0 0;width:100%;max-width:636px;margin:auto;max-height:90dvh;overflow:auto;background:#10120f;color:#E7E3DA;border:1px solid #707762;border-radius:24px 24px 0 0;padding:24px 18px calc(24px + env(safe-area-inset-bottom));font:16px/1.45 Arial,sans-serif}.mt-v7-sheet::backdrop{background:#050505b8}.mt-v7-sheet a{color:#E7E3DA}.mt-v7-close{float:right}.mt-v7-choice{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid #414733;border-radius:16px;padding:14px;margin:12px 0}.mt-v7-choice p{font-size:14px;margin:6px 0}.mt-v7-feedback{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.mt-v7-sheet input{display:block;width:100%;box-sizing:border-box;min-height:44px;font:inherit;background:#050505;color:#E7E3DA;border:1px solid #707762;padding:10px}.mt-v7-sheet label{display:block;margin:14px 0}.mt-v7-share-image{display:block;width:100%;max-height:65dvh;object-fit:contain;margin:auto}.mt-v7-share{background:#050505;color:#E7E3DA;border:1px solid #707762;padding:24px}.mt-v7-sheet small{font-size:12px}.mt-support.mt-v7-host{border:0;padding:0}.mt-v7-host>details{border:1px solid #707762;border-radius:16px;padding:12px;margin:16px 0}
 `;

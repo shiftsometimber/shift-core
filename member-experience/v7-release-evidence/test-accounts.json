@@ -1,0 +1,27 @@
+{
+  "syntheticOnly": true,
+  "noPurchasesOrMessages": true,
+  "accounts": [
+    {
+      "case": "choose",
+      "account": "v7-choose@example.invalid",
+      "seedLogs": 12,
+      "original": "recipe:industrial-dinner-salmon-stir-fry",
+      "swaps": 3
+    },
+    {
+      "case": "hard-week",
+      "account": "v7-hard-week@example.invalid",
+      "seedLogs": 12,
+      "original": "routine:pause",
+      "swaps": 3
+    },
+    {
+      "case": "milestone",
+      "account": "v7-milestone@example.invalid",
+      "seedLogs": 29,
+      "original": "recipe:industrial-dinner-salmon-stir-fry",
+      "swaps": 3
+    }
+  ]
+}

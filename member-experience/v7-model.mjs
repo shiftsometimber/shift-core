@@ -1,3 +1,4 @@
+import {applyV7Fit} from './v7-fit.mjs';
 import {journeyDay} from './journey-records.mjs';
 
 const fail=(message,status=400)=>{throw Object.assign(Error(message),{status});};
@@ -12,12 +13,13 @@ export function v7Week(day){
 export function v7Logs(progress){return Object.values(progress?.v7?.days||{}).filter(d=>d.log).sort((a,b)=>a.on.localeCompare(b.on));}
 export function v7State(progress,at=new Date().toISOString()){
  const today=journeyDay(at),logs=v7Logs(progress),week=v7Week(today),last=logs.at(-1),prefs=v7Preferences(progress);
- return {today,preferences:prefs,count:logs.length,target:30,weeklyCount:logs.filter(d=>d.on>=week&&d.on<=today).length,week,
+ return {today,preferences:prefs,count:Math.min(30,logs.length),lifetimeCount:logs.length,target:30,weeklyCount:logs.filter(d=>d.on>=week&&d.on<=today).length,week,
   completedToday:!!progress?.v7?.days?.[today]?.log,milestone:progress?.v7?.milestones?.['30']||null,
   returning:!!last&&Date.parse(today)-Date.parse(last.on)>=7*86400000,
   // Read prepared insights only. Never calculate stalls or recaps while opening a screen.
-  insights:publicInsights(progress?.v7?.insights,prefs.showWeight),activityReadings:progress?.v7?.activityReadings||[],energyReadings:progress?.v7?.energyReadings||[]};
+  fit:publicFit(progress?.v7?.fit),insights:publicInsights(progress?.v7?.insights,prefs.showWeight),activityReadings:progress?.v7?.activityReadings||[],energyReadings:progress?.v7?.energyReadings||[]};
 }
+function publicFit(fit){if(!fit)return null;return {selected:fit.selected||null,alternatives:fit.alternatives||[],choices:(fit.choices||[]).map(({id,minutes,kit,name})=>({id,minutes,kit,name})),healthTags:fit.healthTags||[],moves:fit.moves||{},days:fit.days||{}};}
 function publicInsights(insights,showWeight){
  if(!insights)return null;
  return {...insights,stall:showWeight?insights.stall:null,recap:insights.recap?{...insights.recap,items:(insights.recap.items||[]).filter(x=>showWeight||x.topic!=='weight'),weight:showWeight?insights.recap.weight:null}:null};
@@ -36,6 +38,11 @@ function offered(progress,on,context){
 export function applyV7Operation(progress,input,at=new Date().toISOString(),context={}){
  if(!String(input.action||'').startsWith('v7-'))return null;
  const on=journeyDay(at),previous=progress.v7,existing=previous?.days?.[on],prefs=v7Preferences(progress);
+ if(input.action.startsWith('v7-fit-'))return applyV7Fit(progress,input,at,context,()=>applyV7Operation(progress,{...input,action:'v7-complete',actionId:input.sessionId},at,context));
+ if(input.action==='v7-quick'){
+  if(!['pint','takeaway','gym','sleep'].includes(input.kind))fail('Choose an available quick log.');
+  const s=state(progress);s.quick=s.quick||[];s.quick.push({id:input.operationId,on,at,kind:input.kind});s.quick=s.quick.slice(-365);return true;
+ }
  if(input.action==='v7-refresh'){
   if(input.revision!==progress.revision)fail('Your choices changed. Reload before preparing alternatives.',409);
   if(!context.preparedOffers?.action)fail('No reviewed alternatives could be confirmed. Your current action is safe.',503);
@@ -105,11 +112,11 @@ export function applyV7Operation(progress,input,at=new Date().toISOString(),cont
  }
  fail('Unknown Timber action.');
 }
-export function v7Share(progress){
- const logs=v7Logs(progress),last=logs.at(-1),week=last?v7Week(last.on):null;
+export function v7Share(progress,at=new Date().toISOString()){
+ const logs=v7Logs(progress),today=journeyDay(at),week=v7Week(today);
  // Deliberate allowlist: never include goals, memories, readings, symptoms, treatment or weight.
- return {brand:'MY TIMBER',title:'STILL STACKING.',logs:logs.length,target:30,
-  weekCount:week?logs.filter(d=>d.on>=week).length:0,milestone:progress?.v7?.milestones?.['30']?30:null};
+ return {brand:'MY TIMBER',title:'STILL STACKING.',logs:Math.min(30,logs.length),target:30,
+  weekCount:logs.filter(d=>d.on>=week&&d.on<=today).length,milestone:progress?.v7?.milestones?.['30']?30:null};
 }
 export function v7NextReason(progress,today){
  const days=Object.values(progress?.v7?.days||{}).filter(d=>d.on<today).sort((a,b)=>b.on.localeCompare(a.on));

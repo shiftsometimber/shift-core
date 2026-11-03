@@ -1,0 +1,6 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {weightSafeView} from '../v7-visibility.mjs';
+test('hidden-weight presentation removes body weight, changes, BMI, stalls and device weights across nested views',()=>{
+ const original={weight:{currentKg:101,startKg:110},bmi:35,weightChangeKg:-9,records:[{on:'2026-11-03',weightKg:101,waistCm:103}],metrics:[{key:'weight',series:[{value:101}]},{key:'waist',series:[{value:103}]}],device:[{kind:'weight',weightKg:101},{kind:'heart_rate',heartRate:61}],recap:{items:[{topic:'weight',text:'Lost 9 kg'},{topic:'effort',text:'One daily action'}]}};
+ const clean=weightSafeView(original);assert(!('weight'in clean));assert(!('bmi'in clean));assert(!('weightChangeKg'in clean));assert.equal(clean.records[0].waistCm,103);assert(!('weightKg'in clean.records[0]));assert.deepEqual(clean.metrics.map(m=>m.key),['waist']);assert.deepEqual(clean.device.map(m=>m.kind),['heart_rate']);assert.equal(clean.recap.items.length,1);assert.equal(original.records[0].weightKg,101);
+});
+test('nutrition targets and a strength activity measured in kg are retained',()=>{const v={proteinTarget:127,calorieTarget:2180,preferences:{showWeight:false},activityReadings:[{activity:{unit:'kg',name:'Recorded lift'},value:20}]};assert.deepEqual(weightSafeView(v),v);});

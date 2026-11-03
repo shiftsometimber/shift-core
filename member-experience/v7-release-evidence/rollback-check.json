@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-03T22:18:24.987Z",
+  "mode": "READ_ONLY_BASELINE_CHECK",
+  "verified": [
+    {
+      "worker": "shift-programme-member-20261023",
+      "before": "8500f880-3e8a-49ff-b74e-c2cd83c36f27",
+      "restored": null
+    },
+    {
+      "worker": "shift-hq-member-comms-20261023",
+      "before": "67958f58-8712-49ec-bcf0-2e513c1fd5d2",
+      "restored": null
+    },
+    {
+      "worker": "shift-core",
+      "before": "e21cdda6-22e1-4c82-b4db-acaccfdc4f8f",
+      "restored": null
+    },
+    {
+      "worker": "shift-mytimber-support-20261023",
+      "before": "1ff41acd-546e-431a-ab7f-fbc1f6f65b68",
+      "restored": null
+    }
+  ],
+  "memberRecordsDeleted": false,
+  "serviceWorkerRecovery": "Cached shell detects the restored /v1/my-timber/boot 404, purges its encrypted snapshot and reloads the old app through ?mt-rollback=1. Physical-device recovery remains a required proof."
+}

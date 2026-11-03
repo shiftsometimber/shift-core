@@ -1,0 +1,43 @@
+{
+  "at": "2026-11-03T23:16:28.244Z",
+  "account": "v7-choose@example.invalid",
+  "device": "Chromium mobile profile, not a physical phone",
+  "checks": [
+    {
+      "name": "Existing saved basket opens in native shell",
+      "result": "PASS"
+    },
+    {
+      "name": "testing catalogue keeps shared frame",
+      "result": "PASS"
+    },
+    {
+      "name": "nutrition catalogue keeps shared frame",
+      "result": "PASS"
+    },
+    {
+      "name": "kit catalogue keeps shared frame",
+      "result": "PASS"
+    },
+    {
+      "name": "care catalogue keeps shared frame",
+      "result": "PASS"
+    },
+    {
+      "name": "No browser or HTTP errors",
+      "result": "FAIL",
+      "detail": [
+        "404 /v1/commerce/basket-quote",
+        "404 /v1/commerce/basket-quote",
+        "404 /shift-health/supplements-nutrition?shift_hero=20261029-approved-v1-supplements-41052b45ba9f",
+        "404 /shop/assets/hero.webp"
+      ]
+    }
+  ],
+  "errors": [
+    "404 /v1/commerce/basket-quote",
+    "404 /v1/commerce/basket-quote",
+    "404 /shift-health/supplements-nutrition?shift_hero=20261029-approved-v1-supplements-41052b45ba9f",
+    "404 /shop/assets/hero.webp"
+  ]
+}

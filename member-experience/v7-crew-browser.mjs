@@ -1,0 +1,17 @@
+export function crewBrowser(s){
+ const button=(text,action)=>'<button type="button" data-crew="'+action+'">'+text+'</button>';
+ function markup(){const league=s.state().league;
+  if(!league?.available)return '<h1>MATES LEAGUE</h1><p>Your private league is temporarily unavailable. Your pile is safe.</p>';
+  const code=new URLSearchParams(location.search).get('crew')||'';
+  return '<section><p><a href="/member/life-back/support">Support</a></p><h1>MATES LEAGUE</h1><p>Logs stacked this week <span class="mt-v7-small">· resets Monday</span></p>'+(league.joined?
+   '<ol class="mt-crew-league">'+league.members.map(m=>'<li><strong>'+s.esc(m.you?'You':m.alias)+'</strong><span aria-hidden="true">'+Array.from({length:7},(_,i)=>'<i class="'+(i<m.logs?'filled':'')+'"></i>').join('')+'</span><b>'+m.logs+'/7</b></li>').join('')+'</ol><p>Ranked on effort, never weight. Private to your crew.</p>'+button('+ INVITE A MATE','invite')+button('Leave this crew','leave'):
+   '<p>Create a private crew, or join using a mate’s invitation code.</p><form data-crew-join><label>Your crew name<input name="alias" required maxlength="20" autocomplete="off"></label><label>Invitation code (leave blank to create a crew)<input name="code" maxlength="48" value="'+s.esc(code)+'" autocomplete="off"></label><label><input type="checkbox" name="consented" required> I agree this private crew can see my name and weekly daily-action count. No weight or health details are shared.</label><button>Continue</button></form>')+'<p class="mt-v7-small">Your lifetime pile stays with you when the league resets.</p><p data-native-status role="status"></p></section>';
+ }
+ function bind(root){const form=root.querySelector('[data-crew-join]');if(form)form.onsubmit=async e=>{e.preventDefault();const f=new FormData(form),code=String(f.get('code')||'').trim();const submit=form.querySelector('button');submit.disabled=true;try{const r=await s.request('/v1/my-timber/crew',{action:code?'join':'create',alias:f.get('alias'),code,consented:f.get('consented')==='on'});s.update({league:r.league});}catch(e){s.status(e.message);submit.disabled=false;}};}
+ async function handle(b){if(b.dataset.crew==='invite'){const r=await s.request('/v1/my-timber/crew',{action:'invite'});s.sheet('Invitation preview','<h2>INVITE A MATE</h2><p>They’ll see only names and weekly effort counts after choosing to join your private crew.</p><p>This invitation expires in seven days.</p><label>Invitation link<input readonly data-crew-link value="'+s.esc(r.inviteUrl)+'"></label>'+button('Copy invitation','copy')+'<p>Nothing is sent automatically.</p>');}
+  else if(b.dataset.crew==='copy'){await navigator.clipboard.writeText(s.sheetRoot().querySelector('[data-crew-link]').value);s.status('Copied. You choose where to send it.');}
+  else if(b.dataset.crew==='leave'){const r=await s.request('/v1/my-timber/crew',{action:'leave'});s.update({league:r.league});}
+ }
+ return {markup,bind,handle};
+}
+export const crewStyles='.mt-crew-league{list-style-position:inside;padding:0}.mt-crew-league li{display:flex;gap:12px;align-items:center;border:1px solid #414733;border-radius:12px;padding:12px;margin:8px 0}.mt-crew-league strong{flex:1}.mt-crew-league i{display:inline-block;width:7px;height:7px;border:1px solid #707762;border-radius:50%;margin:1px}.mt-crew-league .filled{background:#E7E3DA}form[data-crew-join] label{display:block;margin:16px 0}form[data-crew-join] input:not([type=checkbox]){display:block;width:100%;padding:10px;background:#050505;color:#E7E3DA;border:1px solid #707762}';

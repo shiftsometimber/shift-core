@@ -1,19 +1,18 @@
 {
-  "state": "IN_PROGRESS_NOT_DEPLOYED",
-  "recordedAt": "2026-11-03T18:37:59.320724+00:00",
+  "state": "HOSTED_TEST_BUILD_IN_PROGRESS_NOT_MEMBER_DEPLOYED",
+  "recordedAt": "2026-11-03T22:36:19.290838+00:00",
   "baseCommit": "2609d5c0b1f4a056a796fc2bc62ad275532536fb",
   "branch": "fix/my-timber-precompiled-documents-20261102",
   "order": "One combined V7 and speed release; no new feature flags, no member phases. Test-site evidence before member deployment.",
-  "latestUserRequest": "Mockup required before deployment. Four-screen Today/Swap/Done/Journey visual supplied for review; no visual sign-off received.",
+  "latestUserRequest": "Use the newly supplied 30-file zip, superseding the earlier pack. Support and More restyle included. Shop must remain exactly as live inside the approved new frame, with a before/after recording.",
   "implementedInSource": [
-    "V7 account/day award and persistent once-only 30-log milestone",
-    "Separate actual-food and action records",
-    "Optional feedback and tomorrow adaptation",
-    "Weight on by default, preference in More, Journey lead/activity",
-    "Today/Swap/Done UI and deliberate effort-only share preview",
-    "Scheduled-only prepared insight code",
-    "432198-byte header SVG reduced to 88682 bytes",
-    "Cached CSS document-build helper and early shared identity source change"
+    "Persistent shared SPA shell, streamed public frame, encrypted account-bound offline snapshots, cached CSS/font/SVG",
+    "Native Today, Grub and Fit; original Journey and private support clients integrated",
+    "Atomic London-day account ledger, source-matched meal swaps, separate eaten-food ledger, optional feedback",
+    "Private crew ACL and weekly effort-only league, deliberate share preview",
+    "Overnight existing reviewed Fit generator and sourced dinner preparation",
+    "Thin native serving entry; unchanged legacy handlers in private service capsule",
+    "Legacy content-only controller and stylesheet bridge in integration testing"
   ],
   "verifiedLocalOnly": {
     "command": "node --test member-experience/tests/v7-model.test.mjs member-experience/tests/v7-account.test.mjs member-experience/tests/v7-overnight.test.mjs member-experience/tests/journey-approved.test.mjs member-experience/tests/shop-connected.test.mjs",
@@ -21,16 +20,20 @@
     "pass": 36,
     "fail": 0,
     "evidence": "my-timber-v7-retained-tests.log",
-    "scope": "Synthetic in-memory SQLite and runtime/source tests; no browser or physical-device completion claim."
+    "scope": "Synthetic in-memory SQLite and runtime/source tests; no browser or physical-device completion claim.",
+    "finalPackTests": {
+      "tests": 23,
+      "pass": 23,
+      "fail": 0,
+      "log": "/private/tmp/my-timber-v7-final-integrated.log"
+    }
   },
   "notDone": [
-    "Test site packaging/deployment",
-    "Crew league and full privacy propagation",
-    "Three browser journey recordings and complete must-not-break evidence",
-    "Candidate mobile Today/Fit 20+ sample p95 comparison",
-    "Physical iPhone evidence",
-    "Executable one-step coordinated rollback command",
-    "Member release and live verification"
+    "Preservation of account/records/photos/basket in the shared content-only bridge, currently failing hosted checks",
+    "Full final-build browser and physical-device evidence",
+    "Complete weight preference propagation and private data export/deletion additions",
+    "Executable coordinated rollback and production initial overnight backfill",
+    "Member deployment and live verification"
   ],
   "architecture": "Preserve captured currently-serving legacy modules. Add v7-release outer wrapper to programme service; expose narrowly named existing catalogue helpers by append-only export. Do not replace its compiled legacy bundle: current HEAD baseline recompilation differs in packaging (23,604,242 vs 7,088,894 bytes). Existing handlers must remain exact. New assets and precompiled public document manifests can be updated explicitly.",
   "currentLiveRollbackVersions": {
@@ -39,6 +42,74 @@
     "shift-core": "e21cdda6-22e1-4c82-b4db-acaccfdc4f8f",
     "shift-mytimber-support-20261023": "1ff41acd-546e-431a-ab7f-fbc1f6f65b68"
   },
-  "next": "Continue one candidate, no deployment to members until the mockup has been reviewed and the requested test-site evidence has been sent.",
-  "sourceMaterialisation": "Repository is a sparse checkout. Current-branch dependency directories and frontend/member have now been materialised; no older branch was checked out."
+  "next": "Repair the specific retained control failures on the isolated test site; finish remaining proof and rollback before the one member release.",
+  "sourceMaterialisation": "Repository is a sparse checkout. Current-branch dependency directories and frontend/member have now been materialised; no older branch was checked out.",
+  "specification": {
+    "file": "00-BRIEF-My-Timber-V7.md",
+    "rules": 30,
+    "screenCount": 24,
+    "underEating": "Off pending clinical thresholds",
+    "state": "Reading newly supplied 30-file replacement pack before affected UI changes"
+  },
+  "shell": {
+    "scope": "All seven destinations share one persistent DOM shell; offline and repeat-visit caching, one identity check, same approved appearance",
+    "planSent": true,
+    "state": "BUILDING_WITH_V7",
+    "sourceFiles": [
+      "v7-native.mjs",
+      "v7-native-browser.mjs",
+      "shop-navigation.mjs"
+    ],
+    "screenshotReference": "IMG_0053(2).jpeg"
+  },
+  "testSite": {
+    "origin": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev",
+    "backend": "shift-core-my-timber-v7-backend",
+    "database": "247b065f-fea4-4891-945b-b707f2417656",
+    "state": "Hosted; three functional journeys pass both Chromium/WebKit on previous build; retained account/photo integration currently failing and being repaired",
+    "productionChanged": false
+  },
+  "assumptions": [
+    "Keep private weight downloads and appointment notes; social shares/league never include weight or health details. User authorised sensible decisions rather than waiting.",
+    "Under-eating remains off pending clinical thresholds."
+  ],
+  "cancelledAutomation": "6aea3d2a1834819186d6854907c3e419",
+  "verifiedHosted": {
+    "at": "2026-11-03T21:54:00Z",
+    "journeys": {
+      "chromium": {
+        "choose": 16,
+        "hardWeek": 4,
+        "milestone": 6,
+        "fail": 0
+      },
+      "webkit": {
+        "choose": 16,
+        "hardWeek": 4,
+        "milestone": 6,
+        "fail": 0
+      }
+    },
+    "shell": {
+      "chromium": {
+        "pass": 14,
+        "fail": 0
+      },
+      "webkit": {
+        "pass": 13,
+        "fail": 1,
+        "failure": "WebKit internal navigation error after simulated offline"
+      }
+    },
+    "speed": {
+      "samples": 20,
+      "mobile": "Slow 4G, 150ms latency, 4x CPU",
+      "todayFreshP95Ms": 1017,
+      "fitFreshP95Ms": 1023,
+      "warmTabP95Ms": 33,
+      "tapFeedbackP95Ms": 32,
+      "evidence": "mobile-speed/results.json"
+    },
+    "notPhysicalPhones": true
+  }
 }

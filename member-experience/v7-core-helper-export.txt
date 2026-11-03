@@ -1,0 +1,24 @@
+
+// Additive export for the internal V7 overnight planner. Existing source bodies
+// and the default export above are unchanged. No member plan is written here.
+async function v7ApprovedFitPreview(env,userId,body,catalogueOverride=null){
+ const catalogue=catalogueOverride||await loadGovernedFitCatalogue(env.DB);
+ const session=composeSession(body.variant_day||1,body.minutes_per_day,body.preferences||'');
+ session.requested_minutes=body.minutes_per_day;session.location=body.location;
+ const plan={kind:'shift_fit_plan',days_requested:1,minutes_per_day:body.minutes_per_day,location:body.location,sessions:[session]};
+ const readOnlyDB={prepare(sql){
+  if(/^\s*(?:SELECT|PRAGMA)\b/i.test(sql))return env.DB.prepare(sql);
+  if(/^\s*(?:UPDATE|INSERT(?:\s+OR\s+\w+)?\s+INTO)\s+shift_plans\b/i.test(sql)){
+   const statement={bind(){return statement},async run(){return {success:true,meta:{changes:1}}}};return statement;
+  }
+  throw Error('The overnight preview attempted an unexpected database write');
+ }};
+ const response=await structuredFitPlan(new Request('https://internal.invalid/v1/fit/plan',{method:'POST'}),{...env,DB:readOnlyDB},userId,body,{ok:true,plan},body.excluded_ids||[],catalogue);
+ if(!response.ok)throw Error('The existing Fit quality gate rejected this session ('+response.status+')');
+ const payload=await response.json();
+ ensureFitDurationUtilisation(payload.plan,{minimumUtilisation:0.8});
+ const quality=assessMemberOutput('fit',payload,body);
+ if(!quality.ok)throw Error('The existing Fit duration quality gate rejected this session');
+ return payload.plan;
+}
+export {v7ApprovedFitPreview,loadGovernedFitCatalogue as v7FitCatalogue};

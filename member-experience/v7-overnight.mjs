@@ -1,9 +1,11 @@
+import {prepareV7Fit} from './v7-fit.mjs';
+import {updateNutritionSummary} from './v7-food-routes.mjs';
 import {journeyDay} from './journey-records.mjs';
 import {v7Logs,v7Week,v7NextReason,v7Preferences} from './v7-model.mjs';
 const parse=s=>{try{return JSON.parse(s||'{}');}catch{return {};}};
 export function overnightWindow(at){
  const h=Number(new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',hour:'2-digit',hourCycle:'h23'}).format(new Date(at)));
- return h>=1&&h<6;
+ return h>=0&&h<6;
 }
 export function prepareV7Insights(progress,readings=[],at=new Date().toISOString()){
  const today=journeyDay(at),week=v7Week(today),to=new Date(Date.parse(week+'T12:00:00Z')-86400000).toISOString().slice(0,10),from=new Date(Date.parse(to+'T12:00:00Z')-6*86400000).toISOString().slice(0,10);
@@ -16,12 +18,12 @@ export function prepareV7Insights(progress,readings=[],at=new Date().toISOString
  const items=[{topic:'effort',text:logs.length+' daily actions completed.'},...(wins.length?[{topic:'wins',text:wins.length+' everyday '+(wins.length===1?'win':'wins')+' you chose to record.'}]:[])];
  return {generatedAt:at,generatedOn:today,stall,recap:{id:'week:'+from,from,to,summary:logs.length?'Your pile grew by '+logs.length+' logs.':'Your pile is still here. Start with what fits today.',items,suggestion:v7NextReason(progress,today).text||'Choose one manageable thing for the next day.'}};
 }
-export async function runV7Overnight(env,at=new Date().toISOString(),prepareOffers=null){
+export async function runV7Overnight(env,at=new Date().toISOString(),prepareOffers=null,approvedGenerate=null){
  if(!overnightWindow(at))return {skipped:'outside_overnight_window',prepared:0};
- const today=journeyDay(at);let prepared=0,conflicts=0,cursor=0;
+ const today=journeyDay(at);let prepared=0,conflicts=0,cursor=0;const failures=[];
  const started=Date.now();
  for(;;){
-  const {results:members=[]}=await env.DB.prepare("SELECT user_id,preferences FROM member_state WHERE user_id>? AND json_type(preferences,'$.lifeBack.progress.v7')='object' AND COALESCE(json_extract(preferences,'$.lifeBack.progress.v7.insights.generatedOn'),'')<>? ORDER BY user_id LIMIT 50").bind(cursor,today).all();
+  const {results:members=[]}=await env.DB.prepare("SELECT user_id,preferences FROM member_state WHERE user_id>? AND json_type(preferences,'$.lifeBack.progress.v7')='object' AND COALESCE(json_extract(preferences,'$.lifeBack.progress.v7.preparedOn'),'')<>? ORDER BY user_id LIMIT 50").bind(cursor,today).all();
   if(!members.length)break;
   for(const row of members){
    cursor=row.user_id;const prefs=parse(row.preferences),progress=prefs.lifeBack?.progress;if(!progress?.v7)continue;
@@ -30,14 +32,17 @@ export async function runV7Overnight(env,at=new Date().toISOString(),prepareOffe
    const exists=await env.DB.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='progress_entries'").first();
    const readings=exists?(await env.DB.prepare('SELECT recorded_on,weight_kg FROM progress_entries WHERE user_id=? AND weight_kg IS NOT NULL ORDER BY recorded_on DESC LIMIT 100').bind(row.user_id).all()).results||[]:[];
    const insights=prepareV7Insights(progress,readings,at);
-   let offers=progress.v7.offers||null;if(prepareOffers){try{offers=await prepareOffers(env.DB,prefs,at);}catch{}}
+   let offers=progress.v7.offers||null;if(prepareOffers){try{offers=await prepareOffers(env.DB,prefs,at,row.user_id);}catch(e){failures.push({userId:row.user_id,job:'offers',error:e.message});continue;}}
 
-   const result=await env.DB.prepare("UPDATE member_state SET preferences=json_set(preferences,'$.lifeBack.progress.v7.insights',json(?),'$.lifeBack.progress.v7.offers',json(?),'$.lifeBack.progress.revision',?),updated_at=? WHERE user_id=? AND COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0)=? AND (SELECT granted FROM consents WHERE user_id=? AND consent_type='my_shift_health_tracking' ORDER BY id DESC LIMIT 1)=1 AND COALESCE(json_extract(preferences,'$.myJourney.setup.paused'),0)<>1").bind(JSON.stringify(insights),JSON.stringify(offers),(progress.revision||0)+1,at,row.user_id,progress.revision||0,row.user_id).run();
+   let fit=progress.v7.fit||null;
+   if(approvedGenerate){try{const generator=settings=>approvedGenerate(row.user_id,settings);if(approvedGenerate.batch)generator.batch=settings=>approvedGenerate.batch(row.user_id,settings);fit=await prepareV7Fit(prefs,generator,at);}catch(e){failures.push({userId:row.user_id,job:'fit',error:e.message});continue;}}
+   const foodTable=await env.DB.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='member_food_entries'").first();if(foodTable)await updateNutritionSummary(env.DB,row.user_id,at);
+   const result=await env.DB.prepare("UPDATE member_state SET preferences=json_set(preferences,'$.lifeBack.progress.v7.insights',json(?),'$.lifeBack.progress.v7.offers',json(?),'$.lifeBack.progress.v7.fit',json(?),'$.lifeBack.progress.v7.preparedOn',?,'$.lifeBack.progress.revision',?),updated_at=? WHERE user_id=? AND COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0)=? AND (SELECT granted FROM consents WHERE user_id=? AND consent_type='my_shift_health_tracking' ORDER BY id DESC LIMIT 1)=1 AND COALESCE(json_extract(preferences,'$.myJourney.setup.paused'),0)<>1").bind(JSON.stringify(insights),JSON.stringify(offers),JSON.stringify(fit),today,(progress.revision||0)+1,at,row.user_id,progress.revision||0,row.user_id).run();
    if(result.meta.changes===1)prepared++;else conflicts++;
-   if(Date.now()-started>15000)return {prepared,conflicts,more:true};
+   if(Date.now()-started>15000)return {prepared,conflicts,failures,more:true};
   }
  }
- return {prepared,conflicts,more:false};
+ return {prepared,conflicts,failures,more:false};
 }
 export function wrapV7Scheduled(original){return {...original,async scheduled(event,env,ctx){
  const jobs=[runV7Overnight(env,new Date(event.scheduledTime||Date.now()).toISOString())];

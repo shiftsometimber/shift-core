@@ -1,0 +1,4307 @@
+{
+  "origin": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev",
+  "at": "2026-11-03T21:11:23.478Z",
+  "device": "Chromium 390 × 844 mobile profile; not physical iPhone/Android",
+  "profile": {
+    "latencyMs": 150,
+    "downloadBps": 200000,
+    "uploadBps": 96000,
+    "cpuSlowdown": 4
+  },
+  "build": "6cc1a3e0030ba472cc59",
+  "sampleCount": 20,
+  "tap": [
+    31.199999928474426,
+    29.799999952316284,
+    32.90000009536743,
+    29.199999928474426,
+    29.899999976158142,
+    31.700000047683716,
+    28.5,
+    31.199999928474426,
+    31.200000047683716,
+    31.700000047683716,
+    32,
+    31.200000047683716,
+    32.89999997615814,
+    33,
+    31.699999928474426,
+    29.600000023841858,
+    31.399999976158142,
+    30.5,
+    31.799999952316284,
+    30.399999976158142
+  ],
+  "breakdowns": [
+    {
+      "destination": "today",
+      "sample": 0,
+      "ms": 5001.299999952316,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/dashboard",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 4974.799999952316,
+        "navigationId": 303,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.19999992847442627,
+        "domainLookupStart": 3.1999999284744263,
+        "domainLookupEnd": 8.699999928474426,
+        "connectStart": 8.699999928474426,
+        "secureConnectionStart": 25.299999952316284,
+        "connectEnd": 65,
+        "requestStart": 65.10000002384186,
+        "responseStart": 2954,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 2954,
+        "responseEnd": 3014.399999976158,
+        "transferSize": 10603,
+        "encodedBodySize": 10303,
+        "decodedBodySize": 57447,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 538,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 3021.600000023842,
+        "domContentLoadedEventStart": 3528.600000023842,
+        "domContentLoadedEventEnd": 3528.6999999284744,
+        "domComplete": 4974,
+        "loadEventStart": 4974.799999952316,
+        "loadEventEnd": 4974.799999952316,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 2997.100000023842,
+          "responseStart": 3146.5,
+          "responseEnd": 3186.2999999523163,
+          "transferSize": 7016,
+          "encodedBodySize": 6716,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 3017.1999999284744,
+          "responseStart": 3272,
+          "responseEnd": 3486.7999999523163,
+          "transferSize": 42001,
+          "encodedBodySize": 41701,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 3534,
+          "responseStart": 4748.899999976158,
+          "responseEnd": 4971.399999976158,
+          "transferSize": 43697,
+          "encodedBodySize": 43397,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "today",
+      "sample": 1,
+      "ms": 3266.2000000476837,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/dashboard",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 3241.2999999523163,
+        "navigationId": 5490,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.20000004768371582,
+        "domainLookupStart": 0.5,
+        "domainLookupEnd": 8.5,
+        "connectStart": 8.5,
+        "secureConnectionStart": 24,
+        "connectEnd": 46.700000047683716,
+        "requestStart": 46.700000047683716,
+        "responseStart": 1587.3999999761581,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 1587.3999999761581,
+        "responseEnd": 1644.7000000476837,
+        "transferSize": 10524,
+        "encodedBodySize": 10224,
+        "decodedBodySize": 57447,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 297,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 1647.1000000238419,
+        "domContentLoadedEventStart": 2052.2000000476837,
+        "domContentLoadedEventEnd": 2052.2000000476837,
+        "domComplete": 3241.2999999523163,
+        "loadEventStart": 3241.2999999523163,
+        "loadEventEnd": 3241.2999999523163,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 1628.7000000476837,
+          "responseStart": 1763.8999999761581,
+          "responseEnd": 1844.1000000238419,
+          "transferSize": 7092,
+          "encodedBodySize": 6792,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 1645.8999999761581,
+          "responseStart": 1764,
+          "responseEnd": 2040.2999999523163,
+          "transferSize": 41993,
+          "encodedBodySize": 41693,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 2054.899999976158,
+          "responseStart": 3020.600000023842,
+          "responseEnd": 3240.5,
+          "transferSize": 43708,
+          "encodedBodySize": 43408,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "today",
+      "sample": 2,
+      "ms": 2229,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/dashboard",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 2207.100000023842,
+        "navigationId": 6206,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000002384185791,
+        "domainLookupStart": 0.3999999761581421,
+        "domainLookupEnd": 8.199999928474426,
+        "connectStart": 8.199999928474426,
+        "secureConnectionStart": 25.399999976158142,
+        "connectEnd": 43.60000002384186,
+        "requestStart": 43.60000002384186,
+        "responseStart": 1342.7999999523163,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 1342.7999999523163,
+        "responseEnd": 1403.1999999284744,
+        "transferSize": 10524,
+        "encodedBodySize": 10224,
+        "decodedBodySize": 57447,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 290,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 1406.8999999761581,
+        "domContentLoadedEventStart": 1813,
+        "domContentLoadedEventEnd": 1813,
+        "domComplete": 2206.2999999523163,
+        "loadEventStart": 2207.100000023842,
+        "loadEventEnd": 2207.100000023842,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 1388,
+          "responseStart": 1476.2999999523163,
+          "responseEnd": 1604.2999999523163,
+          "transferSize": 7016,
+          "encodedBodySize": 6716,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 1405.2999999523163,
+          "responseStart": 1427.8999999761581,
+          "responseEnd": 1800.6000000238419,
+          "transferSize": 41955,
+          "encodedBodySize": 41655,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 1815,
+          "responseStart": 1957.3999999761581,
+          "responseEnd": 2205.5,
+          "transferSize": 43697,
+          "encodedBodySize": 43397,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "today",
+      "sample": 3,
+      "ms": 2066.5,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/dashboard",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 2040.3999999761581,
+        "navigationId": 9332,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.09999990463256836,
+        "domainLookupStart": 0.3999999761581421,
+        "domainLookupEnd": 1.5,
+        "connectStart": 1.5,
+        "secureConnectionStart": 20.799999952316284,
+        "connectEnd": 54.39999997615814,
+        "requestStart": 54.5,
+        "responseStart": 438.39999997615814,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 438.39999997615814,
+        "responseEnd": 493.39999997615814,
+        "transferSize": 10600,
+        "encodedBodySize": 10300,
+        "decodedBodySize": 57447,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 265,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 496.39999997615814,
+        "domContentLoadedEventStart": 1662.7999999523163,
+        "domContentLoadedEventEnd": 1662.7999999523163,
+        "domComplete": 2040.3999999761581,
+        "loadEventStart": 2040.3999999761581,
+        "loadEventEnd": 2040.3999999761581,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 457.2999999523163,
+          "responseStart": 575.5,
+          "responseEnd": 658.6999999284744,
+          "transferSize": 7016,
+          "encodedBodySize": 6716,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 494.7999999523163,
+          "responseStart": 1435.3999999761581,
+          "responseEnd": 1649.1999999284744,
+          "transferSize": 41993,
+          "encodedBodySize": 41693,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 1665,
+          "responseStart": 1747.1999999284744,
+          "responseEnd": 2038.6999999284744,
+          "transferSize": 43708,
+          "encodedBodySize": 43408,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "today",
+      "sample": 4,
+      "ms": 1635.6000000238419,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/dashboard",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1606.8999999761581,
+        "navigationId": 3161,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000002384185791,
+        "domainLookupStart": 0.3999999761581421,
+        "domainLookupEnd": 7.200000047683716,
+        "connectStart": 7.200000047683716,
+        "secureConnectionStart": 24.700000047683716,
+        "connectEnd": 46.700000047683716,
+        "requestStart": 46.700000047683716,
+        "responseStart": 735.5,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 735.5,
+        "responseEnd": 795.5,
+        "transferSize": 10600,
+        "encodedBodySize": 10300,
+        "decodedBodySize": 57447,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 507,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 798.1000000238419,
+        "domContentLoadedEventStart": 1204.8999999761581,
+        "domContentLoadedEventEnd": 1204.8999999761581,
+        "domComplete": 1606.8000000715256,
+        "loadEventStart": 1606.8999999761581,
+        "loadEventEnd": 1606.8999999761581,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 760.6000000238419,
+          "responseStart": 866.7000000476837,
+          "responseEnd": 945.5,
+          "transferSize": 7090,
+          "encodedBodySize": 6790,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 797,
+          "responseStart": 980.3000000715256,
+          "responseEnd": 1192.2000000476837,
+          "transferSize": 41993,
+          "encodedBodySize": 41693,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 1206.8000000715256,
+          "responseStart": 1386.3999999761581,
+          "responseEnd": 1605,
+          "transferSize": 43657,
+          "encodedBodySize": 43357,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "today",
+      "sample": 5,
+      "ms": 1661.6000000238419,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/dashboard",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1643.6999999284744,
+        "navigationId": 8778,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000002384185791,
+        "domainLookupStart": 0.3999999761581421,
+        "domainLookupEnd": 8.399999976158142,
+        "connectStart": 8.399999976158142,
+        "secureConnectionStart": 21,
+        "connectEnd": 53.199999928474426,
+        "requestStart": 53.199999928474426,
+        "responseStart": 801,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 801,
+        "responseEnd": 856.2999999523163,
+        "transferSize": 10524,
+        "encodedBodySize": 10224,
+        "decodedBodySize": 57447,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 529,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 860.2999999523163,
+        "domContentLoadedEventStart": 1263.5,
+        "domContentLoadedEventEnd": 1263.7999999523163,
+        "domComplete": 1643.6999999284744,
+        "loadEventStart": 1643.6999999284744,
+        "loadEventEnd": 1643.6999999284744,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 841.6000000238419,
+          "responseStart": 950,
+          "responseEnd": 1057.6000000238419,
+          "transferSize": 7090,
+          "encodedBodySize": 6790,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 857.2999999523163,
+          "responseStart": 963.5,
+          "responseEnd": 1251.8999999761581,
+          "transferSize": 41998,
+          "encodedBodySize": 41698,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 1265.2999999523163,
+          "responseStart": 1421,
+          "responseEnd": 1642.2999999523163,
+          "transferSize": 43697,
+          "encodedBodySize": 43397,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "today",
+      "sample": 6,
+      "ms": 2429.100000023842,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/dashboard",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 2409.899999976158,
+        "navigationId": 1425,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000002384185791,
+        "domainLookupStart": 0.3999999761581421,
+        "domainLookupEnd": 9.199999928474426,
+        "connectStart": 9.199999928474426,
+        "secureConnectionStart": 96.60000002384186,
+        "connectEnd": 115.5,
+        "requestStart": 115.5,
+        "responseStart": 1534.5,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 1534.5,
+        "responseEnd": 1591.5,
+        "transferSize": 10603,
+        "encodedBodySize": 10303,
+        "decodedBodySize": 57447,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 294,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 1594.1000000238419,
+        "domContentLoadedEventStart": 1978.1999999284744,
+        "domContentLoadedEventEnd": 1978.2999999523163,
+        "domComplete": 2409.899999976158,
+        "loadEventStart": 2409.899999976158,
+        "loadEventEnd": 2409.899999976158,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 1560.6999999284744,
+          "responseStart": 1684,
+          "responseEnd": 1756.1999999284744,
+          "transferSize": 7090,
+          "encodedBodySize": 6790,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 1592.8999999761581,
+          "responseStart": 1749.8999999761581,
+          "responseEnd": 1965,
+          "transferSize": 41956,
+          "encodedBodySize": 41656,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 1980.7999999523163,
+          "responseStart": 2181.6999999284744,
+          "responseEnd": 2408.600000023842,
+          "transferSize": 43697,
+          "encodedBodySize": 43397,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "today",
+      "sample": 7,
+      "ms": 4224,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/dashboard",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 4193.799999952316,
+        "navigationId": 508,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000002384185791,
+        "domainLookupStart": 0.3999999761581421,
+        "domainLookupEnd": 1.6999999284744263,
+        "connectStart": 1.6999999284744263,
+        "secureConnectionStart": 21.699999928474426,
+        "connectEnd": 44.199999928474426,
+        "requestStart": 44.199999928474426,
+        "responseStart": 2206.6999999284744,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 2206.6999999284744,
+        "responseEnd": 2266.1999999284744,
+        "transferSize": 10603,
+        "encodedBodySize": 10303,
+        "decodedBodySize": 57447,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 306,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 2269.5,
+        "domContentLoadedEventStart": 2681.899999976158,
+        "domContentLoadedEventEnd": 2682.399999976158,
+        "domComplete": 4193.799999952316,
+        "loadEventStart": 4193.799999952316,
+        "loadEventEnd": 4193.799999952316,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "low"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 2236.100000023842,
+          "responseStart": 2427.7999999523163,
+          "responseEnd": 2497,
+          "transferSize": 7022,
+          "encodedBodySize": 6722,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 2267.6999999284744,
+          "responseStart": 2344.6999999284744,
+          "responseEnd": 2670.2999999523163,
+          "transferSize": 41955,
+          "encodedBodySize": 41655,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 2684.600000023842,
+          "responseStart": 3970.7999999523163,
+          "responseEnd": 4192.600000023842,
+          "transferSize": 43697,
+          "encodedBodySize": 43397,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "today",
+      "sample": 8,
+      "ms": 1393.1000000238419,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/dashboard",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1373,
+        "navigationId": 289,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.20000004768371582,
+        "domainLookupStart": 0.40000009536743164,
+        "domainLookupEnd": 8.5,
+        "connectStart": 8.5,
+        "secureConnectionStart": 23.300000071525574,
+        "connectEnd": 149.5,
+        "requestStart": 149.5,
+        "responseStart": 515.1000000238419,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 515.1000000238419,
+        "responseEnd": 569.8000000715256,
+        "transferSize": 10524,
+        "encodedBodySize": 10224,
+        "decodedBodySize": 57447,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 242,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 572.4000000953674,
+        "domContentLoadedEventStart": 978.3000000715256,
+        "domContentLoadedEventEnd": 978.4000000953674,
+        "domComplete": 1373,
+        "loadEventStart": 1373,
+        "loadEventEnd": 1373,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 557,
+          "responseStart": 701,
+          "responseEnd": 779.2000000476837,
+          "transferSize": 7090,
+          "encodedBodySize": 6790,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 571.1000000238419,
+          "responseStart": 672,
+          "responseEnd": 967,
+          "transferSize": 41960,
+          "encodedBodySize": 41660,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 980.5,
+          "responseStart": 1104.4000000953674,
+          "responseEnd": 1372,
+          "transferSize": 43697,
+          "encodedBodySize": 43397,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "today",
+      "sample": 9,
+      "ms": 1255.7999999523163,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/dashboard",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1230.1999999284744,
+        "navigationId": 8951,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.09999990463256836,
+        "domainLookupStart": 0.3999999761581421,
+        "domainLookupEnd": 7.799999952316284,
+        "connectStart": 7.799999952316284,
+        "secureConnectionStart": 21.5,
+        "connectEnd": 42,
+        "requestStart": 42.09999990463257,
+        "responseStart": 394.7999999523163,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 394.7999999523163,
+        "responseEnd": 450.2999999523163,
+        "transferSize": 10603,
+        "encodedBodySize": 10303,
+        "decodedBodySize": 57447,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 238,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 453,
+        "domContentLoadedEventStart": 836.5,
+        "domContentLoadedEventEnd": 836.5,
+        "domComplete": 1230.1999999284744,
+        "loadEventStart": 1230.1999999284744,
+        "loadEventEnd": 1230.1999999284744,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 419.89999997615814,
+          "responseStart": 521.8999999761581,
+          "responseEnd": 614.6999999284744,
+          "transferSize": 7016,
+          "encodedBodySize": 6716,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 451.39999997615814,
+          "responseStart": 535,
+          "responseEnd": 824.1999999284744,
+          "transferSize": 41955,
+          "encodedBodySize": 41655,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 838.8999999761581,
+          "responseStart": 942.5,
+          "responseEnd": 1229.3999999761581,
+          "transferSize": 43708,
+          "encodedBodySize": 43408,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "today",
+      "sample": 10,
+      "ms": 1505,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/dashboard",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1478.3999999761581,
+        "navigationId": 4467,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000002384185791,
+        "domainLookupStart": 0.3999999761581421,
+        "domainLookupEnd": 8.100000023841858,
+        "connectStart": 8.100000023841858,
+        "secureConnectionStart": 35.800000071525574,
+        "connectEnd": 56.700000047683716,
+        "requestStart": 56.800000071525574,
+        "responseStart": 640.8000000715256,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 640.8000000715256,
+        "responseEnd": 696.8999999761581,
+        "transferSize": 10600,
+        "encodedBodySize": 10300,
+        "decodedBodySize": 57447,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 287,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 700.3000000715256,
+        "domContentLoadedEventStart": 1084.8999999761581,
+        "domContentLoadedEventEnd": 1084.8999999761581,
+        "domComplete": 1478.3000000715256,
+        "loadEventStart": 1478.3999999761581,
+        "loadEventEnd": 1478.3999999761581,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 661.6000000238419,
+          "responseStart": 742,
+          "responseEnd": 862,
+          "transferSize": 7016,
+          "encodedBodySize": 6716,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 698.8000000715256,
+          "responseStart": 839.8000000715256,
+          "responseEnd": 1072.8999999761581,
+          "transferSize": 41955,
+          "encodedBodySize": 41655,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 1086.7000000476837,
+          "responseStart": 1248.5,
+          "responseEnd": 1477,
+          "transferSize": 43708,
+          "encodedBodySize": 43408,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "today",
+      "sample": 11,
+      "ms": 1512.9000000953674,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/dashboard",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1494.4000000953674,
+        "navigationId": 1025,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000002384185791,
+        "domainLookupStart": 0.40000009536743164,
+        "domainLookupEnd": 6.900000095367432,
+        "connectStart": 6.900000095367432,
+        "secureConnectionStart": 55.5,
+        "connectEnd": 78.40000009536743,
+        "requestStart": 78.40000009536743,
+        "responseStart": 621.3000000715256,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 621.3000000715256,
+        "responseEnd": 674.3000000715256,
+        "transferSize": 10600,
+        "encodedBodySize": 10300,
+        "decodedBodySize": 57447,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 323,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 677.2000000476837,
+        "domContentLoadedEventStart": 1061.6000000238419,
+        "domContentLoadedEventEnd": 1061.7000000476837,
+        "domComplete": 1494.4000000953674,
+        "loadEventStart": 1494.4000000953674,
+        "loadEventEnd": 1494.4000000953674,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 639.6000000238419,
+          "responseStart": 679.3000000715256,
+          "responseEnd": 842,
+          "transferSize": 7016,
+          "encodedBodySize": 6716,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 675.6000000238419,
+          "responseStart": 813.3000000715256,
+          "responseEnd": 1049.8000000715256,
+          "transferSize": 41955,
+          "encodedBodySize": 41655,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 1064.1000000238419,
+          "responseStart": 1268,
+          "responseEnd": 1492.3000000715256,
+          "transferSize": 43708,
+          "encodedBodySize": 43408,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "today",
+      "sample": 12,
+      "ms": 1490.5,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/dashboard",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1458,
+        "navigationId": 3465,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.19999992847442627,
+        "domainLookupStart": 0.5,
+        "domainLookupEnd": 8.399999976158142,
+        "connectStart": 8.399999976158142,
+        "secureConnectionStart": 66.60000002384186,
+        "connectEnd": 94.10000002384186,
+        "requestStart": 94.19999992847443,
+        "responseStart": 597,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 597,
+        "responseEnd": 652.7999999523163,
+        "transferSize": 10520,
+        "encodedBodySize": 10220,
+        "decodedBodySize": 57447,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 293,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 655.6999999284744,
+        "domContentLoadedEventStart": 1060.5,
+        "domContentLoadedEventEnd": 1060.6000000238419,
+        "domComplete": 1458,
+        "loadEventStart": 1458,
+        "loadEventEnd": 1458,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 638.6000000238419,
+          "responseStart": 763,
+          "responseEnd": 855.6000000238419,
+          "transferSize": 7016,
+          "encodedBodySize": 6716,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 654,
+          "responseStart": 696.6000000238419,
+          "responseEnd": 1049.2999999523163,
+          "transferSize": 41993,
+          "encodedBodySize": 41693,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 1063.1999999284744,
+          "responseStart": 1231.2999999523163,
+          "responseEnd": 1456.1000000238419,
+          "transferSize": 43657,
+          "encodedBodySize": 43357,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "today",
+      "sample": 13,
+      "ms": 1428.7999999523163,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/dashboard",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1403.5999999046326,
+        "navigationId": 8404,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.19999992847442627,
+        "domainLookupStart": 0.5,
+        "domainLookupEnd": 7.799999952316284,
+        "connectStart": 7.799999952316284,
+        "secureConnectionStart": 100.19999992847443,
+        "connectEnd": 118.89999997615814,
+        "requestStart": 119,
+        "responseStart": 498.1999999284744,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 498.1999999284744,
+        "responseEnd": 557.8999999761581,
+        "transferSize": 10524,
+        "encodedBodySize": 10224,
+        "decodedBodySize": 57447,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 274,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 561.1999999284744,
+        "domContentLoadedEventStart": 965.3999999761581,
+        "domContentLoadedEventEnd": 965.5999999046326,
+        "domComplete": 1403.5999999046326,
+        "loadEventStart": 1403.5999999046326,
+        "loadEventEnd": 1403.5999999046326,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "low"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 541.5999999046326,
+          "responseStart": 703.3999999761581,
+          "responseEnd": 757.5,
+          "transferSize": 7016,
+          "encodedBodySize": 6716,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 559.7999999523163,
+          "responseStart": 651.6999999284744,
+          "responseEnd": 952.6999999284744,
+          "transferSize": 42027,
+          "encodedBodySize": 41727,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 967.2999999523163,
+          "responseStart": 1183,
+          "responseEnd": 1401.7999999523163,
+          "transferSize": 43697,
+          "encodedBodySize": 43397,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "today",
+      "sample": 14,
+      "ms": 1847.5,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/dashboard",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1823.2999999523163,
+        "navigationId": 4119,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.09999990463256836,
+        "domainLookupStart": 0.3999999761581421,
+        "domainLookupEnd": 7.5,
+        "connectStart": 7.5,
+        "secureConnectionStart": 21,
+        "connectEnd": 39.89999997615814,
+        "requestStart": 39.89999997615814,
+        "responseStart": 403.6999999284744,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 403.6999999284744,
+        "responseEnd": 457.6999999284744,
+        "transferSize": 10524,
+        "encodedBodySize": 10224,
+        "decodedBodySize": 57447,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 267,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 461.5,
+        "domContentLoadedEventStart": 858.7999999523163,
+        "domContentLoadedEventEnd": 858.8999999761581,
+        "domComplete": 1823.2999999523163,
+        "loadEventStart": 1823.2999999523163,
+        "loadEventEnd": 1823.2999999523163,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 443.39999997615814,
+          "responseStart": 543.6999999284744,
+          "responseEnd": 659.5,
+          "transferSize": 7092,
+          "encodedBodySize": 6792,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 459.7999999523163,
+          "responseStart": 543.7999999523163,
+          "responseEnd": 847,
+          "transferSize": 41955,
+          "encodedBodySize": 41655,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 861.1999999284744,
+          "responseStart": 1602.1999999284744,
+          "responseEnd": 1822.5,
+          "transferSize": 43708,
+          "encodedBodySize": 43408,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "today",
+      "sample": 15,
+      "ms": 1330.5,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/dashboard",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1299.1000000238419,
+        "navigationId": 9440,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000002384185791,
+        "domainLookupStart": 0.5,
+        "domainLookupEnd": 8.5,
+        "connectStart": 8.5,
+        "secureConnectionStart": 23.300000071525574,
+        "connectEnd": 48.39999997615814,
+        "requestStart": 48.39999997615814,
+        "responseStart": 388.5,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 388.5,
+        "responseEnd": 441.8000000715256,
+        "transferSize": 10524,
+        "encodedBodySize": 10224,
+        "decodedBodySize": 57447,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 243,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 444.39999997615814,
+        "domContentLoadedEventStart": 859.5,
+        "domContentLoadedEventEnd": 859.5,
+        "domComplete": 1299.1000000238419,
+        "loadEventStart": 1299.1000000238419,
+        "loadEventEnd": 1299.1000000238419,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "low"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 428.3000000715256,
+          "responseStart": 773.2000000476837,
+          "responseEnd": 847.2000000476837,
+          "transferSize": 7016,
+          "encodedBodySize": 6716,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 442.60000002384186,
+          "responseStart": 554.1000000238419,
+          "responseEnd": 839.3000000715256,
+          "transferSize": 41955,
+          "encodedBodySize": 41655,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 863.7000000476837,
+          "responseStart": 1074.8000000715256,
+          "responseEnd": 1297.7000000476837,
+          "transferSize": 43961,
+          "encodedBodySize": 43661,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "today",
+      "sample": 16,
+      "ms": 1318,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/dashboard",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1292.3999999761581,
+        "navigationId": 5124,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.09999990463256836,
+        "domainLookupStart": 0.3999999761581421,
+        "domainLookupEnd": 8.199999928474426,
+        "connectStart": 8.199999928474426,
+        "secureConnectionStart": 68,
+        "connectEnd": 87.09999990463257,
+        "requestStart": 87.19999992847443,
+        "responseStart": 449.2999999523163,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 449.2999999523163,
+        "responseEnd": 510.2999999523163,
+        "transferSize": 10603,
+        "encodedBodySize": 10303,
+        "decodedBodySize": 57447,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 242,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 513.3999999761581,
+        "domContentLoadedEventStart": 904.1999999284744,
+        "domContentLoadedEventEnd": 905.0999999046326,
+        "domComplete": 1291.7999999523163,
+        "loadEventStart": 1292.3999999761581,
+        "loadEventEnd": 1292.3999999761581,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 479.39999997615814,
+          "responseStart": 590.3999999761581,
+          "responseEnd": 670.2999999523163,
+          "transferSize": 7090,
+          "encodedBodySize": 6790,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 511.09999990463257,
+          "responseStart": 674.5,
+          "responseEnd": 892.6999999284744,
+          "transferSize": 41993,
+          "encodedBodySize": 41693,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 907.3999999761581,
+          "responseStart": 1010.0999999046326,
+          "responseEnd": 1290.0999999046326,
+          "transferSize": 43697,
+          "encodedBodySize": 43397,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "today",
+      "sample": 17,
+      "ms": 3732,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/dashboard",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 3705.8000000715256,
+        "navigationId": 9608,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 1.3000000715255737,
+        "domainLookupStart": 1.600000023841858,
+        "domainLookupEnd": 8.600000023841858,
+        "connectStart": 8.600000023841858,
+        "secureConnectionStart": 23.5,
+        "connectEnd": 44.5,
+        "requestStart": 44.60000002384186,
+        "responseStart": 688.7000000476837,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 688.7000000476837,
+        "responseEnd": 741.7000000476837,
+        "transferSize": 10603,
+        "encodedBodySize": 10303,
+        "decodedBodySize": 57447,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 538,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 744.5,
+        "domContentLoadedEventStart": 1143.3000000715256,
+        "domContentLoadedEventEnd": 1143.3000000715256,
+        "domComplete": 3705.8000000715256,
+        "loadEventStart": 3705.8000000715256,
+        "loadEventEnd": 3705.8000000715256,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 713.7000000476837,
+          "responseStart": 877.2000000476837,
+          "responseEnd": 929.2000000476837,
+          "transferSize": 7090,
+          "encodedBodySize": 6790,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 743.4000000953674,
+          "responseStart": 886.7000000476837,
+          "responseEnd": 1131.7000000476837,
+          "transferSize": 41993,
+          "encodedBodySize": 41693,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 1145.8000000715256,
+          "responseStart": 3483.8000000715256,
+          "responseEnd": 3704.3000000715256,
+          "transferSize": 43695,
+          "encodedBodySize": 43395,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "today",
+      "sample": 18,
+      "ms": 1304.1000000238419,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/dashboard",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1277.1000000238419,
+        "navigationId": 2791,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.20000004768371582,
+        "domainLookupStart": 0.5,
+        "domainLookupEnd": 9.400000095367432,
+        "connectStart": 9.400000095367432,
+        "secureConnectionStart": 23,
+        "connectEnd": 42.800000071525574,
+        "requestStart": 42.90000009536743,
+        "responseStart": 419.90000009536743,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 419.90000009536743,
+        "responseEnd": 479.2000000476837,
+        "transferSize": 10524,
+        "encodedBodySize": 10224,
+        "decodedBodySize": 57447,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 277,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 481.90000009536743,
+        "domContentLoadedEventStart": 882.2000000476837,
+        "domContentLoadedEventEnd": 882.2000000476837,
+        "domComplete": 1276,
+        "loadEventStart": 1277.1000000238419,
+        "loadEventEnd": 1277.1000000238419,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 465.3000000715256,
+          "responseStart": 536.5,
+          "responseEnd": 689.8000000715256,
+          "transferSize": 7016,
+          "encodedBodySize": 6716,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 480.40000009536743,
+          "responseStart": 586.2000000476837,
+          "responseEnd": 870.4000000953674,
+          "transferSize": 41955,
+          "encodedBodySize": 41655,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 884,
+          "responseStart": 1055.7000000476837,
+          "responseEnd": 1275.3000000715256,
+          "transferSize": 43708,
+          "encodedBodySize": 43408,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "today",
+      "sample": 19,
+      "ms": 1972.7000000476837,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/dashboard",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1951.4000000953674,
+        "navigationId": 7740,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000002384185791,
+        "domainLookupStart": 0.40000009536743164,
+        "domainLookupEnd": 6.900000095367432,
+        "connectStart": 6.900000095367432,
+        "secureConnectionStart": 19.5,
+        "connectEnd": 43,
+        "requestStart": 43,
+        "responseStart": 422.10000002384186,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 422.10000002384186,
+        "responseEnd": 479.2000000476837,
+        "transferSize": 10520,
+        "encodedBodySize": 10220,
+        "decodedBodySize": 57447,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 259,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 482.10000002384186,
+        "domContentLoadedEventStart": 888.8000000715256,
+        "domContentLoadedEventEnd": 889.7000000476837,
+        "domComplete": 1951.4000000953674,
+        "loadEventStart": 1951.4000000953674,
+        "loadEventEnd": 1951.4000000953674,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 465.5,
+          "responseStart": 563.3000000715256,
+          "responseEnd": 682.8000000715256,
+          "transferSize": 7092,
+          "encodedBodySize": 6792,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 480.5,
+          "responseStart": 547.5,
+          "responseEnd": 877.5,
+          "transferSize": 41997,
+          "encodedBodySize": 41697,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 891.5,
+          "responseStart": 1728.4000000953674,
+          "responseEnd": 1949.5,
+          "transferSize": 43708,
+          "encodedBodySize": 43408,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "fit",
+      "sample": 0,
+      "ms": 1393.7999999523163,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/fit",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1373.5999999046326,
+        "navigationId": 6004,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.09999990463256836,
+        "domainLookupStart": 0.5,
+        "domainLookupEnd": 7.899999976158142,
+        "connectStart": 7.899999976158142,
+        "secureConnectionStart": 23.59999990463257,
+        "connectEnd": 40.699999928474426,
+        "requestStart": 40.699999928474426,
+        "responseStart": 529.0999999046326,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 529.0999999046326,
+        "responseEnd": 585.0999999046326,
+        "transferSize": 10522,
+        "encodedBodySize": 10222,
+        "decodedBodySize": 57445,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 236,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 587.7999999523163,
+        "domContentLoadedEventStart": 983.1999999284744,
+        "domContentLoadedEventEnd": 983.1999999284744,
+        "domComplete": 1372.5999999046326,
+        "loadEventStart": 1373.5999999046326,
+        "loadEventEnd": 1373.5999999046326,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 571.2999999523163,
+          "responseStart": 717.5999999046326,
+          "responseEnd": 771.7999999523163,
+          "transferSize": 7016,
+          "encodedBodySize": 6716,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 585.8999999761581,
+          "responseStart": 730.5,
+          "responseEnd": 974.7999999523163,
+          "transferSize": 41993,
+          "encodedBodySize": 41693,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 984.8999999761581,
+          "responseStart": 1041.7999999523163,
+          "responseEnd": 1371.7999999523163,
+          "transferSize": 43657,
+          "encodedBodySize": 43357,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "fit",
+      "sample": 1,
+      "ms": 1472.6000000238419,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/fit",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1449.1999999284744,
+        "navigationId": 906,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000002384185791,
+        "domainLookupStart": 0.3999999761581421,
+        "domainLookupEnd": 8.799999952316284,
+        "connectStart": 8.799999952316284,
+        "secureConnectionStart": 64.89999997615814,
+        "connectEnd": 93.29999995231628,
+        "requestStart": 93.39999997615814,
+        "responseStart": 621.7999999523163,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 621.7999999523163,
+        "responseEnd": 682.3999999761581,
+        "transferSize": 10522,
+        "encodedBodySize": 10222,
+        "decodedBodySize": 57445,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 293,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 685.7999999523163,
+        "domContentLoadedEventStart": 1073.8999999761581,
+        "domContentLoadedEventEnd": 1073.8999999761581,
+        "domComplete": 1449.1999999284744,
+        "loadEventStart": 1449.1999999284744,
+        "loadEventEnd": 1449.1999999284744,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 668.7999999523163,
+          "responseStart": 804.1000000238419,
+          "responseEnd": 869.3999999761581,
+          "transferSize": 7016,
+          "encodedBodySize": 6716,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 684.1999999284744,
+          "responseStart": 823.1000000238419,
+          "responseEnd": 1064.3999999761581,
+          "transferSize": 41955,
+          "encodedBodySize": 41655,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 1075.6000000238419,
+          "responseStart": 1221.1999999284744,
+          "responseEnd": 1446.8999999761581,
+          "transferSize": 43708,
+          "encodedBodySize": 43408,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "fit",
+      "sample": 2,
+      "ms": 1740.2999999523163,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/fit",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1705,
+        "navigationId": 8632,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000002384185791,
+        "domainLookupStart": 0.2999999523162842,
+        "domainLookupEnd": 8.199999928474426,
+        "connectStart": 8.199999928474426,
+        "secureConnectionStart": 105.5,
+        "connectEnd": 127.29999995231628,
+        "requestStart": 127.29999995231628,
+        "responseStart": 845.6999999284744,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 845.6999999284744,
+        "responseEnd": 900,
+        "transferSize": 10599,
+        "encodedBodySize": 10299,
+        "decodedBodySize": 57445,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 368,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 903.2999999523163,
+        "domContentLoadedEventStart": 1313.3999999761581,
+        "domContentLoadedEventEnd": 1313.5,
+        "domComplete": 1704.8999999761581,
+        "loadEventStart": 1705,
+        "loadEventEnd": 1705,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 863.1000000238419,
+          "responseStart": 1153.1999999284744,
+          "responseEnd": 1222.3999999761581,
+          "transferSize": 7090,
+          "encodedBodySize": 6790,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 902.2999999523163,
+          "responseStart": 1050,
+          "responseEnd": 1304.6000000238419,
+          "transferSize": 41993,
+          "encodedBodySize": 41693,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 1315,
+          "responseStart": 1455.2999999523163,
+          "responseEnd": 1702.6999999284744,
+          "transferSize": 43961,
+          "encodedBodySize": 43661,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "fit",
+      "sample": 3,
+      "ms": 1736,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/fit",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1702.6000000238419,
+        "navigationId": 7451,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000002384185791,
+        "domainLookupStart": 0.3999999761581421,
+        "domainLookupEnd": 9.100000023841858,
+        "connectStart": 9.100000023841858,
+        "secureConnectionStart": 24,
+        "connectEnd": 47.700000047683716,
+        "requestStart": 47.799999952316284,
+        "responseStart": 588.2999999523163,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 588.2999999523163,
+        "responseEnd": 644.7999999523163,
+        "transferSize": 10599,
+        "encodedBodySize": 10299,
+        "decodedBodySize": 57445,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 281,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 648.2999999523163,
+        "domContentLoadedEventStart": 1159.1000000238419,
+        "domContentLoadedEventEnd": 1159.1000000238419,
+        "domComplete": 1702.6000000238419,
+        "loadEventStart": 1702.6000000238419,
+        "loadEventEnd": 1702.6000000238419,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 610.8999999761581,
+          "responseStart": 734.8999999761581,
+          "responseEnd": 801.8999999761581,
+          "transferSize": 7090,
+          "encodedBodySize": 6790,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 646.5,
+          "responseStart": 771.3999999761581,
+          "responseEnd": 1148.2999999523163,
+          "transferSize": 42027,
+          "encodedBodySize": 41727,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 1160.5,
+          "responseStart": 1279.7999999523163,
+          "responseEnd": 1701.7999999523163,
+          "transferSize": 43775,
+          "encodedBodySize": 43475,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "fit",
+      "sample": 4,
+      "ms": 1409.0999999046326,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/fit",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1377.2999999523163,
+        "navigationId": 1139,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.09999990463256836,
+        "domainLookupStart": 0.3999999761581421,
+        "domainLookupEnd": 8.799999952316284,
+        "connectStart": 8.799999952316284,
+        "secureConnectionStart": 23.199999928474426,
+        "connectEnd": 50.699999928474426,
+        "requestStart": 50.699999928474426,
+        "responseStart": 542.1999999284744,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 542.1999999284744,
+        "responseEnd": 600.2999999523163,
+        "transferSize": 10517,
+        "encodedBodySize": 10217,
+        "decodedBodySize": 57445,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 283,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 603.2999999523163,
+        "domContentLoadedEventStart": 990.8999999761581,
+        "domContentLoadedEventEnd": 990.8999999761581,
+        "domComplete": 1376.8999999761581,
+        "loadEventStart": 1377.2999999523163,
+        "loadEventEnd": 1377.2999999523163,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 585.6999999284744,
+          "responseStart": 725.6999999284744,
+          "responseEnd": 786.8999999761581,
+          "transferSize": 7022,
+          "encodedBodySize": 6722,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 601.1999999284744,
+          "responseStart": 737.7999999523163,
+          "responseEnd": 982,
+          "transferSize": 41955,
+          "encodedBodySize": 41655,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 992.0999999046326,
+          "responseStart": 1118.6999999284744,
+          "responseEnd": 1375.2999999523163,
+          "transferSize": 43786,
+          "encodedBodySize": 43486,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "fit",
+      "sample": 5,
+      "ms": 1603.9000000953674,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/fit",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1584.4000000953674,
+        "navigationId": 6636,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000002384185791,
+        "domainLookupStart": 0.40000009536743164,
+        "domainLookupEnd": 8.900000095367432,
+        "connectStart": 8.900000095367432,
+        "secureConnectionStart": 22,
+        "connectEnd": 46,
+        "requestStart": 46.200000047683716,
+        "responseStart": 723,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 723,
+        "responseEnd": 779.4000000953674,
+        "transferSize": 10602,
+        "encodedBodySize": 10302,
+        "decodedBodySize": 57445,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 509,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 782.2000000476837,
+        "domContentLoadedEventStart": 1194,
+        "domContentLoadedEventEnd": 1194.1000000238419,
+        "domComplete": 1584.4000000953674,
+        "loadEventStart": 1584.4000000953674,
+        "loadEventEnd": 1584.4000000953674,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 750.5,
+          "responseStart": 963.6000000238419,
+          "responseEnd": 1034.9000000953674,
+          "transferSize": 7092,
+          "encodedBodySize": 6792,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 780.9000000953674,
+          "responseStart": 892.6000000238419,
+          "responseEnd": 1184.7000000476837,
+          "transferSize": 41997,
+          "encodedBodySize": 41697,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 1195.1000000238419,
+          "responseStart": 1251.4000000953674,
+          "responseEnd": 1583,
+          "transferSize": 43657,
+          "encodedBodySize": 43357,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "fit",
+      "sample": 6,
+      "ms": 1386.2999999523163,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/fit",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1358.7999999523163,
+        "navigationId": 6285,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000002384185791,
+        "domainLookupStart": 0.5,
+        "domainLookupEnd": 7.600000023841858,
+        "connectStart": 7.600000023841858,
+        "secureConnectionStart": 20.899999976158142,
+        "connectEnd": 56.39999997615814,
+        "requestStart": 56.39999997615814,
+        "responseStart": 504.89999997615814,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 504.89999997615814,
+        "responseEnd": 562.1000000238419,
+        "transferSize": 10522,
+        "encodedBodySize": 10222,
+        "decodedBodySize": 57445,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 299,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 564.8999999761581,
+        "domContentLoadedEventStart": 963.6000000238419,
+        "domContentLoadedEventEnd": 963.6000000238419,
+        "domComplete": 1358.7000000476837,
+        "loadEventStart": 1358.7999999523163,
+        "loadEventEnd": 1358.7999999523163,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 548.5,
+          "responseStart": 644.7000000476837,
+          "responseEnd": 764.2000000476837,
+          "transferSize": 7090,
+          "encodedBodySize": 6790,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 563.1000000238419,
+          "responseStart": 646,
+          "responseEnd": 954.7999999523163,
+          "transferSize": 41955,
+          "encodedBodySize": 41655,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 964.5,
+          "responseStart": 1020.2000000476837,
+          "responseEnd": 1357.3999999761581,
+          "transferSize": 43657,
+          "encodedBodySize": 43357,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "fit",
+      "sample": 7,
+      "ms": 1462,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/fit",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1428.7000000476837,
+        "navigationId": 2582,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000002384185791,
+        "domainLookupStart": 0.2999999523162842,
+        "domainLookupEnd": 7.5,
+        "connectStart": 7.5,
+        "secureConnectionStart": 22,
+        "connectEnd": 37.700000047683716,
+        "requestStart": 37.700000047683716,
+        "responseStart": 495.60000002384186,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 495.60000002384186,
+        "responseEnd": 631.5,
+        "transferSize": 10522,
+        "encodedBodySize": 10222,
+        "decodedBodySize": 57445,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 353,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 634.7000000476837,
+        "domContentLoadedEventStart": 1028.8999999761581,
+        "domContentLoadedEventEnd": 1028.8999999761581,
+        "domComplete": 1428.6000000238419,
+        "loadEventStart": 1428.7000000476837,
+        "loadEventEnd": 1428.7000000476837,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 617.8999999761581,
+          "responseStart": 707.5,
+          "responseEnd": 817.3999999761581,
+          "transferSize": 7090,
+          "encodedBodySize": 6790,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 633.1000000238419,
+          "responseStart": 654.8999999761581,
+          "responseEnd": 1019.2000000476837,
+          "transferSize": 41955,
+          "encodedBodySize": 41655,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 1030,
+          "responseStart": 1136.1000000238419,
+          "responseEnd": 1427.7999999523163,
+          "transferSize": 43697,
+          "encodedBodySize": 43397,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "fit",
+      "sample": 8,
+      "ms": 1406.8999999761581,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/fit",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1381.1999999284744,
+        "navigationId": 4592,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.19999992847442627,
+        "domainLookupStart": 0.3999999761581421,
+        "domainLookupEnd": 7.299999952316284,
+        "connectStart": 7.299999952316284,
+        "secureConnectionStart": 21.199999928474426,
+        "connectEnd": 45.89999997615814,
+        "requestStart": 45.89999997615814,
+        "responseStart": 531.3999999761581,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 531.3999999761581,
+        "responseEnd": 586.6999999284744,
+        "transferSize": 10602,
+        "encodedBodySize": 10302,
+        "decodedBodySize": 57445,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 267,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 589.1999999284744,
+        "domContentLoadedEventStart": 990.3999999761581,
+        "domContentLoadedEventEnd": 990.3999999761581,
+        "domComplete": 1381.0999999046326,
+        "loadEventStart": 1381.1999999284744,
+        "loadEventEnd": 1381.1999999284744,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 557.7999999523163,
+          "responseStart": 661.7999999523163,
+          "responseEnd": 743.0999999046326,
+          "transferSize": 7022,
+          "encodedBodySize": 6722,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 587.8999999761581,
+          "responseStart": 767.1999999284744,
+          "responseEnd": 982,
+          "transferSize": 41993,
+          "encodedBodySize": 41693,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 992.2999999523163,
+          "responseStart": 1111.0999999046326,
+          "responseEnd": 1379.5,
+          "transferSize": 43697,
+          "encodedBodySize": 43397,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "fit",
+      "sample": 9,
+      "ms": 1457.3999999761581,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/fit",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1433.6000000238419,
+        "navigationId": 5340,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0,
+        "domainLookupStart": 0.2999999523162842,
+        "domainLookupEnd": 6.799999952316284,
+        "connectStart": 6.799999952316284,
+        "secureConnectionStart": 36.799999952316284,
+        "connectEnd": 66.60000002384186,
+        "requestStart": 66.60000002384186,
+        "responseStart": 607,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 607,
+        "responseEnd": 668.7999999523163,
+        "transferSize": 10602,
+        "encodedBodySize": 10302,
+        "decodedBodySize": 57445,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 238,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 672.1999999284744,
+        "domContentLoadedEventStart": 1055.1000000238419,
+        "domContentLoadedEventEnd": 1055.1000000238419,
+        "domComplete": 1433.6000000238419,
+        "loadEventStart": 1433.6000000238419,
+        "loadEventEnd": 1433.6000000238419,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 638,
+          "responseStart": 692,
+          "responseEnd": 824.7999999523163,
+          "transferSize": 7092,
+          "encodedBodySize": 6792,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 670.3999999761581,
+          "responseStart": 761.7999999523163,
+          "responseEnd": 1045,
+          "transferSize": 41993,
+          "encodedBodySize": 41693,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 1056.2999999523163,
+          "responseStart": 1178.5,
+          "responseEnd": 1431.6999999284744,
+          "transferSize": 43697,
+          "encodedBodySize": 43397,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "fit",
+      "sample": 10,
+      "ms": 1530,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/fit",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1501.3999999761581,
+        "navigationId": 273,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.09999990463256836,
+        "domainLookupStart": 0.5,
+        "domainLookupEnd": 9.199999928474426,
+        "connectStart": 9.199999928474426,
+        "secureConnectionStart": 101.19999992847443,
+        "connectEnd": 120.5,
+        "requestStart": 120.5,
+        "responseStart": 635.5999999046326,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 635.5999999046326,
+        "responseEnd": 690.1999999284744,
+        "transferSize": 10522,
+        "encodedBodySize": 10222,
+        "decodedBodySize": 57445,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 284,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 693.0999999046326,
+        "domContentLoadedEventStart": 1089.7999999523163,
+        "domContentLoadedEventEnd": 1089.7999999523163,
+        "domComplete": 1501.3999999761581,
+        "loadEventStart": 1501.3999999761581,
+        "loadEventEnd": 1501.3999999761581,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 676.5,
+          "responseStart": 779.0999999046326,
+          "responseEnd": 877.0999999046326,
+          "transferSize": 7022,
+          "encodedBodySize": 6722,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 691.5999999046326,
+          "responseStart": 798.3999999761581,
+          "responseEnd": 1079.6999999284744,
+          "transferSize": 41993,
+          "encodedBodySize": 41693,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 1090.6999999284744,
+          "responseStart": 1275.1999999284744,
+          "responseEnd": 1499.8999999761581,
+          "transferSize": 43697,
+          "encodedBodySize": 43397,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "fit",
+      "sample": 11,
+      "ms": 1546.3000000715256,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/fit",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1516.7000000476837,
+        "navigationId": 1167,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0,
+        "domainLookupStart": 0.3999999761581421,
+        "domainLookupEnd": 7.5,
+        "connectStart": 7.5,
+        "secureConnectionStart": 93.10000002384186,
+        "connectEnd": 112.80000007152557,
+        "requestStart": 112.80000007152557,
+        "responseStart": 696.8999999761581,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 696.8999999761581,
+        "responseEnd": 757.5,
+        "transferSize": 10599,
+        "encodedBodySize": 10299,
+        "decodedBodySize": 57445,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 327,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 760.6000000238419,
+        "domContentLoadedEventStart": 1141.3000000715256,
+        "domContentLoadedEventEnd": 1141.3000000715256,
+        "domComplete": 1515.8999999761581,
+        "loadEventStart": 1516.7000000476837,
+        "loadEventEnd": 1516.7000000476837,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 722.3999999761581,
+          "responseStart": 852.7000000476837,
+          "responseEnd": 914.3999999761581,
+          "transferSize": 7090,
+          "encodedBodySize": 6790,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 759.2000000476837,
+          "responseStart": 800.6000000238419,
+          "responseEnd": 1131.7000000476837,
+          "transferSize": 41993,
+          "encodedBodySize": 41693,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 1142.2000000476837,
+          "responseStart": 1176.6000000238419,
+          "responseEnd": 1514.3999999761581,
+          "transferSize": 43697,
+          "encodedBodySize": 43397,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "fit",
+      "sample": 12,
+      "ms": 1504.3999999761581,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/fit",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1471.2000000476837,
+        "navigationId": 2806,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000002384185791,
+        "domainLookupStart": 0.3999999761581421,
+        "domainLookupEnd": 8.700000047683716,
+        "connectStart": 8.700000047683716,
+        "secureConnectionStart": 72.60000002384186,
+        "connectEnd": 107.20000004768372,
+        "requestStart": 107.20000004768372,
+        "responseStart": 639.3999999761581,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 639.3999999761581,
+        "responseEnd": 699.7000000476837,
+        "transferSize": 10599,
+        "encodedBodySize": 10299,
+        "decodedBodySize": 57445,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 239,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 702.7000000476837,
+        "domContentLoadedEventStart": 1083.3999999761581,
+        "domContentLoadedEventEnd": 1083.3999999761581,
+        "domComplete": 1471.1000000238419,
+        "loadEventStart": 1471.2000000476837,
+        "loadEventEnd": 1471.2000000476837,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 660.8000000715256,
+          "responseStart": 778.6000000238419,
+          "responseEnd": 847.3000000715256,
+          "transferSize": 7090,
+          "encodedBodySize": 6790,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 701.5,
+          "responseStart": 797.5,
+          "responseEnd": 1074.1000000238419,
+          "transferSize": 41993,
+          "encodedBodySize": 41693,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 1085,
+          "responseStart": 1143.3999999761581,
+          "responseEnd": 1470.1000000238419,
+          "transferSize": 43697,
+          "encodedBodySize": 43397,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "fit",
+      "sample": 13,
+      "ms": 1393.6000000238419,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/fit",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1373.2999999523163,
+        "navigationId": 4212,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000002384185791,
+        "domainLookupStart": 0.3999999761581421,
+        "domainLookupEnd": 8.199999928474426,
+        "connectStart": 8.199999928474426,
+        "secureConnectionStart": 92.89999997615814,
+        "connectEnd": 128.29999995231628,
+        "requestStart": 128.39999997615814,
+        "responseStart": 515.6999999284744,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 515.6999999284744,
+        "responseEnd": 571,
+        "transferSize": 10602,
+        "encodedBodySize": 10302,
+        "decodedBodySize": 57445,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 246,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 573.8999999761581,
+        "domContentLoadedEventStart": 982.7999999523163,
+        "domContentLoadedEventEnd": 983.6999999284744,
+        "domComplete": 1372.6000000238419,
+        "loadEventStart": 1373.2999999523163,
+        "loadEventEnd": 1373.2999999523163,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 540.1999999284744,
+          "responseStart": 731,
+          "responseEnd": 801.8999999761581,
+          "transferSize": 7090,
+          "encodedBodySize": 6790,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 572.3999999761581,
+          "responseStart": 704.6000000238419,
+          "responseEnd": 974.2999999523163,
+          "transferSize": 41993,
+          "encodedBodySize": 41693,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 984.7999999523163,
+          "responseStart": 1131.7999999523163,
+          "responseEnd": 1371.7999999523163,
+          "transferSize": 43657,
+          "encodedBodySize": 43357,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "fit",
+      "sample": 14,
+      "ms": 1412.8000000715256,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/fit",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1381.6000000238419,
+        "navigationId": 7388,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000002384185791,
+        "domainLookupStart": 0.3999999761581421,
+        "domainLookupEnd": 8,
+        "connectStart": 8,
+        "secureConnectionStart": 22.100000023841858,
+        "connectEnd": 47.10000002384186,
+        "requestStart": 47.200000047683716,
+        "responseStart": 512.3999999761581,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 512.3999999761581,
+        "responseEnd": 569.7000000476837,
+        "transferSize": 10504,
+        "encodedBodySize": 10204,
+        "decodedBodySize": 57445,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 285,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 573.5,
+        "domContentLoadedEventStart": 998.2000000476837,
+        "domContentLoadedEventEnd": 998.2000000476837,
+        "domComplete": 1381.3999999761581,
+        "loadEventStart": 1381.6000000238419,
+        "loadEventEnd": 1381.6000000238419,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "low"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 555.7000000476837,
+          "responseStart": 738.8000000715256,
+          "responseEnd": 802,
+          "transferSize": 7016,
+          "encodedBodySize": 6716,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 569.8999999761581,
+          "responseStart": 738.8999999761581,
+          "responseEnd": 989.3999999761581,
+          "transferSize": 41993,
+          "encodedBodySize": 41693,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 999.6000000238419,
+          "responseStart": 1082.1000000238419,
+          "responseEnd": 1380.3999999761581,
+          "transferSize": 43697,
+          "encodedBodySize": 43397,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "fit",
+      "sample": 15,
+      "ms": 1255.7000000476837,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/fit",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1231.7000000476837,
+        "navigationId": 2919,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000002384185791,
+        "domainLookupStart": 0.3999999761581421,
+        "domainLookupEnd": 8.600000023841858,
+        "connectStart": 8.600000023841858,
+        "secureConnectionStart": 22.100000023841858,
+        "connectEnd": 47.10000002384186,
+        "requestStart": 47.200000047683716,
+        "responseStart": 396,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 396,
+        "responseEnd": 449.39999997615814,
+        "transferSize": 10602,
+        "encodedBodySize": 10302,
+        "decodedBodySize": 57445,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 261,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 452,
+        "domContentLoadedEventStart": 841.7000000476837,
+        "domContentLoadedEventEnd": 841.8000000715256,
+        "domComplete": 1231.6000000238419,
+        "loadEventStart": 1231.7000000476837,
+        "loadEventEnd": 1231.7000000476837,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 420,
+          "responseStart": 445.7000000476837,
+          "responseEnd": 629.3000000715256,
+          "transferSize": 7090,
+          "encodedBodySize": 6790,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 450.5,
+          "responseStart": 537.6000000238419,
+          "responseEnd": 831.8999999761581,
+          "transferSize": 41993,
+          "encodedBodySize": 41693,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 842.7000000476837,
+          "responseStart": 990.3999999761581,
+          "responseEnd": 1229.7000000476837,
+          "transferSize": 43708,
+          "encodedBodySize": 43408,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "fit",
+      "sample": 16,
+      "ms": 1479.6000000238419,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/fit",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1444.3999999761581,
+        "navigationId": 3605,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000002384185791,
+        "domainLookupStart": 0.5,
+        "domainLookupEnd": 7.600000023841858,
+        "connectStart": 7.600000023841858,
+        "secureConnectionStart": 77.5,
+        "connectEnd": 109.10000002384186,
+        "requestStart": 109.20000004768372,
+        "responseStart": 593.7999999523163,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 593.7999999523163,
+        "responseEnd": 651.7999999523163,
+        "transferSize": 10522,
+        "encodedBodySize": 10222,
+        "decodedBodySize": 57445,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 280,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 654.7999999523163,
+        "domContentLoadedEventStart": 1051.1000000238419,
+        "domContentLoadedEventEnd": 1051.1000000238419,
+        "domComplete": 1444.3999999761581,
+        "loadEventStart": 1444.3999999761581,
+        "loadEventEnd": 1444.3999999761581,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 637.7000000476837,
+          "responseStart": 758.6000000238419,
+          "responseEnd": 854.6000000238419,
+          "transferSize": 7016,
+          "encodedBodySize": 6716,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 653,
+          "responseStart": 762.2999999523163,
+          "responseEnd": 1042.1000000238419,
+          "transferSize": 41955,
+          "encodedBodySize": 41655,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 1051.7999999523163,
+          "responseStart": 1148.1000000238419,
+          "responseEnd": 1442.8999999761581,
+          "transferSize": 43708,
+          "encodedBodySize": 43408,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "fit",
+      "sample": 17,
+      "ms": 2479.9000000953674,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/fit",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 2454.5,
+        "navigationId": 1040,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.20000004768371582,
+        "domainLookupStart": 0.5,
+        "domainLookupEnd": 7.5,
+        "connectStart": 7.5,
+        "secureConnectionStart": 22,
+        "connectEnd": 129.80000007152557,
+        "requestStart": 129.80000007152557,
+        "responseStart": 483.3000000715256,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 483.3000000715256,
+        "responseEnd": 540,
+        "transferSize": 10602,
+        "encodedBodySize": 10302,
+        "decodedBodySize": 57445,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 306,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 542.7000000476837,
+        "domContentLoadedEventStart": 932,
+        "domContentLoadedEventEnd": 932,
+        "domComplete": 2454.5,
+        "loadEventStart": 2454.5,
+        "loadEventEnd": 2454.5,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 509.60000002384186,
+          "responseStart": 536.8000000715256,
+          "responseEnd": 721.6000000238419,
+          "transferSize": 7022,
+          "encodedBodySize": 6722,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 541.2000000476837,
+          "responseStart": 634.1000000238419,
+          "responseEnd": 921.8000000715256,
+          "transferSize": 41993,
+          "encodedBodySize": 41693,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 933.4000000953674,
+          "responseStart": 2231.7000000476837,
+          "responseEnd": 2452.8000000715256,
+          "transferSize": 43657,
+          "encodedBodySize": 43357,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "fit",
+      "sample": 18,
+      "ms": 1405.8000000715256,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/fit",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1373,
+        "navigationId": 8876,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000002384185791,
+        "domainLookupStart": 0.3999999761581421,
+        "domainLookupEnd": 8.899999976158142,
+        "connectStart": 8.899999976158142,
+        "secureConnectionStart": 24.100000023841858,
+        "connectEnd": 61.60000002384186,
+        "requestStart": 61.700000047683716,
+        "responseStart": 540.3999999761581,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 540.3999999761581,
+        "responseEnd": 599.5,
+        "transferSize": 10522,
+        "encodedBodySize": 10222,
+        "decodedBodySize": 57445,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 296,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 602.3999999761581,
+        "domContentLoadedEventStart": 998.3999999761581,
+        "domContentLoadedEventEnd": 998.3999999761581,
+        "domComplete": 1373,
+        "loadEventStart": 1373,
+        "loadEventEnd": 1373,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 585.8999999761581,
+          "responseStart": 726.6000000238419,
+          "responseEnd": 786.6000000238419,
+          "transferSize": 7016,
+          "encodedBodySize": 6716,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 600.8999999761581,
+          "responseStart": 730.1000000238419,
+          "responseEnd": 989.3999999761581,
+          "transferSize": 41993,
+          "encodedBodySize": 41693,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 1000.2000000476837,
+          "responseStart": 1113.8999999761581,
+          "responseEnd": 1371.8000000715256,
+          "transferSize": 43708,
+          "encodedBodySize": 43408,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destination": "fit",
+      "sample": 19,
+      "ms": 1620.5,
+      "navigation": {
+        "name": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/fit",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 1600.7999999523163,
+        "navigationId": 2603,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "h2",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "zstd",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.20000004768371582,
+        "domainLookupStart": 0.5,
+        "domainLookupEnd": 8.5,
+        "connectStart": 8.5,
+        "secureConnectionStart": 22.600000023841858,
+        "connectEnd": 41.200000047683716,
+        "requestStart": 41.200000047683716,
+        "responseStart": 723.5,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 723.5,
+        "responseEnd": 781,
+        "transferSize": 10602,
+        "encodedBodySize": 10302,
+        "decodedBodySize": 57445,
+        "responseStatus": 200,
+        "serverTiming": [
+          {
+            "name": "native",
+            "duration": 499,
+            "description": ""
+          }
+        ],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 785,
+        "domContentLoadedEventStart": 1171.5,
+        "domContentLoadedEventEnd": 1171.5,
+        "domComplete": 1600.7999999523163,
+        "loadEventStart": 1600.7999999523163,
+        "loadEventEnd": 1600.7999999523163,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "low"
+        }
+      },
+      "resources": [
+        {
+          "name": "/assets/member-experience/v7-native.css",
+          "start": 750.5,
+          "responseStart": 872.3999999761581,
+          "responseEnd": 952.2000000476837,
+          "transferSize": 7016,
+          "encodedBodySize": 6716,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-native.mjs",
+          "start": 782,
+          "responseStart": 863.5,
+          "responseEnd": 1161.8999999761581,
+          "transferSize": 41955,
+          "encodedBodySize": 41655,
+          "workerStart": 0,
+          "serverTiming": []
+        },
+        {
+          "name": "/assets/member-experience/v7-heading-font.ttf",
+          "start": 1172.5,
+          "responseStart": 1377.6000000238419,
+          "responseEnd": 1599,
+          "transferSize": 43697,
+          "encodedBodySize": 43397,
+          "workerStart": 0,
+          "serverTiming": [
+            {
+              "name": "cfExtPri",
+              "duration": 0,
+              "description": ""
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "fresh": {
+    "today": [
+      5001.299999952316,
+      3266.2000000476837,
+      2229,
+      2066.5,
+      1635.6000000238419,
+      1661.6000000238419,
+      2429.100000023842,
+      4224,
+      1393.1000000238419,
+      1255.7999999523163,
+      1505,
+      1512.9000000953674,
+      1490.5,
+      1428.7999999523163,
+      1847.5,
+      1330.5,
+      1318,
+      3732,
+      1304.1000000238419,
+      1972.7000000476837
+    ],
+    "fit": [
+      1393.7999999523163,
+      1472.6000000238419,
+      1740.2999999523163,
+      1736,
+      1409.0999999046326,
+      1603.9000000953674,
+      1386.2999999523163,
+      1462,
+      1406.8999999761581,
+      1457.3999999761581,
+      1530,
+      1546.3000000715256,
+      1504.3999999761581,
+      1393.6000000238419,
+      1412.8000000715256,
+      1255.7000000476837,
+      1479.6000000238419,
+      2479.9000000953674,
+      1405.8000000715256,
+      1620.5
+    ]
+  },
+  "warm": {
+    "today": [
+      30.600000023841858,
+      30.699999928474426,
+      31.299999952316284,
+      31.5,
+      30.899999976158142,
+      30.199999928474426,
+      30.90000009536743,
+      31.200000047683716,
+      31.100000023841858,
+      30.100000023841858,
+      30,
+      32,
+      30.600000023841858,
+      32,
+      28.5,
+      30.5,
+      30,
+      29.600000023841858,
+      31.5,
+      28.899999976158142
+    ],
+    "fit": [
+      30.600000023841858,
+      31.399999976158142,
+      31,
+      30.399999976158142,
+      28.799999952316284,
+      29.899999976158142,
+      31,
+      30.100000023841858,
+      29.100000023841858,
+      30.59999990463257,
+      29.399999976158142,
+      33,
+      32.699999928474426,
+      32.200000047683716,
+      32.10000002384186,
+      30,
+      30.700000047683716,
+      29.100000023841858,
+      30.5,
+      28.700000047683716
+    ]
+  },
+  "errors": [],
+  "summary": {
+    "tap": {
+      "n": 20,
+      "median": 31,
+      "p95": 33
+    },
+    "fresh": {
+      "today": {
+        "n": 20,
+        "median": 1662,
+        "p95": 4224
+      },
+      "fit": {
+        "n": 20,
+        "median": 1473,
+        "p95": 1740
+      }
+    },
+    "warm": {
+      "today": {
+        "n": 20,
+        "median": 31,
+        "p95": 32
+      },
+      "fit": {
+        "n": 20,
+        "median": 31,
+        "p95": 33
+      }
+    }
+  }
+}

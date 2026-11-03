@@ -1,0 +1,8 @@
+{
+  "at": "2026-11-03T23:14:32.101Z",
+  "account": "v7-phone@example.invalid",
+  "expiresAt": "2026-11-04T22:08:45.248Z",
+  "device": "Chromium mobile profile, not a physical phone",
+  "pass": true,
+  "errors": []
+}

@@ -40,7 +40,7 @@ test('30th milestone is awarded once, preserved across retries; sharing cannot e
  let s=blank();for(let n=0;n<30;n++){const t=new Date(Date.UTC(2026,9,1+n,12)).toISOString();s=op(s,'v7-complete',{actionId:a.id},t);}
  const id=s.v7.milestones['30'].id;
  s=op(s,'v7-complete',{actionId:a.id},'2026-10-30T12:00:00Z');s=op(s,'v7-complete',{actionId:a.id},'2026-10-31T12:00:00Z');
- assert.equal(s.v7.milestones['30'].id,id);assert.equal(v7State(s,at).count,31);
+ assert.equal(s.v7.milestones['30'].id,id);assert.equal(v7State(s,at).count,30);assert.equal(v7State(s,at).lifetimeCount,31);
  s.privateHealth={weight:100,medicine:'secret'};s.goal='private reason';assert.deepEqual(Object.keys(v7Share(s)).sort(),['brand','logs','milestone','target','title','weekCount'].sort());
  assert.doesNotMatch(JSON.stringify(v7Share(s)),/weight|secret|private reason|protein/);
 });
