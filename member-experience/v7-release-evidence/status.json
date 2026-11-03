@@ -1,0 +1,44 @@
+{
+  "state": "IN_PROGRESS_NOT_DEPLOYED",
+  "recordedAt": "2026-11-03T18:37:59.320724+00:00",
+  "baseCommit": "2609d5c0b1f4a056a796fc2bc62ad275532536fb",
+  "branch": "fix/my-timber-precompiled-documents-20261102",
+  "order": "One combined V7 and speed release; no new feature flags, no member phases. Test-site evidence before member deployment.",
+  "latestUserRequest": "Mockup required before deployment. Four-screen Today/Swap/Done/Journey visual supplied for review; no visual sign-off received.",
+  "implementedInSource": [
+    "V7 account/day award and persistent once-only 30-log milestone",
+    "Separate actual-food and action records",
+    "Optional feedback and tomorrow adaptation",
+    "Weight on by default, preference in More, Journey lead/activity",
+    "Today/Swap/Done UI and deliberate effort-only share preview",
+    "Scheduled-only prepared insight code",
+    "432198-byte header SVG reduced to 88682 bytes",
+    "Cached CSS document-build helper and early shared identity source change"
+  ],
+  "verifiedLocalOnly": {
+    "command": "node --test member-experience/tests/v7-model.test.mjs member-experience/tests/v7-account.test.mjs member-experience/tests/v7-overnight.test.mjs member-experience/tests/journey-approved.test.mjs member-experience/tests/shop-connected.test.mjs",
+    "tests": 36,
+    "pass": 36,
+    "fail": 0,
+    "evidence": "my-timber-v7-retained-tests.log",
+    "scope": "Synthetic in-memory SQLite and runtime/source tests; no browser or physical-device completion claim."
+  },
+  "notDone": [
+    "Test site packaging/deployment",
+    "Crew league and full privacy propagation",
+    "Three browser journey recordings and complete must-not-break evidence",
+    "Candidate mobile Today/Fit 20+ sample p95 comparison",
+    "Physical iPhone evidence",
+    "Executable one-step coordinated rollback command",
+    "Member release and live verification"
+  ],
+  "architecture": "Preserve captured currently-serving legacy modules. Add v7-release outer wrapper to programme service; expose narrowly named existing catalogue helpers by append-only export. Do not replace its compiled legacy bundle: current HEAD baseline recompilation differs in packaging (23,604,242 vs 7,088,894 bytes). Existing handlers must remain exact. New assets and precompiled public document manifests can be updated explicitly.",
+  "currentLiveRollbackVersions": {
+    "shift-programme-member-20261023": "8500f880-3e8a-49ff-b74e-c2cd83c36f27",
+    "shift-hq-member-comms-20261023": "67958f58-8712-49ec-bcf0-2e513c1fd5d2",
+    "shift-core": "e21cdda6-22e1-4c82-b4db-acaccfdc4f8f",
+    "shift-mytimber-support-20261023": "1ff41acd-546e-431a-ab7f-fbc1f6f65b68"
+  },
+  "next": "Continue one candidate, no deployment to members until the mockup has been reviewed and the requested test-site evidence has been sent.",
+  "sourceMaterialisation": "Repository is a sparse checkout. Current-branch dependency directories and frontend/member have now been materialised; no older branch was checked out."
+}

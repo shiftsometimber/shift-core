@@ -1,0 +1,44 @@
+✔ Journey records reject impossible/future dates, unrecorded amounts and unsupported clinical fields (13.616917ms)
+✔ records survive refresh, correct/delete by id, and never alter other member support or the illustration (1.166458ms)
+✔ no fabricated records; legacy weekly dates and actual labels retain their provenance (0.937041ms)
+✔ weight and waist keep fluctuations, missing dates and same-day readings; clothes never become a numeric series (1.025875ms)
+✔ medicine changes and injection details do not change the teaching line or infer a cause (0.894792ms)
+✔ snapshot quotes real dated records, preserves clothes labels and escapes user text in HTML (0.40675ms)
+✔ real page is session gated, uncached, shares the five-tab navigation, and has a valid standalone runtime (14.166125ms)
+✔ actual auth API persists only its owned path; account mismatch, consent, CSRF, pause and deletion are enforced (9.63ms)
+✔ new page and API use scoped release paths; protected commerce remains the existing fallback (1.240167ms)
+✔ Journey export includes the new records, and existing Journey deletion erases them without losing other preferences (2.355041ms)
+✔ consent revocation and pause at the actual database write prevent a new Journey record (2.144792ms)
+✔ approved hub links all four real ranges and existing private orders; it starts behind the retained session gate (12.689916ms)
+✔ member catalogue uses only a finite public path and validated, bounded filter parameters (0.504292ms)
+✔ catalogue projection retains stock/price/functional controls, rewrites browsing and leaves clinical/POST handlers intact (1.261125ms)
+✔ public projection never forwards member credentials; private response does not copy public cache or cookies (1.153ms)
+✔ unavailable, redirected, oversized or unrecognised catalogue fails closed with recovery (2.976666ms)
+✔ care opens the existing eligibility route without arranging treatment (0.186584ms)
+✔ new pages refuse writes; unknown paths and disabled feature do not affect the fallback (0.290834ms)
+✔ navigation joins every owned member page once and preserves existing account scripts/cookies (4.150834ms)
+✔ shared navigation asset compiles and retains exactly the approved destinations and title spacing (0.965875ms)
+✔ member basket retains canonical payment/owner checks and refuses changed contracts (0.756083ms)
+✔ release wrapper serves Shop, keeps Journey and passes clinical/auth/payment/public handlers through unchanged (1.260042ms)
+✔ actual SQL CAS awards once across twenty overlapping saves, a second session, refresh and retries (44.004083ms)
+✔ Done cannot write actual-food totals; feedback stays optional and changes a future offer with a reason (4.108167ms)
+✔ 30th milestone is one durable database award across devices; privacy preference needs no new tracking consent (15.926125ms)
+✔ account ownership, Origin, paused tracking and a consent withdrawal at the SQL write fail closed (5.482291ms)
+✔ one log per London calendar day survives swaps, retries, reloads and another device (16.655666ms)
+✔ Done saves only the action; food totals have no write path (0.164ms)
+✔ optional feedback and dismissal keep the log; negative feedback explains tomorrow’s change (0.683792ms)
+✔ weight defaults on, off chooses strength, and re-enabling leads with weight (0.295542ms)
+✔ a hard week never clears the pile, and Monday resets only the derived weekly count (1.118917ms)
+✔ 30th milestone is awarded once, preserved across retries; sharing cannot expose private fields (6.386917ms)
+✔ London midnight and daylight-saving boundaries use the existing account calendar (0.717167ms)
+✔ nightly observations retain recorded dates and never infer why weight changed (14.697708ms)
+✔ overnight job prepares once, does not change the pile, and never runs from a screen GET (3.608083ms)
+✔ hidden weight is suppressed when reading an older prepared insight (0.577583ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 36
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 362.426458

@@ -8,7 +8,9 @@ const authorisedOrigin=u=>u.origin===location.origin;
 const firstParty=u=>[location.origin,'https://api.shiftsometimber.co.uk','https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk'].includes(u.origin);
 function endpoint(input){try{return new URL(input instanceof Request?input.url:input,location.href)}catch{return null}}
 let parentApp;try{if(parent!==window&&parent.location.origin===location.origin)parentApp=parent.MT_PERFORMANCE;}catch{}
-if(window.SST_API_BASE==='null')window.SST_API_BASE=location.origin;
+// Every member endpoint is routed on this origin. Keep one early identity proof,
+// rather than opening a second identity origin through the legacy adapter default.
+window.SST_API_BASE=location.origin;
 const channel=typeof BroadcastChannel==='function'?new BroadcastChannel('my-timber-session-invalidated'):null;
 function wipe(reason,broadcast=false){
  ++version;identity=null;identityAt=0;originIdentities.clear();apiReads.clear();controller?.abort();inflight=null;if(reason!=='background'){reads.clear();lastOwner=null;}
@@ -100,6 +102,8 @@ const ready=w=>{
 const touched=new WeakSet();document.addEventListener('input',e=>touched.add(e.target),true);document.addEventListener('change',e=>touched.add(e.target),true);
 const dirty=()=>[...document.querySelectorAll('input,textarea,select')].some(e=>touched.has(e)&&e.isConnected&&(e.type==='checkbox'||e.type==='radio'?e.checked!==e.defaultChecked:e.value!==e.defaultValue));
 window.MT_SCREEN={ready:()=>ready(window),validate:revalidate,pending:()=>pendingReads.size,dirty,hide:()=>{document.documentElement.dataset.mtScreenLocked='1';},show:()=>{delete document.documentElement.dataset.mtScreenLocked;}};
+// Begin before deferred screen runtimes; later callers share this in-flight proof.
+void verified().catch(()=>{});
 if(options.retain===false){document.addEventListener('mt:identity-invalidated',e=>{if(['session-expired','api-session-expired','identity-origin-mismatch'].includes(e.detail?.reason)){expiredView();return;}const wasReady=document.body?.dataset.memberSession==='ready';document.documentElement.dataset.mtScreenLocked='1';if(document.body)document.body.dataset.memberSession='pending';if(wasReady&&e.detail?.reason!=='background'){document.querySelectorAll('main').forEach(n=>n.replaceChildren());location.reload();}});document.addEventListener('visibilitychange',e=>{e.stopImmediatePropagation();if(document.hidden)wipe('background');else(async()=>{try{await verified(true);if(!await revalidate()){location.reload();return;}await window.SST_MEMBER_SESSION?.check();delete document.documentElement.dataset.mtScreenLocked;}catch{location.reload();}})();},true);return;}
 if(parentApp){
  document.addEventListener('visibilitychange',e=>{e.stopImmediatePropagation();if(document.hidden)window.MT_SCREEN.hide();},true);

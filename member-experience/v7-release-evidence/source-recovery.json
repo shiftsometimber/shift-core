@@ -1,0 +1,31 @@
+{
+  "sourceCommit": "15c370ea58f1277ef838b1956da6dfbce90c72dc",
+  "purpose": "Restore absent recorded build/test dependencies only; existing files not changed. Current serving bundles remain the release base.",
+  "files": [
+    {
+      "path": "continuity-measurement/client.mjs",
+      "gitBlob": "b676beb3384efbe259b73e3af38118f5813b4614",
+      "sha256": "9523f5bf5094d047df62a24cd59bb1c7131fb5ef9b48b0b08a5c3fcd3bc97cef"
+    },
+    {
+      "path": "shift-coach/safety.mjs",
+      "gitBlob": "0deac02072fbfd19df67d13f730b91775dfc067d",
+      "sha256": "166eb97fb0c294a9a410b075268d239954da863ef28416cb61107c588588e5d4"
+    },
+    {
+      "path": "shift-coach/support-team.mjs",
+      "gitBlob": "d9a6338b31f5bd0c56a997c7e94f9fff4ae234bd",
+      "sha256": "d8463f1a3b6bb32826a1b7b2c4b812d9821139b73e57199832156acdd9c3d6e6"
+    },
+    {
+      "path": "shift-coach/support.mjs",
+      "gitBlob": "dd5df88585698bd0f19f55e80482d3b8487aecf1",
+      "sha256": "7edbbc4fc57d4360a93c7989b7cc3e65de8bfb9eea68064a69a06d7d34cdceed"
+    },
+    {
+      "path": "gp-directory/client.mjs",
+      "gitBlob": "5b73f91e9eec8fd6e33cb50cd5f0dcf666b043cc",
+      "sha256": "e81aaf3d73b536fa8ef01239c6e29c19cf8c11d7af0c0d62ad50ce87572eebed"
+    }
+  ]
+}
