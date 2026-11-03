@@ -1,6 +1,6 @@
 import test from 'node:test';import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';import vm from 'node:vm';
 import {completeSitemap} from '../aeo-geo/delivery.mjs';
-import {patchKnowledgeSitemapBundle,patchTwoApprovedTickerLines,EXTRA_TICKER_PATHS,soleServingVersion} from '../release/knowledge-sitemap-lastmod-20261103.mjs';
+import {patchKnowledgeSitemapBundle,patchTwoApprovedTickerLines,EXTRA_TICKER_PATHS,soleServingVersion,matchingRoutes} from '../release/knowledge-sitemap-lastmod-20261103.mjs';
 import {approvedTickerModule,APPROVED_TICKER_PATHS} from '../release/approved-shared-ticker-wording-20261031.mjs';
 test('native Knowledge repair changes one discovery predicate and preserves every other byte',()=>{
  const before='UNRELATED HEADER\nasync function withDynamicBabyLoveDiscovery(response, request, env) {\n const q="knowledge_articles";\n if (row.editorial && text.includes("<loc>" + loc + "</loc>")) { const d=articleModifiedDate(row); }\n}\nUNRELATED FOOTER';
@@ -34,4 +34,11 @@ test('outer SEO snapshot preserves later real CMS article dates while retaining 
  const after=completeSitemap(xml,data,metadata);
  assert(after.includes('<lastmod>2026-11-03</lastmod>'));assert(!after.includes('/held'));assert(after.includes('<lastmod>2026-10-01</lastmod>'));
  for(const invalid of ['garbage','2099-01-01','2026-09-01'])assert(completeSitemap(xml.replace('2026-11-03',invalid),data,metadata).includes('<lastmod>2026-10-29T05:00:37.839Z</lastmod>'));
+});
+
+test('route ownership uses Cloudflare host-only patterns and gives the most specific owner priority',()=>{
+ const routes=[{pattern:'shiftsometimber.co.uk/*',script:'core'},{pattern:'shiftsometimber.co.uk/sitemap.xml',script:'sitemap'},{pattern:'https://shiftsometimber.co.uk/knowledge',script:'knowledge'},{pattern:'other.example/*',script:'other'}];
+ assert.deepEqual(matchingRoutes(routes,'https://shiftsometimber.co.uk/sitemap.xml').map(x=>x.script),['sitemap','core']);
+ assert.equal(matchingRoutes(routes,'https://shiftsometimber.co.uk/knowledge')[0].script,'knowledge');
+ assert.deepEqual(matchingRoutes(routes,'https://unrelated.example/sitemap.xml'),[]);
 });
