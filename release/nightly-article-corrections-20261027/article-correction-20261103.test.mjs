@@ -1,0 +1,12 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {changes, prepareCorrection, sha256, slug} from './article-correction-20261103.mjs';
+const now='2026-11-03T14:00:00.000Z';
+const fixture=()=>({id:67,slug,status:'published',author:'SHIFT Team',publish_at:'2026-11-02T05:02:38.522Z',updated_at:'2026-11-02T05:02:38.522Z',title:'Retained title',summary:'Retained summary',body:changes.map(([from])=>from).join('\n\n')+'\n\n> *Matt O’Brien*\n\n## Sources\n\nRetained clinical instructions and citations.'});
+test('prepares only bounded body changes and substantive modified date',()=>{const row=fixture(),p=prepareCorrection(row,sha256(row.body),now);assert.equal(row.body,fixture().body);assert.deepEqual(p.after,{...row,body:p.after.body,updated_at:now});assert.equal(p.after.publish_at,row.publish_at);assert.equal(p.after.author,row.author);assert(p.after.body.includes('Retained clinical instructions and citations.'));assert(!p.after.body.includes('Matt O’Brien'));assert.equal(p.deployed,false);assert.equal(p.update.requiredChanges,1);assert(p.update.sql.includes('AND body=? AND author=? AND publish_at=? AND updated_at IS ?'));});
+test('rejects changed source hash',()=>{const r=fixture();assert.throws(()=>prepareCorrection({...r,body:r.body+' changed'},sha256(r.body),now),/Source changed/);});
+test('rejects a different article or byline',()=>{const r=fixture();for(const x of [{...r,slug:'mounjaro-injection-sites'},{...r,author:'Matt O’Brien'}])assert.throws(()=>prepareCorrection(x,sha256(x.body),now));});
+test('rejects missing or duplicated target wording',()=>{for(const suffix of ['',changes[0][0]]){const r=fixture();r.body=suffix?r.body+'\n'+suffix:r.body.replace(changes[0][0],'Already changed');assert.throws(()=>prepareCorrection(r,sha256(r.body),now),/Expected sentence/);}});
+test('rejects a repeated apply rather than mutating again',()=>{const r=fixture(),p=prepareCorrection(r,sha256(r.body),now);assert.throws(()=>prepareCorrection(p.after,p.afterBodySha256,now),/Expected sentence/);});
+test('rejects unexpected signature instead of inventing authorship',()=>{const r=fixture();r.body=r.body.replace('> *Matt O’Brien*','> A different signature');assert.throws(()=>prepareCorrection(r,sha256(r.body),now),/Signature format/);});
+test('rejects a modification date before publication',()=>{const r=fixture();assert.throws(()=>prepareCorrection(r,sha256(r.body),'2026-11-01T00:00:00Z'));});
