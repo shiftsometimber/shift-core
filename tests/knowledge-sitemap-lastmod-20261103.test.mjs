@@ -1,4 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';import vm from 'node:vm';
+import {completeSitemap} from '../aeo-geo/delivery.mjs';
 import {patchKnowledgeSitemapBundle,patchTwoApprovedTickerLines,EXTRA_TICKER_PATHS,soleServingVersion} from '../release/knowledge-sitemap-lastmod-20261103.mjs';
 import {approvedTickerModule,APPROVED_TICKER_PATHS} from '../release/approved-shared-ticker-wording-20261031.mjs';
 test('native Knowledge repair changes one discovery predicate and preserves every other byte',()=>{
@@ -25,4 +26,12 @@ test('a retained zero-traffic version is distinct from split or unaccounted live
  assert.equal(soleServingVersion({versions:[{version_id:'live',percentage:100},{version_id:'retained',percentage:0}]}),'live');
  assert.throws(()=>soleServingVersion({versions:[{version_id:'one',percentage:50},{version_id:'two',percentage:50}]}));
  assert.throws(()=>soleServingVersion({versions:[{version_id:'one',percentage:90}]}));
+});
+
+test('outer SEO snapshot preserves later real CMS article dates while retaining audited exclusions and other metadata',()=>{
+ const loc='https://shiftsometimber.co.uk/articles/mounjaro-injection-sites',xml='<urlset><url><loc>'+loc+'</loc><lastmod>2026-11-03</lastmod></url><url><loc>https://shiftsometimber.co.uk/held</loc></url><url><loc>https://shiftsometimber.co.uk/unchanged</loc><lastmod>2026-08-27</lastmod></url></urlset>';
+ const metadata={'/articles/mounjaro-injection-sites':{lastmod:'2026-10-29T05:00:37.839Z'},'/held':{exclude:true},'/unchanged':{lastmod:'2026-10-01'}},data={recipes:[],exercises:[],publishedAt:'2026-10-01'};
+ const after=completeSitemap(xml,data,metadata);
+ assert(after.includes('<lastmod>2026-11-03</lastmod>'));assert(!after.includes('/held'));assert(after.includes('<lastmod>2026-10-01</lastmod>'));
+ for(const invalid of ['garbage','2099-01-01','2026-09-01'])assert(completeSitemap(xml.replace('2026-11-03',invalid),data,metadata).includes('<lastmod>2026-10-29T05:00:37.839Z</lastmod>'));
 });

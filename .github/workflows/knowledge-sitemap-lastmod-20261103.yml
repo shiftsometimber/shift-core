@@ -6,6 +6,7 @@ on:
       - .github/workflows/knowledge-sitemap-lastmod-20261103.yml
       - babylove/dynamic-public.mjs
       - babylove/dynamic-public.test.mjs
+      - aeo-geo/delivery.mjs
       - release/knowledge-sitemap-lastmod-20261103.mjs
       - tests/knowledge-sitemap-lastmod-20261103.test.mjs
 permissions:
@@ -36,7 +37,7 @@ jobs:
           python3 - <<'PY'
           import subprocess
           base='c175ab099305c47fd70ff917e13da736dbabd870'
-          expected={'.github/workflows/knowledge-sitemap-lastmod-20261103.yml','babylove/dynamic-public.mjs','babylove/dynamic-public.test.mjs','release/knowledge-sitemap-lastmod-20261103.mjs','tests/knowledge-sitemap-lastmod-20261103.test.mjs'}
+          expected={'.github/workflows/knowledge-sitemap-lastmod-20261103.yml','babylove/dynamic-public.mjs','babylove/dynamic-public.test.mjs','aeo-geo/delivery.mjs','release/knowledge-sitemap-lastmod-20261103.mjs','tests/knowledge-sitemap-lastmod-20261103.test.mjs'}
           assert set(subprocess.check_output(['git','diff','--name-only',base,'HEAD'],text=True).splitlines())==expected
           original=subprocess.check_output(['git','show',base+':babylove/dynamic-public.mjs'],text=True)
           current=open('babylove/dynamic-public.mjs').read()
@@ -50,7 +51,7 @@ jobs:
       - name: Run existing Knowledge, source and publication notification regression suites
         run: |
           npm ci --no-audit --no-fund
-          node --test babylove/*.test.mjs tests/knowledge-editorial-d1.test.mjs tests/knowledge-editorial-read.test.mjs tests/radar-auto-news-publisher-permissions.test.mjs tests/radar-new-publication-email.test.mjs tests/approved-shared-ticker-wording-20261031.test.mjs tests/knowledge-sitemap-lastmod-20261103.test.mjs
+          node --test babylove/*.test.mjs tests/knowledge-editorial-d1.test.mjs tests/knowledge-editorial-read.test.mjs tests/radar-auto-news-publisher-permissions.test.mjs tests/radar-new-publication-email.test.mjs tests/approved-shared-ticker-wording-20261031.test.mjs tests/knowledge-sitemap-lastmod-20261103.test.mjs aeo-geo/source.test.mjs
       - name: Stage minimal captured modules, verify inverse preservation and promote owned versions
         run: node release/knowledge-sitemap-lastmod-20261103.mjs
       - name: Retain exact runtime, source, verification and owned rollback evidence

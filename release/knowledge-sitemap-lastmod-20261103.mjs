@@ -13,16 +13,22 @@ export function soleServingVersion(deployment){
 export function patchKnowledgeSitemapBundle(source){
  const start=source.indexOf('async function withDynamicBabyLoveDiscovery(');
  assert(start>=0,'Serving Knowledge discovery function not identified');
- const pattern=/if\s*\(\s*row\.editorial\s*&&\s*text\.includes\(/g;
+ const pattern=/if\s*\(\s*row\.editorial\s*&&\s*(text\d*)\.includes\(/g;
  const matches=[...source.matchAll(pattern)];
  assert.equal(matches.length,1,'Require one exact existing sitemap predicate');
  const match=matches[0];assert(match.index>start&&match.index-start<7000,'Predicate outside reviewed discovery function');
  assert(source.slice(start,match.index).includes('knowledge_articles'),'Published Knowledge query missing');
  assert(source.slice(match.index,match.index+1000).includes('articleModifiedDate(row)'),'Existing honest modification calculation missing');
- const replacement='if (text.includes(';
+ const replacement='if ('+match[1]+'.includes(';
  const after=source.slice(0,match.index)+replacement+source.slice(match.index+match[0].length);
  assert.equal(after.slice(0,match.index)+match[0]+after.slice(match.index+replacement.length),source,'Complete runtime inverse failed');
  return {module:after,proof:{beforeSHA256:digest(source),afterSHA256:digest(after),offset:match.index,old:match[0],replacement,fullInverseVerified:true}};
+}
+export function patchOuterSitemapSnapshot(source){
+ const old="  if(fix?.lastmod){node=node.replace(/<lastmod>[^<]*<\\/lastmod>/gi,'');node=node.replace('</url>','<lastmod>'+esc(fix.lastmod)+'</lastmod></url>');}",replacement="  if(fix?.lastmod){\n   const current=node.match(/<lastmod>([^<]*)<\\/lastmod>/i)?.[1],modified=Date.parse(current),audited=Date.parse(fix.lastmod);\n   const keepCurrent=u.pathname.startsWith('/articles/')&&Number.isFinite(modified)&&modified>audited&&modified<=Date.now();\n   const lastmod=keepCurrent?current:fix.lastmod;\n   node=node.replace(/<lastmod>[^<]*<\\/lastmod>/gi,'');node=node.replace('</url>','<lastmod>'+esc(lastmod)+'</lastmod></url>');\n  }";
+ assert.equal(digest(source),'f459d7d72b975715a3eaf1af0333c3b3ba53f413dfc26aa532c1e7cf5a2a6195','Outer sitemap module changed');
+ assert.equal(source.split(old).length,2);const after=source.replace(old,replacement);assert.equal(after.replace(replacement,old),source,'Complete outer module inverse failed');
+ return {module:after,proof:{beforeSHA256:digest(source),afterSHA256:digest(after),fullInverseVerified:true,scope:'Preserve a newer valid non-future CMS article modification date; retain audited metadata elsewhere'}};
 }
 export function patchTwoApprovedTickerLines(source,fixture){
  const baseline=approvedTickerModule(fixture);assert.equal(source,baseline.module,'Current shared ticker differs from retained approved v3 source');
@@ -58,28 +64,32 @@ async function run(){
   const before=await active(name),selectedVersion=soleServingVersion(before);if(expectedVersion)assert.equal(selectedVersion,expectedVersion,'Serving component moved; reconcile before staging');
   const previous=selectedVersion,original=await version(name,previous),settings=await api('/accounts/'+account+'/workers/scripts/'+name+'/settings');
   writeFileSync(dir+'/deployment-before.json',JSON.stringify(before));writeFileSync(dir+'/provider-before.json',JSON.stringify(original));writeFileSync(dir+'/settings-before.json',JSON.stringify(settings));
-  const module=original.modules.find(m=>m.name===original.main_module);assert(module,'Native main module missing');
-  const bytes=Buffer.from(module.content_base64,'base64'),source=bytes.toString();assert.equal(Buffer.from(source).length,bytes.length,'Native main module is not UTF-8');
-  let patch;try{patch=patcher(source)}catch(error){console.error('PATCH_CONTEXT '+JSON.stringify({name,functionOffset:source.indexOf('withDynamicBabyLoveDiscovery'),snippet:source.slice(Math.max(0,source.indexOf('async function withDynamicBabyLoveDiscovery(')),Math.max(0,source.indexOf('async function withDynamicBabyLoveDiscovery('))+3800)}));throw error;}
-  writeFileSync(dir+'/before.mjs',source);writeFileSync(dir+'/after.mjs',patch.module);writeFileSync(dir+'/inverse-proof.json',JSON.stringify(patch.proof));
+  const patches=new Map();
+  if(name==='shift-core'){
+   const targets=[['worker.js',patchKnowledgeSitemapBundle,'722bc50b31fb2aeaa627441dd293be06d124eb2e1f9a7c367773b9fe40b1c020'],['aeo-geo/delivery.mjs',patchOuterSitemapSnapshot,'f459d7d72b975715a3eaf1af0333c3b3ba53f413dfc26aa532c1e7cf5a2a6195']];
+   for(const [file,apply,sha] of targets){const m=original.modules.find(m=>m.name===file);assert(m,'Reviewed native module missing: '+file);const src=Buffer.from(m.content_base64,'base64').toString();assert.equal(digest(src),sha,'Native source changed: '+file);patches.set(file,apply(src));}
+  }else{
+   const m=original.modules.find(m=>m.name===original.main_module);assert(m);patches.set(m.name,patcher(Buffer.from(m.content_base64,'base64').toString()));
+  }
+  for(const [file,p] of patches){const safe=file.replace(/[^a-zA-Z0-9_.-]/g,'_');writeFileSync(dir+'/'+safe+'-before.mjs',Buffer.from(original.modules.find(m=>m.name===file).content_base64,'base64'));writeFileSync(dir+'/'+safe+'-after.mjs',p.module);writeFileSync(dir+'/'+safe+'-inverse-proof.json',JSON.stringify(p.proof));}
   const metadata={main_module:original.main_module,compatibility_date:original.compatibility_date||settings.compatibility_date,compatibility_flags:original.compatibility_flags||settings.compatibility_flags||[],bindings:original.bindings.map(b=>({type:'inherit',name:b.name})),annotations:{'workers/message':'Approved publication delivery repair; exact retained content and source/notification guards preserved'}};
   for(const key of ['placement','limits','observability','logpush','tail_consumers','tags'])if(settings[key]!==undefined)metadata[key]=settings[key];
   const form=new FormData();form.set('metadata',new Blob([JSON.stringify(metadata)],{type:'application/json'}),'metadata.json');
-  for(const m of original.modules){const content=m.name===module.name?Buffer.from(patch.module):Buffer.from(m.content_base64,'base64');form.set(m.name,new Blob([content],{type:m.content_type||'application/javascript+module'}),m.name);}
+  for(const m of original.modules){const content=patches.has(m.name)?Buffer.from(patches.get(m.name).module):Buffer.from(m.content_base64,'base64');form.set(m.name,new Blob([content],{type:m.content_type||'application/javascript+module'}),m.name);}
   assert.equal((await active(name)).id,before.id,'Component moved before staging');
   const uploaded=await api('/accounts/'+account+'/workers/scripts/'+name+'/versions?bindings_inheritance=strict',{method:'POST',body:form}),owned=uploaded.id;assert.match(owned,/^[a-f0-9-]{36}$/);
   writeFileSync(dir+'/staged-version.json',JSON.stringify({owned,previous,source:process.env.GITHUB_SHA}));
   const staged=await version(name,owned);assert.equal(staged.main_module,original.main_module);assert.deepEqual(staged.bindings,original.bindings);assert.equal(staged.compatibility_date,original.compatibility_date);assert.deepEqual(staged.compatibility_flags||[],original.compatibility_flags||[]);
   assert.deepEqual(staged.modules.map(m=>m.name).sort(),original.modules.map(m=>m.name).sort());
-  for(const m of original.modules){const actual=staged.modules.find(x=>x.name===m.name),expected=m.name===module.name?Buffer.from(patch.module):Buffer.from(m.content_base64,'base64');assert.equal(digest(Buffer.from(actual.content_base64,'base64')),digest(expected),'Unintended module delta: '+m.name);}
+  for(const m of original.modules){const actual=staged.modules.find(x=>x.name===m.name),expected=patches.has(m.name)?Buffer.from(patches.get(m.name).module):Buffer.from(m.content_base64,'base64');assert.equal(digest(Buffer.from(actual.content_base64,'base64')),digest(expected),'Unintended module delta: '+m.name);}
   assert.equal((await active(name)).id,before.id,'Component moved during staging');
   writeFileSync(dir+'/promotion-intent.json',JSON.stringify({owned,previous,before:before.id}));
   try{
    await promote(name,owned,'Publish approved current content: sitemap dates and exact scoped ticker lines');
    const live=await active(name);assert.equal(soleServingVersion(live),owned);
-   await verify(patch);
+   await verify(patches.get(original.main_module));
    assert.equal((await active(name)).id,live.id,'Another writer moved the component during verification');
-   const receipt={verified:true,at:new Date().toISOString(),component:name,version:owned,deployment:live.id,previous,source:process.env.GITHUB_SHA,modules:original.modules.length,changedModules:[module.name],inverse:patch.proof,noCmsMutation:true,noEmail:true,noRoutesChanged:true};
+   const receipt={verified:true,at:new Date().toISOString(),component:name,version:owned,deployment:live.id,previous,source:process.env.GITHUB_SHA,modules:original.modules.length,changedModules:[...patches.keys()],inverse:Object.fromEntries([...patches].map(([file,p])=>[file,p.proof])),noCmsMutation:true,noEmail:true,noRoutesChanged:true};
    writeFileSync(dir+'/verification.json',JSON.stringify(receipt,null,2));console.log('COMPONENT_VERIFIED '+JSON.stringify(receipt));return receipt;
   }catch(error){
    const now=await active(name);
