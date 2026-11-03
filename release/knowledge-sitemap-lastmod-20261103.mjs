@@ -68,7 +68,7 @@ async function run(){
   const routes=await api('/zones/'+zones[0].id+'/workers/routes'),targets=['https://shiftsometimber.co.uk/sitemap.xml','https://shiftsometimber.co.uk/assets/public-news-ticker-v1.js','https://shiftsometimber.co.uk/knowledge'];
   const matched=targets.map(url=>({url,routes:matchingRoutes(routes,url)}));
   writeFileSync(proofDir+'/matched-routes.json',JSON.stringify(matched));console.log('ACTUAL_ROUTE_OWNERS '+JSON.stringify(matched));
-  for(const script of [...new Set(matched.map(x=>x.routes[0]?.script).filter(Boolean))]){
+  for(const script of [...new Set([...matched.map(x=>x.routes[0]?.script).filter(Boolean),'shift-blog-publisher'])]){
    const before=await active(script),id=soleServingVersion(before),v=await version(script,id);writeFileSync(proofDir+'/'+script+'-diagnostic-provider.json',JSON.stringify(v));
    console.log('ACTUAL_OWNER_SOURCE '+JSON.stringify({script,deployment:before.id,version:id,main_module:v.main_module,modules:v.modules.map(m=>{const text=Buffer.from(m.content_base64,'base64').toString();return {name:m.name,sha256:digest(Buffer.from(m.content_base64,'base64')),hasDiscovery:text.includes('async function withDynamicBabyLoveDiscovery('),hasOuter:text.includes('function completeSitemap('),hasArticleMetadata:text.includes('"/articles/mounjaro-injection-sites"')}}).filter(m=>m.hasDiscovery||m.hasOuter||m.hasArticleMetadata)}));
   }

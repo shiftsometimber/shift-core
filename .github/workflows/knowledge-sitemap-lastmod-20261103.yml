@@ -55,7 +55,7 @@ jobs:
       - name: Stage minimal captured modules, verify inverse preservation and promote owned versions
         run: |
           node release/knowledge-sitemap-lastmod-20261103.mjs --diagnose
-          node release/knowledge-sitemap-lastmod-20261103.mjs
+          node release/knowledge-sitemap-lastmod-20261103.mjs --ticker-only
       - name: Retain exact runtime, source, verification and owned rollback evidence
         if: always()
         uses: actions/upload-artifact@v4
