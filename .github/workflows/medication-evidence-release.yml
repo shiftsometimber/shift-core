@@ -1,0 +1,42 @@
+name: Publish approved medication evidence standard
+on:
+  push:
+    branches: [main]
+    paths: ['medication-evidence/**', '.github/workflows/medication-evidence-release.yml']
+permissions:
+  contents: read
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    concurrency:
+      group: cloudflare-production-promote
+      cancel-in-progress: false
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Check approved copy, exact scope, rendering and existing privacy safeguards
+        run: |
+          node --test medication-evidence/*.test.mjs aeo-geo/source.test.mjs aeo-geo/retatrutide.test.mjs acquisition-activation/ai-referrals.test.mjs tests/general-analytics-privacy.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/runtime-rollback-guard.test.mjs
+          node --check medication-evidence/release.mjs
+          git diff --check HEAD^
+      - name: Preserve serving source, publish exact approved batch and verify production
+        run: node medication-evidence/release.mjs
+      - name: Restore only this run's owned deployments if verification fails
+        if: failure()
+        run: node medication-evidence/release.mjs rollback
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: medication-evidence-${{ github.run_id }}
+          path: medication-evidence-proof/
+          retention-days: 90
+          if-no-files-found: warn

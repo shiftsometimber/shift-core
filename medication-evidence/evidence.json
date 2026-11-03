@@ -1,0 +1,1112 @@
+{
+  "date": "2026-11-03",
+  "sources": {
+    "mounjaro-label": {
+      "label": "UK Mounjaro product information",
+      "url": "https://www.medicines.org.uk/emc/product/15481/smpc",
+      "kind": "UK product information",
+      "checked": "2026-11-03"
+    },
+    "wegovy-label": {
+      "label": "UK Wegovy injection product information",
+      "url": "https://www.medicines.org.uk/emc/product/13799/smpc",
+      "kind": "UK product information",
+      "checked": "2026-11-03"
+    },
+    "wegovy-tablet-label": {
+      "label": "UK Wegovy tablet product information",
+      "url": "https://www.medicines.org.uk/emc/product/102344/smpc",
+      "kind": "UK product information",
+      "checked": "2026-11-03"
+    },
+    "foundayo-label": {
+      "label": "UK Foundayo product information",
+      "url": "https://www.medicines.org.uk/emc/product/102527/smpc",
+      "kind": "UK product information",
+      "checked": "2026-11-03"
+    },
+    "orlistat-label": {
+      "label": "UK Xenical 120 mg product information",
+      "url": "https://www.medicines.org.uk/emc/product/2592/smpc",
+      "kind": "UK product information",
+      "checked": "2026-11-03"
+    },
+    "saxenda-label": {
+      "label": "UK Saxenda product information",
+      "url": "https://www.medicines.org.uk/emc/product/2313/smpc",
+      "kind": "UK product information",
+      "checked": "2026-11-03"
+    },
+    "glp1-mhra": {
+      "label": "MHRA: GLP-1 medicines and their licensed uses",
+      "url": "https://www.gov.uk/government/publications/glp-1-medicines-for-weight-loss-and-diabetes-what-you-need-to-know/glp-1-medicines-for-weight-loss-and-diabetes-what-you-need-to-know",
+      "kind": "UK regulator",
+      "checked": "2026-11-03"
+    },
+    "oral-approval": {
+      "label": "MHRA: Wegovy tablets authorised, 11 June 2026",
+      "url": "https://www.gov.uk/government/news/first-glp-1-tablet-for-weight-loss-approved-in-the-uk",
+      "kind": "UK regulator",
+      "checked": "2026-11-03"
+    },
+    "foundayo-approval": {
+      "label": "MHRA: Foundayo authorised, 10 August 2026",
+      "url": "https://www.gov.uk/government/news/uk-first-in-europe-to-authorise-orforglipron-for-weight-management-and-type-2-diabetes",
+      "kind": "UK regulator",
+      "checked": "2026-11-03"
+    },
+    "surmount1": {
+      "label": "SURMOUNT-1: primary trial publication",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2206038",
+      "kind": "Peer-reviewed trial",
+      "checked": "2026-11-03"
+    },
+    "step1": {
+      "label": "STEP 1: primary trial publication",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33567185/",
+      "kind": "Peer-reviewed trial",
+      "checked": "2026-11-03"
+    },
+    "oasis4": {
+      "label": "OASIS 4: primary trial publication",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40934115/",
+      "kind": "Peer-reviewed trial",
+      "checked": "2026-11-03"
+    },
+    "attain1": {
+      "label": "ATTAIN-1: primary trial publication",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40960239/",
+      "kind": "Peer-reviewed trial",
+      "checked": "2026-11-03"
+    },
+    "scale": {
+      "label": "SCALE Obesity and Prediabetes: primary trial publication",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26132939/",
+      "kind": "Peer-reviewed trial",
+      "checked": "2026-11-03"
+    },
+    "step8": {
+      "label": "STEP 8: semaglutide versus liraglutide",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35015037/",
+      "kind": "Peer-reviewed direct comparison",
+      "checked": "2026-11-03"
+    },
+    "surmount5": {
+      "label": "SURMOUNT-5: tirzepatide versus semaglutide",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40353578/",
+      "kind": "Peer-reviewed direct comparison",
+      "checked": "2026-11-03"
+    },
+    "redefine1": {
+      "label": "REDEFINE 1: primary trial publication",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2502081",
+      "kind": "Peer-reviewed trial",
+      "checked": "2026-11-03"
+    },
+    "redefine4": {
+      "label": "Novo Nordisk: REDEFINE 4, 23 February 2026",
+      "url": "https://www.novonordisk.com/news-and-media/news-and-ir-materials/news-details.html?id=916501",
+      "kind": "Manufacturer report",
+      "checked": "2026-11-03"
+    },
+    "cagri-update": {
+      "label": "Novo Nordisk: CagriSema research programme, EASD 2026",
+      "url": "https://www.novonordisk.com/news-and-media/news-and-ir-materials/news-details.html?id=917138",
+      "kind": "Manufacturer report",
+      "checked": "2026-11-03"
+    },
+    "amy-early": {
+      "label": "Amycretin: phase 1b/2a primary publication",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40550231/",
+      "kind": "Peer-reviewed early trial",
+      "checked": "2026-11-03"
+    },
+    "amy-diabetes": {
+      "label": "Zenagamtide: phase 2 diabetes primary publication",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42532080/",
+      "kind": "Peer-reviewed trial",
+      "checked": "2026-11-03"
+    },
+    "amy-update": {
+      "label": "Novo Nordisk: zenagamtide development, June 2026",
+      "url": "https://www.novonordisk.com/news-and-media/news-and-ir-materials/news-details.html?id=916559",
+      "kind": "Manufacturer report",
+      "checked": "2026-11-03"
+    },
+    "mari-phase2": {
+      "label": "MariTide: phase 2 primary publication",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40549887/",
+      "kind": "Peer-reviewed trial",
+      "checked": "2026-11-03"
+    },
+    "mari-update": {
+      "label": "Amgen: MariTide development programme, August 2026",
+      "url": "https://www.amgen.com/newsroom/press-releases/2026/08/amgen-reports-second-quarter-2026-financial-results",
+      "kind": "Manufacturer report",
+      "checked": "2026-11-03"
+    },
+    "reta": {
+      "label": "TRIUMPH-1: primary trial publication",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2604169",
+      "kind": "Peer-reviewed trial",
+      "checked": "2026-11-02"
+    },
+    "reta-status": {
+      "label": "MHRA: retatrutide warning, 15 October 2026",
+      "url": "https://www.gov.uk/government/news/counterfeit-weight-loss-pens-worth-2-million-seized-by-mhra-and-west-mids-police",
+      "kind": "UK regulator",
+      "checked": "2026-11-02"
+    },
+    "nice": {
+      "label": "NICE: overweight and obesity management",
+      "url": "https://www.nice.org.uk/guidance/ng246",
+      "kind": "UK guidance",
+      "checked": "2026-11-03"
+    },
+    "nhs-pathway": {
+      "label": "NHS England: phased tirzepatide commissioning",
+      "url": "https://www.england.nhs.uk/long-read/interim-commissioning-guidance-nice-ta1026-tirzepatide/",
+      "kind": "England commissioning",
+      "checked": "2026-11-03"
+    },
+    "nhs-tirzepatide": {
+      "label": "NHS: tirzepatide patient information",
+      "url": "https://www.nhs.uk/medicines/tirzepatide/",
+      "kind": "NHS patient information",
+      "checked": "2026-11-03"
+    }
+  },
+  "studies": {
+    "surmount1": {
+      "id": "surmount1",
+      "title": "SURMOUNT-1",
+      "population": "Adults with obesity or overweight and a complication, without diabetes",
+      "weeks": 72,
+      "randomised": 2539,
+      "analysis": "Treatment-regimen estimand",
+      "measure": "Mean weight reduction",
+      "unit": "%",
+      "rows": [
+        {
+          "label": "Tirzepatide 5 mg research group",
+          "value": 15.0
+        },
+        {
+          "label": "10 mg research group",
+          "value": 19.5
+        },
+        {
+          "label": "15 mg research group",
+          "value": 20.9
+        },
+        {
+          "label": "Placebo",
+          "value": 3.1
+        }
+      ],
+      "source": "surmount1",
+      "note": "Dose labels identify trial groups. These are study averages with lifestyle intervention, not a personal forecast or a dose-selection tool.",
+      "sponsor": "Eli Lilly"
+    },
+    "step1": {
+      "id": "step1",
+      "title": "STEP 1 · weekly injection",
+      "population": "Adults with obesity or overweight and a complication, without diabetes",
+      "weeks": 68,
+      "randomised": 1961,
+      "analysis": "Treatment-policy estimand",
+      "measure": "Mean weight reduction",
+      "unit": "%",
+      "rows": [
+        {
+          "label": "Semaglutide 2.4 mg research group",
+          "value": 14.9
+        },
+        {
+          "label": "Placebo",
+          "value": 2.4
+        }
+      ],
+      "source": "step1",
+      "note": "This study concerns the 2.4 mg injection, not Wegovy 7.2 mg or Wegovy tablets.",
+      "sponsor": "Novo Nordisk"
+    },
+    "oasis4": {
+      "id": "oasis4",
+      "title": "OASIS 4 · daily tablet",
+      "population": "Adults with overweight or obesity, without diabetes",
+      "weeks": 64,
+      "randomised": 307,
+      "analysis": "Treatment-policy estimand",
+      "measure": "Mean weight reduction",
+      "unit": "%",
+      "rows": [
+        {
+          "label": "Oral semaglutide 25 mg research group",
+          "value": 13.6
+        },
+        {
+          "label": "Placebo",
+          "value": 2.2
+        }
+      ],
+      "source": "oasis4",
+      "note": "A separate study of a different formulation. It is not a head-to-head trial against the weekly injection.",
+      "sponsor": "Novo Nordisk"
+    },
+    "attain1": {
+      "id": "attain1",
+      "title": "ATTAIN-1 · published analysis",
+      "population": "Adults with obesity, without diabetes",
+      "weeks": 72,
+      "randomised": 3127,
+      "analysis": "Published treatment-regimen estimand",
+      "measure": "Mean weight reduction",
+      "unit": "%",
+      "rows": [
+        {
+          "label": "Orforglipron 6 mg trial capsule",
+          "value": 7.5
+        },
+        {
+          "label": "12 mg trial capsule",
+          "value": 8.4
+        },
+        {
+          "label": "36 mg trial capsule",
+          "value": 11.2
+        },
+        {
+          "label": "Placebo",
+          "value": 2.1
+        }
+      ],
+      "source": "attain1",
+      "note": "Trial capsule milligrams are not the UK film-coated tablet strengths. The UK product information reports a separate 12.4% / 0.9% summary; keep the source and analysis attached to each figure.",
+      "sponsor": "Eli Lilly"
+    },
+    "scale": {
+      "id": "scale",
+      "title": "SCALE Obesity and Prediabetes",
+      "population": "Adults without type 2 diabetes; lifestyle counselling in both groups",
+      "weeks": 56,
+      "randomised": 3731,
+      "analysis": "Last-observation-carried-forward analysis",
+      "measure": "Mean weight reduction",
+      "unit": "kg",
+      "rows": [
+        {
+          "label": "Liraglutide 3.0 mg research group",
+          "value": 8.4
+        },
+        {
+          "label": "Placebo",
+          "value": 2.8
+        }
+      ],
+      "source": "scale",
+      "note": "The unit is kilograms, not per cent. Baseline mean weight was 106.2 kg; a group average does not predict an individual result.",
+      "sponsor": "Novo Nordisk"
+    },
+    "orlistat": {
+      "id": "orlistat",
+      "title": "Prescription orlistat · pooled trials",
+      "population": "Adults in the one-year trials summarised in the Xenical 120 mg label",
+      "weeks": 52,
+      "randomised": null,
+      "analysis": "Pooled label summary",
+      "measure": "People losing at least 10% of starting weight",
+      "unit": "% of participants",
+      "rows": [
+        {
+          "label": "Prescription orlistat 120 mg",
+          "value": 20
+        },
+        {
+          "label": "Placebo",
+          "value": 8
+        }
+      ],
+      "source": "orlistat-label",
+      "note": "20% means the share of participants reaching the threshold, not 20% average weight loss. These figures do not describe lower-dose 60 mg pharmacy products.",
+      "sponsor": "See product information"
+    },
+    "redefine1": {
+      "id": "redefine1",
+      "title": "REDEFINE 1",
+      "population": "Adults with overweight or obesity, without diabetes",
+      "weeks": 68,
+      "randomised": 3417,
+      "analysis": "Treatment-policy estimand",
+      "measure": "Mean weight reduction",
+      "unit": "%",
+      "rows": [
+        {
+          "label": "Cagrilintide–semaglutide research group",
+          "value": 20.4
+        },
+        {
+          "label": "Placebo",
+          "value": 3.0
+        }
+      ],
+      "source": "redefine1",
+      "note": "The often-quoted 22.7% uses the efficacy estimand. It answers a different analysis question; neither figure is a UK authorisation.",
+      "sponsor": "Novo Nordisk"
+    },
+    "redefine1-safety": {
+      "id": "redefine1-safety",
+      "title": "REDEFINE 1 · selected safety outcome",
+      "population": "Same trial as the weight-change chart",
+      "weeks": 68,
+      "randomised": 3417,
+      "analysis": "Safety reporting",
+      "measure": "Participants with gastrointestinal adverse events",
+      "unit": "% of participants",
+      "rows": [
+        {
+          "label": "Cagrilintide–semaglutide",
+          "value": 79.6
+        },
+        {
+          "label": "Placebo",
+          "value": 39.9
+        }
+      ],
+      "source": "redefine1",
+      "note": "Selected events only. A safety percentage is not a severity score or a complete description of harms.",
+      "sponsor": "Novo Nordisk"
+    },
+    "amy-early": {
+      "id": "amy-early",
+      "title": "Amycretin · phase 1b/2a, Part C",
+      "population": "Adults aged 18–55 with overweight or obesity; one US centre",
+      "weeks": 36,
+      "randomised": 125,
+      "analysis": "Selected early-study arm; weight was a secondary outcome",
+      "measure": "Mean body-weight change",
+      "unit": "%",
+      "rows": [
+        {
+          "label": "20 mg research injection group",
+          "value": -22.0
+        },
+        {
+          "label": "Matched placebo",
+          "value": 1.9
+        }
+      ],
+      "source": "amy-early",
+      "note": "125 is the total across the study parts, not the size of this comparison. Negative means weight loss; placebo here gained weight. Substantial withdrawal and small groups limit interpretation.",
+      "sponsor": "Novo Nordisk",
+      "signed": true
+    },
+    "mari-phase2": {
+      "id": "mari-phase2",
+      "title": "MariTide · phase 2 obesity cohort",
+      "population": "465 participants in the obesity cohort; diabetes cohort analysed separately",
+      "weeks": 52,
+      "randomised": 592,
+      "analysis": "Treatment-policy estimand",
+      "measure": "Mean weight reduction across research regimens",
+      "unit": "%",
+      "rows": [
+        {
+          "label": "MariTide regimen range",
+          "value": [
+            12.3,
+            16.2
+          ]
+        },
+        {
+          "label": "Placebo",
+          "value": 2.5
+        }
+      ],
+      "source": "mari-phase2",
+      "note": "The green band is the range across regimens, not a confidence interval. The roughly 20% headline uses an efficacy analysis. Diabetes results must be kept separate.",
+      "sponsor": "Amgen",
+      "range": true
+    },
+    "step8": {
+      "id": "step8",
+      "title": "STEP 8 · direct comparison",
+      "population": "Adults with overweight or obesity, without diabetes",
+      "weeks": 68,
+      "randomised": 338,
+      "analysis": "Randomised, open-label active comparison",
+      "measure": "Mean weight reduction",
+      "unit": "%",
+      "rows": [
+        {
+          "label": "Weekly semaglutide research group",
+          "value": 15.8
+        },
+        {
+          "label": "Daily liraglutide research group",
+          "value": 6.4
+        }
+      ],
+      "source": "step8",
+      "note": "This compared the studied injection regimens. It does not compare oral Wegovy or the newer 7.2 mg injection.",
+      "sponsor": "Novo Nordisk",
+      "direct": true
+    },
+    "step8-safety": {
+      "id": "step8-safety",
+      "title": "STEP 8 · selected safety outcome",
+      "population": "Active groups: semaglutide n=126; liraglutide n=127",
+      "weeks": 68,
+      "randomised": 338,
+      "analysis": "Safety reporting",
+      "measure": "Participants with gastrointestinal adverse events",
+      "unit": "% of participants",
+      "rows": [
+        {
+          "label": "Semaglutide",
+          "value": 84.1
+        },
+        {
+          "label": "Liraglutide",
+          "value": 82.7
+        }
+      ],
+      "source": "step8",
+      "note": "Selected events only; the similar percentages do not establish equal overall safety or tolerability.",
+      "sponsor": "Novo Nordisk",
+      "direct": true
+    },
+    "surmount5": {
+      "id": "surmount5",
+      "title": "SURMOUNT-5 · direct comparison",
+      "population": "Adults with obesity, without type 2 diabetes",
+      "weeks": 72,
+      "randomised": 751,
+      "analysis": "Randomised, open-label active comparison",
+      "measure": "Mean weight reduction",
+      "unit": "%",
+      "rows": [
+        {
+          "label": "Tirzepatide, maximum tolerated trial dose",
+          "value": 20.2
+        },
+        {
+          "label": "Semaglutide, maximum tolerated trial dose",
+          "value": 13.7
+        }
+      ],
+      "source": "surmount5",
+      "note": "The semaglutide regimens were 1.7/2.4 mg weekly injections. This does not establish a comparison with Wegovy tablets or 7.2 mg.",
+      "sponsor": "Eli Lilly",
+      "direct": true
+    }
+  },
+  "medicines": {
+    "mounjaro": {
+      "id": "mounjaro",
+      "name": "Mounjaro",
+      "ingredient": "Tirzepatide",
+      "path": "/mounjaro",
+      "status": "UK-authorised weight-management medicine",
+      "route": "Weekly injection",
+      "targets": [
+        [
+          "GIP",
+          "activates"
+        ],
+        [
+          "GLP-1",
+          "activates"
+        ]
+      ],
+      "summary": "Two receptor pathways; one prescribed medicine. More pathways do not settle suitability.",
+      "answer": "Mounjaro is authorised for weight management in eligible adults. A prescriber must assess suitability; NHS access, private availability and SHIFT supply are separate questions.",
+      "safety": "Digestive effects can occur. Severe, persistent abdominal pain needs urgent medical assessment; use the exact product leaflet and your prescribing service.",
+      "sources": [
+        "mounjaro-label",
+        "nhs-tirzepatide",
+        "nhs-pathway"
+      ],
+      "studies": [
+        "surmount1"
+      ],
+      "hero": [
+        "Mounjaro.",
+        "The full UK picture."
+      ]
+    },
+    "wegovy-injection": {
+      "id": "wegovy-injection",
+      "name": "Wegovy injection",
+      "ingredient": "Semaglutide",
+      "path": "/wegovy",
+      "status": "UK-authorised weight-management medicine",
+      "route": "Weekly injection",
+      "targets": [
+        [
+          "GLP-1",
+          "activates"
+        ]
+      ],
+      "summary": "The injection and tablet share an ingredient, but have separate evidence and instructions.",
+      "answer": "Wegovy injection is a UK-authorised prescription weight-management medicine. The 2.4 mg trial below is not evidence for every injection strength or the tablet.",
+      "safety": "Gastrointestinal effects, dehydration and other warnings need consideration. Read the leaflet for the exact formulation and take treatment questions to your prescriber.",
+      "sources": [
+        "wegovy-label",
+        "glp1-mhra"
+      ],
+      "studies": [
+        "step1"
+      ],
+      "hero": [
+        "Wegovy.",
+        "Injection or tablet?"
+      ]
+    },
+    "wegovy-tablet": {
+      "id": "wegovy-tablet",
+      "name": "Wegovy tablets",
+      "ingredient": "Oral semaglutide",
+      "path": "/wegovy",
+      "status": "UK-authorised weight-management medicine",
+      "route": "Daily tablet",
+      "targets": [
+        [
+          "GLP-1",
+          "activates"
+        ]
+      ],
+      "summary": "A daily tablet with fasting and administration requirements. Convenience depends on your actual routine.",
+      "answer": "Wegovy tablets were authorised in the UK on 11 June 2026. They have their own instructions; milligrams are not a do-it-yourself conversion from an injection.",
+      "safety": "Digestive effects can occur, and poor fluid intake matters. The full leaflet and prescriber assessment take priority over a comparison.",
+      "sources": [
+        "wegovy-tablet-label",
+        "oral-approval"
+      ],
+      "studies": [
+        "oasis4"
+      ]
+    },
+    "foundayo": {
+      "id": "foundayo",
+      "name": "Foundayo",
+      "ingredient": "Orforglipron",
+      "path": "/foundayo",
+      "status": "UK-authorised weight-management medicine",
+      "route": "Daily tablet",
+      "targets": [
+        [
+          "GLP-1",
+          "activates"
+        ]
+      ],
+      "summary": "A different molecule from semaglutide, with no food or water restriction in its UK instructions.",
+      "answer": "Foundayo was authorised in the UK on 10 August 2026. Authorisation does not establish NHS access or current SHIFT supply. It is not the same medicine as Wegovy tablets.",
+      "safety": "Gastrointestinal effects and medicine interactions still matter. A flexible food routine does not remove the need for assessment and follow-up.",
+      "sources": [
+        "foundayo-label",
+        "foundayo-approval"
+      ],
+      "studies": [
+        "attain1"
+      ],
+      "hero": [
+        "Foundayo.",
+        "The daily tablet, explained."
+      ]
+    },
+    "orlistat": {
+      "id": "orlistat",
+      "name": "Orlistat",
+      "ingredient": "Orlistat",
+      "path": "/orlistat-definitive-uk-guide",
+      "status": "Established UK weight-management medicine",
+      "route": "Capsules linked to fat-containing meals",
+      "targets": [
+        [
+          "Gut lipase",
+          "inhibits"
+        ]
+      ],
+      "summary": "Works on fat digestion in the gut. It is not a GLP-1 appetite medicine.",
+      "answer": "Prescription orlistat 120 mg and lower-dose pharmacy orlistat 60 mg are different products. This evidence panel concerns the 120 mg product; eligibility and instructions must match the actual pack.",
+      "safety": "Oily stools and bowel urgency can occur. Other medicines, fat-soluble vitamins and relevant health conditions need review.",
+      "sources": [
+        "orlistat-label"
+      ],
+      "studies": [
+        "orlistat"
+      ],
+      "hero": [
+        "Orlistat.",
+        "A different way to work."
+      ]
+    },
+    "saxenda": {
+      "id": "saxenda",
+      "name": "Saxenda",
+      "ingredient": "Liraglutide",
+      "path": "/saxenda-definitive-uk-guide",
+      "status": "UK-authorised weight-management medicine",
+      "route": "Daily injection",
+      "targets": [
+        [
+          "GLP-1",
+          "activates"
+        ]
+      ],
+      "summary": "Daily liraglutide has its own assessment, routine and continuation rule.",
+      "answer": "Saxenda is authorised for adult weight management within its product criteria. It is injected daily; a licence threshold does not guarantee a prescription, NHS access or stock.",
+      "safety": "Digestive effects can occur. Persistent severe abdominal pain needs urgent assessment. Follow the leaflet and the review plan agreed with your prescriber.",
+      "sources": [
+        "saxenda-label",
+        "glp1-mhra"
+      ],
+      "studies": [
+        "scale"
+      ],
+      "hero": [
+        "Saxenda.",
+        "Daily treatment. Clear questions."
+      ]
+    },
+    "ozempic": {
+      "id": "ozempic",
+      "name": "Ozempic",
+      "ingredient": "Semaglutide",
+      "path": "/ozempic-definitive-uk-guide",
+      "status": "UK diabetes indication; not a weight-management licence",
+      "route": "Weekly injection",
+      "targets": [
+        [
+          "GLP-1",
+          "activates"
+        ]
+      ],
+      "summary": "Sharing semaglutide with Wegovy does not make the brands or their prescribing purposes interchangeable.",
+      "answer": "Ozempic has a UK type 2 diabetes indication, not a UK weight-management indication. Weight change during diabetes treatment does not change that licence distinction.",
+      "safety": "Keep diabetes treatment decisions with the treating team. Existing safety guidance below includes urgent abdominal-pain and eyesight warnings.",
+      "sources": [
+        "glp1-mhra"
+      ],
+      "studies": [],
+      "hero": [
+        "Ozempic.",
+        "Start with the licence."
+      ]
+    },
+    "rybelsus": {
+      "id": "rybelsus",
+      "name": "Rybelsus",
+      "ingredient": "Oral semaglutide",
+      "path": "/ozempic-definitive-uk-guide",
+      "status": "UK diabetes indication; not a weight-management licence",
+      "route": "Daily tablet",
+      "targets": [
+        [
+          "GLP-1",
+          "activates"
+        ]
+      ],
+      "summary": "A diabetes tablet brand; it must not be presented as the authorised Wegovy weight-management tablet.",
+      "answer": "Rybelsus is a semaglutide brand for type 2 diabetes. The MHRA distinguishes it from Wegovy’s weight-management indication. Exact formulation instructions matter.",
+      "safety": "Use the current leaflet and diabetes team. Similar active ingredients do not make products, strengths or routines interchangeable.",
+      "sources": [
+        "glp1-mhra"
+      ],
+      "studies": []
+    },
+    "cagrisema": {
+      "id": "cagrisema",
+      "name": "CagriSema",
+      "ingredient": "Cagrilintide + semaglutide",
+      "path": "/guides/cagrisema-uk-guide",
+      "status": "Investigational in the checked primary sources",
+      "route": "Weekly research injection",
+      "targets": [
+        [
+          "GLP-1",
+          "activates"
+        ],
+        [
+          "Amylin",
+          "activates"
+        ]
+      ],
+      "summary": "Two molecules in a research combination: semaglutide plus cagrilintide.",
+      "answer": "The checked manufacturer material describes CagriSema as investigational. A trial result or US regulatory plan does not establish UK authorisation, NHS access or a UK launch price.",
+      "safety": "Gastrointestinal events were frequent in REDEFINE 1. Keep the safety outcome and trial limitations beside the weight result.",
+      "sources": [
+        "redefine1",
+        "cagri-update",
+        "redefine4"
+      ],
+      "studies": [
+        "redefine1",
+        "redefine1-safety"
+      ],
+      "hero": [
+        "CagriSema.",
+        "Read beyond the headline."
+      ],
+      "research": true
+    },
+    "amycretin": {
+      "id": "amycretin",
+      "name": "Amycretin / zenagamtide",
+      "ingredient": "Zenagamtide",
+      "path": "/guides/amycretin-uk-guide",
+      "status": "Investigational in the checked primary sources",
+      "route": "Oral and injectable forms under study",
+      "targets": [
+        [
+          "GLP-1",
+          "pathway"
+        ],
+        [
+          "Amylin",
+          "pathway"
+        ]
+      ],
+      "summary": "One research molecule, with oral and injectable programmes. The diagram is a simplified pathway schematic.",
+      "answer": "Amycretin, also called zenagamtide, remains investigational in the checked sources. Early obesity studies and the later diabetes study concern different populations and outcomes.",
+      "safety": "Small early groups, substantial withdrawal and gastrointestinal events limit interpretation. The later diabetes study primarily assessed blood-glucose control.",
+      "sources": [
+        "amy-early",
+        "amy-diabetes",
+        "amy-update"
+      ],
+      "studies": [
+        "amy-early"
+      ],
+      "hero": [
+        "Amycretin.",
+        "Early research. Big questions."
+      ],
+      "research": true
+    },
+    "maritide": {
+      "id": "maritide",
+      "name": "MariTide",
+      "ingredient": "Maridebart cafraglutide",
+      "path": "/guides/maritide-uk-guide",
+      "status": "Investigational in the checked primary sources",
+      "route": "Monthly and less-frequent regimens under study",
+      "targets": [
+        [
+          "GLP-1",
+          "activates"
+        ],
+        [
+          "GIP",
+          "blocks"
+        ]
+      ],
+      "summary": "GLP-1 activation with GIP receptor blockade: a different direction from tirzepatide’s GIP activation.",
+      "answer": "MariTide remains investigational in the checked Amgen materials. Its phase 3 programme is research, not a confirmed UK prescribing or supply pathway.",
+      "safety": "Gastrointestinal events were common in phase 2. The trial’s obesity and diabetes cohorts must be interpreted separately.",
+      "sources": [
+        "mari-phase2",
+        "mari-update"
+      ],
+      "studies": [
+        "mari-phase2"
+      ],
+      "hero": [
+        "MariTide.",
+        "A different approach."
+      ],
+      "research": true
+    },
+    "retatrutide": {
+      "id": "retatrutide",
+      "name": "Retatrutide",
+      "ingredient": "Retatrutide",
+      "path": "/guides/retatrutide-uk-guide",
+      "status": "Investigational; not UK-authorised in the checked MHRA warning",
+      "route": "Research injection",
+      "targets": [
+        [
+          "GLP-1",
+          "activates"
+        ],
+        [
+          "GIP",
+          "activates"
+        ],
+        [
+          "Glucagon",
+          "activates"
+        ]
+      ],
+      "summary": "Three receptor targets do not mean three times the benefit.",
+      "answer": "Retatrutide remains investigational. Read the existing sourced guide for the trial analyses and UK position.",
+      "safety": "The current guide keeps safety results beside benefits. No buying, reservation or self-dosing route is offered.",
+      "sources": [
+        "reta",
+        "reta-status"
+      ],
+      "studies": [],
+      "research": true
+    }
+  },
+  "pages": {
+    "/comparisons/medications/mounjaro-vs-orlistat": {
+      "kind": "comparison",
+      "medicines": [
+        "mounjaro",
+        "orlistat"
+      ],
+      "studies": []
+    },
+    "/comparisons/medications/mounjaro-vs-saxenda": {
+      "kind": "comparison",
+      "medicines": [
+        "mounjaro",
+        "saxenda"
+      ],
+      "studies": []
+    },
+    "/comparisons/medications/mounjaro-vs-wegovy-tablets": {
+      "kind": "comparison",
+      "medicines": [
+        "mounjaro",
+        "wegovy-tablet"
+      ],
+      "studies": []
+    },
+    "/comparisons/medications/ozempic-vs-wegovy": {
+      "kind": "comparison",
+      "medicines": [
+        "ozempic",
+        "wegovy-injection"
+      ],
+      "studies": []
+    },
+    "/comparisons/medications/saxenda-vs-orlistat": {
+      "kind": "comparison",
+      "medicines": [
+        "saxenda",
+        "orlistat"
+      ],
+      "studies": []
+    },
+    "/comparisons/medications/wegovy-injection-vs-tablets": {
+      "kind": "comparison",
+      "medicines": [
+        "wegovy-injection",
+        "wegovy-tablet"
+      ],
+      "studies": []
+    },
+    "/comparisons/medications/wegovy-vs-orlistat": {
+      "kind": "comparison",
+      "medicines": [
+        "wegovy-injection",
+        "orlistat"
+      ],
+      "studies": []
+    },
+    "/comparisons/medications/wegovy-vs-saxenda": {
+      "kind": "comparison",
+      "medicines": [
+        "wegovy-injection",
+        "saxenda"
+      ],
+      "studies": [
+        "step8",
+        "step8-safety"
+      ]
+    },
+    "/future-medicines-comparison": {
+      "kind": "comparison-tool",
+      "mode": "all",
+      "medicines": [
+        "mounjaro",
+        "wegovy-injection",
+        "wegovy-tablet",
+        "foundayo",
+        "orlistat",
+        "saxenda",
+        "ozempic",
+        "rybelsus",
+        "cagrisema",
+        "amycretin",
+        "maritide",
+        "retatrutide"
+      ]
+    },
+    "/guides/amycretin-uk-guide": {
+      "kind": "medicine",
+      "medicines": [
+        "amycretin"
+      ]
+    },
+    "/guides/cagrisema-uk-guide": {
+      "kind": "medicine",
+      "medicines": [
+        "cagrisema"
+      ]
+    },
+    "/guides/maritide-uk-guide": {
+      "kind": "medicine",
+      "medicines": [
+        "maritide"
+      ]
+    },
+    "/guides/retatrutide-uk-guide": {
+      "kind": "benchmark",
+      "medicines": [
+        "retatrutide"
+      ]
+    },
+    "/medication-comparison-methodology": {
+      "kind": "hub",
+      "medicines": [],
+      "methodology": true
+    },
+    "/orlistat-definitive-uk-guide": {
+      "kind": "medicine",
+      "medicines": [
+        "orlistat"
+      ]
+    },
+    "/ozempic-definitive-uk-guide": {
+      "kind": "medicine",
+      "medicines": [
+        "ozempic"
+      ]
+    },
+    "/saxenda-definitive-uk-guide": {
+      "kind": "medicine",
+      "medicines": [
+        "saxenda"
+      ]
+    },
+    "/treatments/emerging": {
+      "kind": "hub",
+      "medicines": [
+        "amycretin",
+        "cagrisema",
+        "maritide",
+        "retatrutide"
+      ]
+    },
+    "/treatments/medication": {
+      "kind": "hub",
+      "medicines": [
+        "mounjaro",
+        "wegovy-injection",
+        "wegovy-tablet",
+        "foundayo",
+        "orlistat",
+        "saxenda"
+      ]
+    },
+    "/mounjaro": {
+      "kind": "medicine",
+      "medicines": [
+        "mounjaro"
+      ]
+    },
+    "/wegovy": {
+      "kind": "medicine",
+      "medicines": [
+        "wegovy-injection",
+        "wegovy-tablet"
+      ]
+    },
+    "/foundayo": {
+      "kind": "medicine",
+      "medicines": [
+        "foundayo"
+      ]
+    },
+    "/guides/glp1-ultimate-uk-guide": {
+      "kind": "hub",
+      "medicines": [
+        "mounjaro",
+        "wegovy-injection",
+        "wegovy-tablet",
+        "foundayo",
+        "orlistat",
+        "saxenda"
+      ]
+    },
+    "/medication-comparison-centre": {
+      "kind": "comparison-tool",
+      "mode": "current",
+      "medicines": [
+        "mounjaro",
+        "wegovy-injection",
+        "wegovy-tablet",
+        "foundayo",
+        "orlistat",
+        "saxenda",
+        "ozempic",
+        "rybelsus"
+      ]
+    },
+    "/treatments/compare": {
+      "kind": "hub",
+      "medicines": [
+        "mounjaro",
+        "wegovy-injection",
+        "wegovy-tablet",
+        "foundayo",
+        "orlistat",
+        "saxenda"
+      ]
+    },
+    "/weight-loss-tablets-for-men": {
+      "kind": "hub",
+      "medicines": [
+        "foundayo",
+        "wegovy-tablet",
+        "orlistat",
+        "rybelsus"
+      ]
+    },
+    "/weight-loss-injections-for-men": {
+      "kind": "hub",
+      "medicines": [
+        "mounjaro",
+        "wegovy-injection",
+        "saxenda",
+        "ozempic"
+      ]
+    },
+    "/compare-weight-loss-treatments": {
+      "kind": "hub",
+      "medicines": [
+        "wegovy-tablet",
+        "foundayo",
+        "orlistat"
+      ]
+    },
+    "/glp1-knowledge-centre": {
+      "kind": "hub",
+      "medicines": [
+        "mounjaro",
+        "wegovy-injection",
+        "wegovy-tablet",
+        "foundayo",
+        "orlistat",
+        "saxenda"
+      ]
+    },
+    "/guides/nhs-weight-loss-medication-pathways": {
+      "kind": "hub",
+      "medicines": [],
+      "nhs": true
+    }
+  },
+  "approval": {
+    "state": "review_required",
+    "instruction": "Rectify all to same level and standard please",
+    "owner": "Matt O’Brien",
+    "scope": "30 existing canonical medication pages",
+    "independentClinicalReviewClaimed": false,
+    "publicCopyApproved": false
+  }
+}
