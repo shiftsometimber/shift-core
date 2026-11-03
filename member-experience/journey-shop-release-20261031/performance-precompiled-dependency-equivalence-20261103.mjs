@@ -19,7 +19,7 @@ export async function provePrivatePassThrough(version,anchor){
  }
  const root=mod(version.main_module);await root.link(async(spec,ref)=>{assert(!spec.startsWith('node:'),'Unexpected native import in public wrapper');return mod(new URL(spec,'https://worker/'+ref.identifier).pathname.slice(1))});await root.evaluate();
  const rows=[];
- for(const path of ['/member/dashboard?view=app','/member/grub','/member/fit','/v1/me','/v1/profile','/v1/life-back/journey'])for(const method of ['GET','HEAD','POST'])for(const cookie of ['','sst_session=equivalence-invalid']){
+ for(const path of ['/member/dashboard?view=app','/member/dashboard','/member/dashboard?timber=support','/member/dashboard?timber=stuff','/member/grub','/member/fit','/v1/me','/v1/profile','/v1/life-back/journey'])for(const method of ['GET','HEAD','POST'])for(const cookie of ['','sst_session=equivalence-invalid']){
   const req=new Request('https://shiftsometimber.co.uk'+path,{method,headers:cookie?{Cookie:cookie}:{}}),env=new Proxy({},{get(){throw Error('Public wrapper accessed private environment')}}),ctx={};
   const r=await root.namespace.default.fetch(req,env,ctx);assert.equal(r,sentinel,'Public wrapper modified private response');const call=calls.at(-1);assert.equal(call.request,req);assert.equal(call.env,env);assert.equal(call.ctx,ctx);
   rows.push({path,method,cookie:cookie?'synthetic':'none',exactPassThrough:true});

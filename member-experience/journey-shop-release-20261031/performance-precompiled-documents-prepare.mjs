@@ -15,8 +15,8 @@ export function preparePrecompiledMemberCandidate(version,manifest,owner,{runtim
  const prefix='member-precompiled-documents-20261102/';
  assert(!version.modules.some(m=>m.name.startsWith(prefix)),'Do not layer a second document wrapper');
  const documents=Object.fromEntries(Object.entries(manifest.documents).filter(([,e])=>e.owner===owner));
- assert.equal(Object.keys(documents).length,owner==='shift-hq-member-comms-20261023'?1:2);
- for(const e of Object.values(documents))assert.equal(sha(e.html),e.sha256,'Compiled document changed');
+ assert.equal(Object.keys(documents).length,owner==='shift-hq-member-comms-20261023'?4:2);
+ for(const e of Object.values(documents)){assert.equal(sha(e.html),e.sha256,'Compiled document changed');if(e.appView)assert.equal(sha(e.appView.html),e.appView.sha256,'App-view document changed');}
  const ownManifest={...manifest,documents};
  const added=[
   {name:prefix+'runtime.mjs',body:runtime},

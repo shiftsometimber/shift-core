@@ -1,0 +1,2 @@
+import {spawnSync} from 'node:child_process';import assert from 'node:assert/strict';
+for(const args of [['--experimental-vm-modules','--test','performance-precompiled-dependency-equivalence-20261103.test.mjs'],['--experimental-vm-modules','performance-precompiled-documents-v2-release-20261103.mjs','qualify']]){const r=spawnSync(process.execPath,args,{stdio:'inherit',timeout:550000});assert.equal(r.status,0,args.join(' '));}

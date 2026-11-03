@@ -1,0 +1,38 @@
+{
+  "source": "f53e41fdd24f6523dbba82a05ee80305d6ed5dbd",
+  "normalTrafficPercent": 0,
+  "serverHeaderGate": {
+    "n": 20,
+    "control": {
+      "medianMs": 1518,
+      "p95Ms": 3833
+    },
+    "candidate": {
+      "medianMs": 458,
+      "p95Ms": 696
+    },
+    "passed": true
+  },
+  "functional": {
+    "chromium": true,
+    "webkit": true,
+    "expiryFreshReentryBoth": true,
+    "realMemberWrites": 0
+  },
+  "endToEndGate": {
+    "screen": "today",
+    "visit": "fresh",
+    "n": 20,
+    "beforeP95Ms": 3259,
+    "candidateP95Ms": 3848,
+    "passed": false,
+    "actualNavigationURL": "/member/dashboard",
+    "cause": "Initial exact-route allow-list covered ?view=app, while actual app navigation requested the default path."
+  },
+  "restored": {
+    "documents": "ba9072b5-28ee-4bac-babf-ac88057fd618",
+    "programme": "22434731-6dd7-48a7-8a43-607774f3fd99"
+  },
+  "promotion": false,
+  "next": "Compile exact default and utility URL variants with existing app-view UI cookie, preserve all source/client behaviour and repeat affected qualification."
+}

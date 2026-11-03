@@ -20,3 +20,8 @@ for(const owner of ['shift-programme-member-20261023','shift-hq-member-comms-202
   assert.throws(()=>preparePrecompiledMemberCandidate(changed,manifest,owner,{runtime}),/Source module changed/);
  });
 }
+test('app-view markup hash mutations are rejected before staging',()=>{
+ const owner='shift-hq-member-comms-20261023',version=JSON.parse(gunzipSync(readFileSync('performance-static-text-current-'+owner+'.json.gz'))),e=manifest.documents['/member/dashboard'];
+ const changed={...manifest,documents:{...manifest.documents,'/member/dashboard':{...e,appView:{...e,html:e.html+'changed'}}}};
+ assert.throws(()=>preparePrecompiledMemberCandidate(version,changed,owner,{runtime}),/App-view document changed/);
+});

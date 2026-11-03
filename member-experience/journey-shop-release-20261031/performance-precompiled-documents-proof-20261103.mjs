@@ -17,6 +17,9 @@ const sourceOwners=capture.owners.map(a=>{
 const publicSources=JSON.parse(readFileSync('performance-public-screen-sources.json'));
 const routeOwners={
  '/member/dashboard?view=app':'shift-hq-member-comms-20261023',
+ '/member/dashboard':'shift-hq-member-comms-20261023',
+ '/member/dashboard?timber=support':'shift-hq-member-comms-20261023',
+ '/member/dashboard?timber=stuff':'shift-hq-member-comms-20261023',
  '/member/grub':'shift-programme-member-20261023',
  '/member/fit':'shift-programme-member-20261023'
 };
@@ -95,25 +98,25 @@ const report={at:new Date().toISOString(),kind:'EXACT_CURRENT_MEMBER_DOCUMENT_PR
  sourceBaselineSHA256:digest(raw),sourceOwners:sourceOwners.map(o=>({name:o.name,main:o.version.main_module,version:o.deployment.versions.find(v=>v.percentage===100).version_id,moduleHashes:Object.fromEntries(o.version.modules.map(m=>[m.name,digest(Buffer.from(m.content_base64,'base64'))]))})),
  routes:[],databaseCalls,publicReads,serviceCalls,limitations:['Offline account fixtures are source proof, not a signed-in production acceptance.','Actual Safari/iPhone and production speed qualification remain required.']};
 const manifest={format:1,proof:report.kind,verified:true,requiredRuntimeFlags:{MY_TIMBER_V6_RELEASE_ENABLED:'true'},createdAt:report.at,sourceOwners:report.sourceOwners,documents:{}};
+function uiCookie(cookie,app){const base=cookie.split(';').map(s=>s.trim()).filter(s=>s&&!s.startsWith('shift_app_view=')).join('; ');return [base,app?'shift_app_view=1':cookie.includes('shift_app_view=0')?'shift_app_view=0':''].filter(Boolean).join('; ');}
 for(const [path,name]of Object.entries(routeOwners)){
- let baselineBody,baselineHeaders;
- const rows=[];
- for(const [label,cookie]of cookies){
-  scenario=label;const r=await(await instance(name)).fetch(new Request('https://shiftsometimber.co.uk'+path,{headers:cookie?{Cookie:cookie}:{}}));
-  assert.equal(r.status,200);const html=await r.text();assert.match(r.headers.get('content-type'),/text\/html/);
-  assert(!html.includes('STATIC_PRIVATE_SENTINEL_'),'Account fixture leaked into precompiled page');
-  assert.match(r.headers.get('Cache-Control'),/no-store/);
-  const stable=Object.fromEntries([...r.headers].filter(([k])=>!['date','cf-ray','server','server-timing','alt-svc','nel','report-to','connection','transfer-encoding','content-length','content-encoding','etag','last-modified'].includes(k)));
-  if(baselineBody===undefined){baselineBody=html;baselineHeaders=stable;}
-  else {assert.equal(digest(html),digest(baselineBody),'Page depends on account/cookie: '+path+' '+label);assert.deepEqual(stable,baselineHeaders,'Headers depend on account/cookie');}
-  rows.push({scenario:label,sha256:digest(html),bytes:Buffer.byteLength(html)});
+ const variants={};
+ for(const app of [false,true]){
+  let baselineBody,baselineHeaders;const rows=[];
+  for(const [label,originalCookie]of cookies){
+   const cookie=uiCookie(originalCookie,app);scenario=label;
+   const r=await(await instance(name)).fetch(new Request('https://shiftsometimber.co.uk'+path,{headers:cookie?{Cookie:cookie}:{}}));
+   assert.equal(r.status,200);const html=await r.text();assert.match(r.headers.get('content-type'),/text\/html/);assert(!html.includes('STATIC_PRIVATE_SENTINEL_'));assert.match(r.headers.get('Cache-Control'),/no-store/);
+   const stable=Object.fromEntries([...r.headers].filter(([k])=>!['date','cf-ray','server','server-timing','alt-svc','nel','report-to','connection','transfer-encoding','content-length','content-encoding','etag','last-modified'].includes(k)));
+   if(baselineBody===undefined){baselineBody=html;baselineHeaders=stable;}else{assert.equal(digest(html),digest(baselineBody),'Account-dependent markup '+path+' app='+app+' '+label);assert.deepEqual(stable,baselineHeaders);}
+   rows.push({scenario:label,appView:app,sha256:digest(html),bytes:Buffer.byteLength(html)});
+  }
+  const live=await fetch('https://shiftsometimber.co.uk'+path,{headers:{'Accept-Encoding':'identity',...(app?{Cookie:'shift_app_view=1'}:{})},signal:AbortSignal.timeout(30000)}),liveBody=await live.text();assert.equal(live.status,200);assert.equal(digest(liveBody),digest(baselineBody),'Exact live HTML advanced '+path+' app='+app);
+  variants[app?'app':'base']={html:baselineBody,headers:baselineHeaders,sha256:digest(baselineBody)};
+  report.routes.push({path,appView:app,sha256:digest(baselineBody),bytes:Buffer.byteLength(baselineBody),accountComparisons:rows,liveMatched:true});
+  console.log('EXACT_CURRENT_DOCUMENT_VARIANT_PROVED',path,'app='+app,digest(baselineBody));
  }
- const live=await fetch('https://shiftsometimber.co.uk'+path,{headers:{'Accept-Encoding':'identity'},signal:AbortSignal.timeout(30000)});
- const liveBody=await live.text();assert.equal(live.status,200);
- assert.equal(digest(liveBody),digest(baselineBody),'Exact live HTML advanced or VM does not preserve transformation: '+path);
- manifest.documents[path]={html:baselineBody,headers:baselineHeaders,sha256:digest(baselineBody),owner:name};
- report.routes.push({path,sha256:digest(baselineBody),bytes:Buffer.byteLength(baselineBody),accountComparisons:rows,liveMatched:true});
- console.log('EXACT_CURRENT_DOCUMENT_PROVED',path,digest(baselineBody));
+ const e={...variants.base,owner:name};if(variants.app.sha256!==e.sha256||JSON.stringify(variants.app.headers)!==JSON.stringify(e.headers))e.appView=variants.app;manifest.documents[path]=e;
 }
 assert(!databaseCalls.some(c=>/INSERT|DELETE/.test(c.sql)));
 const originalCalls=serviceCalls.length,originalDB=databaseCalls.length;
@@ -126,12 +129,12 @@ for(const name of ['shift-programme-member-20261023','shift-hq-member-comms-2026
 }
 instances.clear();
 const candidateRows=[];
-for(const [path,name]of Object.entries(routeOwners))for(const [label,cookie]of cookies){
- scenario=label;const r=await(await instance(name)).fetch(new Request('https://shiftsometimber.co.uk'+path,{headers:cookie?{Cookie:cookie}:{}}));
- assert.equal(r.status,200);const html=await r.text();assert.equal(digest(html),manifest.documents[path].sha256,'Assembled candidate changes HTML');
- assert.equal(r.headers.get('X-My-Timber-Document-Delivery'),'precompiled-20261102');
- assert.equal(r.headers.get('Cache-Control'),'no-store, private');
- candidateRows.push({path,scenario:label,sha256:digest(html)});
+for(const [path,name]of Object.entries(routeOwners))for(const app of [false,true])for(const [label,originalCookie]of cookies){
+ const cookie=uiCookie(originalCookie,app);scenario=label;
+ const r=await(await instance(name)).fetch(new Request('https://shiftsometimber.co.uk'+path,{headers:cookie?{Cookie:cookie}:{}}));
+ assert.equal(r.status,200);const html=await r.text(),entry=app&&manifest.documents[path].appView?manifest.documents[path].appView:manifest.documents[path];assert.equal(digest(html),entry.sha256,'Assembled UI variant differs');
+ assert.equal(r.headers.get('X-My-Timber-Document-Delivery'),'precompiled-20261103');assert.equal(r.headers.get('Cache-Control'),'no-store, private');
+ candidateRows.push({path,appView:app,scenario:label,sha256:digest(html)});
 }
 assert.equal(serviceCalls.length,originalCalls,'Compiled document still calls an upstream service');
 assert.equal(databaseCalls.length,originalDB,'Compiled document still reads account data');

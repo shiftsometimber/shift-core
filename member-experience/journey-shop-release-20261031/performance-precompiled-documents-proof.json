@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-03T13:51:28.684Z",
+  "at": "2026-11-03T14:41:01.827Z",
   "kind": "EXACT_CURRENT_MEMBER_DOCUMENT_PRECOMPILATION_PROOF",
   "productionMutations": 0,
   "sourceBaselineSHA256": "1cb9e43fbb0fdd448031e5b27952c7696557f43ebb3044d29042ea921001cefd",
@@ -183,51 +183,502 @@
   "routes": [
     {
       "path": "/member/dashboard?view=app",
+      "appView": false,
       "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
       "bytes": 475804,
       "accountComparisons": [
         {
           "scenario": "anonymous",
+          "appView": false,
           "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
           "bytes": 475804
         },
         {
           "scenario": "reservedA",
+          "appView": false,
           "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
           "bytes": 475804
         },
         {
           "scenario": "reservedB",
+          "appView": false,
           "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
           "bytes": 475804
         },
         {
           "scenario": "invalid",
+          "appView": false,
           "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
           "bytes": 475804
         },
         {
           "scenario": "memberA",
+          "appView": false,
           "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
           "bytes": 475804
         },
         {
           "scenario": "memberB",
+          "appView": false,
           "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
           "bytes": 475804
         },
         {
           "scenario": "expired",
+          "appView": false,
           "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
           "bytes": 475804
         },
         {
           "scenario": "revoked",
+          "appView": false,
           "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
           "bytes": 475804
         },
         {
           "scenario": "memberA",
+          "appView": false,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        }
+      ],
+      "liveMatched": true
+    },
+    {
+      "path": "/member/dashboard?view=app",
+      "appView": true,
+      "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+      "bytes": 475804,
+      "accountComparisons": [
+        {
+          "scenario": "anonymous",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "reservedA",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "reservedB",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "invalid",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "memberA",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "memberB",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "expired",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "revoked",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "memberA",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        }
+      ],
+      "liveMatched": true
+    },
+    {
+      "path": "/member/dashboard",
+      "appView": false,
+      "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+      "bytes": 475894,
+      "accountComparisons": [
+        {
+          "scenario": "anonymous",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        },
+        {
+          "scenario": "reservedA",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        },
+        {
+          "scenario": "reservedB",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        },
+        {
+          "scenario": "invalid",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        },
+        {
+          "scenario": "memberA",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        },
+        {
+          "scenario": "memberB",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        },
+        {
+          "scenario": "expired",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        },
+        {
+          "scenario": "revoked",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        },
+        {
+          "scenario": "memberA",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        }
+      ],
+      "liveMatched": true
+    },
+    {
+      "path": "/member/dashboard",
+      "appView": true,
+      "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+      "bytes": 475804,
+      "accountComparisons": [
+        {
+          "scenario": "anonymous",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "reservedA",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "reservedB",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "invalid",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "memberA",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "memberB",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "expired",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "revoked",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "memberA",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        }
+      ],
+      "liveMatched": true
+    },
+    {
+      "path": "/member/dashboard?timber=support",
+      "appView": false,
+      "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+      "bytes": 475894,
+      "accountComparisons": [
+        {
+          "scenario": "anonymous",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        },
+        {
+          "scenario": "reservedA",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        },
+        {
+          "scenario": "reservedB",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        },
+        {
+          "scenario": "invalid",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        },
+        {
+          "scenario": "memberA",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        },
+        {
+          "scenario": "memberB",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        },
+        {
+          "scenario": "expired",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        },
+        {
+          "scenario": "revoked",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        },
+        {
+          "scenario": "memberA",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        }
+      ],
+      "liveMatched": true
+    },
+    {
+      "path": "/member/dashboard?timber=support",
+      "appView": true,
+      "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+      "bytes": 475804,
+      "accountComparisons": [
+        {
+          "scenario": "anonymous",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "reservedA",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "reservedB",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "invalid",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "memberA",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "memberB",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "expired",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "revoked",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "memberA",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        }
+      ],
+      "liveMatched": true
+    },
+    {
+      "path": "/member/dashboard?timber=stuff",
+      "appView": false,
+      "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+      "bytes": 475894,
+      "accountComparisons": [
+        {
+          "scenario": "anonymous",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        },
+        {
+          "scenario": "reservedA",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        },
+        {
+          "scenario": "reservedB",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        },
+        {
+          "scenario": "invalid",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        },
+        {
+          "scenario": "memberA",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        },
+        {
+          "scenario": "memberB",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        },
+        {
+          "scenario": "expired",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        },
+        {
+          "scenario": "revoked",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        },
+        {
+          "scenario": "memberA",
+          "appView": false,
+          "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+          "bytes": 475894
+        }
+      ],
+      "liveMatched": true
+    },
+    {
+      "path": "/member/dashboard?timber=stuff",
+      "appView": true,
+      "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+      "bytes": 475804,
+      "accountComparisons": [
+        {
+          "scenario": "anonymous",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "reservedA",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "reservedB",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "invalid",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "memberA",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "memberB",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "expired",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "revoked",
+          "appView": true,
+          "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+          "bytes": 475804
+        },
+        {
+          "scenario": "memberA",
+          "appView": true,
           "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
           "bytes": 475804
         }
@@ -236,51 +687,124 @@
     },
     {
       "path": "/member/grub",
+      "appView": false,
       "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38",
       "bytes": 346853,
       "accountComparisons": [
         {
           "scenario": "anonymous",
+          "appView": false,
           "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38",
           "bytes": 346853
         },
         {
           "scenario": "reservedA",
+          "appView": false,
           "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38",
           "bytes": 346853
         },
         {
           "scenario": "reservedB",
+          "appView": false,
           "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38",
           "bytes": 346853
         },
         {
           "scenario": "invalid",
+          "appView": false,
           "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38",
           "bytes": 346853
         },
         {
           "scenario": "memberA",
+          "appView": false,
           "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38",
           "bytes": 346853
         },
         {
           "scenario": "memberB",
+          "appView": false,
           "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38",
           "bytes": 346853
         },
         {
           "scenario": "expired",
+          "appView": false,
           "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38",
           "bytes": 346853
         },
         {
           "scenario": "revoked",
+          "appView": false,
           "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38",
           "bytes": 346853
         },
         {
           "scenario": "memberA",
+          "appView": false,
+          "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38",
+          "bytes": 346853
+        }
+      ],
+      "liveMatched": true
+    },
+    {
+      "path": "/member/grub",
+      "appView": true,
+      "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38",
+      "bytes": 346853,
+      "accountComparisons": [
+        {
+          "scenario": "anonymous",
+          "appView": true,
+          "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38",
+          "bytes": 346853
+        },
+        {
+          "scenario": "reservedA",
+          "appView": true,
+          "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38",
+          "bytes": 346853
+        },
+        {
+          "scenario": "reservedB",
+          "appView": true,
+          "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38",
+          "bytes": 346853
+        },
+        {
+          "scenario": "invalid",
+          "appView": true,
+          "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38",
+          "bytes": 346853
+        },
+        {
+          "scenario": "memberA",
+          "appView": true,
+          "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38",
+          "bytes": 346853
+        },
+        {
+          "scenario": "memberB",
+          "appView": true,
+          "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38",
+          "bytes": 346853
+        },
+        {
+          "scenario": "expired",
+          "appView": true,
+          "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38",
+          "bytes": 346853
+        },
+        {
+          "scenario": "revoked",
+          "appView": true,
+          "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38",
+          "bytes": 346853
+        },
+        {
+          "scenario": "memberA",
+          "appView": true,
           "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38",
           "bytes": 346853
         }
@@ -289,51 +813,124 @@
     },
     {
       "path": "/member/fit",
+      "appView": false,
       "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387",
       "bytes": 379680,
       "accountComparisons": [
         {
           "scenario": "anonymous",
+          "appView": false,
           "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387",
           "bytes": 379680
         },
         {
           "scenario": "reservedA",
+          "appView": false,
           "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387",
           "bytes": 379680
         },
         {
           "scenario": "reservedB",
+          "appView": false,
           "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387",
           "bytes": 379680
         },
         {
           "scenario": "invalid",
+          "appView": false,
           "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387",
           "bytes": 379680
         },
         {
           "scenario": "memberA",
+          "appView": false,
           "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387",
           "bytes": 379680
         },
         {
           "scenario": "memberB",
+          "appView": false,
           "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387",
           "bytes": 379680
         },
         {
           "scenario": "expired",
+          "appView": false,
           "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387",
           "bytes": 379680
         },
         {
           "scenario": "revoked",
+          "appView": false,
           "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387",
           "bytes": 379680
         },
         {
           "scenario": "memberA",
+          "appView": false,
+          "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387",
+          "bytes": 379680
+        }
+      ],
+      "liveMatched": true
+    },
+    {
+      "path": "/member/fit",
+      "appView": true,
+      "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387",
+      "bytes": 379680,
+      "accountComparisons": [
+        {
+          "scenario": "anonymous",
+          "appView": true,
+          "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387",
+          "bytes": 379680
+        },
+        {
+          "scenario": "reservedA",
+          "appView": true,
+          "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387",
+          "bytes": 379680
+        },
+        {
+          "scenario": "reservedB",
+          "appView": true,
+          "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387",
+          "bytes": 379680
+        },
+        {
+          "scenario": "invalid",
+          "appView": true,
+          "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387",
+          "bytes": 379680
+        },
+        {
+          "scenario": "memberA",
+          "appView": true,
+          "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387",
+          "bytes": 379680
+        },
+        {
+          "scenario": "memberB",
+          "appView": true,
+          "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387",
+          "bytes": 379680
+        },
+        {
+          "scenario": "expired",
+          "appView": true,
+          "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387",
+          "bytes": 379680
+        },
+        {
+          "scenario": "revoked",
+          "appView": true,
+          "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387",
+          "bytes": 379680
+        },
+        {
+          "scenario": "memberA",
+          "appView": true,
           "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387",
           "bytes": 379680
         }
@@ -342,6 +939,510 @@
     }
   ],
   "databaseCalls": [
+    {
+      "scenario": "reservedA",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "reservedA",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "reservedA",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "reservedB",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "reservedB",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "reservedB",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "invalid",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "memberB",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberB",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "memberB",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "expired",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "revoked",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "reservedA",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "reservedA",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "reservedA",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "reservedB",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "reservedB",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "reservedB",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "invalid",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "memberB",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberB",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "memberB",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "expired",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "revoked",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "reservedA",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "reservedA",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "reservedA",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "reservedB",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "reservedB",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "reservedB",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "invalid",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "memberB",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberB",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "memberB",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "expired",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "revoked",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "reservedA",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "reservedA",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "reservedA",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "reservedB",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "reservedB",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "reservedB",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "invalid",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "memberB",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberB",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "memberB",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "expired",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "revoked",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "reservedA",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "reservedA",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "reservedA",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "reservedB",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "reservedB",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "reservedB",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "invalid",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "memberB",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberB",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "memberB",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "expired",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "revoked",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "reservedA",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "reservedA",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "reservedA",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "reservedB",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "reservedB",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "reservedB",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "invalid",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "memberB",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberB",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "memberB",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "expired",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "revoked",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "reservedA",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "reservedA",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "reservedA",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "reservedB",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "reservedB",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "reservedB",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "invalid",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "memberB",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberB",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "memberB",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
+    {
+      "scenario": "expired",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "revoked",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "UPDATE user_sessions SET last_used_at=? WHERE id=?"
+    },
+    {
+      "scenario": "memberA",
+      "sql": "SELECT COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0) revision,json_extract(preferences,?) body FROM member_state WHERE user_id=?"
+    },
     {
       "scenario": "reservedA",
       "sql": "SELECT u.*,s.id session_id,s.expires_at,s.revoked_at FROM user_sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=?"
@@ -581,6 +1682,1194 @@
     },
     {
       "scenario": "anonymous",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "anonymous",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "anonymous",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedA",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedA",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedB",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedB",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedB",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "invalid",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "invalid",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "invalid",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberB",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberB",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberB",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "expired",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "expired",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "expired",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "revoked",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "revoked",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "revoked",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "anonymous",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "anonymous",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "anonymous",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedA",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedA",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedB",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedB",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedB",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "invalid",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "invalid",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "invalid",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberB",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberB",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberB",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "expired",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "expired",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "expired",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "revoked",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "revoked",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "revoked",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "anonymous",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "anonymous",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "anonymous",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedA",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedA",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedB",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedB",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedB",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "invalid",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "invalid",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "invalid",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberB",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberB",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberB",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "expired",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "expired",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "expired",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "revoked",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "revoked",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "revoked",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "anonymous",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "anonymous",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "anonymous",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedA",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedA",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedB",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedB",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedB",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "invalid",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "invalid",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "invalid",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberB",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberB",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberB",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "expired",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "expired",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "expired",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "revoked",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "revoked",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "revoked",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "anonymous",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "anonymous",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "anonymous",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedA",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedA",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedB",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedB",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedB",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "invalid",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "invalid",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "invalid",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberB",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberB",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberB",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "expired",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "expired",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "expired",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "revoked",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "revoked",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "revoked",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "anonymous",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "anonymous",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "anonymous",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedA",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedA",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedB",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedB",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedB",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "invalid",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "invalid",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "invalid",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberB",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberB",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberB",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "expired",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "expired",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "expired",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "revoked",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "revoked",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "revoked",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "anonymous",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "anonymous",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "anonymous",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedA",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedA",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedB",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedB",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "reservedB",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "invalid",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "invalid",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "invalid",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberB",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberB",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberB",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "expired",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "expired",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "expired",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "revoked",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "revoked",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "revoked",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-hq-member-comms-20261023",
+      "to": "shift-mytimber-support-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-mytimber-support-20261023",
+      "to": "shift-programme-member-20261023",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/dashboard"
+    },
+    {
+      "scenario": "anonymous",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/grub"
+    },
+    {
+      "scenario": "reservedA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/grub"
+    },
+    {
+      "scenario": "reservedB",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/grub"
+    },
+    {
+      "scenario": "invalid",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/grub"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/grub"
+    },
+    {
+      "scenario": "memberB",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/grub"
+    },
+    {
+      "scenario": "expired",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/grub"
+    },
+    {
+      "scenario": "revoked",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/grub"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/grub"
+    },
+    {
+      "scenario": "anonymous",
       "from": "shift-programme-member-20261023",
       "to": "shift-core",
       "path": "/member/grub"
@@ -686,6 +2975,60 @@
       "from": "shift-programme-member-20261023",
       "to": "shift-core",
       "path": "/member/fit"
+    },
+    {
+      "scenario": "anonymous",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/fit"
+    },
+    {
+      "scenario": "reservedA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/fit"
+    },
+    {
+      "scenario": "reservedB",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/fit"
+    },
+    {
+      "scenario": "invalid",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/fit"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/fit"
+    },
+    {
+      "scenario": "memberB",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/fit"
+    },
+    {
+      "scenario": "expired",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/fit"
+    },
+    {
+      "scenario": "revoked",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/fit"
+    },
+    {
+      "scenario": "memberA",
+      "from": "shift-programme-member-20261023",
+      "to": "shift-core",
+      "path": "/member/fit"
     }
   ],
   "limitations": [
@@ -701,8 +3044,8 @@
         "previousMain": "member-performance-20261101/entry.mjs",
         "main": "member-precompiled-documents-20261102/entry.mjs",
         "addedModuleHashes": {
-          "member-precompiled-documents-20261102/runtime.mjs": "f9a702d8b216606718ef200a6c869af3be16f805abc850861db1b9af8e5a8d98",
-          "member-precompiled-documents-20261102/documents.mjs": "ca1e4d334d877ca196649453aca8d862feff13c1ec33e2af7d0befa0823e13c0",
+          "member-precompiled-documents-20261102/runtime.mjs": "27a81a8a130a7ba90766a250e887dc4f3572949b22b3d0ae6af77079d14eeb17",
+          "member-precompiled-documents-20261102/documents.mjs": "abd89d11a0f5e69a8500cecebee32c543658156ee66489bd3f63426cf752ebb5",
           "member-precompiled-documents-20261102/entry.mjs": "b440b5dd9677144ea3db6e03203b1cc5b384311abdf10daef9f471363b0c4562"
         },
         "changedOriginalModules": []
@@ -713,8 +3056,8 @@
         "previousMain": "member-performance-20261101/entry.mjs",
         "main": "member-precompiled-documents-20261102/entry.mjs",
         "addedModuleHashes": {
-          "member-precompiled-documents-20261102/runtime.mjs": "f9a702d8b216606718ef200a6c869af3be16f805abc850861db1b9af8e5a8d98",
-          "member-precompiled-documents-20261102/documents.mjs": "f29ef79a2ee1913764cba40c611c88f0c888ae24b0a65411473941f1faeb61f6",
+          "member-precompiled-documents-20261102/runtime.mjs": "27a81a8a130a7ba90766a250e887dc4f3572949b22b3d0ae6af77079d14eeb17",
+          "member-precompiled-documents-20261102/documents.mjs": "58e7d6ac2d10e6ce58554cfa46a673c63c0ff6ac94abbb3ae6e5f0d222be733f",
           "member-precompiled-documents-20261102/entry.mjs": "d90774d5de71b141628991680e086eb01bee7be1d6eeedebf30e6182a9c18c75"
         },
         "changedOriginalModules": []
@@ -723,136 +3066,649 @@
     "routes": [
       {
         "path": "/member/dashboard?view=app",
+        "appView": false,
         "scenario": "anonymous",
         "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
       },
       {
         "path": "/member/dashboard?view=app",
+        "appView": false,
         "scenario": "reservedA",
         "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
       },
       {
         "path": "/member/dashboard?view=app",
+        "appView": false,
         "scenario": "reservedB",
         "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
       },
       {
         "path": "/member/dashboard?view=app",
+        "appView": false,
         "scenario": "invalid",
         "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
       },
       {
         "path": "/member/dashboard?view=app",
+        "appView": false,
         "scenario": "memberA",
         "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
       },
       {
         "path": "/member/dashboard?view=app",
+        "appView": false,
         "scenario": "memberB",
         "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
       },
       {
         "path": "/member/dashboard?view=app",
+        "appView": false,
         "scenario": "expired",
         "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
       },
       {
         "path": "/member/dashboard?view=app",
+        "appView": false,
         "scenario": "revoked",
         "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
       },
       {
         "path": "/member/dashboard?view=app",
+        "appView": false,
+        "scenario": "memberA",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?view=app",
+        "appView": true,
+        "scenario": "anonymous",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?view=app",
+        "appView": true,
+        "scenario": "reservedA",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?view=app",
+        "appView": true,
+        "scenario": "reservedB",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?view=app",
+        "appView": true,
+        "scenario": "invalid",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?view=app",
+        "appView": true,
+        "scenario": "memberA",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?view=app",
+        "appView": true,
+        "scenario": "memberB",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?view=app",
+        "appView": true,
+        "scenario": "expired",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?view=app",
+        "appView": true,
+        "scenario": "revoked",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?view=app",
+        "appView": true,
+        "scenario": "memberA",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard",
+        "appView": false,
+        "scenario": "anonymous",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard",
+        "appView": false,
+        "scenario": "reservedA",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard",
+        "appView": false,
+        "scenario": "reservedB",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard",
+        "appView": false,
+        "scenario": "invalid",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard",
+        "appView": false,
+        "scenario": "memberA",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard",
+        "appView": false,
+        "scenario": "memberB",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard",
+        "appView": false,
+        "scenario": "expired",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard",
+        "appView": false,
+        "scenario": "revoked",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard",
+        "appView": false,
+        "scenario": "memberA",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard",
+        "appView": true,
+        "scenario": "anonymous",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard",
+        "appView": true,
+        "scenario": "reservedA",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard",
+        "appView": true,
+        "scenario": "reservedB",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard",
+        "appView": true,
+        "scenario": "invalid",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard",
+        "appView": true,
+        "scenario": "memberA",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard",
+        "appView": true,
+        "scenario": "memberB",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard",
+        "appView": true,
+        "scenario": "expired",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard",
+        "appView": true,
+        "scenario": "revoked",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard",
+        "appView": true,
+        "scenario": "memberA",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?timber=support",
+        "appView": false,
+        "scenario": "anonymous",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard?timber=support",
+        "appView": false,
+        "scenario": "reservedA",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard?timber=support",
+        "appView": false,
+        "scenario": "reservedB",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard?timber=support",
+        "appView": false,
+        "scenario": "invalid",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard?timber=support",
+        "appView": false,
+        "scenario": "memberA",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard?timber=support",
+        "appView": false,
+        "scenario": "memberB",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard?timber=support",
+        "appView": false,
+        "scenario": "expired",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard?timber=support",
+        "appView": false,
+        "scenario": "revoked",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard?timber=support",
+        "appView": false,
+        "scenario": "memberA",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard?timber=support",
+        "appView": true,
+        "scenario": "anonymous",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?timber=support",
+        "appView": true,
+        "scenario": "reservedA",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?timber=support",
+        "appView": true,
+        "scenario": "reservedB",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?timber=support",
+        "appView": true,
+        "scenario": "invalid",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?timber=support",
+        "appView": true,
+        "scenario": "memberA",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?timber=support",
+        "appView": true,
+        "scenario": "memberB",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?timber=support",
+        "appView": true,
+        "scenario": "expired",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?timber=support",
+        "appView": true,
+        "scenario": "revoked",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?timber=support",
+        "appView": true,
+        "scenario": "memberA",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?timber=stuff",
+        "appView": false,
+        "scenario": "anonymous",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard?timber=stuff",
+        "appView": false,
+        "scenario": "reservedA",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard?timber=stuff",
+        "appView": false,
+        "scenario": "reservedB",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard?timber=stuff",
+        "appView": false,
+        "scenario": "invalid",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard?timber=stuff",
+        "appView": false,
+        "scenario": "memberA",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard?timber=stuff",
+        "appView": false,
+        "scenario": "memberB",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard?timber=stuff",
+        "appView": false,
+        "scenario": "expired",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard?timber=stuff",
+        "appView": false,
+        "scenario": "revoked",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard?timber=stuff",
+        "appView": false,
+        "scenario": "memberA",
+        "sha256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce"
+      },
+      {
+        "path": "/member/dashboard?timber=stuff",
+        "appView": true,
+        "scenario": "anonymous",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?timber=stuff",
+        "appView": true,
+        "scenario": "reservedA",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?timber=stuff",
+        "appView": true,
+        "scenario": "reservedB",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?timber=stuff",
+        "appView": true,
+        "scenario": "invalid",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?timber=stuff",
+        "appView": true,
+        "scenario": "memberA",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?timber=stuff",
+        "appView": true,
+        "scenario": "memberB",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?timber=stuff",
+        "appView": true,
+        "scenario": "expired",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?timber=stuff",
+        "appView": true,
+        "scenario": "revoked",
+        "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
+      },
+      {
+        "path": "/member/dashboard?timber=stuff",
+        "appView": true,
         "scenario": "memberA",
         "sha256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6"
       },
       {
         "path": "/member/grub",
+        "appView": false,
         "scenario": "anonymous",
         "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38"
       },
       {
         "path": "/member/grub",
+        "appView": false,
         "scenario": "reservedA",
         "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38"
       },
       {
         "path": "/member/grub",
+        "appView": false,
         "scenario": "reservedB",
         "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38"
       },
       {
         "path": "/member/grub",
+        "appView": false,
         "scenario": "invalid",
         "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38"
       },
       {
         "path": "/member/grub",
+        "appView": false,
         "scenario": "memberA",
         "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38"
       },
       {
         "path": "/member/grub",
+        "appView": false,
         "scenario": "memberB",
         "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38"
       },
       {
         "path": "/member/grub",
+        "appView": false,
         "scenario": "expired",
         "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38"
       },
       {
         "path": "/member/grub",
+        "appView": false,
         "scenario": "revoked",
         "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38"
       },
       {
         "path": "/member/grub",
+        "appView": false,
+        "scenario": "memberA",
+        "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38"
+      },
+      {
+        "path": "/member/grub",
+        "appView": true,
+        "scenario": "anonymous",
+        "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38"
+      },
+      {
+        "path": "/member/grub",
+        "appView": true,
+        "scenario": "reservedA",
+        "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38"
+      },
+      {
+        "path": "/member/grub",
+        "appView": true,
+        "scenario": "reservedB",
+        "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38"
+      },
+      {
+        "path": "/member/grub",
+        "appView": true,
+        "scenario": "invalid",
+        "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38"
+      },
+      {
+        "path": "/member/grub",
+        "appView": true,
+        "scenario": "memberA",
+        "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38"
+      },
+      {
+        "path": "/member/grub",
+        "appView": true,
+        "scenario": "memberB",
+        "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38"
+      },
+      {
+        "path": "/member/grub",
+        "appView": true,
+        "scenario": "expired",
+        "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38"
+      },
+      {
+        "path": "/member/grub",
+        "appView": true,
+        "scenario": "revoked",
+        "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38"
+      },
+      {
+        "path": "/member/grub",
+        "appView": true,
         "scenario": "memberA",
         "sha256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38"
       },
       {
         "path": "/member/fit",
+        "appView": false,
         "scenario": "anonymous",
         "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387"
       },
       {
         "path": "/member/fit",
+        "appView": false,
         "scenario": "reservedA",
         "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387"
       },
       {
         "path": "/member/fit",
+        "appView": false,
         "scenario": "reservedB",
         "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387"
       },
       {
         "path": "/member/fit",
+        "appView": false,
         "scenario": "invalid",
         "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387"
       },
       {
         "path": "/member/fit",
+        "appView": false,
         "scenario": "memberA",
         "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387"
       },
       {
         "path": "/member/fit",
+        "appView": false,
         "scenario": "memberB",
         "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387"
       },
       {
         "path": "/member/fit",
+        "appView": false,
         "scenario": "expired",
         "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387"
       },
       {
         "path": "/member/fit",
+        "appView": false,
         "scenario": "revoked",
         "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387"
       },
       {
         "path": "/member/fit",
+        "appView": false,
+        "scenario": "memberA",
+        "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387"
+      },
+      {
+        "path": "/member/fit",
+        "appView": true,
+        "scenario": "anonymous",
+        "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387"
+      },
+      {
+        "path": "/member/fit",
+        "appView": true,
+        "scenario": "reservedA",
+        "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387"
+      },
+      {
+        "path": "/member/fit",
+        "appView": true,
+        "scenario": "reservedB",
+        "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387"
+      },
+      {
+        "path": "/member/fit",
+        "appView": true,
+        "scenario": "invalid",
+        "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387"
+      },
+      {
+        "path": "/member/fit",
+        "appView": true,
+        "scenario": "memberA",
+        "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387"
+      },
+      {
+        "path": "/member/fit",
+        "appView": true,
+        "scenario": "memberB",
+        "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387"
+      },
+      {
+        "path": "/member/fit",
+        "appView": true,
+        "scenario": "expired",
+        "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387"
+      },
+      {
+        "path": "/member/fit",
+        "appView": true,
+        "scenario": "revoked",
+        "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387"
+      },
+      {
+        "path": "/member/fit",
+        "appView": true,
         "scenario": "memberA",
         "sha256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387"
       }

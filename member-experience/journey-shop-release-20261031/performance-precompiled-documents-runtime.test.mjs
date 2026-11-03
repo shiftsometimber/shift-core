@@ -15,12 +15,13 @@ test('every compiled body exactly preserves its proven current source',async()=>
   const w=wrapPrecompiledMemberDocuments(original,manifest,e.owner,{enabled:true});
   for(const cookie of ['', 'sst_session=offline-A', 'sst_session=offline-B; shift_app_view=1', 'sst_session=expired']){
    const r=await w.fetch(request(path,{headers:{Cookie:cookie}}),env,{});
-   assert.equal(r.status,200);assert.equal(await r.text(),e.html);
+   const selected=e.appView&&/(?:^|;\s*)shift_app_view=1(?:;|$)/.test(cookie)?e.appView:e;
+   assert.equal(r.status,200);assert.equal(await r.text(),selected.html);
    assert.equal(r.headers.get('Cache-Control'),'no-store, private');assert.match(r.headers.get('Vary'),/\bCookie\b/);
    assert(!r.headers.has('ETag'));assert(!r.headers.has('Content-Encoding'));assert(!r.headers.has('Content-Length'));
-   assert.equal(r.headers.get('Content-Security-Policy'),new Headers(e.headers).get('Content-Security-Policy'));
-   assert.equal(r.headers.get('Set-Cookie'),new Headers(e.headers).get('Set-Cookie'));
-   assert.equal(r.headers.get('X-Robots-Tag'),new Headers(e.headers).get('X-Robots-Tag'));
+   assert.equal(r.headers.get('Content-Security-Policy'),new Headers(selected.headers).get('Content-Security-Policy'));
+   assert.equal(r.headers.get('Set-Cookie'),new Headers(selected.headers).get('Set-Cookie'));
+   assert.equal(r.headers.get('X-Robots-Tag'),new Headers(selected.headers).get('X-Robots-Tag'));
   }assert.equal(calls,0);
  }
 });
@@ -32,7 +33,7 @@ test('homepage, private APIs, commerce, unknown views, methods and rollout hold 
  assert.equal(await wrapPrecompiledMemberDocuments(original,manifest,owner).fetch(request('/member/dashboard?view=app'),env,{}),expected);
  const cases=[
   ['/',{}],['/v1/me',{}],['/v1/life-back/journey',{}],['/cart',{}],['/checkout',{}],
-  ['/member/dashboard',{}],['/member/dashboard?view=web',{}],['/member/dashboard?view=app&app_panel=1',{}],
+  ['/member/dashboard?unrecognised=1',{}],['/member/dashboard?view=web',{}],['/member/dashboard?view=app&app_panel=1',{}],
   ['/member/dashboard?view=app&from=someone-who-cares',{}],['/member/dashboard?view=app',{method:'HEAD'}],
   ['/member/dashboard?view=app',{method:'POST',body:'fixture'}],['/member/grub',{}],
   ['/member/dashboard?view=app',{headers:{Authorization:'Bearer offline-fixture'}}],
@@ -59,4 +60,14 @@ test('response and account headers are not shared mutably between requests',asyn
  a.headers.set('Set-Cookie','private-only-in-this-test');
  const b=await w.fetch(request('/member/dashboard?view=app'),env,{});
  assert.notEqual(b.headers.get('Set-Cookie'),'private-only-in-this-test');
+});
+test('existing app-view preference selects only the proved public variant, independently of session cookies',async()=>{
+ const w=wrapPrecompiledMemberDocuments({fetch(){throw Error('Unexpected fallback')}},manifest,owner,{enabled:true}),e=manifest.documents['/member/dashboard'];
+ for(const cookie of ['', 'shift_app_view=0','shift_app_view=10','sst_session=one; shift_app_view=1','sst_session=two; shift_app_view=1; other=x']){
+  const expected=/(?:^|;\s*)shift_app_view=1(?:;|$)/.test(cookie)&&e.appView?e.appView:e;
+  const r=await w.fetch(request('/member/dashboard',{headers:{Cookie:cookie}}),env,{});
+  assert.equal(await r.text(),expected.html);assert.match(r.headers.get('Vary'),/\bCookie\b/);assert.equal(r.headers.get('Cache-Control'),'no-store, private');
+ }
+ const bad={...manifest,documents:{'/member/dashboard':{...e,appView:{...e,headers:{...e.headers,'Set-Cookie':'sst_session=never-retain'}}}}};
+ assert.throws(()=>wrapPrecompiledMemberDocuments({fetch(){}},bad,owner),/private cookie/);
 });
