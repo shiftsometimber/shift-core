@@ -1,0 +1,43 @@
+{
+  "ok": true,
+  "verifiedAt": "2026-11-03T15:11:27.069Z",
+  "url": "https://shiftsometimber.co.uk/articles/wegovy-injection-sites",
+  "id": 52,
+  "source": "babylovegrowth",
+  "publishAt": "2026-11-02T05:02:38.522Z",
+  "modifiedAt": "2026-11-03T15:11:18.093Z",
+  "beforeBodySha256": "6ec266e35d0429ed80b01139fe3523bf9b7cf61e7bb0825e273b37e15785fc9a",
+  "afterBodySha256": "9555089dbd1d649428947ea27c2eff3036c7e1f93cac99b2167057e3473bb093",
+  "htmlSha256": "fb423de6ef33f2962704133af052628aa13763040c7d7816652d58887a00aea1",
+  "headers": {
+    "x-shift-article-source": "babylovegrowth",
+    "x-robots-tag": null,
+    "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' mailto:; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com; connect-src 'self' https://challenges.cloudflare.com https://api.shiftsometimber.co.uk https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://cloudflareinsights.com https://*.cloudflareinsights.com https://www.thesportsdb.com; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://challenges.cloudflare.com https://www.googletagmanager.com; worker-src 'self' blob:; manifest-src 'self'; media-src 'self'; upgrade-insecure-requests",
+    "strict-transport-security": "max-age=31536000; includeSubDomains",
+    "x-frame-options": "SAMEORIGIN"
+  },
+  "run": "41661132346",
+  "workerRuntimeChanged": false,
+  "runUrl": "https://github.com/shiftsometimber/shift-core/actions/runs/41661132346",
+  "runConclusion": "success",
+  "beforeArtifactId": 13241134283,
+  "resultArtifactId": 13241987003,
+  "resultArtifactSha256": "ed7fbe3decb48d9855660fb034e33b22b863c7e65213d3df600b5b8f0623f956",
+  "testsPassed": 7,
+  "changedFields": [
+    "body",
+    "updated_at"
+  ],
+  "rollbackPreserved": true,
+  "googleIndexed": "not_checked",
+  "publicationMetadataFor20261102": [
+    {
+      "id": 52,
+      "slug": "wegovy-injection-sites",
+      "source_id": "1040441",
+      "route": "babylovegrowth",
+      "publish_at": "2026-11-02T05:02:38.522Z"
+    }
+  ],
+  "contributorJobOutcome": "unavailable"
+}
