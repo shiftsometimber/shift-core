@@ -1,6 +1,6 @@
 import test from 'node:test';import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';import vm from 'node:vm';
 import {completeSitemap} from '../aeo-geo/delivery.mjs';
-import {patchKnowledgeSitemapBundle,patchTwoApprovedTickerLines,EXTRA_TICKER_PATHS,soleServingVersion,matchingRoutes} from '../release/knowledge-sitemap-lastmod-20261103.mjs';
+import {patchKnowledgeSitemapBundle,patchTwoApprovedTickerLines,EXTRA_TICKER_PATHS,soleServingVersion,matchingRoutes,awaitReadOnly} from '../release/knowledge-sitemap-lastmod-20261103.mjs';
 import {approvedTickerModule,APPROVED_TICKER_PATHS} from '../release/approved-shared-ticker-wording-20261031.mjs';
 test('native Knowledge repair changes one discovery predicate and preserves every other byte',()=>{
  const before='UNRELATED HEADER\nasync function withDynamicBabyLoveDiscovery(response, request, env) {\n const q="knowledge_articles";\n if (row.editorial && text.includes("<loc>" + loc + "</loc>")) { const d=articleModifiedDate(row); }\n}\nUNRELATED FOOTER';
@@ -41,4 +41,9 @@ test('route ownership uses Cloudflare host-only patterns and gives the most spec
  assert.deepEqual(matchingRoutes(routes,'https://shiftsometimber.co.uk/sitemap.xml').map(x=>x.script),['sitemap','core']);
  assert.equal(matchingRoutes(routes,'https://shiftsometimber.co.uk/knowledge')[0].script,'knowledge');
  assert.deepEqual(matchingRoutes(routes,'https://unrelated.example/sitemap.xml'),[]);
+});
+
+test('bounded delivery propagation retries reads and does not turn stale responses into a pass',async()=>{
+ let calls=0;const value=await awaitReadOnly(()=>{calls++;if(calls===1)throw Error('older edge response');return 'current';},{attempts:2,intervalMs:0});assert.equal(value,'current');assert.equal(calls,2);
+ await assert.rejects(awaitReadOnly(()=>{throw Error('still old');},{attempts:2,intervalMs:0}),/still old/);
 });
