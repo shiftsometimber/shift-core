@@ -58,7 +58,7 @@ Seven Node 24 built-in fixture tests passed on 3 November. They cover scope/date
 
 ### Existing route and missing evidence
 
-Current main source 68219826b3126c027e2186c5fa0c326a36e597b8 was read. daily-content/publication.mjs explicitly distinguishes website-owned shift-editorial releases from contributor receipt source_id shift-contributor. Do not relabel an editorial release to claim contributor delivery.
+Current main source 68219826b3126c027e2186c5fa0c326a36e597b8 was confirmed after reading its tree snapshot 68219826b3126c027e2186c5fa0c326a36e597b8. daily-content/publication.mjs explicitly distinguishes website-owned shift-editorial releases from contributor receipt source_id shift-contributor. Do not relabel an editorial release to claim contributor delivery.
 
 The public 2 November check established one BabyLoveGrowth publication and no verified contributor publication by its cutoff. No original 2 November contributor job/receipt is accessible through the read-only GitHub repository. Absence of such a receipt is not a proved job error. The prepared SELECTs capture only article records and publication metadata, then discover existing journal names without creating tables or triggering a job. Retrieve the actual job outcome before retrying, and never backdate a catch-up article.
 
