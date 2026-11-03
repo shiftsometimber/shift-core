@@ -1,12 +1,37 @@
+# My Timber performance release — 3 November 2026
+
+**DEPLOYED AND VERIFIED at 2026-11-03T15:50:37.171Z.** The six scoped member document URLs now serve the tested precompiled account-independent markup. All12 URL/UI variants match the approved HTML exactly; scripts, styles, images and client behaviour are unchanged. No homepage, purchasing, native/store, member-record, communication or cost changes.
+
+- Worker source: b1b81ed1d3f65556886c9110d79df045f53d8fef; guarded controllers:0beaa61995b7b8d92a074d376b70eab941848c1d.
+- Repository:shiftsometimber/shift-core; isolated branch:fix/my-timber-precompiled-documents-20261102. Existing task directory:journey-shop-release-20261031. Source remains **unmerged**; only the specifically delegated guarded deployment was performed.
+- Programme:8500f880-3e8a-49ff-b74e-c2cd83c36f27; deployment:beb782ca-c932-44ef-a93a-a5b40f91993b.
+- Documents:67958f58-8712-49ec-bcf0-2e513c1fd5d2; deployment:0283d979-046a-4472-a700-c9abfabb2d8b. Both100% normal traffic.
+- Actual anonymous default dashboard, new connections,n20:before median1206ms/p954401ms; after normal-traffic median309ms/p95596ms. These measure final server headers, not full-page or physical-phone loading.
+- All28 original p95 screen groups pass,560 samples across7screens,fresh/repeat,normal/Slow4G; retained hard limits unchanged. Slow4G Today/Support/More remain above engineering median targets; this repair does not establish universal instant loading.
+- Chromium and WebKit functionality, account-switch, expired-session private clearing and fresh sign-in pass with fictional intercepted data. HTTP privacy:48 checks plus63 current resources matched. No production member records or API writes. After deployment:all7screen layouts pass at390px and1440px in both engines (28 live layouts); no duplicate member navigation or horizontal overflow.
+- Physical iPhone/Safari unverified. Native build and App Store submission untouched. The unshipped same-account pending-target preview remains a separate client release; actual account-switch and expiry protection remained mandatory.
+- Core/Support kept their current releases. During final promotion the guard caught Core e21cdda6's exact17-character sitemap-only change; the first attempt stopped and restored originals. Exact inverse hashing restored the entire original worker, all83 private modules matched, all54 private pass-through cases passed, settings matched, and8 positive/negative guard tests passed before continuation. No competing component was overwritten.
+- Routes, schedules, bindings and operating settings protected. Original distributions and provider rollback receipts preserved in performance-precompiled-production-receipt-20261103.json; full qualification evidence retained. No release/watch/test job remains running after finalisation.
+
+## Handover and next action
+
+This lane changed the precompiled member-document runtime, pure assembly, six-URL public presentation manifest and finite guarded release/verification harnesses. Overlap:Programme and Documents only. Core/Support are read-only dependencies. Current source protection retains strict module/config checks and the one exact reviewed sitemap delta.
+
+Existing release manager retains main merge and all other component releases. Do not redeploy earlier rejected candidates or restart completed560-sample qualification. Next independent checks:physical iPhone/Safari and remaining Slow4G screen work. Footer, public-site and other pending components are not claimed deployed by this repair. External support-case draft remains unsent; its old access issue does not block this successful deployment.
+
+---
+
+## Historical checkpoint below — superseded for current deployment status
+
 # Production Update Status — 2 November 2026
 
-**Performance remains unresolved in production. A new document-delivery repair is prepared and locally verified in the handover below; it has not been staged or promoted.** The rejected packaging candidates remain withheld, all original distributions are restored, and no performance check or deployment remains running.
+**Unresolved. No new candidate was promoted to normal traffic.** Matt reports the signed-in iPhone is still slow. The latest candidate failed the original speed gate, and all original distributions are restored. No performance check or repair remains running.
 
 ## Verified serving state
 
 | Service | Version at 100% | Restored deployment |
 | --- | --- | --- |
-| shift-core | `e6ab12fe-b178-450c-8a1b-9ed909f1d5de` | `554b415a-87ea-4159-b76e-3b7b00059ee9` |
+| shift-core | `e6ab12fe-b178-450c-8a1b-9ed909f1d5de` | `4a160116-839b-4511-8307-dfe16bbe011f` |
 | shift-programme-member-20261023 | `c9771e70-bde3-4013-92df-f0698155caca` | `36ebd3f3-fdce-4a2c-852c-86c901a20ff5` |
 | shift-hq-member-comms-20261023 | `727fe8d9-c51d-4057-b013-f7ed9da36fb9` | `e8a7db9d-f1bd-41c1-995b-6d8247c02cf1` |
 | Support | `6a027bed-24f9-4727-aae8-ed45e8f89eab` | `dc6492ed-3359-4ed4-8fc4-b279b92a5cd1` |
@@ -30,6 +55,8 @@ New TLS connection per request; final HTTP 200 headers separated from interim 10
 | Static string-reuse candidate | 803ms | 3100ms | Withheld; restored |
 | Compressed-data control | 1304ms | 3364ms | Original source |
 | Compressed-data candidate | 924ms | 3362ms | Withheld; restored |
+| Internal-encoding control | 1417ms | 2972ms | Original source |
+| Internal-encoding candidate | 1516ms | 4154ms | Withheld; restored |
 
 No unchanged qualification retry replaced a failed result. Four distinct packaging variants were measured; all failed the retained 1755ms p95 gate. Lower artifact size or one fast request is not acceptance.
 
@@ -74,6 +101,18 @@ No full browser/privacy/expiry qualification was started for the new static-data
 
 Retain the original p95, privacy, expiry/fresh re-entry, source-pinning and automatic live rollback requirements. Do not rerun these rejected candidates unchanged or waive the gate. Isolate the remaining wait with a slow matched request before another implementation.
 
+## Latest response-delivery investigation
+
+Three finite zero-traffic anonymous probes established the same encoding mismatch: `Accept-Encoding: identity`, original-client gzip allowed in `request.cf`, and Core returned `Content-Encoding: gzip`. Diagnostic version `9482288f-b880-49fa-b9e5-83931aa702b0` was closed and its prior distribution restored.
+
+A narrow Core candidate honours explicit identity before the existing client gzip negotiation. It also retains the separately tested immutable-public-resource guard. Only `worker.js` and `aeo-geo/delivery.mjs` differ; all other module bytes, login/session/identity code, settings, bindings, routes and schedules are retained. All 12 correctness tests pass with Node's required experimental VM-module flag. The initial immutable-test invocation omitted that flag and failed as a harness configuration error; the corrected invocation passed all 12 tests.
+
+Candidate `5f87bdb5-0516-45c4-95f3-55b801acd26d` was measured at 0% normal traffic with n20 control and n20 candidate requests. It failed p95 4154ms against the retained 1755ms limit (simultaneous control 2972ms). This confirms that correcting the encoding mismatch alone is insufficient; it does not establish that the change caused the higher p95. The original Core distribution is restored in deployment `4a160116-839b-4511-8307-dfe16bbe011f`; the managed probe ended successfully. No full browser/privacy/expiry qualification or promotion followed the failed initial gate.
+
+The prepared next action is a technical case to Cloudflare for the specific anonymous incident and runtime gap, using existing support entitlement and authorising no charges or production changes. `performance-cloudflare-support-case-20261102.json` contains the complete recipient, subject, body and exact attachment hashes. Status: **DRAFT — NOT SENT — MATT'S SIGN-OFF REQUIRED**. This is an external-communication approval boundary, not a claim that application engineering or diagnosis is complete.
+
+Additional receipts: `performance-hop-codec-diagnostic.json`, `performance-core-identity-encoding-candidate.json`, `performance-core-identity-encoding-http-qualification.json`. The source preparation, regression tests and guarded stage/probe code are retained. No permanent watcher or performance job remains running.
+
 ## Access and costs
 
 Filtered live tails and the production profiling API work with the existing operator connection. The older Workers Observability query 403 is historical and is not a blanket diagnostic blocker. Exact billing subscription lookup was separately denied 403. All three delivery Workers use Standard; no paid upgrade has been established as a remedy, purchased or agreed.
@@ -82,50 +121,7 @@ No external messages, native/store changes, new dependencies, private shared HTT
 
 Raw source, profiles, attempts, proof receipts and all measured rows: `performance-memory-investigation-20261102.json.gz`, 74409bytes, SHA-256`b2d8d776d7b38791f5e596b57619007d3cfb43ea5996a4db238d161db42f7dbe`. Provider author-email metadata is omitted. Earlier rejection evidence remains in `performance-withheld-evidence-20261102.json.gz`.
 
-## Tested document-delivery repair — release-manager handover, 2 November 2026, 21:24 UTC
 
-**Prepared and locally verified; not merged, staged, deployed or production-speed qualified.** No upload, traffic change or background job was started. This is the successor preparation to the withheld packaging work above.
+## 3 November 2026 — specifically authorised Deploy continuation
 
-### Scope, ownership and source
-
-Matt's existing approval covers a guarded performance repair that preserves the approved appearance, functionality, privacy, homepage, purchasing hold and rollback. The single IP release manager retains merging and deployment control. No further design approval or purchase is required for this preparation.
-
-Repository: `shiftsometimber/shift-core`. Isolated API branch: `fix/my-timber-precompiled-documents-20261102`. Exact code commit: `c34277f34e12c53f11d351531698ac2432dce11b`, based on existing owner checkpoint `d2aefc08076eab86d6ef02a6d318dfbf1b8a5258`. Existing task files only: `/Users/shiftsometimberltd/SST/builds/apple-completion-20261024/journey-shop-release-20261031`. No clone, dependency installation, permanent workspace, watcher or source deletion.
-
-The previous owner recorded no active check at 21:05 UTC. Source leases subsequently confirmed all four existing serving versions at 100%; the latest lease began `2026-11-02T21:22:56.916Z`. Other owners' modules were preserved. Only files named `performance-precompiled-documents-*` and the compressed public document manifest are added. The overlapping release components are Programme and Documents; Core and Support are unchanged dependencies. Do not upload another component owner's whole branch or replace their files.
-
-### Implemented change
-
-The measured request traverses Core, Programme, Support and Documents, with repeated HTML decoding/transformation before final headers. The new final-owner wrapper serves the already-proved account-independent final HTML for exactly:
-
-| URL | Final delivery owner | SHA-256 of HTML |
-| --- | --- | --- |
-| `/member/dashboard?view=app` | Documents | `cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6` |
-| `/member/grub` | Programme | `1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38` |
-| `/member/fit` | Programme | `c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387` |
-
-No client script, stylesheet, image, logo, layout or copy is changed. Original handlers, exports, source modules, bindings and provider settings remain. All API/authentication/payment routes, homepage, other methods, hosts and unknown query combinations keep the exact original handler. Bearer-authorised requests also keep the original path. Responses remain `no-store, private`, with cookie variation and existing security headers; this does not create a shared private-response cache.
-
-The compiled path runs only with the existing `MY_TIMBER_V6_RELEASE_ENABLED === 'true'` switch and with the WORK/PROGRAMME dynamic dashboard switches off. The rollout switch is an inherited `secret_text` binding; its value was not read. The runtime checks it directly. A false/absent switch falls through, including the account-specific reserved acceptance path. The factory also defaults to disabled; only the prepared candidate entry enables it. No new binding is needed.
-
-### Checks and receipts
-
-All Mac checks used the mandated workspace controller with a 600-second deadline and one managed check. No browser was started.
-
-- Exact-current source execution: **27 comparisons** across three routes and nine offline session/account scenarios, including two different ordinary accounts, reserved Dan/Lee fixtures, invalid, expired and revoked sessions, and app-view cookie variants. Each compiled HTML body equals the actual anonymous production document byte for byte. Fake private sentinels are absent; no real member records, credentials, purchases or member writes were used.
-- The **assembled candidate modules** also pass 27 comparisons with **zero upstream service calls and zero database operations** for these document requests. Every original source module is retained.
-- **Six local tests pass** for body/security-header identity, unchanged excluded routes and methods, rollout holds, source mutation rejection, preservation of every original module/binding/version setting, and response-header isolation. Receipt PID58309, exit0, 0.41 seconds. This is local correctness proof, not a production latency result.
-- Source execution receipt PID58300, exit0, 9.04 seconds; proof recorded at `2026-11-02T21:21:26.910Z`.
-- Fresh provider lease PID58339, exit0, 13.54 seconds. An expired credential initially returned401; the existing read-only Wrangler refresh succeeded and the final guard passed. This is no longer an access blocker.
-- The initial source assertion correctly rejected an obsolete retained baseline before work continued with the existing exact-version compressed snapshots. A subsequent flag-list assumption was corrected after finding the inherited secret binding; the final implementation and proof retain the true/false runtime guard.
-
-Evidence: `performance-precompiled-documents-proof.json`, `performance-precompiled-documents-qualification.json`, `performance-precompiled-documents-source-lease.json`. Manifest: `performance-precompiled-documents.json.gz`, 190235bytes, SHA-256 `ba01ecbbd309a7d0dcd866531f7cd397c806cde8fb7d89e3fe7f993390dceb20`; it contains only proved public markup and public response headers. The existing task also retains its uncompressed JSON.
-
-### Exact next action for the IP release manager
-
-1. Take this code commit into the existing coordinated release lane. Recheck the live version/source lease, routes, schedules, operating settings, inherited bindings and other owners' current modules immediately before upload. If any source advanced, regenerate and requalify only the affected documents. This manifest depends on the four exact serving versions above; it must be rebuilt when those document sources change.
-2. Import `preparePrecompiledMemberCandidate(version, manifest, owner, {runtime})` from `performance-precompiled-documents-prepare.mjs` in the existing guarded controller. It returns the current immutable original modules plus exactly three added modules for each of Programme and Documents, the new entrypoint and rollback version. It refuses changed version IDs, entrypoints, modules or HTML. Retain all provider metadata/inherited secrets with the existing controller. Do not upload Core or Support, deploy the whole branch, adopt a rejected packaging candidate, or change homepage routes.
-3. Stage the two candidates through that single controller at zero normal traffic, then perform the retained matched-route and **interleaved n20 final-header** qualification. Keep the original **1755ms p95 gate** and all original browser/privacy/expiry/fresh-entry distribution gates. No speed acceptance has yet been obtained for this new implementation.
-4. Only a passing pinned composition may proceed through the existing coordinated release and automatic live rollback checks. Verify the actual production URLs, desktop/mobile and authorised signed-in/signed-out states after publication. Record provider version/deployment IDs and receipts. The signed-in physical iPhone and Safari checks remain unverified.
-
-Rollback anchors remain Programme `c9771e70-bde3-4013-92df-f0698155caca` and Documents `727fe8d9-c51d-4057-b013-f7ed9da36fb9`; preserve the exact original distributions captured by the fresh lease. No deployment is currently running for this preparation. There is no request for Matt to repeat approval; the next dependency is the single release manager's guarded staging and qualification.
+Matt's latest Deploy instruction delegates this prepared repair's guarded deployment operation. No active terminal/release was found. This continuation owns only the precompiled-document candidate and a single finite controller in the existing release lane. Preserve all prior failed candidates and current source. Next operation: exact-source/settings/routes/schedules capture, sequential candidate staging, zero-normal-traffic n20 comparison and original-distribution restoration. No normal-traffic promotion until all retained gates pass. Controller/receipt: performance-precompiled-documents-release-20261103.mjs/.json. Source c34277f34e12c53f11d351531698ac2432dce11b; no homepage, purchasing, native, communication or cost changes.

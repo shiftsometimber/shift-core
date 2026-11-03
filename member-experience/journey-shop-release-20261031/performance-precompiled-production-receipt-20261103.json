@@ -1,0 +1,1718 @@
+{
+  "kind": "MY_TIMBER_PRECOMPILED_DOCUMENT_PRODUCTION_RECEIPT",
+  "source": "b1b81ed1d3f65556886c9110d79df045f53d8fef",
+  "controllerSource": "0beaa61995b7b8d92a074d376b70eab941848c1d",
+  "prepared": true,
+  "merged": false,
+  "deployed": true,
+  "verified": true,
+  "verifiedAt": "2026-11-03T15:50:37.171Z",
+  "deployments": [
+    {
+      "name": "shift-programme-member-20261023",
+      "version": "8500f880-3e8a-49ff-b74e-c2cd83c36f27",
+      "deployment": "beb782ca-c932-44ef-a93a-a5b40f91993b",
+      "at": "2026-11-03T15:49:50.418Z",
+      "previousVersion": "c9771e70-bde3-4013-92df-f0698155caca",
+      "rollbackDistribution": [
+        {
+          "version_id": "c9771e70-bde3-4013-92df-f0698155caca",
+          "percentage": 100
+        },
+        {
+          "version_id": "f324b890-24db-4bb7-9701-579e24c59f63",
+          "percentage": 0
+        }
+      ]
+    },
+    {
+      "name": "shift-hq-member-comms-20261023",
+      "version": "67958f58-8712-49ec-bcf0-2e513c1fd5d2",
+      "deployment": "0283d979-046a-4472-a700-c9abfabb2d8b",
+      "at": "2026-11-03T15:50:02.256Z",
+      "previousVersion": "727fe8d9-c51d-4057-b013-f7ed9da36fb9",
+      "rollbackDistribution": [
+        {
+          "version_id": "727fe8d9-c51d-4057-b013-f7ed9da36fb9",
+          "percentage": 100
+        },
+        {
+          "version_id": "1de51cbd-6931-4076-a18f-2b64d425b61f",
+          "percentage": 0
+        }
+      ]
+    }
+  ],
+  "httpBefore": {
+    "n": 20,
+    "medianMs": 1206,
+    "p95Ms": 4401
+  },
+  "httpCandidate": {
+    "n": 20,
+    "medianMs": 387,
+    "p95Ms": 617
+  },
+  "httpLive": {
+    "n": 20,
+    "medianMs": 309,
+    "p95Ms": 596,
+    "limitMs": 1755
+  },
+  "liveURLVariants": [
+    {
+      "path": "/member/dashboard?view=app",
+      "appView": false,
+      "cohort": "live",
+      "sample": -1,
+      "status": 200,
+      "finalHeadersMs": 622,
+      "completeMs": 632,
+      "wireBytes": 82122,
+      "htmlSHA256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+      "delivery": "precompiled-20261103"
+    },
+    {
+      "path": "/member/dashboard?view=app",
+      "appView": true,
+      "cohort": "live",
+      "sample": -1,
+      "status": 200,
+      "finalHeadersMs": 439,
+      "completeMs": 452,
+      "wireBytes": 82122,
+      "htmlSHA256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+      "delivery": "precompiled-20261103"
+    },
+    {
+      "path": "/member/dashboard",
+      "appView": false,
+      "cohort": "live",
+      "sample": -1,
+      "status": 200,
+      "finalHeadersMs": 400,
+      "completeMs": 415,
+      "wireBytes": 82165,
+      "htmlSHA256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+      "delivery": "precompiled-20261103"
+    },
+    {
+      "path": "/member/dashboard",
+      "appView": true,
+      "cohort": "live",
+      "sample": -1,
+      "status": 200,
+      "finalHeadersMs": 615,
+      "completeMs": 628,
+      "wireBytes": 82122,
+      "htmlSHA256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+      "delivery": "precompiled-20261103"
+    },
+    {
+      "path": "/member/dashboard?timber=support",
+      "appView": false,
+      "cohort": "live",
+      "sample": -1,
+      "status": 200,
+      "finalHeadersMs": 391,
+      "completeMs": 405,
+      "wireBytes": 82165,
+      "htmlSHA256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+      "delivery": "precompiled-20261103"
+    },
+    {
+      "path": "/member/dashboard?timber=support",
+      "appView": true,
+      "cohort": "live",
+      "sample": -1,
+      "status": 200,
+      "finalHeadersMs": 603,
+      "completeMs": 619,
+      "wireBytes": 82122,
+      "htmlSHA256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+      "delivery": "precompiled-20261103"
+    },
+    {
+      "path": "/member/dashboard?timber=stuff",
+      "appView": false,
+      "cohort": "live",
+      "sample": -1,
+      "status": 200,
+      "finalHeadersMs": 298,
+      "completeMs": 312,
+      "wireBytes": 82165,
+      "htmlSHA256": "71a9071a0dc1164bf996c4f659bc155579c4cd5ea72b498348900ebc6e3227ce",
+      "delivery": "precompiled-20261103"
+    },
+    {
+      "path": "/member/dashboard?timber=stuff",
+      "appView": true,
+      "cohort": "live",
+      "sample": -1,
+      "status": 200,
+      "finalHeadersMs": 484,
+      "completeMs": 498,
+      "wireBytes": 82122,
+      "htmlSHA256": "cb2a4ab33f4f43c68521a1b9cd9e606d1c315a999df2cc8a55f47abc55ff14f6",
+      "delivery": "precompiled-20261103"
+    },
+    {
+      "path": "/member/grub",
+      "appView": false,
+      "cohort": "live",
+      "sample": -1,
+      "status": 200,
+      "finalHeadersMs": 1895,
+      "completeMs": 1909,
+      "wireBytes": 44794,
+      "htmlSHA256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38",
+      "delivery": "precompiled-20261103"
+    },
+    {
+      "path": "/member/grub",
+      "appView": true,
+      "cohort": "live",
+      "sample": -1,
+      "status": 200,
+      "finalHeadersMs": 1343,
+      "completeMs": 1345,
+      "wireBytes": 44794,
+      "htmlSHA256": "1a4b38c96b3db58d7bdd315ac1736ca4aadb3d053a8df331e2fca208dd09bd38",
+      "delivery": "precompiled-20261103"
+    },
+    {
+      "path": "/member/fit",
+      "appView": false,
+      "cohort": "live",
+      "sample": -1,
+      "status": 200,
+      "finalHeadersMs": 1640,
+      "completeMs": 1642,
+      "wireBytes": 53996,
+      "htmlSHA256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387",
+      "delivery": "precompiled-20261103"
+    },
+    {
+      "path": "/member/fit",
+      "appView": true,
+      "cohort": "live",
+      "sample": -1,
+      "status": 200,
+      "finalHeadersMs": 1823,
+      "completeMs": 1825,
+      "wireBytes": 54113,
+      "htmlSHA256": "c24c7d22850bff45e932d30bb6de8b7c1858ce1bac4d81efd884726c7c3d6387",
+      "delivery": "precompiled-20261103"
+    }
+  ],
+  "acceptance": {
+    "source": "b1b81ed1d3f65556886c9110d79df045f53d8fef",
+    "at": "2026-11-03T15:49:30.822Z",
+    "verified": true,
+    "comparisons": [
+      {
+        "profile": "good",
+        "screen": "today",
+        "visit": "fresh",
+        "n": 20,
+        "beforeP95Ms": 3259,
+        "candidateP95Ms": 1731,
+        "medianMs": 797,
+        "ackP95Ms": 16
+      },
+      {
+        "profile": "good",
+        "screen": "today",
+        "visit": "warm",
+        "n": 20,
+        "beforeP95Ms": 3529,
+        "candidateP95Ms": 225,
+        "medianMs": 223,
+        "ackP95Ms": 10
+      },
+      {
+        "profile": "good",
+        "screen": "journey",
+        "visit": "fresh",
+        "n": 20,
+        "beforeP95Ms": 931,
+        "candidateP95Ms": 764,
+        "medianMs": 565,
+        "ackP95Ms": 15
+      },
+      {
+        "profile": "good",
+        "screen": "journey",
+        "visit": "warm",
+        "n": 20,
+        "beforeP95Ms": 1335,
+        "candidateP95Ms": 209,
+        "medianMs": 208,
+        "ackP95Ms": 9
+      },
+      {
+        "profile": "good",
+        "screen": "shop",
+        "visit": "fresh",
+        "n": 20,
+        "beforeP95Ms": 989,
+        "candidateP95Ms": 531,
+        "medianMs": 498,
+        "ackP95Ms": 16
+      },
+      {
+        "profile": "good",
+        "screen": "shop",
+        "visit": "warm",
+        "n": 20,
+        "beforeP95Ms": 519,
+        "candidateP95Ms": 210,
+        "medianMs": 208,
+        "ackP95Ms": 9
+      },
+      {
+        "profile": "good",
+        "screen": "grub",
+        "visit": "fresh",
+        "n": 20,
+        "beforeP95Ms": 1678,
+        "candidateP95Ms": 1347,
+        "medianMs": 698,
+        "ackP95Ms": 16
+      },
+      {
+        "profile": "good",
+        "screen": "grub",
+        "visit": "warm",
+        "n": 20,
+        "beforeP95Ms": 2571,
+        "candidateP95Ms": 210,
+        "medianMs": 208,
+        "ackP95Ms": 10
+      },
+      {
+        "profile": "good",
+        "screen": "fit",
+        "visit": "fresh",
+        "n": 20,
+        "beforeP95Ms": 1463,
+        "candidateP95Ms": 748,
+        "medianMs": 698,
+        "ackP95Ms": 15
+      },
+      {
+        "profile": "good",
+        "screen": "fit",
+        "visit": "warm",
+        "n": 20,
+        "beforeP95Ms": 2018,
+        "candidateP95Ms": 210,
+        "medianMs": 208,
+        "ackP95Ms": 9
+      },
+      {
+        "profile": "good",
+        "screen": "support",
+        "visit": "fresh",
+        "n": 20,
+        "beforeP95Ms": 2102,
+        "candidateP95Ms": 1064,
+        "medianMs": 864,
+        "ackP95Ms": 16
+      },
+      {
+        "profile": "good",
+        "screen": "support",
+        "visit": "warm",
+        "n": 20,
+        "beforeP95Ms": 2739,
+        "candidateP95Ms": 224,
+        "medianMs": 210,
+        "ackP95Ms": 10
+      },
+      {
+        "profile": "good",
+        "screen": "more",
+        "visit": "fresh",
+        "n": 20,
+        "beforeP95Ms": 2108,
+        "candidateP95Ms": 1148,
+        "medianMs": 862,
+        "ackP95Ms": 15
+      },
+      {
+        "profile": "good",
+        "screen": "more",
+        "visit": "warm",
+        "n": 20,
+        "beforeP95Ms": 3262,
+        "candidateP95Ms": 225,
+        "medianMs": 209,
+        "ackP95Ms": 10
+      },
+      {
+        "profile": "slow4g",
+        "screen": "today",
+        "visit": "fresh",
+        "n": 20,
+        "beforeP95Ms": 5726,
+        "candidateP95Ms": 4438,
+        "medianMs": 3434,
+        "ackP95Ms": 14
+      },
+      {
+        "profile": "slow4g",
+        "screen": "today",
+        "visit": "warm",
+        "n": 20,
+        "beforeP95Ms": 4634,
+        "candidateP95Ms": 547,
+        "medianMs": 516,
+        "ackP95Ms": 7
+      },
+      {
+        "profile": "slow4g",
+        "screen": "journey",
+        "visit": "fresh",
+        "n": 20,
+        "beforeP95Ms": 2361,
+        "candidateP95Ms": 1413,
+        "medianMs": 1312,
+        "ackP95Ms": 14
+      },
+      {
+        "profile": "slow4g",
+        "screen": "journey",
+        "visit": "warm",
+        "n": 20,
+        "beforeP95Ms": 2005,
+        "candidateP95Ms": 486,
+        "medianMs": 469,
+        "ackP95Ms": 6
+      },
+      {
+        "profile": "slow4g",
+        "screen": "shop",
+        "visit": "fresh",
+        "n": 20,
+        "beforeP95Ms": 1059,
+        "candidateP95Ms": 812,
+        "medianMs": 796,
+        "ackP95Ms": 13
+      },
+      {
+        "profile": "slow4g",
+        "screen": "shop",
+        "visit": "warm",
+        "n": 20,
+        "beforeP95Ms": 1069,
+        "candidateP95Ms": 464,
+        "medianMs": 459,
+        "ackP95Ms": 6
+      },
+      {
+        "profile": "slow4g",
+        "screen": "grub",
+        "visit": "fresh",
+        "n": 20,
+        "beforeP95Ms": 3920,
+        "candidateP95Ms": 1845,
+        "medianMs": 1777,
+        "ackP95Ms": 13
+      },
+      {
+        "profile": "slow4g",
+        "screen": "grub",
+        "visit": "warm",
+        "n": 20,
+        "beforeP95Ms": 3398,
+        "candidateP95Ms": 519,
+        "medianMs": 494,
+        "ackP95Ms": 6
+      },
+      {
+        "profile": "slow4g",
+        "screen": "fit",
+        "visit": "fresh",
+        "n": 20,
+        "beforeP95Ms": 3004,
+        "candidateP95Ms": 1796,
+        "medianMs": 1780,
+        "ackP95Ms": 13
+      },
+      {
+        "profile": "slow4g",
+        "screen": "fit",
+        "visit": "warm",
+        "n": 20,
+        "beforeP95Ms": 3206,
+        "candidateP95Ms": 512,
+        "medianMs": 499,
+        "ackP95Ms": 6
+      },
+      {
+        "profile": "slow4g",
+        "screen": "support",
+        "visit": "fresh",
+        "n": 20,
+        "beforeP95Ms": 4800,
+        "candidateP95Ms": 3215,
+        "medianMs": 3141,
+        "ackP95Ms": 13
+      },
+      {
+        "profile": "slow4g",
+        "screen": "support",
+        "visit": "warm",
+        "n": 20,
+        "beforeP95Ms": 4980,
+        "candidateP95Ms": 524,
+        "medianMs": 517,
+        "ackP95Ms": 7
+      },
+      {
+        "profile": "slow4g",
+        "screen": "more",
+        "visit": "fresh",
+        "n": 20,
+        "beforeP95Ms": 4879,
+        "candidateP95Ms": 3197,
+        "medianMs": 3124,
+        "ackP95Ms": 14
+      },
+      {
+        "profile": "slow4g",
+        "screen": "more",
+        "visit": "warm",
+        "n": 20,
+        "beforeP95Ms": 5150,
+        "candidateP95Ms": 528,
+        "medianMs": 503,
+        "ackP95Ms": 7
+      }
+    ],
+    "flags": [
+      {
+        "profile": "slow4g",
+        "screen": "today",
+        "visit": "fresh",
+        "reason": "Engineering median target exceeded",
+        "medianMs": 3434
+      },
+      {
+        "profile": "slow4g",
+        "screen": "today",
+        "visit": "warm",
+        "reason": "Engineering median target exceeded",
+        "medianMs": 516
+      },
+      {
+        "profile": "slow4g",
+        "screen": "support",
+        "visit": "fresh",
+        "reason": "Engineering median target exceeded",
+        "medianMs": 3141
+      },
+      {
+        "profile": "slow4g",
+        "screen": "support",
+        "visit": "warm",
+        "reason": "Engineering median target exceeded",
+        "medianMs": 517
+      },
+      {
+        "profile": "slow4g",
+        "screen": "more",
+        "visit": "fresh",
+        "reason": "Engineering median target exceeded",
+        "medianMs": 3124
+      },
+      {
+        "profile": "slow4g",
+        "screen": "more",
+        "visit": "warm",
+        "reason": "Engineering median target exceeded",
+        "medianMs": 503
+      }
+    ],
+    "groups": 28,
+    "samples": 560,
+    "realIPhoneVerified": false,
+    "SafariVerified": false
+  },
+  "browserQualification": {
+    "source": "b1b81ed1d3f65556886c9110d79df045f53d8fef",
+    "at": "2026-11-03T15:45:40.593Z",
+    "verified": true,
+    "results": [
+      {
+        "engine": "chromium",
+        "testcase": "functional",
+        "status": 0,
+        "signal": null,
+        "stdout": "FIRST today 6589\nFIRST journey 2796\nFIRST shop 581\nFIRST grub 2725\nFIRST fit 2099\nFIRST support 3653\nFIRST more 1900\nTAP {\"kind\":\"first-navigation\",\"cycle\":0,\"tab\":\"journey\",\"usableMs\":1043,\"ackMs\":10,\"documentRequests\":1}\nTAP {\"kind\":\"first-navigation\",\"cycle\":0,\"tab\":\"shop\",\"usableMs\":375,\"ackMs\":10,\"documentRequests\":1}\nTAP {\"kind\":\"first-navigation\",\"cycle\":0,\"tab\":\"grub\",\"usableMs\":927,\"ackMs\":8,\"documentRequests\":1}\nTAP {\"kind\":\"first-navigation\",\"cycle\":0,\"tab\":\"fit\",\"usableMs\":1291,\"ackMs\":8,\"documentRequests\":1}\nTAP {\"kind\":\"first-navigation\",\"cycle\":0,\"tab\":\"support\",\"usableMs\":225,\"ackMs\":7,\"documentRequests\":0}\nTAP {\"kind\":\"first-navigation\",\"cycle\":0,\"tab\":\"more\",\"usableMs\":224,\"ackMs\":8,\"documentRequests\":0}\nTAP {\"kind\":\"first-navigation\",\"cycle\":0,\"tab\":\"today\",\"usableMs\":208,\"ackMs\":8,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":1,\"tab\":\"journey\",\"usableMs\":223,\"ackMs\":7,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":1,\"tab\":\"shop\",\"usableMs\":206,\"ackMs\":8,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":1,\"tab\":\"grub\",\"usableMs\":225,\"ackMs\":8,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":1,\"tab\":\"fit\",\"usableMs\":220,\"ackMs\":4,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":1,\"tab\":\"support\",\"usableMs\":225,\"ackMs\":8,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":1,\"tab\":\"more\",\"usableMs\":225,\"ackMs\":7,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":1,\"tab\":\"today\",\"usableMs\":224,\"ackMs\":8,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":2,\"tab\":\"journey\",\"usableMs\":208,\"ackMs\":8,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":2,\"tab\":\"shop\",\"usableMs\":208,\"ackMs\":8,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":2,\"tab\":\"grub\",\"usableMs\":209,\"ackMs\":9,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":2,\"tab\":\"fit\",\"usableMs\":225,\"ackMs\":8,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":2,\"tab\":\"support\",\"usableMs\":225,\"ackMs\":7,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":2,\"tab\":\"more\",\"usableMs\":225,\"ackMs\":9,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":2,\"tab\":\"today\",\"usableMs\":225,\"ackMs\":8,\"documentRequests\":0}\nUNSHIPPED_PENDING_PREVIEW_SEPARATE_FROM_SERVER_REPAIR {\"pendingView\":0,\"selected\":null,\"oldMainHidden\":false,\"currentIdentity\":\"ready\"}\nJOURNEY_SIX_TYPES_EDIT_DELETE_SNAPSHOT_GUIDE_PASSED\nSCROLL_RESTORED 350\nDRAFT_PRESERVED\nBACK_FORWARD_PRESERVED\nRESUME_VERIFIED_WITH_DRAFT\nACCOUNT_SWITCH_PRIVATE_CONTENT_CLEARED\nSHOP_TOP_LEVEL_DETAILS_FILTERS_SUPPLIER_HOLD_PASSED\nBASKET_CONTINUITY_SWITCH_CLEAR_AND_PAYMENT_URL_GUARDS_PASSED\nMORE_ACCOUNT_CONTROLS_PRESERVED\nEXPIRED_SESSION_PRIVATE_CONTENT_CLEARED\nBENCHMARK {\"engine\":\"chromium\",\"before\":false,\"samples\":28,\"identityRequests\":101,\"errors\":[]}\n",
+        "stderr": ""
+      },
+      {
+        "engine": "chromium",
+        "testcase": "expiry",
+        "status": 0,
+        "signal": null,
+        "stdout": "EXPIRY_BEFORE {\n  body: {\n    memberExperience: 'v1',\n    memberPage: 'dashboard',\n    memberTools: 'v1',\n    memberChrome: 'v1',\n    memberSession: 'ready',\n    appLayout: 'preview',\n    memberDesign: '20261001',\n    memberExperienceUi: '20261015',\n    mtRecovery: '20261025',\n    mtShopNavigation: '20261029',\n    mtSupportActive: '1',\n    appTool: 'today'\n  },\n  pending: 0,\n  sessionKeys: [ 'check', 'ready' ],\n  proof: {\n    path: '/member/dashboard?view=app',\n    ackMs: 0,\n    warm: true,\n    identityMs: 294,\n    dataAndScreenMs: 46,\n    usableMs: 341,\n    pass: true\n  }\n}\nEXPIRY_DIAGNOSTIC {\"source\":\"b1b81ed1d3f65556886c9110d79df045f53d8fef\",\"engine\":\"chromium\",\"proof\":{\"denied\":true,\"message\":\"Sign-in unavailable\"},\"authVisible\":true,\"privateVisible\":false,\"detail\":{\"body\":{\"memberExperience\":\"v1\",\"memberPage\":\"dashboard\",\"memberTools\":\"v1\",\"memberChrome\":\"v1\",\"memberSession\":\"signed-out\",\"appLayout\":\"preview\",\"memberDesign\":\"20261001\",\"appTool\":\"today\"},\"pending\":0,\"html\":{\"mtMemberPaint\":\"20261101\",\"myTimberNativeShell\":\"1\",\"mtAuthStale\":\"1\"},\"mainVisible\":\"visible\",\"mainText\":\"\",\"visibleAuth\":[{\"tag\":\"A\",\"id\":\"\",\"text\":\"Sign in\",\"href\":\"/member-login?returnTo=%2Fmember%2Fdashboard%23today\"},{\"tag\":\"A\",\"id\":\"\",\"text\":\"Already a member? Log in\",\"href\":\"/member-login?returnTo=%2Fmember%2Fdashboard%3Fview%3Dapp%23today\"}],\"status\":\"Sign in to open your private My Timber account.\\n\\nSign in\",\"statusDisplay\":\"block\",\"statusVisibility\":\"visible\",\"statusHidden\":false,\"signIn\":\"<a href=\\\"/member-login?returnTo=%2Fmember%2Fdashboard%23today\\\">Sign in</a>\",\"frames\":0},\"documentRequests\":1,\"calls\":[{\"path\":\"/v1/treatment/orders\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720617200,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/progress/summary\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720617200,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/consents\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720617200,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/shift/daily-plan\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720617200,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/journey\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720617200,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/journey/weekly-check-in\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720617200,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/check-ins\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720617200,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/plan/list\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720617200,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/fit/reminders\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720617200,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/grub/workspace\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720617200,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/commerce/active-checkout\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720617200,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/health-passport\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720617200,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/journey/trends\",\"search\":\"?weeks=12\",\"method\":\"GET\",\"at\":1793720617200,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/me\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720617448,\"frame\":\"https://shiftsometimber.co.uk/member/dashboard#today\"},{\"path\":\"/assets/my-timber-welcome-anton.ttf\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720617610,\"frame\":\"https://shiftsometimber.co.uk/member/dashboard#today\"}],\"verified\":true}\nEXPIRED_SESSION_FRESH_REAUTHENTICATION_PASSED chromium\nBENCHMARK {\"engine\":\"chromium\",\"before\":false,\"samples\":0,\"identityRequests\":7,\"errors\":[]}\n",
+        "stderr": ""
+      },
+      {
+        "engine": "webkit",
+        "testcase": "functional",
+        "status": 0,
+        "signal": null,
+        "stdout": "FIRST today 3843\nFIRST journey 2596\nFIRST shop 616\nFIRST grub 2018\nFIRST fit 2049\nFIRST support 2886\nFIRST more 2417\nTAP {\"kind\":\"first-navigation\",\"cycle\":0,\"tab\":\"journey\",\"usableMs\":1180,\"ackMs\":13,\"documentRequests\":1}\nTAP {\"kind\":\"first-navigation\",\"cycle\":0,\"tab\":\"shop\",\"usableMs\":711,\"ackMs\":11,\"documentRequests\":1}\nTAP {\"kind\":\"first-navigation\",\"cycle\":0,\"tab\":\"grub\",\"usableMs\":1502,\"ackMs\":2,\"documentRequests\":1}\nTAP {\"kind\":\"first-navigation\",\"cycle\":0,\"tab\":\"fit\",\"usableMs\":1178,\"ackMs\":11,\"documentRequests\":1}\nTAP {\"kind\":\"first-navigation\",\"cycle\":0,\"tab\":\"support\",\"usableMs\":205,\"ackMs\":5,\"documentRequests\":0}\nTAP {\"kind\":\"first-navigation\",\"cycle\":0,\"tab\":\"more\",\"usableMs\":222,\"ackMs\":3,\"documentRequests\":0}\nTAP {\"kind\":\"first-navigation\",\"cycle\":0,\"tab\":\"today\",\"usableMs\":222,\"ackMs\":4,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":1,\"tab\":\"journey\",\"usableMs\":205,\"ackMs\":3,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":1,\"tab\":\"shop\",\"usableMs\":205,\"ackMs\":2,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":1,\"tab\":\"grub\",\"usableMs\":206,\"ackMs\":6,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":1,\"tab\":\"fit\",\"usableMs\":222,\"ackMs\":5,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":1,\"tab\":\"support\",\"usableMs\":222,\"ackMs\":5,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":1,\"tab\":\"more\",\"usableMs\":221,\"ackMs\":4,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":1,\"tab\":\"today\",\"usableMs\":223,\"ackMs\":6,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":2,\"tab\":\"journey\",\"usableMs\":206,\"ackMs\":7,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":2,\"tab\":\"shop\",\"usableMs\":207,\"ackMs\":6,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":2,\"tab\":\"grub\",\"usableMs\":221,\"ackMs\":5,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":2,\"tab\":\"fit\",\"usableMs\":205,\"ackMs\":3,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":2,\"tab\":\"support\",\"usableMs\":222,\"ackMs\":3,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":2,\"tab\":\"more\",\"usableMs\":223,\"ackMs\":7,\"documentRequests\":0}\nTAP {\"kind\":\"repeat-navigation\",\"cycle\":2,\"tab\":\"today\",\"usableMs\":222,\"ackMs\":4,\"documentRequests\":0}\nUNSHIPPED_PENDING_PREVIEW_SEPARATE_FROM_SERVER_REPAIR {\"pendingView\":0,\"selected\":null,\"oldMainHidden\":false,\"currentIdentity\":\"ready\"}\nJOURNEY_SIX_TYPES_EDIT_DELETE_SNAPSHOT_GUIDE_PASSED\nSCROLL_RESTORED 350\nDRAFT_PRESERVED\nBACK_FORWARD_PRESERVED\nRESUME_VERIFIED_WITH_DRAFT\nACCOUNT_SWITCH_PRIVATE_CONTENT_CLEARED\nSHOP_TOP_LEVEL_DETAILS_FILTERS_SUPPLIER_HOLD_PASSED\nBASKET_CONTINUITY_SWITCH_CLEAR_AND_PAYMENT_URL_GUARDS_PASSED\nMORE_ACCOUNT_CONTROLS_PRESERVED\nEXPIRED_SESSION_PRIVATE_CONTENT_CLEARED\nBENCHMARK {\"engine\":\"webkit\",\"before\":false,\"samples\":28,\"identityRequests\":106,\"errors\":[]}\n",
+        "stderr": ""
+      },
+      {
+        "engine": "webkit",
+        "testcase": "expiry",
+        "status": 0,
+        "signal": null,
+        "stdout": "EXPIRY_BEFORE {\n  body: {\n    memberExperience: 'v1',\n    memberPage: 'dashboard',\n    memberTools: 'v1',\n    memberChrome: 'v1',\n    memberSession: 'ready',\n    appLayout: 'preview',\n    memberDesign: '20261001',\n    memberExperienceUi: '20261015',\n    mtRecovery: '20261025',\n    mtShopNavigation: '20261029',\n    mtSupportActive: '1',\n    appTool: 'today'\n  },\n  pending: 0,\n  sessionKeys: [ 'check', 'ready' ],\n  proof: {\n    path: '/member/dashboard?view=app',\n    ackMs: 0,\n    warm: true,\n    identityMs: 288,\n    dataAndScreenMs: 48,\n    usableMs: 337,\n    pass: true\n  }\n}\nEXPIRY_DIAGNOSTIC {\"source\":\"b1b81ed1d3f65556886c9110d79df045f53d8fef\",\"engine\":\"webkit\",\"proof\":{\"denied\":true,\"message\":\"Sign-in unavailable\"},\"authVisible\":true,\"privateVisible\":false,\"detail\":{\"body\":{\"memberExperience\":\"v1\",\"memberPage\":\"dashboard\",\"memberTools\":\"v1\",\"memberChrome\":\"v1\",\"memberSession\":\"signed-out\",\"appLayout\":\"preview\",\"memberDesign\":\"20261001\",\"appTool\":\"today\"},\"pending\":0,\"html\":{\"mtMemberPaint\":\"20261101\",\"myTimberNativeShell\":\"1\",\"mtAuthStale\":\"1\"},\"mainVisible\":\"visible\",\"mainText\":\"\",\"visibleAuth\":[{\"tag\":\"A\",\"id\":\"\",\"text\":\"Sign in\",\"href\":\"/member-login?returnTo=%2Fmember%2Fdashboard%23today\"},{\"tag\":\"A\",\"id\":\"\",\"text\":\"Already a member? Log in\",\"href\":\"/member-login?returnTo=%2Fmember%2Fdashboard%3Fview%3Dapp%23today\"}],\"status\":\"Sign in to open your private My Timber account.\\n\\nSign in\",\"statusDisplay\":\"block\",\"statusVisibility\":\"visible\",\"statusHidden\":false,\"signIn\":\"<a href=\\\"/member-login?returnTo=%2Fmember%2Fdashboard%23today\\\">Sign in</a>\",\"frames\":0},\"documentRequests\":1,\"calls\":[{\"path\":\"/v1/treatment/orders\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720720497,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/progress/summary\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720720497,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/check-ins\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720720497,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/journey/weekly-check-in\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720720497,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/shift/daily-plan\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720720497,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/commerce/active-checkout\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720720497,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/consents\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720720497,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/journey/trends\",\"search\":\"?weeks=12\",\"method\":\"GET\",\"at\":1793720720497,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/fit/reminders\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720720497,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/grub/workspace\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720720497,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/plan/list\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720720497,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/journey\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720720497,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/health-passport\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720720497,\"frame\":\"https://shiftsometimber.co.uk/member/life-back/journey\"},{\"path\":\"/v1/me\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720720736,\"frame\":\"https://shiftsometimber.co.uk/member/dashboard#today\"},{\"path\":\"/assets/my-timber-welcome-anton.ttf\",\"search\":\"\",\"method\":\"GET\",\"at\":1793720720898,\"frame\":\"https://shiftsometimber.co.uk/member/dashboard#today\"}],\"verified\":true}\nEXPIRED_SESSION_FRESH_REAUTHENTICATION_PASSED webkit\nBENCHMARK {\"engine\":\"webkit\",\"before\":false,\"samples\":0,\"identityRequests\":7,\"errors\":[]}\n",
+        "stderr": ""
+      },
+      {
+        "testcase": "HTTP privacy",
+        "status": 0,
+        "stdout": "PRECOMPILED_HTTP_PRIVACY_PASSED 48 document/API/gate checks 63 current public resources matched\n",
+        "stderr": ""
+      }
+    ],
+    "productionWrites": 0,
+    "realMemberRecordsRead": 0
+  },
+  "httpPrivacy": {
+    "verified": true,
+    "revision": 2,
+    "source": "b1b81ed1d3f65556886c9110d79df045f53d8fef",
+    "productionWrites": 0,
+    "keys": [
+      "source",
+      "at",
+      "verified",
+      "productionWrites",
+      "realMemberRecordsRead",
+      "revision",
+      "rows",
+      "publicResources",
+      "finishedAt"
+    ]
+  },
+  "privateDependencyProofs": [
+    {
+      "name": "shift-core",
+      "verified": true,
+      "version": "632ae7ba-ac02-4a9c-8db3-3a818cb9c80c",
+      "previousDependencyVersion": "f5108264-2b56-498a-864a-635210fa0541",
+      "at": "2026-11-03T14:46:23.336Z",
+      "privateModuleCount": 83,
+      "privateModuleGraphSHA256": "53933c0b9b5b5a7c371413148155cb85be46f174ee1616ecf54c42e851eeb42c",
+      "changedPublicModules": [
+        "aeo-geo/schema.mjs"
+      ],
+      "rows": [
+        {
+          "path": "/member/dashboard?view=app",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?view=app",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?view=app",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?view=app",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?view=app",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?view=app",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=support",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=support",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=support",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=support",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=support",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=support",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=stuff",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=stuff",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=stuff",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=stuff",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=stuff",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=stuff",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/grub",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/grub",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/grub",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/grub",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/grub",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/grub",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/fit",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/fit",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/fit",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/fit",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/fit",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/fit",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/me",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/me",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/me",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/me",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/me",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/me",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/profile",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/profile",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/profile",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/profile",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/profile",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/profile",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/life-back/journey",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/life-back/journey",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/life-back/journey",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/life-back/journey",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/life-back/journey",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/life-back/journey",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        }
+      ],
+      "productionWrites": 0
+    },
+    {
+      "name": "shift-mytimber-support-20261023",
+      "verified": true,
+      "version": "1ff41acd-546e-431a-ab7f-fbc1f6f65b68",
+      "previousDependencyVersion": "be19dea7-d895-46bb-beae-4b02f44333ef",
+      "at": "2026-11-03T14:46:32.230Z",
+      "privateModuleCount": 1,
+      "privateModuleGraphSHA256": "087aab693fa6cd339a77ab122f26c09656b890ac95c7f9faef6e46b0378d01ad",
+      "changedPublicModules": [
+        "aeo-geo/delivery.mjs",
+        "aeo-geo/retatrutide-evidence.mjs",
+        "aeo-geo/retatrutide.mjs",
+        "aeo-geo/schema.mjs",
+        "aeo-geo/sitemap-metadata.mjs"
+      ],
+      "rows": [
+        {
+          "path": "/member/dashboard?view=app",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?view=app",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?view=app",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?view=app",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?view=app",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?view=app",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=support",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=support",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=support",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=support",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=support",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=support",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=stuff",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=stuff",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=stuff",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=stuff",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=stuff",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=stuff",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/grub",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/grub",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/grub",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/grub",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/grub",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/grub",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/fit",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/fit",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/fit",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/fit",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/fit",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/fit",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/me",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/me",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/me",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/me",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/me",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/me",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/profile",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/profile",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/profile",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/profile",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/profile",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/profile",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/life-back/journey",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/life-back/journey",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/life-back/journey",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/life-back/journey",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/life-back/journey",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/life-back/journey",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        }
+      ],
+      "productionWrites": 0
+    },
+    {
+      "name": "shift-core",
+      "verified": true,
+      "publicOnlyChanges": [
+        {
+          "module": "worker.js",
+          "scope": "Existing sitemap lastmod replacement now applies to all known article rows, not editorial rows only",
+          "version": "e21cdda6-22e1-4c82-b4db-acaccfdc4f8f",
+          "originalHash": "722bc50b31fb2aeaa627441dd293be06d124eb2e1f9a7c367773b9fe40b1c020",
+          "actualHash": "65e1f0888c3c462abf40caffe616e19871e36359f560067c466cf14370720ccf",
+          "inverseRestoresEntireModule": true,
+          "memberAndApiCodeUnchanged": true
+        }
+      ],
+      "version": "e21cdda6-22e1-4c82-b4db-acaccfdc4f8f",
+      "previousDependencyVersion": "f5108264-2b56-498a-864a-635210fa0541",
+      "at": "2026-11-03T15:48:43.171Z",
+      "privateModuleCount": 83,
+      "privateModuleGraphSHA256": "53933c0b9b5b5a7c371413148155cb85be46f174ee1616ecf54c42e851eeb42c",
+      "changedPublicModules": [
+        "aeo-geo/delivery.mjs",
+        "aeo-geo/schema.mjs"
+      ],
+      "rows": [
+        {
+          "path": "/member/dashboard?view=app",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?view=app",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?view=app",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?view=app",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?view=app",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?view=app",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=support",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=support",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=support",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=support",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=support",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=support",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=stuff",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=stuff",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=stuff",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=stuff",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=stuff",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/dashboard?timber=stuff",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/grub",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/grub",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/grub",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/grub",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/grub",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/grub",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/fit",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/fit",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/fit",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/fit",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/fit",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/member/fit",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/me",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/me",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/me",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/me",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/me",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/me",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/profile",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/profile",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/profile",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/profile",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/profile",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/profile",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/life-back/journey",
+          "method": "GET",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/life-back/journey",
+          "method": "GET",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/life-back/journey",
+          "method": "HEAD",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/life-back/journey",
+          "method": "HEAD",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/life-back/journey",
+          "method": "POST",
+          "cookie": "none",
+          "exactPassThrough": true
+        },
+        {
+          "path": "/v1/life-back/journey",
+          "method": "POST",
+          "cookie": "synthetic",
+          "exactPassThrough": true
+        }
+      ],
+      "productionWrites": 0
+    }
+  ],
+  "privateSettingsProofs": {
+    "shift-core": {
+      "name": "shift-core",
+      "version": "e21cdda6-22e1-4c82-b4db-acaccfdc4f8f",
+      "baselineVersion": "f5108264-2b56-498a-864a-635210fa0541",
+      "privateSettingsMatched": true,
+      "bindingsSHA256": "5d8451651fffb331f7747d253f6c5b438e4720974f6f12d75eb63447eda2a060",
+      "compatibilityDate": "2026-08-09",
+      "at": "2026-11-03T15:48:45.032Z"
+    },
+    "shift-mytimber-support-20261023": {
+      "name": "shift-mytimber-support-20261023",
+      "version": "1ff41acd-546e-431a-ab7f-fbc1f6f65b68",
+      "baselineVersion": "be19dea7-d895-46bb-beae-4b02f44333ef",
+      "privateSettingsMatched": true,
+      "bindingsSHA256": "276d79dae779bd1bf9ad2bfac0c2cd891657308e2c6880754b5c24b764e8ac20",
+      "compatibilityDate": "2026-10-23",
+      "at": "2026-11-03T15:05:32.932Z"
+    }
+  },
+  "rollbackHistory": [
+    {
+      "name": "shift-programme-member-20261023",
+      "rollbackDeployment": "4ba9dd87-5b52-4fbc-9328-73ea9a0ad57b"
+    },
+    {
+      "name": "shift-hq-member-comms-20261023",
+      "rollbackDeployment": "2dfc20dc-692f-401b-87c0-70e1dd99e3f7"
+    }
+  ],
+  "restrictions": {
+    "homepageChanged": false,
+    "purchasingEnabled": false,
+    "nativeOrStoreChanged": false,
+    "externalCommunicationsSent": false,
+    "costsAgreed": false,
+    "physicalIphoneVerified": false,
+    "SafariVerified": false,
+    "appearance": "All12 URL/UI HTML variants match exact approved source SHA256; client scripts,styles and assets unchanged"
+  },
+  "remaining": [
+    "Physical iPhone/Safari validation",
+    "Slow4G Today/Support/More remain above engineering median targets, despite all original p95 gates passing",
+    "Separate pending-target client preview remains unshipped and outside this repair",
+    "Other website components remain with their existing owners"
+  ],
+  "liveLayout": {
+    "at": "2026-11-03T15:51:54.702Z",
+    "source": "b1b81ed1d3f65556886c9110d79df045f53d8fef",
+    "results": [
+      {
+        "engine": "chromium",
+        "width": "390",
+        "status": 0
+      },
+      {
+        "engine": "chromium",
+        "width": "1440",
+        "status": 0
+      },
+      {
+        "engine": "webkit",
+        "width": "390",
+        "status": 0
+      },
+      {
+        "engine": "webkit",
+        "width": "1440",
+        "status": 0
+      }
+    ],
+    "verified": true,
+    "productionWrites": 0
+  },
+  "status": "DEPLOYED_VERIFIED",
+  "slowNetworkCaveat": "All28 retained p95 gates pass, but slow4g Today, Support and More medians still exceed engineering targets."
+}

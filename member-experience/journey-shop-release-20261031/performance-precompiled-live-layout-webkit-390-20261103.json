@@ -1,0 +1,78 @@
+{
+  "verified": true,
+  "source": "b1b81ed1d3f65556886c9110d79df045f53d8fef",
+  "engine": "webkit",
+  "mode": "live",
+  "nativeShell": true,
+  "at": "2026-11-03T15:51:40.087Z",
+  "layouts": [
+    {
+      "tab": "today",
+      "path": "/member/dashboard?view=app#today",
+      "width": 390,
+      "documentWidth": 390,
+      "navigation": 1,
+      "mainVisible": true,
+      "session": "ready"
+    },
+    {
+      "tab": "journey",
+      "path": "/member/life-back/journey",
+      "width": 390,
+      "documentWidth": 390,
+      "navigation": 1,
+      "mainVisible": true,
+      "session": "ready"
+    },
+    {
+      "tab": "shop",
+      "path": "/member/life-back/shop",
+      "width": 390,
+      "documentWidth": 390,
+      "navigation": 1,
+      "mainVisible": true,
+      "session": "ready"
+    },
+    {
+      "tab": "grub",
+      "path": "/member/grub",
+      "width": 390,
+      "documentWidth": 390,
+      "navigation": 1,
+      "mainVisible": true,
+      "session": "ready"
+    },
+    {
+      "tab": "fit",
+      "path": "/member/fit",
+      "width": 390,
+      "documentWidth": 390,
+      "navigation": 1,
+      "mainVisible": true,
+      "session": "ready"
+    },
+    {
+      "tab": "support",
+      "path": "/member/dashboard?timber=support#today",
+      "width": 390,
+      "documentWidth": 390,
+      "navigation": 1,
+      "mainVisible": true,
+      "session": "ready"
+    },
+    {
+      "tab": "more",
+      "path": "/member/dashboard?timber=stuff#today",
+      "width": 390,
+      "documentWidth": 390,
+      "navigation": 1,
+      "mainVisible": true,
+      "session": "ready"
+    }
+  ],
+  "errors": [],
+  "productionWrites": 0,
+  "privateAPIs": "Fictional intercepted data only",
+  "physicalIphone": false,
+  "SafariVerified": false
+}
