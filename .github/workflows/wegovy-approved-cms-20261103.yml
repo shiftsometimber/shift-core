@@ -1,0 +1,61 @@
+name: Approved Wegovy CMS correction 20261103
+on:
+  push:
+    branches: [release/wegovy-approved-cms-20261103]
+    paths: ['.github/workflows/wegovy-approved-cms-20261103.yml']
+permissions:
+  contents: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  article:
+    if: github.repository == 'shiftsometimber/shift-core' && github.actor_id == '315011648'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      APPROVED_BASE_SHA: c175ab099305c47fd70ff917e13da736dbabd870
+      WRANGLER_SEND_METRICS: 'false'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Check preserved toolchain and bounded source
+        run: |
+          git diff --exit-code "$APPROVED_BASE_SHA" -- wrangler.jsonc package.json package-lock.json .nvmrc
+          node --check release/wegovy-approved-cms-20261103/repair.mjs
+          node --test release/wegovy-approved-cms-20261103/article-correction-20261103.test.mjs
+      - name: Install retained exact toolchain
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Capture current public article and guarded correction
+        id: capture
+        run: node release/wegovy-approved-cms-20261103/repair.mjs capture
+      - name: Preserve exact before row and rollback before mutation
+        uses: actions/upload-artifact@v4
+        with:
+          name: wegovy-cms-before-${{ github.run_id }}
+          path: wegovy-cms-proof/
+          if-no-files-found: error
+          retention-days: 90
+      - name: Apply only the approved article body correction
+        id: apply
+        run: node release/wegovy-approved-cms-20261103/repair.mjs apply
+      - name: Verify actual production body dates provenance and security
+        run: node release/wegovy-approved-cms-20261103/repair.mjs verify
+      - name: Restore only this run's unchanged owned row if proof fails
+        if: ${{ failure() && steps.apply.outcome == 'success' }}
+        run: node release/wegovy-approved-cms-20261103/repair.mjs rollback
+      - name: Retain exact outcome and restoration evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wegovy-cms-result-${{ github.run_id }}
+          path: wegovy-cms-proof/
+          if-no-files-found: warn
+          retention-days: 90
