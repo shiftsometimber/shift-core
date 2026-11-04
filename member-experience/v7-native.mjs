@@ -80,7 +80,7 @@ export async function nativeDocument(request,env){
  if(request.method==='HEAD')return new Response(null,{headers:privateHeaders});
  // Send the public frame/resources immediately. Private JSON is appended only
  // after the one server identity check and account-scoped reads have succeeded.
- const opening=shellHTML(null,true).replace('</head>',(page==='welcome'?'<link rel="preload" as="image" type="image/webp" href="/assets/member-experience/v7-welcome-headline.webp" fetchpriority="high">':'')+'</head>').replace(/<script id="mtNativeInitial"[^>]*>[\s\S]*?<\/script>/,'').replace('</body></html>','');
+ const opening=shellHTML(null,true).replace(/<script id="mtNativeInitial"[^>]*>[\s\S]*?<\/script>/,'').replace('</body></html>','');
  const encoder=new TextEncoder(),stream=new ReadableStream({async start(controller){
   controller.enqueue(encoder.encode(opening));
   try{const value=await snapshot(request,env,page),payload=value instanceof Response?(value.status===401?{signedOut:true}:{unavailable:true}):value;
