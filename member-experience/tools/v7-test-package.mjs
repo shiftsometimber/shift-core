@@ -46,7 +46,7 @@ const assetTag=digest(p).slice(0,20);p=p.replaceAll('__V7_NATIVE_ASSET_TAG__',as
 // Precompress the exact served browser bytes at build time. No page-open work.
 const compressFile=path.join(output,'native-compression-source.mjs');fs.writeFileSync(compressFile,p);
 const compressionApp=(await import(pathToFileURL(compressFile).href+'?build='+Date.now())).default,compression=[];
-for(const [asset,marker]of [['v7-native.mjs','__V7_BROTLI_BROWSER__'],['v7-native.css','__V7_BROTLI_CSS__']]){
+for(const [asset,marker]of [['v7-native.mjs','__V7_BROTLI_BROWSER__'],['v7-native.css','__V7_BROTLI_CSS__'],['v7-journey-support.mjs','__V7_BROTLI_SECONDARY__']]){
  const response=await compressionApp.fetch(new Request('https://shiftsometimber.co.uk/assets/member-experience/'+asset,{headers:{'Accept-Encoding':'identity'}}),{},{});if(!response.ok)throw Error('Native precompression source unavailable');
  const raw=Buffer.from(await response.arrayBuffer()),packed=zlib.brotliCompressSync(raw,{params:{[zlib.constants.BROTLI_PARAM_QUALITY]:11,[zlib.constants.BROTLI_PARAM_MODE]:zlib.constants.BROTLI_MODE_TEXT}});if(!zlib.brotliDecompressSync(packed).equals(raw))throw Error('Native byte verification failed');p=p.replaceAll(marker,packed.toString('base64'));compression.push({asset,rawBytes:raw.length,brotliBytes:packed.length,roundTripIdentical:true,sha256:digest(raw)});
 }

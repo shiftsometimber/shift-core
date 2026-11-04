@@ -21,13 +21,9 @@ export function welcomePages(s){
  }
  function status(){const t=s.state().treatment;if(!t)return '';const pending=t.paymentStatus==='paid'&&t.clinicalStatus==='assessment_pending';return '<a class="mt-treatment-strip" href="/member/dashboard/explore-weight-loss/status">'+s.icon('lock')+'<span><strong>'+s.esc(pending?'Your treatment: with your prescriber':'Your treatment: '+(t.label||t.clinicalStatus.replaceAll('_',' ')))+'</strong><small>'+s.esc(pending?'Paid. Tap to see your status.':'Tap to see your status.')+'</small></span>'+s.icon('play')+'</a>';}
  async function questions(root){
-  root.innerHTML='<section class="mt-explore" data-clinical-entry><p class="mt-explore-eyebrow">HEALTH QUESTIONS</p><h1>YOUR HEALTH QUESTIONS.</h1><p role="status">Checking the existing clinical service…</p></section>';
-  const box=root.querySelector('[data-clinical-entry]');
-  try{const context=await s.clinicalContext();if(!root.isConnected)return;
-   box.querySelector('[role=status]').textContent=context.assessmentAvailable?'Continue your existing secure clinical assessment.':'Clinical assessment is not open yet. No medical answers or images have been collected and no payment has been taken.';
-   if(context.assessmentAvailable){const link=document.createElement('a');link.href='/treatment-assessment';link.textContent='Continue the existing secure assessment';box.append(link);}
-  }catch{if(root.isConnected)box.querySelector('[role=status]').textContent='The existing clinical service could not be checked. No medical answers or images have been collected and no payment has been taken.';}
-  if(root.isConnected){const back=document.createElement('a');back.href='/member/dashboard#today';back.textContent='Back to My Timber';box.append(back);}
+  root.innerHTML='<p role="status">Opening your health questions…</p>';
+  try{const module=await import('/assets/member-experience/v7-assessment.mjs?v=__V7_NATIVE_ASSET_TAG__');if(root.isConnected&&s.ready())module.mountAssessment(root,s);}
+  catch{if(root.isConnected)root.innerHTML='<section class="mt-explore"><h1>YOUR HEALTH QUESTIONS</h1><p role="status">The questionnaire could not load. Please try again.</p><a href="/member/dashboard/explore-weight-loss/questions">Try again</a></section>';}
  }
  return {markup:page=>page==='welcome'?welcome():page==='explore'?explore():treatment(),questions,status};
 }
