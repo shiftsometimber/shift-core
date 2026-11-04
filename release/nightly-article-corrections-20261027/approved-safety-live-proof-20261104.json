@@ -1,0 +1,187 @@
+{
+  "scope": "Approved non-clinical NHS article corrections plus exact BabyLove import review safeguard",
+  "approvedCandidate": "b222d2a8847358377838d7b1c22ba7aa0d5d4436",
+  "cms": {
+    "ok": true,
+    "verifiedAt": "2026-11-04T23:12:38.262Z",
+    "url": "https://shiftsometimber.co.uk/articles/glp-1-nhs-eligibility",
+    "id": 53,
+    "source": "babylovegrowth",
+    "publishAt": "2026-11-03T04:00:15.349Z",
+    "modifiedAt": "2026-11-04T23:12:30.266Z",
+    "beforeBodySha256": "5dd19c0c77293601eccd140c4b006005242bcf18a16a367366245fcc2e36244f",
+    "afterBodySha256": "2f45f5de8dbfdf82fddf0f3cda7e0a97beafa55717214488e0fa834572470013",
+    "htmlSha256": "24cb58def8a9fe23170c10d01323c35f7b83d7f35521467f617a9b75ba735081",
+    "headers": {
+      "x-shift-article-source": "babylovegrowth",
+      "x-robots-tag": null,
+      "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' mailto:; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com; connect-src 'self' https://challenges.cloudflare.com https://api.shiftsometimber.co.uk https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://cloudflareinsights.com https://*.cloudflareinsights.com https://www.thesportsdb.com; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://challenges.cloudflare.com https://www.googletagmanager.com; worker-src 'self' blob:; manifest-src 'self'; media-src 'self'; upgrade-insecure-requests",
+      "strict-transport-security": "max-age=31536000; includeSubDomains",
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "run": "41931768457",
+    "workerRuntimeChanged": false,
+    "clinicalChanges": false,
+    "approvedCandidate": "b222d2a8847358377838d7b1c22ba7aa0d5d4436"
+  },
+  "independentPublicVerification": {
+    "verifiedAt": "2026-11-04T23:19:43.647602+00:00",
+    "checks": [
+      {
+        "path": "/articles/glp-1-nhs-eligibility",
+        "status": 200,
+        "finalUrl": "https://shiftsometimber.co.uk/articles/glp-1-nhs-eligibility",
+        "canonical": [
+          "https://shiftsometimber.co.uk/articles/glp-1-nhs-eligibility"
+        ],
+        "robots": [
+          "index,follow,max-image-preview:large"
+        ],
+        "headerRobots": null,
+        "security": {
+          "content-security-policy": true,
+          "strict-transport-security": true,
+          "x-frame-options": true
+        },
+        "source": "babylovegrowth",
+        "correctedBoundary": 1,
+        "oldServiceClaim": false,
+        "oldExperience": false,
+        "oldPersonalQuote": false,
+        "correctProgrammeLink": true,
+        "h1": [
+          "GLP-1 NHS Eligibility: Who Qualifies for Weight Loss Injections"
+        ],
+        "schemaParseable": true,
+        "articleDates": [
+          {
+            "published": "2026-11-03T04:00:15.349Z",
+            "modified": "2026-11-04T23:12:30.266Z",
+            "author": {
+              "@type": "Organization",
+              "name": "SHIFT Team",
+              "url": "https://shiftsometimber.co.uk/",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://shiftsometimber.co.uk/assets/shift-wordmark.png"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "path": "/programme",
+        "status": 200,
+        "finalUrl": "https://shiftsometimber.co.uk/programme",
+        "canonical": [],
+        "robots": [],
+        "headerRobots": null,
+        "security": {
+          "content-security-policy": true,
+          "strict-transport-security": true,
+          "x-frame-options": true
+        }
+      },
+      {
+        "path": "/work-with-us",
+        "status": 200,
+        "finalUrl": "https://shiftsometimber.co.uk/work-with-us",
+        "canonical": [],
+        "robots": [],
+        "headerRobots": null,
+        "security": {
+          "content-security-policy": true,
+          "strict-transport-security": true,
+          "x-frame-options": true
+        }
+      },
+      {
+        "path": "/shift-health/blood-tests",
+        "status": 200,
+        "finalUrl": "https://shiftsometimber.co.uk/shift-health/blood-tests",
+        "canonical": [
+          "https://shiftsometimber.co.uk/shift-health/blood-tests"
+        ],
+        "robots": [
+          "index,follow"
+        ],
+        "headerRobots": null,
+        "security": {
+          "content-security-policy": true,
+          "strict-transport-security": true,
+          "x-frame-options": true
+        }
+      }
+    ]
+  },
+  "importSafeguard": {
+    "ok": true,
+    "verifiedAt": "2026-11-04T23:20:10.338Z",
+    "kind": "owned_runtime_deployment",
+    "source": "cdd6af19231f4fb68b2b8d5eeab3211acf26b3fa",
+    "run": "41932766838",
+    "script": "shift-core",
+    "versionId": "36d0c04b-bb34-4c05-81ac-27e20a958756",
+    "deploymentId": "9e15801e-59a9-4bd6-b8d9-13a3adcf76a7",
+    "before": {
+      "id": "c48a3ce8-d1f3-4c6a-a208-c9f490dd1243",
+      "versions": [
+        {
+          "version_id": "08cebab7-1143-46a7-863e-1506ab83aadb",
+          "percentage": 100
+        }
+      ],
+      "created_on": "2026-11-04T22:00:08.90688Z"
+    },
+    "promotedAt": "2026-11-04T23:20:01.264Z",
+    "proof": {
+      "existingModulesPreserved": 97,
+      "changedModules": [
+        "worker.js"
+      ],
+      "addedModules": [
+        "article-publication-review-20261104.mjs"
+      ],
+      "mainEntryPreserved": true,
+      "configurationPreserved": true,
+      "candidate": "b222d2a8847358377838d7b1c22ba7aa0d5d4436",
+      "beforeSHA256": "db1e47b416898acef972900433ed4dc95be059b75da9842988804dad85d33a35",
+      "afterSHA256": "d309d370d7f4b049c90928d54b678c9a355050e8b9bd3b58eb38502f1d24a2d4",
+      "hunks": 2,
+      "addedImport": "article-publication-review-20261104.mjs",
+      "exactInverse": true
+    },
+    "protectedPaths": [
+      "/",
+      "/member-login",
+      "/member/dashboard",
+      "/v1/member-state",
+      "/checkout",
+      "/work-with-us",
+      "/shift-health/blood-tests",
+      "/articles/glp-1-nhs-eligibility",
+      "/articles/appetite-control-on-glp-1"
+    ],
+    "protectedDocumentsUnchanged": true,
+    "authBoundariesUnchanged": true,
+    "compiledHandlerTests": 13,
+    "realVendorDeliveryTested": false,
+    "databaseWrites": false,
+    "routeWrites": false,
+    "notificationsSent": false
+  },
+  "limitations": [
+    "Medical eligibility/continuation wording has not changed; qualified clinical review remains required.",
+    "No real authenticated vendor delivery was sent as a test; the next genuine delivery outcome remains to be observed.",
+    "No contributor-route repair or daily two-route delivery proof is claimed.",
+    "PR1521 is unmerged; preserve the live safeguard in the next coordinated application release."
+  ],
+  "artifacts": {
+    "cmsBefore": 13370913378,
+    "cmsResult": 13371233075,
+    "gateBefore": 13372053911,
+    "gateResult": 13372387448,
+    "retentionDays": 90
+  },
+  "oneOffWorkflowRetiredAtCommit": "415dec738c7f117ccc32bd9e362aeea7da742aca"
+}
