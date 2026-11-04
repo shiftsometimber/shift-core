@@ -71,7 +71,7 @@ try{
   state.preparedAt=new Date().toISOString();state.sourceCommit=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();save();console.log('MEMBER_RELEASE_PREPARED_NO_TRAFFIC_CHANGE');
  }else if(command==='live'){
   assert(state.preparedAt);await schema();await promote(CORE);await initialise();await routes('before');await promote(FRONT);await routes('after');
-  if(!state.overnightScheduleAt){state.scheduleChanges.push({name:FRONT,before:[],after:[{cron:'0,15,30,45 0-5 * * *'}]});save();await cf(ep(FRONT)+'/schedules','PUT',[{cron:'0,15,30,45 0-5 * * *'}]);state.overnightScheduleAt=new Date().toISOString();save();}
+  const schedules=(await cf(ep(FRONT)+'/schedules')).schedules||[];if(!schedules.some(s=>s.cron==='0,15,30,45 0-5 * * *')){state.scheduleChanges.push({name:FRONT,before:[],after:[{cron:'0,15,30,45 0-5 * * *'}]});save();await cf(ep(FRONT)+'/schedules','PUT',[{cron:'0,15,30,45 0-5 * * *'}]);state.overnightScheduleAt=new Date().toISOString();save();}
   await guard();state.liveAt=new Date().toISOString();save();console.log('LIVE_AT',state.liveAt);
  }else if(command==='inspect'){console.log(JSON.stringify({preparedAt:state.preparedAt,liveAt:state.liveAt,owners:state.owners.map(o=>({name:o.name,candidate:o.candidateVersion,promotedAt:o.promotedAt}))}));}
  else throw Error('Unknown release operation');

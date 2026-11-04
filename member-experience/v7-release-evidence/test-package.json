@@ -1,7 +1,7 @@
 {
   "state": "TEST_SERVICES_UPLOADED_NOT_MEMBER_DEPLOYED",
   "testOrigin": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev",
-  "assetTag": "e2c94a2022de7687a87d",
+  "assetTag": "9003a7a099576d282143",
   "testDatabase": "247b065f-fea4-4891-945b-b707f2417656",
   "productionDatabaseExcluded": true,
   "sourceBranch": "fix/my-timber-precompiled-documents-20261102",
@@ -140,6 +140,57 @@
     "worker": "shift-programme-my-timber-v7-legacy",
     "retained": true
   },
+  "preparer": {
+    "worker": "shift-my-timber-v7-test-preparer",
+    "main": "preparer.mjs",
+    "modules": 1,
+    "gzipBytes": 2108500,
+    "result": {
+      "created_on": "2026-11-04T00:12:23.307327Z",
+      "modified_on": "2026-11-04T00:25:29.592642Z",
+      "id": "shift-my-timber-v7-test-preparer",
+      "tag": "0aa2927bdfc1402b82932d3ec4921e46",
+      "entry_point": "preparer.mjs",
+      "tags": null,
+      "deployment_id": "40bb02e5fc354e4da84de7a090989280",
+      "tail_consumers": null,
+      "logpush": false,
+      "has_assets": false,
+      "has_modules": true,
+      "etag": "1edc14c9114e0b6bdb1ad6aa20f137dd25034ffa336a09865328ef246595c8f4",
+      "handlers": [
+        "fetch"
+      ],
+      "named_handlers": [
+        {
+          "name": "V7Offers",
+          "handlers": [
+            "legacyScheduled",
+            "recipeById",
+            "prepareOffers"
+          ]
+        },
+        {
+          "name": "V7Planner",
+          "handlers": [
+            "initialiseMember",
+            "account",
+            "plan",
+            "prepareV7Fit",
+            "prepareV7FitBatch"
+          ]
+        }
+      ],
+      "last_deployed_from": "api",
+      "compatibility_date": "2026-08-09",
+      "compatibility_flags": [
+        "nodejs_compat",
+        "global_fetch_strictly_public"
+      ],
+      "usage_model": "standard",
+      "startup_time_ms": 40
+    }
+  },
   "uploads": [
     {
       "worker": "shift-core-my-timber-v7-backend",
@@ -149,20 +200,20 @@
       "worker": "shift-programme-my-timber-v7-test",
       "main": "v7-release-20261103/test-entry.mjs",
       "modules": 3,
-      "gzipBytes": 142962,
+      "gzipBytes": 142991,
       "result": {
         "created_on": "2026-11-03T19:47:18.85249Z",
-        "modified_on": "2026-11-03T23:30:43.117955Z",
+        "modified_on": "2026-11-04T00:25:33.670023Z",
         "id": "shift-programme-my-timber-v7-test",
         "tag": "56f405f38c0f44b5b144ad493cb9330d",
         "entry_point": "v7-release-20261103/test-entry.mjs",
         "tags": null,
-        "deployment_id": "ed325c71a3504f83931e70ead31a301a",
+        "deployment_id": "b07d959610274159a0042edddee5b7a4",
         "tail_consumers": null,
         "logpush": false,
         "has_assets": false,
         "has_modules": true,
-        "etag": "dca43199d822213b2938cb4bf84dae1597253a9a1936f880ec944cfba4664db2",
+        "etag": "1b373ca139d1532e6506d264e2b3f58638f1fa016d06339fa97ce676dcb98950",
         "handlers": [
           "fetch",
           "scheduled"
@@ -174,7 +225,7 @@
           "global_fetch_strictly_public"
         ],
         "usage_model": "standard",
-        "startup_time_ms": 2
+        "startup_time_ms": 3
       }
     }
   ]

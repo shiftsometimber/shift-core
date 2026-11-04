@@ -2,7 +2,7 @@
   "engine": "webkit",
   "device": "Mobile browser profile, not a physical phone",
   "origin": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev",
-  "at": "2026-11-03T22:30:46.320Z",
+  "at": "2026-11-04T00:22:00.922Z",
   "journeys": [
     {
       "name": "choose",
@@ -40,11 +40,11 @@
           "result": "PASS",
           "detail": [
             {
-              "awarded": true,
+              "awarded": false,
               "count": 13
             },
             {
-              "awarded": false,
+              "awarded": true,
               "count": 13
             }
           ]

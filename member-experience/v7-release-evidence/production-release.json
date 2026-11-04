@@ -12,7 +12,7 @@
           "modified_on": "2026-10-26T14:10:51.537523Z"
         }
       ],
-      "uploadIntentAt": "2026-11-03T23:18:56.507Z",
+      "uploadIntentAt": "2026-11-04T00:18:00.454Z",
       "expectedHashes": {
         "aeo-geo/analytics.mjs": "f07d45393dee68cbf7e29c74b7ab064fef422bdc66255cf0301d23290d634e88",
         "aeo-geo/chrome.mjs": "673cdfc9b48409d7f8a5f7d2dcb9fd2a36f3d804bd1dafd5c3508e18c754ca02",
@@ -107,42 +107,548 @@
         "surgery-guides-20261101/html.mjs": "efb7081f50337295361cb96d6b05f5f7d7d03df773f625609299ca4e86297146",
         "surgery-guides-20261101/presentation.mjs": "29213daf6c1d8167545fce7fe8c3aa7fd6f304242a670798c69bac7a0f4ad5ff",
         "surgery-guides-20261101/runtime.mjs": "3e4628c9cd813695cb5bc0675bf4307bb08790b873673de4d829b309b61ecf27",
-        "v7-release-20261103/core.mjs": "1113c0f06d87fe3c73169cf43d4bce7e2370cfab85644b6b1501b0f971556cd6",
+        "v7-release-20261103/core.mjs": "e2e357f19642cc913a59bd1d79ba7dafa9588fc636d0b9eb62c47f193e4439bd",
         "worker.js": "db1e47b416898acef972900433ed4dc95be059b75da9842988804dad85d33a35"
       },
       "expectedMain": "v7-release-20261103/core.mjs",
-      "candidateVersion": "e92c2c7b-dadb-478a-ae65-c003867e5164",
-      "verifiedAt": "2026-11-03T23:24:18.710Z"
+      "candidateVersion": "199339a4-4c48-43bd-892d-e60d33c6c862",
+      "verifiedAt": "2026-11-04T00:18:14.739Z",
+      "priorAttempts": [
+        {
+          "candidateVersion": "e92c2c7b-dadb-478a-ae65-c003867e5164",
+          "promotedAt": "2026-11-03T23:51:41.402Z",
+          "verifiedAt": "2026-11-03T23:24:18.710Z"
+        }
+      ],
+      "promotionIntentAt": "2026-11-04T00:33:27.668Z",
+      "promotedAt": "2026-11-04T00:33:30.125Z"
     },
     {
       "name": "shift-programme-member-20261023",
       "originalVersion": "8500f880-3e8a-49ff-b74e-c2cd83c36f27",
       "originalSchedules": [],
-      "uploadIntentAt": "2026-11-03T23:24:22.752Z",
+      "uploadIntentAt": "2026-11-04T00:18:19.879Z",
       "expectedHashes": {
-        "v7-release-20261103/programme.mjs": "bb19eb8e508b06bcabb6916001e86d4595dc8ed60558178940001181a985b959"
+        "v7-release-20261103/programme.mjs": "520d82be4eb759406e29f14981fab0ee64e0b96e212cad4c530b40b7f3ec439e"
       },
       "expectedMain": "v7-release-20261103/programme.mjs",
-      "candidateVersion": "ec58f000-3dfb-4ee8-b7bb-e20e7c194c18",
-      "verifiedAt": "2026-11-03T23:24:26.475Z"
+      "candidateVersion": "f9780c08-fe6d-4f62-8eb8-cab368f57981",
+      "verifiedAt": "2026-11-04T00:18:23.675Z",
+      "promotionIntentAt": "2026-11-04T00:34:15.931Z",
+      "promotedAt": "2026-11-04T00:34:18.248Z"
     }
   ],
-  "routeChanges": [],
-  "scheduleChanges": [],
+  "routeChanges": [
+    {
+      "pattern": "shiftsometimber.co.uk/member/more*",
+      "before": null,
+      "after": {
+        "pattern": "shiftsometimber.co.uk/member/more*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:28:49.128Z",
+      "appliedAt": "2026-11-04T00:33:32.371Z",
+      "id": "0263cc44f8e3476c94000cb438f30331"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/member/settings*",
+      "before": null,
+      "after": {
+        "pattern": "shiftsometimber.co.uk/member/settings*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:28:50.387Z",
+      "appliedAt": "2026-11-04T00:33:33.304Z",
+      "id": "148d63b9b690471b8ce9aaafd1ef59f6"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/member/orders*",
+      "before": null,
+      "after": {
+        "pattern": "shiftsometimber.co.uk/member/orders*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:28:51.426Z",
+      "appliedAt": "2026-11-04T00:33:34.422Z",
+      "id": "253052e27caa478c9f9da6f874a67c48"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/member/saved*",
+      "before": null,
+      "after": {
+        "pattern": "shiftsometimber.co.uk/member/saved*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:28:52.409Z",
+      "appliedAt": "2026-11-04T00:33:35.548Z",
+      "id": "47231f612fd54e909c549e0c4e2ea895"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/member/plans*",
+      "before": null,
+      "after": {
+        "pattern": "shiftsometimber.co.uk/member/plans*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:28:53.435Z",
+      "appliedAt": "2026-11-04T00:33:36.673Z",
+      "id": "51456d5c47184036b60d50f6c0d07d34"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/member/check-in*",
+      "before": null,
+      "after": {
+        "pattern": "shiftsometimber.co.uk/member/check-in*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:28:54.447Z",
+      "appliedAt": "2026-11-04T00:33:37.904Z",
+      "id": "d9fdd75139844b2ca02ce81574995d45"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/member/treatment*",
+      "before": null,
+      "after": {
+        "pattern": "shiftsometimber.co.uk/member/treatment*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:28:55.584Z",
+      "appliedAt": "2026-11-04T00:33:38.927Z",
+      "id": "6994991e7dac442ab1ecdd82191c8aee"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/member/app-shell.html*",
+      "before": null,
+      "after": {
+        "pattern": "shiftsometimber.co.uk/member/app-shell.html*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:28:56.712Z",
+      "appliedAt": "2026-11-04T00:33:39.952Z",
+      "id": "ecb65e548e7a479993d5cde3bd845a51"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/member/manifest.webmanifest*",
+      "before": null,
+      "after": {
+        "pattern": "shiftsometimber.co.uk/member/manifest.webmanifest*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:28:57.942Z",
+      "appliedAt": "2026-11-04T00:33:40.969Z",
+      "id": "c19827d02dfa4ab6aed0a40101f13b71"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/assets/member-experience/v7-*",
+      "before": null,
+      "after": {
+        "pattern": "shiftsometimber.co.uk/assets/member-experience/v7-*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:28:58.963Z",
+      "appliedAt": "2026-11-04T00:33:42.102Z",
+      "id": "5dd6eb4c8d554cbf8cbb26a3c2f7c589"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/v1/my-timber/*",
+      "before": null,
+      "after": {
+        "pattern": "shiftsometimber.co.uk/v1/my-timber/*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:28:59.952Z",
+      "appliedAt": "2026-11-04T00:33:43.332Z",
+      "id": "41f226a14d754ac289141071ba66d1a5"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/v1/grub/eaten*",
+      "before": null,
+      "after": {
+        "pattern": "shiftsometimber.co.uk/v1/grub/eaten*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:01.011Z",
+      "appliedAt": "2026-11-04T00:33:44.662Z",
+      "id": "a9ac83dba67d4e16b08120ab787a9b0d"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/v1/grub/food-search*",
+      "before": null,
+      "after": {
+        "pattern": "shiftsometimber.co.uk/v1/grub/food-search*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:02.138Z",
+      "appliedAt": "2026-11-04T00:33:45.685Z",
+      "id": "0d0d3c499db24182a526629b890e801f"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/v1/grub/barcode*",
+      "before": null,
+      "after": {
+        "pattern": "shiftsometimber.co.uk/v1/grub/barcode*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:03.267Z",
+      "appliedAt": "2026-11-04T00:33:46.812Z",
+      "id": "a908b13f31f14c94aa247452ead04825"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/treatment-sw.js*",
+      "before": null,
+      "after": {
+        "pattern": "shiftsometimber.co.uk/treatment-sw.js*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:04.392Z",
+      "appliedAt": "2026-11-04T00:33:48.043Z",
+      "id": "84900c47bfc143798d77b3730c78c860"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/member/more*",
+      "before": null,
+      "after": {
+        "pattern": "www.shiftsometimber.co.uk/member/more*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:05.417Z",
+      "appliedAt": "2026-11-04T00:33:49.065Z",
+      "id": "00477e2909264b75b73ff3c34a94cde2"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/member/settings*",
+      "before": null,
+      "after": {
+        "pattern": "www.shiftsometimber.co.uk/member/settings*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:06.542Z",
+      "appliedAt": "2026-11-04T00:33:50.191Z",
+      "id": "41d553bdd81743fbb5ede842aac1d213"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/member/orders*",
+      "before": null,
+      "after": {
+        "pattern": "www.shiftsometimber.co.uk/member/orders*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:07.669Z",
+      "appliedAt": "2026-11-04T00:33:51.317Z",
+      "id": "e31185a31f354a4ea105be2f5689afce"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/member/saved*",
+      "before": null,
+      "after": {
+        "pattern": "www.shiftsometimber.co.uk/member/saved*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:08.898Z",
+      "appliedAt": "2026-11-04T00:33:52.290Z",
+      "id": "ee79ad0e8737450b9e20cb041f3bed31"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/member/plans*",
+      "before": null,
+      "after": {
+        "pattern": "www.shiftsometimber.co.uk/member/plans*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:09.934Z",
+      "appliedAt": "2026-11-04T00:33:53.366Z",
+      "id": "d576bf4c95ed40e9a19e683b9efc9855"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/member/check-in*",
+      "before": null,
+      "after": {
+        "pattern": "www.shiftsometimber.co.uk/member/check-in*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:11.027Z",
+      "appliedAt": "2026-11-04T00:33:54.602Z",
+      "id": "79163b33d3514e79a53f927f190bf5f6"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/member/treatment*",
+      "before": null,
+      "after": {
+        "pattern": "www.shiftsometimber.co.uk/member/treatment*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:12.013Z",
+      "appliedAt": "2026-11-04T00:33:55.653Z",
+      "id": "629f26e6d1bd4ad9ad5123da73514b44"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/member/app-shell.html*",
+      "before": null,
+      "after": {
+        "pattern": "www.shiftsometimber.co.uk/member/app-shell.html*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:13.079Z",
+      "appliedAt": "2026-11-04T00:33:56.746Z",
+      "id": "3f99c667d3d64ba28b6a115972298fb1"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/member/manifest.webmanifest*",
+      "before": null,
+      "after": {
+        "pattern": "www.shiftsometimber.co.uk/member/manifest.webmanifest*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:14.108Z",
+      "appliedAt": "2026-11-04T00:33:57.748Z",
+      "id": "33acefd9f5f24a8db0d87bd6a3693287"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/assets/member-experience/v7-*",
+      "before": null,
+      "after": {
+        "pattern": "www.shiftsometimber.co.uk/assets/member-experience/v7-*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:15.160Z",
+      "appliedAt": "2026-11-04T00:33:58.895Z",
+      "id": "7895b7efc7ab48a097d64788114c6466"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/v1/my-timber/*",
+      "before": null,
+      "after": {
+        "pattern": "www.shiftsometimber.co.uk/v1/my-timber/*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:16.200Z",
+      "appliedAt": "2026-11-04T00:33:59.923Z",
+      "id": "679dfc2ca23043ac94409ac85fc92e6a"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/v1/grub/eaten*",
+      "before": null,
+      "after": {
+        "pattern": "www.shiftsometimber.co.uk/v1/grub/eaten*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:17.293Z",
+      "appliedAt": "2026-11-04T00:34:01.047Z",
+      "id": "2556bb4027ed43d69be22320e8e72eff"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/v1/grub/food-search*",
+      "before": null,
+      "after": {
+        "pattern": "www.shiftsometimber.co.uk/v1/grub/food-search*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:18.421Z",
+      "appliedAt": "2026-11-04T00:34:02.276Z",
+      "id": "317019451e074d25bcff268c98bfe606"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/v1/grub/barcode*",
+      "before": null,
+      "after": {
+        "pattern": "www.shiftsometimber.co.uk/v1/grub/barcode*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:19.444Z",
+      "appliedAt": "2026-11-04T00:34:03.610Z",
+      "id": "d23e8e3b70b74022b642ee3a4938c4fa"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/treatment-sw.js*",
+      "before": null,
+      "after": {
+        "pattern": "www.shiftsometimber.co.uk/treatment-sw.js*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:20.468Z",
+      "appliedAt": "2026-11-04T00:34:05.144Z",
+      "id": "bdc6469ae42d49faa8d7c10923a6385e"
+    },
+    {
+      "pattern": "api.shiftsometimber.co.uk/v1/my-timber/*",
+      "before": null,
+      "after": {
+        "pattern": "api.shiftsometimber.co.uk/v1/my-timber/*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:21.490Z",
+      "appliedAt": "2026-11-04T00:34:06.270Z",
+      "id": "43d59300d9c64c97b34b29c204d53600"
+    },
+    {
+      "pattern": "api.shiftsometimber.co.uk/v1/grub/eaten*",
+      "before": null,
+      "after": {
+        "pattern": "api.shiftsometimber.co.uk/v1/grub/eaten*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:22.504Z",
+      "appliedAt": "2026-11-04T00:34:07.807Z",
+      "id": "65c9d9a2b27c47d08e291a43cd78c0b2"
+    },
+    {
+      "pattern": "api.shiftsometimber.co.uk/v1/grub/food-search*",
+      "before": null,
+      "after": {
+        "pattern": "api.shiftsometimber.co.uk/v1/grub/food-search*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:23.646Z",
+      "appliedAt": "2026-11-04T00:34:08.932Z",
+      "id": "91de757902594111b13df32b009f89f0"
+    },
+    {
+      "pattern": "api.shiftsometimber.co.uk/v1/grub/barcode*",
+      "before": null,
+      "after": {
+        "pattern": "api.shiftsometimber.co.uk/v1/grub/barcode*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:24.977Z",
+      "appliedAt": "2026-11-04T00:34:09.957Z",
+      "id": "f06f608cfcf94d9484d9ae5503338ad8"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/member/dashboard*",
+      "before": {
+        "id": "5b9caf39281042e6af00423ff1f67b4e",
+        "pattern": "shiftsometimber.co.uk/member/dashboard*",
+        "script": "shift-hq-member-comms-20261023"
+      },
+      "after": {
+        "pattern": "shiftsometimber.co.uk/member/dashboard*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:34.638Z",
+      "appliedAt": "2026-11-04T00:34:20.330Z",
+      "id": "5b9caf39281042e6af00423ff1f67b4e"
+    },
+    {
+      "pattern": "shiftsometimber.co.uk/member/support*",
+      "before": {
+        "id": "b7e6c6b98f8a4c2f9ad8c9c0f79445d4",
+        "pattern": "shiftsometimber.co.uk/member/support*",
+        "script": "shift-mytimber-support-20261023"
+      },
+      "after": {
+        "pattern": "shiftsometimber.co.uk/member/support*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:35.652Z",
+      "appliedAt": "2026-11-04T00:34:21.424Z",
+      "id": "b7e6c6b98f8a4c2f9ad8c9c0f79445d4"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/member/dashboard*",
+      "before": {
+        "id": "3d933147bc5745ed8f22d4d66e7eb990",
+        "pattern": "www.shiftsometimber.co.uk/member/dashboard*",
+        "script": "shift-hq-member-comms-20261023"
+      },
+      "after": {
+        "pattern": "www.shiftsometimber.co.uk/member/dashboard*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:36.665Z",
+      "appliedAt": "2026-11-04T00:34:22.547Z",
+      "id": "3d933147bc5745ed8f22d4d66e7eb990"
+    },
+    {
+      "pattern": "www.shiftsometimber.co.uk/member/support*",
+      "before": {
+        "id": "c364e889c28f42368ccfdb03424ae9b5",
+        "pattern": "www.shiftsometimber.co.uk/member/support*",
+        "script": "shift-mytimber-support-20261023"
+      },
+      "after": {
+        "pattern": "www.shiftsometimber.co.uk/member/support*",
+        "script": "shift-programme-member-20261023"
+      },
+      "intentAt": "2026-11-04T00:29:37.774Z",
+      "appliedAt": "2026-11-04T00:34:23.646Z",
+      "id": "c364e889c28f42368ccfdb03424ae9b5"
+    }
+  ],
+  "scheduleChanges": [
+    {
+      "name": "shift-programme-member-20261023",
+      "before": [],
+      "after": [
+        {
+          "cron": "0,15,30,45 0-5 * * *"
+        }
+      ]
+    },
+    {
+      "name": "shift-programme-member-20261023",
+      "before": [],
+      "after": [
+        {
+          "cron": "0,15,30,45 0-5 * * *"
+        }
+      ]
+    }
+  ],
   "evidenceLimitations": [
     "Physical iPhone/Android recordings have not been independently obtained; Chromium and WebKit evidence is labelled separately."
   ],
   "retainedService": {
     "name": "shift-programme-v7-retained-live",
     "version": "shift-programme-v7-retained-live",
-    "at": "2026-11-03T23:18:52.559Z",
-    "sourceHash": "c8bbea67dcab4c7d18b057e4f14674ed5e619e136fcc4767a3ec31e44b6ac3d8"
+    "at": "2026-11-04T00:17:48.078Z",
+    "sourceHash": "fbbdb900ea179dec1f5bdb14fbc2cc24e1f29b25f857db95754950be345feaa3"
   },
-  "failure": {
-    "at": "2026-11-03T23:19:11.078Z",
-    "command": "prepare",
-    "message": "New binding mismatch\n+ actual - expected\n\n  {\n    entrypoint: 'V7Offers',\n+   environment: 'production',\n    name: 'V7_OFFERS',\n    service: 'shift-programme-v7-retained-live',\n    type: 'service'\n  }\n"
+  "preparedAt": "2026-11-04T00:25:55.616Z",
+  "sourceCommit": "14927e12f356a6dd1a62d04fe2d0350cc935e26e",
+  "schemaPreparedAt": "2026-11-03T23:34:17.709Z",
+  "publicFoodCatalogueRows": 2886,
+  "deployedAt": "2026-11-03T23:34:21.703Z",
+  "rolledBackAt": "2026-11-04T00:33:02.499Z",
+  "rollbackVerification": [
+    {
+      "worker": "shift-core",
+      "before": "199339a4-4c48-43bd-892d-e60d33c6c862",
+      "restored": "e21cdda6-22e1-4c82-b4db-acaccfdc4f8f"
+    },
+    {
+      "worker": "shift-programme-member-20261023",
+      "before": "f9780c08-fe6d-4f62-8eb8-cab368f57981",
+      "restored": "8500f880-3e8a-49ff-b74e-c2cd83c36f27"
+    }
+  ],
+  "preparer": {
+    "name": "shift-my-timber-v7-preparer-live",
+    "version": "shift-my-timber-v7-preparer-live",
+    "at": "2026-11-04T00:25:47.839Z"
   },
-  "preparedAt": "2026-11-03T23:24:26.476Z",
-  "sourceCommit": "3f174797a1a164145cdf45c57e47e57644bfd9b9"
+  "initialisation": {
+    "total": 194,
+    "prepared": 194,
+    "retained": 0
+  },
+  "initialisedAt": "2026-11-04T00:28:45.959Z",
+  "routesVerifiedAt": "2026-11-04T00:34:24.786Z",
+  "overnightScheduleAt": "2026-11-04T00:34:26.852Z",
+  "liveAt": "2026-11-04T00:34:30.776Z",
+  "historicalFailures": [
+    {
+      "at": "2026-11-03T23:53:49.712Z",
+      "command": "live",
+      "message": "Member preparation failed; private report saved\n\n122 !== 0\n"
+    }
+  ],
+  "finalVerification": {
+    "at": "2026-11-04T00:36:08.837599+00:00",
+    "chromiumChecks": 34,
+    "webkitChecks": 34,
+    "shopComparison": "PASS",
+    "threeJourneysBothEngines": "PASS",
+    "physicalDevices": "NOT VERIFIED",
+    "testModeCheckout": "NOT VERIFIED"
+  }
 }

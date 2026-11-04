@@ -1,0 +1,58 @@
+{
+  "at": "2026-11-04T00:34:57.061Z",
+  "phase": "after",
+  "account": "v7-live-proof@example.invalid",
+  "device": "Chromium mobile profile on production, not a physical phone",
+  "home": "Useful things.Properly explained.A bit more help, on your terms.SHOP & SERVICESYour ordersTesting & wellbeingHome tests, lab tests and what each can tell you.Explore testsSupplements & nutritionUnderstand the optional extras before choosing.Explore the rangeWeight-management careUnderstand your options and the assessment.Explore careEveryday kitClothing and useful accessories from the Timber Mill.Explore the MillYour food, movement and support stay free.Everything here is optional.",
+  "links": [
+    {
+      "text": "Your orders",
+      "href": "/member/orders"
+    },
+    {
+      "text": "Testing & wellbeingHome tests, lab tests and what each can tell you.Explore tests",
+      "href": "/member/life-back/shop/testing"
+    },
+    {
+      "text": "Supplements & nutritionUnderstand the optional extras before choosing.Explore the range",
+      "href": "/member/life-back/shop/nutrition"
+    },
+    {
+      "text": "Weight-management careUnderstand your options and the assessment.Explore care",
+      "href": "/member/life-back/shop/care"
+    },
+    {
+      "text": "Everyday kitClothing and useful accessories from the Timber Mill.Explore the Mill",
+      "href": "/member/life-back/shop/kit"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Shop home available with Shop active",
+      "result": "PASS"
+    },
+    {
+      "name": "Shop content and links unchanged from live baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "testing live catalogue opens",
+      "result": "PASS"
+    },
+    {
+      "name": "nutrition live catalogue opens",
+      "result": "PASS"
+    },
+    {
+      "name": "care live catalogue opens",
+      "result": "PASS"
+    },
+    {
+      "name": "kit live catalogue opens",
+      "result": "PASS"
+    }
+  ],
+  "errors": [],
+  "noPurchase": true,
+  "noMessages": true
+}

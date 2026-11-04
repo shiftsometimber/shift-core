@@ -1,26 +1,16 @@
 {
-  "at": "2026-11-03T22:18:24.987Z",
-  "mode": "READ_ONLY_BASELINE_CHECK",
+  "at": "2026-11-04T00:33:02.503Z",
+  "mode": "RESTORED_AND_VERSION_VERIFIED",
   "verified": [
     {
-      "worker": "shift-programme-member-20261023",
-      "before": "8500f880-3e8a-49ff-b74e-c2cd83c36f27",
-      "restored": null
-    },
-    {
-      "worker": "shift-hq-member-comms-20261023",
-      "before": "67958f58-8712-49ec-bcf0-2e513c1fd5d2",
-      "restored": null
-    },
-    {
       "worker": "shift-core",
-      "before": "e21cdda6-22e1-4c82-b4db-acaccfdc4f8f",
-      "restored": null
+      "before": "199339a4-4c48-43bd-892d-e60d33c6c862",
+      "restored": "e21cdda6-22e1-4c82-b4db-acaccfdc4f8f"
     },
     {
-      "worker": "shift-mytimber-support-20261023",
-      "before": "1ff41acd-546e-431a-ab7f-fbc1f6f65b68",
-      "restored": null
+      "worker": "shift-programme-member-20261023",
+      "before": "f9780c08-fe6d-4f62-8eb8-cab368f57981",
+      "restored": "8500f880-3e8a-49ff-b74e-c2cd83c36f27"
     }
   ],
   "memberRecordsDeleted": false,
