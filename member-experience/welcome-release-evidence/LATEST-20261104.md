@@ -4,7 +4,7 @@ Live at 2026-11-04T22:00:13.108Z; verified 2026-11-04T22:00:51.102Z (GMT).
 Source: c50bfe65fb1dac0c71c0a651e3ba95e51dcef21f.
 Member: 9944493f-8a54-4516-ae42-8cfad648214a.
 Core public-terms overlay: 08cebab7-1143-46a7-863e-1506ab83aadb.
-All prior Core modules and bindings are preserved byte-for-byte; no clinical, stock, supplier or payment gate was relaxed.
+All prior Core modules are preserved byte-for-byte and binding configuration is preserved; no clinical, stock, supplier or payment gate was relaxed.
 
 | Rule | Result | Evidence |
 |---|---|---|
