@@ -33,6 +33,8 @@ jobs:
           node --test release/approved-article-safety-20261104/nonclinical-correction.test.mjs
       - name: Install retained exact toolchain
         run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Read-only serving-source inventory for separately approved safeguard
+        run: node release/approved-article-safety-20261104/inspect-serving.mjs
       - name: Capture current public article and guarded correction
         id: capture
         run: node release/approved-article-safety-20261104/nonclinical-repair.mjs capture

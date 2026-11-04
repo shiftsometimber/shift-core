@@ -26,8 +26,10 @@ if(mode==='capture'){
  const before=read();assert(before);assert(before.source_id&&before.source_id!=='shift-contributor','BabyLove original receipt required');
  assert.equal(before.publish_at,published);
  const page=await publicPage();assert(page.html.includes(changes.find(x=>x.id==='service-boundary').from));
+ save('before.json',before);
+ console.log(JSON.stringify({capturedRawRow:before.id,programmeMarkdown:before.body.split('\n').filter(x=>x.includes('SHIFT programme and how it works'))}));
  const plan=prepareCorrection(before,sha256(before.body),new Date().toISOString());
- save('before.json',before);save('plan.json',plan);
+ save('plan.json',plan);
  writeFileSync(file('before.html'),page.html);save('before-http.json',{...page,html:undefined,sha256:sha256(page.html)});
  console.log(JSON.stringify({captured:true,id:before.id,beforeBodySha256:plan.beforeBodySha256,afterBodySha256:plan.afterBodySha256,clinicalChanges:false}));
 }

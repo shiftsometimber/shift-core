@@ -8,13 +8,21 @@ const approvedIds=['unverified-experience','service-boundary','programme-owner']
 export const changes=approvedIds.map(id=>{const s=specs.find(x=>x.id===id);assert(s);return s;});
 export function correctBody(input){
  let body=String(input);
- for(const {id,from,to} of changes){assert.equal(body.split(from).length-1,1,'Missing/duplicate approved target: '+id);body=body.replace(from,to);}
+ const resolved=[];
+ for(const {id,from,to} of changes){
+  let actual=from;
+  if(id==='programme-owner'){
+   const matches=body.match(/\[SHIFT programme and how it works\]\(https:\/\/shiftsometimber\.co\.uk\/?\)/g)||[];
+   assert.equal(matches.length,1,'Missing/duplicate approved Programme owner');actual=matches[0];
+  }
+  assert.equal(body.split(actual).length-1,1,'Missing/duplicate approved target: '+id);body=body.replace(actual,to);resolved.push({from:actual,to});
+ }
  const signature=/^>\s*(?:[\*_])?(?:[—–-]\s*)?Matt O[’']Brien(?:[\*_])?\s*$/gm;
  assert.equal([...body.matchAll(signature)].length,1,'Unexpected/missing standalone signature');
  body=body.replace(signature,'>');
  let restored=body;
  // Preserve every unrelated byte, including the still-held medical wording.
- for(const {from,to} of [...changes].reverse()){assert.equal(restored.split(to).length-1,1);restored=restored.replace(to,from);}
+ for(const {from,to} of [...resolved].reverse()){assert.equal(restored.split(to).length-1,1);restored=restored.replace(to,from);}
  const beforeWithoutSignature=String(input).replace(signature,'>');
  assert.equal(restored,beforeWithoutSignature);
  return body;
