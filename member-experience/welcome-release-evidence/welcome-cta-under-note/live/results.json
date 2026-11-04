@@ -1,0 +1,376 @@
+{
+  "at": "2026-11-04T20:56:03.748Z",
+  "origin": "https://shiftsometimber.co.uk",
+  "physical": false,
+  "syntheticOnly": true,
+  "engines": [
+    {
+      "name": "chromium",
+      "checks": [
+        {
+          "id": "returning-320x568: Explore visible fully without scrolling",
+          "pass": true
+        },
+        {
+          "id": "returning-320x568: CTA directly under the welcome note",
+          "pass": true
+        },
+        {
+          "id": "returning-320x568: CTA unobscured and touch height >=44px",
+          "pass": true
+        },
+        {
+          "id": "returning-320x568: single Explore CTA",
+          "pass": true
+        },
+        {
+          "id": "returning-320x568: brand-green engaging box",
+          "pass": true
+        },
+        {
+          "id": "returning-320x568: cream shimmer animation active",
+          "pass": true
+        },
+        {
+          "id": "returning-320x568: reduced motion disables shimmer",
+          "pass": true
+        },
+        {
+          "id": "returning-320x568: welcome note retained; large headline removed",
+          "pass": true
+        },
+        {
+          "id": "returning-320x568: removed headline not downloaded",
+          "pass": true
+        },
+        {
+          "id": "returning-320x568: CTA opens Explore in same shared frame",
+          "pass": true
+        },
+        {
+          "id": "returning-320x568: existing health questions still open",
+          "pass": true
+        },
+        {
+          "id": "returning-375x667: Explore visible fully without scrolling",
+          "pass": true
+        },
+        {
+          "id": "returning-375x667: CTA directly under the welcome note",
+          "pass": true
+        },
+        {
+          "id": "returning-375x667: CTA unobscured and touch height >=44px",
+          "pass": true
+        },
+        {
+          "id": "returning-375x667: single Explore CTA",
+          "pass": true
+        },
+        {
+          "id": "returning-375x667: brand-green engaging box",
+          "pass": true
+        },
+        {
+          "id": "returning-375x667: cream shimmer animation active",
+          "pass": true
+        },
+        {
+          "id": "returning-375x667: reduced motion disables shimmer",
+          "pass": true
+        },
+        {
+          "id": "returning-375x667: welcome note retained; large headline removed",
+          "pass": true
+        },
+        {
+          "id": "returning-375x667: removed headline not downloaded",
+          "pass": true
+        },
+        {
+          "id": "returning-375x667: CTA opens Explore in same shared frame",
+          "pass": true
+        },
+        {
+          "id": "returning-375x667: existing health questions still open",
+          "pass": true
+        },
+        {
+          "id": "returning-390x844: Explore visible fully without scrolling",
+          "pass": true
+        },
+        {
+          "id": "returning-390x844: CTA directly under the welcome note",
+          "pass": true
+        },
+        {
+          "id": "returning-390x844: CTA unobscured and touch height >=44px",
+          "pass": true
+        },
+        {
+          "id": "returning-390x844: single Explore CTA",
+          "pass": true
+        },
+        {
+          "id": "returning-390x844: brand-green engaging box",
+          "pass": true
+        },
+        {
+          "id": "returning-390x844: cream shimmer animation active",
+          "pass": true
+        },
+        {
+          "id": "returning-390x844: reduced motion disables shimmer",
+          "pass": true
+        },
+        {
+          "id": "returning-390x844: welcome note retained; large headline removed",
+          "pass": true
+        },
+        {
+          "id": "returning-390x844: removed headline not downloaded",
+          "pass": true
+        },
+        {
+          "id": "returning-390x844: CTA opens Explore in same shared frame",
+          "pass": true
+        },
+        {
+          "id": "returning-390x844: existing health questions still open",
+          "pass": true
+        }
+      ],
+      "errors": [],
+      "shots": [
+        "chromium-returning-320x568.jpg",
+        "chromium-returning-375x667.jpg",
+        "chromium-returning-390x844.jpg"
+      ],
+      "measurements": [
+        {
+          "state": "returning",
+          "width": 284,
+          "height": 56.140625,
+          "x": 18,
+          "y": 413.96875,
+          "bottom": 470.109375,
+          "topBarBottom": 108,
+          "bottomBarTop": 499,
+          "scrollY": 0,
+          "underNote": true,
+          "uncovered": true
+        },
+        {
+          "state": "returning",
+          "width": 339,
+          "height": 56.140625,
+          "x": 18,
+          "y": 499,
+          "bottom": 555.140625,
+          "topBarBottom": 108,
+          "bottomBarTop": 598,
+          "scrollY": 0,
+          "underNote": true,
+          "uncovered": true
+        },
+        {
+          "state": "returning",
+          "width": 354,
+          "height": 56.140625,
+          "x": 18,
+          "y": 514.453125,
+          "bottom": 570.59375,
+          "topBarBottom": 108,
+          "bottomBarTop": 775,
+          "scrollY": 0,
+          "underNote": true,
+          "uncovered": true
+        }
+      ]
+    },
+    {
+      "name": "webkit",
+      "checks": [
+        {
+          "id": "returning-320x568: Explore visible fully without scrolling",
+          "pass": true
+        },
+        {
+          "id": "returning-320x568: CTA directly under the welcome note",
+          "pass": true
+        },
+        {
+          "id": "returning-320x568: CTA unobscured and touch height >=44px",
+          "pass": true
+        },
+        {
+          "id": "returning-320x568: single Explore CTA",
+          "pass": true
+        },
+        {
+          "id": "returning-320x568: brand-green engaging box",
+          "pass": true
+        },
+        {
+          "id": "returning-320x568: cream shimmer animation active",
+          "pass": true
+        },
+        {
+          "id": "returning-320x568: reduced motion disables shimmer",
+          "pass": true
+        },
+        {
+          "id": "returning-320x568: welcome note retained; large headline removed",
+          "pass": true
+        },
+        {
+          "id": "returning-320x568: removed headline not downloaded",
+          "pass": true
+        },
+        {
+          "id": "returning-320x568: CTA opens Explore in same shared frame",
+          "pass": true
+        },
+        {
+          "id": "returning-320x568: existing health questions still open",
+          "pass": true
+        },
+        {
+          "id": "returning-375x667: Explore visible fully without scrolling",
+          "pass": true
+        },
+        {
+          "id": "returning-375x667: CTA directly under the welcome note",
+          "pass": true
+        },
+        {
+          "id": "returning-375x667: CTA unobscured and touch height >=44px",
+          "pass": true
+        },
+        {
+          "id": "returning-375x667: single Explore CTA",
+          "pass": true
+        },
+        {
+          "id": "returning-375x667: brand-green engaging box",
+          "pass": true
+        },
+        {
+          "id": "returning-375x667: cream shimmer animation active",
+          "pass": true
+        },
+        {
+          "id": "returning-375x667: reduced motion disables shimmer",
+          "pass": true
+        },
+        {
+          "id": "returning-375x667: welcome note retained; large headline removed",
+          "pass": true
+        },
+        {
+          "id": "returning-375x667: removed headline not downloaded",
+          "pass": true
+        },
+        {
+          "id": "returning-375x667: CTA opens Explore in same shared frame",
+          "pass": true
+        },
+        {
+          "id": "returning-375x667: existing health questions still open",
+          "pass": true
+        },
+        {
+          "id": "returning-390x844: Explore visible fully without scrolling",
+          "pass": true
+        },
+        {
+          "id": "returning-390x844: CTA directly under the welcome note",
+          "pass": true
+        },
+        {
+          "id": "returning-390x844: CTA unobscured and touch height >=44px",
+          "pass": true
+        },
+        {
+          "id": "returning-390x844: single Explore CTA",
+          "pass": true
+        },
+        {
+          "id": "returning-390x844: brand-green engaging box",
+          "pass": true
+        },
+        {
+          "id": "returning-390x844: cream shimmer animation active",
+          "pass": true
+        },
+        {
+          "id": "returning-390x844: reduced motion disables shimmer",
+          "pass": true
+        },
+        {
+          "id": "returning-390x844: welcome note retained; large headline removed",
+          "pass": true
+        },
+        {
+          "id": "returning-390x844: removed headline not downloaded",
+          "pass": true
+        },
+        {
+          "id": "returning-390x844: CTA opens Explore in same shared frame",
+          "pass": true
+        },
+        {
+          "id": "returning-390x844: existing health questions still open",
+          "pass": true
+        }
+      ],
+      "errors": [],
+      "shots": [
+        "webkit-returning-320x568.jpg",
+        "webkit-returning-375x667.jpg",
+        "webkit-returning-390x844.jpg"
+      ],
+      "measurements": [
+        {
+          "state": "returning",
+          "width": 284,
+          "height": 56.140625,
+          "x": 18,
+          "y": 413.96875,
+          "bottom": 470.109375,
+          "topBarBottom": 108,
+          "bottomBarTop": 499,
+          "scrollY": 0,
+          "underNote": true,
+          "uncovered": true
+        },
+        {
+          "state": "returning",
+          "width": 339,
+          "height": 56.140625,
+          "x": 18,
+          "y": 499,
+          "bottom": 555.140625,
+          "topBarBottom": 108,
+          "bottomBarTop": 598,
+          "scrollY": 0,
+          "underNote": true,
+          "uncovered": true
+        },
+        {
+          "state": "returning",
+          "width": 354,
+          "height": 56.140625,
+          "x": 18,
+          "y": 514.453125,
+          "bottom": 570.59375,
+          "topBarBottom": 108,
+          "bottomBarTop": 775,
+          "scrollY": 0,
+          "underNote": true,
+          "uncovered": true
+        }
+      ]
+    }
+  ]
+}

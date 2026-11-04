@@ -1,0 +1,35 @@
+{
+  "base": "6d7121ff-ce5e-4c5b-a1aa-f59f938789ee",
+  "scope": "Place the green shimmer Explore weight loss button directly under the note; keep the headline removed and the button visible on first screen. Frame, questionnaire, payment and Core unchanged.",
+  "at": "2026-11-04T20:55:51.148Z",
+  "source": "9810ab29dd3cff550b1796a69af5a50c00b6f35d",
+  "assetTag": "b06e5fbf1a521132ee4c",
+  "expectedHashes": {
+    "v7-release-20261103/programme.mjs": "ab375561e5a852f11dba28d235710e0aa19bc7652edaff8af19fc25d84989a44"
+  },
+  "coreBefore": [
+    {
+      "version_id": "a301697d-5586-4839-aa44-5edb01105731",
+      "percentage": 100
+    }
+  ],
+  "schedules": [
+    {
+      "cron": "0,15,30,45 0-5 * * *",
+      "created_on": "2026-11-04T00:34:26.630649Z",
+      "modified_on": "2026-11-04T00:34:26.630649Z"
+    }
+  ],
+  "memberTrafficChanged": true,
+  "candidate": "858d9de6-3a04-4358-8bb1-85a20a50080b",
+  "preparedAt": "2026-11-04T20:55:57.957Z",
+  "attemptedAt": "2026-11-04T20:55:59.173Z",
+  "liveAt": "2026-11-04T20:56:01.903Z",
+  "coreAfter": [
+    {
+      "version_id": "a301697d-5586-4839-aa44-5edb01105731",
+      "percentage": 100
+    }
+  ],
+  "verifiedAt": "2026-11-04T20:56:21.871Z"
+}
