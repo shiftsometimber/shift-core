@@ -1,0 +1,24 @@
+✔ Journey records reject impossible/future dates, unrecorded amounts and unsupported clinical fields (30.85325ms)
+✔ records survive refresh, correct/delete by id, and never alter other member support or the illustration (1.074167ms)
+✔ no fabricated records; legacy weekly dates and actual labels retain their provenance (4.961333ms)
+✔ weight and waist keep fluctuations, missing dates and same-day readings; clothes never become a numeric series (0.909958ms)
+✔ medicine changes and injection details do not change the teaching line or infer a cause (0.84725ms)
+✔ snapshot quotes real dated records, preserves clothes labels and escapes user text in HTML (0.379916ms)
+✔ real page is session gated, uncached, shares the five-tab navigation, and has a valid standalone runtime (12.031291ms)
+✔ actual auth API persists only its owned path; account mismatch, consent, CSRF, pause and deletion are enforced (12.403209ms)
+✔ new page and API use scoped release paths; protected commerce remains the existing fallback (1.14325ms)
+✔ Journey export includes the new records, and existing Journey deletion erases them without losing other preferences (2.144084ms)
+✔ consent revocation and pause at the actual database write prevent a new Journey record (1.947166ms)
+✔ pinned Journey V2 preserves the served source outside the approved progressive setup, honest empty ratings, startup and consented-priority repairs (1.629917ms)
+✔ Journey startup preserves restored Plans and Progress deep links (2.956833ms)
+✔ delayed Journey startup preserves a member selection made while the API is loading (0.762375ms)
+✔ Journey aliases and the original Today fallback retain their behavior (1.909834ms)
+✔ startup never activates a missing restored panel or changes legacy-shell fallback (0.638583ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 321.442042

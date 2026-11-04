@@ -32,7 +32,7 @@ export function nativeBrowser(){
   if(account!==undefined&&account!==null&&String(account)!==owner){clear();throw Error('Your account changed.');}
   if(!path.startsWith('/v1/my-timber/assessment-draft'))responses.set(path,{value,at:Date.now()});persist();return new Response(JSON.stringify(value),{status:r.status,headers:{'Content-Type':'application/json','Cache-Control':'no-store'}});
  }
- window.MT_SCREEN_DATA=async(path,options={})=>{const saved=responses.get(path);if(saved){if(!offline&&Date.now()-saved.at>30000)refresh(path,options).then(()=>document.dispatchEvent(new CustomEvent('mt:data-updated',{detail:{path}}))).catch(()=>{});return new Response(JSON.stringify(saved.value),{headers:{'Content-Type':'application/json','Cache-Control':'no-store'}});}return refresh(path,options);};
+ window.MT_SCREEN_DATA=async(path,options={})=>{if(options.fresh)return refresh(path,options);const saved=responses.get(path);if(saved){if(!offline&&Date.now()-saved.at>30000)refresh(path,options).then(()=>document.dispatchEvent(new CustomEvent('mt:data-updated',{detail:{path}}))).catch(()=>{});return new Response(JSON.stringify(saved.value),{headers:{'Content-Type':'application/json','Cache-Control':'no-store'}});}return refresh(path,options);};
  window.MT_MEMBER_IDENTITY=()=>identityPromise||Promise.reject(Error('Account unavailable'));
  window.SST_MEMBER_SESSION={check:async callback=>{if(ready()){if(callback)await callback();}else clear();},ready:()=>{}};
  window.SST_HEALTH_CONSENT={ensure:async()=>{if(!data?.tracking)status('Open Account & settings to review optional health tracking.');return ready()&&data.tracking;}};
