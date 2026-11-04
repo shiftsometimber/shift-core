@@ -1,0 +1,331 @@
+{
+  "at": "2026-11-04T21:25:14.279Z",
+  "origin": "https://shiftsometimber.co.uk",
+  "liveVersion": [
+    {
+      "version_id": "858d9de6-3a04-4358-8bb1-85a20a50080b",
+      "percentage": 100
+    }
+  ],
+  "syntheticAccount": {
+    "id": 900711104,
+    "email": "welcome-first-live-20261104@example.invalid"
+  },
+  "physical": false,
+  "engines": [
+    {
+      "name": "chromium",
+      "checks": [
+        {
+          "id": "320x568: actual first-visit account",
+          "pass": true
+        },
+        {
+          "id": "320x568: Make it mine visible on first welcome",
+          "pass": true
+        },
+        {
+          "id": "320x568: first-visit artwork with Make it mine",
+          "pass": true
+        },
+        {
+          "id": "320x568: Explore directly below note",
+          "pass": true
+        },
+        {
+          "id": "320x568: Explore visible without scrolling",
+          "pass": true
+        },
+        {
+          "id": "320x568: green box with cream shimmer",
+          "pass": true
+        },
+        {
+          "id": "320x568: large headline absent",
+          "pass": true
+        },
+        {
+          "id": "320x568: Make it mine opens setup in shared frame",
+          "pass": true
+        },
+        {
+          "id": "320x568: setup controls loaded",
+          "pass": true
+        },
+        {
+          "id": "375x667: actual first-visit account",
+          "pass": true
+        },
+        {
+          "id": "375x667: Make it mine visible on first welcome",
+          "pass": true
+        },
+        {
+          "id": "375x667: first-visit artwork with Make it mine",
+          "pass": true
+        },
+        {
+          "id": "375x667: Explore directly below note",
+          "pass": true
+        },
+        {
+          "id": "375x667: Explore visible without scrolling",
+          "pass": true
+        },
+        {
+          "id": "375x667: green box with cream shimmer",
+          "pass": true
+        },
+        {
+          "id": "375x667: large headline absent",
+          "pass": true
+        },
+        {
+          "id": "375x667: Make it mine opens setup in shared frame",
+          "pass": true
+        },
+        {
+          "id": "375x667: setup controls loaded",
+          "pass": true
+        },
+        {
+          "id": "390x844: actual first-visit account",
+          "pass": true
+        },
+        {
+          "id": "390x844: Make it mine visible on first welcome",
+          "pass": true
+        },
+        {
+          "id": "390x844: first-visit artwork with Make it mine",
+          "pass": true
+        },
+        {
+          "id": "390x844: Explore directly below note",
+          "pass": true
+        },
+        {
+          "id": "390x844: Explore visible without scrolling",
+          "pass": true
+        },
+        {
+          "id": "390x844: green box with cream shimmer",
+          "pass": true
+        },
+        {
+          "id": "390x844: large headline absent",
+          "pass": true
+        },
+        {
+          "id": "390x844: Make it mine opens setup in shared frame",
+          "pass": true
+        },
+        {
+          "id": "390x844: setup controls loaded",
+          "pass": true
+        }
+      ],
+      "errors": [],
+      "shots": [
+        "chromium-first-320x568.jpg",
+        "chromium-first-375x667.jpg",
+        "chromium-first-390x844.jpg"
+      ],
+      "measurements": [
+        {
+          "width": 284,
+          "height": 56.140625,
+          "x": 18,
+          "y": 413.984375,
+          "bottom": 470.125,
+          "noteBottom": 405.984375,
+          "bottomBarTop": 499,
+          "scrollY": 0,
+          "underNote": true,
+          "uncovered": true
+        },
+        {
+          "width": 339,
+          "height": 56.140625,
+          "x": 18,
+          "y": 512.984375,
+          "bottom": 569.125,
+          "noteBottom": 504.984375,
+          "bottomBarTop": 598,
+          "scrollY": 0,
+          "underNote": true,
+          "uncovered": true
+        },
+        {
+          "width": 354,
+          "height": 56.140625,
+          "x": 18,
+          "y": 583.171875,
+          "bottom": 639.3125,
+          "noteBottom": 575.171875,
+          "bottomBarTop": 775,
+          "scrollY": 0,
+          "underNote": true,
+          "uncovered": true
+        }
+      ]
+    },
+    {
+      "name": "webkit",
+      "checks": [
+        {
+          "id": "320x568: actual first-visit account",
+          "pass": true
+        },
+        {
+          "id": "320x568: Make it mine visible on first welcome",
+          "pass": true
+        },
+        {
+          "id": "320x568: first-visit artwork with Make it mine",
+          "pass": true
+        },
+        {
+          "id": "320x568: Explore directly below note",
+          "pass": true
+        },
+        {
+          "id": "320x568: Explore visible without scrolling",
+          "pass": true
+        },
+        {
+          "id": "320x568: green box with cream shimmer",
+          "pass": true
+        },
+        {
+          "id": "320x568: large headline absent",
+          "pass": true
+        },
+        {
+          "id": "320x568: Make it mine opens setup in shared frame",
+          "pass": true
+        },
+        {
+          "id": "320x568: setup controls loaded",
+          "pass": true
+        },
+        {
+          "id": "375x667: actual first-visit account",
+          "pass": true
+        },
+        {
+          "id": "375x667: Make it mine visible on first welcome",
+          "pass": true
+        },
+        {
+          "id": "375x667: first-visit artwork with Make it mine",
+          "pass": true
+        },
+        {
+          "id": "375x667: Explore directly below note",
+          "pass": true
+        },
+        {
+          "id": "375x667: Explore visible without scrolling",
+          "pass": true
+        },
+        {
+          "id": "375x667: green box with cream shimmer",
+          "pass": true
+        },
+        {
+          "id": "375x667: large headline absent",
+          "pass": true
+        },
+        {
+          "id": "375x667: Make it mine opens setup in shared frame",
+          "pass": true
+        },
+        {
+          "id": "375x667: setup controls loaded",
+          "pass": true
+        },
+        {
+          "id": "390x844: actual first-visit account",
+          "pass": true
+        },
+        {
+          "id": "390x844: Make it mine visible on first welcome",
+          "pass": true
+        },
+        {
+          "id": "390x844: first-visit artwork with Make it mine",
+          "pass": true
+        },
+        {
+          "id": "390x844: Explore directly below note",
+          "pass": true
+        },
+        {
+          "id": "390x844: Explore visible without scrolling",
+          "pass": true
+        },
+        {
+          "id": "390x844: green box with cream shimmer",
+          "pass": true
+        },
+        {
+          "id": "390x844: large headline absent",
+          "pass": true
+        },
+        {
+          "id": "390x844: Make it mine opens setup in shared frame",
+          "pass": true
+        },
+        {
+          "id": "390x844: setup controls loaded",
+          "pass": true
+        }
+      ],
+      "errors": [],
+      "shots": [
+        "webkit-first-320x568.jpg",
+        "webkit-first-375x667.jpg",
+        "webkit-first-390x844.jpg"
+      ],
+      "measurements": [
+        {
+          "width": 284,
+          "height": 56.140625,
+          "x": 18,
+          "y": 413.984375,
+          "bottom": 470.125,
+          "noteBottom": 405.984375,
+          "bottomBarTop": 499,
+          "scrollY": 0,
+          "underNote": true,
+          "uncovered": true
+        },
+        {
+          "width": 339,
+          "height": 56.140625,
+          "x": 18,
+          "y": 512.984375,
+          "bottom": 569.125,
+          "noteBottom": 504.984375,
+          "bottomBarTop": 598,
+          "scrollY": 0,
+          "underNote": true,
+          "uncovered": true
+        },
+        {
+          "width": 354,
+          "height": 56.140625,
+          "x": 18,
+          "y": 583.171875,
+          "bottom": 639.3125,
+          "noteBottom": 575.171875,
+          "bottomBarTop": 775,
+          "scrollY": 0,
+          "underNote": true,
+          "uncovered": true
+        }
+      ]
+    }
+  ]
+}
