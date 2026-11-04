@@ -1,0 +1,35 @@
+{
+  "base": "2abe05bf-2f50-4818-8335-a2180293cf7e",
+  "scope": "Shed Fighter eighth game, held finger-sliding controls, endless Fighter ladders and generated Lob levels, exact approved introduction, dynamic eight-game door and saved offline fallback. Six existing open-ended game modules, frame, assessment, payment and Core unchanged.",
+  "at": "2026-11-04T23:07:38.717Z",
+  "source": "e19faf11887beb8c44c29438a8ba6d71e5743e17",
+  "assetTag": "167015c48d180551dbcb",
+  "expectedHashes": {
+    "v7-release-20261103/programme.mjs": "deba53f3281c747986405692e4c3e3dc9135f59f2b0c07f71ecc9e26bbece019"
+  },
+  "coreBefore": [
+    {
+      "version_id": "08cebab7-1143-46a7-863e-1506ab83aadb",
+      "percentage": 100
+    }
+  ],
+  "schedules": [
+    {
+      "cron": "0,15,30,45 0-5 * * *",
+      "created_on": "2026-11-04T00:34:26.630649Z",
+      "modified_on": "2026-11-04T00:34:26.630649Z"
+    }
+  ],
+  "memberTrafficChanged": true,
+  "candidate": "0bc31907-6556-4d1c-9d31-8ea5659a8bf7",
+  "preparedAt": "2026-11-04T23:07:44.885Z",
+  "attemptedAt": "2026-11-04T23:07:45.938Z",
+  "liveAt": "2026-11-04T23:07:48.299Z",
+  "coreAfter": [
+    {
+      "version_id": "08cebab7-1143-46a7-863e-1506ab83aadb",
+      "percentage": 100
+    }
+  ],
+  "verifiedAt": "2026-11-04T23:08:14.892Z"
+}

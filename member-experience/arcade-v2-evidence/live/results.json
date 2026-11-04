@@ -1,0 +1,1144 @@
+{
+  "at": "2026-11-04T23:07:49.483Z",
+  "origin": "https://shiftsometimber.co.uk",
+  "physical": false,
+  "method": "Hosted app and real account API. Continuous captured-pointer drags in both engines; actual touch protocol additionally in Chromium. Supplied simulation helper advances fight time; scenarios labelled.",
+  "engines": [
+    {
+      "name": "chromium",
+      "account": {
+        "id": 900710301,
+        "email": "v7-live-proof@example.invalid"
+      },
+      "checks": [
+        {
+          "id": "Authenticated synthetic account only",
+          "pass": true
+        },
+        {
+          "id": "Shop content and links exactly match preceding live release",
+          "pass": true
+        },
+        {
+          "id": "Eight games and exact approved introduction",
+          "pass": true
+        },
+        {
+          "id": "timber-lob opens in retained native shell",
+          "pass": true
+        },
+        {
+          "id": "G1 endless stage 8 is playable",
+          "pass": true
+        },
+        {
+          "id": "G1 endless stage 36 is playable",
+          "pass": true
+        },
+        {
+          "id": "G1 endless stage 10000 is playable",
+          "pass": true
+        },
+        {
+          "id": "G1 level eight can be won using the real physics engine",
+          "pass": true,
+          "detail": {
+            "won": true,
+            "vx": 8,
+            "vy": -2,
+            "state": {
+              "L": 7,
+              "state": "win",
+              "logsLeft": 2,
+              "gnomes": 1,
+              "down": 1,
+              "used": 1,
+              "bodies": [
+                {
+                  "t": "ground",
+                  "x": 12,
+                  "y": 25,
+                  "r": 0
+                },
+                {
+                  "t": "V",
+                  "x": 14.82,
+                  "y": 22.63,
+                  "r": 1.57
+                },
+                {
+                  "t": "V",
+                  "x": 12.02,
+                  "y": 22.63,
+                  "r": 1.57
+                },
+                {
+                  "t": "P",
+                  "x": 12.27,
+                  "y": 21.89,
+                  "r": 0
+                },
+                {
+                  "t": "G",
+                  "x": 8.82,
+                  "y": 22.57,
+                  "r": -4.72
+                },
+                {
+                  "t": "proj",
+                  "x": -0.02,
+                  "y": 22.45,
+                  "r": -15.66
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "G1 level win continues to level nine",
+          "pass": true
+        },
+        {
+          "id": "G1 endless progress saves to member account",
+          "pass": true
+        },
+        {
+          "id": "chop-shop opens in retained native shell",
+          "pass": true
+        },
+        {
+          "id": "timber opens in retained native shell",
+          "pass": true
+        },
+        {
+          "id": "stack-the-shed opens in retained native shell",
+          "pass": true
+        },
+        {
+          "id": "saw-duel opens in retained native shell",
+          "pass": true
+        },
+        {
+          "id": "timber-smash opens in retained native shell",
+          "pass": true
+        },
+        {
+          "id": "over-the-shed opens in retained native shell",
+          "pass": true
+        },
+        {
+          "id": "shed-fighter opens in retained native shell",
+          "pass": true
+        },
+        {
+          "id": "G8 sound off by default; no example totals or prototype labels",
+          "pass": true
+        },
+        {
+          "id": "Phone buttons fit above bottom navigation",
+          "pass": true,
+          "detail": [
+            {
+              "label": "Jump",
+              "rect": {
+                "x": 67,
+                "y": 467.015625,
+                "width": 42,
+                "height": 44,
+                "top": 467.015625,
+                "right": 109,
+                "bottom": 511.015625,
+                "left": 67
+              }
+            },
+            {
+              "label": "Left",
+              "rect": {
+                "x": 23,
+                "y": 513.015625,
+                "width": 42,
+                "height": 44,
+                "top": 513.015625,
+                "right": 65,
+                "bottom": 557.015625,
+                "left": 23
+              }
+            },
+            {
+              "label": "Right",
+              "rect": {
+                "x": 111,
+                "y": 513.015625,
+                "width": 42,
+                "height": 44,
+                "top": 513.015625,
+                "right": 153,
+                "bottom": 557.015625,
+                "left": 111
+              }
+            },
+            {
+              "label": "Crouch",
+              "rect": {
+                "x": 67,
+                "y": 559.015625,
+                "width": 42,
+                "height": 44,
+                "top": 559.015625,
+                "right": 109,
+                "bottom": 603.015625,
+                "left": 67
+              }
+            },
+            {
+              "label": "LIGHT J",
+              "rect": {
+                "x": 198.453125,
+                "y": 470.015625,
+                "width": 81.265625,
+                "height": 62,
+                "top": 470.015625,
+                "right": 279.71875,
+                "bottom": 532.015625,
+                "left": 198.453125
+              }
+            },
+            {
+              "label": "HEAVY K",
+              "rect": {
+                "x": 285.71875,
+                "y": 470.015625,
+                "width": 81.28125,
+                "height": 62,
+                "top": 470.015625,
+                "right": 367,
+                "bottom": 532.015625,
+                "left": 285.71875
+              }
+            },
+            {
+              "label": "BLOCK L",
+              "rect": {
+                "x": 198.453125,
+                "y": 538.015625,
+                "width": 81.265625,
+                "height": 62,
+                "top": 538.015625,
+                "right": 279.71875,
+                "bottom": 600.015625,
+                "left": 198.453125
+              }
+            },
+            {
+              "label": "SPECIAL I",
+              "rect": {
+                "x": 285.71875,
+                "y": 538.015625,
+                "width": 81.28125,
+                "height": 62,
+                "top": 538.015625,
+                "right": 367,
+                "bottom": 600.015625,
+                "left": 285.71875
+              }
+            }
+          ]
+        },
+        {
+          "id": "G8 fighter selection starts a match",
+          "pass": true
+        },
+        {
+          "id": "G8 uninterrupted Left to Right slide releases old and holds new",
+          "pass": true,
+          "detail": {
+            "x0": 34,
+            "x1": 22.75,
+            "x2": 38.875,
+            "held": [
+              "r"
+            ],
+            "events": [
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointerdown",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointerup",
+                "id": 1,
+                "kind": "mouse"
+              }
+            ]
+          }
+        },
+        {
+          "id": "G8 real touch events switch without touchend",
+          "pass": true
+        },
+        {
+          "id": "G8 independent pointer owners: releasing second keeps first held",
+          "pass": true
+        },
+        {
+          "id": "G8 uninterrupted Light to Heavy slide damages opponent with both",
+          "pass": true,
+          "detail": {
+            "hp0": 95,
+            "hp1": 89,
+            "hp2": 75.8,
+            "attackHeld": [
+              "hv"
+            ]
+          }
+        },
+        {
+          "id": "G8 pause clears held controls",
+          "pass": true
+        },
+        {
+          "id": "G8 Special cannot fire before full meter",
+          "pass": true
+        },
+        {
+          "id": "G8 combat fills the special meter",
+          "pass": true,
+          "detail": {
+            "state": "fight",
+            "ladder": 0,
+            "won": 0,
+            "round": 1,
+            "pW": 0,
+            "cW": 0,
+            "rt": 33.500000000000654,
+            "me": "oaksy",
+            "opp": "splinter",
+            "P": {
+              "x": 112.00000000000136,
+              "y": 104,
+              "hp": 110,
+              "meter": 100,
+              "st": "idle",
+              "sp": null
+            },
+            "C": {
+              "x": 122,
+              "y": 104,
+              "hp": 41,
+              "meter": 63,
+              "st": "idle"
+            },
+            "freeze": 0,
+            "projs": 0
+          }
+        },
+        {
+          "id": "G8 full-meter Special fires and consumes meter",
+          "pass": true
+        },
+        {
+          "id": "G8 Block reduces actual CPU damage",
+          "pass": true,
+          "detail": {
+            "blockedHp": 93.8,
+            "openHp": 89,
+            "method": "Same seeded CPU sequence through first landed hit; held Block versus no Block"
+          }
+        },
+        {
+          "id": "G8 clears the Foreman and continues into a harder fourth fight",
+          "pass": true,
+          "detail": {
+            "final": {
+              "state": "intro",
+              "ladder": 4,
+              "won": 4,
+              "round": 1,
+              "pW": 0,
+              "cW": 0,
+              "rt": 45,
+              "me": "oaksy",
+              "opp": "sid",
+              "P": {
+                "x": 34,
+                "y": 104,
+                "hp": 110,
+                "meter": 0,
+                "st": "idle",
+                "sp": null
+              },
+              "C": {
+                "x": 94,
+                "y": 104,
+                "hp": 106,
+                "meter": 0,
+                "st": "idle"
+              },
+              "freeze": 0,
+              "projs": 0
+            },
+            "rounds": [
+              {
+                "ladder": 0,
+                "round": 1,
+                "won": 0
+              },
+              {
+                "ladder": 0,
+                "round": 2,
+                "won": 0
+              },
+              {
+                "ladder": 1,
+                "round": 1,
+                "won": 1
+              },
+              {
+                "ladder": 1,
+                "round": 2,
+                "won": 1
+              },
+              {
+                "ladder": 2,
+                "round": 1,
+                "won": 2
+              },
+              {
+                "ladder": 2,
+                "round": 2,
+                "won": 2
+              },
+              {
+                "ladder": 3,
+                "round": 1,
+                "won": 3
+              },
+              {
+                "ladder": 3,
+                "round": 2,
+                "won": 3
+              },
+              {
+                "ladder": 4,
+                "round": 1,
+                "won": 4
+              }
+            ]
+          }
+        },
+        {
+          "id": "G8 higher best earned offline is queued for its owner",
+          "pass": {
+            "shed-fighter": {
+              "action": "best",
+              "game": "shed-fighter",
+              "value": 4
+            }
+          }
+        },
+        {
+          "id": "G8 best saved to member account",
+          "pass": true
+        },
+        {
+          "id": "G8 best returns in another authenticated session",
+          "pass": true
+        },
+        {
+          "id": "G8 replay returns to fighter selection",
+          "pass": true
+        },
+        {
+          "id": "G8 floored result and replay work",
+          "pass": true
+        },
+        {
+          "id": "G8 deliberate share contains only game, result and clean arcade URL",
+          "pass": true,
+          "detail": [
+            {
+              "title": "Shed Fighter",
+              "text": "I won 4 fights at Shed Fighter in Shift Arcade. Your go.",
+              "url": "https://shiftsometimber.co.uk/member/shed-arcade/shed-fighter"
+            }
+          ]
+        },
+        {
+          "id": "G8 reloaded game restores saved best",
+          "pass": true
+        },
+        {
+          "id": "G8 previously loaded game opens offline",
+          "pass": true,
+          "detail": {
+            "method": "Offline full-page reload restores encrypted account snapshot and cached game."
+          }
+        },
+        {
+          "id": "G8 back to Today retains the shell",
+          "pass": true
+        },
+        {
+          "id": "Food, daily action and pile unchanged",
+          "pass": true
+        },
+        {
+          "id": "G8 signed-out users cannot play",
+          "pass": true
+        },
+        {
+          "id": "Eight games fit desktop grid",
+          "pass": true
+        },
+        {
+          "id": "G8 desktop controls and canvas fit the shared shell",
+          "pass": true
+        },
+        {
+          "id": "No browser execution errors",
+          "pass": true,
+          "detail": []
+        }
+      ],
+      "errors": [],
+      "shots": [
+        "chromium-shop-unchanged.jpg",
+        "chromium-arcade.jpg",
+        "chromium-lob-level-10000.jpg",
+        "chromium-lob-next-level.jpg",
+        "chromium-fighter-select.jpg",
+        "chromium-finger-slide.jpg",
+        "chromium-fighter-match.jpg",
+        "chromium-fighter-endless.jpg",
+        "chromium-fighter-floored.jpg",
+        "chromium-fighter-offline.jpg"
+      ]
+    },
+    {
+      "name": "webkit",
+      "account": {
+        "id": 900710301,
+        "email": "v7-live-proof@example.invalid"
+      },
+      "checks": [
+        {
+          "id": "Authenticated synthetic account only",
+          "pass": true
+        },
+        {
+          "id": "Shop content and links exactly match preceding live release",
+          "pass": true
+        },
+        {
+          "id": "Eight games and exact approved introduction",
+          "pass": true
+        },
+        {
+          "id": "timber-lob opens in retained native shell",
+          "pass": true
+        },
+        {
+          "id": "G1 endless stage 8 is playable",
+          "pass": true
+        },
+        {
+          "id": "G1 endless stage 36 is playable",
+          "pass": true
+        },
+        {
+          "id": "G1 endless stage 10000 is playable",
+          "pass": true
+        },
+        {
+          "id": "G1 level eight can be won using the real physics engine",
+          "pass": true,
+          "detail": {
+            "won": true,
+            "vx": 8,
+            "vy": -2,
+            "state": {
+              "L": 7,
+              "state": "win",
+              "logsLeft": 2,
+              "gnomes": 1,
+              "down": 1,
+              "used": 1,
+              "bodies": [
+                {
+                  "t": "ground",
+                  "x": 12,
+                  "y": 25,
+                  "r": 0
+                },
+                {
+                  "t": "V",
+                  "x": 14.82,
+                  "y": 22.63,
+                  "r": 1.57
+                },
+                {
+                  "t": "V",
+                  "x": 12.02,
+                  "y": 22.63,
+                  "r": 1.57
+                },
+                {
+                  "t": "P",
+                  "x": 12.27,
+                  "y": 21.89,
+                  "r": 0
+                },
+                {
+                  "t": "G",
+                  "x": 8.82,
+                  "y": 22.57,
+                  "r": -4.72
+                },
+                {
+                  "t": "proj",
+                  "x": -0.02,
+                  "y": 22.45,
+                  "r": -15.66
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "G1 level win continues to level nine",
+          "pass": true
+        },
+        {
+          "id": "G1 endless progress saves to member account",
+          "pass": true
+        },
+        {
+          "id": "chop-shop opens in retained native shell",
+          "pass": true
+        },
+        {
+          "id": "timber opens in retained native shell",
+          "pass": true
+        },
+        {
+          "id": "stack-the-shed opens in retained native shell",
+          "pass": true
+        },
+        {
+          "id": "saw-duel opens in retained native shell",
+          "pass": true
+        },
+        {
+          "id": "timber-smash opens in retained native shell",
+          "pass": true
+        },
+        {
+          "id": "over-the-shed opens in retained native shell",
+          "pass": true
+        },
+        {
+          "id": "shed-fighter opens in retained native shell",
+          "pass": true
+        },
+        {
+          "id": "G8 sound off by default; no example totals or prototype labels",
+          "pass": true
+        },
+        {
+          "id": "Phone buttons fit above bottom navigation",
+          "pass": true,
+          "detail": [
+            {
+              "label": "Jump",
+              "rect": {
+                "x": 67,
+                "y": 467.015625,
+                "width": 42,
+                "height": 44,
+                "top": 467.015625,
+                "right": 109,
+                "bottom": 511.015625,
+                "left": 67
+              }
+            },
+            {
+              "label": "Left",
+              "rect": {
+                "x": 23,
+                "y": 513.015625,
+                "width": 42,
+                "height": 44,
+                "top": 513.015625,
+                "right": 65,
+                "bottom": 557.015625,
+                "left": 23
+              }
+            },
+            {
+              "label": "Right",
+              "rect": {
+                "x": 111,
+                "y": 513.015625,
+                "width": 42,
+                "height": 44,
+                "top": 513.015625,
+                "right": 153,
+                "bottom": 557.015625,
+                "left": 111
+              }
+            },
+            {
+              "label": "Crouch",
+              "rect": {
+                "x": 67,
+                "y": 559.015625,
+                "width": 42,
+                "height": 44,
+                "top": 559.015625,
+                "right": 109,
+                "bottom": 603.015625,
+                "left": 67
+              }
+            },
+            {
+              "label": "LIGHT J",
+              "rect": {
+                "x": 198.453125,
+                "y": 470.015625,
+                "width": 81.265625,
+                "height": 62,
+                "top": 470.015625,
+                "right": 279.71875,
+                "bottom": 532.015625,
+                "left": 198.453125
+              }
+            },
+            {
+              "label": "HEAVY K",
+              "rect": {
+                "x": 285.71875,
+                "y": 470.015625,
+                "width": 81.28125,
+                "height": 62,
+                "top": 470.015625,
+                "right": 367,
+                "bottom": 532.015625,
+                "left": 285.71875
+              }
+            },
+            {
+              "label": "BLOCK L",
+              "rect": {
+                "x": 198.453125,
+                "y": 538.015625,
+                "width": 81.265625,
+                "height": 62,
+                "top": 538.015625,
+                "right": 279.71875,
+                "bottom": 600.015625,
+                "left": 198.453125
+              }
+            },
+            {
+              "label": "SPECIAL I",
+              "rect": {
+                "x": 285.71875,
+                "y": 538.015625,
+                "width": 81.28125,
+                "height": 62,
+                "top": 538.015625,
+                "right": 367,
+                "bottom": 600.015625,
+                "left": 285.71875
+              }
+            }
+          ]
+        },
+        {
+          "id": "G8 fighter selection starts a match",
+          "pass": true
+        },
+        {
+          "id": "G8 uninterrupted Left to Right slide releases old and holds new",
+          "pass": true,
+          "detail": {
+            "x0": 34,
+            "x1": 22.75,
+            "x2": 37.75,
+            "held": [
+              "r"
+            ],
+            "events": [
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointerdown",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointermove",
+                "id": 1,
+                "kind": "mouse"
+              },
+              {
+                "type": "pointerup",
+                "id": 1,
+                "kind": "mouse"
+              }
+            ]
+          }
+        },
+        {
+          "id": "G8 uninterrupted Light to Heavy slide damages opponent with both",
+          "pass": true,
+          "detail": {
+            "hp0": 95,
+            "hp1": 89,
+            "hp2": 75.8,
+            "attackHeld": [
+              "hv"
+            ]
+          }
+        },
+        {
+          "id": "G8 pause clears held controls",
+          "pass": true
+        },
+        {
+          "id": "G8 Special cannot fire before full meter",
+          "pass": true
+        },
+        {
+          "id": "G8 combat fills the special meter",
+          "pass": true,
+          "detail": {
+            "state": "fight",
+            "ladder": 0,
+            "won": 0,
+            "round": 1,
+            "pW": 0,
+            "cW": 0,
+            "rt": 33.51666666666732,
+            "me": "oaksy",
+            "opp": "splinter",
+            "P": {
+              "x": 112.00000000000136,
+              "y": 104,
+              "hp": 110,
+              "meter": 100,
+              "st": "idle",
+              "sp": null
+            },
+            "C": {
+              "x": 122,
+              "y": 104,
+              "hp": 41,
+              "meter": 63,
+              "st": "idle"
+            },
+            "freeze": 0,
+            "projs": 0
+          }
+        },
+        {
+          "id": "G8 full-meter Special fires and consumes meter",
+          "pass": true
+        },
+        {
+          "id": "G8 Block reduces actual CPU damage",
+          "pass": true,
+          "detail": {
+            "blockedHp": 93.8,
+            "openHp": 89,
+            "method": "Same seeded CPU sequence through first landed hit; held Block versus no Block"
+          }
+        },
+        {
+          "id": "G8 clears the Foreman and continues into a harder fourth fight",
+          "pass": true,
+          "detail": {
+            "final": {
+              "state": "intro",
+              "ladder": 4,
+              "won": 4,
+              "round": 1,
+              "pW": 0,
+              "cW": 0,
+              "rt": 45,
+              "me": "oaksy",
+              "opp": "sid",
+              "P": {
+                "x": 34,
+                "y": 104,
+                "hp": 110,
+                "meter": 0,
+                "st": "idle",
+                "sp": null
+              },
+              "C": {
+                "x": 94,
+                "y": 104,
+                "hp": 106,
+                "meter": 0,
+                "st": "idle"
+              },
+              "freeze": 0,
+              "projs": 0
+            },
+            "rounds": [
+              {
+                "ladder": 0,
+                "round": 1,
+                "won": 0
+              },
+              {
+                "ladder": 0,
+                "round": 2,
+                "won": 0
+              },
+              {
+                "ladder": 1,
+                "round": 1,
+                "won": 1
+              },
+              {
+                "ladder": 1,
+                "round": 2,
+                "won": 1
+              },
+              {
+                "ladder": 2,
+                "round": 1,
+                "won": 2
+              },
+              {
+                "ladder": 2,
+                "round": 2,
+                "won": 2
+              },
+              {
+                "ladder": 3,
+                "round": 1,
+                "won": 3
+              },
+              {
+                "ladder": 3,
+                "round": 2,
+                "won": 3
+              },
+              {
+                "ladder": 4,
+                "round": 1,
+                "won": 4
+              }
+            ]
+          }
+        },
+        {
+          "id": "G8 higher best earned offline is queued for its owner",
+          "pass": {}
+        },
+        {
+          "id": "G8 best saved to member account",
+          "pass": true
+        },
+        {
+          "id": "G8 best returns in another authenticated session",
+          "pass": true
+        },
+        {
+          "id": "G8 replay returns to fighter selection",
+          "pass": true
+        },
+        {
+          "id": "G8 floored result and replay work",
+          "pass": true
+        },
+        {
+          "id": "G8 deliberate share contains only game, result and clean arcade URL",
+          "pass": true,
+          "detail": [
+            {
+              "title": "Shed Fighter",
+              "text": "I won 4 fights at Shed Fighter in Shift Arcade. Your go.",
+              "url": "https://shiftsometimber.co.uk/member/shed-arcade/shed-fighter"
+            }
+          ]
+        },
+        {
+          "id": "G8 reloaded game restores saved best",
+          "pass": true
+        },
+        {
+          "id": "G8 previously loaded game opens offline",
+          "pass": true,
+          "detail": {
+            "method": "Offline navigation within the installed shell. Playwright WebKit offline full-page reload reports an internal browser error; no physical-phone claim."
+          }
+        },
+        {
+          "id": "G8 back to Today retains the shell",
+          "pass": true
+        },
+        {
+          "id": "Food, daily action and pile unchanged",
+          "pass": true
+        },
+        {
+          "id": "G8 signed-out users cannot play",
+          "pass": true
+        },
+        {
+          "id": "Eight games fit desktop grid",
+          "pass": true
+        },
+        {
+          "id": "G8 desktop controls and canvas fit the shared shell",
+          "pass": true
+        },
+        {
+          "id": "No browser execution errors",
+          "pass": true,
+          "detail": []
+        }
+      ],
+      "errors": [],
+      "shots": [
+        "webkit-shop-unchanged.jpg",
+        "webkit-arcade.jpg",
+        "webkit-lob-level-10000.jpg",
+        "webkit-lob-next-level.jpg",
+        "webkit-fighter-select.jpg",
+        "webkit-finger-slide.jpg",
+        "webkit-fighter-match.jpg",
+        "webkit-fighter-endless.jpg",
+        "webkit-fighter-floored.jpg",
+        "webkit-fighter-offline.jpg"
+      ]
+    }
+  ]
+}

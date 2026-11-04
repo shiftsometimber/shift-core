@@ -1,0 +1,16 @@
+✔ all eight rotate on successive London dates, consistently within a day (10.676042ms)
+✔ scores maximise, Saw Duel minimises positive times, and stars merge per level (1.225833ms)
+✔ sound defaults off, nickname starts blank, and nudges cap at two per week (0.533041ms)
+✔ real SQL concurrent saves keep best, preserve health/pile/food and separate accounts without requiring health consent (17.897375ms)
+✔ arcade export contains only owner; account erasure clears arcade atomically, health erasure keeps it (1.400583ms)
+✔ Shed Fighter keeps the best beyond the first three-fight ladder (0.142833ms)
+✔ Unlimited Timber Lob progress stays bounded and keeps legacy stars (0.140916ms)
+✔ Concurrent endless-level writes preserve all other member records and greatest progress (2.2625ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 87.376209
