@@ -1,3 +1,4 @@
+import {wrapWeightLossCta} from './public-site/weight-loss-cta.mjs';
 import {recordServiceJob} from './hq-service-job-runs.mjs';
 import {approvedTelemetryAsset,approvedComparisonAnswer} from './approved-public-corrections-20261024.mjs';
 import {causesPublicRoute} from './causes-partners/production.mjs';
@@ -1224,4 +1225,4 @@ const memberSupportCanonicalBase = {
 
 // Approved My Timber v6 composition; public and scheduled handlers are retained.
 import {composeMyTimberSupport} from './member-experience/support-canonical-worker.mjs';
-export default composeMyTimberSupport(memberSupportCanonicalBase);
+export default wrapWeightLossCta(composeMyTimberSupport(memberSupportCanonicalBase));
