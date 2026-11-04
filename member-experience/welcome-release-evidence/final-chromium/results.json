@@ -1,0 +1,233 @@
+{
+  "at": "2026-11-04T15:43:39.873Z",
+  "engine": "chromium",
+  "device": "chromium mobile profile, not a physical phone",
+  "account": "welcome-chromium-returning@example.invalid",
+  "checks": [
+    {
+      "name": "today keeps one fixed frame and mobile width",
+      "result": "PASS"
+    },
+    {
+      "name": "grub keeps one fixed frame and mobile width",
+      "result": "PASS"
+    },
+    {
+      "name": "journey keeps one fixed frame and mobile width",
+      "result": "PASS"
+    },
+    {
+      "name": "fit keeps one fixed frame and mobile width",
+      "result": "PASS"
+    },
+    {
+      "name": "support keeps one fixed frame and mobile width",
+      "result": "PASS"
+    },
+    {
+      "name": "more keeps one fixed frame and mobile width",
+      "result": "PASS"
+    },
+    {
+      "name": "shop keeps one fixed frame and mobile width",
+      "result": "PASS"
+    },
+    {
+      "name": "Shop home wording is unchanged from serving source",
+      "result": "PASS"
+    },
+    {
+      "name": "Support situation: Treatment changing or ending",
+      "result": "PASS"
+    },
+    {
+      "name": "Support situation: The scales have gone quiet",
+      "result": "PASS"
+    },
+    {
+      "name": "Support situation: Having a wobble",
+      "result": "PASS"
+    },
+    {
+      "name": "Support situation: Worried about the cost",
+      "result": "PASS"
+    },
+    {
+      "name": "Support situation: Side effects or feeling unwell",
+      "result": "PASS"
+    },
+    {
+      "name": "Urgent links stay tap-to-call",
+      "result": "PASS"
+    },
+    {
+      "name": "Shed stays a separate browser tab",
+      "result": "PASS"
+    },
+    {
+      "name": "More retains Saved & plans",
+      "result": "PASS"
+    },
+    {
+      "name": "More retains My orders",
+      "result": "PASS"
+    },
+    {
+      "name": "More retains Account & settings",
+      "result": "PASS"
+    },
+    {
+      "name": "More retains Show weight: On",
+      "result": "PASS"
+    },
+    {
+      "name": "More retains Daily check-in reminder",
+      "result": "PASS"
+    },
+    {
+      "name": "More retains Health tags",
+      "result": "PASS"
+    },
+    {
+      "name": "More retains Units",
+      "result": "PASS"
+    },
+    {
+      "name": "More retains Privacy & data rights",
+      "result": "PASS"
+    },
+    {
+      "name": "More retains Sign out",
+      "result": "PASS"
+    },
+    {
+      "name": "More retains Timber Mill kit",
+      "result": "PASS"
+    },
+    {
+      "name": "More retains Help using My Timber",
+      "result": "PASS"
+    },
+    {
+      "name": "Settings existing member details controller is ready",
+      "result": "PASS"
+    },
+    {
+      "name": "More stays selected in Settings",
+      "result": "PASS"
+    },
+    {
+      "name": "Original account controls retained",
+      "result": "PASS",
+      "detail": [
+        "main-content",
+        "pwaReminderSettings",
+        "pwaReminderHeading",
+        "pwaReminderSummary",
+        "pwaReminderEditor",
+        "pwaHour",
+        "pwaEnable",
+        "pwaChange",
+        "pwaDisable",
+        "pwaRetry",
+        "pwaReminderStatus",
+        "memberDetailsPanel",
+        "memberDetailsTitle",
+        "memberDetailsForm",
+        "memberDetailsFields",
+        "memberFirstName",
+        "memberLastName",
+        "memberDob",
+        "memberPhone",
+        "memberEmail",
+        "memberEmailHelp",
+        "memberPostcode",
+        "memberAddressHelp",
+        "memberAddress1",
+        "memberAddress2",
+        "memberTown",
+        "memberCounty",
+        "memberGpPractice",
+        "memberGpHelp",
+        "memberGpLookup",
+        "memberGpSelect",
+        "memberGpPostcode",
+        "memberGpCode",
+        "memberGpSelected",
+        "memberDetailsSave",
+        "memberDetailsReload",
+        "memberDetailsStatus",
+        "memberDeliveryPanel",
+        "memberDeliveryTitle",
+        "memberDeliveryForm",
+        "memberDeliveryFields",
+        "memberDeliveryMode",
+        "memberDeliveryHome",
+        "memberDeliverySeparate",
+        "memberDeliveryRecipient",
+        "memberDeliveryPostcode",
+        "memberDeliveryAddress1",
+        "memberDeliveryAddress2",
+        "memberDeliveryTown",
+        "memberDeliveryCounty",
+        "memberDeliverySave",
+        "memberDeliveryReload",
+        "memberDeliveryStatus",
+        "memberEmailChangePanel",
+        "memberEmailChangeTitle",
+        "memberEmailChangeForm",
+        "memberEmailChangeFields",
+        "memberEmailChangePassword",
+        "memberEmailChangeNew",
+        "memberEmailChangeConfirm",
+        "memberEmailChangeSubmit",
+        "memberEmailChangeRefresh",
+        "memberEmailChangeStatus",
+        "prefWeight",
+        "prefHeight",
+        "member-password-heading",
+        "memberPasswordReset",
+        "memberPasswordStatus",
+        "memberPasswordSignIn",
+        "clearMemberData",
+        "healthConsentManager",
+        "healthConsentAction",
+        "healthEraseAction",
+        "healthExportAction",
+        "healthConsentManagerMsg",
+        "deviceHealth",
+        "accountDeletionHeading",
+        "accountDeletionOpen",
+        "accountDeletionForm",
+        "accountDeletionConfirm",
+        "accountDeletionCancel",
+        "accountDeletionStatus",
+        "accountDeletionSignIn",
+        "health-tags",
+        "sstCookieSettings"
+      ]
+    },
+    {
+      "name": "Saved plans retained route opens",
+      "result": "PASS"
+    },
+    {
+      "name": "Orders retained route opens",
+      "result": "PASS"
+    },
+    {
+      "name": "Treatment retained route opens",
+      "result": "PASS"
+    },
+    {
+      "name": "Ask Timber retained route opens",
+      "result": "PASS"
+    },
+    {
+      "name": "No uncaught controller exceptions",
+      "result": "PASS",
+      "detail": []
+    }
+  ],
+  "errors": []
+}

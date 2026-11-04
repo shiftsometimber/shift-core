@@ -1,0 +1,112 @@
+[
+  {
+    "path": "medicine-commerce-v1.js",
+    "unchanged": true,
+    "sha256": "b726577f17fef8ac534ba8d5b7e65b7fba1aa0e1a2d3de5f7993bd3d0851cc30"
+  },
+  {
+    "path": "member-state-fast-v1.js",
+    "unchanged": true,
+    "sha256": "d8dcf15f7b66da7cfbb67fa859ed68d1bd2525f3f1ff760d37b223d2c14dc8e9"
+  },
+  {
+    "path": "privacy-account-request-v1.js",
+    "unchanged": true,
+    "sha256": "801a47b6f6270a7701dc9fcba7f47def0f90815d4fd44232d3d84907c2422df4"
+  },
+  {
+    "path": "privacy-health-erasure-v1.js",
+    "unchanged": true,
+    "sha256": "9bd50e41e9f82a7edaca308a26bb200e23f98ebc9d86db130a221050f2d61f5d"
+  },
+  {
+    "path": "privacy-health-erasure-route-v1.js",
+    "unchanged": true,
+    "sha256": "5cfc93c3144857b703d65375ba62f3b9fcbdb3847923e2429631b3a636d45409"
+  },
+  {
+    "path": "industrial-grub-nutrition-v1.js",
+    "unchanged": true,
+    "sha256": "27dcf5755c2e343cbb26559fb1e5bf216f9122075307d63a08947e5d60df5772"
+  },
+  {
+    "path": "memory-privacy.js",
+    "unchanged": true,
+    "sha256": "dda7d01f43d0f689c20fcb3a33761beb99c105c0f7249b6de682ce3871ea7892"
+  },
+  {
+    "path": "member-experience/shop-routes.mjs",
+    "unchanged": true,
+    "sha256": "2133f139dc7950ce8a0bff74d8b844c888ad5d8fb41e8965901ff94ea7a04783"
+  },
+  {
+    "path": "member-experience/shop-basket.mjs",
+    "unchanged": true,
+    "sha256": "c1b00634ee293073cb49b2eb11bccedcf908181a63314d77ec56c3e507cd6db5"
+  },
+  {
+    "path": "member-experience/shop-catalogue-reader.mjs",
+    "unchanged": true,
+    "sha256": "32c7cdfe73cf6d58917c7f643091bb90f1144248ac7670afbfc57fa3958eea93"
+  },
+  {
+    "path": "member-experience/support-markup.mjs",
+    "unchanged": true,
+    "sha256": "03977c34506c2b3aefe7f1d9945712400fe6d44a1ecd24a252a0606e1c8c80da"
+  },
+  {
+    "path": "member-experience/support-plan-client.mjs",
+    "unchanged": true,
+    "sha256": "ecb9dc8579e904667f7dbcb98a6c62150f02c93e498cc7a2a58716f14e6516ce"
+  },
+  {
+    "path": "member-experience/journey-page-client.mjs",
+    "unchanged": true,
+    "sha256": "c1d79e1e0ad131db91c3e166d9fcecee972ead8d6ab6664c0d8451e2563fa898"
+  },
+  {
+    "path": "member-experience/journey-records.mjs",
+    "unchanged": true,
+    "sha256": "e21a48d9fbbedfb2406b3e492111668c24f8b2cddd2a58f15d90ecd5e5fefba0"
+  },
+  {
+    "path": "member-experience/journey-portability.mjs",
+    "unchanged": true,
+    "sha256": "fcb10700268d4b710a86c192bd1df998a5fe1ad7d9241db6b1b7624c1bc5f580"
+  },
+  {
+    "path": "member-experience/v7-api.mjs",
+    "unchanged": true,
+    "sha256": "5e5ca300319e30a33a3eb7f54896e3e2c059eaac07ab6a9c665e3716edfc3b7a"
+  },
+  {
+    "path": "member-experience/v7-model.mjs",
+    "unchanged": true,
+    "sha256": "7969bee2b9bbabcb0a84ea64eef6e5893f6eb4a729283de5d67732a7c7fc4474"
+  },
+  {
+    "path": "member-experience/v7-food-routes.mjs",
+    "unchanged": true,
+    "sha256": "5231b45303e0a319da0af3784b3767c42aba1d263a47c7eee0a417dfe1a4c4a7"
+  },
+  {
+    "path": "member-experience/v7-fit.mjs",
+    "unchanged": true,
+    "sha256": "ed159a3214d7e1c0af9104b8750b75220794047ded0fdd5240facc6e025f2397"
+  },
+  {
+    "path": "member-experience/v7-overnight.mjs",
+    "unchanged": true,
+    "sha256": "584591f17b86a071f3a2876d1f021b01ba77b0f81643604226f24ecf984c32a6"
+  },
+  {
+    "path": "member-experience/v7-privacy.mjs",
+    "unchanged": true,
+    "sha256": "0b59078de8a435f5be37e4c53b9b2a39d3ff236ae5c5977e1389b26015d74039"
+  },
+  {
+    "path": "member-experience/v7-visibility.mjs",
+    "unchanged": true,
+    "sha256": "27e914544d8d9a6911742fcd1c47349fe1d1025622321564a49c40ee5be84dbf"
+  }
+]

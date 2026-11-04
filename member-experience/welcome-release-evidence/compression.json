@@ -1,0 +1,16 @@
+[
+  {
+    "asset": "v7-native.mjs",
+    "rawBytes": 182654,
+    "brotliBytes": 48345,
+    "roundTripIdentical": true,
+    "sha256": "97edab8999a512cebb7c23e9b3cb1cc4c10b671a373c70208509aa1c7a03b91f"
+  },
+  {
+    "asset": "v7-native.css",
+    "rawBytes": 42293,
+    "brotliBytes": 7516,
+    "roundTripIdentical": true,
+    "sha256": "049cc60f0bc3ddfa783e6b207e9e68cdfff9d964cae9fab44c70e2dc08709ded"
+  }
+]

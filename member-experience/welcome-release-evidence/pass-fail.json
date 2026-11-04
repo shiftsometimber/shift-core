@@ -1,0 +1,962 @@
+[
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W1.1",
+    "rule": "Top tabs read, in order: Welcome, Today, Journey, Shop. Welcome is first.",
+    "result": "PASS",
+    "evidence": "browser/results.json: both engines W1; returning and first-visit recordings.",
+    "limitation": ""
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W1.2",
+    "rule": "The plan: a first visit lands on Welcome. A returning member lands on Today. Welcome stays as a tab after setup.",
+    "result": "PASS",
+    "evidence": "browser/results.json: both engines W1; returning and first-visit recordings.",
+    "limitation": ""
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W2.1",
+    "rule": "PASS only if the Welcome visual is the supplied v2 artwork image, not rebuilt in CSS. Headline, paper, tape, pins and note text come from the image files.",
+    "result": "PASS",
+    "evidence": "artwork.json exact supplied-file hashes; W2 image natural/display widths and alt text in both engines.",
+    "limitation": ""
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W2.2",
+    "rule": "Use only the headline and note crops. Do not use the artwork's own header, three tabs, \"Have a look around\" or bottom bar; the app draws those.",
+    "result": "PASS",
+    "evidence": "artwork.json exact supplied-file hashes; W2 image natural/display widths and alt text in both engines.",
+    "limitation": ""
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W2.3",
+    "rule": "Headline 374px wide, note 378px wide on a 390px screen (about 2.2x, sharp on phones). Crop edges fade into #050505 with a CSS mask, no visible box.",
+    "result": "PASS",
+    "evidence": "artwork.json exact supplied-file hashes; W2 image natural/display widths and alt text in both engines.",
+    "limitation": ""
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W2.4",
+    "rule": "Ship the crops as supplied (WebP, each under 100KB). Alt text on each image carries the full wording.",
+    "result": "PASS",
+    "evidence": "artwork.json exact supplied-file hashes; W2 image natural/display widths and alt text in both engines.",
+    "limitation": ""
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W3.1",
+    "rule": "MAKE IT MINE is part of the artwork, with a real tappable hotspot exactly over it (left 10.8%, top 77.5%, width 78.1%, height 11.3% of the note image), a 44px minimum tap height, a visible focus ring and the label \"Make it mine\" for screen readers. It goes to the three quick taps, then the first Done on Today.",
+    "result": "PASS",
+    "evidence": "Both engines W3: accessible hotspot, original three setup sections, real consent/save, first Done, browse and after-setup states.",
+    "limitation": ""
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W3.2",
+    "rule": "Directly under the note: EXPLORE WEIGHT LOSS, a real outlined button (2px #707762, cream text). It goes into the EXISTING clinical route (\"Check eligibility and explore your options\"). No new questionnaire.",
+    "result": "PASS",
+    "evidence": "Both engines W3: accessible hotspot, original three setup sections, real consent/save, first Done, browse and after-setup states.",
+    "limitation": ""
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W3.3",
+    "rule": "Below that: \"Have a look around\", a quiet cream text link. It goes to Today without setup.",
+    "result": "PASS",
+    "evidence": "Both engines W3: accessible hotspot, original three setup sections, real consent/save, first Done, browse and after-setup states.",
+    "limitation": ""
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W3.4",
+    "rule": "The MAKE IT MINE button is removed: use `welcome-v2-note-nobutton.webp` (same note, torn bottom edge kept, no button).",
+    "result": "PASS",
+    "evidence": "Both engines W3: accessible hotspot, original three setup sections, real consent/save, first Done, browse and after-setup states.",
+    "limitation": ""
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W3.5",
+    "rule": "Welcome keeps the headline, the note and EXPLORE WEIGHT LOSS, now a filled #707762 button with black text, as it is the only action left.",
+    "result": "PASS",
+    "evidence": "Both engines W3: accessible hotspot, original three setup sections, real consent/save, first Done, browse and after-setup states.",
+    "limitation": ""
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W3.6",
+    "rule": "Below it: \"Your one thing for today is waiting in Today\" link, to Today.",
+    "result": "PASS",
+    "evidence": "Both engines W3: accessible hotspot, original three setup sections, real consent/save, first Done, browse and after-setup states.",
+    "limitation": ""
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W3.7",
+    "rule": "Personalise My Timber stays in the existing setup flow (More), not on Welcome.",
+    "result": "PASS",
+    "evidence": "Both engines W3: accessible hotspot, original three setup sections, real consent/save, first Done, browse and after-setup states.",
+    "limitation": ""
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W4.1",
+    "rule": "Only three colours: black #050505, cream #E7E3DA, brand green #707762 (all from the live CSS). No other greens or greys. Thin dividers may be cream at reduced opacity.",
+    "result": "PASS",
+    "evidence": "final-visuals/results.json: computed colour/font/button values in Chromium and WebKit; contrast.json.",
+    "limitation": "Palette check covers the approved new elements; existing Shop content is preserved."
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W4.2",
+    "rule": "Top tabs: labels and icons bold (800) cream #E7E3DA (the \"white\"). Active tab underline: #707762.",
+    "result": "PASS",
+    "evidence": "final-visuals/results.json: computed colour/font/button values in Chromium and WebKit; contrast.json.",
+    "limitation": "Palette check covers the approved new elements; existing Shop content is preserved."
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W4.3",
+    "rule": "Bottom bar (Grub, Fit, Support, More): #707762, bold (800), icons #707762.",
+    "result": "PASS",
+    "evidence": "final-visuals/results.json: computed colour/font/button values in Chromium and WebKit; contrast.json.",
+    "limitation": "Palette check covers the approved new elements; existing Shop content is preserved."
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W4.4",
+    "rule": "Filled buttons: #707762 background, black #050505 text, bold, at least 19px (contrast 4.37:1, passes AA for large bold text). Cream text on green is 3.64:1, so do not use it.",
+    "result": "PASS",
+    "evidence": "final-visuals/results.json: computed colour/font/button values in Chromium and WebKit; contrast.json.",
+    "limitation": "Palette check covers the approved new elements; existing Shop content is preserved."
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W4.5",
+    "rule": "Outline buttons: 2px #707762 border, cream text.",
+    "result": "PASS",
+    "evidence": "final-visuals/results.json: computed colour/font/button values in Chromium and WebKit; contrast.json.",
+    "limitation": "Palette check covers the approved new elements; existing Shop content is preserved."
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W5.1",
+    "rule": "41 Intro: no medicine names, images, prices or \"buy\". Says what the route is, what to have to hand, a privacy line. \"Start my health questions\" and \"Not ready? Keep going with My Timber\". No questionnaire duration unless the live route states one.",
+    "result": "PASS",
+    "evidence": "W5-no-medicine-price in both engines; 41 Explore screenshot; existing clinical service availability checked on entry.",
+    "limitation": ""
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W5.2",
+    "rule": "42 Questions: one question per screen, progress bar, Back and Continue, Save and finish later. Questions come from the existing provider route.",
+    "result": "FAIL",
+    "evidence": "readiness.json: live assessmentAvailable=false; no pharmacy integration bindings; existing assessment page closed.",
+    "limitation": "44\u201346 status rendering and return-to-Today work with labelled synthetic DB fixtures. These are UI checks, not proof of payment, provider decisions, dispensing or refunds. No option or price was invented for 43."
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W5.3",
+    "rule": "43 Choose and pay: shown only after the questionnaire is complete. Option and price come from the live till. This plain line sits directly above the pay button: \"If the prescriber decides it isn't right for you, you get a full refund. Automatically.\" (Use \"Automatically\" only once confirmed in section 6.) Also shows \"Paying doesn't guarantee a prescription. The prescriber decides.\"",
+    "result": "FAIL",
+    "evidence": "readiness.json: live assessmentAvailable=false; no pharmacy integration bindings; existing assessment page closed.",
+    "limitation": "44\u201346 status rendering and return-to-Today work with labelled synthetic DB fixtures. These are UI checks, not proof of payment, provider decisions, dispensing or refunds. No option or price was invented for 43."
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W5.4",
+    "rule": "44 Under review: \"Paid. A prescriber is reviewing your answers.\" Next steps: approved, dispensed and sent; not approved, full refund. No promised times. Main button \"Back to My Timber\" goes to Today, with the line \"We'll tell you the prescriber's decision here in the app.\"",
+    "result": "FAIL",
+    "evidence": "readiness.json: live assessmentAvailable=false; no pharmacy integration bindings; existing assessment page closed.",
+    "limitation": "44\u201346 status rendering and return-to-Today work with labelled synthetic DB fixtures. These are UI checks, not proof of payment, provider decisions, dispensing or refunds. No option or price was invented for 43."
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W5.5",
+    "rule": "45 Not suitable: kind wording, ask the prescriber why, talk to your GP, other support, My Timber stays free. Shows \"Your refund is on its way\" (charge then refund) or \"Your card hasn't been charged\" (card hold), matching the method used. Main button \"Back to My Timber\" goes to Today.",
+    "result": "FAIL",
+    "evidence": "readiness.json: live assessmentAvailable=false; no pharmacy integration bindings; existing assessment page closed.",
+    "limitation": "44\u201346 status rendering and return-to-Today work with labelled synthetic DB fixtures. These are UI checks, not proof of payment, provider decisions, dispensing or refunds. No option or price was invented for 43."
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W5.6",
+    "rule": "46 Today with status: a small row \"Your treatment: with your prescriber\" at the top of Today. Tapping it opens the review status. It updates when the outcome arrives.",
+    "result": "FAIL",
+    "evidence": "readiness.json: live assessmentAvailable=false; no pharmacy integration bindings; existing assessment page closed.",
+    "limitation": "44\u201346 status rendering and return-to-Today work with labelled synthetic DB fixtures. These are UI checks, not proof of payment, provider decisions, dispensing or refunds. No option or price was invented for 43."
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W5.7",
+    "rule": "PASS: after payment, and after any outcome, the member lands back in My Timber Today, and the review status is visible there.",
+    "result": "FAIL",
+    "evidence": "readiness.json: live assessmentAvailable=false; no pharmacy integration bindings; existing assessment page closed.",
+    "limitation": "44\u201346 status rendering and return-to-Today work with labelled synthetic DB fixtures. These are UI checks, not proof of payment, provider decisions, dispensing or refunds. No option or price was invented for 43."
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W6.1",
+    "rule": "PASS: payment is taken at checkout after the questionnaire and before prescriber review.",
+    "result": "FAIL",
+    "evidence": "Existing till uses automatic capture. Decline handler has no Stripe refund call. No approval capture/cancel/expiry lifecycle is wired.",
+    "limitation": "Stripe can authorise a hold, but this till does not safely implement it. No real charge or invented provider clearance was used."
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W6.2",
+    "rule": "PASS: the refund-if-not-approved line is shown plainly before paying, and the refund is processed automatically when the prescriber declines, with no action from the member.",
+    "result": "FAIL",
+    "evidence": "Existing till uses automatic capture. Decline handler has no Stripe refund call. No approval capture/cancel/expiry lifecycle is wired.",
+    "limitation": "Stripe can authorise a hold, but this till does not safely implement it. No real charge or invented provider clearance was used."
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W6.3",
+    "rule": "Developer to say NOW whether the till supports a card hold (authorise at checkout, capture on approval). If it does, use the card hold in preference to charge then refund, and switch the wording on 43 to 45 to match.",
+    "result": "FAIL",
+    "evidence": "Existing till uses automatic capture. Decline handler has no Stripe refund call. No approval capture/cancel/expiry lifecycle is wired.",
+    "limitation": "Stripe can authorise a hold, but this till does not safely implement it. No real charge or invented provider clearance was used."
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W6.4",
+    "rule": "No medicine name, image or price anywhere before the questionnaire is complete.",
+    "result": "PASS",
+    "evidence": "No pre-questionnaire medicine/price UI; medicine-commerce-v1.js and discount/checkout source unchanged (source-preservation.json).",
+    "limitation": ""
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W6.5",
+    "rule": "Discount codes unchanged.",
+    "result": "PASS",
+    "evidence": "No pre-questionnaire medicine/price UI; medicine-commerce-v1.js and discount/checkout source unchanged (source-preservation.json).",
+    "limitation": ""
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W7.1",
+    "rule": "Shop is unchanged.",
+    "result": "PASS",
+    "evidence": "Source hashes unchanged for Shop catalogue, basket and routes, medicine-commerce and Core. Both engines Shop home text/links and visible content pixel hashes equal production.",
+    "limitation": "Home visual preservation passes. Complete checkout behaviour is separately FAIL under addendum 6."
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W7.2",
+    "rule": "Discount codes, checkout and the clinical provider integration are unchanged.",
+    "result": "PASS",
+    "evidence": "Source hashes unchanged for Shop catalogue, basket and routes, medicine-commerce and Core. Both engines Shop home text/links and visible content pixel hashes equal production.",
+    "limitation": "Home visual preservation passes. Complete checkout behaviour is separately FAIL under addendum 6."
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W8.1",
+    "rule": "No heavy images. Welcome images total under 120KB (first visit about 114KB, after setup about 106KB).",
+    "result": "PASS",
+    "evidence": "First-visit artwork 114,026 bytes; after setup 106,418 bytes; exact supplied WebPs.",
+    "limitation": ""
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W8.2",
+    "rule": "Fresh load of Welcome under 2s on mobile 4G (Lighthouse or WebPageTest result attached).",
+    "result": "FAIL",
+    "evidence": "Lighthouse 13.6.0 mobile 4G, LCP 2042ms, FCP 1161ms, TBT 0; lighthouse/welcome.json and HTML.",
+    "limitation": "Lighthouse is a single lab run, separate from the 20-sample Today/Fit performance run."
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W9.1",
+    "rule": "Screen recording: first visit, lands on Welcome, Make it mine, three taps, first Done. Then Welcome again, showing the after-setup state.",
+    "result": "PASS",
+    "evidence": "browser/<engine>/first-setup-browse-support-more.webm",
+    "limitation": "Recorded on the deployed test service in Chromium and WebKit mobile emulation, not physical phones."
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W9.2",
+    "rule": "Screen recording: first visit, Have a look around, lands on Today without setup.",
+    "result": "PASS",
+    "evidence": "browser/<engine>/browse-without-setup.webm",
+    "limitation": "Recorded on the deployed test service in Chromium and WebKit mobile emulation, not physical phones."
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W9.3",
+    "rule": "Screen recording: Explore weight loss into the existing route, through to sent.",
+    "result": "FAIL",
+    "evidence": "Existing clinical assessment is closed; no physical iPhone or Android phone attached.",
+    "limitation": "Browser screenshots are labelled engine emulation. No mockup, fixture or desktop WebKit run is presented as physical-phone proof."
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W9.4",
+    "rule": "Screen recording: returning member lands on Today.",
+    "result": "PASS",
+    "evidence": "browser/<engine>/returning.webm",
+    "limitation": "Recorded on the deployed test service in Chromium and WebKit mobile emulation, not physical phones."
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W9.5",
+    "rule": "Screenshots of 40b to 48 equivalents on a real phone, at 2x.",
+    "result": "FAIL",
+    "evidence": "Existing clinical assessment is closed; no physical iPhone or Android phone attached.",
+    "limitation": "Browser screenshots are labelled engine emulation. No mockup, fixture or desktop WebKit run is presented as physical-phone proof."
+  },
+  {
+    "group": "Welcome and Explore brief",
+    "id": "W9.6",
+    "rule": "Contrast check output for buttons and bars.",
+    "result": "PASS",
+    "evidence": "contrast.json and final-visuals/results.json; actual rendered styles measured in both engines.",
+    "limitation": ""
+  },
+  {
+    "group": "Support and More addendum",
+    "id": "A1",
+    "rule": "Nothing live in Support or More is removed, renamed into something else, or broken. Wording on screens 24 to 26 is the live wording. Where a screen and the live app disagree on content, the live content wins; ask me before dropping anything.",
+    "result": "PASS",
+    "evidence": "Retained source/controller hashes, 68 retained browser checks and before/after link inventory.",
+    "limitation": "Source retention and route checks pass; destructive/external side effects were not exercised."
+  },
+  {
+    "group": "Support and More addendum",
+    "id": "A2",
+    "rule": "The only additions allowed are the small extras marked [EXTRA] below.",
+    "result": "PASS",
+    "evidence": "Only approved Welcome/Explore and More shortcuts added; existing Support/More content preserved.",
+    "limitation": ""
+  },
+  {
+    "group": "Support and More addendum",
+    "id": "A3",
+    "rule": "Same frame as every V7 screen: flat black, circled-S + MY TIMBER, Today/Journey/Shop with green underline on the active tab, bottom bar Grub/Fit/Support/More. Support screens: Support highlighted. More screens: More highlighted. Brand green accent, no amber, no wood grain, line icons only.",
+    "result": "PASS",
+    "evidence": "Approved shared frame and active navigation measured in both engines; native route node-identity checks.",
+    "limitation": "The later Welcome brief explicitly approves the fourth Welcome top tab."
+  },
+  {
+    "group": "Support and More addendum",
+    "id": "A4",
+    "rule": "Support, Ask Timber, treatment details and Life Back support keep the Support item highlighted. Settings, orders, saved and plans keep More highlighted (as the live shell does now).",
+    "result": "PASS",
+    "evidence": "Existing settings, orders, saved, Ask Timber and treatment routes open in retained browser proof with correct selection.",
+    "limitation": "Physical-phone route recordings remain unperformed."
+  },
+  {
+    "group": "Support and More addendum",
+    "id": "A5",
+    "rule": "Shop: do not restyle. Keep the current live Shop design, content and behaviour exactly as it is now, inside the V7 frame (Shop top tab active).",
+    "result": "PASS",
+    "evidence": "Shop home text/links and visible content pixels match serving production in Chromium and WebKit; shop source unchanged.",
+    "limitation": ""
+  },
+  {
+    "group": "Support and More addendum",
+    "id": "A6",
+    "rule": "That includes the Shop home, Testing & wellbeing, Supplements & nutrition, Weight-management care, Everyday kit, Your orders, the header basket, checkout, Stripe, the clinical assessment route and discount codes. No new prices, codes, products or wording.",
+    "result": "FAIL",
+    "evidence": "Before/after Shop recordings exist in both engines. Catalogue, basket, checkout and discount source unchanged.",
+    "limitation": "No complete synthetic checkout-to-payment proof: clinical intake closed and financial lifecycle incomplete."
+  },
+  {
+    "group": "Support and More addendum",
+    "id": "A7",
+    "rule": "Support home (\"In your corner.\" / \"A starting point when things feel difficult.\") keeps, in this order or better:",
+    "result": "PASS",
+    "evidence": "Support home, all five situations, urgent tel links, Shed target=_blank, snapshot, Ask Timber, saved step, league and Message Matt route retained.",
+    "limitation": "No real call or message was sent."
+  },
+  {
+    "group": "Support and More addendum",
+    "id": "A8",
+    "rule": "Each \"What would help?\" page keeps its live text (What next / Who to talk to / What stays with you), Back to Support, Ask Timber and Your own prescriber rows, and the urgent-help box. On Side effects the urgent box sits at the top (as live).",
+    "result": "FAIL",
+    "evidence": "Five full live situation texts and side-effects urgent-first order are present and open in both engines.",
+    "limitation": "Required physical-phone dial/route proof not performed. Browser tel href checks are not phone dial proof."
+  },
+  {
+    "group": "Support and More addendum",
+    "id": "A9",
+    "rule": "More keeps: \"More. In your corner.\" heading; Support; Your stuff: Saved & plans (/member/saved), My orders (/member/orders), Account & settings (/member/settings); Timber Shed; Headline privacy (Allow quoted headlines on this device, with its live explainer, per account per device); Sign out (signs out, falls back to /member/login); Timber Mill kit (/shop); Help using My Timber (/help); version line; \"Need help? Go to Support\".",
+    "result": "PASS",
+    "evidence": "More inventory retains all rows, headline privacy, sign-out route, version/help and original destinations.",
+    "limitation": "Sign-out and per-device headline setting were not re-exercised as part of this release."
+  },
+  {
+    "group": "Support and More addendum",
+    "id": "A10",
+    "rule": "Account & settings keeps every live section: Notifications (daily check-in reminder, time 07:00 to 21:00, turn on, change, turn off); Member details (personal, home address, GP practice, save, reload); Delivery address; Change sign-in email; Units (weight, height); Privacy (export through Shift Core, health-data consent, Privacy & data rights); Password reset; Clear local data; Delete my account with its confirmation; Add My Timber to your phone.",
+    "result": "FAIL",
+    "evidence": "Original settings controller and all IDs/sections are retained and load; account controls inventory is captured.",
+    "limitation": "Every setting mutation, email change/reset, deletion/export and Add to Home Screen was not exercised before and after on real phones."
+  },
+  {
+    "group": "Support and More addendum",
+    "id": "A11",
+    "rule": "[EXTRA] Quick settings on More, as shortcuts into the same settings, not copies: Show weight (on by default, screen 08), Daily check-in reminder, Health tags (consented, deletable, never shared, e.g. Dodgy knee), Units, Privacy & data rights.",
+    "result": "FAIL",
+    "evidence": "Quick settings point into original controls; weight visibility has dedicated unit coverage.",
+    "limitation": "Physical health-tag deletion and every shortcut save are not recorded end-to-end in this release."
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V1",
+    "rule": "V7 (Today, Journey, Grub, Fit, recap, league, share card, preferences) and the speed fixes go live together in one release. No feature flags, no phased rollout.",
+    "result": "FAIL",
+    "evidence": "No member release or partial rollout made. Candidate prepared without serving traffic.",
+    "limitation": "Full single release held for clinical/financial and strict speed failures."
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V2",
+    "rule": "Speed fixes in the same release:",
+    "result": "PASS",
+    "evidence": "Existing native shell; build-time Brotli; 5 account reads in one D1 batch; precomputed offers/recaps; no new page-load fetch.",
+    "limitation": ""
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V3",
+    "rule": "Keep a one-step rollback to the current live version ready on release day. If anything breaks for members, roll back first, fix after.",
+    "result": "PASS",
+    "evidence": "release.json anchors exact serving version; one command rollback, bindings/assets/schedules retained.",
+    "limitation": "Rollback not invoked because member traffic never changed."
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V4",
+    "rule": "Only Done on Today's one thing earns a pile log. Once per day per account, across devices, whichever screen Done is tapped on (Today or the Grub card for the same action).",
+    "result": "PASS",
+    "evidence": "Real SQL concurrency + both engine choose journeys: Today/Grub two sessions yield exactly one award.",
+    "limitation": ""
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V5",
+    "rule": "Nothing else ever adds or removes a log: quick logs, food, off-plan meals, eating out, walks, extra sessions.",
+    "result": "PASS",
+    "evidence": "Both choose journeys: five quick logs, full food day, walk and extra session leave pile unchanged.",
+    "limitation": ""
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V6",
+    "rule": "Pile shows N of 30 and \"X to go\" that always add up to 30. Milestone at 30 awarded once. Monday reset clears only the weekly league, never the pile.",
+    "result": "PASS",
+    "evidence": "Both milestone journeys, SQL one-time award and Monday lifetime-pile retention tests.",
+    "limitation": ""
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V7",
+    "rule": "Mood: Good / So-so / A bit flat buttons stay visible. No previously recorded mood shows on Today; only a \"History \u203a\" link opens past check-ins.",
+    "result": "PASS",
+    "evidence": "Both choose journeys: mood buttons and History retained, no recorded mood on Today.",
+    "limitation": ""
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V8",
+    "rule": "Quick log row (Pint, Takeaway, Gym done, Rough night, Weigh in) under \"Quick log\" with \"Helps Timber learn. Doesn't add a pile log.\"",
+    "result": "PASS",
+    "evidence": "Both choose recordings exercise all five quick logs with unchanged pile.",
+    "limitation": ""
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V9",
+    "rule": "Swap: three alternatives, each within 5g protein of the original, from the same nutrition data, not hard-coded. Plus Not for me, Didn't get round to it, None of these?, Keep the original.",
+    "result": "PASS",
+    "evidence": "Ten-original-action source/version/5g unit test and three sourced swaps in both engines.",
+    "limitation": ""
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V10",
+    "rule": "After Done: +1 log, optional \"How did it go?\" (Helped / Tried it, didn't help / Ask me later). Log is safe either way. Done never adds food.",
+    "result": "PASS",
+    "evidence": "Both choose/hard-week journeys and SQL tests: feedback optional, log retained, food separate.",
+    "limitation": ""
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V11",
+    "rule": "Weight shown by default and leads Journey. Hiding weight is only the Show weight setting in More > Preferences.",
+    "result": "PASS",
+    "evidence": "Default-on and off/re-enable unit tests; More preference route browser check; nested weight suppression tests.",
+    "limitation": ""
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V12",
+    "rule": "Weight never appears on the share card, recap share or anything shareable. Share needs a preview.",
+    "result": "PASS",
+    "evidence": "Both milestone previews plus private-field projection and nested weight suppression unit tests.",
+    "limitation": ""
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V13",
+    "rule": "\"What you've told us\" naming. Medicine over time collapsed. Timeline shows latest 2 wins + See all. Detailed chart loads only when opened.",
+    "result": "FAIL",
+    "evidence": "Existing Journey module preserved, native route opens.",
+    "limitation": "Detailed Medicine wording/chart-open and timeline-two-wins not newly recorded against every condition."
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V14",
+    "rule": "Mates league ranks by logs this week only, never weight, private to the crew.",
+    "result": "PASS",
+    "evidence": "Real SQL crew ACL, explicit opt-in, effort-only ranking and Monday tests.",
+    "limitation": ""
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V15",
+    "rule": "Today's meals: swipe row (Breakfast, Lunch, Dinner, Snacks), one line each: name \u00b7 protein \u00b7 kcal. Next card peeks.",
+    "result": "FAIL",
+    "evidence": "Existing Grub native module unchanged and full day recorded.",
+    "limitation": "Next-card peek and every one-line card condition not separately measured in this run."
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V16",
+    "rule": "\"+ Snack\" always visible. Protein and Calories bars use the member's own targets from his plan, never hard-coded.",
+    "result": "PASS",
+    "evidence": "Own-plan/unknown-target unit tests; existing + Snack native UI retained.",
+    "limitation": ""
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V17",
+    "rule": "Quick log: meal selector, usuals, snack chips, search, photo, barcode, and \"Off-plan / Big one\" styled like every other option.",
+    "result": "FAIL",
+    "evidence": "Existing meal selector/usuals/snack/search/photo/barcode/off-plan code retained; full day and search path covered.",
+    "limitation": "Photo/barcode capture not tested on physical phones."
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V18",
+    "rule": "Off-plan: neutral confirmation, calories shown plainly. No red, no warnings, no \"over budget\".",
+    "result": "PASS",
+    "evidence": "Both choose recordings: neutral off-plan confirmation with plain calorie totals.",
+    "limitation": ""
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V19",
+    "rule": "Meal detail: calories, protein, carbs (sugars), fat (saturates), fibre, salt. Traffic lights only on sugars, fat, saturates, salt (UK front-of-pack scheme). These muted traffic-light colours are the only allowed non-green accent.",
+    "result": "PASS",
+    "evidence": "Nutrition source/portion and exact UK FoP boundary tests; existing meal detail UI unchanged.",
+    "limitation": ""
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V20",
+    "rule": "Eating out: swipe row of places + Search, figures labelled as estimates.",
+    "result": "PASS",
+    "evidence": "Both choose journeys: eating-out record uses explicitly labelled estimates.",
+    "limitation": ""
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V21",
+    "rule": "Under-eating flag: build it switched off. Thresholds come from our clinical partner; do not invent them.",
+    "result": "PASS",
+    "evidence": "Existing under-eating flag remains off; no clinical threshold added.",
+    "limitation": ""
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V22",
+    "rule": "Nutrition data comes from a named food database. Tell me which before you build.",
+    "result": "PASS",
+    "evidence": "Existing named sources: UK CoFID 2021 and named UK product labels, Open Food Facts; source provenance retained.",
+    "limitation": "No nutrition database change in this release."
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V23",
+    "rule": "Today's session by time (10/20/40) and kit (None/Dumbbells/Gym), Start and Swap it (shorter, no-kit, low-impact).",
+    "result": "PASS",
+    "evidence": "Both choose journeys: native Fit and all three shorter/no-kit/low-impact alternatives.",
+    "limitation": ""
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V24",
+    "rule": "\"Log a walk\" records activity only, no pile log. If Today's one thing is a walk or session, its Done earns the log as normal.",
+    "result": "PASS",
+    "evidence": "Both choose journeys and SQL: activity records never create extra pile log.",
+    "limitation": ""
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V25",
+    "rule": "Health tags (e.g. knee) need clear consent, are deletable, and never appear in anything shareable.",
+    "result": "FAIL",
+    "evidence": "Existing consent/health-tag control source untouched; privacy/erasure tests pass.",
+    "limitation": "Health-tag creation/deletion on both physical devices not recorded."
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V26",
+    "rule": "\"How did it go?\" and \"How hard was it?\" are optional; next session adjusts overnight.",
+    "result": "PASS",
+    "evidence": "Both engines: optional session rating dismissal keeps activity; overnight-only adjustment tests.",
+    "limitation": ""
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V27",
+    "rule": "Frame unchanged on every screen: flat black, circled-S + MY TIMBER, Today/Journey/Shop with green underline on active tab, bottom bar Grub/Fit/Support/More. Highlight the active bottom item (including More on Preferences).",
+    "result": "PASS",
+    "evidence": "Persistent shared node checks through eight destinations. Latest Welcome brief approves fourth top tab.",
+    "limitation": ""
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V28",
+    "rule": "Brand green accent. No amber, no wood grain, no emojis. Symbols shown as text in mockups (tick, swap, star, play, chevron) are drawn as thin line icons.",
+    "result": "PASS",
+    "evidence": "Existing source symbols remain line SVG icons; no additional accent/retheme introduced.",
+    "limitation": ""
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V29",
+    "rule": "UK English. \"CONCEPT, EXAMPLE DATA\" labels are mockup-only; remove them in the build and use real member data.",
+    "result": "PASS",
+    "evidence": "Real own-account records, no CONCEPT labels added; all test data synthetic and labelled.",
+    "limitation": ""
+  },
+  {
+    "group": "Original V7 regression",
+    "id": "V30",
+    "rule": "Tap feedback under 100ms. Warm tab switch under 500ms. Fresh screen under 2s. Today and Fit before/after numbers reported.",
+    "result": "PASS",
+    "evidence": "20 samples: tap32ms, warm max32ms, Today977ms, Fit986ms; original brief 100/500/2000 limits pass.",
+    "limitation": "Latest user limits are stricter; see the current speed table."
+  },
+  {
+    "group": "Latest release rules",
+    "id": "S-Fresh Today",
+    "rule": "Fresh Today must match or beat supplied live p95.",
+    "result": "PASS",
+    "evidence": "20 samples, Slow 4G / CPU 4\u00d7, candidate-mobile-speed/results.json",
+    "limitation": "Supplied 1070ms; remeasured live 1412ms; candidate 977ms."
+  },
+  {
+    "group": "Latest release rules",
+    "id": "S-Fresh Fit",
+    "rule": "Fresh Fit must match or beat supplied live p95.",
+    "result": "PASS",
+    "evidence": "20 samples, Slow 4G / CPU 4\u00d7, candidate-mobile-speed/results.json",
+    "limitation": "Supplied 1010ms; remeasured live 1343ms; candidate 986ms."
+  },
+  {
+    "group": "Latest release rules",
+    "id": "S-Visited tab switch (worst destination)",
+    "rule": "Visited tab switch (worst destination) must match or beat supplied live p95.",
+    "result": "PASS",
+    "evidence": "20 samples, Slow 4G / CPU 4\u00d7, candidate-mobile-speed/results.json",
+    "limitation": "Supplied 32ms; remeasured live 33ms; candidate 32ms."
+  },
+  {
+    "group": "Latest release rules",
+    "id": "S-Tap feedback",
+    "rule": "Tap feedback must match or beat supplied live p95.",
+    "result": "PASS",
+    "evidence": "20 samples, Slow 4G / CPU 4\u00d7, candidate-mobile-speed/results.json",
+    "limitation": "Supplied 33ms; remeasured live 33ms; candidate 32ms."
+  },
+  {
+    "group": "Latest release rules",
+    "id": "S-Repeat shell",
+    "rule": "Repeat shell must match or beat supplied live p95.",
+    "result": "FAIL",
+    "evidence": "20 samples, Slow 4G / CPU 4\u00d7, candidate-mobile-speed/results.json",
+    "limitation": "Supplied 77ms; remeasured live 79ms; candidate 79ms."
+  },
+  {
+    "group": "Latest release rules",
+    "id": "R-live",
+    "rule": "Single member release live and verified",
+    "result": "FAIL",
+    "evidence": "readiness.json: original front still receives 100%; prepared candidate receives 0%.",
+    "limitation": "Clinical route, automated refunds, stricter speed and phone proof incomplete."
+  },
+  {
+    "group": "Latest release rules",
+    "id": "R-webp",
+    "rule": "Only supplied compressed Welcome WebPs, cached",
+    "result": "PASS",
+    "evidence": "Exact byte hashes, immutable endpoints and service-worker asset cache.",
+    "limitation": ""
+  },
+  {
+    "group": "Latest release rules",
+    "id": "R-shop",
+    "rule": "Shop design and content unchanged",
+    "result": "PASS",
+    "evidence": "Both engine before/after pixel and text/link hashes; source-preservation.json.",
+    "limitation": "Complete checkout proof remains failed under A6."
+  },
+  {
+    "group": "Latest release rules",
+    "id": "R-rollback",
+    "rule": "One-step exact rollback ready before traffic moves",
+    "result": "PASS",
+    "evidence": "welcome-release.mjs rollback; release.json original hashes, settings and cron capture.",
+    "limitation": "No production traffic move attempted."
+  },
+  {
+    "group": "Must-not-break inventory",
+    "id": "M1",
+    "rule": "Mood check-in",
+    "result": "PASS",
+    "evidence": "Both browser choose journeys and retained controller.",
+    "limitation": "FAIL can mean missing verification; it does not assert a new regression."
+  },
+  {
+    "group": "Must-not-break inventory",
+    "id": "M2",
+    "rule": "In your corner",
+    "result": "FAIL",
+    "evidence": "Original support module retained; every saved-support-step mutation not retested before/after.",
+    "limitation": "FAIL can mean missing verification; it does not assert a new regression."
+  },
+  {
+    "group": "Must-not-break inventory",
+    "id": "M3",
+    "rule": "Rough day",
+    "result": "PASS",
+    "evidence": "Both engines open the full wobble page and retain its original routes/text.",
+    "limitation": "FAIL can mean missing verification; it does not assert a new regression."
+  },
+  {
+    "group": "Must-not-break inventory",
+    "id": "M4",
+    "rule": "Life Back",
+    "result": "FAIL",
+    "evidence": "Existing native module/source retained; reason/goal edit not recorded before/after.",
+    "limitation": "FAIL can mean missing verification; it does not assert a new regression."
+  },
+  {
+    "group": "Must-not-break inventory",
+    "id": "M5",
+    "rule": "My next step privacy line",
+    "result": "PASS",
+    "evidence": "Existing support-plan wording and controller unchanged; retained page loads.",
+    "limitation": "FAIL can mean missing verification; it does not assert a new regression."
+  },
+  {
+    "group": "Must-not-break inventory",
+    "id": "M6",
+    "rule": "Your progress: weight, waist, clothes size",
+    "result": "FAIL",
+    "evidence": "Default weight, hidden-weight and original Journey controller checked; every reading type not re-entered before/after.",
+    "limitation": "FAIL can mean missing verification; it does not assert a new regression."
+  },
+  {
+    "group": "Must-not-break inventory",
+    "id": "M7",
+    "rule": "Medicine over time, existing wording",
+    "result": "FAIL",
+    "evidence": "Source/controller preserved; full expanded chart and wording not separately re-recorded.",
+    "limitation": "FAIL can mean missing verification; it does not assert a new regression."
+  },
+  {
+    "group": "Must-not-break inventory",
+    "id": "M8",
+    "rule": "Your timeline",
+    "result": "FAIL",
+    "evidence": "Existing route/controller retained; complete timeline record/edit cycle not re-exercised.",
+    "limitation": "FAIL can mean missing verification; it does not assert a new regression."
+  },
+  {
+    "group": "Must-not-break inventory",
+    "id": "M9",
+    "rule": "Record an injection",
+    "result": "FAIL",
+    "evidence": "Existing records source unchanged; no new injection record test in this release.",
+    "limitation": "FAIL can mean missing verification; it does not assert a new regression."
+  },
+  {
+    "group": "Must-not-break inventory",
+    "id": "M10",
+    "rule": "View or edit my records",
+    "result": "FAIL",
+    "evidence": "Original records source unchanged; full edit/delete UI proof unperformed.",
+    "limitation": "FAIL can mean missing verification; it does not assert a new regression."
+  },
+  {
+    "group": "Must-not-break inventory",
+    "id": "M11",
+    "rule": "Snapshot",
+    "result": "FAIL",
+    "evidence": "Snapshot link and original source retained; complete appointment snapshot generation not re-exercised.",
+    "limitation": "FAIL can mean missing verification; it does not assert a new regression."
+  },
+  {
+    "group": "Must-not-break inventory",
+    "id": "M12",
+    "rule": "Private progress photos",
+    "result": "FAIL",
+    "evidence": "Original source retained; physical-camera upload/delete not performed.",
+    "limitation": "FAIL can mean missing verification; it does not assert a new regression."
+  },
+  {
+    "group": "Must-not-break inventory",
+    "id": "M13",
+    "rule": "Weight history import/download",
+    "result": "FAIL",
+    "evidence": "Original portability source retained; file import/download not repeated.",
+    "limitation": "FAIL can mean missing verification; it does not assert a new regression."
+  },
+  {
+    "group": "Must-not-break inventory",
+    "id": "M14",
+    "rule": "Compare saved records",
+    "result": "FAIL",
+    "evidence": "Original Journey source retained; complete comparison flow not recorded.",
+    "limitation": "FAIL can mean missing verification; it does not assert a new regression."
+  },
+  {
+    "group": "Must-not-break inventory",
+    "id": "M15",
+    "rule": "Journey setup",
+    "result": "FAIL",
+    "evidence": "Original Journey tool source retained; distinct Join My Timber three-section personalisation passes, but Journey setup was not fully repeated.",
+    "limitation": "FAIL can mean missing verification; it does not assert a new regression."
+  },
+  {
+    "group": "Must-not-break inventory",
+    "id": "M16",
+    "rule": "Shop home",
+    "result": "PASS",
+    "evidence": "Before/after text/links and visible content pixels identical in both engines.",
+    "limitation": "FAIL can mean missing verification; it does not assert a new regression."
+  },
+  {
+    "group": "Must-not-break inventory",
+    "id": "M17",
+    "rule": "Basket",
+    "result": "FAIL",
+    "evidence": "Original basket source unchanged; complete checkout proof unperformed.",
+    "limitation": "FAIL can mean missing verification; it does not assert a new regression."
+  },
+  {
+    "group": "Must-not-break inventory",
+    "id": "M18",
+    "rule": "Orders",
+    "result": "PASS",
+    "evidence": "Existing owned-account order route/controller opens in both engines; no real purchase.",
+    "limitation": "FAIL can mean missing verification; it does not assert a new regression."
+  },
+  {
+    "group": "Must-not-break inventory",
+    "id": "M19",
+    "rule": "Consent",
+    "result": "PASS",
+    "evidence": "Real optional grant/save in both engines; SQL consent checks and service-worker grant/withdrawal tests.",
+    "limitation": "FAIL can mean missing verification; it does not assert a new regression."
+  },
+  {
+    "group": "Must-not-break inventory",
+    "id": "M20",
+    "rule": "Deletion/export",
+    "result": "FAIL",
+    "evidence": "SQL owner-only erasure/rollback tests pass and original controls retained; complete UI deletion/export not performed.",
+    "limitation": "FAIL can mean missing verification; it does not assert a new regression."
+  },
+  {
+    "group": "Must-not-break inventory",
+    "id": "M21",
+    "rule": "Clinical gates",
+    "result": "PASS",
+    "evidence": "Source and serving Core unchanged; live assessment remains closed, no verified intake fabricated.",
+    "limitation": "FAIL can mean missing verification; it does not assert a new regression."
+  },
+  {
+    "group": "Must-not-break inventory",
+    "id": "M22",
+    "rule": "Supplier holds",
+    "result": "PASS",
+    "evidence": "No supplier configuration/gate changed or bypassed.",
+    "limitation": "FAIL can mean missing verification; it does not assert a new regression."
+  },
+  {
+    "group": "Must-not-break inventory",
+    "id": "M23",
+    "rule": "Payment safeguards",
+    "result": "FAIL",
+    "evidence": "No money writes or changed checkout. Existing automatic decline refund/card-hold lifecycle is absent; not safe to call new flow passed.",
+    "limitation": "FAIL can mean missing verification; it does not assert a new regression."
+  },
+  {
+    "group": "Must-not-break inventory",
+    "id": "M24",
+    "rule": "Saved & plans, Ask Timber and treatment routes",
+    "result": "PASS",
+    "evidence": "Original signed-in routes/controllers open; all before/after links preserved. No message sent.",
+    "limitation": "FAIL can mean missing verification; it does not assert a new regression."
+  },
+  {
+    "group": "Must-not-break inventory",
+    "id": "M25",
+    "rule": "Daily reminders and Add to Home Screen",
+    "result": "FAIL",
+    "evidence": "Existing settings controls/manifest retained; physical notification/install proof not performed.",
+    "limitation": "FAIL can mean missing verification; it does not assert a new regression."
+  },
+  {
+    "group": "App shell",
+    "id": "H1",
+    "rule": "One persistent shared frame; content-only navigation",
+    "result": "PASS",
+    "evidence": "frame-pixels/results.json: same three DOM nodes and static frame pixels across13 routes per engine; 26/26.",
+    "limitation": "Removed the existing forced 3D/backface-hidden bars that blanked Chromium labels after long-page navigation. Appearance unchanged."
+  },
+  {
+    "group": "App shell",
+    "id": "H2",
+    "rule": "Cached shell, CSS, fonts, logo and native Grub/Fit/Life Back",
+    "result": "PASS",
+    "evidence": "Existing service worker/native routes retained; actual repeat-resource record; build-time compression verified.",
+    "limitation": "No frame copy or iframe added."
+  },
+  {
+    "group": "App shell",
+    "id": "H3",
+    "rule": "Identity once early; private data only after verified account",
+    "result": "PASS",
+    "evidence": "Streaming privacy tests plus real same-shell setup flow and cached identity adapter.",
+    "limitation": ""
+  },
+  {
+    "group": "App shell",
+    "id": "H4",
+    "rule": "Airplane mode shows cached private views with offline note",
+    "result": "FAIL",
+    "evidence": "Existing consent-aware private cache and offline note retained.",
+    "limitation": "Latest build has no physical airplane-mode recording; not claimed as passed."
+  },
+  {
+    "group": "App shell",
+    "id": "H5",
+    "rule": "Repeat shell under500ms, tap under100ms, visited switch under500ms",
+    "result": "PASS",
+    "evidence": "20 samples: repeat79ms, tap32ms, warm32ms.",
+    "limitation": "Latest stricter77ms repeat limit remains FAIL."
+  }
+]

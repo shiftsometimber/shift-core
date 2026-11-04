@@ -1,0 +1,731 @@
+{
+  "at": "2026-11-04T17:20:07.063Z",
+  "physical": false,
+  "noExternalLinksOpened": true,
+  "engines": [
+    {
+      "name": "chromium",
+      "before": {
+        "support": {
+          "links": [
+            {
+              "text": "Call 999Life-threatening emergency",
+              "href": "tel:999",
+              "target": ""
+            },
+            {
+              "text": "Call NHS 111Urgent medical advice",
+              "href": "tel:111",
+              "target": ""
+            },
+            {
+              "text": "Samaritans · 116 123Someone to listen, day or night",
+              "href": "tel:116123",
+              "target": ""
+            },
+            {
+              "text": "Your snapshotCheck your words and dates before an appointment",
+              "href": "/member/life-back/journey#snapshot",
+              "target": ""
+            },
+            {
+              "text": "Your own prescriberTreatment, dose or side-effect questions",
+              "href": "/member/treatment",
+              "target": ""
+            },
+            {
+              "text": "Talk to other men in the Timber ShedPrivate community · opens in your browser",
+              "href": "https://shiftsometimber.co.uk/timber-shed",
+              "target": "_blank"
+            },
+            {
+              "text": "Shift ArcadeBored? Seven quick games, just for a laugh.",
+              "href": "/member/shed-arcade",
+              "target": ""
+            },
+            {
+              "text": "Ask TimberAI help with the everyday stuff",
+              "href": "/member/ask-timber",
+              "target": ""
+            },
+            {
+              "text": "My next stepOpen my saved step and reminders",
+              "href": "/member/support",
+              "target": ""
+            },
+            {
+              "text": "Mates leagueRanked on effort, never weight. Private to your crew.",
+              "href": "/member/life-back/support/league",
+              "target": ""
+            },
+            {
+              "text": "Message MattApp and account questions · view reply time",
+              "href": "/member/life-back/support#contact",
+              "target": ""
+            }
+          ],
+          "buttons": []
+        },
+        "more": {
+          "links": [
+            {
+              "text": "SupportEveryday help, treatment contacts and your snapshot",
+              "href": "/member/dashboard?timber=support#today",
+              "target": ""
+            },
+            {
+              "text": "Saved & plansIdeas and plans to come back to",
+              "href": "/member/saved",
+              "target": ""
+            },
+            {
+              "text": "My ordersOrders and delivery",
+              "href": "/member/orders",
+              "target": ""
+            },
+            {
+              "text": "Account & settingsProfile, units and privacy",
+              "href": "/member/settings",
+              "target": ""
+            },
+            {
+              "text": "Talk to other men in the Timber ShedPrivate community · opens in your browser",
+              "href": "https://shiftsometimber.co.uk/timber-shed",
+              "target": "_blank"
+            },
+            {
+              "text": "Show weight: OnTurn off if you’d rather focus on strength, energy or measurements.",
+              "href": "/member/life-back/preferences",
+              "target": ""
+            },
+            {
+              "text": "Daily check-in reminderOptional. No health details in the notification",
+              "href": "/member/settings#notifications",
+              "target": ""
+            },
+            {
+              "text": "Health tagsSaved with your consent. Never shared.",
+              "href": "/member/settings#health-tags",
+              "target": ""
+            },
+            {
+              "text": "UnitsWeight and height",
+              "href": "/member/settings#prefWeight",
+              "target": ""
+            },
+            {
+              "text": "Privacy & data rightsExport your data, or delete your account",
+              "href": "/member/settings#healthConsentManager",
+              "target": ""
+            },
+            {
+              "text": "Timber Mill kitOptional SHIFT clothing",
+              "href": "/shop",
+              "target": ""
+            },
+            {
+              "text": "Help using My TimberFind the right place to start",
+              "href": "/help",
+              "target": ""
+            },
+            {
+              "text": "Need help? Go to Support",
+              "href": "/member/dashboard?timber=support#today",
+              "target": ""
+            }
+          ],
+          "buttons": []
+        },
+        "shop": {
+          "links": [
+            {
+              "text": "Your orders",
+              "href": "/member/orders",
+              "target": ""
+            },
+            {
+              "text": "Testing & wellbeingHome tests, lab tests and what each can tell you.Explore tests",
+              "href": "/member/life-back/shop/testing",
+              "target": ""
+            },
+            {
+              "text": "Supplements & nutritionUnderstand the optional extras before choosing.Explore the range",
+              "href": "/member/life-back/shop/nutrition",
+              "target": ""
+            },
+            {
+              "text": "Weight-management careUnderstand your options and the assessment.Explore care",
+              "href": "/member/life-back/shop/care",
+              "target": ""
+            },
+            {
+              "text": "Everyday kitClothing and useful accessories from the Timber Mill.Explore the Mill",
+              "href": "/member/life-back/shop/kit",
+              "target": ""
+            }
+          ],
+          "buttons": []
+        }
+      },
+      "after": {
+        "support": {
+          "links": [
+            {
+              "text": "Call 999Life-threatening emergency",
+              "href": "tel:999",
+              "target": ""
+            },
+            {
+              "text": "Call NHS 111Urgent medical advice",
+              "href": "tel:111",
+              "target": ""
+            },
+            {
+              "text": "Samaritans · 116 123Someone to listen, day or night",
+              "href": "tel:116123",
+              "target": ""
+            },
+            {
+              "text": "Your snapshotCheck your words and dates before an appointment",
+              "href": "/member/life-back/journey#snapshot",
+              "target": ""
+            },
+            {
+              "text": "Your own prescriberTreatment, dose or side-effect questions",
+              "href": "/member/treatment",
+              "target": ""
+            },
+            {
+              "text": "Talk to other men in the Timber ShedPrivate community · opens in your browser",
+              "href": "https://shiftsometimber.co.uk/timber-shed",
+              "target": "_blank"
+            },
+            {
+              "text": "Shift ArcadeBored? Seven quick games, just for a laugh.",
+              "href": "/member/shed-arcade",
+              "target": ""
+            },
+            {
+              "text": "Ask TimberAI help with the everyday stuff",
+              "href": "/member/ask-timber",
+              "target": ""
+            },
+            {
+              "text": "My next stepOpen my saved step and reminders",
+              "href": "/member/support",
+              "target": ""
+            },
+            {
+              "text": "Mates leagueRanked on effort, never weight. Private to your crew.",
+              "href": "/member/life-back/support/league",
+              "target": ""
+            },
+            {
+              "text": "Message MattApp and account questions · view reply time",
+              "href": "/member/life-back/support#contact",
+              "target": ""
+            }
+          ],
+          "buttons": []
+        },
+        "more": {
+          "links": [
+            {
+              "text": "SupportEveryday help, treatment contacts and your snapshot",
+              "href": "/member/dashboard?timber=support#today",
+              "target": ""
+            },
+            {
+              "text": "Saved & plansIdeas and plans to come back to",
+              "href": "/member/saved",
+              "target": ""
+            },
+            {
+              "text": "My ordersOrders and delivery",
+              "href": "/member/orders",
+              "target": ""
+            },
+            {
+              "text": "Account & settingsProfile, units and privacy",
+              "href": "/member/settings",
+              "target": ""
+            },
+            {
+              "text": "Talk to other men in the Timber ShedPrivate community · opens in your browser",
+              "href": "https://shiftsometimber.co.uk/timber-shed",
+              "target": "_blank"
+            },
+            {
+              "text": "Personalise My TimberYour goals, starting point and first step",
+              "href": "/member/dashboard/personalise?edit=1",
+              "target": ""
+            },
+            {
+              "text": "Show weight: OnTurn off if you’d rather focus on strength, energy or measurements.",
+              "href": "/member/life-back/preferences",
+              "target": ""
+            },
+            {
+              "text": "Daily check-in reminderOptional. No health details in the notification",
+              "href": "/member/settings#notifications",
+              "target": ""
+            },
+            {
+              "text": "Health tagsSaved with your consent. Never shared.",
+              "href": "/member/settings#health-tags",
+              "target": ""
+            },
+            {
+              "text": "UnitsWeight and height",
+              "href": "/member/settings#prefWeight",
+              "target": ""
+            },
+            {
+              "text": "Privacy & data rightsExport your data, or delete your account",
+              "href": "/member/settings#healthConsentManager",
+              "target": ""
+            },
+            {
+              "text": "Timber Mill kitOptional SHIFT clothing",
+              "href": "/shop",
+              "target": ""
+            },
+            {
+              "text": "Help using My TimberFind the right place to start",
+              "href": "/help",
+              "target": ""
+            },
+            {
+              "text": "Need help? Go to Support",
+              "href": "/member/dashboard?timber=support#today",
+              "target": ""
+            }
+          ],
+          "buttons": []
+        },
+        "shop": {
+          "links": [
+            {
+              "text": "Your orders",
+              "href": "/member/orders",
+              "target": ""
+            },
+            {
+              "text": "Testing & wellbeingHome tests, lab tests and what each can tell you.Explore tests",
+              "href": "/member/life-back/shop/testing",
+              "target": ""
+            },
+            {
+              "text": "Supplements & nutritionUnderstand the optional extras before choosing.Explore the range",
+              "href": "/member/life-back/shop/nutrition",
+              "target": ""
+            },
+            {
+              "text": "Weight-management careUnderstand your options and the assessment.Explore care",
+              "href": "/member/life-back/shop/care",
+              "target": ""
+            },
+            {
+              "text": "Everyday kitClothing and useful accessories from the Timber Mill.Explore the Mill",
+              "href": "/member/life-back/shop/kit",
+              "target": ""
+            }
+          ],
+          "buttons": []
+        }
+      },
+      "checks": [
+        {
+          "tab": "support",
+          "pass": true,
+          "missing": [],
+          "missingButtons": [],
+          "added": []
+        },
+        {
+          "tab": "more",
+          "pass": true,
+          "missing": [],
+          "missingButtons": [],
+          "added": [
+            {
+              "text": "Personalise My TimberYour goals, starting point and first step",
+              "href": "/member/dashboard/personalise?edit=1",
+              "target": ""
+            }
+          ]
+        },
+        {
+          "tab": "shop",
+          "pass": true,
+          "missing": [],
+          "missingButtons": [],
+          "added": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "name": "webkit",
+      "before": {
+        "support": {
+          "links": [
+            {
+              "text": "Call 999Life-threatening emergency",
+              "href": "tel:999",
+              "target": ""
+            },
+            {
+              "text": "Call NHS 111Urgent medical advice",
+              "href": "tel:111",
+              "target": ""
+            },
+            {
+              "text": "Samaritans · 116 123Someone to listen, day or night",
+              "href": "tel:116123",
+              "target": ""
+            },
+            {
+              "text": "Your snapshotCheck your words and dates before an appointment",
+              "href": "/member/life-back/journey#snapshot",
+              "target": ""
+            },
+            {
+              "text": "Your own prescriberTreatment, dose or side-effect questions",
+              "href": "/member/treatment",
+              "target": ""
+            },
+            {
+              "text": "Talk to other men in the Timber ShedPrivate community · opens in your browser",
+              "href": "https://shiftsometimber.co.uk/timber-shed",
+              "target": "_blank"
+            },
+            {
+              "text": "Shift ArcadeBored? Seven quick games, just for a laugh.",
+              "href": "/member/shed-arcade",
+              "target": ""
+            },
+            {
+              "text": "Ask TimberAI help with the everyday stuff",
+              "href": "/member/ask-timber",
+              "target": ""
+            },
+            {
+              "text": "My next stepOpen my saved step and reminders",
+              "href": "/member/support",
+              "target": ""
+            },
+            {
+              "text": "Mates leagueRanked on effort, never weight. Private to your crew.",
+              "href": "/member/life-back/support/league",
+              "target": ""
+            },
+            {
+              "text": "Message MattApp and account questions · view reply time",
+              "href": "/member/life-back/support#contact",
+              "target": ""
+            }
+          ],
+          "buttons": []
+        },
+        "more": {
+          "links": [
+            {
+              "text": "SupportEveryday help, treatment contacts and your snapshot",
+              "href": "/member/dashboard?timber=support#today",
+              "target": ""
+            },
+            {
+              "text": "Saved & plansIdeas and plans to come back to",
+              "href": "/member/saved",
+              "target": ""
+            },
+            {
+              "text": "My ordersOrders and delivery",
+              "href": "/member/orders",
+              "target": ""
+            },
+            {
+              "text": "Account & settingsProfile, units and privacy",
+              "href": "/member/settings",
+              "target": ""
+            },
+            {
+              "text": "Talk to other men in the Timber ShedPrivate community · opens in your browser",
+              "href": "https://shiftsometimber.co.uk/timber-shed",
+              "target": "_blank"
+            },
+            {
+              "text": "Show weight: OnTurn off if you’d rather focus on strength, energy or measurements.",
+              "href": "/member/life-back/preferences",
+              "target": ""
+            },
+            {
+              "text": "Daily check-in reminderOptional. No health details in the notification",
+              "href": "/member/settings#notifications",
+              "target": ""
+            },
+            {
+              "text": "Health tagsSaved with your consent. Never shared.",
+              "href": "/member/settings#health-tags",
+              "target": ""
+            },
+            {
+              "text": "UnitsWeight and height",
+              "href": "/member/settings#prefWeight",
+              "target": ""
+            },
+            {
+              "text": "Privacy & data rightsExport your data, or delete your account",
+              "href": "/member/settings#healthConsentManager",
+              "target": ""
+            },
+            {
+              "text": "Timber Mill kitOptional SHIFT clothing",
+              "href": "/shop",
+              "target": ""
+            },
+            {
+              "text": "Help using My TimberFind the right place to start",
+              "href": "/help",
+              "target": ""
+            },
+            {
+              "text": "Need help? Go to Support",
+              "href": "/member/dashboard?timber=support#today",
+              "target": ""
+            }
+          ],
+          "buttons": []
+        },
+        "shop": {
+          "links": [
+            {
+              "text": "Your orders",
+              "href": "/member/orders",
+              "target": ""
+            },
+            {
+              "text": "Testing & wellbeingHome tests, lab tests and what each can tell you.Explore tests",
+              "href": "/member/life-back/shop/testing",
+              "target": ""
+            },
+            {
+              "text": "Supplements & nutritionUnderstand the optional extras before choosing.Explore the range",
+              "href": "/member/life-back/shop/nutrition",
+              "target": ""
+            },
+            {
+              "text": "Weight-management careUnderstand your options and the assessment.Explore care",
+              "href": "/member/life-back/shop/care",
+              "target": ""
+            },
+            {
+              "text": "Everyday kitClothing and useful accessories from the Timber Mill.Explore the Mill",
+              "href": "/member/life-back/shop/kit",
+              "target": ""
+            }
+          ],
+          "buttons": []
+        }
+      },
+      "after": {
+        "support": {
+          "links": [
+            {
+              "text": "Call 999Life-threatening emergency",
+              "href": "tel:999",
+              "target": ""
+            },
+            {
+              "text": "Call NHS 111Urgent medical advice",
+              "href": "tel:111",
+              "target": ""
+            },
+            {
+              "text": "Samaritans · 116 123Someone to listen, day or night",
+              "href": "tel:116123",
+              "target": ""
+            },
+            {
+              "text": "Your snapshotCheck your words and dates before an appointment",
+              "href": "/member/life-back/journey#snapshot",
+              "target": ""
+            },
+            {
+              "text": "Your own prescriberTreatment, dose or side-effect questions",
+              "href": "/member/treatment",
+              "target": ""
+            },
+            {
+              "text": "Talk to other men in the Timber ShedPrivate community · opens in your browser",
+              "href": "https://shiftsometimber.co.uk/timber-shed",
+              "target": "_blank"
+            },
+            {
+              "text": "Shift ArcadeBored? Seven quick games, just for a laugh.",
+              "href": "/member/shed-arcade",
+              "target": ""
+            },
+            {
+              "text": "Ask TimberAI help with the everyday stuff",
+              "href": "/member/ask-timber",
+              "target": ""
+            },
+            {
+              "text": "My next stepOpen my saved step and reminders",
+              "href": "/member/support",
+              "target": ""
+            },
+            {
+              "text": "Mates leagueRanked on effort, never weight. Private to your crew.",
+              "href": "/member/life-back/support/league",
+              "target": ""
+            },
+            {
+              "text": "Message MattApp and account questions · view reply time",
+              "href": "/member/life-back/support#contact",
+              "target": ""
+            }
+          ],
+          "buttons": []
+        },
+        "more": {
+          "links": [
+            {
+              "text": "SupportEveryday help, treatment contacts and your snapshot",
+              "href": "/member/dashboard?timber=support#today",
+              "target": ""
+            },
+            {
+              "text": "Saved & plansIdeas and plans to come back to",
+              "href": "/member/saved",
+              "target": ""
+            },
+            {
+              "text": "My ordersOrders and delivery",
+              "href": "/member/orders",
+              "target": ""
+            },
+            {
+              "text": "Account & settingsProfile, units and privacy",
+              "href": "/member/settings",
+              "target": ""
+            },
+            {
+              "text": "Talk to other men in the Timber ShedPrivate community · opens in your browser",
+              "href": "https://shiftsometimber.co.uk/timber-shed",
+              "target": "_blank"
+            },
+            {
+              "text": "Personalise My TimberYour goals, starting point and first step",
+              "href": "/member/dashboard/personalise?edit=1",
+              "target": ""
+            },
+            {
+              "text": "Show weight: OnTurn off if you’d rather focus on strength, energy or measurements.",
+              "href": "/member/life-back/preferences",
+              "target": ""
+            },
+            {
+              "text": "Daily check-in reminderOptional. No health details in the notification",
+              "href": "/member/settings#notifications",
+              "target": ""
+            },
+            {
+              "text": "Health tagsSaved with your consent. Never shared.",
+              "href": "/member/settings#health-tags",
+              "target": ""
+            },
+            {
+              "text": "UnitsWeight and height",
+              "href": "/member/settings#prefWeight",
+              "target": ""
+            },
+            {
+              "text": "Privacy & data rightsExport your data, or delete your account",
+              "href": "/member/settings#healthConsentManager",
+              "target": ""
+            },
+            {
+              "text": "Timber Mill kitOptional SHIFT clothing",
+              "href": "/shop",
+              "target": ""
+            },
+            {
+              "text": "Help using My TimberFind the right place to start",
+              "href": "/help",
+              "target": ""
+            },
+            {
+              "text": "Need help? Go to Support",
+              "href": "/member/dashboard?timber=support#today",
+              "target": ""
+            }
+          ],
+          "buttons": []
+        },
+        "shop": {
+          "links": [
+            {
+              "text": "Your orders",
+              "href": "/member/orders",
+              "target": ""
+            },
+            {
+              "text": "Testing & wellbeingHome tests, lab tests and what each can tell you.Explore tests",
+              "href": "/member/life-back/shop/testing",
+              "target": ""
+            },
+            {
+              "text": "Supplements & nutritionUnderstand the optional extras before choosing.Explore the range",
+              "href": "/member/life-back/shop/nutrition",
+              "target": ""
+            },
+            {
+              "text": "Weight-management careUnderstand your options and the assessment.Explore care",
+              "href": "/member/life-back/shop/care",
+              "target": ""
+            },
+            {
+              "text": "Everyday kitClothing and useful accessories from the Timber Mill.Explore the Mill",
+              "href": "/member/life-back/shop/kit",
+              "target": ""
+            }
+          ],
+          "buttons": []
+        }
+      },
+      "checks": [
+        {
+          "tab": "support",
+          "pass": true,
+          "missing": [],
+          "missingButtons": [],
+          "added": []
+        },
+        {
+          "tab": "more",
+          "pass": true,
+          "missing": [],
+          "missingButtons": [],
+          "added": [
+            {
+              "text": "Personalise My TimberYour goals, starting point and first step",
+              "href": "/member/dashboard/personalise?edit=1",
+              "target": ""
+            }
+          ]
+        },
+        {
+          "tab": "shop",
+          "pass": true,
+          "missing": [],
+          "missingButtons": [],
+          "added": []
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "at": "2026-11-04T16:52:32.658Z",
+  "account": "welcome-chromium-returning@example.invalid",
+  "case": "A profile save holding an older preferences snapshot races after Done",
+  "before": 0,
+  "after": 1,
+  "completed": true,
+  "patchStatus": 200,
+  "pass": true
+}

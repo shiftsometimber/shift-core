@@ -1,0 +1,22 @@
+{
+  "createdAt": "2026-11-04T15:37:27.400Z",
+  "original": "42f085ae-553c-4b11-82f6-116203fb3c5e",
+  "rollback": "node member-experience/tools/welcome-release.mjs rollback",
+  "scope": "Front only; Core, Shop, till, clinical service, supplier gates and database unchanged",
+  "originalHashes": {
+    "v7-release-20261103/programme.mjs": "2aa0d8f1d79aabc1efc184b132ba6d9859da22ba83b82a7b9d36717ffad24809"
+  },
+  "expectedHashes": {
+    "v7-release-20261103/programme.mjs": "6a58ded05a64fd10603bbaeb1dd70a617a0925fd371697026231dcc70f6e896d"
+  },
+  "schedules": [
+    {
+      "cron": "0,15,30,45 0-5 * * *",
+      "created_on": "2026-11-04T00:34:26.630649Z",
+      "modified_on": "2026-11-04T00:34:26.630649Z"
+    }
+  ],
+  "candidate": "62e6b029-dc45-41a5-a6f2-736b8d366049",
+  "preparedAt": "2026-11-04T17:14:36.584Z",
+  "memberTrafficChanged": false
+}

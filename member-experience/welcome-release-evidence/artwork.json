@@ -1,0 +1,14 @@
+{
+  "welcome-v2-headline.webp": {
+    "sha256": "03b1febc86782d907b6c6a7b61e18654e24f5256b65983a6bbe228faa3d8a2d2",
+    "bytes": 22114
+  },
+  "welcome-v2-note-nobutton.webp": {
+    "sha256": "d2f3a39279dc08bdca33f6fe605492cdcdb3bbaeb5957e0519263593b19bdbc2",
+    "bytes": 84304
+  },
+  "welcome-v2-note.webp": {
+    "sha256": "ffc01b8f821730506fa3e813f88ab8f24355c957b444f314f1d6af868e27e28d",
+    "bytes": 91912
+  }
+}

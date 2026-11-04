@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-04T17:26:32.122Z",
+  "allRequiredPass": false,
+  "clinicalEndToEnd": false,
+  "automaticRefund": false,
+  "cardHoldImplemented": false,
+  "speedPass": false,
+  "shopUnchanged": true,
+  "physicalPhoneEvidence": false,
+  "memberReleaseDeployed": false,
+  "status": "BLOCKED_NOT_LIVE",
+  "reasons": [
+    "Existing provider assessment closed and unconfigured; questionnaire-to-dispensing path not verifiable.",
+    "Till automatic refund and safe card-hold lifecycle absent.",
+    "At least one strict speed requirement remains failed; see latest measured table.",
+    "Welcome Lighthouse LCP exceeds the brief two-second limit.",
+    "Required physical iPhone Safari/Android Chrome proof not performed.",
+    "Complete checkout/settings mutation evidence incomplete."
+  ]
+}

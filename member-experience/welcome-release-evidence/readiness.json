@@ -1,0 +1,41 @@
+{
+  "at": "2026-11-04T17:26:32.122Z",
+  "readOnly": true,
+  "syntheticAccount": {
+    "id": 900710301,
+    "email": "v7-live-proof@example.invalid"
+  },
+  "clinicalContext": {
+    "httpStatus": 200,
+    "assessmentAvailable": false,
+    "responseKeys": [
+      "ok",
+      "accountReference",
+      "emailVerified",
+      "patientFirstName",
+      "patientLastName",
+      "patientEmail",
+      "assessmentAvailable"
+    ]
+  },
+  "publicAssessment": {
+    "httpStatus": 200,
+    "explicitlyClosed": true
+  },
+  "pharmacyBindingNames": [],
+  "activeFront": [
+    {
+      "version_id": "42f085ae-553c-4b11-82f6-116203fb3c5e",
+      "percentage": 100
+    }
+  ],
+  "activeCore": [
+    {
+      "version_id": "a301697d-5586-4839-aa44-5edb01105731",
+      "percentage": 100
+    }
+  ],
+  "moneyWrites": 0,
+  "providerWrites": 0,
+  "memberReleaseDeployed": false
+}

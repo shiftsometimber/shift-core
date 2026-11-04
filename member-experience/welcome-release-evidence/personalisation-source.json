@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-04T16:05:01.550Z",
+  "existingQuestionsAndPersistenceUnchanged": true,
+  "frameScoped": true,
+  "sources": [
+    {
+      "key": "page",
+      "url": "/join-my-timber",
+      "sha256": "55e6e43889dc4a002f9358da7aee0744852890dbcd5d4b58f8bc9c357a5fd59e"
+    },
+    {
+      "key": "controller",
+      "url": "/assets/my-timber-onboarding-20261021.js",
+      "sha256": "cd7e07b96a8edf7f24d28aad01088f1dd1afaaff75e2b7d5110f9990ae846e9d"
+    },
+    {
+      "key": "model",
+      "url": "/assets/my-timber-onboarding-model-20261021.mjs",
+      "sha256": "9af1f769b1aa969641fd9f3445d3a1f97ffdb80db52fb83bfcef22782007956d"
+    },
+    {
+      "key": "style",
+      "url": "/assets/my-timber-onboarding-20261021.css",
+      "sha256": "e9ac3aaf9a204e9f7e9d291422803fa86b828defeb949296701f581f2198b31f"
+    }
+  ]
+}

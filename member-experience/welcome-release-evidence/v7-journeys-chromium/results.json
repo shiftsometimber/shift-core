@@ -1,0 +1,166 @@
+{
+  "engine": "chromium",
+  "device": "Mobile browser profile, not a physical phone",
+  "origin": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev",
+  "at": "2026-11-04T15:41:59.277Z",
+  "journeys": [
+    {
+      "name": "choose",
+      "testAccount": "v7-chromium-choose@example.invalid",
+      "checks": [
+        {
+          "condition": "Prepared starting pile",
+          "result": "PASS",
+          "detail": {
+            "count": 12
+          }
+        },
+        {
+          "condition": "Exactly three sourced, protein-matched swaps",
+          "result": "PASS",
+          "detail": {
+            "original": 48.1,
+            "swaps": [
+              48.7,
+              52,
+              50.4
+            ]
+          }
+        },
+        {
+          "condition": "Swap changes action without food or a pile award",
+          "result": "PASS"
+        },
+        {
+          "condition": "Today and Grub use the same selected action",
+          "result": "PASS"
+        },
+        {
+          "condition": "Concurrent Done on two sessions and two screens awards once",
+          "result": "PASS",
+          "detail": [
+            {
+              "awarded": true,
+              "count": 13
+            },
+            {
+              "awarded": false,
+              "count": 13
+            }
+          ]
+        },
+        {
+          "condition": "Negative optional feedback keeps log and food totals",
+          "result": "PASS"
+        },
+        {
+          "condition": "Pile count and remaining add to thirty",
+          "result": "PASS"
+        },
+        {
+          "condition": "All five quick logs leave pile unchanged",
+          "result": "PASS"
+        },
+        {
+          "condition": "Recorded mood is absent from Today",
+          "result": "PASS"
+        },
+        {
+          "condition": "Off-plan confirmation is neutral",
+          "result": "PASS"
+        },
+        {
+          "condition": "Full food day records four meals without an award",
+          "result": "PASS",
+          "detail": {
+            "entries": 4,
+            "proteinG": 63,
+            "kcal": 1838.4,
+            "pile": 13
+          }
+        },
+        {
+          "condition": "Eating-out figures explicitly use estimates",
+          "result": "PASS"
+        },
+        {
+          "condition": "Fit offers shorter, no-kit and low-impact",
+          "result": "PASS"
+        },
+        {
+          "condition": "Closing optional Fit ratings keeps activity, no second pile log",
+          "result": "PASS"
+        },
+        {
+          "condition": "A walk and extra session never add a pile log",
+          "result": "PASS"
+        },
+        {
+          "condition": "No uncaught browser exception",
+          "result": "PASS",
+          "detail": []
+        }
+      ]
+    },
+    {
+      "name": "hard-week",
+      "testAccount": "v7-chromium-hard-week@example.invalid",
+      "checks": [
+        {
+          "condition": "Prepared starting pile",
+          "result": "PASS",
+          "detail": {
+            "count": 12
+          }
+        },
+        {
+          "condition": "Hard-week return is welcoming, pile retained",
+          "result": "PASS"
+        },
+        {
+          "condition": "Feedback can be closed without losing the earned log",
+          "result": "PASS"
+        },
+        {
+          "condition": "No uncaught browser exception",
+          "result": "PASS",
+          "detail": []
+        }
+      ]
+    },
+    {
+      "name": "milestone",
+      "testAccount": "v7-chromium-milestone@example.invalid",
+      "checks": [
+        {
+          "condition": "Prepared starting pile",
+          "result": "PASS",
+          "detail": {
+            "count": 29
+          }
+        },
+        {
+          "condition": "Milestone starts unawarded",
+          "result": "PASS"
+        },
+        {
+          "condition": "Thirtieth log awards exactly one milestone",
+          "result": "PASS"
+        },
+        {
+          "condition": "Share preview contains effort only",
+          "result": "PASS"
+        },
+        {
+          "condition": "Refresh neither awards again nor replaces milestone",
+          "result": "PASS"
+        },
+        {
+          "condition": "No uncaught browser exception",
+          "result": "PASS",
+          "detail": []
+        }
+      ]
+    }
+  ]
+}

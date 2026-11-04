@@ -1,0 +1,10 @@
+{
+  "blackOnGreen": 4.371,
+  "creamOnBlack": 15.915,
+  "greenOnBlack": 4.371,
+  "creamOnGreen": 3.641,
+  "filledButton": "21px, weight 800; large-text AA threshold 3:1",
+  "topLabels": "cream, weight 800",
+  "bottomLabels": "green, weight 800",
+  "source": "WCAG sRGB relative luminance; computed styles in final-visuals/results.json"
+}

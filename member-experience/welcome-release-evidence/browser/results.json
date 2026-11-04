@@ -1,0 +1,768 @@
+{
+  "at": "2026-11-04T17:14:45.548Z",
+  "origin": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev",
+  "device": "Mobile browser emulation at 390 \u00d7 844, 2x; not physical devices",
+  "financialProof": "Review/decline UI uses labelled synthetic database fixtures; no provider or payment request",
+  "engines": [
+    {
+      "name": "chromium",
+      "accounts": [
+        {
+          "id": 900710501,
+          "email": "welcome-chromium-first@example.invalid"
+        },
+        {
+          "id": 900710502,
+          "email": "welcome-chromium-returning@example.invalid"
+        },
+        {
+          "id": 900710503,
+          "email": "welcome-chromium-review@example.invalid"
+        },
+        {
+          "id": 900710504,
+          "email": "welcome-chromium-declined@example.invalid"
+        },
+        {
+          "id": 900710505,
+          "email": "welcome-chromium-browse@example.invalid"
+        }
+      ],
+      "checks": [
+        {
+          "id": "W1-first-visit-Welcome",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W1-top-tabs",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W2-supplied-WebP-crops",
+          "pass": true,
+          "detail": "[{\"src\":\"/assets/member-experience/v7-welcome-headline.webp\",\"width\":374,\"natural\":815,\"alt\":\"YOU DON\u2019T HAVE TO SORT EVERYTHING YOURSELF.\"},{\"src\":\"/assets/member-experience/v7-welcome-note.webp\",\"width\":378,\"natural\":825,\"alt\":\"Welcome to My Timber. Better grub. Movement at your pace. Support that sticks around. No lectures. No labels. No pressure to spill your guts. Start small. Take one useful step today. MAKE IT MINE\"}]"
+        },
+        {
+          "id": "W2-phone-widths",
+          "pass": true,
+          "detail": "[374,378]"
+        },
+        {
+          "id": "W3-hotspot",
+          "pass": true,
+          "detail": "{\"left\":0.10796957671957672,\"top\":0.7749889165501483,\"width\":0.7809606481481481,\"height\":0.11298298264161238,\"min\":51.765625,\"label\":\"Make it mine\"}"
+        },
+        {
+          "id": "W3-existing-setup-route",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W3-health-consent-optional",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W3-three-step-setup-saved",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W3-first-Done-keeps-log",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W3-setup-now-removed-hotspot",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W3-setup-return-Today",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W1-returning-Today",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "S-shell-welcome",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "S-shell-today",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "S-shell-journey",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "S-shell-shop",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "S-shell-grub",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "S-shell-fit",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "S-shell-support",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "S-shell-more",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W5-no-medicine-price",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W5-questionnaire-existing-provider",
+          "pass": false,
+          "detail": "Existing live assessment is closed. No questionnaire was manufactured."
+        },
+        {
+          "id": "A7-urgent-phone-links",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "A8-situation-ending",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "A8-situation-stall",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "A8-situation-wobble",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "A8-situation-cost",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "A8-situation-symptoms",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "A9-more-retained",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "A3-preferences-More-highlighted",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W3-browse-without-setup",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W1-completed-setup-Today",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W3-after-setup-no-hotspot",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W3-after-setup-crop",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W5-real-account-status-review",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W5-return-Today-review",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W5-real-account-status-declined",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W5-return-Today-declined",
+          "pass": true,
+          "detail": ""
+        }
+      ],
+      "screens": [
+        "chromium-47-welcome-first.png",
+        "chromium-47-hotspot-focus.png",
+        "chromium-setup-step-1.png",
+        "chromium-setup-step-2.png",
+        "chromium-setup-step-3.png",
+        "chromium-48-welcome-after-real-setup.png",
+        "chromium-40b-today.png",
+        "chromium-41-explore-intro.png",
+        "chromium-42-existing-clinical-entry-closed.png",
+        "chromium-24-support.png",
+        "chromium-25-support-ending.png",
+        "chromium-25-support-stall.png",
+        "chromium-25-support-wobble.png",
+        "chromium-25-support-cost.png",
+        "chromium-25-support-symptoms.png",
+        "chromium-26-more.png",
+        "chromium-preferences.png",
+        "chromium-40b-browse-without-setup.png",
+        "chromium-48-welcome-after-setup.png",
+        "chromium-46-today-review-status.png",
+        "chromium-44-review-fixture.png",
+        "chromium-46-today-declined-status.png",
+        "chromium-45-declined-fixture.png"
+      ],
+      "videos": [
+        "chromium/first-setup-browse-support-more.webm",
+        "chromium/browse-without-setup.webm",
+        "chromium/returning.webm",
+        "chromium/review-UI-fixture.webm",
+        "chromium/declined-UI-fixture.webm"
+      ],
+      "errors": [],
+      "supportLinks": [
+        {
+          "text": "Call 999\nLife-threatening emergency",
+          "href": "tel:999",
+          "target": ""
+        },
+        {
+          "text": "Call NHS 111\nUrgent medical advice",
+          "href": "tel:111",
+          "target": ""
+        },
+        {
+          "text": "Samaritans \u00b7 116 123\nSomeone to listen, day or night",
+          "href": "tel:116123",
+          "target": ""
+        },
+        {
+          "text": "Your snapshot\nCheck your words and dates before an appointment",
+          "href": "/member/life-back/journey#snapshot",
+          "target": ""
+        },
+        {
+          "text": "Your own prescriber\nTreatment, dose or side-effect questions",
+          "href": "/member/treatment",
+          "target": ""
+        },
+        {
+          "text": "Talk to other men in the Timber Shed\nPrivate community \u00b7 opens in your browser",
+          "href": "https://shiftsometimber.co.uk/timber-shed",
+          "target": "_blank"
+        },
+        {
+          "text": "Shift Arcade\nBored? Seven quick games, just for a laugh.",
+          "href": "/member/shed-arcade",
+          "target": ""
+        },
+        {
+          "text": "Ask Timber\nAI help with the everyday stuff",
+          "href": "/member/ask-timber",
+          "target": ""
+        },
+        {
+          "text": "My next step\nOpen my saved step and reminders",
+          "href": "/member/support",
+          "target": ""
+        },
+        {
+          "text": "Mates league\nRanked on effort, never weight. Private to your crew.",
+          "href": "/member/life-back/support/league",
+          "target": ""
+        },
+        {
+          "text": "Message Matt\nApp and account questions \u00b7 view reply time",
+          "href": "/member/life-back/support#contact",
+          "target": ""
+        }
+      ],
+      "moreLinks": [
+        {
+          "text": "Support\nEveryday help, treatment contacts and your snapshot",
+          "href": "/member/dashboard?timber=support#today",
+          "target": ""
+        },
+        {
+          "text": "Saved & plans\nIdeas and plans to come back to",
+          "href": "/member/saved",
+          "target": ""
+        },
+        {
+          "text": "My orders\nOrders and delivery",
+          "href": "/member/orders",
+          "target": ""
+        },
+        {
+          "text": "Account & settings\nProfile, units and privacy",
+          "href": "/member/settings",
+          "target": ""
+        },
+        {
+          "text": "Talk to other men in the Timber Shed\nPrivate community \u00b7 opens in your browser",
+          "href": "https://shiftsometimber.co.uk/timber-shed",
+          "target": "_blank"
+        },
+        {
+          "text": "Personalise My Timber\nYour goals, starting point and first step",
+          "href": "/member/dashboard/personalise?edit=1",
+          "target": ""
+        },
+        {
+          "text": "Show weight: On\nTurn off if you\u2019d rather focus on strength, energy or measurements.",
+          "href": "/member/life-back/preferences",
+          "target": ""
+        },
+        {
+          "text": "Daily check-in reminder\nOptional. No health details in the notification",
+          "href": "/member/settings#notifications",
+          "target": ""
+        },
+        {
+          "text": "Health tags\nSaved with your consent. Never shared.",
+          "href": "/member/settings#health-tags",
+          "target": ""
+        },
+        {
+          "text": "Units\nWeight and height",
+          "href": "/member/settings#prefWeight",
+          "target": ""
+        },
+        {
+          "text": "Privacy & data rights\nExport your data, or delete your account",
+          "href": "/member/settings#healthConsentManager",
+          "target": ""
+        },
+        {
+          "text": "Timber Mill kit\nOptional SHIFT clothing",
+          "href": "/shop",
+          "target": ""
+        },
+        {
+          "text": "Help using My Timber\nFind the right place to start",
+          "href": "/help",
+          "target": ""
+        },
+        {
+          "text": "Need help? Go to Support",
+          "href": "/member/dashboard?timber=support#today",
+          "target": ""
+        }
+      ],
+      "success": true
+    },
+    {
+      "name": "webkit",
+      "accounts": [
+        {
+          "id": 900710511,
+          "email": "welcome-webkit-first@example.invalid"
+        },
+        {
+          "id": 900710512,
+          "email": "welcome-webkit-returning@example.invalid"
+        },
+        {
+          "id": 900710513,
+          "email": "welcome-webkit-review@example.invalid"
+        },
+        {
+          "id": 900710514,
+          "email": "welcome-webkit-declined@example.invalid"
+        },
+        {
+          "id": 900710515,
+          "email": "welcome-webkit-browse@example.invalid"
+        }
+      ],
+      "checks": [
+        {
+          "id": "W1-first-visit-Welcome",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W1-top-tabs",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W2-supplied-WebP-crops",
+          "pass": true,
+          "detail": "[{\"src\":\"/assets/member-experience/v7-welcome-headline.webp\",\"width\":374,\"natural\":815,\"alt\":\"YOU DON\u2019T HAVE TO SORT EVERYTHING YOURSELF.\"},{\"src\":\"/assets/member-experience/v7-welcome-note.webp\",\"width\":378,\"natural\":825,\"alt\":\"Welcome to My Timber. Better grub. Movement at your pace. Support that sticks around. No lectures. No labels. No pressure to spill your guts. Start small. Take one useful step today. MAKE IT MINE\"}]"
+        },
+        {
+          "id": "W2-phone-widths",
+          "pass": true,
+          "detail": "[374,378]"
+        },
+        {
+          "id": "W3-hotspot",
+          "pass": true,
+          "detail": "{\"left\":0.10796957671957672,\"top\":0.7749889165501483,\"width\":0.7809606481481481,\"height\":0.11298298264161238,\"min\":51.765625,\"label\":\"Make it mine\"}"
+        },
+        {
+          "id": "W3-existing-setup-route",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W3-health-consent-optional",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W3-three-step-setup-saved",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W3-first-Done-keeps-log",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W3-setup-now-removed-hotspot",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W3-setup-return-Today",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W1-returning-Today",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "S-shell-welcome",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "S-shell-today",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "S-shell-journey",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "S-shell-shop",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "S-shell-grub",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "S-shell-fit",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "S-shell-support",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "S-shell-more",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W5-no-medicine-price",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W5-questionnaire-existing-provider",
+          "pass": false,
+          "detail": "Existing live assessment is closed. No questionnaire was manufactured."
+        },
+        {
+          "id": "A7-urgent-phone-links",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "A8-situation-ending",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "A8-situation-stall",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "A8-situation-wobble",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "A8-situation-cost",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "A8-situation-symptoms",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "A9-more-retained",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "A3-preferences-More-highlighted",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W3-browse-without-setup",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W1-completed-setup-Today",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W3-after-setup-no-hotspot",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W3-after-setup-crop",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W5-real-account-status-review",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W5-return-Today-review",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W5-real-account-status-declined",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "id": "W5-return-Today-declined",
+          "pass": true,
+          "detail": ""
+        }
+      ],
+      "screens": [
+        "webkit-47-welcome-first.png",
+        "webkit-47-hotspot-focus.png",
+        "webkit-setup-step-1.png",
+        "webkit-setup-step-2.png",
+        "webkit-setup-step-3.png",
+        "webkit-48-welcome-after-real-setup.png",
+        "webkit-40b-today.png",
+        "webkit-41-explore-intro.png",
+        "webkit-42-existing-clinical-entry-closed.png",
+        "webkit-24-support.png",
+        "webkit-25-support-ending.png",
+        "webkit-25-support-stall.png",
+        "webkit-25-support-wobble.png",
+        "webkit-25-support-cost.png",
+        "webkit-25-support-symptoms.png",
+        "webkit-26-more.png",
+        "webkit-preferences.png",
+        "webkit-40b-browse-without-setup.png",
+        "webkit-48-welcome-after-setup.png",
+        "webkit-46-today-review-status.png",
+        "webkit-44-review-fixture.png",
+        "webkit-46-today-declined-status.png",
+        "webkit-45-declined-fixture.png"
+      ],
+      "videos": [
+        "webkit/first-setup-browse-support-more.webm",
+        "webkit/browse-without-setup.webm",
+        "webkit/returning.webm",
+        "webkit/review-UI-fixture.webm",
+        "webkit/declined-UI-fixture.webm"
+      ],
+      "errors": [],
+      "supportLinks": [
+        {
+          "text": "Call 999\nLife-threatening emergency",
+          "href": "tel:999",
+          "target": ""
+        },
+        {
+          "text": "Call NHS 111\nUrgent medical advice",
+          "href": "tel:111",
+          "target": ""
+        },
+        {
+          "text": "Samaritans \u00b7 116 123\nSomeone to listen, day or night",
+          "href": "tel:116123",
+          "target": ""
+        },
+        {
+          "text": "Your snapshot\nCheck your words and dates before an appointment",
+          "href": "/member/life-back/journey#snapshot",
+          "target": ""
+        },
+        {
+          "text": "Your own prescriber\nTreatment, dose or side-effect questions",
+          "href": "/member/treatment",
+          "target": ""
+        },
+        {
+          "text": "Talk to other men in the Timber Shed\nPrivate community \u00b7 opens in your browser",
+          "href": "https://shiftsometimber.co.uk/timber-shed",
+          "target": "_blank"
+        },
+        {
+          "text": "Shift Arcade\nBored? Seven quick games, just for a laugh.",
+          "href": "/member/shed-arcade",
+          "target": ""
+        },
+        {
+          "text": "Ask Timber\nAI help with the everyday stuff",
+          "href": "/member/ask-timber",
+          "target": ""
+        },
+        {
+          "text": "My next step\nOpen my saved step and reminders",
+          "href": "/member/support",
+          "target": ""
+        },
+        {
+          "text": "Mates league\nRanked on effort, never weight. Private to your crew.",
+          "href": "/member/life-back/support/league",
+          "target": ""
+        },
+        {
+          "text": "Message Matt\nApp and account questions \u00b7 view reply time",
+          "href": "/member/life-back/support#contact",
+          "target": ""
+        }
+      ],
+      "moreLinks": [
+        {
+          "text": "Support\nEveryday help, treatment contacts and your snapshot",
+          "href": "/member/dashboard?timber=support#today",
+          "target": ""
+        },
+        {
+          "text": "Saved & plans\nIdeas and plans to come back to",
+          "href": "/member/saved",
+          "target": ""
+        },
+        {
+          "text": "My orders\nOrders and delivery",
+          "href": "/member/orders",
+          "target": ""
+        },
+        {
+          "text": "Account & settings\nProfile, units and privacy",
+          "href": "/member/settings",
+          "target": ""
+        },
+        {
+          "text": "Talk to other men in the Timber Shed\nPrivate community \u00b7 opens in your browser",
+          "href": "https://shiftsometimber.co.uk/timber-shed",
+          "target": "_blank"
+        },
+        {
+          "text": "Personalise My Timber\nYour goals, starting point and first step",
+          "href": "/member/dashboard/personalise?edit=1",
+          "target": ""
+        },
+        {
+          "text": "Show weight: On\nTurn off if you\u2019d rather focus on strength, energy or measurements.",
+          "href": "/member/life-back/preferences",
+          "target": ""
+        },
+        {
+          "text": "Daily check-in reminder\nOptional. No health details in the notification",
+          "href": "/member/settings#notifications",
+          "target": ""
+        },
+        {
+          "text": "Health tags\nSaved with your consent. Never shared.",
+          "href": "/member/settings#health-tags",
+          "target": ""
+        },
+        {
+          "text": "Units\nWeight and height",
+          "href": "/member/settings#prefWeight",
+          "target": ""
+        },
+        {
+          "text": "Privacy & data rights\nExport your data, or delete your account",
+          "href": "/member/settings#healthConsentManager",
+          "target": ""
+        },
+        {
+          "text": "Timber Mill kit\nOptional SHIFT clothing",
+          "href": "/shop",
+          "target": ""
+        },
+        {
+          "text": "Help using My Timber\nFind the right place to start",
+          "href": "/help",
+          "target": ""
+        },
+        {
+          "text": "Need help? Go to Support",
+          "href": "/member/dashboard?timber=support#today",
+          "target": ""
+        }
+      ],
+      "success": true
+    }
+  ]
+}

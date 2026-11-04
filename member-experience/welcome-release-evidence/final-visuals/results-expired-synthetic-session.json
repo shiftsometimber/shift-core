@@ -1,0 +1,23 @@
+{
+  "at": "2026-11-04T17:12:11.381Z",
+  "physical": false,
+  "recordings": "Browser emulation; no purchases or communications",
+  "engines": [
+    {
+      "name": "chromium",
+      "checks": [],
+      "shots": [],
+      "errors": [
+        "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-v7-action-card]') to be visible\u001b[22m\n\n    at /private/tmp/my-timber-current-release-20261103/member-experience/tools/welcome-final-visuals.mjs:5:282"
+      ]
+    },
+    {
+      "name": "webkit",
+      "checks": [],
+      "shots": [],
+      "errors": [
+        "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-v7-action-card]') to be visible\u001b[22m\n\n    at /private/tmp/my-timber-current-release-20261103/member-experience/tools/welcome-final-visuals.mjs:5:282"
+      ]
+    }
+  ]
+}

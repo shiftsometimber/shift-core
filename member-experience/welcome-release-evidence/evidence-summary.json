@@ -1,0 +1,3353 @@
+{
+  "browser": {
+    "at": "2026-11-04T17:14:45.548Z",
+    "origin": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev",
+    "device": "Mobile browser emulation at 390 \u00d7 844, 2x; not physical devices",
+    "financialProof": "Review/decline UI uses labelled synthetic database fixtures; no provider or payment request",
+    "engines": [
+      {
+        "name": "chromium",
+        "accounts": [
+          {
+            "id": 900710501,
+            "email": "welcome-chromium-first@example.invalid"
+          },
+          {
+            "id": 900710502,
+            "email": "welcome-chromium-returning@example.invalid"
+          },
+          {
+            "id": 900710503,
+            "email": "welcome-chromium-review@example.invalid"
+          },
+          {
+            "id": 900710504,
+            "email": "welcome-chromium-declined@example.invalid"
+          },
+          {
+            "id": 900710505,
+            "email": "welcome-chromium-browse@example.invalid"
+          }
+        ],
+        "checks": [
+          {
+            "id": "W1-first-visit-Welcome",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W1-top-tabs",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W2-supplied-WebP-crops",
+            "pass": true,
+            "detail": "[{\"src\":\"/assets/member-experience/v7-welcome-headline.webp\",\"width\":374,\"natural\":815,\"alt\":\"YOU DON\u2019T HAVE TO SORT EVERYTHING YOURSELF.\"},{\"src\":\"/assets/member-experience/v7-welcome-note.webp\",\"width\":378,\"natural\":825,\"alt\":\"Welcome to My Timber. Better grub. Movement at your pace. Support that sticks around. No lectures. No labels. No pressure to spill your guts. Start small. Take one useful step today. MAKE IT MINE\"}]"
+          },
+          {
+            "id": "W2-phone-widths",
+            "pass": true,
+            "detail": "[374,378]"
+          },
+          {
+            "id": "W3-hotspot",
+            "pass": true,
+            "detail": "{\"left\":0.10796957671957672,\"top\":0.7749889165501483,\"width\":0.7809606481481481,\"height\":0.11298298264161238,\"min\":51.765625,\"label\":\"Make it mine\"}"
+          },
+          {
+            "id": "W3-existing-setup-route",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W3-health-consent-optional",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W3-three-step-setup-saved",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W3-first-Done-keeps-log",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W3-setup-now-removed-hotspot",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W3-setup-return-Today",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W1-returning-Today",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "S-shell-welcome",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "S-shell-today",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "S-shell-journey",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "S-shell-shop",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "S-shell-grub",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "S-shell-fit",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "S-shell-support",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "S-shell-more",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W5-no-medicine-price",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W5-questionnaire-existing-provider",
+            "pass": false,
+            "detail": "Existing live assessment is closed. No questionnaire was manufactured."
+          },
+          {
+            "id": "A7-urgent-phone-links",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "A8-situation-ending",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "A8-situation-stall",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "A8-situation-wobble",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "A8-situation-cost",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "A8-situation-symptoms",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "A9-more-retained",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "A3-preferences-More-highlighted",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W3-browse-without-setup",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W1-completed-setup-Today",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W3-after-setup-no-hotspot",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W3-after-setup-crop",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W5-real-account-status-review",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W5-return-Today-review",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W5-real-account-status-declined",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W5-return-Today-declined",
+            "pass": true,
+            "detail": ""
+          }
+        ],
+        "screens": [
+          "chromium-47-welcome-first.png",
+          "chromium-47-hotspot-focus.png",
+          "chromium-setup-step-1.png",
+          "chromium-setup-step-2.png",
+          "chromium-setup-step-3.png",
+          "chromium-48-welcome-after-real-setup.png",
+          "chromium-40b-today.png",
+          "chromium-41-explore-intro.png",
+          "chromium-42-existing-clinical-entry-closed.png",
+          "chromium-24-support.png",
+          "chromium-25-support-ending.png",
+          "chromium-25-support-stall.png",
+          "chromium-25-support-wobble.png",
+          "chromium-25-support-cost.png",
+          "chromium-25-support-symptoms.png",
+          "chromium-26-more.png",
+          "chromium-preferences.png",
+          "chromium-40b-browse-without-setup.png",
+          "chromium-48-welcome-after-setup.png",
+          "chromium-46-today-review-status.png",
+          "chromium-44-review-fixture.png",
+          "chromium-46-today-declined-status.png",
+          "chromium-45-declined-fixture.png"
+        ],
+        "videos": [
+          "chromium/first-setup-browse-support-more.webm",
+          "chromium/browse-without-setup.webm",
+          "chromium/returning.webm",
+          "chromium/review-UI-fixture.webm",
+          "chromium/declined-UI-fixture.webm"
+        ],
+        "errors": [],
+        "supportLinks": [
+          {
+            "text": "Call 999\nLife-threatening emergency",
+            "href": "tel:999",
+            "target": ""
+          },
+          {
+            "text": "Call NHS 111\nUrgent medical advice",
+            "href": "tel:111",
+            "target": ""
+          },
+          {
+            "text": "Samaritans \u00b7 116 123\nSomeone to listen, day or night",
+            "href": "tel:116123",
+            "target": ""
+          },
+          {
+            "text": "Your snapshot\nCheck your words and dates before an appointment",
+            "href": "/member/life-back/journey#snapshot",
+            "target": ""
+          },
+          {
+            "text": "Your own prescriber\nTreatment, dose or side-effect questions",
+            "href": "/member/treatment",
+            "target": ""
+          },
+          {
+            "text": "Talk to other men in the Timber Shed\nPrivate community \u00b7 opens in your browser",
+            "href": "https://shiftsometimber.co.uk/timber-shed",
+            "target": "_blank"
+          },
+          {
+            "text": "Shift Arcade\nBored? Seven quick games, just for a laugh.",
+            "href": "/member/shed-arcade",
+            "target": ""
+          },
+          {
+            "text": "Ask Timber\nAI help with the everyday stuff",
+            "href": "/member/ask-timber",
+            "target": ""
+          },
+          {
+            "text": "My next step\nOpen my saved step and reminders",
+            "href": "/member/support",
+            "target": ""
+          },
+          {
+            "text": "Mates league\nRanked on effort, never weight. Private to your crew.",
+            "href": "/member/life-back/support/league",
+            "target": ""
+          },
+          {
+            "text": "Message Matt\nApp and account questions \u00b7 view reply time",
+            "href": "/member/life-back/support#contact",
+            "target": ""
+          }
+        ],
+        "moreLinks": [
+          {
+            "text": "Support\nEveryday help, treatment contacts and your snapshot",
+            "href": "/member/dashboard?timber=support#today",
+            "target": ""
+          },
+          {
+            "text": "Saved & plans\nIdeas and plans to come back to",
+            "href": "/member/saved",
+            "target": ""
+          },
+          {
+            "text": "My orders\nOrders and delivery",
+            "href": "/member/orders",
+            "target": ""
+          },
+          {
+            "text": "Account & settings\nProfile, units and privacy",
+            "href": "/member/settings",
+            "target": ""
+          },
+          {
+            "text": "Talk to other men in the Timber Shed\nPrivate community \u00b7 opens in your browser",
+            "href": "https://shiftsometimber.co.uk/timber-shed",
+            "target": "_blank"
+          },
+          {
+            "text": "Personalise My Timber\nYour goals, starting point and first step",
+            "href": "/member/dashboard/personalise?edit=1",
+            "target": ""
+          },
+          {
+            "text": "Show weight: On\nTurn off if you\u2019d rather focus on strength, energy or measurements.",
+            "href": "/member/life-back/preferences",
+            "target": ""
+          },
+          {
+            "text": "Daily check-in reminder\nOptional. No health details in the notification",
+            "href": "/member/settings#notifications",
+            "target": ""
+          },
+          {
+            "text": "Health tags\nSaved with your consent. Never shared.",
+            "href": "/member/settings#health-tags",
+            "target": ""
+          },
+          {
+            "text": "Units\nWeight and height",
+            "href": "/member/settings#prefWeight",
+            "target": ""
+          },
+          {
+            "text": "Privacy & data rights\nExport your data, or delete your account",
+            "href": "/member/settings#healthConsentManager",
+            "target": ""
+          },
+          {
+            "text": "Timber Mill kit\nOptional SHIFT clothing",
+            "href": "/shop",
+            "target": ""
+          },
+          {
+            "text": "Help using My Timber\nFind the right place to start",
+            "href": "/help",
+            "target": ""
+          },
+          {
+            "text": "Need help? Go to Support",
+            "href": "/member/dashboard?timber=support#today",
+            "target": ""
+          }
+        ],
+        "success": true
+      },
+      {
+        "name": "webkit",
+        "accounts": [
+          {
+            "id": 900710511,
+            "email": "welcome-webkit-first@example.invalid"
+          },
+          {
+            "id": 900710512,
+            "email": "welcome-webkit-returning@example.invalid"
+          },
+          {
+            "id": 900710513,
+            "email": "welcome-webkit-review@example.invalid"
+          },
+          {
+            "id": 900710514,
+            "email": "welcome-webkit-declined@example.invalid"
+          },
+          {
+            "id": 900710515,
+            "email": "welcome-webkit-browse@example.invalid"
+          }
+        ],
+        "checks": [
+          {
+            "id": "W1-first-visit-Welcome",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W1-top-tabs",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W2-supplied-WebP-crops",
+            "pass": true,
+            "detail": "[{\"src\":\"/assets/member-experience/v7-welcome-headline.webp\",\"width\":374,\"natural\":815,\"alt\":\"YOU DON\u2019T HAVE TO SORT EVERYTHING YOURSELF.\"},{\"src\":\"/assets/member-experience/v7-welcome-note.webp\",\"width\":378,\"natural\":825,\"alt\":\"Welcome to My Timber. Better grub. Movement at your pace. Support that sticks around. No lectures. No labels. No pressure to spill your guts. Start small. Take one useful step today. MAKE IT MINE\"}]"
+          },
+          {
+            "id": "W2-phone-widths",
+            "pass": true,
+            "detail": "[374,378]"
+          },
+          {
+            "id": "W3-hotspot",
+            "pass": true,
+            "detail": "{\"left\":0.10796957671957672,\"top\":0.7749889165501483,\"width\":0.7809606481481481,\"height\":0.11298298264161238,\"min\":51.765625,\"label\":\"Make it mine\"}"
+          },
+          {
+            "id": "W3-existing-setup-route",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W3-health-consent-optional",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W3-three-step-setup-saved",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W3-first-Done-keeps-log",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W3-setup-now-removed-hotspot",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W3-setup-return-Today",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W1-returning-Today",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "S-shell-welcome",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "S-shell-today",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "S-shell-journey",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "S-shell-shop",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "S-shell-grub",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "S-shell-fit",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "S-shell-support",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "S-shell-more",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W5-no-medicine-price",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W5-questionnaire-existing-provider",
+            "pass": false,
+            "detail": "Existing live assessment is closed. No questionnaire was manufactured."
+          },
+          {
+            "id": "A7-urgent-phone-links",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "A8-situation-ending",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "A8-situation-stall",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "A8-situation-wobble",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "A8-situation-cost",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "A8-situation-symptoms",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "A9-more-retained",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "A3-preferences-More-highlighted",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W3-browse-without-setup",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W1-completed-setup-Today",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W3-after-setup-no-hotspot",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W3-after-setup-crop",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W5-real-account-status-review",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W5-return-Today-review",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W5-real-account-status-declined",
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "W5-return-Today-declined",
+            "pass": true,
+            "detail": ""
+          }
+        ],
+        "screens": [
+          "webkit-47-welcome-first.png",
+          "webkit-47-hotspot-focus.png",
+          "webkit-setup-step-1.png",
+          "webkit-setup-step-2.png",
+          "webkit-setup-step-3.png",
+          "webkit-48-welcome-after-real-setup.png",
+          "webkit-40b-today.png",
+          "webkit-41-explore-intro.png",
+          "webkit-42-existing-clinical-entry-closed.png",
+          "webkit-24-support.png",
+          "webkit-25-support-ending.png",
+          "webkit-25-support-stall.png",
+          "webkit-25-support-wobble.png",
+          "webkit-25-support-cost.png",
+          "webkit-25-support-symptoms.png",
+          "webkit-26-more.png",
+          "webkit-preferences.png",
+          "webkit-40b-browse-without-setup.png",
+          "webkit-48-welcome-after-setup.png",
+          "webkit-46-today-review-status.png",
+          "webkit-44-review-fixture.png",
+          "webkit-46-today-declined-status.png",
+          "webkit-45-declined-fixture.png"
+        ],
+        "videos": [
+          "webkit/first-setup-browse-support-more.webm",
+          "webkit/browse-without-setup.webm",
+          "webkit/returning.webm",
+          "webkit/review-UI-fixture.webm",
+          "webkit/declined-UI-fixture.webm"
+        ],
+        "errors": [],
+        "supportLinks": [
+          {
+            "text": "Call 999\nLife-threatening emergency",
+            "href": "tel:999",
+            "target": ""
+          },
+          {
+            "text": "Call NHS 111\nUrgent medical advice",
+            "href": "tel:111",
+            "target": ""
+          },
+          {
+            "text": "Samaritans \u00b7 116 123\nSomeone to listen, day or night",
+            "href": "tel:116123",
+            "target": ""
+          },
+          {
+            "text": "Your snapshot\nCheck your words and dates before an appointment",
+            "href": "/member/life-back/journey#snapshot",
+            "target": ""
+          },
+          {
+            "text": "Your own prescriber\nTreatment, dose or side-effect questions",
+            "href": "/member/treatment",
+            "target": ""
+          },
+          {
+            "text": "Talk to other men in the Timber Shed\nPrivate community \u00b7 opens in your browser",
+            "href": "https://shiftsometimber.co.uk/timber-shed",
+            "target": "_blank"
+          },
+          {
+            "text": "Shift Arcade\nBored? Seven quick games, just for a laugh.",
+            "href": "/member/shed-arcade",
+            "target": ""
+          },
+          {
+            "text": "Ask Timber\nAI help with the everyday stuff",
+            "href": "/member/ask-timber",
+            "target": ""
+          },
+          {
+            "text": "My next step\nOpen my saved step and reminders",
+            "href": "/member/support",
+            "target": ""
+          },
+          {
+            "text": "Mates league\nRanked on effort, never weight. Private to your crew.",
+            "href": "/member/life-back/support/league",
+            "target": ""
+          },
+          {
+            "text": "Message Matt\nApp and account questions \u00b7 view reply time",
+            "href": "/member/life-back/support#contact",
+            "target": ""
+          }
+        ],
+        "moreLinks": [
+          {
+            "text": "Support\nEveryday help, treatment contacts and your snapshot",
+            "href": "/member/dashboard?timber=support#today",
+            "target": ""
+          },
+          {
+            "text": "Saved & plans\nIdeas and plans to come back to",
+            "href": "/member/saved",
+            "target": ""
+          },
+          {
+            "text": "My orders\nOrders and delivery",
+            "href": "/member/orders",
+            "target": ""
+          },
+          {
+            "text": "Account & settings\nProfile, units and privacy",
+            "href": "/member/settings",
+            "target": ""
+          },
+          {
+            "text": "Talk to other men in the Timber Shed\nPrivate community \u00b7 opens in your browser",
+            "href": "https://shiftsometimber.co.uk/timber-shed",
+            "target": "_blank"
+          },
+          {
+            "text": "Personalise My Timber\nYour goals, starting point and first step",
+            "href": "/member/dashboard/personalise?edit=1",
+            "target": ""
+          },
+          {
+            "text": "Show weight: On\nTurn off if you\u2019d rather focus on strength, energy or measurements.",
+            "href": "/member/life-back/preferences",
+            "target": ""
+          },
+          {
+            "text": "Daily check-in reminder\nOptional. No health details in the notification",
+            "href": "/member/settings#notifications",
+            "target": ""
+          },
+          {
+            "text": "Health tags\nSaved with your consent. Never shared.",
+            "href": "/member/settings#health-tags",
+            "target": ""
+          },
+          {
+            "text": "Units\nWeight and height",
+            "href": "/member/settings#prefWeight",
+            "target": ""
+          },
+          {
+            "text": "Privacy & data rights\nExport your data, or delete your account",
+            "href": "/member/settings#healthConsentManager",
+            "target": ""
+          },
+          {
+            "text": "Timber Mill kit\nOptional SHIFT clothing",
+            "href": "/shop",
+            "target": ""
+          },
+          {
+            "text": "Help using My Timber\nFind the right place to start",
+            "href": "/help",
+            "target": ""
+          },
+          {
+            "text": "Need help? Go to Support",
+            "href": "/member/dashboard?timber=support#today",
+            "target": ""
+          }
+        ],
+        "success": true
+      }
+    ]
+  },
+  "speed": {
+    "repeatShell": {
+      "n": 20,
+      "median": 76,
+      "p95": 79
+    },
+    "tap": {
+      "n": 20,
+      "median": 31,
+      "p95": 32
+    },
+    "fresh": {
+      "today": {
+        "n": 20,
+        "median": 919,
+        "p95": 977
+      },
+      "fit": {
+        "n": 20,
+        "median": 885,
+        "p95": 986
+      }
+    },
+    "warm": {
+      "today": {
+        "n": 20,
+        "median": 31,
+        "p95": 32
+      },
+      "fit": {
+        "n": 20,
+        "median": 31,
+        "p95": 32
+      }
+    }
+  },
+  "before": {
+    "repeatShell": {
+      "n": 20,
+      "median": 76,
+      "p95": 79
+    },
+    "tap": {
+      "n": 20,
+      "median": 31,
+      "p95": 33
+    },
+    "fresh": {
+      "today": {
+        "n": 20,
+        "median": 1135,
+        "p95": 1412
+      },
+      "fit": {
+        "n": 20,
+        "median": 1096,
+        "p95": 1343
+      }
+    },
+    "warm": {
+      "today": {
+        "n": 20,
+        "median": 31,
+        "p95": 33
+      },
+      "fit": {
+        "n": 20,
+        "median": 30,
+        "p95": 32
+      }
+    }
+  },
+  "profile": {
+    "latencyMs": 150,
+    "downloadBps": 200000,
+    "uploadBps": 96000,
+    "cpuSlowdown": 4
+  },
+  "journeys": {
+    "chromium": {
+      "engine": "chromium",
+      "device": "Mobile browser profile, not a physical phone",
+      "origin": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev",
+      "at": "2026-11-04T15:41:59.277Z",
+      "journeys": [
+        {
+          "name": "choose",
+          "testAccount": "v7-chromium-choose@example.invalid",
+          "checks": [
+            {
+              "condition": "Prepared starting pile",
+              "result": "PASS",
+              "detail": {
+                "count": 12
+              }
+            },
+            {
+              "condition": "Exactly three sourced, protein-matched swaps",
+              "result": "PASS",
+              "detail": {
+                "original": 48.1,
+                "swaps": [
+                  48.7,
+                  52,
+                  50.4
+                ]
+              }
+            },
+            {
+              "condition": "Swap changes action without food or a pile award",
+              "result": "PASS"
+            },
+            {
+              "condition": "Today and Grub use the same selected action",
+              "result": "PASS"
+            },
+            {
+              "condition": "Concurrent Done on two sessions and two screens awards once",
+              "result": "PASS",
+              "detail": [
+                {
+                  "awarded": true,
+                  "count": 13
+                },
+                {
+                  "awarded": false,
+                  "count": 13
+                }
+              ]
+            },
+            {
+              "condition": "Negative optional feedback keeps log and food totals",
+              "result": "PASS"
+            },
+            {
+              "condition": "Pile count and remaining add to thirty",
+              "result": "PASS"
+            },
+            {
+              "condition": "All five quick logs leave pile unchanged",
+              "result": "PASS"
+            },
+            {
+              "condition": "Recorded mood is absent from Today",
+              "result": "PASS"
+            },
+            {
+              "condition": "Off-plan confirmation is neutral",
+              "result": "PASS"
+            },
+            {
+              "condition": "Full food day records four meals without an award",
+              "result": "PASS",
+              "detail": {
+                "entries": 4,
+                "proteinG": 63,
+                "kcal": 1838.4,
+                "pile": 13
+              }
+            },
+            {
+              "condition": "Eating-out figures explicitly use estimates",
+              "result": "PASS"
+            },
+            {
+              "condition": "Fit offers shorter, no-kit and low-impact",
+              "result": "PASS"
+            },
+            {
+              "condition": "Closing optional Fit ratings keeps activity, no second pile log",
+              "result": "PASS"
+            },
+            {
+              "condition": "A walk and extra session never add a pile log",
+              "result": "PASS"
+            },
+            {
+              "condition": "No uncaught browser exception",
+              "result": "PASS",
+              "detail": []
+            }
+          ]
+        },
+        {
+          "name": "hard-week",
+          "testAccount": "v7-chromium-hard-week@example.invalid",
+          "checks": [
+            {
+              "condition": "Prepared starting pile",
+              "result": "PASS",
+              "detail": {
+                "count": 12
+              }
+            },
+            {
+              "condition": "Hard-week return is welcoming, pile retained",
+              "result": "PASS"
+            },
+            {
+              "condition": "Feedback can be closed without losing the earned log",
+              "result": "PASS"
+            },
+            {
+              "condition": "No uncaught browser exception",
+              "result": "PASS",
+              "detail": []
+            }
+          ]
+        },
+        {
+          "name": "milestone",
+          "testAccount": "v7-chromium-milestone@example.invalid",
+          "checks": [
+            {
+              "condition": "Prepared starting pile",
+              "result": "PASS",
+              "detail": {
+                "count": 29
+              }
+            },
+            {
+              "condition": "Milestone starts unawarded",
+              "result": "PASS"
+            },
+            {
+              "condition": "Thirtieth log awards exactly one milestone",
+              "result": "PASS"
+            },
+            {
+              "condition": "Share preview contains effort only",
+              "result": "PASS"
+            },
+            {
+              "condition": "Refresh neither awards again nor replaces milestone",
+              "result": "PASS"
+            },
+            {
+              "condition": "No uncaught browser exception",
+              "result": "PASS",
+              "detail": []
+            }
+          ]
+        }
+      ]
+    },
+    "webkit": {
+      "engine": "webkit",
+      "device": "Mobile browser profile, not a physical phone",
+      "origin": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev",
+      "at": "2026-11-04T15:42:35.325Z",
+      "journeys": [
+        {
+          "name": "choose",
+          "testAccount": "v7-webkit-choose@example.invalid",
+          "checks": [
+            {
+              "condition": "Prepared starting pile",
+              "result": "PASS",
+              "detail": {
+                "count": 12
+              }
+            },
+            {
+              "condition": "Exactly three sourced, protein-matched swaps",
+              "result": "PASS",
+              "detail": {
+                "original": 48.1,
+                "swaps": [
+                  48.7,
+                  52,
+                  50.4
+                ]
+              }
+            },
+            {
+              "condition": "Swap changes action without food or a pile award",
+              "result": "PASS"
+            },
+            {
+              "condition": "Today and Grub use the same selected action",
+              "result": "PASS"
+            },
+            {
+              "condition": "Concurrent Done on two sessions and two screens awards once",
+              "result": "PASS",
+              "detail": [
+                {
+                  "awarded": false,
+                  "count": 13
+                },
+                {
+                  "awarded": true,
+                  "count": 13
+                }
+              ]
+            },
+            {
+              "condition": "Negative optional feedback keeps log and food totals",
+              "result": "PASS"
+            },
+            {
+              "condition": "Pile count and remaining add to thirty",
+              "result": "PASS"
+            },
+            {
+              "condition": "All five quick logs leave pile unchanged",
+              "result": "PASS"
+            },
+            {
+              "condition": "Recorded mood is absent from Today",
+              "result": "PASS"
+            },
+            {
+              "condition": "Off-plan confirmation is neutral",
+              "result": "PASS"
+            },
+            {
+              "condition": "Full food day records four meals without an award",
+              "result": "PASS",
+              "detail": {
+                "entries": 4,
+                "proteinG": 63,
+                "kcal": 1838.4,
+                "pile": 13
+              }
+            },
+            {
+              "condition": "Eating-out figures explicitly use estimates",
+              "result": "PASS"
+            },
+            {
+              "condition": "Fit offers shorter, no-kit and low-impact",
+              "result": "PASS"
+            },
+            {
+              "condition": "Closing optional Fit ratings keeps activity, no second pile log",
+              "result": "PASS"
+            },
+            {
+              "condition": "A walk and extra session never add a pile log",
+              "result": "PASS"
+            },
+            {
+              "condition": "No uncaught browser exception",
+              "result": "PASS",
+              "detail": []
+            }
+          ]
+        },
+        {
+          "name": "hard-week",
+          "testAccount": "v7-webkit-hard-week@example.invalid",
+          "checks": [
+            {
+              "condition": "Prepared starting pile",
+              "result": "PASS",
+              "detail": {
+                "count": 12
+              }
+            },
+            {
+              "condition": "Hard-week return is welcoming, pile retained",
+              "result": "PASS"
+            },
+            {
+              "condition": "Feedback can be closed without losing the earned log",
+              "result": "PASS"
+            },
+            {
+              "condition": "No uncaught browser exception",
+              "result": "PASS",
+              "detail": []
+            }
+          ]
+        },
+        {
+          "name": "milestone",
+          "testAccount": "v7-webkit-milestone@example.invalid",
+          "checks": [
+            {
+              "condition": "Prepared starting pile",
+              "result": "PASS",
+              "detail": {
+                "count": 29
+              }
+            },
+            {
+              "condition": "Milestone starts unawarded",
+              "result": "PASS"
+            },
+            {
+              "condition": "Thirtieth log awards exactly one milestone",
+              "result": "PASS"
+            },
+            {
+              "condition": "Share preview contains effort only",
+              "result": "PASS"
+            },
+            {
+              "condition": "Refresh neither awards again nor replaces milestone",
+              "result": "PASS"
+            },
+            {
+              "condition": "No uncaught browser exception",
+              "result": "PASS",
+              "detail": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "retained": {
+    "chromium": {
+      "at": "2026-11-04T15:43:39.873Z",
+      "engine": "chromium",
+      "device": "chromium mobile profile, not a physical phone",
+      "account": "welcome-chromium-returning@example.invalid",
+      "checks": [
+        {
+          "name": "today keeps one fixed frame and mobile width",
+          "result": "PASS"
+        },
+        {
+          "name": "grub keeps one fixed frame and mobile width",
+          "result": "PASS"
+        },
+        {
+          "name": "journey keeps one fixed frame and mobile width",
+          "result": "PASS"
+        },
+        {
+          "name": "fit keeps one fixed frame and mobile width",
+          "result": "PASS"
+        },
+        {
+          "name": "support keeps one fixed frame and mobile width",
+          "result": "PASS"
+        },
+        {
+          "name": "more keeps one fixed frame and mobile width",
+          "result": "PASS"
+        },
+        {
+          "name": "shop keeps one fixed frame and mobile width",
+          "result": "PASS"
+        },
+        {
+          "name": "Shop home wording is unchanged from serving source",
+          "result": "PASS"
+        },
+        {
+          "name": "Support situation: Treatment changing or ending",
+          "result": "PASS"
+        },
+        {
+          "name": "Support situation: The scales have gone quiet",
+          "result": "PASS"
+        },
+        {
+          "name": "Support situation: Having a wobble",
+          "result": "PASS"
+        },
+        {
+          "name": "Support situation: Worried about the cost",
+          "result": "PASS"
+        },
+        {
+          "name": "Support situation: Side effects or feeling unwell",
+          "result": "PASS"
+        },
+        {
+          "name": "Urgent links stay tap-to-call",
+          "result": "PASS"
+        },
+        {
+          "name": "Shed stays a separate browser tab",
+          "result": "PASS"
+        },
+        {
+          "name": "More retains Saved & plans",
+          "result": "PASS"
+        },
+        {
+          "name": "More retains My orders",
+          "result": "PASS"
+        },
+        {
+          "name": "More retains Account & settings",
+          "result": "PASS"
+        },
+        {
+          "name": "More retains Show weight: On",
+          "result": "PASS"
+        },
+        {
+          "name": "More retains Daily check-in reminder",
+          "result": "PASS"
+        },
+        {
+          "name": "More retains Health tags",
+          "result": "PASS"
+        },
+        {
+          "name": "More retains Units",
+          "result": "PASS"
+        },
+        {
+          "name": "More retains Privacy & data rights",
+          "result": "PASS"
+        },
+        {
+          "name": "More retains Sign out",
+          "result": "PASS"
+        },
+        {
+          "name": "More retains Timber Mill kit",
+          "result": "PASS"
+        },
+        {
+          "name": "More retains Help using My Timber",
+          "result": "PASS"
+        },
+        {
+          "name": "Settings existing member details controller is ready",
+          "result": "PASS"
+        },
+        {
+          "name": "More stays selected in Settings",
+          "result": "PASS"
+        },
+        {
+          "name": "Original account controls retained",
+          "result": "PASS",
+          "detail": [
+            "main-content",
+            "pwaReminderSettings",
+            "pwaReminderHeading",
+            "pwaReminderSummary",
+            "pwaReminderEditor",
+            "pwaHour",
+            "pwaEnable",
+            "pwaChange",
+            "pwaDisable",
+            "pwaRetry",
+            "pwaReminderStatus",
+            "memberDetailsPanel",
+            "memberDetailsTitle",
+            "memberDetailsForm",
+            "memberDetailsFields",
+            "memberFirstName",
+            "memberLastName",
+            "memberDob",
+            "memberPhone",
+            "memberEmail",
+            "memberEmailHelp",
+            "memberPostcode",
+            "memberAddressHelp",
+            "memberAddress1",
+            "memberAddress2",
+            "memberTown",
+            "memberCounty",
+            "memberGpPractice",
+            "memberGpHelp",
+            "memberGpLookup",
+            "memberGpSelect",
+            "memberGpPostcode",
+            "memberGpCode",
+            "memberGpSelected",
+            "memberDetailsSave",
+            "memberDetailsReload",
+            "memberDetailsStatus",
+            "memberDeliveryPanel",
+            "memberDeliveryTitle",
+            "memberDeliveryForm",
+            "memberDeliveryFields",
+            "memberDeliveryMode",
+            "memberDeliveryHome",
+            "memberDeliverySeparate",
+            "memberDeliveryRecipient",
+            "memberDeliveryPostcode",
+            "memberDeliveryAddress1",
+            "memberDeliveryAddress2",
+            "memberDeliveryTown",
+            "memberDeliveryCounty",
+            "memberDeliverySave",
+            "memberDeliveryReload",
+            "memberDeliveryStatus",
+            "memberEmailChangePanel",
+            "memberEmailChangeTitle",
+            "memberEmailChangeForm",
+            "memberEmailChangeFields",
+            "memberEmailChangePassword",
+            "memberEmailChangeNew",
+            "memberEmailChangeConfirm",
+            "memberEmailChangeSubmit",
+            "memberEmailChangeRefresh",
+            "memberEmailChangeStatus",
+            "prefWeight",
+            "prefHeight",
+            "member-password-heading",
+            "memberPasswordReset",
+            "memberPasswordStatus",
+            "memberPasswordSignIn",
+            "clearMemberData",
+            "healthConsentManager",
+            "healthConsentAction",
+            "healthEraseAction",
+            "healthExportAction",
+            "healthConsentManagerMsg",
+            "deviceHealth",
+            "accountDeletionHeading",
+            "accountDeletionOpen",
+            "accountDeletionForm",
+            "accountDeletionConfirm",
+            "accountDeletionCancel",
+            "accountDeletionStatus",
+            "accountDeletionSignIn",
+            "health-tags",
+            "sstCookieSettings"
+          ]
+        },
+        {
+          "name": "Saved plans retained route opens",
+          "result": "PASS"
+        },
+        {
+          "name": "Orders retained route opens",
+          "result": "PASS"
+        },
+        {
+          "name": "Treatment retained route opens",
+          "result": "PASS"
+        },
+        {
+          "name": "Ask Timber retained route opens",
+          "result": "PASS"
+        },
+        {
+          "name": "No uncaught controller exceptions",
+          "result": "PASS",
+          "detail": []
+        }
+      ],
+      "errors": []
+    },
+    "webkit": {
+      "at": "2026-11-04T15:43:57.096Z",
+      "engine": "webkit",
+      "device": "webkit mobile profile, not a physical phone",
+      "account": "welcome-webkit-returning@example.invalid",
+      "checks": [
+        {
+          "name": "today keeps one fixed frame and mobile width",
+          "result": "PASS"
+        },
+        {
+          "name": "grub keeps one fixed frame and mobile width",
+          "result": "PASS"
+        },
+        {
+          "name": "journey keeps one fixed frame and mobile width",
+          "result": "PASS"
+        },
+        {
+          "name": "fit keeps one fixed frame and mobile width",
+          "result": "PASS"
+        },
+        {
+          "name": "support keeps one fixed frame and mobile width",
+          "result": "PASS"
+        },
+        {
+          "name": "more keeps one fixed frame and mobile width",
+          "result": "PASS"
+        },
+        {
+          "name": "shop keeps one fixed frame and mobile width",
+          "result": "PASS"
+        },
+        {
+          "name": "Shop home wording is unchanged from serving source",
+          "result": "PASS"
+        },
+        {
+          "name": "Support situation: Treatment changing or ending",
+          "result": "PASS"
+        },
+        {
+          "name": "Support situation: The scales have gone quiet",
+          "result": "PASS"
+        },
+        {
+          "name": "Support situation: Having a wobble",
+          "result": "PASS"
+        },
+        {
+          "name": "Support situation: Worried about the cost",
+          "result": "PASS"
+        },
+        {
+          "name": "Support situation: Side effects or feeling unwell",
+          "result": "PASS"
+        },
+        {
+          "name": "Urgent links stay tap-to-call",
+          "result": "PASS"
+        },
+        {
+          "name": "Shed stays a separate browser tab",
+          "result": "PASS"
+        },
+        {
+          "name": "More retains Saved & plans",
+          "result": "PASS"
+        },
+        {
+          "name": "More retains My orders",
+          "result": "PASS"
+        },
+        {
+          "name": "More retains Account & settings",
+          "result": "PASS"
+        },
+        {
+          "name": "More retains Show weight: On",
+          "result": "PASS"
+        },
+        {
+          "name": "More retains Daily check-in reminder",
+          "result": "PASS"
+        },
+        {
+          "name": "More retains Health tags",
+          "result": "PASS"
+        },
+        {
+          "name": "More retains Units",
+          "result": "PASS"
+        },
+        {
+          "name": "More retains Privacy & data rights",
+          "result": "PASS"
+        },
+        {
+          "name": "More retains Sign out",
+          "result": "PASS"
+        },
+        {
+          "name": "More retains Timber Mill kit",
+          "result": "PASS"
+        },
+        {
+          "name": "More retains Help using My Timber",
+          "result": "PASS"
+        },
+        {
+          "name": "Settings existing member details controller is ready",
+          "result": "PASS"
+        },
+        {
+          "name": "More stays selected in Settings",
+          "result": "PASS"
+        },
+        {
+          "name": "Original account controls retained",
+          "result": "PASS",
+          "detail": [
+            "main-content",
+            "pwaReminderSettings",
+            "pwaReminderHeading",
+            "pwaReminderSummary",
+            "pwaReminderEditor",
+            "pwaHour",
+            "pwaEnable",
+            "pwaChange",
+            "pwaDisable",
+            "pwaRetry",
+            "pwaReminderStatus",
+            "memberDetailsPanel",
+            "memberDetailsTitle",
+            "memberDetailsForm",
+            "memberDetailsFields",
+            "memberFirstName",
+            "memberLastName",
+            "memberDob",
+            "memberPhone",
+            "memberEmail",
+            "memberEmailHelp",
+            "memberPostcode",
+            "memberAddressHelp",
+            "memberAddress1",
+            "memberAddress2",
+            "memberTown",
+            "memberCounty",
+            "memberGpPractice",
+            "memberGpHelp",
+            "memberGpLookup",
+            "memberGpSelect",
+            "memberGpPostcode",
+            "memberGpCode",
+            "memberGpSelected",
+            "memberDetailsSave",
+            "memberDetailsReload",
+            "memberDetailsStatus",
+            "memberDeliveryPanel",
+            "memberDeliveryTitle",
+            "memberDeliveryForm",
+            "memberDeliveryFields",
+            "memberDeliveryMode",
+            "memberDeliveryHome",
+            "memberDeliverySeparate",
+            "memberDeliveryRecipient",
+            "memberDeliveryPostcode",
+            "memberDeliveryAddress1",
+            "memberDeliveryAddress2",
+            "memberDeliveryTown",
+            "memberDeliveryCounty",
+            "memberDeliverySave",
+            "memberDeliveryReload",
+            "memberDeliveryStatus",
+            "memberEmailChangePanel",
+            "memberEmailChangeTitle",
+            "memberEmailChangeForm",
+            "memberEmailChangeFields",
+            "memberEmailChangePassword",
+            "memberEmailChangeNew",
+            "memberEmailChangeConfirm",
+            "memberEmailChangeSubmit",
+            "memberEmailChangeRefresh",
+            "memberEmailChangeStatus",
+            "prefWeight",
+            "prefHeight",
+            "member-password-heading",
+            "memberPasswordReset",
+            "memberPasswordStatus",
+            "memberPasswordSignIn",
+            "clearMemberData",
+            "healthConsentManager",
+            "healthConsentAction",
+            "healthEraseAction",
+            "healthExportAction",
+            "healthConsentManagerMsg",
+            "deviceHealth",
+            "accountDeletionHeading",
+            "accountDeletionOpen",
+            "accountDeletionForm",
+            "accountDeletionConfirm",
+            "accountDeletionCancel",
+            "accountDeletionStatus",
+            "accountDeletionSignIn",
+            "health-tags",
+            "sstCookieSettings"
+          ]
+        },
+        {
+          "name": "Saved plans retained route opens",
+          "result": "PASS"
+        },
+        {
+          "name": "Orders retained route opens",
+          "result": "PASS"
+        },
+        {
+          "name": "Treatment retained route opens",
+          "result": "PASS"
+        },
+        {
+          "name": "Ask Timber retained route opens",
+          "result": "PASS"
+        },
+        {
+          "name": "No uncaught controller exceptions",
+          "result": "PASS",
+          "detail": []
+        }
+      ],
+      "errors": []
+    }
+  },
+  "visuals": {
+    "at": "2026-11-04T17:15:22.705Z",
+    "physical": false,
+    "recordings": "Browser emulation; no purchases or communications",
+    "engines": [
+      {
+        "name": "chromium",
+        "checks": [
+          {
+            "id": "Shop-text-links-identical",
+            "pass": true
+          },
+          {
+            "id": "Shop-visible-content-pixels-identical-excluding-approved-frame",
+            "pass": true
+          },
+          {
+            "id": "Palette-and-button-computed-styles",
+            "pass": true
+          }
+        ],
+        "shots": [
+          "chromium-shop-before.jpg",
+          "chromium-shop-candidate.jpg",
+          "chromium-47-welcome-first.jpg",
+          "chromium-40b-today.jpg",
+          "chromium-41-explore.jpg",
+          "chromium-42-assessment-closed.jpg",
+          "chromium-24-support.jpg",
+          "chromium-25-side-effects.jpg",
+          "chromium-26-more.jpg",
+          "chromium-48-welcome-after.jpg",
+          "chromium-46-today-review.jpg",
+          "chromium-44-review-fixture.jpg",
+          "chromium-46-today-declined.jpg",
+          "chromium-45-refund-fixture.jpg"
+        ],
+        "errors": [],
+        "shop": [
+          {
+            "text": "Useful things.\nProperly explained.\n\nA bit more help, on your terms.\n\nSHOP & SERVICES\n\nYour orders\nTesting & wellbeing\nHome tests, lab tests and what each can tell you.\nExplore tests\nSupplements & nutrition\nUnderstand the optional extras before choosing.\nExplore the range\nWeight-management care\nUnderstand your options and the assessment.\nExplore care\nEveryday kit\nClothing and useful accessories from the Timber Mill.\nExplore the Mill\n\nYour food, movement and support stay free.\nEverything here is optional.",
+            "links": [
+              [
+                "Your orders",
+                "/member/orders"
+              ],
+              [
+                "Testing & wellbeing\nHome tests, lab tests and what each can tell you.\nExplore tests",
+                "/member/life-back/shop/testing"
+              ],
+              [
+                "Supplements & nutrition\nUnderstand the optional extras before choosing.\nExplore the range",
+                "/member/life-back/shop/nutrition"
+              ],
+              [
+                "Weight-management care\nUnderstand your options and the assessment.\nExplore care",
+                "/member/life-back/shop/care"
+              ],
+              [
+                "Everyday kit\nClothing and useful accessories from the Timber Mill.\nExplore the Mill",
+                "/member/life-back/shop/kit"
+              ]
+            ],
+            "sha256": "df4ae0f9f121ee2ebc3d7a418a5cff64d2a76a1ad5e6b95e08740b01621417b0"
+          },
+          {
+            "text": "Useful things.\nProperly explained.\n\nA bit more help, on your terms.\n\nSHOP & SERVICES\n\nYour orders\nTesting & wellbeing\nHome tests, lab tests and what each can tell you.\nExplore tests\nSupplements & nutrition\nUnderstand the optional extras before choosing.\nExplore the range\nWeight-management care\nUnderstand your options and the assessment.\nExplore care\nEveryday kit\nClothing and useful accessories from the Timber Mill.\nExplore the Mill\n\nYour food, movement and support stay free.\nEverything here is optional.",
+            "links": [
+              [
+                "Your orders",
+                "/member/orders"
+              ],
+              [
+                "Testing & wellbeing\nHome tests, lab tests and what each can tell you.\nExplore tests",
+                "/member/life-back/shop/testing"
+              ],
+              [
+                "Supplements & nutrition\nUnderstand the optional extras before choosing.\nExplore the range",
+                "/member/life-back/shop/nutrition"
+              ],
+              [
+                "Weight-management care\nUnderstand your options and the assessment.\nExplore care",
+                "/member/life-back/shop/care"
+              ],
+              [
+                "Everyday kit\nClothing and useful accessories from the Timber Mill.\nExplore the Mill",
+                "/member/life-back/shop/kit"
+              ]
+            ],
+            "sha256": "df4ae0f9f121ee2ebc3d7a418a5cff64d2a76a1ad5e6b95e08740b01621417b0"
+          }
+        ],
+        "colours": {
+          "tabs": [
+            {
+              "colour": "rgb(231, 227, 218)",
+              "weight": "800"
+            },
+            {
+              "colour": "rgb(231, 227, 218)",
+              "weight": "800"
+            },
+            {
+              "colour": "rgb(231, 227, 218)",
+              "weight": "800"
+            },
+            {
+              "colour": "rgb(231, 227, 218)",
+              "weight": "800"
+            }
+          ],
+          "bottom": [
+            {
+              "colour": "rgb(112, 119, 98)",
+              "weight": "800"
+            },
+            {
+              "colour": "rgb(112, 119, 98)",
+              "weight": "800"
+            },
+            {
+              "colour": "rgb(112, 119, 98)",
+              "weight": "800"
+            },
+            {
+              "colour": "rgb(112, 119, 98)",
+              "weight": "800"
+            }
+          ],
+          "button": {
+            "colour": "rgb(5, 5, 5)",
+            "fill": "rgb(5, 5, 5)",
+            "background": "rgb(112, 119, 98)",
+            "size": "21px",
+            "weight": "800"
+          }
+        }
+      },
+      {
+        "name": "webkit",
+        "checks": [
+          {
+            "id": "Shop-text-links-identical",
+            "pass": true
+          },
+          {
+            "id": "Shop-visible-content-pixels-identical-excluding-approved-frame",
+            "pass": true
+          },
+          {
+            "id": "Palette-and-button-computed-styles",
+            "pass": true
+          }
+        ],
+        "shots": [
+          "webkit-shop-before.jpg",
+          "webkit-shop-candidate.jpg",
+          "webkit-47-welcome-first.jpg",
+          "webkit-40b-today.jpg",
+          "webkit-41-explore.jpg",
+          "webkit-42-assessment-closed.jpg",
+          "webkit-24-support.jpg",
+          "webkit-25-side-effects.jpg",
+          "webkit-26-more.jpg",
+          "webkit-48-welcome-after.jpg",
+          "webkit-46-today-review.jpg",
+          "webkit-44-review-fixture.jpg",
+          "webkit-46-today-declined.jpg",
+          "webkit-45-refund-fixture.jpg"
+        ],
+        "errors": [],
+        "shop": [
+          {
+            "text": "Useful things.\nProperly explained.\n\nA bit more help, on your terms.\n\nSHOP & SERVICES\n\nYour orders\nTesting & wellbeing\nHome tests, lab tests and what each can tell you.\nExplore tests\nSupplements & nutrition\nUnderstand the optional extras before choosing.\nExplore the range\nWeight-management care\nUnderstand your options and the assessment.\nExplore care\nEveryday kit\nClothing and useful accessories from the Timber Mill.\nExplore the Mill\n\nYour food, movement and support stay free.\nEverything here is optional.",
+            "links": [
+              [
+                "Your orders",
+                "/member/orders"
+              ],
+              [
+                "Testing & wellbeing\nHome tests, lab tests and what each can tell you.\nExplore tests",
+                "/member/life-back/shop/testing"
+              ],
+              [
+                "Supplements & nutrition\nUnderstand the optional extras before choosing.\nExplore the range",
+                "/member/life-back/shop/nutrition"
+              ],
+              [
+                "Weight-management care\nUnderstand your options and the assessment.\nExplore care",
+                "/member/life-back/shop/care"
+              ],
+              [
+                "Everyday kit\nClothing and useful accessories from the Timber Mill.\nExplore the Mill",
+                "/member/life-back/shop/kit"
+              ]
+            ],
+            "sha256": "365907a71961afedaa0fa34601c5ea639a28fe878cccb39f44fc1b2e7b3f4086"
+          },
+          {
+            "text": "Useful things.\nProperly explained.\n\nA bit more help, on your terms.\n\nSHOP & SERVICES\n\nYour orders\nTesting & wellbeing\nHome tests, lab tests and what each can tell you.\nExplore tests\nSupplements & nutrition\nUnderstand the optional extras before choosing.\nExplore the range\nWeight-management care\nUnderstand your options and the assessment.\nExplore care\nEveryday kit\nClothing and useful accessories from the Timber Mill.\nExplore the Mill\n\nYour food, movement and support stay free.\nEverything here is optional.",
+            "links": [
+              [
+                "Your orders",
+                "/member/orders"
+              ],
+              [
+                "Testing & wellbeing\nHome tests, lab tests and what each can tell you.\nExplore tests",
+                "/member/life-back/shop/testing"
+              ],
+              [
+                "Supplements & nutrition\nUnderstand the optional extras before choosing.\nExplore the range",
+                "/member/life-back/shop/nutrition"
+              ],
+              [
+                "Weight-management care\nUnderstand your options and the assessment.\nExplore care",
+                "/member/life-back/shop/care"
+              ],
+              [
+                "Everyday kit\nClothing and useful accessories from the Timber Mill.\nExplore the Mill",
+                "/member/life-back/shop/kit"
+              ]
+            ],
+            "sha256": "365907a71961afedaa0fa34601c5ea639a28fe878cccb39f44fc1b2e7b3f4086"
+          }
+        ],
+        "colours": {
+          "tabs": [
+            {
+              "colour": "rgb(231, 227, 218)",
+              "weight": "800"
+            },
+            {
+              "colour": "rgb(231, 227, 218)",
+              "weight": "800"
+            },
+            {
+              "colour": "rgb(231, 227, 218)",
+              "weight": "800"
+            },
+            {
+              "colour": "rgb(231, 227, 218)",
+              "weight": "800"
+            }
+          ],
+          "bottom": [
+            {
+              "colour": "rgb(112, 119, 98)",
+              "weight": "800"
+            },
+            {
+              "colour": "rgb(112, 119, 98)",
+              "weight": "800"
+            },
+            {
+              "colour": "rgb(112, 119, 98)",
+              "weight": "800"
+            },
+            {
+              "colour": "rgb(112, 119, 98)",
+              "weight": "800"
+            }
+          ],
+          "button": {
+            "colour": "rgb(5, 5, 5)",
+            "fill": "rgb(5, 5, 5)",
+            "background": "rgb(112, 119, 98)",
+            "size": "21px",
+            "weight": "800"
+          }
+        }
+      }
+    ]
+  },
+  "readiness": {
+    "at": "2026-11-04T17:26:32.122Z",
+    "readOnly": true,
+    "syntheticAccount": {
+      "id": 900710301,
+      "email": "v7-live-proof@example.invalid"
+    },
+    "clinicalContext": {
+      "httpStatus": 200,
+      "assessmentAvailable": false,
+      "responseKeys": [
+        "ok",
+        "accountReference",
+        "emailVerified",
+        "patientFirstName",
+        "patientLastName",
+        "patientEmail",
+        "assessmentAvailable"
+      ]
+    },
+    "publicAssessment": {
+      "httpStatus": 200,
+      "explicitlyClosed": true
+    },
+    "pharmacyBindingNames": [],
+    "activeFront": [
+      {
+        "version_id": "42f085ae-553c-4b11-82f6-116203fb3c5e",
+        "percentage": 100
+      }
+    ],
+    "activeCore": [
+      {
+        "version_id": "a301697d-5586-4839-aa44-5edb01105731",
+        "percentage": 100
+      }
+    ],
+    "moneyWrites": 0,
+    "providerWrites": 0,
+    "memberReleaseDeployed": false
+  },
+  "release": {
+    "createdAt": "2026-11-04T15:37:27.400Z",
+    "original": "42f085ae-553c-4b11-82f6-116203fb3c5e",
+    "rollback": "node member-experience/tools/welcome-release.mjs rollback",
+    "scope": "Front only; Core, Shop, till, clinical service, supplier gates and database unchanged",
+    "originalHashes": {
+      "v7-release-20261103/programme.mjs": "2aa0d8f1d79aabc1efc184b132ba6d9859da22ba83b82a7b9d36717ffad24809"
+    },
+    "expectedHashes": {
+      "v7-release-20261103/programme.mjs": "6a58ded05a64fd10603bbaeb1dd70a617a0925fd371697026231dcc70f6e896d"
+    },
+    "schedules": [
+      {
+        "cron": "0,15,30,45 0-5 * * *",
+        "created_on": "2026-11-04T00:34:26.630649Z",
+        "modified_on": "2026-11-04T00:34:26.630649Z"
+      }
+    ],
+    "candidate": "62e6b029-dc45-41a5-a6f2-736b8d366049",
+    "preparedAt": "2026-11-04T17:14:36.584Z",
+    "memberTrafficChanged": false
+  },
+  "artwork": {
+    "welcome-v2-headline.webp": {
+      "sha256": "03b1febc86782d907b6c6a7b61e18654e24f5256b65983a6bbe228faa3d8a2d2",
+      "bytes": 22114
+    },
+    "welcome-v2-note-nobutton.webp": {
+      "sha256": "d2f3a39279dc08bdca33f6fe605492cdcdb3bbaeb5957e0519263593b19bdbc2",
+      "bytes": 84304
+    },
+    "welcome-v2-note.webp": {
+      "sha256": "ffc01b8f821730506fa3e813f88ab8f24355c957b444f314f1d6af868e27e28d",
+      "bytes": 91912
+    }
+  },
+  "personalisation": {
+    "at": "2026-11-04T16:05:01.550Z",
+    "existingQuestionsAndPersistenceUnchanged": true,
+    "frameScoped": true,
+    "sources": [
+      {
+        "key": "page",
+        "url": "/join-my-timber",
+        "sha256": "55e6e43889dc4a002f9358da7aee0744852890dbcd5d4b58f8bc9c357a5fd59e"
+      },
+      {
+        "key": "controller",
+        "url": "/assets/my-timber-onboarding-20261021.js",
+        "sha256": "cd7e07b96a8edf7f24d28aad01088f1dd1afaaff75e2b7d5110f9990ae846e9d"
+      },
+      {
+        "key": "model",
+        "url": "/assets/my-timber-onboarding-model-20261021.mjs",
+        "sha256": "9af1f769b1aa969641fd9f3445d3a1f97ffdb80db52fb83bfcef22782007956d"
+      },
+      {
+        "key": "style",
+        "url": "/assets/my-timber-onboarding-20261021.css",
+        "sha256": "e9ac3aaf9a204e9f7e9d291422803fa86b828defeb949296701f581f2198b31f"
+      }
+    ]
+  },
+  "font": {
+    "beforeBytes": 26868,
+    "afterBytes": 23828,
+    "beforeGlyphs": 453,
+    "afterGlyphs": 324,
+    "retainedAdvancesIdentical": true,
+    "retainedOutlinesIdentical": true,
+    "ascentDescentIdentical": true,
+    "licenceRetained": true
+  },
+  "compression": [
+    {
+      "asset": "v7-native.mjs",
+      "rawBytes": 182654,
+      "brotliBytes": 48305,
+      "roundTripIdentical": true,
+      "sha256": "7cbac1a702cf19db2eec8f332e91a339d76a4976c66d5b594dcda60a2cd71749"
+    },
+    {
+      "asset": "v7-native.css",
+      "rawBytes": 42321,
+      "brotliBytes": 7527,
+      "roundTripIdentical": true,
+      "sha256": "b590f124dde05afec951f33c80cf61154c1eb15a247b2ffcb95e96d973a48716"
+    }
+  ],
+  "pileRace": {
+    "at": "2026-11-04T16:52:32.658Z",
+    "account": "welcome-chromium-returning@example.invalid",
+    "case": "A profile save holding an older preferences snapshot races after Done",
+    "before": 0,
+    "after": 1,
+    "completed": true,
+    "patchStatus": 200,
+    "pass": true
+  },
+  "unit": "\u2714 all seven rotate on successive London dates, consistently within a day (19.774458ms)\n\u2714 scores maximise, Saw Duel minimises positive times, and stars merge per level (2.586792ms)\n\u2714 sound defaults off, nickname starts blank, and nudges cap at two per week (1.35875ms)\n\u2714 real SQL concurrent saves keep best, preserve health/pile/food and separate accounts without requiring health consent (30.851166ms)\n\u2714 arcade export contains only owner; account erasure clears arcade atomically, health erasure keeps it (4.398417ms)\n\u2714 actual SQL CAS awards once across twenty overlapping saves, a second session, refresh and retries (42.39175ms)\n\u2714 Done cannot write actual-food totals; feedback stays optional and changes a future offer with a reason (4.088208ms)\n\u2714 30th milestone is one durable database award across devices; privacy preference needs no new tracking consent (11.47825ms)\n\u2714 account ownership, Origin, paused tracking and a consent withdrawal at the SQL write fail closed (4.70175ms)\n\u2714 initial preparation preserves existing logs, milestone, words and unrelated settings (23.37025ms)\n\u2714 withdrawn tracking cannot initialise or overwrite member records (0.857625ms)\n\u2714 crew ACLs come from authenticated membership and disclose only opted-in effort (41.155333ms)\n\u2714 joining requires deliberate consent, an unexpired invitation and space (6.911542ms)\n\u2714 Monday reads the new weekly score without resetting lifetime pile (2.048708ms)\n\u2714 food writes use server source values, ignore supplied macros and do not alter the pile (36.235208ms)\n\u2714 overlapping food retries insert once and rebuild totals atomically (13.388209ms)\n\u2714 portion edits keep source and preserve pile; stale edits cannot replace a newer record (6.552417ms)\n\u2714 search does no external lookup, account mismatch and missing consent fail closed (4.456416ms)\n\u2714 one log per London calendar day survives swaps, retries, reloads and another device (25.247375ms)\n\u2714 Done saves only the action; food totals have no write path (0.199958ms)\n\u2714 optional feedback and dismissal keep the log; negative feedback explains tomorrow\u2019s change (0.679542ms)\n\u2714 weight defaults on, off chooses strength, and re-enabling leads with weight (0.945083ms)\n\u2714 a hard week never clears the pile, and Monday resets only the derived weekly count (0.300708ms)\n\u2714 30th milestone is awarded once, preserved across retries; sharing cannot expose private fields (4.277958ms)\n\u2714 London midnight and daylight-saving boundaries use the existing account calendar (0.313333ms)\n\u2714 ten original actions have three swaps within 5g using unrounded source data (0.991583ms)\n\u2714 different database versions, missing values and unverified recipes cannot pass as matched swaps (0.232458ms)\n\u2714 own saved plan targets are used, and absent or zero targets stay unknown (1.01475ms)\n\u2714 UK FoP exact boundaries, food/drink differences and large-portion overrides (0.130834ms)\n\u2714 portions preserve source, leave missing nutrients unknown, and actual-eaten totals ignore planned meals (0.251625ms)\n\u2714 preparation stops once the ranked original has three safe sourced alternatives (21.841709ms)\n\u2714 nightly observations retain recorded dates and never infer why weight changed (14.592959ms)\n\u2714 overnight job prepares once, does not change the pile, and never runs from a screen GET (2.582625ms)\n\u2714 hidden weight is suppressed when reading an older prepared insight (0.556542ms)\n\u2714 existing health erasure transaction also clears only the requesting account V7 stores (2.19725ms)\n\u2714 a failed original erasure rolls back V7 additions in the same transaction (0.883083ms)\n\u2714 public frame streams before identity completes; private data waits for verified account (28.767833ms)\n\u2714 signed-out stream contains no private snapshot and does not masquerade as a member (2.584625ms)\n\u2714 hidden-weight presentation removes body weight, changes, BMI, stalls and device weights across nested views (0.797042ms)\n\u2714 nutrition targets and a strength activity measured in kg are retained (0.111333ms)\n\u2714 explicit tracking grant stays signed in; withdrawal still clears all open private views (16.012917ms)\n\u2714 logout, deletion and unknown successful consent mutations retain fail-closed purge (3.037792ms)\n\u2139 tests 42\n\u2139 suites 0\n\u2139 pass 42\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 352.051458\n",
+  "lighthouse": {
+    "version": "13.6.0",
+    "fetchTime": "2026-11-04T17:14:04.195Z",
+    "performance": 0.99,
+    "metrics": {
+      "first-contentful-paint": {
+        "value": 1160.931,
+        "display": "1.2\u00a0s"
+      },
+      "largest-contentful-paint": {
+        "value": 2042.427,
+        "display": "2.0\u00a0s"
+      },
+      "total-blocking-time": {
+        "value": 0,
+        "display": "0\u00a0ms"
+      },
+      "cumulative-layout-shift": {
+        "value": 0,
+        "display": "0"
+      }
+    }
+  },
+  "preserved": [
+    {
+      "path": "medicine-commerce-v1.js",
+      "unchanged": true,
+      "sha256": "b726577f17fef8ac534ba8d5b7e65b7fba1aa0e1a2d3de5f7993bd3d0851cc30"
+    },
+    {
+      "path": "member-state-fast-v1.js",
+      "unchanged": true,
+      "sha256": "d8dcf15f7b66da7cfbb67fa859ed68d1bd2525f3f1ff760d37b223d2c14dc8e9"
+    },
+    {
+      "path": "privacy-account-request-v1.js",
+      "unchanged": true,
+      "sha256": "801a47b6f6270a7701dc9fcba7f47def0f90815d4fd44232d3d84907c2422df4"
+    },
+    {
+      "path": "privacy-health-erasure-v1.js",
+      "unchanged": true,
+      "sha256": "9bd50e41e9f82a7edaca308a26bb200e23f98ebc9d86db130a221050f2d61f5d"
+    },
+    {
+      "path": "privacy-health-erasure-route-v1.js",
+      "unchanged": true,
+      "sha256": "5cfc93c3144857b703d65375ba62f3b9fcbdb3847923e2429631b3a636d45409"
+    },
+    {
+      "path": "industrial-grub-nutrition-v1.js",
+      "unchanged": true,
+      "sha256": "27dcf5755c2e343cbb26559fb1e5bf216f9122075307d63a08947e5d60df5772"
+    },
+    {
+      "path": "memory-privacy.js",
+      "unchanged": true,
+      "sha256": "dda7d01f43d0f689c20fcb3a33761beb99c105c0f7249b6de682ce3871ea7892"
+    },
+    {
+      "path": "member-experience/shop-routes.mjs",
+      "unchanged": true,
+      "sha256": "2133f139dc7950ce8a0bff74d8b844c888ad5d8fb41e8965901ff94ea7a04783"
+    },
+    {
+      "path": "member-experience/shop-basket.mjs",
+      "unchanged": true,
+      "sha256": "c1b00634ee293073cb49b2eb11bccedcf908181a63314d77ec56c3e507cd6db5"
+    },
+    {
+      "path": "member-experience/shop-catalogue-reader.mjs",
+      "unchanged": true,
+      "sha256": "32c7cdfe73cf6d58917c7f643091bb90f1144248ac7670afbfc57fa3958eea93"
+    },
+    {
+      "path": "member-experience/support-markup.mjs",
+      "unchanged": true,
+      "sha256": "03977c34506c2b3aefe7f1d9945712400fe6d44a1ecd24a252a0606e1c8c80da"
+    },
+    {
+      "path": "member-experience/support-plan-client.mjs",
+      "unchanged": true,
+      "sha256": "ecb9dc8579e904667f7dbcb98a6c62150f02c93e498cc7a2a58716f14e6516ce"
+    },
+    {
+      "path": "member-experience/journey-page-client.mjs",
+      "unchanged": true,
+      "sha256": "c1d79e1e0ad131db91c3e166d9fcecee972ead8d6ab6664c0d8451e2563fa898"
+    },
+    {
+      "path": "member-experience/journey-records.mjs",
+      "unchanged": true,
+      "sha256": "e21a48d9fbbedfb2406b3e492111668c24f8b2cddd2a58f15d90ecd5e5fefba0"
+    },
+    {
+      "path": "member-experience/journey-portability.mjs",
+      "unchanged": true,
+      "sha256": "fcb10700268d4b710a86c192bd1df998a5fe1ad7d9241db6b1b7624c1bc5f580"
+    },
+    {
+      "path": "member-experience/v7-api.mjs",
+      "unchanged": true,
+      "sha256": "5e5ca300319e30a33a3eb7f54896e3e2c059eaac07ab6a9c665e3716edfc3b7a"
+    },
+    {
+      "path": "member-experience/v7-model.mjs",
+      "unchanged": true,
+      "sha256": "7969bee2b9bbabcb0a84ea64eef6e5893f6eb4a729283de5d67732a7c7fc4474"
+    },
+    {
+      "path": "member-experience/v7-food-routes.mjs",
+      "unchanged": true,
+      "sha256": "5231b45303e0a319da0af3784b3767c42aba1d263a47c7eee0a417dfe1a4c4a7"
+    },
+    {
+      "path": "member-experience/v7-fit.mjs",
+      "unchanged": true,
+      "sha256": "ed159a3214d7e1c0af9104b8750b75220794047ded0fdd5240facc6e025f2397"
+    },
+    {
+      "path": "member-experience/v7-overnight.mjs",
+      "unchanged": true,
+      "sha256": "584591f17b86a071f3a2876d1f021b01ba77b0f81643604226f24ecf984c32a6"
+    },
+    {
+      "path": "member-experience/v7-privacy.mjs",
+      "unchanged": true,
+      "sha256": "0b59078de8a435f5be37e4c53b9b2a39d3ff236ae5c5977e1389b26015d74039"
+    },
+    {
+      "path": "member-experience/v7-visibility.mjs",
+      "unchanged": true,
+      "sha256": "27e914544d8d9a6911742fcd1c47349fe1d1025622321564a49c40ee5be84dbf"
+    }
+  ],
+  "frame": {
+    "at": "2026-11-04T17:11:24.712Z",
+    "physical": false,
+    "method": "Unmodified test pages; static brand/top-label/bottom-label pixels compared across navigation, separately from active underlines.",
+    "engines": [
+      {
+        "name": "chromium",
+        "checks": [
+          {
+            "label": "welcome",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ],
+            "baseline": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ]
+          },
+          {
+            "label": "today",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ],
+            "baseline": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ]
+          },
+          {
+            "label": "journey",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ],
+            "baseline": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ]
+          },
+          {
+            "label": "shop",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ],
+            "baseline": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ]
+          },
+          {
+            "label": "grub",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ],
+            "baseline": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ]
+          },
+          {
+            "label": "fit",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ],
+            "baseline": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ]
+          },
+          {
+            "label": "support",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ],
+            "baseline": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ]
+          },
+          {
+            "label": "more",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ],
+            "baseline": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ]
+          },
+          {
+            "label": "explore",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ],
+            "baseline": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ]
+          },
+          {
+            "label": "closed-assessment",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ],
+            "baseline": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ]
+          },
+          {
+            "label": "support-after-explore",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ],
+            "baseline": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ]
+          },
+          {
+            "label": "side-effects",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ],
+            "baseline": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ]
+          },
+          {
+            "label": "more-after-situation",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ],
+            "baseline": [
+              "5dbd7ce1f2e1b20e413cf1ef05268ee531fd6864e5c53c0d796cdfb5c8d51745",
+              "d486c5a98f0d876b04c8582040d9b180a8933f4884ff97e9b1b37f8022f25f02",
+              "35504bb9f880ccf748320ce622620daa221146bb8e9c764bd26655d4a868b300"
+            ]
+          }
+        ],
+        "errors": []
+      },
+      {
+        "name": "webkit",
+        "checks": [
+          {
+            "label": "welcome",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ],
+            "baseline": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ]
+          },
+          {
+            "label": "today",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ],
+            "baseline": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ]
+          },
+          {
+            "label": "journey",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ],
+            "baseline": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ]
+          },
+          {
+            "label": "shop",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ],
+            "baseline": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ]
+          },
+          {
+            "label": "grub",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ],
+            "baseline": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ]
+          },
+          {
+            "label": "fit",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ],
+            "baseline": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ]
+          },
+          {
+            "label": "support",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ],
+            "baseline": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ]
+          },
+          {
+            "label": "more",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ],
+            "baseline": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ]
+          },
+          {
+            "label": "explore",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ],
+            "baseline": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ]
+          },
+          {
+            "label": "closed-assessment",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ],
+            "baseline": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ]
+          },
+          {
+            "label": "support-after-explore",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ],
+            "baseline": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ]
+          },
+          {
+            "label": "side-effects",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ],
+            "baseline": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ]
+          },
+          {
+            "label": "more-after-situation",
+            "pass": true,
+            "sameNodes": true,
+            "pixels": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ],
+            "baseline": [
+              "e78917b563d5cd61fe50f5bbf815d682d9db19db55e686f176346f0e4fed23a8",
+              "c258007c7ddb2bdf4ebc44d84ea717fbb25e5346ee8c23b9374dc6eaf34a60fb",
+              "78f0aa5368031bb47fe8776a4cd2d1e2b577cfa94436d922869065f9a5a02abf"
+            ]
+          }
+        ],
+        "errors": []
+      }
+    ]
+  },
+  "links": {
+    "at": "2026-11-04T17:20:07.063Z",
+    "physical": false,
+    "noExternalLinksOpened": true,
+    "engines": [
+      {
+        "name": "chromium",
+        "before": {
+          "support": {
+            "links": [
+              {
+                "text": "Call 999Life-threatening emergency",
+                "href": "tel:999",
+                "target": ""
+              },
+              {
+                "text": "Call NHS 111Urgent medical advice",
+                "href": "tel:111",
+                "target": ""
+              },
+              {
+                "text": "Samaritans \u00b7 116 123Someone to listen, day or night",
+                "href": "tel:116123",
+                "target": ""
+              },
+              {
+                "text": "Your snapshotCheck your words and dates before an appointment",
+                "href": "/member/life-back/journey#snapshot",
+                "target": ""
+              },
+              {
+                "text": "Your own prescriberTreatment, dose or side-effect questions",
+                "href": "/member/treatment",
+                "target": ""
+              },
+              {
+                "text": "Talk to other men in the Timber ShedPrivate community \u00b7 opens in your browser",
+                "href": "https://shiftsometimber.co.uk/timber-shed",
+                "target": "_blank"
+              },
+              {
+                "text": "Shift ArcadeBored? Seven quick games, just for a laugh.",
+                "href": "/member/shed-arcade",
+                "target": ""
+              },
+              {
+                "text": "Ask TimberAI help with the everyday stuff",
+                "href": "/member/ask-timber",
+                "target": ""
+              },
+              {
+                "text": "My next stepOpen my saved step and reminders",
+                "href": "/member/support",
+                "target": ""
+              },
+              {
+                "text": "Mates leagueRanked on effort, never weight. Private to your crew.",
+                "href": "/member/life-back/support/league",
+                "target": ""
+              },
+              {
+                "text": "Message MattApp and account questions \u00b7 view reply time",
+                "href": "/member/life-back/support#contact",
+                "target": ""
+              }
+            ],
+            "buttons": []
+          },
+          "more": {
+            "links": [
+              {
+                "text": "SupportEveryday help, treatment contacts and your snapshot",
+                "href": "/member/dashboard?timber=support#today",
+                "target": ""
+              },
+              {
+                "text": "Saved & plansIdeas and plans to come back to",
+                "href": "/member/saved",
+                "target": ""
+              },
+              {
+                "text": "My ordersOrders and delivery",
+                "href": "/member/orders",
+                "target": ""
+              },
+              {
+                "text": "Account & settingsProfile, units and privacy",
+                "href": "/member/settings",
+                "target": ""
+              },
+              {
+                "text": "Talk to other men in the Timber ShedPrivate community \u00b7 opens in your browser",
+                "href": "https://shiftsometimber.co.uk/timber-shed",
+                "target": "_blank"
+              },
+              {
+                "text": "Show weight: OnTurn off if you\u2019d rather focus on strength, energy or measurements.",
+                "href": "/member/life-back/preferences",
+                "target": ""
+              },
+              {
+                "text": "Daily check-in reminderOptional. No health details in the notification",
+                "href": "/member/settings#notifications",
+                "target": ""
+              },
+              {
+                "text": "Health tagsSaved with your consent. Never shared.",
+                "href": "/member/settings#health-tags",
+                "target": ""
+              },
+              {
+                "text": "UnitsWeight and height",
+                "href": "/member/settings#prefWeight",
+                "target": ""
+              },
+              {
+                "text": "Privacy & data rightsExport your data, or delete your account",
+                "href": "/member/settings#healthConsentManager",
+                "target": ""
+              },
+              {
+                "text": "Timber Mill kitOptional SHIFT clothing",
+                "href": "/shop",
+                "target": ""
+              },
+              {
+                "text": "Help using My TimberFind the right place to start",
+                "href": "/help",
+                "target": ""
+              },
+              {
+                "text": "Need help? Go to Support",
+                "href": "/member/dashboard?timber=support#today",
+                "target": ""
+              }
+            ],
+            "buttons": []
+          },
+          "shop": {
+            "links": [
+              {
+                "text": "Your orders",
+                "href": "/member/orders",
+                "target": ""
+              },
+              {
+                "text": "Testing & wellbeingHome tests, lab tests and what each can tell you.Explore tests",
+                "href": "/member/life-back/shop/testing",
+                "target": ""
+              },
+              {
+                "text": "Supplements & nutritionUnderstand the optional extras before choosing.Explore the range",
+                "href": "/member/life-back/shop/nutrition",
+                "target": ""
+              },
+              {
+                "text": "Weight-management careUnderstand your options and the assessment.Explore care",
+                "href": "/member/life-back/shop/care",
+                "target": ""
+              },
+              {
+                "text": "Everyday kitClothing and useful accessories from the Timber Mill.Explore the Mill",
+                "href": "/member/life-back/shop/kit",
+                "target": ""
+              }
+            ],
+            "buttons": []
+          }
+        },
+        "after": {
+          "support": {
+            "links": [
+              {
+                "text": "Call 999Life-threatening emergency",
+                "href": "tel:999",
+                "target": ""
+              },
+              {
+                "text": "Call NHS 111Urgent medical advice",
+                "href": "tel:111",
+                "target": ""
+              },
+              {
+                "text": "Samaritans \u00b7 116 123Someone to listen, day or night",
+                "href": "tel:116123",
+                "target": ""
+              },
+              {
+                "text": "Your snapshotCheck your words and dates before an appointment",
+                "href": "/member/life-back/journey#snapshot",
+                "target": ""
+              },
+              {
+                "text": "Your own prescriberTreatment, dose or side-effect questions",
+                "href": "/member/treatment",
+                "target": ""
+              },
+              {
+                "text": "Talk to other men in the Timber ShedPrivate community \u00b7 opens in your browser",
+                "href": "https://shiftsometimber.co.uk/timber-shed",
+                "target": "_blank"
+              },
+              {
+                "text": "Shift ArcadeBored? Seven quick games, just for a laugh.",
+                "href": "/member/shed-arcade",
+                "target": ""
+              },
+              {
+                "text": "Ask TimberAI help with the everyday stuff",
+                "href": "/member/ask-timber",
+                "target": ""
+              },
+              {
+                "text": "My next stepOpen my saved step and reminders",
+                "href": "/member/support",
+                "target": ""
+              },
+              {
+                "text": "Mates leagueRanked on effort, never weight. Private to your crew.",
+                "href": "/member/life-back/support/league",
+                "target": ""
+              },
+              {
+                "text": "Message MattApp and account questions \u00b7 view reply time",
+                "href": "/member/life-back/support#contact",
+                "target": ""
+              }
+            ],
+            "buttons": []
+          },
+          "more": {
+            "links": [
+              {
+                "text": "SupportEveryday help, treatment contacts and your snapshot",
+                "href": "/member/dashboard?timber=support#today",
+                "target": ""
+              },
+              {
+                "text": "Saved & plansIdeas and plans to come back to",
+                "href": "/member/saved",
+                "target": ""
+              },
+              {
+                "text": "My ordersOrders and delivery",
+                "href": "/member/orders",
+                "target": ""
+              },
+              {
+                "text": "Account & settingsProfile, units and privacy",
+                "href": "/member/settings",
+                "target": ""
+              },
+              {
+                "text": "Talk to other men in the Timber ShedPrivate community \u00b7 opens in your browser",
+                "href": "https://shiftsometimber.co.uk/timber-shed",
+                "target": "_blank"
+              },
+              {
+                "text": "Personalise My TimberYour goals, starting point and first step",
+                "href": "/member/dashboard/personalise?edit=1",
+                "target": ""
+              },
+              {
+                "text": "Show weight: OnTurn off if you\u2019d rather focus on strength, energy or measurements.",
+                "href": "/member/life-back/preferences",
+                "target": ""
+              },
+              {
+                "text": "Daily check-in reminderOptional. No health details in the notification",
+                "href": "/member/settings#notifications",
+                "target": ""
+              },
+              {
+                "text": "Health tagsSaved with your consent. Never shared.",
+                "href": "/member/settings#health-tags",
+                "target": ""
+              },
+              {
+                "text": "UnitsWeight and height",
+                "href": "/member/settings#prefWeight",
+                "target": ""
+              },
+              {
+                "text": "Privacy & data rightsExport your data, or delete your account",
+                "href": "/member/settings#healthConsentManager",
+                "target": ""
+              },
+              {
+                "text": "Timber Mill kitOptional SHIFT clothing",
+                "href": "/shop",
+                "target": ""
+              },
+              {
+                "text": "Help using My TimberFind the right place to start",
+                "href": "/help",
+                "target": ""
+              },
+              {
+                "text": "Need help? Go to Support",
+                "href": "/member/dashboard?timber=support#today",
+                "target": ""
+              }
+            ],
+            "buttons": []
+          },
+          "shop": {
+            "links": [
+              {
+                "text": "Your orders",
+                "href": "/member/orders",
+                "target": ""
+              },
+              {
+                "text": "Testing & wellbeingHome tests, lab tests and what each can tell you.Explore tests",
+                "href": "/member/life-back/shop/testing",
+                "target": ""
+              },
+              {
+                "text": "Supplements & nutritionUnderstand the optional extras before choosing.Explore the range",
+                "href": "/member/life-back/shop/nutrition",
+                "target": ""
+              },
+              {
+                "text": "Weight-management careUnderstand your options and the assessment.Explore care",
+                "href": "/member/life-back/shop/care",
+                "target": ""
+              },
+              {
+                "text": "Everyday kitClothing and useful accessories from the Timber Mill.Explore the Mill",
+                "href": "/member/life-back/shop/kit",
+                "target": ""
+              }
+            ],
+            "buttons": []
+          }
+        },
+        "checks": [
+          {
+            "tab": "support",
+            "pass": true,
+            "missing": [],
+            "missingButtons": [],
+            "added": []
+          },
+          {
+            "tab": "more",
+            "pass": true,
+            "missing": [],
+            "missingButtons": [],
+            "added": [
+              {
+                "text": "Personalise My TimberYour goals, starting point and first step",
+                "href": "/member/dashboard/personalise?edit=1",
+                "target": ""
+              }
+            ]
+          },
+          {
+            "tab": "shop",
+            "pass": true,
+            "missing": [],
+            "missingButtons": [],
+            "added": []
+          }
+        ],
+        "errors": []
+      },
+      {
+        "name": "webkit",
+        "before": {
+          "support": {
+            "links": [
+              {
+                "text": "Call 999Life-threatening emergency",
+                "href": "tel:999",
+                "target": ""
+              },
+              {
+                "text": "Call NHS 111Urgent medical advice",
+                "href": "tel:111",
+                "target": ""
+              },
+              {
+                "text": "Samaritans \u00b7 116 123Someone to listen, day or night",
+                "href": "tel:116123",
+                "target": ""
+              },
+              {
+                "text": "Your snapshotCheck your words and dates before an appointment",
+                "href": "/member/life-back/journey#snapshot",
+                "target": ""
+              },
+              {
+                "text": "Your own prescriberTreatment, dose or side-effect questions",
+                "href": "/member/treatment",
+                "target": ""
+              },
+              {
+                "text": "Talk to other men in the Timber ShedPrivate community \u00b7 opens in your browser",
+                "href": "https://shiftsometimber.co.uk/timber-shed",
+                "target": "_blank"
+              },
+              {
+                "text": "Shift ArcadeBored? Seven quick games, just for a laugh.",
+                "href": "/member/shed-arcade",
+                "target": ""
+              },
+              {
+                "text": "Ask TimberAI help with the everyday stuff",
+                "href": "/member/ask-timber",
+                "target": ""
+              },
+              {
+                "text": "My next stepOpen my saved step and reminders",
+                "href": "/member/support",
+                "target": ""
+              },
+              {
+                "text": "Mates leagueRanked on effort, never weight. Private to your crew.",
+                "href": "/member/life-back/support/league",
+                "target": ""
+              },
+              {
+                "text": "Message MattApp and account questions \u00b7 view reply time",
+                "href": "/member/life-back/support#contact",
+                "target": ""
+              }
+            ],
+            "buttons": []
+          },
+          "more": {
+            "links": [
+              {
+                "text": "SupportEveryday help, treatment contacts and your snapshot",
+                "href": "/member/dashboard?timber=support#today",
+                "target": ""
+              },
+              {
+                "text": "Saved & plansIdeas and plans to come back to",
+                "href": "/member/saved",
+                "target": ""
+              },
+              {
+                "text": "My ordersOrders and delivery",
+                "href": "/member/orders",
+                "target": ""
+              },
+              {
+                "text": "Account & settingsProfile, units and privacy",
+                "href": "/member/settings",
+                "target": ""
+              },
+              {
+                "text": "Talk to other men in the Timber ShedPrivate community \u00b7 opens in your browser",
+                "href": "https://shiftsometimber.co.uk/timber-shed",
+                "target": "_blank"
+              },
+              {
+                "text": "Show weight: OnTurn off if you\u2019d rather focus on strength, energy or measurements.",
+                "href": "/member/life-back/preferences",
+                "target": ""
+              },
+              {
+                "text": "Daily check-in reminderOptional. No health details in the notification",
+                "href": "/member/settings#notifications",
+                "target": ""
+              },
+              {
+                "text": "Health tagsSaved with your consent. Never shared.",
+                "href": "/member/settings#health-tags",
+                "target": ""
+              },
+              {
+                "text": "UnitsWeight and height",
+                "href": "/member/settings#prefWeight",
+                "target": ""
+              },
+              {
+                "text": "Privacy & data rightsExport your data, or delete your account",
+                "href": "/member/settings#healthConsentManager",
+                "target": ""
+              },
+              {
+                "text": "Timber Mill kitOptional SHIFT clothing",
+                "href": "/shop",
+                "target": ""
+              },
+              {
+                "text": "Help using My TimberFind the right place to start",
+                "href": "/help",
+                "target": ""
+              },
+              {
+                "text": "Need help? Go to Support",
+                "href": "/member/dashboard?timber=support#today",
+                "target": ""
+              }
+            ],
+            "buttons": []
+          },
+          "shop": {
+            "links": [
+              {
+                "text": "Your orders",
+                "href": "/member/orders",
+                "target": ""
+              },
+              {
+                "text": "Testing & wellbeingHome tests, lab tests and what each can tell you.Explore tests",
+                "href": "/member/life-back/shop/testing",
+                "target": ""
+              },
+              {
+                "text": "Supplements & nutritionUnderstand the optional extras before choosing.Explore the range",
+                "href": "/member/life-back/shop/nutrition",
+                "target": ""
+              },
+              {
+                "text": "Weight-management careUnderstand your options and the assessment.Explore care",
+                "href": "/member/life-back/shop/care",
+                "target": ""
+              },
+              {
+                "text": "Everyday kitClothing and useful accessories from the Timber Mill.Explore the Mill",
+                "href": "/member/life-back/shop/kit",
+                "target": ""
+              }
+            ],
+            "buttons": []
+          }
+        },
+        "after": {
+          "support": {
+            "links": [
+              {
+                "text": "Call 999Life-threatening emergency",
+                "href": "tel:999",
+                "target": ""
+              },
+              {
+                "text": "Call NHS 111Urgent medical advice",
+                "href": "tel:111",
+                "target": ""
+              },
+              {
+                "text": "Samaritans \u00b7 116 123Someone to listen, day or night",
+                "href": "tel:116123",
+                "target": ""
+              },
+              {
+                "text": "Your snapshotCheck your words and dates before an appointment",
+                "href": "/member/life-back/journey#snapshot",
+                "target": ""
+              },
+              {
+                "text": "Your own prescriberTreatment, dose or side-effect questions",
+                "href": "/member/treatment",
+                "target": ""
+              },
+              {
+                "text": "Talk to other men in the Timber ShedPrivate community \u00b7 opens in your browser",
+                "href": "https://shiftsometimber.co.uk/timber-shed",
+                "target": "_blank"
+              },
+              {
+                "text": "Shift ArcadeBored? Seven quick games, just for a laugh.",
+                "href": "/member/shed-arcade",
+                "target": ""
+              },
+              {
+                "text": "Ask TimberAI help with the everyday stuff",
+                "href": "/member/ask-timber",
+                "target": ""
+              },
+              {
+                "text": "My next stepOpen my saved step and reminders",
+                "href": "/member/support",
+                "target": ""
+              },
+              {
+                "text": "Mates leagueRanked on effort, never weight. Private to your crew.",
+                "href": "/member/life-back/support/league",
+                "target": ""
+              },
+              {
+                "text": "Message MattApp and account questions \u00b7 view reply time",
+                "href": "/member/life-back/support#contact",
+                "target": ""
+              }
+            ],
+            "buttons": []
+          },
+          "more": {
+            "links": [
+              {
+                "text": "SupportEveryday help, treatment contacts and your snapshot",
+                "href": "/member/dashboard?timber=support#today",
+                "target": ""
+              },
+              {
+                "text": "Saved & plansIdeas and plans to come back to",
+                "href": "/member/saved",
+                "target": ""
+              },
+              {
+                "text": "My ordersOrders and delivery",
+                "href": "/member/orders",
+                "target": ""
+              },
+              {
+                "text": "Account & settingsProfile, units and privacy",
+                "href": "/member/settings",
+                "target": ""
+              },
+              {
+                "text": "Talk to other men in the Timber ShedPrivate community \u00b7 opens in your browser",
+                "href": "https://shiftsometimber.co.uk/timber-shed",
+                "target": "_blank"
+              },
+              {
+                "text": "Personalise My TimberYour goals, starting point and first step",
+                "href": "/member/dashboard/personalise?edit=1",
+                "target": ""
+              },
+              {
+                "text": "Show weight: OnTurn off if you\u2019d rather focus on strength, energy or measurements.",
+                "href": "/member/life-back/preferences",
+                "target": ""
+              },
+              {
+                "text": "Daily check-in reminderOptional. No health details in the notification",
+                "href": "/member/settings#notifications",
+                "target": ""
+              },
+              {
+                "text": "Health tagsSaved with your consent. Never shared.",
+                "href": "/member/settings#health-tags",
+                "target": ""
+              },
+              {
+                "text": "UnitsWeight and height",
+                "href": "/member/settings#prefWeight",
+                "target": ""
+              },
+              {
+                "text": "Privacy & data rightsExport your data, or delete your account",
+                "href": "/member/settings#healthConsentManager",
+                "target": ""
+              },
+              {
+                "text": "Timber Mill kitOptional SHIFT clothing",
+                "href": "/shop",
+                "target": ""
+              },
+              {
+                "text": "Help using My TimberFind the right place to start",
+                "href": "/help",
+                "target": ""
+              },
+              {
+                "text": "Need help? Go to Support",
+                "href": "/member/dashboard?timber=support#today",
+                "target": ""
+              }
+            ],
+            "buttons": []
+          },
+          "shop": {
+            "links": [
+              {
+                "text": "Your orders",
+                "href": "/member/orders",
+                "target": ""
+              },
+              {
+                "text": "Testing & wellbeingHome tests, lab tests and what each can tell you.Explore tests",
+                "href": "/member/life-back/shop/testing",
+                "target": ""
+              },
+              {
+                "text": "Supplements & nutritionUnderstand the optional extras before choosing.Explore the range",
+                "href": "/member/life-back/shop/nutrition",
+                "target": ""
+              },
+              {
+                "text": "Weight-management careUnderstand your options and the assessment.Explore care",
+                "href": "/member/life-back/shop/care",
+                "target": ""
+              },
+              {
+                "text": "Everyday kitClothing and useful accessories from the Timber Mill.Explore the Mill",
+                "href": "/member/life-back/shop/kit",
+                "target": ""
+              }
+            ],
+            "buttons": []
+          }
+        },
+        "checks": [
+          {
+            "tab": "support",
+            "pass": true,
+            "missing": [],
+            "missingButtons": [],
+            "added": []
+          },
+          {
+            "tab": "more",
+            "pass": true,
+            "missing": [],
+            "missingButtons": [],
+            "added": [
+              {
+                "text": "Personalise My TimberYour goals, starting point and first step",
+                "href": "/member/dashboard/personalise?edit=1",
+                "target": ""
+              }
+            ]
+          },
+          {
+            "tab": "shop",
+            "pass": true,
+            "missing": [],
+            "missingButtons": [],
+            "added": []
+          }
+        ],
+        "errors": []
+      }
+    ]
+  },
+  "phonePreview": {
+    "at": "2026-11-04T17:16:07.907Z",
+    "syntheticAccount": 900710004,
+    "email": "v7-phone@example.invalid",
+    "expiresAt": "2026-11-04T22:08:45.248Z",
+    "http": 302,
+    "destination": "/member/dashboard#today",
+    "httpOnly": true,
+    "secure": true,
+    "physicalDeviceTested": false
+  },
+  "sourceCommit": "371ef2950f027ccb2a824fff2187c1698a88459d",
+  "speedBuild": "7ed2dc0d5e8bf923fcb8",
+  "speedMeasurementNote": "Final full 20-sample run after fixing stale manifest attribution in the timing runner; prior measurements retained. No sample filtering."
+}
