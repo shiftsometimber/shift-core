@@ -1,0 +1,9 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';
+import {cloudflareRequest as cf} from '/Users/shiftsometimberltd/SST/builds/apple-completion-20261024/journey-shop-release-20261031/performance-precompiled-cloudflare-client-20261103.mjs';
+const A='9e5386dcf455be34c582d93f8bfc79e6',dir='member-experience/welcome-release-evidence',account=JSON.parse(fs.readFileSync('/private/tmp/my-timber-v7-live-proof-account.json'));
+assert.equal(account.id,900710301);assert.equal(account.email,'v7-live-proof@example.invalid');
+const active=async name=>{const d=(await cf('/accounts/'+A+'/workers/scripts/'+name+'/deployments')).deployments.sort((a,b)=>b.created_on.localeCompare(a.created_on));return d[0].versions.filter(v=>v.percentage>0)};
+const r=await fetch('https://api.shiftsometimber.co.uk/v1/commerce/medicine-clinical-context',{headers:{Cookie:'sst_session='+account.token,'X-Expected-Account-Id':String(account.id)}}),j=await r.json();
+const page=await fetch('https://shiftsometimber.co.uk/treatment-assessment'),html=await page.text(),settings=await cf('/accounts/'+A+'/workers/scripts/shift-core/settings');
+const evidence={at:new Date().toISOString(),readOnly:true,syntheticAccount:{id:account.id,email:account.email},clinicalContext:{httpStatus:r.status,assessmentAvailable:j.assessmentAvailable??j.data?.assessmentAvailable??null,responseKeys:Object.keys(j)},publicAssessment:{httpStatus:page.status,explicitlyClosed:/not open|not currently|closed|not yet open|opens after payment/i.test(html)},pharmacyBindingNames:settings.bindings.filter(b=>/PHARMACY/.test(b.name)).map(b=>b.name),activeFront:await active('shift-programme-member-20261023'),activeCore:await active('shift-core'),moneyWrites:0,providerWrites:0,memberReleaseDeployed:false};
+fs.writeFileSync(dir+'/readiness.json',JSON.stringify(evidence,null,2)+'\n');console.log(JSON.stringify(evidence));

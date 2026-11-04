@@ -1,3 +1,4 @@
+import {personalisationBundle} from './welcome-personalisation-bundle.mjs';
 import {weightSafeView} from './v7-visibility.mjs';
 import {retainedScript} from './v7-retained-content.mjs';
 import {v7FoodRoutes,updateNutritionSummary} from './v7-food-routes.mjs';
@@ -18,6 +19,7 @@ import{journeyPageRuntime}from'./journey-page-client.mjs';
 import{foodDiaryRuntime}from'./food-diary-client.mjs';
 import{runV7Overnight}from'./v7-overnight.mjs';
 const parse=s=>{try{return JSON.parse(s||'{}')}catch{return {}}};
+const compressedNativeJS='__V7_BROTLI_BROWSER__',compressedNativeCSS='__V7_BROTLI_CSS__';
 const privateHeaders={'Cache-Control':'no-store, private','Vary':'Cookie','X-Content-Type-Options':'nosniff'};
 export function wrapV7(original,helpers){
  const prepareOffers=async(DB,prefs,at,userId)=>{
@@ -49,6 +51,7 @@ export function wrapV7(original,helpers){
    return new Response(request.method==='HEAD'?null:script,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
   }
   const publicAssets={
+   '/assets/member-experience/v7-personalisation.mjs':[personalisationBundle,'text/javascript'],
    '/assets/member-experience/v7-native.css':[nativeCSS,'text/css'],
    '/assets/member-experience/v7-native.mjs':[nativeJS,'text/javascript'],
    '/assets/member-experience/programme-support-plan.mjs':[supportPlanRuntime,'text/javascript'],
@@ -56,6 +59,11 @@ export function wrapV7(original,helpers){
    '/assets/member-experience/programme-journey.mjs':[journeyPageRuntime,'text/javascript'],
    '/assets/member-experience/food-diary.mjs':[foodDiaryRuntime,'text/javascript']
   };
+  const packed=path==='/assets/member-experience/v7-native.mjs'?compressedNativeJS:path==='/assets/member-experience/v7-native.css'?compressedNativeCSS:null;
+  const accepts=request.headers.get('Accept-Encoding')||'';
+  if(packed&&!packed.startsWith('__')&&/\bbr\b/.test(accepts)&&!/[;,]\s*q=0(?:\.0*)?(?:,|$)/.test(accepts)&&['GET','HEAD'].includes(request.method)){
+   const bytes=Uint8Array.from(atob(packed),c=>c.charCodeAt(0));return new Response(request.method==='HEAD'?null:bytes,{encodeBody:'manual',headers:{'Content-Type':path.endsWith('.css')?'text/css; charset=utf-8':'text/javascript; charset=utf-8','Content-Encoding':'br','Content-Length':String(bytes.length),'Vary':'Accept-Encoding','Cache-Control':new URL(request.url).searchParams.get('v')==='__V7_NATIVE_ASSET_TAG__'?'public, max-age=31536000, immutable':'public, max-age=0, must-revalidate','X-Content-Type-Options':'nosniff'}});
+  }
   const asset=publicAssets[path];if(asset&&['GET','HEAD'].includes(request.method))return new Response(request.method==='HEAD'?null:asset[0],{headers:{'Content-Type':asset[1]+'; charset=utf-8','Cache-Control':new URL(request.url).searchParams.get('v')==='__V7_NATIVE_ASSET_TAG__'?'public, max-age=31536000, immutable':'public, max-age=0, must-revalidate','X-Content-Type-Options':'nosniff'}});
   const response=await original.fetch(request,env,ctx);
   if(path==='/v1/grub/eaten'&&['POST','PATCH','DELETE'].includes(request.method)&&response.ok){

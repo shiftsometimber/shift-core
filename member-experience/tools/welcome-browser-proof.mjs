@@ -1,0 +1,53 @@
+import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';
+import {chromium,webkit} from '/Users/shiftsometimberltd/SST/tools/apple-review-smoke/node_modules/playwright/index.mjs';
+const origin='https://shift-programme-my-timber-v7-test.matobrien.workers.dev',access=JSON.parse(fs.readFileSync('/private/tmp/my-timber-welcome-test-access.json'));
+const out=path.resolve('member-experience/welcome-release-evidence/browser');fs.mkdirSync(out,{recursive:true});
+const result={at:new Date().toISOString(),origin,device:'Mobile browser emulation at 390 × 844, 2x; not physical devices',financialProof:'Review/decline UI uses labelled synthetic database fixtures; no provider or payment request',engines:[]};
+for(const [name,type]of [['chromium',chromium],['webkit',webkit]]){
+ const e={name,accounts:Object.values(access[name]).map(x=>({id:x.id,email:x.email})),checks:[],screens:[],videos:[],errors:[]};result.engines.push(e);
+ const browser=await type.launch({headless:true});
+ const check=(id,value,detail='')=>{e.checks.push({id,pass:!!value,detail});if(!value)throw Error(id+': '+detail);};
+ const context=async a=>{const c=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true,recordVideo:{dir:path.join(out,name),size:{width:390,height:844}}});await c.addCookies([{name:'sst_session',value:a.token,url:origin,secure:true,httpOnly:true,sameSite:'Lax'}]);return c;};
+ const shot=async(p,label)=>{await p.evaluate(()=>document.fonts.ready);await p.screenshot({path:path.join(out,name+'-'+label+'.png'),fullPage:true});e.screens.push(name+'-'+label+'.png');};
+ try{
+  const c=await context(access[name].first),p=await c.newPage();const errors=[];p.on('pageerror',x=>errors.push(x.message));
+  await p.goto(origin+'/member/dashboard',{waitUntil:'domcontentloaded'});await p.locator('.mt-welcome-hotspot').waitFor();await p.locator('.mt-welcome img').evaluateAll(ns=>Promise.all(ns.map(i=>i.decode())));
+  check('W1-first-visit-Welcome',new URL(p.url()).pathname==='/member/dashboard/welcome');
+  check('W1-top-tabs',JSON.stringify(await p.locator('.mt-shop-primary a span').allTextContents())===JSON.stringify(['Welcome','Today','Journey','Shop']));
+  const images=await p.locator('.mt-welcome img').evaluateAll(ns=>ns.map(i=>({src:new URL(i.src).pathname,width:i.getBoundingClientRect().width,natural:i.naturalWidth,alt:i.alt})));
+  check('W2-supplied-WebP-crops',images.length===2&&images.every(i=>i.src.endsWith('.webp'))&&images[0].natural===815&&images[1].natural===825,JSON.stringify(images));
+  check('W2-phone-widths',Math.abs(images[0].width-374)<1&&Math.abs(images[1].width-378)<1,JSON.stringify(images.map(x=>x.width)));
+  const hotspot=await p.locator('.mt-welcome-hotspot').evaluate(n=>{const b=n.getBoundingClientRect(),a=n.parentElement.getBoundingClientRect();return {left:(b.left-a.left)/a.width,top:(b.top-a.top)/a.height,width:b.width/a.width,height:b.height/a.height,min:b.height,label:n.getAttribute('aria-label')};});
+  check('W3-hotspot',Math.abs(hotspot.left-.108)<.002&&Math.abs(hotspot.top-.775)<.002&&Math.abs(hotspot.width-.781)<.002&&Math.abs(hotspot.height-.113)<.002&&hotspot.min>=44&&hotspot.label==='Make it mine',JSON.stringify(hotspot));
+  await shot(p,'47-welcome-first');await p.locator('.mt-welcome-hotspot').focus();await shot(p,'47-hotspot-focus');
+  await p.locator('.mt-welcome-hotspot').click();await p.locator('#joinSetup:not([hidden])').waitFor();await shot(p,'setup-step-1');check('W3-existing-setup-route',p.url().includes('/personalise'));
+  await p.locator('[data-step="0"] input[value="energy"]').check();await p.locator('[data-step="0"] [data-next]').click();await shot(p,'setup-step-2');check('W3-health-consent-optional',!await p.locator('[name=healthConsent]').isChecked());await p.locator('[name=healthConsent]').check();await p.locator('[data-step="1"] [data-next]').click();await shot(p,'setup-step-3');await p.locator('[name=firstStep][value=food]').check();await p.locator('#joinSetup button[type=submit]').click();await p.locator('[data-v7-action-card]').waitFor({timeout:25000});check('W3-three-step-setup-saved',new URL(p.url()).pathname==='/member/dashboard');await p.locator('[data-v7=done]').first().click();await p.locator('dialog[open]').waitFor();check('W3-first-Done-keeps-log',await p.locator('dialog[open]').innerText().then(t=>t.includes('+1')));await p.getByRole('button',{name:'Close',exact:true}).click();await p.locator('[data-mt-shop-tab=welcome]').click();check('W3-setup-now-removed-hotspot',await p.locator('.mt-welcome-hotspot').count()===0);await shot(p,'48-welcome-after-real-setup');
+  // The separate browse journey intentionally avoids setup and all writes.
+  await p.goto(origin+'/member/dashboard/welcome',{waitUntil:'domcontentloaded'});await p.getByRole('link',{name:/Your one thing for today|Today/}).filter({hasText:'Today'}).last().click();await p.locator('[data-v7-action-card]').waitFor();check('W3-setup-return-Today',!await p.locator('.mt-welcome-hotspot').count());await shot(p,'40b-today');
+  await p.reload({waitUntil:'domcontentloaded'});await p.locator('[data-v7-action-card]').waitFor();check('W1-returning-Today',new URL(p.url()).pathname==='/member/dashboard');
+  await p.evaluate(()=>{window.__frame=[document.querySelector('#mtShopChrome'),document.querySelector('.mt-shop-top'),document.querySelector('.mt-shop-bottom')];});
+  for(const tab of ['welcome','today','journey','shop','grub','fit','support','more']){await p.locator('[data-mt-shop-tab='+tab+']').click();await p.waitForTimeout(300);check('S-shell-'+tab,await p.evaluate(()=>window.__frame[0]===document.querySelector('#mtShopChrome')&&window.__frame[1]===document.querySelector('.mt-shop-top')&&window.__frame[2]===document.querySelector('.mt-shop-bottom')));}
+  await p.locator('[data-mt-shop-tab=welcome]').click();await p.getByRole('link',{name:'EXPLORE WEIGHT LOSS'}).click();await p.locator('.mt-explore h1').waitFor();await shot(p,'41-explore-intro');
+  const intro=await p.locator('.mt-explore').innerText();check('W5-no-medicine-price',!/mounjaro|wegovy|orlistat|rybelsus|£|\bbuy\b/i.test(intro));
+  await p.getByRole('link',{name:'START MY HEALTH QUESTIONS'}).click();await p.locator('[data-clinical-entry] [role=status]').filter({hasText:/not open yet|could not be checked/}).waitFor({timeout:25000});await shot(p,'42-existing-clinical-entry-closed');
+  const entry=await p.locator('[data-clinical-entry]').innerText();e.checks.push({id:'W5-questionnaire-existing-provider',pass:false,detail:entry.includes('not open yet')?'Existing live assessment is closed. No questionnaire was manufactured.':entry.slice(0,500)});
+  await p.locator('[data-mt-shop-tab=support]').click();await p.locator('#mtUtility h1').waitFor();await shot(p,'24-support');
+  const supportLinks=await p.locator('#mtUtility a[href]').evaluateAll(ns=>ns.map(n=>({text:n.innerText,href:n.getAttribute('href'),target:n.target})));e.supportLinks=supportLinks;
+  check('A7-urgent-phone-links',await p.locator('#mtUtility a[href^="tel:"]').count()===3);
+  for(const [pattern,key]of [[/Treatment changing or ending/i,'ending'],[/The scales have gone quiet/i,'stall'],[/Having a wobble/i,'wobble'],[/Worried about the cost/i,'cost'],[/Side effects or feeling unwell/i,'symptoms']]){
+   const button=p.locator('#mtUtility').getByRole('button',{name:pattern});await button.click();await p.waitForTimeout(80);await shot(p,'25-support-'+key);check('A8-situation-'+key,await p.locator('#mtUtility').innerText().then(t=>['What next','Who to talk to','What stays with you'].every(x=>t.toLowerCase().includes(x.toLowerCase()))));await p.getByRole('button',{name:'Back to Support',exact:true}).click();
+  }
+  await p.locator('[data-mt-shop-tab=more]').click();await shot(p,'26-more');e.moreLinks=await p.locator('#mtUtility a[href]').evaluateAll(ns=>ns.map(n=>({text:n.innerText,href:n.getAttribute('href'),target:n.target})));
+  check('A9-more-retained',await p.locator('#mtUtility').innerText().then(t=>['Saved & plans','My orders','Account & settings','Headline privacy','Sign out','Help using My Timber'].every(x=>t.includes(x))));
+  await p.getByRole('link',{name:/Show weight: On/}).click();await p.locator('[data-mt-screen=preferences]').waitFor();check('A3-preferences-More-highlighted',await p.locator('[data-mt-shop-tab=more]').getAttribute('aria-current')==='page');await shot(p,'preferences');
+  e.errors.push(...errors);await c.close();
+  for(const state of ['browse','returning','review','declined']){
+   const c2=await context(access[name][state]),p2=await c2.newPage();await p2.goto(origin+'/member/dashboard',{waitUntil:'domcontentloaded'});if(state==='browse'){await p2.getByRole('link',{name:'Have a look around',exact:true}).click();await p2.locator('[data-v7-action-card]').waitFor();check('W3-browse-without-setup',new URL(p2.url()).pathname==='/member/dashboard');await shot(p2,'40b-browse-without-setup');await c2.close();continue;}await p2.locator('[data-v7-action-card]').waitFor();
+   if(state==='returning'){check('W1-completed-setup-Today',new URL(p2.url()).pathname==='/member/dashboard');await p2.locator('[data-mt-shop-tab=welcome]').click();await p2.locator('.mt-welcome-note img').evaluate(i=>i.decode());check('W3-after-setup-no-hotspot',await p2.locator('.mt-welcome-hotspot').count()===0);check('W3-after-setup-crop',(await p2.locator('.mt-welcome-note img').getAttribute('src')).includes('note-nobutton'));await shot(p2,'48-welcome-after-setup');}
+   else{await p2.locator('.mt-treatment-strip').waitFor();await shot(p2,state==='review'?'46-today-review-status':'46-today-declined-status');await p2.locator('.mt-treatment-strip').click();await p2.locator('.mt-explore h1').waitFor();await shot(p2,state==='review'?'44-review-fixture':'45-declined-fixture');check('W5-real-account-status-'+state,await p2.locator('.mt-explore h1').innerText().then(t=>state==='review'?t.includes('REVIEWING'):t.includes('NOT THE RIGHT ROUTE')));await p2.getByRole('link',{name:'BACK TO MY TIMBER'}).click();await p2.locator('[data-v7-action-card]').waitFor();check('W5-return-Today-'+state,await p2.locator('.mt-treatment-strip').count()===1);}
+   await c2.close();
+  }
+ }catch(error){e.errors.push(error.stack||error.message);}finally{await browser.close();}
+ e.success=e.errors.length===0&&e.checks.filter(c=>c.id!=='W5-questionnaire-existing-provider').every(c=>c.pass);fs.writeFileSync(path.join(out,'results.json'),JSON.stringify(result,null,2));
+ console.log(JSON.stringify({engine:name,success:e.success,checks:e.checks.length,failed:e.checks.filter(c=>!c.pass),errors:e.errors}));
+}

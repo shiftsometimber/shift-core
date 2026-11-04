@@ -5,7 +5,7 @@ export const shellServiceWorker=treatmentServiceWorker+String.raw`
 const MT_CACHE='my-timber-shell-__V7_NATIVE_ASSET_TAG__';
 const MT_SHELL='/member/app-shell.html?v=__V7_NATIVE_ASSET_TAG__';
 const MT_STATIC=[MT_SHELL,'/assets/member-experience/v7-native.css?v=__V7_NATIVE_ASSET_TAG__','/assets/member-experience/v7-native.mjs?v=__V7_NATIVE_ASSET_TAG__','/assets/member-experience/v7-brand.svg?v=__V7_NATIVE_ASSET_TAG__','/assets/member-experience/v7-heading-font.woff2?v=__V7_NATIVE_ASSET_TAG__','/member/manifest.webmanifest'];
-const MT_ROUTES=new Set(['/member/dashboard','/member/grub','/member/fit','/member/life-back','/member/life-back/journey','/member/life-back/shop','/member/life-back/support','/member/life-back/support/league','/member/life-back/preferences','/member/more']);
+const MT_ROUTES=new Set(['/member/dashboard/personalise','/member/dashboard/welcome','/member/dashboard/explore-weight-loss','/member/dashboard/explore-weight-loss/status','/member/dashboard/explore-weight-loss/questions','/member/dashboard','/member/grub','/member/fit','/member/life-back','/member/life-back/journey','/member/life-back/shop','/member/life-back/support','/member/life-back/support/league','/member/life-back/preferences','/member/more']);
 self.addEventListener('install',event=>event.waitUntil((async()=>{const cache=await caches.open(MT_CACHE);await cache.addAll(MT_STATIC);})()));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{const keys=await caches.keys();const old=keys.filter(key=>key.startsWith('my-timber-shell-')&&key!==MT_CACHE);for(const key of old.slice(0,-1))await caches.delete(key);})()));
 async function mtNotice(type){for(const client of await self.clients.matchAll({type:'window',includeUncontrolled:true}))client.postMessage({type});}
@@ -13,7 +13,11 @@ self.addEventListener('message',event=>{if(event.data?.type==='MT_PURGE_PRIVATE'
 self.addEventListener('fetch',event=>{
  const request=event.request,url=new URL(request.url);if(url.origin!==self.location.origin)return;
  if(request.method!=='GET'){
-  if(/\/v1\/(?:auth\/)?(?:logout|privacy\/(?:account|health-tracking)|consent)/.test(url.pathname))event.respondWith((async()=>{const response=await fetch(request);if(response.ok)await mtNotice('MT_PURGE_PRIVATE');return response;})());
+  if(/\/v1\/(?:auth\/)?(?:logout|privacy\/(?:account|health-tracking)|consent)/.test(url.pathname))event.respondWith((async()=>{
+   const consent=/\/v1\/consents?$/.test(url.pathname);let explicitGrant=false;
+   if(consent){try{const body=await request.clone().json();explicitGrant=body.type==='my_shift_health_tracking'&&(body.granted===true||body.granted===1);}catch{}}
+   const response=await fetch(request);if(response.ok&&(!consent||!explicitGrant))await mtNotice('MT_PURGE_PRIVATE');return response;
+  })());
   return;
  }
  if(request.mode==='navigate'&&(MT_ROUTES.has(url.pathname)||url.pathname.startsWith('/member/shed-arcade'))&&!url.searchParams.has('tools')&&!url.searchParams.has('view-data')&&!url.searchParams.has('mt-rollback')){

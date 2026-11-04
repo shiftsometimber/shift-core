@@ -9,9 +9,9 @@ export async function publishV7Effort(DB,userId,progress,at=new Date().toISOStri
  const state=v7State(progress,at);
  try{await DB.prepare("INSERT INTO mt_v7_effort(user_id,week,logs,updated_at) SELECT ?,?,?,? WHERE (SELECT granted FROM consents WHERE user_id=? AND consent_type='my_shift_health_tracking' ORDER BY id DESC LIMIT 1)=1 AND COALESCE((SELECT json_extract(preferences,'$.myJourney.setup.paused') FROM member_state WHERE user_id=?),0)<>1 ON CONFLICT(user_id,week) DO UPDATE SET logs=MAX(logs,excluded.logs),updated_at=excluded.updated_at").bind(userId,state.week,state.weeklyCount,at,userId,userId).run();return true;}catch{return false;}
 }
-export async function v7CrewSnapshot(DB,userId,at=new Date().toISOString()){
+export async function v7CrewSnapshot(DB,userId,at=new Date().toISOString(),prepared=null){
  try{
-  const own=await DB.prepare('SELECT crew_id FROM mt_v7_crew_members WHERE user_id=?').bind(userId).first();
+  const own=prepared?prepared.membership:await DB.prepare('SELECT crew_id FROM mt_v7_crew_members WHERE user_id=?').bind(userId).first();
   const week=v7Week(journeyDay(at));if(!own)return {available:true,joined:false,week,members:[]};
   // Membership is established from the authenticated account, never a supplied
   // crew ID. The response contains no account IDs or underlying health records.

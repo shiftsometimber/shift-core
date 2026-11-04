@@ -1,6 +1,7 @@
 import {generatorSubset} from './v7-generator-subset.mjs';
 // Installs only the isolated synthetic-account test site. No production routes,
 // secrets, schedules or database bindings are copied. Production is rejected.
+import {pathToFileURL} from 'node:url';
 import {execFileSync} from 'node:child_process';import fs from 'node:fs';import path from 'node:path';import zlib from 'node:zlib';import crypto from 'node:crypto';import esbuild from 'esbuild';
 import {cloudflareRequest as cf} from '/Users/shiftsometimberltd/SST/builds/apple-completion-20261024/journey-shop-release-20261031/performance-precompiled-cloudflare-client-20261103.mjs';
 const ACCOUNT='9e5386dcf455be34c582d93f8bfc79e6',TEST_DB='247b065f-fea4-4891-945b-b707f2417656',PROD_DB='88f40aed-cb23-4372-8c94-8a73f48bc847';
@@ -42,6 +43,14 @@ programme.modules=[];
 let p=await build('member-experience/v7-programme-native-entry.mjs',[]);
 p=p.replaceAll('__MY_TIMBER_CURRENT_SERVING__','../'+programme.main_module).replaceAll('__MY_TIMBER_CURRENT_HELPERS__','../worker.mjs');
 const assetTag=digest(p).slice(0,20);p=p.replaceAll('__V7_NATIVE_ASSET_TAG__',assetTag);
+// Precompress the exact served browser bytes at build time. No page-open work.
+const compressFile=path.join(output,'native-compression-source.mjs');fs.writeFileSync(compressFile,p);
+const compressionApp=(await import(pathToFileURL(compressFile).href+'?build='+Date.now())).default,compression=[];
+for(const [asset,marker]of [['v7-native.mjs','__V7_BROTLI_BROWSER__'],['v7-native.css','__V7_BROTLI_CSS__']]){
+ const response=await compressionApp.fetch(new Request('https://shiftsometimber.co.uk/assets/member-experience/'+asset,{headers:{'Accept-Encoding':'identity'}}),{},{});if(!response.ok)throw Error('Native precompression source unavailable');
+ const raw=Buffer.from(await response.arrayBuffer()),packed=zlib.brotliCompressSync(raw,{params:{[zlib.constants.BROTLI_PARAM_QUALITY]:11,[zlib.constants.BROTLI_PARAM_MODE]:zlib.constants.BROTLI_MODE_TEXT}});if(!zlib.brotliDecompressSync(packed).equals(raw))throw Error('Native byte verification failed');p=p.replaceAll(marker,packed.toString('base64'));compression.push({asset,rawBytes:raw.length,brotliBytes:packed.length,roundTripIdentical:true,sha256:digest(raw)});
+}
+fs.writeFileSync('member-experience/welcome-release-evidence/compression.json',JSON.stringify(compression,null,2)+'\n');
 programme.modules.push(module('v7-release-20261103/programme.mjs',p));
 let c=await build('member-experience/v7-core-planner.mjs',['cloudflare:workers','__MY_TIMBER_CURRENT_CORE__','__MY_TIMBER_CURRENT_CORE_HELPERS__']);
 c=c.replaceAll('__MY_TIMBER_CURRENT_CORE__','../'+core.main_module).replaceAll('__MY_TIMBER_CURRENT_CORE_HELPERS__','../worker.js');
