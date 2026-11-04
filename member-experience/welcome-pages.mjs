@@ -29,6 +29,10 @@ export function welcomePages(s){
 }
 
 export const welcomeStyles=String.raw`
+#mtNativeMain .mt-welcome [data-welcome-primary]{position:relative;isolation:isolate;overflow:hidden;min-height:56px;padding:14px 16px;border-color:#E7E3DA66;border-radius:14px;background:#707762;color:#050505;box-shadow:0 4px 18px #70776233,inset 0 1px 0 #E7E3DA33;font-weight:800}
+#mtNativeMain .mt-welcome [data-welcome-primary]::before{content:"";position:absolute;z-index:-1;inset:0 auto 0 0;width:58%;pointer-events:none;background:linear-gradient(110deg,transparent,#E7E3DA22 30%,#E7E3DA99 50%,#E7E3DA22 70%,transparent);transform:translateX(-180%) skewX(-18deg);animation:mtWelcomeShimmer 6.5s ease-in-out infinite}
+@keyframes mtWelcomeShimmer{0%{transform:translateX(-180%) skewX(-18deg)}20%,100%{transform:translateX(310%) skewX(-18deg)}}
+@media(prefers-reduced-motion:reduce){#mtNativeMain .mt-welcome [data-welcome-primary]::before{animation:none;display:none}}
 #mtNativeMain[data-mt-content=welcome]{max-width:600px;padding:10px 0 24px}
 .mt-welcome{padding:0 6px}.mt-welcome-headline{display:block;width:calc(100vw - 16px);max-width:100%;height:auto;margin:0 auto;mask-image:linear-gradient(90deg,transparent,#000 2%,#000 98%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 2%,#000 98%,transparent)}
 .mt-welcome-note{position:relative;width:calc(100vw - 12px);max-width:100%;margin:-1px auto 8px}.mt-welcome-note>img{display:block;width:100%;height:auto;mask-image:linear-gradient(90deg,transparent,#000 1%,#000 99%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 1%,#000 99%,transparent)}
