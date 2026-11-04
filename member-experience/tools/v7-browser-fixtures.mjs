@@ -17,6 +17,9 @@ for(const [engine,offset]of [['chromium',100],['webkit',200]]){
   // Remove only this dedicated fixture's current-day action; historical seed
   // rows remain exactly 12 or 29. No real-account IDs are accepted here.
   const today=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London'}).format(new Date());
+  // The owned fixture's food ledger is emptied below. Its prepared summary must
+  // describe this test day too, including when a run crosses midnight.
+  preferences.v7NutritionDay={on:today,proteinG:0,kcal:0,unknownProtein:0,unknownCalories:0};
   delete progress.v7.days[today];progress.operations=[];progress.revision=0;progress.v7.milestones={};progress.v7.preferences={showWeight:true,lead:'weight'};
   if(progress.v7.fit){progress.v7.fit.days={};progress.v7.fit.moves={};progress.v7.fit.feedback={};progress.v7.fit.healthTags=[];}
   await query('INSERT INTO users(id,email,first_name,last_name) VALUES(?,?,?,?) ON CONFLICT(id) DO NOTHING',[id,email,'V7 synthetic',engine+' '+name]);

@@ -1,6 +1,7 @@
 // One-time release/setup preparation. Never invoked by a screen GET. Existing
 // daily logs, milestones and member words are retained in the same CAS write.
 import {prepareV7Fit} from './v7-fit.mjs';import {updateNutritionSummary} from './v7-food-routes.mjs';
+import {journeyDay} from './journey-records.mjs';
 const parse=s=>{try{return JSON.parse(s||'{}')}catch{return {}}};
 export async function initialiseV7Member(env,userId,prepareOffers,generateFit,at=new Date().toISOString()){
  if(!Number.isSafeInteger(userId)||userId<=0)throw Error('Invalid account');
@@ -9,7 +10,7 @@ export async function initialiseV7Member(env,userId,prepareOffers,generateFit,at
   const consent=await env.DB.prepare("SELECT granted FROM consents WHERE user_id=? AND consent_type='my_shift_health_tracking' ORDER BY id DESC LIMIT 1").bind(userId).first();
   const prefs=parse(row.preferences);if(Number(consent?.granted)!==1||prefs.myJourney?.setup?.paused===true)return {skipped:'tracking_off_or_paused'};
   const signature=JSON.stringify([prefs.food||null,prefs.movement||null]),old=prefs.lifeBack?.progress||{version:3,revision:0,entries:[],operations:[]};
-  if(old.v7?.initialisationSignature===signature&&old.v7?.initialisedAt)return {skipped:'already_prepared'};
+  if(old.v7?.initialisationSignature===signature&&old.v7?.initialisedAt&&old.v7?.offers?.on===journeyDay(at))return {skipped:'already_prepared'};
   const offers=await prepareOffers(env.DB,prefs,at,userId),next=structuredClone(old);
   next.v7||={version:1,preferences:{showWeight:true,lead:'weight'},days:{},milestones:{},activityReadings:[]};next.v7.offers=offers;
   let fitReady=!!next.v7.fit?.selected,fitError=null;

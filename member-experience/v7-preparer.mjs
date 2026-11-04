@@ -6,15 +6,19 @@ import {v7Offer} from './v7-context.mjs';
 import {v7ApprovedFitPreview,v7FitCatalogue} from '__MY_TIMBER_CURRENT_CORE_HELPERS__';
 import {v7LoadGrubCatalogue as loadGrubCatalogue,v7EmptyGrub as emptyGrub,v7UsableCatalogue as usableCatalogue,v7RecommendationFor as recommendationFor,v7GrubMemberContext as grubMemberContext} from '__MY_TIMBER_CURRENT_PROGRAMME_HELPERS__';
 export default {fetch(){return new Response('Not found',{status:404})}};
-function limiter(max){let active=0;const queue=[];return async task=>{if(active<max)active++;else await new Promise(resolve=>queue.push(resolve));try{return await task()}finally{const next=queue.shift();if(next)next();else active--;}};}
-const initialiseWork=limiter(2),fitWork=limiter(1);
+// Never park one request on a promise owned by another request: the Workers
+// runtime can cancel that wait. The finite release caller controls concurrency.
+// Cache only completed public catalogues, never member preferences or promises.
+let fitCatalogue=null,foodCatalogue=null;
+async function reviewedFitCatalogue(env){if(fitCatalogue?.expires>Date.now())return fitCatalogue.rows;const rows=await v7FitCatalogue(env.DB);fitCatalogue={rows,expires:Date.now()+300000};return rows;}
+async function reviewedFoodCatalogue(env){if(foodCatalogue?.expires>Date.now())return foodCatalogue.rows;const rows=usableCatalogue(await loadGrubCatalogue(env.DB));foodCatalogue={rows,expires:Date.now()+300000};return rows;}
 async function prepareMember(env,userId){
  const planner={env,account:V7Planner.prototype.account,plan:V7Planner.prototype.plan,prepareV7Fit:V7Planner.prototype.prepareV7Fit,prepareV7FitBatch:V7Planner.prototype.prepareV7FitBatch};
  const generator=(id,settings)=>planner.prepareV7Fit({userId:id,...settings});generator.batch=(id,settings)=>planner.prepareV7FitBatch({userId:id,settings});
  const offers={env};return initialiseV7Member(env,userId,(_DB,_prefs,at,id)=>V7Offers.prototype.prepareOffers.call(offers,{userId:id,at}),generator);
 }
 export class V7Planner extends WorkerEntrypoint {
- async initialiseMember({userId}){return initialiseWork(()=>prepareMember(this.env,userId));}
+ async initialiseMember({userId}){return prepareMember(this.env,userId);}
  async account(userId){
   if(!Number.isSafeInteger(userId)||userId<=0)throw Error('Invalid account');
   const consent=await this.env.DB.prepare("SELECT granted FROM consents WHERE user_id=? AND consent_type='my_shift_health_tracking' ORDER BY id DESC LIMIT 1").bind(userId).first();
@@ -46,24 +50,24 @@ export class V7Planner extends WorkerEntrypoint {
   if(changed)plan.adaptation_reason='Different reviewed movement choices after your last feedback. Exercise prescriptions stay as reviewed.';
   return plan;
  }
- async prepareV7Fit(settings){return fitWork(async()=>{const prefs=await this.account(settings.userId);return this.plan(settings,prefs,null);});}
- async prepareV7FitBatch({userId,settings}){return fitWork(async()=>{
+ async prepareV7Fit(settings){const prefs=await this.account(settings.userId);return this.plan(settings,prefs,await reviewedFitCatalogue(this.env));}
+ async prepareV7FitBatch({userId,settings}){
   if(!Array.isArray(settings)||settings.length>10)throw Error('Invalid prepared choices');
-  const prefs=await this.account(userId),catalogue=await v7FitCatalogue(this.env.DB),results=[];
+  const prefs=await this.account(userId),catalogue=await reviewedFitCatalogue(this.env),results=[];
   for(const item of settings){try{results.push({settings:item,plan:await this.plan({userId,...item},prefs,catalogue)});}catch(e){results.push({settings:item,error:e.message});}}
   return results;
- });}
+ }
 }
 
 export class V7Offers extends WorkerEntrypoint {
  async legacyScheduled(input){return this.env.LEGACY_JOBS?.legacyScheduled(input)||null;}
- async recipeById({id}){if(typeof id!=='string'||id.length>180)throw Error('Invalid recipe');return usableCatalogue(await loadGrubCatalogue(this.env.DB)).find(r=>r.id===id)||null;}
+ async recipeById({id}){if(typeof id!=='string'||id.length>180)throw Error('Invalid recipe');return (await reviewedFoodCatalogue(this.env)).find(r=>r.id===id)||null;}
  async prepareOffers({userId,at}){
   if(!Number.isSafeInteger(userId)||userId<=0||!Number.isFinite(Date.parse(at)))throw Error('Invalid prepared offer request');
   const consent=await this.env.DB.prepare("SELECT granted FROM consents WHERE user_id=? AND consent_type='my_shift_health_tracking' ORDER BY id DESC LIMIT 1").bind(userId).first();
   const prefs=JSON.parse((await this.env.DB.prepare('SELECT preferences FROM member_state WHERE user_id=?').bind(userId).first())?.preferences||'{}');
   if(Number(consent?.granted)!==1||prefs.myJourney?.setup?.paused===true)throw Error('Tracking is off or paused');
-  const recipes=usableCatalogue(await loadGrubCatalogue(this.env.DB)),offer=v7Offer(prefs,recipes,at,{emptyGrub,recommendationFor,grubMemberContext});
+  const recipes=await reviewedFoodCatalogue(this.env),offer=v7Offer(prefs,recipes,at,{emptyGrub,recommendationFor,grubMemberContext});
   return {on:offer.today||new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London'}).format(new Date(at)),grubRevision:prefs.grubV2?.revision||0,foodChoices:JSON.stringify(prefs.food||{}),action:offer.action,alternatives:offer.alternatives,choices:[offer.action,...offer.alternatives]};
  }
 }
