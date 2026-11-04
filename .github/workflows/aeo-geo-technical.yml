@@ -24,7 +24,7 @@ jobs:
           node-version-file: .nvmrc
       - name: Public-only rendering, publication boundaries and existing privacy guards
         run: |
-          node --test aeo-geo/source.test.mjs aeo-geo/retatrutide.test.mjs aeo-geo/seo-intent-candidate.test.mjs acquisition-activation/ai-referrals.test.mjs tests/general-analytics-privacy.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/runtime-rollback-guard.test.mjs
+          node --test aeo-geo/source.test.mjs aeo-geo/retatrutide.test.mjs aeo-geo/seo-intent-candidate.test.mjs aeo-geo/wegovy-meta.test.mjs acquisition-activation/ai-referrals.test.mjs tests/general-analytics-privacy.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/runtime-rollback-guard.test.mjs
           node --check aeo-geo/build.mjs
           node --check aeo-geo/capture.mjs
           git diff --check
@@ -32,17 +32,17 @@ jobs:
         name: Select only the finite owner-approved medicine amendment
         run: node aeo-geo/retatrutide-scope.mjs
       - id: wegovy
-        name: Select the reviewed Wegovy search metadata amendment only
+        name: Select the reviewed exact-owner Wegovy metadata slice only
         run: |
           node --input-type=module <<'WEGOVY_SCOPE'
           import {execFileSync} from 'node:child_process';
           import {readFileSync,appendFileSync} from 'node:fs';
           const event=JSON.parse(readFileSync(process.env.GITHUB_EVENT_PATH,'utf8'));
-          const allowed=new Set(['aeo-geo/schema.mjs','aeo-geo/seo-intent-candidate.test.mjs','aeo-geo/release.mjs','.github/workflows/aeo-geo-technical.yml']);
+          const allowed=new Set(['aeo-geo/wegovy-meta.mjs','aeo-geo/wegovy-meta.test.mjs','aeo-geo/wegovy-owner-release.mjs','.github/workflows/aeo-geo-technical.yml']);
           let selected=false;
           if(process.env.GITHUB_EVENT_NAME==='push'&&process.env.GITHUB_REF==='refs/heads/main'&&event.before){
             const paths=execFileSync('git',['diff','--name-only',event.before,'HEAD'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
-            selected=paths.includes('aeo-geo/schema.mjs')&&paths.every(p=>allowed.has(p));
+            selected=paths.includes('aeo-geo/wegovy-meta.mjs')&&paths.every(p=>allowed.has(p));
           }
           appendFileSync(process.env.GITHUB_OUTPUT,'wegovy='+selected+'\n');
           console.log(JSON.stringify({wegovy:selected}));
@@ -69,12 +69,12 @@ jobs:
       - name: Run metadata, privacy and rollback qualification
         run: |
           node --test aeo-geo/seo-intent-candidate.test.mjs aeo-geo/source.test.mjs tests/general-analytics-privacy.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/runtime-rollback-guard.test.mjs
-          node --check aeo-geo/release.mjs
-      - name: Stage and promote only the article worker's existing schema module
-        run: node aeo-geo/release.mjs amend-wegovy
+          node --check aeo-geo/wegovy-owner-release.mjs
+      - name: Stage only the exact article owner and preserve all original modules
+        run: node aeo-geo/wegovy-owner-release.mjs
       - name: Restore this release's owned deployment on failure
         if: failure()
-        run: node aeo-geo/release.mjs rollback
+        run: node aeo-geo/wegovy-owner-release.mjs rollback
       - uses: actions/upload-artifact@v4
         if: always()
         with:
