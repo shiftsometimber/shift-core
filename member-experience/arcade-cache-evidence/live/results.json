@@ -1,0 +1,137 @@
+{
+  "at": "2026-11-04T23:44:18.045Z",
+  "physical": false,
+  "synthetic": "v7-live-proof@example.invalid",
+  "engines": [
+    {
+      "name": "chromium",
+      "checks": [
+        {
+          "id": "Shop remains exactly as before the cache repair",
+          "pass": true
+        },
+        {
+          "id": "Verified owned synthetic identity",
+          "pass": true
+        },
+        {
+          "id": "Today explicitly shows All 8 games",
+          "pass": true
+        },
+        {
+          "id": "Today door opens eight games",
+          "pass": true
+        },
+        {
+          "id": "Shed Fighter appears as the eighth game",
+          "pass": true
+        },
+        {
+          "id": "New introduction is present",
+          "pass": true
+        },
+        {
+          "id": "Eighth game opens its phone controls",
+          "pass": true
+        },
+        {
+          "id": "Frame did not reload when entering or leaving the arcade",
+          "pass": true
+        },
+        {
+          "id": "Normal cached app reopen still shows eight without bypass",
+          "pass": true
+        },
+        {
+          "id": "Stale script address resolves to the current release",
+          "pass": true,
+          "detail": {
+            "ok": true,
+            "updated": true,
+            "eight": true,
+            "old": false
+          }
+        },
+        {
+          "id": "Current app does not show a spurious update notice",
+          "pass": true
+        },
+        {
+          "id": "Identity, saved bests, food and pile are preserved",
+          "pass": true
+        },
+        {
+          "id": "No browser execution errors",
+          "pass": true,
+          "detail": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "name": "webkit",
+      "checks": [
+        {
+          "id": "Shop remains exactly as before the cache repair",
+          "pass": true
+        },
+        {
+          "id": "Verified owned synthetic identity",
+          "pass": true
+        },
+        {
+          "id": "Today explicitly shows All 8 games",
+          "pass": true
+        },
+        {
+          "id": "Today door opens eight games",
+          "pass": true
+        },
+        {
+          "id": "Shed Fighter appears as the eighth game",
+          "pass": true
+        },
+        {
+          "id": "New introduction is present",
+          "pass": true
+        },
+        {
+          "id": "Eighth game opens its phone controls",
+          "pass": true
+        },
+        {
+          "id": "Frame did not reload when entering or leaving the arcade",
+          "pass": true
+        },
+        {
+          "id": "Normal cached app reopen still shows eight without bypass",
+          "pass": true
+        },
+        {
+          "id": "Stale script address resolves to the current release",
+          "pass": true,
+          "detail": {
+            "ok": true,
+            "updated": true,
+            "eight": true,
+            "old": false
+          }
+        },
+        {
+          "id": "Current app does not show a spurious update notice",
+          "pass": true
+        },
+        {
+          "id": "Identity, saved bests, food and pile are preserved",
+          "pass": true
+        },
+        {
+          "id": "No browser execution errors",
+          "pass": true,
+          "detail": []
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

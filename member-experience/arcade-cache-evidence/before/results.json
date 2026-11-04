@@ -1,0 +1,26 @@
+{
+  "at": "2026-11-04T23:42:08.993Z",
+  "physical": false,
+  "synthetic": "v7-live-proof@example.invalid",
+  "engines": [
+    {
+      "name": "chromium",
+      "checks": [
+        {
+          "id": "Capture current Shop without touching it",
+          "pass": true
+        },
+        {
+          "id": "Verified owned synthetic identity",
+          "pass": true
+        },
+        {
+          "id": "No browser execution errors",
+          "pass": true,
+          "detail": []
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

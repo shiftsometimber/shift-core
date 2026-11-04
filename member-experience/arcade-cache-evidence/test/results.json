@@ -1,0 +1,2984 @@
+{
+  "at": "2026-11-04T23:42:43.481Z",
+  "origin": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev",
+  "physical": false,
+  "oldProductionVersion": "2abe05bf-2f50-4818-8335-a2180293cf7e",
+  "oldTag": "007f02a2faa09ddbf394",
+  "engines": [
+    {
+      "name": "chromium",
+      "account": "shed-arcade-one@example.invalid",
+      "checks": [
+        {
+          "id": "Captured previous release really displays All seven games",
+          "pass": true
+        },
+        {
+          "id": "Seven-game shell persists in real service-worker cache",
+          "pass": true
+        },
+        {
+          "id": "Previously cached arcade really has only seven tiles",
+          "pass": true
+        },
+        {
+          "id": "Unsaved form is present before the background worker upgrade",
+          "pass": true
+        },
+        {
+          "id": "Only the test fixture cookie is removed; sign-in cookie remains",
+          "pass": true
+        },
+        {
+          "id": "Background upgrade neither reloads the frame nor discards an unsaved form",
+          "pass": true
+        },
+        {
+          "id": "Normal app reopen upgrades seven to eight without cache clearing",
+          "pass": true
+        },
+        {
+          "id": "Stale asset URL receives current code rather than old cached code",
+          "pass": true
+        },
+        {
+          "id": "Same installed browser now opens all eight games and Shed Fighter",
+          "pass": true
+        },
+        {
+          "id": "Updated introduction survives upgrading the cached app",
+          "pass": true
+        },
+        {
+          "id": "New eighth game opens from an upgraded seven-game app",
+          "pass": true
+        },
+        {
+          "id": "Upgrade preserves sign-in, daily pile, food and saved arcade bests",
+          "pass": true
+        },
+        {
+          "id": "No execution errors during upgrade",
+          "pass": true,
+          "detail": []
+        }
+      ],
+      "errors": [],
+      "boot": {
+        "treatment": null,
+        "arcade": {
+          "version": 1,
+          "revision": 2,
+          "on": "2026-11-04",
+          "gameOfDay": "over-the-shed",
+          "bests": {
+            "mt_timberlob_level": 8,
+            "mt_fight_best": 4
+          },
+          "muted": true,
+          "nickname": "",
+          "nudge": {
+            "week": 2966,
+            "shown": [],
+            "dismissed": false
+          }
+        },
+        "league": {
+          "available": true,
+          "joined": false,
+          "week": "2026-11-02",
+          "members": []
+        },
+        "accountId": 900710401,
+        "expiresAt": "2026-11-11T23:05:48.973Z",
+        "page": "today",
+        "tracking": true,
+        "progress": {
+          "revision": 0
+        },
+        "v7": {
+          "action": {
+            "id": "routine:pause",
+            "kind": "confidence",
+            "title": "One less thing to carry today.",
+            "name": "Let one ordinary job wait",
+            "time": "A moment, with no catch-up task",
+            "items": [],
+            "steps": [
+              "Choose one non-urgent job you can leave for later.",
+              "Keep only the next manageable thing in view."
+            ],
+            "fallback": "If you need help beyond a practical step, open Support.",
+            "href": "/member/dashboard?timber=support#today",
+            "label": "Open Support",
+            "completedLabel": "One ordinary job left for later.",
+            "reason": "Keep one manageable thing in view while your saved food choices are prepared."
+          },
+          "alternatives": [],
+          "adaptation": null,
+          "returning": false,
+          "today": "2026-11-04",
+          "preferences": {
+            "showWeight": true,
+            "lead": "weight",
+            "activity": null
+          },
+          "count": 12,
+          "lifetimeCount": 12,
+          "target": 30,
+          "weeklyCount": 1,
+          "week": "2026-11-02",
+          "completedToday": false,
+          "milestone": null,
+          "fit": {
+            "selected": {
+              "id": "fit:2026-11-03:20:dumbbells",
+              "minutes": 20,
+              "kit": "dumbbells",
+              "name": "20-minute full-body strength session",
+              "location": "home",
+              "session": {
+                "day": 1,
+                "title": "20-minute full-body strength session",
+                "estimated_minutes": 12,
+                "exercises": [
+                  {
+                    "id": "industrial-v3-fit-calf-raise-density-beginner",
+                    "name": "Calf Raise — Density Beginner",
+                    "group": "warmup",
+                    "movement_group": "strength",
+                    "canonical_movement": "calf-raise",
+                    "minutes": 3,
+                    "sets": 2,
+                    "reps": 8,
+                    "rest_seconds": 75,
+                    "how": [
+                      "Stand tall with light support nearby. Rise onto the balls of your feet, pause at the top, then lower your heels slowly all the way down.",
+                      "Keep it controlled enough that you could stop the rep cleanly at any point."
+                    ],
+                    "form_cues": [
+                      "What it should feel like: calves working through a full, controlled range",
+                      "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                      "What it should not feel like: ankle pain or bouncing through the reps"
+                    ],
+                    "safety_cues": [
+                      "What it should not feel like: ankle pain or bouncing through the reps"
+                    ],
+                    "equipment": [
+                      "none"
+                    ],
+                    "locations": [
+                      "home",
+                      "gym",
+                      "work"
+                    ],
+                    "avoid": [],
+                    "caution": [
+                      "poor-balance"
+                    ],
+                    "regressions": [
+                      "Use both hands for support and a smaller range."
+                    ],
+                    "progressions": [
+                      "Use one leg at a time or hold a dumbbell."
+                    ],
+                    "substitutions": [
+                      "calf-raise:easy-day-beginner",
+                      "calf-raise:technique-standard"
+                    ],
+                    "visual": {
+                      "status": "approved",
+                      "asset_ref": "assets/fit/premium/calf-raise.svg",
+                      "alt_text": "Calf Raise — Density Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                      "geometry": "v3",
+                      "canonical_movement": "calf-raise"
+                    },
+                    "purpose": {
+                      "focus": "Calf strength",
+                      "benefit": "Works the lower-leg muscles used when pushing off the ground during walking and climbing steps.",
+                      "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                      "sources": [
+                        "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                        "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                      ]
+                    },
+                    "selection_reason": "Included for strength within your selected 20-minute home session. It needs no exercise equipment.",
+                    "structured": {
+                      "published": true,
+                      "version": 21,
+                      "updated_at": "2026-08-16 18:56:48",
+                      "provenance": {
+                        "source": "Shift industrial structured movement factory",
+                        "version": "industrial-v3",
+                        "authored_at": "2026-08-12",
+                        "final_v1_acceptance": {
+                          "accepted": true,
+                          "reviewer": "Matt",
+                          "accepted_at": "2026-08-14T14:29:00+01:00",
+                          "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                          "review_run": 31802631318,
+                          "artifact_id": 9219877222,
+                          "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                          "canonical_movement": "calf-raise"
+                        }
+                      },
+                      "final_v1_accepted": true,
+                      "review_authority": {
+                        "scope": "canonical_movement",
+                        "canonical_movement": "calf-raise",
+                        "accepted": true,
+                        "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                      }
+                    }
+                  },
+                  {
+                    "id": "industrial-v3-fit-glute-bridge-easy-day-beginner",
+                    "name": "Glute Bridge — Easy Day Beginner",
+                    "group": "legs",
+                    "movement_group": "strength",
+                    "canonical_movement": "glute-bridge",
+                    "minutes": 3,
+                    "sets": 2,
+                    "reps": 8,
+                    "rest_seconds": 75,
+                    "how": [
+                      "Lie on your back with knees bent and feet flat. Brace gently, drive through your heels and lift your hips until shoulders, hips and knees form a long line; lower slowly.",
+                      "Keep it controlled enough that you could stop the rep cleanly at any point."
+                    ],
+                    "form_cues": [
+                      "What it should feel like: glutes squeezing hard at the top",
+                      "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                      "What it should not feel like: cramping in the lower back or hamstrings taking over completely"
+                    ],
+                    "safety_cues": [
+                      "What it should not feel like: cramping in the lower back or hamstrings taking over completely"
+                    ],
+                    "equipment": [
+                      "none"
+                    ],
+                    "locations": [
+                      "home",
+                      "gym",
+                      "hotel"
+                    ],
+                    "avoid": [],
+                    "caution": [
+                      "acute-low-back-pain"
+                    ],
+                    "regressions": [
+                      "Lift only as high as you can keep the ribs down and glutes working."
+                    ],
+                    "progressions": [
+                      "Pause for two seconds at the top or progress to a single-leg-supported version."
+                    ],
+                    "substitutions": [
+                      "glute-bridge:easy-day-beginner",
+                      "glute-bridge:technique-standard"
+                    ],
+                    "visual": {
+                      "status": "approved",
+                      "asset_ref": "assets/fit/premium/glute-bridge.svg",
+                      "alt_text": "Glute Bridge — Easy Day Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                      "geometry": "v3",
+                      "canonical_movement": "glute-bridge"
+                    },
+                    "purpose": {
+                      "focus": "Glute and hip strength",
+                      "benefit": "Trains your glutes as you lift and lower your hips under control.",
+                      "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                      "sources": [
+                        "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                        "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                      ]
+                    },
+                    "selection_reason": "Included for strength within your selected 20-minute home session. It needs no exercise equipment.",
+                    "structured": {
+                      "published": true,
+                      "version": 21,
+                      "updated_at": "2026-08-16 18:56:48",
+                      "provenance": {
+                        "source": "Shift industrial structured movement factory",
+                        "version": "industrial-v3",
+                        "authored_at": "2026-08-12",
+                        "final_v1_acceptance": {
+                          "accepted": true,
+                          "reviewer": "Matt",
+                          "accepted_at": "2026-08-14T14:29:00+01:00",
+                          "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                          "review_run": 31802631318,
+                          "artifact_id": 9219877222,
+                          "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                          "canonical_movement": "glute-bridge"
+                        }
+                      },
+                      "final_v1_accepted": true,
+                      "review_authority": {
+                        "scope": "canonical_movement",
+                        "canonical_movement": "glute-bridge",
+                        "accepted": true,
+                        "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                      }
+                    }
+                  },
+                  {
+                    "id": "industrial-v3-fit-chest-press-endurance-beginner",
+                    "name": "Chest Press — Endurance Beginner",
+                    "group": "push",
+                    "movement_group": "strength",
+                    "canonical_movement": "chest-press",
+                    "minutes": 3,
+                    "sets": 2,
+                    "reps": 8,
+                    "rest_seconds": 75,
+                    "how": [
+                      "Lie supported with a dumbbell in each hand, elbows slightly below shoulder level. Press the weights up until your arms are long without smashing the dumbbells together, then lower with control.",
+                      "Keep it controlled enough that you could stop the rep cleanly at any point."
+                    ],
+                    "form_cues": [
+                      "What it should feel like: chest and triceps working with shoulders staying settled",
+                      "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                      "What it should not feel like: pain at the front of the shoulder or excessive back arch"
+                    ],
+                    "safety_cues": [
+                      "What it should not feel like: pain at the front of the shoulder or excessive back arch"
+                    ],
+                    "equipment": [
+                      "dumbbell",
+                      "dumbbells"
+                    ],
+                    "locations": [
+                      "home",
+                      "gym"
+                    ],
+                    "avoid": [],
+                    "caution": [
+                      "acute-shoulder-pain"
+                    ],
+                    "regressions": [
+                      "Use lighter weights or a neutral grip."
+                    ],
+                    "progressions": [
+                      "Increase the load a little once every rep stays smooth."
+                    ],
+                    "substitutions": [
+                      "chest-press:easy-day-beginner",
+                      "chest-press:technique-standard"
+                    ],
+                    "visual": {
+                      "status": "approved",
+                      "asset_ref": "assets/fit/premium/chest-press.svg",
+                      "alt_text": "Chest Press — Endurance Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                      "geometry": "v3",
+                      "canonical_movement": "chest-press"
+                    },
+                    "purpose": {
+                      "focus": "Upper-body pushing strength",
+                      "benefit": "Trains the chest, shoulders and triceps through a controlled pushing movement.",
+                      "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                      "sources": [
+                        "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                        "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                      ]
+                    },
+                    "selection_reason": "Included for strength within your selected 20-minute home session. Its listed setup uses dumbbell, dumbbells, which matches the kit available.",
+                    "structured": {
+                      "published": true,
+                      "version": 21,
+                      "updated_at": "2026-08-16 18:56:48",
+                      "provenance": {
+                        "source": "Shift industrial structured movement factory",
+                        "version": "industrial-v3",
+                        "authored_at": "2026-08-12",
+                        "final_v1_acceptance": {
+                          "accepted": true,
+                          "reviewer": "Matt",
+                          "accepted_at": "2026-08-14T14:29:00+01:00",
+                          "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                          "review_run": 31802631318,
+                          "artifact_id": 9219877222,
+                          "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                          "canonical_movement": "chest-press"
+                        }
+                      },
+                      "final_v1_accepted": true,
+                      "review_authority": {
+                        "scope": "canonical_movement",
+                        "canonical_movement": "chest-press",
+                        "accepted": true,
+                        "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                      }
+                    }
+                  },
+                  {
+                    "id": "industrial-v3-fit-row-gym-beginner",
+                    "name": "Row — Gym Beginner",
+                    "group": "pull",
+                    "movement_group": "strength",
+                    "canonical_movement": "row",
+                    "minutes": 3,
+                    "sets": 2,
+                    "reps": 8,
+                    "rest_seconds": 75,
+                    "how": [
+                      "Brace one hand on a bench or hinge forward with a long spine. Pull the weight towards your hip, squeeze the shoulder blade back, then lower until the arm is long again.",
+                      "Keep it controlled enough that you could stop the rep cleanly at any point."
+                    ],
+                    "form_cues": [
+                      "What it should feel like: upper back and rear shoulder, not just the biceps",
+                      "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                      "What it should not feel like: twisting through the torso or shoulder pinching"
+                    ],
+                    "safety_cues": [
+                      "What it should not feel like: twisting through the torso or shoulder pinching"
+                    ],
+                    "equipment": [
+                      "dumbbell",
+                      "dumbbells"
+                    ],
+                    "locations": [
+                      "home",
+                      "gym"
+                    ],
+                    "avoid": [],
+                    "caution": [
+                      "acute-low-back-pain"
+                    ],
+                    "regressions": [
+                      "Use a lighter weight and more support."
+                    ],
+                    "progressions": [
+                      "Increase the weight or add a short squeeze at the top."
+                    ],
+                    "substitutions": [
+                      "row:easy-day-beginner",
+                      "row:technique-standard"
+                    ],
+                    "visual": {
+                      "status": "approved",
+                      "asset_ref": "assets/fit/premium/row.svg",
+                      "alt_text": "Row — Gym Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                      "geometry": "v3",
+                      "canonical_movement": "row"
+                    },
+                    "purpose": {
+                      "focus": "Upper-body pulling strength",
+                      "benefit": "Works the upper back and arms through a pulling movement.",
+                      "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                      "sources": [
+                        "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                        "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                      ]
+                    },
+                    "selection_reason": "Included for strength within your selected 20-minute home session. Its listed setup uses dumbbell, dumbbells, which matches the kit available.",
+                    "structured": {
+                      "published": true,
+                      "version": 21,
+                      "updated_at": "2026-08-16 18:56:48",
+                      "provenance": {
+                        "source": "Shift industrial structured movement factory",
+                        "version": "industrial-v3",
+                        "authored_at": "2026-08-12",
+                        "final_v1_acceptance": {
+                          "accepted": true,
+                          "reviewer": "Matt",
+                          "accepted_at": "2026-08-14T14:29:00+01:00",
+                          "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                          "review_run": 31802631318,
+                          "artifact_id": 9219877222,
+                          "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                          "canonical_movement": "row"
+                        }
+                      },
+                      "final_v1_accepted": true,
+                      "review_authority": {
+                        "scope": "canonical_movement",
+                        "canonical_movement": "row",
+                        "accepted": true,
+                        "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                      }
+                    }
+                  }
+                ],
+                "progression": "If the session feels comfortably manageable twice in a row, add a little resistance or 1–2 reps — not a random extra 20 minutes to one exercise.",
+                "requested_minutes": 20,
+                "location": "home"
+              },
+              "reason": null,
+              "lowImpact": false
+            },
+            "alternatives": [
+              {
+                "id": "fit:2026-11-03:10:dumbbells",
+                "minutes": 10,
+                "kit": "dumbbells",
+                "name": "8-minute full-body strength session",
+                "location": "home",
+                "session": {
+                  "day": 1,
+                  "title": "8-minute full-body strength session",
+                  "estimated_minutes": 6,
+                  "exercises": [
+                    {
+                      "id": "industrial-v3-fit-calf-raise-density-beginner",
+                      "name": "Calf Raise — Density Beginner",
+                      "group": "warmup",
+                      "movement_group": "strength",
+                      "canonical_movement": "calf-raise",
+                      "minutes": 3,
+                      "sets": 2,
+                      "reps": 8,
+                      "rest_seconds": 75,
+                      "how": [
+                        "Stand tall with light support nearby. Rise onto the balls of your feet, pause at the top, then lower your heels slowly all the way down.",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point."
+                      ],
+                      "form_cues": [
+                        "What it should feel like: calves working through a full, controlled range",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                        "What it should not feel like: ankle pain or bouncing through the reps"
+                      ],
+                      "safety_cues": [
+                        "What it should not feel like: ankle pain or bouncing through the reps"
+                      ],
+                      "equipment": [
+                        "none"
+                      ],
+                      "locations": [
+                        "home",
+                        "gym",
+                        "work"
+                      ],
+                      "avoid": [],
+                      "caution": [
+                        "poor-balance"
+                      ],
+                      "regressions": [
+                        "Use both hands for support and a smaller range."
+                      ],
+                      "progressions": [
+                        "Use one leg at a time or hold a dumbbell."
+                      ],
+                      "substitutions": [
+                        "calf-raise:easy-day-beginner",
+                        "calf-raise:technique-standard"
+                      ],
+                      "visual": {
+                        "status": "approved",
+                        "asset_ref": "assets/fit/premium/calf-raise.svg",
+                        "alt_text": "Calf Raise — Density Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                        "geometry": "v3",
+                        "canonical_movement": "calf-raise"
+                      },
+                      "purpose": {
+                        "focus": "Calf strength",
+                        "benefit": "Works the lower-leg muscles used when pushing off the ground during walking and climbing steps.",
+                        "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                        "sources": [
+                          "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                          "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                        ]
+                      },
+                      "selection_reason": "Included for strength within your selected 10-minute home session. It needs no exercise equipment.",
+                      "structured": {
+                        "published": true,
+                        "version": 21,
+                        "updated_at": "2026-08-16 18:56:48",
+                        "provenance": {
+                          "source": "Shift industrial structured movement factory",
+                          "version": "industrial-v3",
+                          "authored_at": "2026-08-12",
+                          "final_v1_acceptance": {
+                            "accepted": true,
+                            "reviewer": "Matt",
+                            "accepted_at": "2026-08-14T14:29:00+01:00",
+                            "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                            "review_run": 31802631318,
+                            "artifact_id": 9219877222,
+                            "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                            "canonical_movement": "calf-raise"
+                          }
+                        },
+                        "final_v1_accepted": true,
+                        "review_authority": {
+                          "scope": "canonical_movement",
+                          "canonical_movement": "calf-raise",
+                          "accepted": true,
+                          "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                        }
+                      }
+                    },
+                    {
+                      "id": "industrial-v3-fit-glute-bridge-easy-day-beginner",
+                      "name": "Glute Bridge — Easy Day Beginner",
+                      "group": "legs",
+                      "movement_group": "strength",
+                      "canonical_movement": "glute-bridge",
+                      "minutes": 3,
+                      "sets": 2,
+                      "reps": 8,
+                      "rest_seconds": 75,
+                      "how": [
+                        "Lie on your back with knees bent and feet flat. Brace gently, drive through your heels and lift your hips until shoulders, hips and knees form a long line; lower slowly.",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point."
+                      ],
+                      "form_cues": [
+                        "What it should feel like: glutes squeezing hard at the top",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                        "What it should not feel like: cramping in the lower back or hamstrings taking over completely"
+                      ],
+                      "safety_cues": [
+                        "What it should not feel like: cramping in the lower back or hamstrings taking over completely"
+                      ],
+                      "equipment": [
+                        "none"
+                      ],
+                      "locations": [
+                        "home",
+                        "gym",
+                        "hotel"
+                      ],
+                      "avoid": [],
+                      "caution": [
+                        "acute-low-back-pain"
+                      ],
+                      "regressions": [
+                        "Lift only as high as you can keep the ribs down and glutes working."
+                      ],
+                      "progressions": [
+                        "Pause for two seconds at the top or progress to a single-leg-supported version."
+                      ],
+                      "substitutions": [
+                        "glute-bridge:easy-day-beginner",
+                        "glute-bridge:technique-standard"
+                      ],
+                      "visual": {
+                        "status": "approved",
+                        "asset_ref": "assets/fit/premium/glute-bridge.svg",
+                        "alt_text": "Glute Bridge — Easy Day Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                        "geometry": "v3",
+                        "canonical_movement": "glute-bridge"
+                      },
+                      "purpose": {
+                        "focus": "Glute and hip strength",
+                        "benefit": "Trains your glutes as you lift and lower your hips under control.",
+                        "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                        "sources": [
+                          "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                          "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                        ]
+                      },
+                      "selection_reason": "Included for strength within your selected 10-minute home session. It needs no exercise equipment.",
+                      "structured": {
+                        "published": true,
+                        "version": 21,
+                        "updated_at": "2026-08-16 18:56:48",
+                        "provenance": {
+                          "source": "Shift industrial structured movement factory",
+                          "version": "industrial-v3",
+                          "authored_at": "2026-08-12",
+                          "final_v1_acceptance": {
+                            "accepted": true,
+                            "reviewer": "Matt",
+                            "accepted_at": "2026-08-14T14:29:00+01:00",
+                            "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                            "review_run": 31802631318,
+                            "artifact_id": 9219877222,
+                            "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                            "canonical_movement": "glute-bridge"
+                          }
+                        },
+                        "final_v1_accepted": true,
+                        "review_authority": {
+                          "scope": "canonical_movement",
+                          "canonical_movement": "glute-bridge",
+                          "accepted": true,
+                          "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                        }
+                      }
+                    }
+                  ],
+                  "progression": "If the session feels comfortably manageable twice in a row, add a little resistance or 1–2 reps — not a random extra 20 minutes to one exercise.",
+                  "requested_minutes": 10,
+                  "location": "home"
+                },
+                "reason": null,
+                "lowImpact": false,
+                "swapLabel": "Shorter"
+              },
+              {
+                "id": "fit:2026-11-03:20:none",
+                "minutes": 20,
+                "kit": "none",
+                "name": "20-minute full-body strength session",
+                "location": "home",
+                "session": {
+                  "day": 1,
+                  "title": "20-minute full-body strength session",
+                  "estimated_minutes": 14,
+                  "exercises": [
+                    {
+                      "id": "industrial-v3-fit-calf-raise-density-beginner",
+                      "name": "Calf Raise — Density Beginner",
+                      "group": "warmup",
+                      "movement_group": "strength",
+                      "canonical_movement": "calf-raise",
+                      "minutes": 3,
+                      "sets": 2,
+                      "reps": 8,
+                      "rest_seconds": 75,
+                      "how": [
+                        "Stand tall with light support nearby. Rise onto the balls of your feet, pause at the top, then lower your heels slowly all the way down.",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point."
+                      ],
+                      "form_cues": [
+                        "What it should feel like: calves working through a full, controlled range",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                        "What it should not feel like: ankle pain or bouncing through the reps"
+                      ],
+                      "safety_cues": [
+                        "What it should not feel like: ankle pain or bouncing through the reps"
+                      ],
+                      "equipment": [
+                        "none"
+                      ],
+                      "locations": [
+                        "home",
+                        "gym",
+                        "work"
+                      ],
+                      "avoid": [],
+                      "caution": [
+                        "poor-balance"
+                      ],
+                      "regressions": [
+                        "Use both hands for support and a smaller range."
+                      ],
+                      "progressions": [
+                        "Use one leg at a time or hold a dumbbell."
+                      ],
+                      "substitutions": [
+                        "calf-raise:easy-day-beginner",
+                        "calf-raise:technique-standard"
+                      ],
+                      "visual": {
+                        "status": "approved",
+                        "asset_ref": "assets/fit/premium/calf-raise.svg",
+                        "alt_text": "Calf Raise — Density Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                        "geometry": "v3",
+                        "canonical_movement": "calf-raise"
+                      },
+                      "purpose": {
+                        "focus": "Calf strength",
+                        "benefit": "Works the lower-leg muscles used when pushing off the ground during walking and climbing steps.",
+                        "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                        "sources": [
+                          "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                          "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                        ]
+                      },
+                      "selection_reason": "Included for strength within your selected 20-minute home session. It needs no exercise equipment.",
+                      "structured": {
+                        "published": true,
+                        "version": 21,
+                        "updated_at": "2026-08-16 18:56:48",
+                        "provenance": {
+                          "source": "Shift industrial structured movement factory",
+                          "version": "industrial-v3",
+                          "authored_at": "2026-08-12",
+                          "final_v1_acceptance": {
+                            "accepted": true,
+                            "reviewer": "Matt",
+                            "accepted_at": "2026-08-14T14:29:00+01:00",
+                            "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                            "review_run": 31802631318,
+                            "artifact_id": 9219877222,
+                            "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                            "canonical_movement": "calf-raise"
+                          }
+                        },
+                        "final_v1_accepted": true,
+                        "review_authority": {
+                          "scope": "canonical_movement",
+                          "canonical_movement": "calf-raise",
+                          "accepted": true,
+                          "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                        }
+                      }
+                    },
+                    {
+                      "id": "industrial-v3-fit-glute-bridge-easy-day-beginner",
+                      "name": "Glute Bridge — Easy Day Beginner",
+                      "group": "legs",
+                      "movement_group": "strength",
+                      "canonical_movement": "glute-bridge",
+                      "minutes": 3,
+                      "sets": 2,
+                      "reps": 8,
+                      "rest_seconds": 75,
+                      "how": [
+                        "Lie on your back with knees bent and feet flat. Brace gently, drive through your heels and lift your hips until shoulders, hips and knees form a long line; lower slowly.",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point."
+                      ],
+                      "form_cues": [
+                        "What it should feel like: glutes squeezing hard at the top",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                        "What it should not feel like: cramping in the lower back or hamstrings taking over completely"
+                      ],
+                      "safety_cues": [
+                        "What it should not feel like: cramping in the lower back or hamstrings taking over completely"
+                      ],
+                      "equipment": [
+                        "none"
+                      ],
+                      "locations": [
+                        "home",
+                        "gym",
+                        "hotel"
+                      ],
+                      "avoid": [],
+                      "caution": [
+                        "acute-low-back-pain"
+                      ],
+                      "regressions": [
+                        "Lift only as high as you can keep the ribs down and glutes working."
+                      ],
+                      "progressions": [
+                        "Pause for two seconds at the top or progress to a single-leg-supported version."
+                      ],
+                      "substitutions": [
+                        "glute-bridge:easy-day-beginner",
+                        "glute-bridge:technique-standard"
+                      ],
+                      "visual": {
+                        "status": "approved",
+                        "asset_ref": "assets/fit/premium/glute-bridge.svg",
+                        "alt_text": "Glute Bridge — Easy Day Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                        "geometry": "v3",
+                        "canonical_movement": "glute-bridge"
+                      },
+                      "purpose": {
+                        "focus": "Glute and hip strength",
+                        "benefit": "Trains your glutes as you lift and lower your hips under control.",
+                        "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                        "sources": [
+                          "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                          "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                        ]
+                      },
+                      "selection_reason": "Included for strength within your selected 20-minute home session. It needs no exercise equipment.",
+                      "structured": {
+                        "published": true,
+                        "version": 21,
+                        "updated_at": "2026-08-16 18:56:48",
+                        "provenance": {
+                          "source": "Shift industrial structured movement factory",
+                          "version": "industrial-v3",
+                          "authored_at": "2026-08-12",
+                          "final_v1_acceptance": {
+                            "accepted": true,
+                            "reviewer": "Matt",
+                            "accepted_at": "2026-08-14T14:29:00+01:00",
+                            "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                            "review_run": 31802631318,
+                            "artifact_id": 9219877222,
+                            "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                            "canonical_movement": "glute-bridge"
+                          }
+                        },
+                        "final_v1_accepted": true,
+                        "review_authority": {
+                          "scope": "canonical_movement",
+                          "canonical_movement": "glute-bridge",
+                          "accepted": true,
+                          "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                        }
+                      }
+                    },
+                    {
+                      "id": "industrial-v3-fit-push-up-endurance-beginner",
+                      "name": "Push-Up — Endurance Beginner",
+                      "group": "push",
+                      "movement_group": "strength",
+                      "canonical_movement": "push-up",
+                      "minutes": 3,
+                      "sets": 2,
+                      "reps": 8,
+                      "rest_seconds": 75,
+                      "how": [
+                        "Set your hands just outside shoulder width, make a straight line from head to heels or knees, lower your chest between your hands and press the floor away.",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point."
+                      ],
+                      "form_cues": [
+                        "What it should feel like: chest, shoulders and triceps working while the trunk stays braced",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                        "What it should not feel like: shoulder pinching, sagging through the hips or neck strain"
+                      ],
+                      "safety_cues": [
+                        "What it should not feel like: shoulder pinching, sagging through the hips or neck strain"
+                      ],
+                      "equipment": [
+                        "none"
+                      ],
+                      "locations": [
+                        "home",
+                        "gym",
+                        "hotel"
+                      ],
+                      "avoid": [],
+                      "caution": [
+                        "acute-wrist-pain"
+                      ],
+                      "regressions": [
+                        "Use a wall, worktop or bench so your body is more upright."
+                      ],
+                      "progressions": [
+                        "Lower the hand support or progress towards full floor reps."
+                      ],
+                      "substitutions": [
+                        "push-up:easy-day-beginner",
+                        "push-up:technique-standard"
+                      ],
+                      "visual": {
+                        "status": "approved",
+                        "asset_ref": "assets/fit/premium/push-up.svg",
+                        "alt_text": "Push-Up — Endurance Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                        "geometry": "v3",
+                        "canonical_movement": "push-up"
+                      },
+                      "purpose": {
+                        "focus": "Upper-body pushing strength",
+                        "benefit": "Works your chest, shoulders and triceps while your trunk holds position.",
+                        "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                        "sources": [
+                          "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                          "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                        ]
+                      },
+                      "selection_reason": "Included for strength within your selected 20-minute home session. It needs no exercise equipment.",
+                      "structured": {
+                        "published": true,
+                        "version": 21,
+                        "updated_at": "2026-08-16 18:56:48",
+                        "provenance": {
+                          "source": "Shift industrial structured movement factory",
+                          "version": "industrial-v3",
+                          "authored_at": "2026-08-12",
+                          "final_v1_acceptance": {
+                            "accepted": true,
+                            "reviewer": "Matt",
+                            "accepted_at": "2026-08-14T14:29:00+01:00",
+                            "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                            "review_run": 31802631318,
+                            "artifact_id": 9219877222,
+                            "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                            "canonical_movement": "push-up"
+                          }
+                        },
+                        "final_v1_accepted": true,
+                        "review_authority": {
+                          "scope": "canonical_movement",
+                          "canonical_movement": "push-up",
+                          "accepted": true,
+                          "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                        }
+                      }
+                    },
+                    {
+                      "id": "backpack-row",
+                      "name": "Backpack row",
+                      "group": "pull",
+                      "minutes": 5,
+                      "sets": 3,
+                      "reps": "10–12",
+                      "rest_seconds": 60,
+                      "notes": "A loaded backpack works fine.",
+                      "how": [
+                        "Hinge forward with a flat back.",
+                        "Pull the bag toward lower ribs.",
+                        "Lower slowly."
+                      ],
+                      "equipment": "backpack",
+                      "level": "beginner"
+                    }
+                  ],
+                  "progression": "If the session feels comfortably manageable twice in a row, add a little resistance or 1–2 reps — not a random extra 20 minutes to one exercise.",
+                  "requested_minutes": 20,
+                  "location": "home"
+                },
+                "reason": null,
+                "lowImpact": false,
+                "swapLabel": "No kit"
+              },
+              {
+                "id": "fit:2026-11-03:20:dumbbells:low-impact",
+                "minutes": 20,
+                "kit": "dumbbells",
+                "name": "20-minute strength + cardio session",
+                "location": "home",
+                "session": {
+                  "day": 2,
+                  "title": "20-minute strength + cardio session",
+                  "estimated_minutes": 12,
+                  "exercises": [
+                    {
+                      "id": "industrial-v3-fit-calf-raise-easy-day-beginner",
+                      "name": "Calf Raise — Easy Day Beginner",
+                      "group": "warmup",
+                      "movement_group": "strength",
+                      "canonical_movement": "calf-raise",
+                      "minutes": 3,
+                      "sets": 2,
+                      "reps": 8,
+                      "rest_seconds": 75,
+                      "how": [
+                        "Stand tall with light support nearby. Rise onto the balls of your feet, pause at the top, then lower your heels slowly all the way down.",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point."
+                      ],
+                      "form_cues": [
+                        "What it should feel like: calves working through a full, controlled range",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                        "What it should not feel like: ankle pain or bouncing through the reps"
+                      ],
+                      "safety_cues": [
+                        "What it should not feel like: ankle pain or bouncing through the reps"
+                      ],
+                      "equipment": [
+                        "none"
+                      ],
+                      "locations": [
+                        "home",
+                        "gym",
+                        "work"
+                      ],
+                      "avoid": [],
+                      "caution": [
+                        "poor-balance"
+                      ],
+                      "regressions": [
+                        "Use both hands for support and a smaller range."
+                      ],
+                      "progressions": [
+                        "Use one leg at a time or hold a dumbbell."
+                      ],
+                      "substitutions": [
+                        "calf-raise:easy-day-beginner",
+                        "calf-raise:technique-standard"
+                      ],
+                      "visual": {
+                        "status": "approved",
+                        "asset_ref": "assets/fit/premium/calf-raise.svg",
+                        "alt_text": "Calf Raise — Easy Day Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                        "geometry": "v3",
+                        "canonical_movement": "calf-raise"
+                      },
+                      "purpose": {
+                        "focus": "Calf strength",
+                        "benefit": "Works the lower-leg muscles used when pushing off the ground during walking and climbing steps.",
+                        "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                        "sources": [
+                          "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                          "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                        ]
+                      },
+                      "selection_reason": "Included for strength within your selected 20-minute home session. It needs no exercise equipment.",
+                      "structured": {
+                        "published": true,
+                        "version": 21,
+                        "updated_at": "2026-08-16 18:56:48",
+                        "provenance": {
+                          "source": "Shift industrial structured movement factory",
+                          "version": "industrial-v3",
+                          "authored_at": "2026-08-12",
+                          "final_v1_acceptance": {
+                            "accepted": true,
+                            "reviewer": "Matt",
+                            "accepted_at": "2026-08-14T14:29:00+01:00",
+                            "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                            "review_run": 31802631318,
+                            "artifact_id": 9219877222,
+                            "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                            "canonical_movement": "calf-raise"
+                          }
+                        },
+                        "final_v1_accepted": true,
+                        "review_authority": {
+                          "scope": "canonical_movement",
+                          "canonical_movement": "calf-raise",
+                          "accepted": true,
+                          "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                        }
+                      }
+                    },
+                    {
+                      "id": "industrial-v3-fit-glute-bridge-endurance-beginner",
+                      "name": "Glute Bridge — Endurance Beginner",
+                      "group": "legs",
+                      "movement_group": "strength",
+                      "canonical_movement": "glute-bridge",
+                      "minutes": 3,
+                      "sets": 2,
+                      "reps": 8,
+                      "rest_seconds": 75,
+                      "how": [
+                        "Lie on your back with knees bent and feet flat. Brace gently, drive through your heels and lift your hips until shoulders, hips and knees form a long line; lower slowly.",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point."
+                      ],
+                      "form_cues": [
+                        "What it should feel like: glutes squeezing hard at the top",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                        "What it should not feel like: cramping in the lower back or hamstrings taking over completely"
+                      ],
+                      "safety_cues": [
+                        "What it should not feel like: cramping in the lower back or hamstrings taking over completely"
+                      ],
+                      "equipment": [
+                        "none"
+                      ],
+                      "locations": [
+                        "home",
+                        "gym",
+                        "hotel"
+                      ],
+                      "avoid": [],
+                      "caution": [
+                        "acute-low-back-pain"
+                      ],
+                      "regressions": [
+                        "Lift only as high as you can keep the ribs down and glutes working."
+                      ],
+                      "progressions": [
+                        "Pause for two seconds at the top or progress to a single-leg-supported version."
+                      ],
+                      "substitutions": [
+                        "glute-bridge:easy-day-beginner",
+                        "glute-bridge:technique-standard"
+                      ],
+                      "visual": {
+                        "status": "approved",
+                        "asset_ref": "assets/fit/premium/glute-bridge.svg",
+                        "alt_text": "Glute Bridge — Endurance Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                        "geometry": "v3",
+                        "canonical_movement": "glute-bridge"
+                      },
+                      "purpose": {
+                        "focus": "Glute and hip strength",
+                        "benefit": "Trains your glutes as you lift and lower your hips under control.",
+                        "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                        "sources": [
+                          "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                          "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                        ]
+                      },
+                      "selection_reason": "Included for strength within your selected 20-minute home session. It needs no exercise equipment.",
+                      "structured": {
+                        "published": true,
+                        "version": 21,
+                        "updated_at": "2026-08-16 18:56:48",
+                        "provenance": {
+                          "source": "Shift industrial structured movement factory",
+                          "version": "industrial-v3",
+                          "authored_at": "2026-08-12",
+                          "final_v1_acceptance": {
+                            "accepted": true,
+                            "reviewer": "Matt",
+                            "accepted_at": "2026-08-14T14:29:00+01:00",
+                            "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                            "review_run": 31802631318,
+                            "artifact_id": 9219877222,
+                            "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                            "canonical_movement": "glute-bridge"
+                          }
+                        },
+                        "final_v1_accepted": true,
+                        "review_authority": {
+                          "scope": "canonical_movement",
+                          "canonical_movement": "glute-bridge",
+                          "accepted": true,
+                          "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                        }
+                      }
+                    },
+                    {
+                      "id": "industrial-v3-fit-chest-press-gym-beginner",
+                      "name": "Chest Press — Gym Beginner",
+                      "group": "push",
+                      "movement_group": "strength",
+                      "canonical_movement": "chest-press",
+                      "minutes": 3,
+                      "sets": 2,
+                      "reps": 8,
+                      "rest_seconds": 75,
+                      "how": [
+                        "Lie supported with a dumbbell in each hand, elbows slightly below shoulder level. Press the weights up until your arms are long without smashing the dumbbells together, then lower with control.",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point."
+                      ],
+                      "form_cues": [
+                        "What it should feel like: chest and triceps working with shoulders staying settled",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                        "What it should not feel like: pain at the front of the shoulder or excessive back arch"
+                      ],
+                      "safety_cues": [
+                        "What it should not feel like: pain at the front of the shoulder or excessive back arch"
+                      ],
+                      "equipment": [
+                        "dumbbell",
+                        "dumbbells"
+                      ],
+                      "locations": [
+                        "home",
+                        "gym"
+                      ],
+                      "avoid": [],
+                      "caution": [
+                        "acute-shoulder-pain"
+                      ],
+                      "regressions": [
+                        "Use lighter weights or a neutral grip."
+                      ],
+                      "progressions": [
+                        "Increase the load a little once every rep stays smooth."
+                      ],
+                      "substitutions": [
+                        "chest-press:easy-day-beginner",
+                        "chest-press:technique-standard"
+                      ],
+                      "visual": {
+                        "status": "approved",
+                        "asset_ref": "assets/fit/premium/chest-press.svg",
+                        "alt_text": "Chest Press — Gym Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                        "geometry": "v3",
+                        "canonical_movement": "chest-press"
+                      },
+                      "purpose": {
+                        "focus": "Upper-body pushing strength",
+                        "benefit": "Trains the chest, shoulders and triceps through a controlled pushing movement.",
+                        "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                        "sources": [
+                          "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                          "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                        ]
+                      },
+                      "selection_reason": "Included for strength within your selected 20-minute home session. Its listed setup uses dumbbell, dumbbells, which matches the kit available.",
+                      "structured": {
+                        "published": true,
+                        "version": 21,
+                        "updated_at": "2026-08-16 18:56:48",
+                        "provenance": {
+                          "source": "Shift industrial structured movement factory",
+                          "version": "industrial-v3",
+                          "authored_at": "2026-08-12",
+                          "final_v1_acceptance": {
+                            "accepted": true,
+                            "reviewer": "Matt",
+                            "accepted_at": "2026-08-14T14:29:00+01:00",
+                            "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                            "review_run": 31802631318,
+                            "artifact_id": 9219877222,
+                            "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                            "canonical_movement": "chest-press"
+                          }
+                        },
+                        "final_v1_accepted": true,
+                        "review_authority": {
+                          "scope": "canonical_movement",
+                          "canonical_movement": "chest-press",
+                          "accepted": true,
+                          "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                        }
+                      }
+                    },
+                    {
+                      "id": "industrial-v3-fit-row-home-beginner",
+                      "name": "Row — Home Beginner",
+                      "group": "pull",
+                      "movement_group": "strength",
+                      "canonical_movement": "row",
+                      "minutes": 3,
+                      "sets": 2,
+                      "reps": 8,
+                      "rest_seconds": 75,
+                      "how": [
+                        "Brace one hand on a bench or hinge forward with a long spine. Pull the weight towards your hip, squeeze the shoulder blade back, then lower until the arm is long again.",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point."
+                      ],
+                      "form_cues": [
+                        "What it should feel like: upper back and rear shoulder, not just the biceps",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                        "What it should not feel like: twisting through the torso or shoulder pinching"
+                      ],
+                      "safety_cues": [
+                        "What it should not feel like: twisting through the torso or shoulder pinching"
+                      ],
+                      "equipment": [
+                        "dumbbell",
+                        "dumbbells"
+                      ],
+                      "locations": [
+                        "home",
+                        "gym"
+                      ],
+                      "avoid": [],
+                      "caution": [
+                        "acute-low-back-pain"
+                      ],
+                      "regressions": [
+                        "Use a lighter weight and more support."
+                      ],
+                      "progressions": [
+                        "Increase the weight or add a short squeeze at the top."
+                      ],
+                      "substitutions": [
+                        "row:easy-day-beginner",
+                        "row:technique-standard"
+                      ],
+                      "visual": {
+                        "status": "approved",
+                        "asset_ref": "assets/fit/premium/row.svg",
+                        "alt_text": "Row — Home Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                        "geometry": "v3",
+                        "canonical_movement": "row"
+                      },
+                      "purpose": {
+                        "focus": "Upper-body pulling strength",
+                        "benefit": "Works the upper back and arms through a pulling movement.",
+                        "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                        "sources": [
+                          "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                          "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                        ]
+                      },
+                      "selection_reason": "Included for strength within your selected 20-minute home session. Its listed setup uses dumbbell, dumbbells, which matches the kit available.",
+                      "structured": {
+                        "published": true,
+                        "version": 21,
+                        "updated_at": "2026-08-16 18:56:48",
+                        "provenance": {
+                          "source": "Shift industrial structured movement factory",
+                          "version": "industrial-v3",
+                          "authored_at": "2026-08-12",
+                          "final_v1_acceptance": {
+                            "accepted": true,
+                            "reviewer": "Matt",
+                            "accepted_at": "2026-08-14T14:29:00+01:00",
+                            "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                            "review_run": 31802631318,
+                            "artifact_id": 9219877222,
+                            "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                            "canonical_movement": "row"
+                          }
+                        },
+                        "final_v1_accepted": true,
+                        "review_authority": {
+                          "scope": "canonical_movement",
+                          "canonical_movement": "row",
+                          "accepted": true,
+                          "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                        }
+                      }
+                    }
+                  ],
+                  "progression": "If the session feels comfortably manageable twice in a row, add a little resistance or 1–2 reps — not a random extra 20 minutes to one exercise.",
+                  "requested_minutes": 20,
+                  "location": "home",
+                  "low_impact": true
+                },
+                "reason": null,
+                "lowImpact": true,
+                "swapLabel": "Low impact"
+              }
+            ],
+            "choices": [
+              {
+                "id": "fit:2026-11-03:10:none",
+                "minutes": 10,
+                "kit": "none",
+                "name": "8-minute full-body strength session"
+              },
+              {
+                "id": "fit:2026-11-03:10:dumbbells",
+                "minutes": 10,
+                "kit": "dumbbells",
+                "name": "8-minute full-body strength session"
+              },
+              {
+                "id": "fit:2026-11-03:10:gym",
+                "minutes": 10,
+                "kit": "gym",
+                "name": "8-minute full-body strength session"
+              },
+              {
+                "id": "fit:2026-11-03:20:none",
+                "minutes": 20,
+                "kit": "none",
+                "name": "20-minute full-body strength session"
+              },
+              {
+                "id": "fit:2026-11-03:20:dumbbells",
+                "minutes": 20,
+                "kit": "dumbbells",
+                "name": "20-minute full-body strength session"
+              },
+              {
+                "id": "fit:2026-11-03:20:gym",
+                "minutes": 20,
+                "kit": "gym",
+                "name": "20-minute full-body strength session"
+              },
+              {
+                "id": "fit:2026-11-03:40:none",
+                "minutes": 40,
+                "kit": "none",
+                "name": "40-minute full-body strength session"
+              },
+              {
+                "id": "fit:2026-11-03:40:dumbbells",
+                "minutes": 40,
+                "kit": "dumbbells",
+                "name": "40-minute full-body strength session"
+              },
+              {
+                "id": "fit:2026-11-03:40:gym",
+                "minutes": 40,
+                "kit": "gym",
+                "name": "40-minute full-body strength session"
+              },
+              {
+                "id": "fit:2026-11-03:20:dumbbells:low-impact",
+                "minutes": 20,
+                "kit": "dumbbells",
+                "name": "20-minute strength + cardio session"
+              }
+            ],
+            "healthTags": [],
+            "moves": {},
+            "days": {}
+          },
+          "insights": {
+            "generatedAt": "2026-11-03T01:30:00.000Z",
+            "generatedOn": "2026-11-03",
+            "stall": null,
+            "recap": {
+              "id": "week:2026-10-26",
+              "from": "2026-10-26",
+              "to": "2026-11-01",
+              "summary": "Your pile grew by 7 logs.",
+              "items": [
+                {
+                  "topic": "effort",
+                  "text": "7 daily actions completed."
+                }
+              ],
+              "suggestion": "Choose one manageable thing for the next day."
+            }
+          },
+          "activityReadings": [],
+          "energyReadings": [],
+          "proteinTarget": 120,
+          "proteinG": null,
+          "unknownAmounts": false,
+          "calorieTarget": 2200,
+          "goal": "Playing football with my lad",
+          "share": {
+            "brand": "MY TIMBER",
+            "title": "STILL STACKING.",
+            "logs": 12,
+            "target": 30,
+            "weekCount": 1,
+            "milestone": null
+          }
+        },
+        "foodEntries": [],
+        "nutritionDay": null,
+        "setupComplete": true
+      }
+    },
+    {
+      "name": "webkit",
+      "account": "shed-arcade-two@example.invalid",
+      "checks": [
+        {
+          "id": "Captured previous release really displays All seven games",
+          "pass": true
+        },
+        {
+          "id": "Seven-game shell persists in real service-worker cache",
+          "pass": true
+        },
+        {
+          "id": "Previously cached arcade really has only seven tiles",
+          "pass": true
+        },
+        {
+          "id": "Unsaved form is present before the background worker upgrade",
+          "pass": true
+        },
+        {
+          "id": "Only the test fixture cookie is removed; sign-in cookie remains",
+          "pass": true
+        },
+        {
+          "id": "Background upgrade neither reloads the frame nor discards an unsaved form",
+          "pass": true
+        },
+        {
+          "id": "Normal app reopen upgrades seven to eight without cache clearing",
+          "pass": true
+        },
+        {
+          "id": "Stale asset URL receives current code rather than old cached code",
+          "pass": true
+        },
+        {
+          "id": "Same installed browser now opens all eight games and Shed Fighter",
+          "pass": true
+        },
+        {
+          "id": "Updated introduction survives upgrading the cached app",
+          "pass": true
+        },
+        {
+          "id": "New eighth game opens from an upgraded seven-game app",
+          "pass": true
+        },
+        {
+          "id": "Upgrade preserves sign-in, daily pile, food and saved arcade bests",
+          "pass": true
+        },
+        {
+          "id": "No execution errors during upgrade",
+          "pass": true,
+          "detail": []
+        }
+      ],
+      "errors": [],
+      "boot": {
+        "treatment": null,
+        "arcade": {
+          "version": 1,
+          "revision": 2,
+          "on": "2026-11-04",
+          "gameOfDay": "over-the-shed",
+          "bests": {
+            "mt_timberlob_level": 8,
+            "mt_fight_best": 4
+          },
+          "muted": true,
+          "nickname": "",
+          "nudge": {
+            "week": 2966,
+            "shown": [],
+            "dismissed": false
+          }
+        },
+        "league": {
+          "available": true,
+          "joined": false,
+          "week": "2026-11-02",
+          "members": []
+        },
+        "accountId": 900710402,
+        "expiresAt": "2026-11-11T23:05:50.403Z",
+        "page": "today",
+        "tracking": true,
+        "progress": {
+          "revision": 0
+        },
+        "v7": {
+          "action": {
+            "id": "routine:pause",
+            "kind": "confidence",
+            "title": "One less thing to carry today.",
+            "name": "Let one ordinary job wait",
+            "time": "A moment, with no catch-up task",
+            "items": [],
+            "steps": [
+              "Choose one non-urgent job you can leave for later.",
+              "Keep only the next manageable thing in view."
+            ],
+            "fallback": "If you need help beyond a practical step, open Support.",
+            "href": "/member/dashboard?timber=support#today",
+            "label": "Open Support",
+            "completedLabel": "One ordinary job left for later.",
+            "reason": "Keep one manageable thing in view while your saved food choices are prepared."
+          },
+          "alternatives": [],
+          "adaptation": null,
+          "returning": false,
+          "today": "2026-11-04",
+          "preferences": {
+            "showWeight": true,
+            "lead": "weight",
+            "activity": null
+          },
+          "count": 12,
+          "lifetimeCount": 12,
+          "target": 30,
+          "weeklyCount": 1,
+          "week": "2026-11-02",
+          "completedToday": false,
+          "milestone": null,
+          "fit": {
+            "selected": {
+              "id": "fit:2026-11-03:20:dumbbells",
+              "minutes": 20,
+              "kit": "dumbbells",
+              "name": "20-minute full-body strength session",
+              "location": "home",
+              "session": {
+                "day": 1,
+                "title": "20-minute full-body strength session",
+                "estimated_minutes": 12,
+                "exercises": [
+                  {
+                    "id": "industrial-v3-fit-calf-raise-density-beginner",
+                    "name": "Calf Raise — Density Beginner",
+                    "group": "warmup",
+                    "movement_group": "strength",
+                    "canonical_movement": "calf-raise",
+                    "minutes": 3,
+                    "sets": 2,
+                    "reps": 8,
+                    "rest_seconds": 75,
+                    "how": [
+                      "Stand tall with light support nearby. Rise onto the balls of your feet, pause at the top, then lower your heels slowly all the way down.",
+                      "Keep it controlled enough that you could stop the rep cleanly at any point."
+                    ],
+                    "form_cues": [
+                      "What it should feel like: calves working through a full, controlled range",
+                      "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                      "What it should not feel like: ankle pain or bouncing through the reps"
+                    ],
+                    "safety_cues": [
+                      "What it should not feel like: ankle pain or bouncing through the reps"
+                    ],
+                    "equipment": [
+                      "none"
+                    ],
+                    "locations": [
+                      "home",
+                      "gym",
+                      "work"
+                    ],
+                    "avoid": [],
+                    "caution": [
+                      "poor-balance"
+                    ],
+                    "regressions": [
+                      "Use both hands for support and a smaller range."
+                    ],
+                    "progressions": [
+                      "Use one leg at a time or hold a dumbbell."
+                    ],
+                    "substitutions": [
+                      "calf-raise:easy-day-beginner",
+                      "calf-raise:technique-standard"
+                    ],
+                    "visual": {
+                      "status": "approved",
+                      "asset_ref": "assets/fit/premium/calf-raise.svg",
+                      "alt_text": "Calf Raise — Density Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                      "geometry": "v3",
+                      "canonical_movement": "calf-raise"
+                    },
+                    "purpose": {
+                      "focus": "Calf strength",
+                      "benefit": "Works the lower-leg muscles used when pushing off the ground during walking and climbing steps.",
+                      "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                      "sources": [
+                        "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                        "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                      ]
+                    },
+                    "selection_reason": "Included for strength within your selected 20-minute home session. It needs no exercise equipment.",
+                    "structured": {
+                      "published": true,
+                      "version": 21,
+                      "updated_at": "2026-08-16 18:56:48",
+                      "provenance": {
+                        "source": "Shift industrial structured movement factory",
+                        "version": "industrial-v3",
+                        "authored_at": "2026-08-12",
+                        "final_v1_acceptance": {
+                          "accepted": true,
+                          "reviewer": "Matt",
+                          "accepted_at": "2026-08-14T14:29:00+01:00",
+                          "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                          "review_run": 31802631318,
+                          "artifact_id": 9219877222,
+                          "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                          "canonical_movement": "calf-raise"
+                        }
+                      },
+                      "final_v1_accepted": true,
+                      "review_authority": {
+                        "scope": "canonical_movement",
+                        "canonical_movement": "calf-raise",
+                        "accepted": true,
+                        "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                      }
+                    }
+                  },
+                  {
+                    "id": "industrial-v3-fit-glute-bridge-easy-day-beginner",
+                    "name": "Glute Bridge — Easy Day Beginner",
+                    "group": "legs",
+                    "movement_group": "strength",
+                    "canonical_movement": "glute-bridge",
+                    "minutes": 3,
+                    "sets": 2,
+                    "reps": 8,
+                    "rest_seconds": 75,
+                    "how": [
+                      "Lie on your back with knees bent and feet flat. Brace gently, drive through your heels and lift your hips until shoulders, hips and knees form a long line; lower slowly.",
+                      "Keep it controlled enough that you could stop the rep cleanly at any point."
+                    ],
+                    "form_cues": [
+                      "What it should feel like: glutes squeezing hard at the top",
+                      "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                      "What it should not feel like: cramping in the lower back or hamstrings taking over completely"
+                    ],
+                    "safety_cues": [
+                      "What it should not feel like: cramping in the lower back or hamstrings taking over completely"
+                    ],
+                    "equipment": [
+                      "none"
+                    ],
+                    "locations": [
+                      "home",
+                      "gym",
+                      "hotel"
+                    ],
+                    "avoid": [],
+                    "caution": [
+                      "acute-low-back-pain"
+                    ],
+                    "regressions": [
+                      "Lift only as high as you can keep the ribs down and glutes working."
+                    ],
+                    "progressions": [
+                      "Pause for two seconds at the top or progress to a single-leg-supported version."
+                    ],
+                    "substitutions": [
+                      "glute-bridge:easy-day-beginner",
+                      "glute-bridge:technique-standard"
+                    ],
+                    "visual": {
+                      "status": "approved",
+                      "asset_ref": "assets/fit/premium/glute-bridge.svg",
+                      "alt_text": "Glute Bridge — Easy Day Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                      "geometry": "v3",
+                      "canonical_movement": "glute-bridge"
+                    },
+                    "purpose": {
+                      "focus": "Glute and hip strength",
+                      "benefit": "Trains your glutes as you lift and lower your hips under control.",
+                      "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                      "sources": [
+                        "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                        "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                      ]
+                    },
+                    "selection_reason": "Included for strength within your selected 20-minute home session. It needs no exercise equipment.",
+                    "structured": {
+                      "published": true,
+                      "version": 21,
+                      "updated_at": "2026-08-16 18:56:48",
+                      "provenance": {
+                        "source": "Shift industrial structured movement factory",
+                        "version": "industrial-v3",
+                        "authored_at": "2026-08-12",
+                        "final_v1_acceptance": {
+                          "accepted": true,
+                          "reviewer": "Matt",
+                          "accepted_at": "2026-08-14T14:29:00+01:00",
+                          "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                          "review_run": 31802631318,
+                          "artifact_id": 9219877222,
+                          "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                          "canonical_movement": "glute-bridge"
+                        }
+                      },
+                      "final_v1_accepted": true,
+                      "review_authority": {
+                        "scope": "canonical_movement",
+                        "canonical_movement": "glute-bridge",
+                        "accepted": true,
+                        "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                      }
+                    }
+                  },
+                  {
+                    "id": "industrial-v3-fit-chest-press-endurance-beginner",
+                    "name": "Chest Press — Endurance Beginner",
+                    "group": "push",
+                    "movement_group": "strength",
+                    "canonical_movement": "chest-press",
+                    "minutes": 3,
+                    "sets": 2,
+                    "reps": 8,
+                    "rest_seconds": 75,
+                    "how": [
+                      "Lie supported with a dumbbell in each hand, elbows slightly below shoulder level. Press the weights up until your arms are long without smashing the dumbbells together, then lower with control.",
+                      "Keep it controlled enough that you could stop the rep cleanly at any point."
+                    ],
+                    "form_cues": [
+                      "What it should feel like: chest and triceps working with shoulders staying settled",
+                      "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                      "What it should not feel like: pain at the front of the shoulder or excessive back arch"
+                    ],
+                    "safety_cues": [
+                      "What it should not feel like: pain at the front of the shoulder or excessive back arch"
+                    ],
+                    "equipment": [
+                      "dumbbell",
+                      "dumbbells"
+                    ],
+                    "locations": [
+                      "home",
+                      "gym"
+                    ],
+                    "avoid": [],
+                    "caution": [
+                      "acute-shoulder-pain"
+                    ],
+                    "regressions": [
+                      "Use lighter weights or a neutral grip."
+                    ],
+                    "progressions": [
+                      "Increase the load a little once every rep stays smooth."
+                    ],
+                    "substitutions": [
+                      "chest-press:easy-day-beginner",
+                      "chest-press:technique-standard"
+                    ],
+                    "visual": {
+                      "status": "approved",
+                      "asset_ref": "assets/fit/premium/chest-press.svg",
+                      "alt_text": "Chest Press — Endurance Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                      "geometry": "v3",
+                      "canonical_movement": "chest-press"
+                    },
+                    "purpose": {
+                      "focus": "Upper-body pushing strength",
+                      "benefit": "Trains the chest, shoulders and triceps through a controlled pushing movement.",
+                      "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                      "sources": [
+                        "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                        "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                      ]
+                    },
+                    "selection_reason": "Included for strength within your selected 20-minute home session. Its listed setup uses dumbbell, dumbbells, which matches the kit available.",
+                    "structured": {
+                      "published": true,
+                      "version": 21,
+                      "updated_at": "2026-08-16 18:56:48",
+                      "provenance": {
+                        "source": "Shift industrial structured movement factory",
+                        "version": "industrial-v3",
+                        "authored_at": "2026-08-12",
+                        "final_v1_acceptance": {
+                          "accepted": true,
+                          "reviewer": "Matt",
+                          "accepted_at": "2026-08-14T14:29:00+01:00",
+                          "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                          "review_run": 31802631318,
+                          "artifact_id": 9219877222,
+                          "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                          "canonical_movement": "chest-press"
+                        }
+                      },
+                      "final_v1_accepted": true,
+                      "review_authority": {
+                        "scope": "canonical_movement",
+                        "canonical_movement": "chest-press",
+                        "accepted": true,
+                        "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                      }
+                    }
+                  },
+                  {
+                    "id": "industrial-v3-fit-row-gym-beginner",
+                    "name": "Row — Gym Beginner",
+                    "group": "pull",
+                    "movement_group": "strength",
+                    "canonical_movement": "row",
+                    "minutes": 3,
+                    "sets": 2,
+                    "reps": 8,
+                    "rest_seconds": 75,
+                    "how": [
+                      "Brace one hand on a bench or hinge forward with a long spine. Pull the weight towards your hip, squeeze the shoulder blade back, then lower until the arm is long again.",
+                      "Keep it controlled enough that you could stop the rep cleanly at any point."
+                    ],
+                    "form_cues": [
+                      "What it should feel like: upper back and rear shoulder, not just the biceps",
+                      "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                      "What it should not feel like: twisting through the torso or shoulder pinching"
+                    ],
+                    "safety_cues": [
+                      "What it should not feel like: twisting through the torso or shoulder pinching"
+                    ],
+                    "equipment": [
+                      "dumbbell",
+                      "dumbbells"
+                    ],
+                    "locations": [
+                      "home",
+                      "gym"
+                    ],
+                    "avoid": [],
+                    "caution": [
+                      "acute-low-back-pain"
+                    ],
+                    "regressions": [
+                      "Use a lighter weight and more support."
+                    ],
+                    "progressions": [
+                      "Increase the weight or add a short squeeze at the top."
+                    ],
+                    "substitutions": [
+                      "row:easy-day-beginner",
+                      "row:technique-standard"
+                    ],
+                    "visual": {
+                      "status": "approved",
+                      "asset_ref": "assets/fit/premium/row.svg",
+                      "alt_text": "Row — Gym Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                      "geometry": "v3",
+                      "canonical_movement": "row"
+                    },
+                    "purpose": {
+                      "focus": "Upper-body pulling strength",
+                      "benefit": "Works the upper back and arms through a pulling movement.",
+                      "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                      "sources": [
+                        "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                        "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                      ]
+                    },
+                    "selection_reason": "Included for strength within your selected 20-minute home session. Its listed setup uses dumbbell, dumbbells, which matches the kit available.",
+                    "structured": {
+                      "published": true,
+                      "version": 21,
+                      "updated_at": "2026-08-16 18:56:48",
+                      "provenance": {
+                        "source": "Shift industrial structured movement factory",
+                        "version": "industrial-v3",
+                        "authored_at": "2026-08-12",
+                        "final_v1_acceptance": {
+                          "accepted": true,
+                          "reviewer": "Matt",
+                          "accepted_at": "2026-08-14T14:29:00+01:00",
+                          "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                          "review_run": 31802631318,
+                          "artifact_id": 9219877222,
+                          "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                          "canonical_movement": "row"
+                        }
+                      },
+                      "final_v1_accepted": true,
+                      "review_authority": {
+                        "scope": "canonical_movement",
+                        "canonical_movement": "row",
+                        "accepted": true,
+                        "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                      }
+                    }
+                  }
+                ],
+                "progression": "If the session feels comfortably manageable twice in a row, add a little resistance or 1–2 reps — not a random extra 20 minutes to one exercise.",
+                "requested_minutes": 20,
+                "location": "home"
+              },
+              "reason": null,
+              "lowImpact": false
+            },
+            "alternatives": [
+              {
+                "id": "fit:2026-11-03:10:dumbbells",
+                "minutes": 10,
+                "kit": "dumbbells",
+                "name": "8-minute full-body strength session",
+                "location": "home",
+                "session": {
+                  "day": 1,
+                  "title": "8-minute full-body strength session",
+                  "estimated_minutes": 6,
+                  "exercises": [
+                    {
+                      "id": "industrial-v3-fit-calf-raise-density-beginner",
+                      "name": "Calf Raise — Density Beginner",
+                      "group": "warmup",
+                      "movement_group": "strength",
+                      "canonical_movement": "calf-raise",
+                      "minutes": 3,
+                      "sets": 2,
+                      "reps": 8,
+                      "rest_seconds": 75,
+                      "how": [
+                        "Stand tall with light support nearby. Rise onto the balls of your feet, pause at the top, then lower your heels slowly all the way down.",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point."
+                      ],
+                      "form_cues": [
+                        "What it should feel like: calves working through a full, controlled range",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                        "What it should not feel like: ankle pain or bouncing through the reps"
+                      ],
+                      "safety_cues": [
+                        "What it should not feel like: ankle pain or bouncing through the reps"
+                      ],
+                      "equipment": [
+                        "none"
+                      ],
+                      "locations": [
+                        "home",
+                        "gym",
+                        "work"
+                      ],
+                      "avoid": [],
+                      "caution": [
+                        "poor-balance"
+                      ],
+                      "regressions": [
+                        "Use both hands for support and a smaller range."
+                      ],
+                      "progressions": [
+                        "Use one leg at a time or hold a dumbbell."
+                      ],
+                      "substitutions": [
+                        "calf-raise:easy-day-beginner",
+                        "calf-raise:technique-standard"
+                      ],
+                      "visual": {
+                        "status": "approved",
+                        "asset_ref": "assets/fit/premium/calf-raise.svg",
+                        "alt_text": "Calf Raise — Density Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                        "geometry": "v3",
+                        "canonical_movement": "calf-raise"
+                      },
+                      "purpose": {
+                        "focus": "Calf strength",
+                        "benefit": "Works the lower-leg muscles used when pushing off the ground during walking and climbing steps.",
+                        "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                        "sources": [
+                          "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                          "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                        ]
+                      },
+                      "selection_reason": "Included for strength within your selected 10-minute home session. It needs no exercise equipment.",
+                      "structured": {
+                        "published": true,
+                        "version": 21,
+                        "updated_at": "2026-08-16 18:56:48",
+                        "provenance": {
+                          "source": "Shift industrial structured movement factory",
+                          "version": "industrial-v3",
+                          "authored_at": "2026-08-12",
+                          "final_v1_acceptance": {
+                            "accepted": true,
+                            "reviewer": "Matt",
+                            "accepted_at": "2026-08-14T14:29:00+01:00",
+                            "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                            "review_run": 31802631318,
+                            "artifact_id": 9219877222,
+                            "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                            "canonical_movement": "calf-raise"
+                          }
+                        },
+                        "final_v1_accepted": true,
+                        "review_authority": {
+                          "scope": "canonical_movement",
+                          "canonical_movement": "calf-raise",
+                          "accepted": true,
+                          "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                        }
+                      }
+                    },
+                    {
+                      "id": "industrial-v3-fit-glute-bridge-easy-day-beginner",
+                      "name": "Glute Bridge — Easy Day Beginner",
+                      "group": "legs",
+                      "movement_group": "strength",
+                      "canonical_movement": "glute-bridge",
+                      "minutes": 3,
+                      "sets": 2,
+                      "reps": 8,
+                      "rest_seconds": 75,
+                      "how": [
+                        "Lie on your back with knees bent and feet flat. Brace gently, drive through your heels and lift your hips until shoulders, hips and knees form a long line; lower slowly.",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point."
+                      ],
+                      "form_cues": [
+                        "What it should feel like: glutes squeezing hard at the top",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                        "What it should not feel like: cramping in the lower back or hamstrings taking over completely"
+                      ],
+                      "safety_cues": [
+                        "What it should not feel like: cramping in the lower back or hamstrings taking over completely"
+                      ],
+                      "equipment": [
+                        "none"
+                      ],
+                      "locations": [
+                        "home",
+                        "gym",
+                        "hotel"
+                      ],
+                      "avoid": [],
+                      "caution": [
+                        "acute-low-back-pain"
+                      ],
+                      "regressions": [
+                        "Lift only as high as you can keep the ribs down and glutes working."
+                      ],
+                      "progressions": [
+                        "Pause for two seconds at the top or progress to a single-leg-supported version."
+                      ],
+                      "substitutions": [
+                        "glute-bridge:easy-day-beginner",
+                        "glute-bridge:technique-standard"
+                      ],
+                      "visual": {
+                        "status": "approved",
+                        "asset_ref": "assets/fit/premium/glute-bridge.svg",
+                        "alt_text": "Glute Bridge — Easy Day Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                        "geometry": "v3",
+                        "canonical_movement": "glute-bridge"
+                      },
+                      "purpose": {
+                        "focus": "Glute and hip strength",
+                        "benefit": "Trains your glutes as you lift and lower your hips under control.",
+                        "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                        "sources": [
+                          "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                          "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                        ]
+                      },
+                      "selection_reason": "Included for strength within your selected 10-minute home session. It needs no exercise equipment.",
+                      "structured": {
+                        "published": true,
+                        "version": 21,
+                        "updated_at": "2026-08-16 18:56:48",
+                        "provenance": {
+                          "source": "Shift industrial structured movement factory",
+                          "version": "industrial-v3",
+                          "authored_at": "2026-08-12",
+                          "final_v1_acceptance": {
+                            "accepted": true,
+                            "reviewer": "Matt",
+                            "accepted_at": "2026-08-14T14:29:00+01:00",
+                            "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                            "review_run": 31802631318,
+                            "artifact_id": 9219877222,
+                            "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                            "canonical_movement": "glute-bridge"
+                          }
+                        },
+                        "final_v1_accepted": true,
+                        "review_authority": {
+                          "scope": "canonical_movement",
+                          "canonical_movement": "glute-bridge",
+                          "accepted": true,
+                          "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                        }
+                      }
+                    }
+                  ],
+                  "progression": "If the session feels comfortably manageable twice in a row, add a little resistance or 1–2 reps — not a random extra 20 minutes to one exercise.",
+                  "requested_minutes": 10,
+                  "location": "home"
+                },
+                "reason": null,
+                "lowImpact": false,
+                "swapLabel": "Shorter"
+              },
+              {
+                "id": "fit:2026-11-03:20:none",
+                "minutes": 20,
+                "kit": "none",
+                "name": "20-minute full-body strength session",
+                "location": "home",
+                "session": {
+                  "day": 1,
+                  "title": "20-minute full-body strength session",
+                  "estimated_minutes": 14,
+                  "exercises": [
+                    {
+                      "id": "industrial-v3-fit-calf-raise-density-beginner",
+                      "name": "Calf Raise — Density Beginner",
+                      "group": "warmup",
+                      "movement_group": "strength",
+                      "canonical_movement": "calf-raise",
+                      "minutes": 3,
+                      "sets": 2,
+                      "reps": 8,
+                      "rest_seconds": 75,
+                      "how": [
+                        "Stand tall with light support nearby. Rise onto the balls of your feet, pause at the top, then lower your heels slowly all the way down.",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point."
+                      ],
+                      "form_cues": [
+                        "What it should feel like: calves working through a full, controlled range",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                        "What it should not feel like: ankle pain or bouncing through the reps"
+                      ],
+                      "safety_cues": [
+                        "What it should not feel like: ankle pain or bouncing through the reps"
+                      ],
+                      "equipment": [
+                        "none"
+                      ],
+                      "locations": [
+                        "home",
+                        "gym",
+                        "work"
+                      ],
+                      "avoid": [],
+                      "caution": [
+                        "poor-balance"
+                      ],
+                      "regressions": [
+                        "Use both hands for support and a smaller range."
+                      ],
+                      "progressions": [
+                        "Use one leg at a time or hold a dumbbell."
+                      ],
+                      "substitutions": [
+                        "calf-raise:easy-day-beginner",
+                        "calf-raise:technique-standard"
+                      ],
+                      "visual": {
+                        "status": "approved",
+                        "asset_ref": "assets/fit/premium/calf-raise.svg",
+                        "alt_text": "Calf Raise — Density Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                        "geometry": "v3",
+                        "canonical_movement": "calf-raise"
+                      },
+                      "purpose": {
+                        "focus": "Calf strength",
+                        "benefit": "Works the lower-leg muscles used when pushing off the ground during walking and climbing steps.",
+                        "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                        "sources": [
+                          "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                          "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                        ]
+                      },
+                      "selection_reason": "Included for strength within your selected 20-minute home session. It needs no exercise equipment.",
+                      "structured": {
+                        "published": true,
+                        "version": 21,
+                        "updated_at": "2026-08-16 18:56:48",
+                        "provenance": {
+                          "source": "Shift industrial structured movement factory",
+                          "version": "industrial-v3",
+                          "authored_at": "2026-08-12",
+                          "final_v1_acceptance": {
+                            "accepted": true,
+                            "reviewer": "Matt",
+                            "accepted_at": "2026-08-14T14:29:00+01:00",
+                            "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                            "review_run": 31802631318,
+                            "artifact_id": 9219877222,
+                            "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                            "canonical_movement": "calf-raise"
+                          }
+                        },
+                        "final_v1_accepted": true,
+                        "review_authority": {
+                          "scope": "canonical_movement",
+                          "canonical_movement": "calf-raise",
+                          "accepted": true,
+                          "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                        }
+                      }
+                    },
+                    {
+                      "id": "industrial-v3-fit-glute-bridge-easy-day-beginner",
+                      "name": "Glute Bridge — Easy Day Beginner",
+                      "group": "legs",
+                      "movement_group": "strength",
+                      "canonical_movement": "glute-bridge",
+                      "minutes": 3,
+                      "sets": 2,
+                      "reps": 8,
+                      "rest_seconds": 75,
+                      "how": [
+                        "Lie on your back with knees bent and feet flat. Brace gently, drive through your heels and lift your hips until shoulders, hips and knees form a long line; lower slowly.",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point."
+                      ],
+                      "form_cues": [
+                        "What it should feel like: glutes squeezing hard at the top",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                        "What it should not feel like: cramping in the lower back or hamstrings taking over completely"
+                      ],
+                      "safety_cues": [
+                        "What it should not feel like: cramping in the lower back or hamstrings taking over completely"
+                      ],
+                      "equipment": [
+                        "none"
+                      ],
+                      "locations": [
+                        "home",
+                        "gym",
+                        "hotel"
+                      ],
+                      "avoid": [],
+                      "caution": [
+                        "acute-low-back-pain"
+                      ],
+                      "regressions": [
+                        "Lift only as high as you can keep the ribs down and glutes working."
+                      ],
+                      "progressions": [
+                        "Pause for two seconds at the top or progress to a single-leg-supported version."
+                      ],
+                      "substitutions": [
+                        "glute-bridge:easy-day-beginner",
+                        "glute-bridge:technique-standard"
+                      ],
+                      "visual": {
+                        "status": "approved",
+                        "asset_ref": "assets/fit/premium/glute-bridge.svg",
+                        "alt_text": "Glute Bridge — Easy Day Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                        "geometry": "v3",
+                        "canonical_movement": "glute-bridge"
+                      },
+                      "purpose": {
+                        "focus": "Glute and hip strength",
+                        "benefit": "Trains your glutes as you lift and lower your hips under control.",
+                        "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                        "sources": [
+                          "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                          "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                        ]
+                      },
+                      "selection_reason": "Included for strength within your selected 20-minute home session. It needs no exercise equipment.",
+                      "structured": {
+                        "published": true,
+                        "version": 21,
+                        "updated_at": "2026-08-16 18:56:48",
+                        "provenance": {
+                          "source": "Shift industrial structured movement factory",
+                          "version": "industrial-v3",
+                          "authored_at": "2026-08-12",
+                          "final_v1_acceptance": {
+                            "accepted": true,
+                            "reviewer": "Matt",
+                            "accepted_at": "2026-08-14T14:29:00+01:00",
+                            "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                            "review_run": 31802631318,
+                            "artifact_id": 9219877222,
+                            "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                            "canonical_movement": "glute-bridge"
+                          }
+                        },
+                        "final_v1_accepted": true,
+                        "review_authority": {
+                          "scope": "canonical_movement",
+                          "canonical_movement": "glute-bridge",
+                          "accepted": true,
+                          "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                        }
+                      }
+                    },
+                    {
+                      "id": "industrial-v3-fit-push-up-endurance-beginner",
+                      "name": "Push-Up — Endurance Beginner",
+                      "group": "push",
+                      "movement_group": "strength",
+                      "canonical_movement": "push-up",
+                      "minutes": 3,
+                      "sets": 2,
+                      "reps": 8,
+                      "rest_seconds": 75,
+                      "how": [
+                        "Set your hands just outside shoulder width, make a straight line from head to heels or knees, lower your chest between your hands and press the floor away.",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point."
+                      ],
+                      "form_cues": [
+                        "What it should feel like: chest, shoulders and triceps working while the trunk stays braced",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                        "What it should not feel like: shoulder pinching, sagging through the hips or neck strain"
+                      ],
+                      "safety_cues": [
+                        "What it should not feel like: shoulder pinching, sagging through the hips or neck strain"
+                      ],
+                      "equipment": [
+                        "none"
+                      ],
+                      "locations": [
+                        "home",
+                        "gym",
+                        "hotel"
+                      ],
+                      "avoid": [],
+                      "caution": [
+                        "acute-wrist-pain"
+                      ],
+                      "regressions": [
+                        "Use a wall, worktop or bench so your body is more upright."
+                      ],
+                      "progressions": [
+                        "Lower the hand support or progress towards full floor reps."
+                      ],
+                      "substitutions": [
+                        "push-up:easy-day-beginner",
+                        "push-up:technique-standard"
+                      ],
+                      "visual": {
+                        "status": "approved",
+                        "asset_ref": "assets/fit/premium/push-up.svg",
+                        "alt_text": "Push-Up — Endurance Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                        "geometry": "v3",
+                        "canonical_movement": "push-up"
+                      },
+                      "purpose": {
+                        "focus": "Upper-body pushing strength",
+                        "benefit": "Works your chest, shoulders and triceps while your trunk holds position.",
+                        "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                        "sources": [
+                          "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                          "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                        ]
+                      },
+                      "selection_reason": "Included for strength within your selected 20-minute home session. It needs no exercise equipment.",
+                      "structured": {
+                        "published": true,
+                        "version": 21,
+                        "updated_at": "2026-08-16 18:56:48",
+                        "provenance": {
+                          "source": "Shift industrial structured movement factory",
+                          "version": "industrial-v3",
+                          "authored_at": "2026-08-12",
+                          "final_v1_acceptance": {
+                            "accepted": true,
+                            "reviewer": "Matt",
+                            "accepted_at": "2026-08-14T14:29:00+01:00",
+                            "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                            "review_run": 31802631318,
+                            "artifact_id": 9219877222,
+                            "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                            "canonical_movement": "push-up"
+                          }
+                        },
+                        "final_v1_accepted": true,
+                        "review_authority": {
+                          "scope": "canonical_movement",
+                          "canonical_movement": "push-up",
+                          "accepted": true,
+                          "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                        }
+                      }
+                    },
+                    {
+                      "id": "backpack-row",
+                      "name": "Backpack row",
+                      "group": "pull",
+                      "minutes": 5,
+                      "sets": 3,
+                      "reps": "10–12",
+                      "rest_seconds": 60,
+                      "notes": "A loaded backpack works fine.",
+                      "how": [
+                        "Hinge forward with a flat back.",
+                        "Pull the bag toward lower ribs.",
+                        "Lower slowly."
+                      ],
+                      "equipment": "backpack",
+                      "level": "beginner"
+                    }
+                  ],
+                  "progression": "If the session feels comfortably manageable twice in a row, add a little resistance or 1–2 reps — not a random extra 20 minutes to one exercise.",
+                  "requested_minutes": 20,
+                  "location": "home"
+                },
+                "reason": null,
+                "lowImpact": false,
+                "swapLabel": "No kit"
+              },
+              {
+                "id": "fit:2026-11-03:20:dumbbells:low-impact",
+                "minutes": 20,
+                "kit": "dumbbells",
+                "name": "20-minute strength + cardio session",
+                "location": "home",
+                "session": {
+                  "day": 2,
+                  "title": "20-minute strength + cardio session",
+                  "estimated_minutes": 12,
+                  "exercises": [
+                    {
+                      "id": "industrial-v3-fit-calf-raise-easy-day-beginner",
+                      "name": "Calf Raise — Easy Day Beginner",
+                      "group": "warmup",
+                      "movement_group": "strength",
+                      "canonical_movement": "calf-raise",
+                      "minutes": 3,
+                      "sets": 2,
+                      "reps": 8,
+                      "rest_seconds": 75,
+                      "how": [
+                        "Stand tall with light support nearby. Rise onto the balls of your feet, pause at the top, then lower your heels slowly all the way down.",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point."
+                      ],
+                      "form_cues": [
+                        "What it should feel like: calves working through a full, controlled range",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                        "What it should not feel like: ankle pain or bouncing through the reps"
+                      ],
+                      "safety_cues": [
+                        "What it should not feel like: ankle pain or bouncing through the reps"
+                      ],
+                      "equipment": [
+                        "none"
+                      ],
+                      "locations": [
+                        "home",
+                        "gym",
+                        "work"
+                      ],
+                      "avoid": [],
+                      "caution": [
+                        "poor-balance"
+                      ],
+                      "regressions": [
+                        "Use both hands for support and a smaller range."
+                      ],
+                      "progressions": [
+                        "Use one leg at a time or hold a dumbbell."
+                      ],
+                      "substitutions": [
+                        "calf-raise:easy-day-beginner",
+                        "calf-raise:technique-standard"
+                      ],
+                      "visual": {
+                        "status": "approved",
+                        "asset_ref": "assets/fit/premium/calf-raise.svg",
+                        "alt_text": "Calf Raise — Easy Day Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                        "geometry": "v3",
+                        "canonical_movement": "calf-raise"
+                      },
+                      "purpose": {
+                        "focus": "Calf strength",
+                        "benefit": "Works the lower-leg muscles used when pushing off the ground during walking and climbing steps.",
+                        "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                        "sources": [
+                          "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                          "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                        ]
+                      },
+                      "selection_reason": "Included for strength within your selected 20-minute home session. It needs no exercise equipment.",
+                      "structured": {
+                        "published": true,
+                        "version": 21,
+                        "updated_at": "2026-08-16 18:56:48",
+                        "provenance": {
+                          "source": "Shift industrial structured movement factory",
+                          "version": "industrial-v3",
+                          "authored_at": "2026-08-12",
+                          "final_v1_acceptance": {
+                            "accepted": true,
+                            "reviewer": "Matt",
+                            "accepted_at": "2026-08-14T14:29:00+01:00",
+                            "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                            "review_run": 31802631318,
+                            "artifact_id": 9219877222,
+                            "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                            "canonical_movement": "calf-raise"
+                          }
+                        },
+                        "final_v1_accepted": true,
+                        "review_authority": {
+                          "scope": "canonical_movement",
+                          "canonical_movement": "calf-raise",
+                          "accepted": true,
+                          "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                        }
+                      }
+                    },
+                    {
+                      "id": "industrial-v3-fit-glute-bridge-endurance-beginner",
+                      "name": "Glute Bridge — Endurance Beginner",
+                      "group": "legs",
+                      "movement_group": "strength",
+                      "canonical_movement": "glute-bridge",
+                      "minutes": 3,
+                      "sets": 2,
+                      "reps": 8,
+                      "rest_seconds": 75,
+                      "how": [
+                        "Lie on your back with knees bent and feet flat. Brace gently, drive through your heels and lift your hips until shoulders, hips and knees form a long line; lower slowly.",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point."
+                      ],
+                      "form_cues": [
+                        "What it should feel like: glutes squeezing hard at the top",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                        "What it should not feel like: cramping in the lower back or hamstrings taking over completely"
+                      ],
+                      "safety_cues": [
+                        "What it should not feel like: cramping in the lower back or hamstrings taking over completely"
+                      ],
+                      "equipment": [
+                        "none"
+                      ],
+                      "locations": [
+                        "home",
+                        "gym",
+                        "hotel"
+                      ],
+                      "avoid": [],
+                      "caution": [
+                        "acute-low-back-pain"
+                      ],
+                      "regressions": [
+                        "Lift only as high as you can keep the ribs down and glutes working."
+                      ],
+                      "progressions": [
+                        "Pause for two seconds at the top or progress to a single-leg-supported version."
+                      ],
+                      "substitutions": [
+                        "glute-bridge:easy-day-beginner",
+                        "glute-bridge:technique-standard"
+                      ],
+                      "visual": {
+                        "status": "approved",
+                        "asset_ref": "assets/fit/premium/glute-bridge.svg",
+                        "alt_text": "Glute Bridge — Endurance Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                        "geometry": "v3",
+                        "canonical_movement": "glute-bridge"
+                      },
+                      "purpose": {
+                        "focus": "Glute and hip strength",
+                        "benefit": "Trains your glutes as you lift and lower your hips under control.",
+                        "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                        "sources": [
+                          "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                          "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                        ]
+                      },
+                      "selection_reason": "Included for strength within your selected 20-minute home session. It needs no exercise equipment.",
+                      "structured": {
+                        "published": true,
+                        "version": 21,
+                        "updated_at": "2026-08-16 18:56:48",
+                        "provenance": {
+                          "source": "Shift industrial structured movement factory",
+                          "version": "industrial-v3",
+                          "authored_at": "2026-08-12",
+                          "final_v1_acceptance": {
+                            "accepted": true,
+                            "reviewer": "Matt",
+                            "accepted_at": "2026-08-14T14:29:00+01:00",
+                            "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                            "review_run": 31802631318,
+                            "artifact_id": 9219877222,
+                            "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                            "canonical_movement": "glute-bridge"
+                          }
+                        },
+                        "final_v1_accepted": true,
+                        "review_authority": {
+                          "scope": "canonical_movement",
+                          "canonical_movement": "glute-bridge",
+                          "accepted": true,
+                          "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                        }
+                      }
+                    },
+                    {
+                      "id": "industrial-v3-fit-chest-press-gym-beginner",
+                      "name": "Chest Press — Gym Beginner",
+                      "group": "push",
+                      "movement_group": "strength",
+                      "canonical_movement": "chest-press",
+                      "minutes": 3,
+                      "sets": 2,
+                      "reps": 8,
+                      "rest_seconds": 75,
+                      "how": [
+                        "Lie supported with a dumbbell in each hand, elbows slightly below shoulder level. Press the weights up until your arms are long without smashing the dumbbells together, then lower with control.",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point."
+                      ],
+                      "form_cues": [
+                        "What it should feel like: chest and triceps working with shoulders staying settled",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                        "What it should not feel like: pain at the front of the shoulder or excessive back arch"
+                      ],
+                      "safety_cues": [
+                        "What it should not feel like: pain at the front of the shoulder or excessive back arch"
+                      ],
+                      "equipment": [
+                        "dumbbell",
+                        "dumbbells"
+                      ],
+                      "locations": [
+                        "home",
+                        "gym"
+                      ],
+                      "avoid": [],
+                      "caution": [
+                        "acute-shoulder-pain"
+                      ],
+                      "regressions": [
+                        "Use lighter weights or a neutral grip."
+                      ],
+                      "progressions": [
+                        "Increase the load a little once every rep stays smooth."
+                      ],
+                      "substitutions": [
+                        "chest-press:easy-day-beginner",
+                        "chest-press:technique-standard"
+                      ],
+                      "visual": {
+                        "status": "approved",
+                        "asset_ref": "assets/fit/premium/chest-press.svg",
+                        "alt_text": "Chest Press — Gym Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                        "geometry": "v3",
+                        "canonical_movement": "chest-press"
+                      },
+                      "purpose": {
+                        "focus": "Upper-body pushing strength",
+                        "benefit": "Trains the chest, shoulders and triceps through a controlled pushing movement.",
+                        "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                        "sources": [
+                          "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                          "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                        ]
+                      },
+                      "selection_reason": "Included for strength within your selected 20-minute home session. Its listed setup uses dumbbell, dumbbells, which matches the kit available.",
+                      "structured": {
+                        "published": true,
+                        "version": 21,
+                        "updated_at": "2026-08-16 18:56:48",
+                        "provenance": {
+                          "source": "Shift industrial structured movement factory",
+                          "version": "industrial-v3",
+                          "authored_at": "2026-08-12",
+                          "final_v1_acceptance": {
+                            "accepted": true,
+                            "reviewer": "Matt",
+                            "accepted_at": "2026-08-14T14:29:00+01:00",
+                            "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                            "review_run": 31802631318,
+                            "artifact_id": 9219877222,
+                            "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                            "canonical_movement": "chest-press"
+                          }
+                        },
+                        "final_v1_accepted": true,
+                        "review_authority": {
+                          "scope": "canonical_movement",
+                          "canonical_movement": "chest-press",
+                          "accepted": true,
+                          "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                        }
+                      }
+                    },
+                    {
+                      "id": "industrial-v3-fit-row-home-beginner",
+                      "name": "Row — Home Beginner",
+                      "group": "pull",
+                      "movement_group": "strength",
+                      "canonical_movement": "row",
+                      "minutes": 3,
+                      "sets": 2,
+                      "reps": 8,
+                      "rest_seconds": 75,
+                      "how": [
+                        "Brace one hand on a bench or hinge forward with a long spine. Pull the weight towards your hip, squeeze the shoulder blade back, then lower until the arm is long again.",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point."
+                      ],
+                      "form_cues": [
+                        "What it should feel like: upper back and rear shoulder, not just the biceps",
+                        "Keep it controlled enough that you could stop the rep cleanly at any point.",
+                        "What it should not feel like: twisting through the torso or shoulder pinching"
+                      ],
+                      "safety_cues": [
+                        "What it should not feel like: twisting through the torso or shoulder pinching"
+                      ],
+                      "equipment": [
+                        "dumbbell",
+                        "dumbbells"
+                      ],
+                      "locations": [
+                        "home",
+                        "gym"
+                      ],
+                      "avoid": [],
+                      "caution": [
+                        "acute-low-back-pain"
+                      ],
+                      "regressions": [
+                        "Use a lighter weight and more support."
+                      ],
+                      "progressions": [
+                        "Increase the weight or add a short squeeze at the top."
+                      ],
+                      "substitutions": [
+                        "row:easy-day-beginner",
+                        "row:technique-standard"
+                      ],
+                      "visual": {
+                        "status": "approved",
+                        "asset_ref": "assets/fit/premium/row.svg",
+                        "alt_text": "Row — Home Beginner: start position, controlled movement and finish position shown as a three-state coaching sequence.",
+                        "geometry": "v3",
+                        "canonical_movement": "row"
+                      },
+                      "purpose": {
+                        "focus": "Upper-body pulling strength",
+                        "benefit": "Works the upper back and arms through a pulling movement.",
+                        "weightLoss": "Strength work helps build and maintain muscle as part of a balanced activity routine. Weight loss depends on your overall activity and energy intake over time.",
+                        "sources": [
+                          "https://www.nhs.uk/live-well/exercise/strength-exercises/",
+                          "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/activity/best-exercise-to-lose-belly-fat"
+                        ]
+                      },
+                      "selection_reason": "Included for strength within your selected 20-minute home session. Its listed setup uses dumbbell, dumbbells, which matches the kit available.",
+                      "structured": {
+                        "published": true,
+                        "version": 21,
+                        "updated_at": "2026-08-16 18:56:48",
+                        "provenance": {
+                          "source": "Shift industrial structured movement factory",
+                          "version": "industrial-v3",
+                          "authored_at": "2026-08-12",
+                          "final_v1_acceptance": {
+                            "accepted": true,
+                            "reviewer": "Matt",
+                            "accepted_at": "2026-08-14T14:29:00+01:00",
+                            "proof": "MATT_V1_FINAL_AUTHORITATIVE_HUMAN_ACCEPTANCE_2026_08_14",
+                            "review_run": 31802631318,
+                            "artifact_id": 9219877222,
+                            "artifact_sha256": "b0ad06b2badc5ae83a750ec44b360b81f39e8b59407a3c705bb460a17e3012da",
+                            "canonical_movement": "row"
+                          }
+                        },
+                        "final_v1_accepted": true,
+                        "review_authority": {
+                          "scope": "canonical_movement",
+                          "canonical_movement": "row",
+                          "accepted": true,
+                          "decision_source": "FIT_V1_DOMAIN_MEMBER_ACCEPTANCE"
+                        }
+                      }
+                    }
+                  ],
+                  "progression": "If the session feels comfortably manageable twice in a row, add a little resistance or 1–2 reps — not a random extra 20 minutes to one exercise.",
+                  "requested_minutes": 20,
+                  "location": "home",
+                  "low_impact": true
+                },
+                "reason": null,
+                "lowImpact": true,
+                "swapLabel": "Low impact"
+              }
+            ],
+            "choices": [
+              {
+                "id": "fit:2026-11-03:10:none",
+                "minutes": 10,
+                "kit": "none",
+                "name": "8-minute full-body strength session"
+              },
+              {
+                "id": "fit:2026-11-03:10:dumbbells",
+                "minutes": 10,
+                "kit": "dumbbells",
+                "name": "8-minute full-body strength session"
+              },
+              {
+                "id": "fit:2026-11-03:10:gym",
+                "minutes": 10,
+                "kit": "gym",
+                "name": "8-minute full-body strength session"
+              },
+              {
+                "id": "fit:2026-11-03:20:none",
+                "minutes": 20,
+                "kit": "none",
+                "name": "20-minute full-body strength session"
+              },
+              {
+                "id": "fit:2026-11-03:20:dumbbells",
+                "minutes": 20,
+                "kit": "dumbbells",
+                "name": "20-minute full-body strength session"
+              },
+              {
+                "id": "fit:2026-11-03:20:gym",
+                "minutes": 20,
+                "kit": "gym",
+                "name": "20-minute full-body strength session"
+              },
+              {
+                "id": "fit:2026-11-03:40:none",
+                "minutes": 40,
+                "kit": "none",
+                "name": "40-minute full-body strength session"
+              },
+              {
+                "id": "fit:2026-11-03:40:dumbbells",
+                "minutes": 40,
+                "kit": "dumbbells",
+                "name": "40-minute full-body strength session"
+              },
+              {
+                "id": "fit:2026-11-03:40:gym",
+                "minutes": 40,
+                "kit": "gym",
+                "name": "40-minute full-body strength session"
+              },
+              {
+                "id": "fit:2026-11-03:20:dumbbells:low-impact",
+                "minutes": 20,
+                "kit": "dumbbells",
+                "name": "20-minute strength + cardio session"
+              }
+            ],
+            "healthTags": [],
+            "moves": {},
+            "days": {}
+          },
+          "insights": {
+            "generatedAt": "2026-11-03T01:30:00.000Z",
+            "generatedOn": "2026-11-03",
+            "stall": null,
+            "recap": {
+              "id": "week:2026-10-26",
+              "from": "2026-10-26",
+              "to": "2026-11-01",
+              "summary": "Your pile grew by 7 logs.",
+              "items": [
+                {
+                  "topic": "effort",
+                  "text": "7 daily actions completed."
+                }
+              ],
+              "suggestion": "Choose one manageable thing for the next day."
+            }
+          },
+          "activityReadings": [],
+          "energyReadings": [],
+          "proteinTarget": 120,
+          "proteinG": null,
+          "unknownAmounts": false,
+          "calorieTarget": 2200,
+          "goal": "Playing football with my lad",
+          "share": {
+            "brand": "MY TIMBER",
+            "title": "STILL STACKING.",
+            "logs": 12,
+            "target": 30,
+            "weekCount": 1,
+            "milestone": null
+          }
+        },
+        "foodEntries": [],
+        "nutritionDay": null,
+        "setupComplete": true
+      }
+    }
+  ],
+  "newTag": "ab72056c86d486b9f2fb"
+}

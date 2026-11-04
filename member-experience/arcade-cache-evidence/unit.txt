@@ -1,0 +1,25 @@
+✔ all eight rotate on successive London dates, consistently within a day (11.609333ms)
+✔ scores maximise, Saw Duel minimises positive times, and stars merge per level (1.139542ms)
+✔ sound defaults off, nickname starts blank, and nudges cap at two per week (0.523625ms)
+✔ real SQL concurrent saves keep best, preserve health/pile/food and separate accounts without requiring health consent (18.648333ms)
+✔ arcade export contains only owner; account erasure clears arcade atomically, health erasure keeps it (1.349584ms)
+✔ Shed Fighter keeps the best beyond the first three-fight ladder (0.140042ms)
+✔ Unlimited Timber Lob progress stays bounded and keeps legacy stars (0.1465ms)
+✔ Concurrent endless-level writes preserve all other member records and greatest progress (2.265166ms)
+✔ A stale fingerprint resolves to this release cache, never the old global cache (13.239ms)
+✔ A current cache miss fetches the canonical release and caches those exact bytes (1.499292ms)
+✔ Offline entertainment can use its previous saved module without pinning it to the new release (0.664417ms)
+✔ Native/clinical assets never fall back to older code, private APIs remain network-only (0.679375ms)
+✔ Current app registers one worker and performs no extra startup update request (0.516792ms)
+✔ A stale app offers an explicit update without navigating or changing its form (0.512ms)
+✔ Update prompt is deferred during Shop, an active game or a modal (1.515292ms)
+✔ A pending update cannot navigate after sign-out (0.386709ms)
+✔ Resume update checks are throttled and do not run while hidden (0.388542ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 89.492292
