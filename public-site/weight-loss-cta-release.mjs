@@ -36,10 +36,19 @@ async function page(path,overrides){
  const r=await fetch('https://shiftsometimber.co.uk'+path,{redirect:'follow',headers:overrides?{'Cloudflare-Workers-Version-Overrides':overrides,'CF-Workers-Version-Overrides':overrides}:{},signal:AbortSignal.timeout(45000)});
  return {status:r.status,type:r.headers.get('Content-Type')||'',label:r.headers.get('X-Shift-Weight-Loss-CTA'),url:r.url,body:await r.text()};
 }
+async function readEach(items,fn){
+ for(let at=0;at<items.length;at+=3){
+  const results=await Promise.allSettled(items.slice(at,at+3).map(fn));
+  const failures=results.filter(r=>r.status==='rejected');for(const r of failures)console.error('READ_VERIFICATION_FAILED',r.reason.message);
+  if(failures.length)throw failures[0].reason;
+ }
+}
 async function guard(o){
- assert.equal((await active(o.name)).id,o.currentDeployment,'Concurrent release for '+o.name+'; retain the newer version');
- assert.deepEqual(await routes(),state.routes,'Route configuration changed');
- assert.deepEqual(await cf(ep(o.name)+'/schedules'),o.schedules,'Schedules changed for '+o.name);
+ const r=await Promise.allSettled([active(o.name),routes(),cf(ep(o.name)+'/schedules')]);
+ for(const x of r)if(x.status==='rejected')throw x.reason;
+ assert.equal(r[0].value.id,o.currentDeployment,'Concurrent release for '+o.name+'; retain the newer version');
+ assert.deepEqual(r[1].value,state.routes,'Route configuration changed');
+ assert.deepEqual(r[2].value,o.schedules,'Schedules changed for '+o.name);
 }
 function versionPreserved(v,o){
  assert.deepEqual(sorted(v.bindings),sorted(o.bindings),o.name+' bindings');
@@ -111,7 +120,7 @@ async function candidate(){
  for(const o of state.owners)if(!o.zeroDeployment)await deploy(o,'zero');
  const overrides=state.owners.map(o=>o.name+'="'+o.newVersion+'"').join(',');
  state.candidateChecks=[];
- for(const o of state.owners){
+ await readEach(state.owners,async o=>{
   await guard(o);const before=await page(o.path),after=await page(o.path,overrides);
   assert.equal(after.status,before.status,o.name+' status');assert.equal(after.type,before.type,o.name+' type');
   const expected=relabelWeightLossCtas(before.body);assert.equal(hash(after.body),hash(expected),o.name+' changed content beyond approved labels or version override did not apply');
@@ -119,18 +128,18 @@ async function candidate(){
   writeFileSync(dir+'/'+o.name+'-candidate.html',after.body);
   state.candidateChecks.push({name:o.name,path:o.path,beforeSHA256:hash(before.body),candidateSHA256:hash(after.body),exactExpected:true});save();
   console.log('CANDIDATE_EXACT',o.name,o.path);
- }
+ });
  state.candidateAcceptedAt=new Date().toISOString();save();
 }
 async function live(){
  assert(state.candidateAcceptedAt);for(const o of state.owners)if(!o.liveDeployment)await deploy(o,'live');
  state.liveChecks=[];
- for(const o of state.owners){
+ await readEach(state.owners,async o=>{
   await guard(o);const p=await page(o.path);assert.equal(p.status,200);assert.equal(p.label,WEIGHT_LOSS_CTA_RELEASE,o.name+' live marker');assert.equal(relabelWeightLossCtas(p.body),p.body,o.name+' old label remains');
   state.liveChecks.push({name:o.name,path:o.path,status:p.status,version:o.newVersion,deployment:o.liveDeployment,bodySHA256:hash(p.body)});save();console.log('LIVE_VERIFIED',o.name,o.path);
- }
+ });
  state.verifiedAt=new Date().toISOString();save();
- const receipt={kind:state.kind,source:state.source,verifiedAt:state.verifiedAt,wording:'Explore Weight Loss',owners:state.liveChecks,candidateChecks:state.candidateChecks,unchangedOriginalModuleCount:state.owners.reduce((n,o)=>n+Object.keys(o.baselineHashes).length,0),routesUnchanged:true,settingsUnchanged:true,customerRecordsRead:0,customerDataWrites:0,emailsSent:0};
+ const receipt={kind:state.kind,source:state.source,verificationSource:source(),verifiedAt:state.verifiedAt,wording:'Explore Weight Loss',owners:state.liveChecks,candidateChecks:state.candidateChecks,unchangedOriginalModuleCount:state.owners.reduce((n,o)=>n+Object.keys(o.baselineHashes).length,0),routesUnchanged:true,settingsUnchanged:true,customerRecordsRead:0,customerDataWrites:0,emailsSent:0};
  writeFileSync('public-site/weight-loss-cta-live-receipt.json',JSON.stringify(receipt,null,2)+'\n');console.log('COMPLETE',JSON.stringify({owners:receipt.owners.length,modulesPreserved:receipt.unchangedOriginalModuleCount,source:receipt.source}));
 }
 try{
