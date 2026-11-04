@@ -1,7 +1,7 @@
 {
   "state": "TEST_SERVICES_UPLOADED_NOT_MEMBER_DEPLOYED",
   "testOrigin": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev",
-  "assetTag": "9003a7a099576d282143",
+  "assetTag": "a3eb639f4abeb0d782cf",
   "testDatabase": "247b065f-fea4-4891-945b-b707f2417656",
   "productionDatabaseExcluded": true,
   "sourceBranch": "fix/my-timber-precompiled-documents-20261102",
@@ -147,12 +147,12 @@
     "gzipBytes": 2108500,
     "result": {
       "created_on": "2026-11-04T00:12:23.307327Z",
-      "modified_on": "2026-11-04T00:25:29.592642Z",
+      "modified_on": "2026-11-04T21:58:01.028889Z",
       "id": "shift-my-timber-v7-test-preparer",
       "tag": "0aa2927bdfc1402b82932d3ec4921e46",
       "entry_point": "preparer.mjs",
       "tags": null,
-      "deployment_id": "40bb02e5fc354e4da84de7a090989280",
+      "deployment_id": "5e8f95caa1774e05a5e876dd3e572f6f",
       "tail_consumers": null,
       "logpush": false,
       "has_assets": false,
@@ -188,7 +188,7 @@
         "global_fetch_strictly_public"
       ],
       "usage_model": "standard",
-      "startup_time_ms": 40
+      "startup_time_ms": 48
     }
   },
   "uploads": [
@@ -199,21 +199,21 @@
     {
       "worker": "shift-programme-my-timber-v7-test",
       "main": "v7-release-20261103/test-entry.mjs",
-      "modules": 3,
-      "gzipBytes": 142991,
+      "modules": 4,
+      "gzipBytes": 515760,
       "result": {
         "created_on": "2026-11-03T19:47:18.85249Z",
-        "modified_on": "2026-11-04T00:25:33.670023Z",
+        "modified_on": "2026-11-04T21:58:05.416404Z",
         "id": "shift-programme-my-timber-v7-test",
         "tag": "56f405f38c0f44b5b144ad493cb9330d",
         "entry_point": "v7-release-20261103/test-entry.mjs",
         "tags": null,
-        "deployment_id": "b07d959610274159a0042edddee5b7a4",
+        "deployment_id": "3522127c52f74f1784d5f2eb4703bf47",
         "tail_consumers": null,
         "logpush": false,
         "has_assets": false,
         "has_modules": true,
-        "etag": "1b373ca139d1532e6506d264e2b3f58638f1fa016d06339fa97ce676dcb98950",
+        "etag": "80a1c79fdfa3dfdeea9ac73fae5ade7e7017b78be3e45a2e35633acb21f1f6ae",
         "handlers": [
           "fetch",
           "scheduled"
@@ -225,7 +225,7 @@
           "global_fetch_strictly_public"
         ],
         "usage_model": "standard",
-        "startup_time_ms": 3
+        "startup_time_ms": 6
       }
     }
   ]

@@ -1,0 +1,266 @@
+{
+  "at": "2026-11-04T22:00:15.301Z",
+  "origin": "https://shiftsometimber.co.uk",
+  "physical": false,
+  "syntheticOnly": true,
+  "payments": false,
+  "providerSubmissions": false,
+  "engines": [
+    {
+      "name": "chromium",
+      "account": {
+        "id": 900710301,
+        "email": "v7-live-proof@example.invalid"
+      },
+      "checks": [
+        {
+          "id": "Reset only this owned synthetic questionnaire",
+          "pass": true
+        },
+        {
+          "id": "Today loads without a new questionnaire or history request",
+          "pass": true
+        },
+        {
+          "id": "Explore discloses 10% completed assessment fee, no blanket full-refund promise",
+          "pass": true
+        },
+        {
+          "id": "Questionnaire keeps the existing shared frame",
+          "pass": true
+        },
+        {
+          "id": "No pre-questionnaire price, medicine or image picker",
+          "pass": true
+        },
+        {
+          "id": "BMI is 31.7 for 173cm/94.8kg and says assessment can continue",
+          "pass": true
+        },
+        {
+          "id": "Assessment selectors retain 44px touch targets",
+          "pass": true
+        },
+        {
+          "id": "BMI below the initial threshold does not advise paying or guarantee approval",
+          "pass": true
+        },
+        {
+          "id": "Imperial selectors also produce BMI 31.7",
+          "pass": true
+        },
+        {
+          "id": "Medicine/dose choices come from named catalogue without prices/images",
+          "pass": true
+        },
+        {
+          "id": "Dose options match only the selected Mounjaro catalogue doses",
+          "pass": true
+        },
+        {
+          "id": "Changing medicine clears the old dose and links the new choices",
+          "pass": true
+        },
+        {
+          "id": "Other requires manual medicine and dose with units",
+          "pass": true
+        },
+        {
+          "id": "Saved questionnaire resumes with medicine and dose retained",
+          "pass": true
+        },
+        {
+          "id": "Images requested after payment, no prepayment image pickers or image consent",
+          "pass": true
+        },
+        {
+          "id": "Review includes BMI, medicine and linked dose",
+          "pass": true
+        },
+        {
+          "id": "Ten written steps save complete without images or image consent",
+          "pass": true
+        },
+        {
+          "id": "Pile unchanged; private answers absent from Today and browser storage",
+          "pass": true
+        },
+        {
+          "id": "Payment/provider submission remain unavailable, not bypassed",
+          "pass": true
+        },
+        {
+          "id": "Catalogue opens after completion but cannot take payment",
+          "pass": true
+        },
+        {
+          "id": "/terms-of-sale clearly states 10% fee, 90% refund and statutory/existing order protection",
+          "pass": true
+        },
+        {
+          "id": "/refunds clearly states 10% fee, 90% refund and statutory/existing order protection",
+          "pass": true
+        },
+        {
+          "id": "No checkout, payment or communication writes",
+          "pass": true
+        },
+        {
+          "id": "No execution errors",
+          "pass": true
+        }
+      ],
+      "errors": [],
+      "shots": [
+        "chromium-bmi.jpg",
+        "chromium-medicine-dose.jpg",
+        "chromium-other.jpg",
+        "chromium-permissions.jpg",
+        "chromium-review.jpg",
+        "chromium-saved.jpg",
+        "chromium-options.jpg"
+      ],
+      "writePaths": [
+        "/v1/my-timber/assessment-draft",
+        "/v1/my-timber/assessment-draft",
+        "/v1/my-timber/assessment-draft",
+        "/v1/my-timber/assessment-draft",
+        "/v1/my-timber/assessment-draft",
+        "/v1/my-timber/assessment-draft",
+        "/v1/my-timber/assessment-draft",
+        "/v1/my-timber/assessment-draft",
+        "/v1/my-timber/assessment-draft",
+        "/v1/my-timber/assessment-draft",
+        "/v1/my-timber/assessment-draft"
+      ]
+    },
+    {
+      "name": "webkit",
+      "account": {
+        "id": 900710301,
+        "email": "v7-live-proof@example.invalid"
+      },
+      "checks": [
+        {
+          "id": "Reset only this owned synthetic questionnaire",
+          "pass": true
+        },
+        {
+          "id": "Today loads without a new questionnaire or history request",
+          "pass": true
+        },
+        {
+          "id": "Explore discloses 10% completed assessment fee, no blanket full-refund promise",
+          "pass": true
+        },
+        {
+          "id": "Questionnaire keeps the existing shared frame",
+          "pass": true
+        },
+        {
+          "id": "No pre-questionnaire price, medicine or image picker",
+          "pass": true
+        },
+        {
+          "id": "BMI is 31.7 for 173cm/94.8kg and says assessment can continue",
+          "pass": true
+        },
+        {
+          "id": "Assessment selectors retain 44px touch targets",
+          "pass": true
+        },
+        {
+          "id": "BMI below the initial threshold does not advise paying or guarantee approval",
+          "pass": true
+        },
+        {
+          "id": "Imperial selectors also produce BMI 31.7",
+          "pass": true
+        },
+        {
+          "id": "Medicine/dose choices come from named catalogue without prices/images",
+          "pass": true
+        },
+        {
+          "id": "Dose options match only the selected Mounjaro catalogue doses",
+          "pass": true
+        },
+        {
+          "id": "Changing medicine clears the old dose and links the new choices",
+          "pass": true
+        },
+        {
+          "id": "Other requires manual medicine and dose with units",
+          "pass": true
+        },
+        {
+          "id": "Saved questionnaire resumes with medicine and dose retained",
+          "pass": true
+        },
+        {
+          "id": "Images requested after payment, no prepayment image pickers or image consent",
+          "pass": true
+        },
+        {
+          "id": "Review includes BMI, medicine and linked dose",
+          "pass": true
+        },
+        {
+          "id": "Ten written steps save complete without images or image consent",
+          "pass": true
+        },
+        {
+          "id": "Pile unchanged; private answers absent from Today and browser storage",
+          "pass": true
+        },
+        {
+          "id": "Payment/provider submission remain unavailable, not bypassed",
+          "pass": true
+        },
+        {
+          "id": "Catalogue opens after completion but cannot take payment",
+          "pass": true
+        },
+        {
+          "id": "/terms-of-sale clearly states 10% fee, 90% refund and statutory/existing order protection",
+          "pass": true
+        },
+        {
+          "id": "/refunds clearly states 10% fee, 90% refund and statutory/existing order protection",
+          "pass": true
+        },
+        {
+          "id": "No checkout, payment or communication writes",
+          "pass": true
+        },
+        {
+          "id": "No execution errors",
+          "pass": true
+        }
+      ],
+      "errors": [],
+      "shots": [
+        "webkit-bmi.jpg",
+        "webkit-medicine-dose.jpg",
+        "webkit-other.jpg",
+        "webkit-permissions.jpg",
+        "webkit-review.jpg",
+        "webkit-saved.jpg",
+        "webkit-options.jpg"
+      ],
+      "writePaths": [
+        "/v1/my-timber/assessment-draft",
+        "/v1/my-timber/assessment-draft",
+        "/v1/my-timber/assessment-draft",
+        "/v1/my-timber/assessment-draft",
+        "/v1/my-timber/assessment-draft",
+        "/v1/my-timber/assessment-draft",
+        "/v1/my-timber/assessment-draft",
+        "/v1/my-timber/assessment-draft",
+        "/v1/my-timber/assessment-draft",
+        "/v1/my-timber/assessment-draft",
+        "/v1/my-timber/assessment-draft"
+      ]
+    }
+  ]
+}

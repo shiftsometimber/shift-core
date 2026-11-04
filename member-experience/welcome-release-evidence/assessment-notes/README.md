@@ -1,0 +1,35 @@
+# Assessment notes — deployed and verified, 4 November 2026
+
+Live at 2026-11-04T22:00:13.108Z; verified 2026-11-04T22:00:51.102Z (GMT).
+Source: c50bfe65fb1dac0c71c0a651e3ba95e51dcef21f.
+Member: 9944493f-8a54-4516-ae42-8cfad648214a.
+Core public-terms overlay: 08cebab7-1143-46a7-863e-1506ab83aadb.
+All prior Core modules and bindings are preserved byte-for-byte; no clinical, stock, supplier or payment gate was relaxed.
+
+| Rule | Result | Evidence |
+|---|---|---|
+| Show BMI and preliminary proceed guidance beside measurements and in review | PASS — live | Both engines, bmi/review screenshots; 173 cm / 94.8 kg = 31.7. Guidance uses existing service criteria and does not grant prescribing approval. |
+| Previous medicine selector, current catalogue plus Other | PASS — live | history-options endpoint, source named, no prices/images; Other requires manual medicine and dose. |
+| Dose linked to medicine | PASS — live | Mounjaro/Wegovy selection checks; old dose clears when medicine changes; saved selections resume. Doses are catalogue-derived and pack duplicates removed. |
+| No ID/body images before payment | PASS — live | Ten written steps; no file pickers or image consent before payment. |
+| Secure ID/body request after payment | BLOCKED | PHARMACY_CLINICAL_INTAKE_URL, PHARMACY_CLINICAL_RESUME_URL and PHARMACY_INTEGRATION_SECRET are absent from the current live Core bindings. No insecure upload substitute was added. |
+| 10% completed-assessment fee in sales terms and refund policy | PASS — live, prospective policy | /terms-of-sale and /refunds expose treatment-assessment/2026-11-04. Disclosed, expressly accepted, completed assessments only. Existing purchase terms and statutory rights preserved. |
+| Fee quote/consent snapshot at checkout and automatic 90% refund | NOT LIVE / BLOCKED | Fee/refund model is tested, but not wired into a paid treatment transaction. Existing provider/verification/stock holds remain. Stripe key exists and mode is test; no charge/refund was attempted. |
+| Shop/frame/privacy/pile unchanged | PASS for changed scope | Same-frame browser checks, no questionnaire data in Today/browser storage, no pile changes. Shop is outside both new CSS scope and terms response paths; original Core modules unchanged. |
+
+16/16 focused model, privacy, SQL and policy tests passed. Test site: Chromium 24/24, WebKit 24/24. Production: Chromium 24/24, WebKit 24/24. Videos and actual screenshots are alongside results.json in each directory. Browser mobile emulation on the authorised Mac; no physical iPhone/Android claim. No new performance measurement or full financial end-to-end claim.
+
+A broader legacy source suite was also attempted: 19/21 passed; two checks could not read absent frontend/medicine-front-door/treatment-assessment.html and medicine-front-door.js files in this checkout. Those legacy files/handlers were not replaced; this is not labelled a completed full-legacy regression run.
+
+Implementation decisions: the fee is 10% of the treatment charge after discounts, excluding separate shop goods and delivery, rounded down to the nearest penny. It is included in the quoted total, not added. No fee for an unperformed assessment, an undisclosed/unaccepted fee, or failure to provide the agreed service. Existing orders retain their agreed terms. Photo/image consent belongs to the paid secure evidence step, not consent to storing written answers.
+
+Smallest remaining step: configure the contracted secure clinical handoff for paid orders, then connect the paid-order fee disclosure/acceptance snapshot and processor-confirmed partial-refund path. Preserve prescription-before-dispensing and existing supplier/stock holds. Nothing here submits clinical records, creates an order, makes payment, sends a message, or changes Apple submission.
+
+Rollback (both exact previous workers, guarded against an intervening release):
+node member-experience/tools/assessment-notes-release.mjs rollback
+
+Legal wording was checked against CMA guidance on transparent/fair terms and genuine supplied service costs:
+https://www.gov.uk/guidance/writing-a-fair-contract-for-customers
+https://www.gov.uk/government/publications/cancelling-goods-or-services-guide-for-consumers/cancelling-goods-or-services
+BMI criteria remain the existing SHIFT service rules, rather than new medicine or NHS prescribing decisions:
+https://www.gov.uk/government/news/mhra-authorises-diabetes-drug-mounjaro-tirzepatide-for-weight-management-and-weight-loss

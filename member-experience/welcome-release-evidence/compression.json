@@ -1,16 +1,23 @@
 [
   {
     "asset": "v7-native.mjs",
-    "rawBytes": 182654,
-    "brotliBytes": 48345,
+    "rawBytes": 97502,
+    "brotliBytes": 29468,
     "roundTripIdentical": true,
-    "sha256": "97edab8999a512cebb7c23e9b3cb1cc4c10b671a373c70208509aa1c7a03b91f"
+    "sha256": "2795887dcf956168ddc72f8e230056624dc1e73d4b0342e52763df1fa84af345"
   },
   {
     "asset": "v7-native.css",
-    "rawBytes": 42293,
-    "brotliBytes": 7516,
+    "rawBytes": 45358,
+    "brotliBytes": 8143,
     "roundTripIdentical": true,
-    "sha256": "049cc60f0bc3ddfa783e6b207e9e68cdfff9d964cae9fab44c70e2dc08709ded"
+    "sha256": "3f267b1748c38109f990b6f0ff32d6ac37b765e32ed5e1604f0ab734266fb86f"
+  },
+  {
+    "asset": "v7-journey-support.mjs",
+    "rawBytes": 85946,
+    "brotliBytes": 24941,
+    "roundTripIdentical": true,
+    "sha256": "96c2b32953fc7ab2ec6a038002b5d6434182d149364334e7bb6d6212d70cf8a8"
   }
 ]
