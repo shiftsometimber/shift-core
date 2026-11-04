@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-04T09:55:57.784598+00:00",
+  "checkedAt": "2026-11-04T10:00:15.297270+00:00",
   "state": "deployed_and_browser_verified; acceptance_incomplete",
   "codeCommit": "84101ba68801ba2c8e62e02518ad17e6c4f5761c",
   "noProductionChangeThisCheck": true,
@@ -12,14 +12,23 @@
   },
   "unmetAcceptance": [
     {
-      "id": "E2",
-      "reason": "Date model passed; two-date UI recordings absent",
-      "nextStep": "Record the unchanged live daily card on a second London calendar date."
-    },
-    {
       "id": "P3",
       "reason": "Browser offline/speed passed; physical phone recording and timings absent",
       "nextStep": "Connect an accessible physical iPhone and Android test device to complete the saved tests."
     }
+  ],
+  "dateUi": {
+    "state": "passed controlled-date component UI in Chromium and WebKit",
+    "dates": [
+      "2026-11-04",
+      "2026-11-05"
+    ],
+    "assertionsPerBrowser": 3,
+    "naturalMidnightRolloverObserved": false,
+    "evidence": "date-ui/results.json"
+  },
+  "acceptancePass": 21,
+  "acceptanceFail": [
+    "P3"
   ]
 }

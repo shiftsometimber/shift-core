@@ -13,7 +13,7 @@ Personal bests, sound and a manually typed Saw Duel nickname are account scoped.
 | ID | Check | Chromium | WebKit | Full acceptance | Evidence |
 |---|---|---|---|---|---|
 | E1 | Today card follows check-in, action and pile and Play opens its game | PASS | PASS | PASS | [Chromium](chromium-proof/E1.png), [WebKit](webkit-proof/E1.png) |
-| E2 | Game-of-day date selection | PASS | PASS | FAIL — second-date UI evidence missing | [Chromium](chromium-proof/E2.png), [WebKit](webkit-proof/E2.png) |
+| E2 | Game-of-day date selection | PASS | PASS | PASS — controlled-date UI | [Chromium](chromium-proof/E2.png), [WebKit](webkit-proof/E2.png) |
 | E3 | New account sees friendly no-best text | PASS | PASS | PASS | [Chromium](chromium-proof/E3.png), [WebKit](webkit-proof/E3.png) |
 | E4 | Seven grid tiles link to their own game | PASS | PASS | PASS | [Chromium](chromium-proof/E4.png), [WebKit](webkit-proof/E4.png) |
 | E5 | Every game returns to Today inside the same frame | PASS | PASS | PASS | [Chromium](chromium-proof/E5.png), [WebKit](webkit-proof/E5.png) |
@@ -39,7 +39,7 @@ Personal bests, sound and a manually typed Saw Duel nickname are account scoped.
 
 [Chromium results](chromium-proof/results.json) · [WebKit results](webkit-proof/results.json)
 
-These are automated 390 × 844 browser profiles, not physical iPhone or Android recordings. Actual hosted responses and the isolated synthetic database were used, without API result interception. Supplied game debug helpers advance simulation time for long rounds after real controls are exercised. The two-date rotation check uses deterministic model tests of seven dates and London day boundaries; two actual calendar-day UI recordings have not been collected. The accessibility checks cover controls, focus, labels, viewport and touch layout; they are not a complete assistive-technology audit.
+These are automated 390 × 844 browser profiles, not physical iPhone or Android recordings. Actual hosted responses and the isolated synthetic database were used, without API result interception. Supplied game debug helpers advance simulation time for long rounds after real controls are exercised. The two-date rotation check now includes Chromium and WebKit UI fixtures using the exact production-served card renderer at the beginning and end of 4 and 5 November. Same-day selection is stable, the next date selects a different game, and the rendered Play destination matches. This is controlled-date component evidence, not observation of a natural midnight rollover. The accessibility checks cover controls, focus, labels, viewport and touch layout; they are not a complete assistive-technology audit.
 
 ## Performance
 
@@ -90,12 +90,20 @@ node member-experience/tools/shed-arcade-release.mjs rollback
 
 This restores the exact previous V7 serving versions and reverses only the two added Arcade page routes; it retains existing member records and entertainment scores. Candidate module hashes, all existing bindings, assets configuration and schedules were checked before promotion. No database migration or member-data initialisation was needed.
 
-Synthetic accounts only: shed-arcade-one@example.invalid, shed-arcade-two@example.invalid; V7 journey-specific synthetic accounts in their reports; v7-live-proof@example.invalid for production. No purchases, emails, messages, invitations or native-app submission were made. Physical-device recordings and two actual calendar dates remain unverified, as explicitly distinguished above.
+Synthetic accounts only: shed-arcade-one@example.invalid, shed-arcade-two@example.invalid; V7 journey-specific synthetic accounts in their reports; v7-live-proof@example.invalid for production. No purchases, emails, messages, invitations or native-app submission were made. Physical-device recordings remain unverified. A natural midnight rollover has not been observed; the required two test dates use explicitly labelled, controlled-date UI fixtures.
 
 ## Completion recheck — 4 November 2026
 
-The serving release was rechecked against its exact approved worker versions. No production code was changed or redeployed. Twenty named checks have their required automated evidence; E2 and P3 remain acceptance failures because the additional UI-date and physical-device evidence is missing. Browser test PASS results in the table do not override those two acceptance failures.
+The serving release was rechecked against its exact approved worker versions. No production code was changed or redeployed. Twenty-one named checks have automated evidence, including controlled-date UI evidence for E2. P3 remains an acceptance failure because physical-phone recording and performance evidence is missing. Browser test PASS results do not override that remaining acceptance failure.
 
-Only the SST Mac is remotely accessible. USB inventory found no iPhone, iPad or Android phone; iOS device enumeration timed out after 15 seconds; Android ADB and the iOS USB utility are unavailable. No physical-phone result is claimed. The smallest next step is access to test phones. Second-date UI proof also needs a second London calendar date; no reminder or background task was created.
+Only the SST Mac is remotely accessible. USB inventory found no iPhone, iPad or Android phone; iOS device enumeration timed out after 15 seconds; Android ADB and the iOS USB utility are unavailable. No physical-phone result is claimed. The smallest next step is access to test phones. Controlled-date UI proof is complete; no reminder or background task was created.
 
 [Exact completion status](completion-status.json)
+
+## Controlled-date UI evidence
+
+The exact renderer was fetched from the serving production JavaScript, its SHA256 recorded, and executed in both browser profiles with explicit synthetic date fixtures. No API response was intercepted, member record written, production clock changed or app code redeployed. Three assertions passed in each browser: same game throughout each test day; different game on the next test date; rendered game text and Play link match the selection.
+
+[Results and served-source hash](date-ui/results.json) · [Chromium recording](date-ui/chromium.webm) · [WebKit recording](date-ui/webkit.webm)
+
+[Chromium day one](date-ui/chromium-2026-11-04-early.png) · [Chromium day two](date-ui/chromium-2026-11-05-early.png) · [WebKit day one](date-ui/webkit-2026-11-04-early.png) · [WebKit day two](date-ui/webkit-2026-11-05-early.png)
