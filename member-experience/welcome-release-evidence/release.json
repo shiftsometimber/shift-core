@@ -7,7 +7,7 @@
     "v7-release-20261103/programme.mjs": "2aa0d8f1d79aabc1efc184b132ba6d9859da22ba83b82a7b9d36717ffad24809"
   },
   "expectedHashes": {
-    "v7-release-20261103/programme.mjs": "6a58ded05a64fd10603bbaeb1dd70a617a0925fd371697026231dcc70f6e896d"
+    "v7-release-20261103/programme.mjs": "6d7efcbf231993cc8873af36c2baa4be39ead936c1901951ea06032b6c3a5662"
   },
   "schedules": [
     {
@@ -16,7 +16,7 @@
       "modified_on": "2026-11-04T00:34:26.630649Z"
     }
   ],
-  "candidate": "62e6b029-dc45-41a5-a6f2-736b8d366049",
-  "preparedAt": "2026-11-04T17:14:36.584Z",
+  "candidate": "bbe2a656-2b4f-43c0-b8da-31f5b8b35b9c",
+  "preparedAt": "2026-11-04T18:43:08.257Z",
   "memberTrafficChanged": false
 }

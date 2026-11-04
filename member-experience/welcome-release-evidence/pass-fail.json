@@ -267,8 +267,8 @@
     "group": "Welcome and Explore brief",
     "id": "W8.2",
     "rule": "Fresh load of Welcome under 2s on mobile 4G (Lighthouse or WebPageTest result attached).",
-    "result": "FAIL",
-    "evidence": "Lighthouse 13.6.0 mobile 4G, LCP 2042ms, FCP 1161ms, TBT 0; lighthouse/welcome.json and HTML.",
+    "result": "PASS",
+    "evidence": "Lighthouse 13.6.0 mobile 4G, LCP 1604ms, FCP 674ms, TBT 0; lighthouse/welcome.json and HTML.",
     "limitation": "Lighthouse is a single lab run, separate from the 20-sample Today/Fit performance run."
   },
   {
@@ -644,7 +644,7 @@
     "id": "V30",
     "rule": "Tap feedback under 100ms. Warm tab switch under 500ms. Fresh screen under 2s. Today and Fit before/after numbers reported.",
     "result": "PASS",
-    "evidence": "20 samples: tap32ms, warm max32ms, Today977ms, Fit986ms; original brief 100/500/2000 limits pass.",
+    "evidence": "20 samples: tap32ms, warm max32ms, Today1067ms, Fit1053ms; original brief 100/500/2000 limits pass.",
     "limitation": "Latest user limits are stricter; see the current speed table."
   },
   {
@@ -653,15 +653,15 @@
     "rule": "Fresh Today must match or beat supplied live p95.",
     "result": "PASS",
     "evidence": "20 samples, Slow 4G / CPU 4\u00d7, candidate-mobile-speed/results.json",
-    "limitation": "Supplied 1070ms; remeasured live 1412ms; candidate 977ms."
+    "limitation": "Supplied 1070ms; remeasured live 1412ms; candidate 1067ms."
   },
   {
     "group": "Latest release rules",
     "id": "S-Fresh Fit",
     "rule": "Fresh Fit must match or beat supplied live p95.",
-    "result": "PASS",
+    "result": "FAIL",
     "evidence": "20 samples, Slow 4G / CPU 4\u00d7, candidate-mobile-speed/results.json",
-    "limitation": "Supplied 1010ms; remeasured live 1343ms; candidate 986ms."
+    "limitation": "Supplied 1010ms; remeasured live 1343ms; candidate 1053ms."
   },
   {
     "group": "Latest release rules",

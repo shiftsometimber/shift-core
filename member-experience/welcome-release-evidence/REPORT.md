@@ -12,13 +12,13 @@ All times below are milliseconds, p95 from 20 samples. 390×844 mobile browser e
 
 | Measure | Supplied live limit | Live remeasured | Candidate test service | Result |
 |---|---:|---:|---:|---|
-| Fresh Today | 1070 | 1412 | 977 | PASS |
-| Fresh Fit | 1010 | 1343 | 986 | PASS |
+| Fresh Today | 1070 | 1412 | 1067 | PASS |
+| Fresh Fit | 1010 | 1343 | 1053 | FAIL |
 | Visited tab switch (worst destination) | 32 | 33 | 32 | PASS |
 | Tap feedback | 33 | 33 | 32 | PASS |
 | Repeat shell | 77 | 79 | 79 | FAIL |
 
-Welcome Lighthouse13.6.0 mobile4G: LCP2,042ms, FCP1,161ms, TBT0, performance99. One lab run, separate from the repeated speed tests.
+Welcome Lighthouse13.6.0 mobile4G: LCP1,604ms, FCP674ms, TBT0, performance100. One lab run, separate from the repeated speed tests.
 
 ## Evidence limits and release blocker
 
@@ -32,7 +32,7 @@ Welcome Lighthouse13.6.0 mobile4G: LCP2,042ms, FCP1,161ms, TBT0, performance99. 
 
 ## Source and rollback
 
-Work continues on fix/my-timber-precompiled-documents-20261102. Exact current member front: 42f085ae-553c-4b11-82f6-116203fb3c5e. Current Core a301697d-5586-4839-aa44-5edb01105731 was preserved. Inactive candidate 62e6b029-dc45-41a5-a6f2-736b8d366049 is prepared with the current front bindings/assets/settings/cron; it serves no member traffic.
+Work continues on fix/my-timber-precompiled-documents-20261102. Exact current member front: 42f085ae-553c-4b11-82f6-116203fb3c5e. Current Core a301697d-5586-4839-aa44-5edb01105731 was preserved. Inactive candidate bbe2a656-2b4f-43c0-b8da-31f5b8b35b9c is prepared with the current front bindings/assets/settings/cron; it serves no member traffic.
 
 Rollback: `node member-experience/tools/welcome-release.mjs rollback`. It restores the exact current member front only; no Core rollback, route change or database deletion. The guarded live command rejects this recorded failed acceptance.
 
@@ -84,7 +84,7 @@ PASS means the stated scope/evidence passed on the test build. FAIL includes unp
 | Welcome and Explore brief | W7.1 | Shop is unchanged. | PASS | Source hashes unchanged for Shop catalogue, basket and routes, medicine-commerce and Core. Both engines Shop home text/links and visible content pixel hashes equal production. Home visual preservation passes. Complete checkout behaviour is separately FAIL under addendum 6. |
 | Welcome and Explore brief | W7.2 | Discount codes, checkout and the clinical provider integration are unchanged. | PASS | Source hashes unchanged for Shop catalogue, basket and routes, medicine-commerce and Core. Both engines Shop home text/links and visible content pixel hashes equal production. Home visual preservation passes. Complete checkout behaviour is separately FAIL under addendum 6. |
 | Welcome and Explore brief | W8.1 | No heavy images. Welcome images total under 120KB (first visit about 114KB, after setup about 106KB). | PASS | First-visit artwork 114,026 bytes; after setup 106,418 bytes; exact supplied WebPs.  |
-| Welcome and Explore brief | W8.2 | Fresh load of Welcome under 2s on mobile 4G (Lighthouse or WebPageTest result attached). | FAIL | Lighthouse 13.6.0 mobile 4G, LCP 2042ms, FCP 1161ms, TBT 0; lighthouse/welcome.json and HTML. Lighthouse is a single lab run, separate from the 20-sample Today/Fit performance run. |
+| Welcome and Explore brief | W8.2 | Fresh load of Welcome under 2s on mobile 4G (Lighthouse or WebPageTest result attached). | PASS | Lighthouse 13.6.0 mobile 4G, LCP 1604ms, FCP 674ms, TBT 0; lighthouse/welcome.json and HTML. Lighthouse is a single lab run, separate from the 20-sample Today/Fit performance run. |
 | Welcome and Explore brief | W9.1 | Screen recording: first visit, lands on Welcome, Make it mine, three taps, first Done. Then Welcome again, showing the after-setup state. | PASS | browser/<engine>/first-setup-browse-support-more.webm Recorded on the deployed test service in Chromium and WebKit mobile emulation, not physical phones. |
 | Welcome and Explore brief | W9.2 | Screen recording: first visit, Have a look around, lands on Today without setup. | PASS | browser/<engine>/browse-without-setup.webm Recorded on the deployed test service in Chromium and WebKit mobile emulation, not physical phones. |
 | Welcome and Explore brief | W9.3 | Screen recording: Explore weight loss into the existing route, through to sent. | FAIL | Existing clinical assessment is closed; no physical iPhone or Android phone attached. Browser screenshots are labelled engine emulation. No mockup, fixture or desktop WebKit run is presented as physical-phone proof. |
@@ -131,9 +131,9 @@ PASS means the stated scope/evidence passed on the test build. FAIL includes unp
 | Original V7 regression | V27 | Frame unchanged on every screen: flat black, circled-S + MY TIMBER, Today/Journey/Shop with green underline on active tab, bottom bar Grub/Fit/Support/More. Highlight the active bottom item (including More on Preferences). | PASS | Persistent shared node checks through eight destinations. Latest Welcome brief approves fourth top tab.  |
 | Original V7 regression | V28 | Brand green accent. No amber, no wood grain, no emojis. Symbols shown as text in mockups (tick, swap, star, play, chevron) are drawn as thin line icons. | PASS | Existing source symbols remain line SVG icons; no additional accent/retheme introduced.  |
 | Original V7 regression | V29 | UK English. "CONCEPT, EXAMPLE DATA" labels are mockup-only; remove them in the build and use real member data. | PASS | Real own-account records, no CONCEPT labels added; all test data synthetic and labelled.  |
-| Original V7 regression | V30 | Tap feedback under 100ms. Warm tab switch under 500ms. Fresh screen under 2s. Today and Fit before/after numbers reported. | PASS | 20 samples: tap32ms, warm max32ms, Today977ms, Fit986ms; original brief 100/500/2000 limits pass. Latest user limits are stricter; see the current speed table. |
-| Latest release rules | S-Fresh Today | Fresh Today must match or beat supplied live p95. | PASS | 20 samples, Slow 4G / CPU 4×, candidate-mobile-speed/results.json Supplied 1070ms; remeasured live 1412ms; candidate 977ms. |
-| Latest release rules | S-Fresh Fit | Fresh Fit must match or beat supplied live p95. | PASS | 20 samples, Slow 4G / CPU 4×, candidate-mobile-speed/results.json Supplied 1010ms; remeasured live 1343ms; candidate 986ms. |
+| Original V7 regression | V30 | Tap feedback under 100ms. Warm tab switch under 500ms. Fresh screen under 2s. Today and Fit before/after numbers reported. | PASS | 20 samples: tap32ms, warm max32ms, Today1067ms, Fit1053ms; original brief 100/500/2000 limits pass. Latest user limits are stricter; see the current speed table. |
+| Latest release rules | S-Fresh Today | Fresh Today must match or beat supplied live p95. | PASS | 20 samples, Slow 4G / CPU 4×, candidate-mobile-speed/results.json Supplied 1070ms; remeasured live 1412ms; candidate 1067ms. |
+| Latest release rules | S-Fresh Fit | Fresh Fit must match or beat supplied live p95. | FAIL | 20 samples, Slow 4G / CPU 4×, candidate-mobile-speed/results.json Supplied 1010ms; remeasured live 1343ms; candidate 1053ms. |
 | Latest release rules | S-Visited tab switch (worst destination) | Visited tab switch (worst destination) must match or beat supplied live p95. | PASS | 20 samples, Slow 4G / CPU 4×, candidate-mobile-speed/results.json Supplied 32ms; remeasured live 33ms; candidate 32ms. |
 | Latest release rules | S-Tap feedback | Tap feedback must match or beat supplied live p95. | PASS | 20 samples, Slow 4G / CPU 4×, candidate-mobile-speed/results.json Supplied 33ms; remeasured live 33ms; candidate 32ms. |
 | Latest release rules | S-Repeat shell | Repeat shell must match or beat supplied live p95. | FAIL | 20 samples, Slow 4G / CPU 4×, candidate-mobile-speed/results.json Supplied 77ms; remeasured live 79ms; candidate 79ms. |
@@ -203,7 +203,7 @@ Welcome: Chromium900710501–505 and WebKit900710511–515; addresses welcome-<e
 | member-experience/v7-privacy.mjs | PASS — 0b59078de8a435f5be37e4c53b9b2a39d3ff236ae5c5977e1389b26015d74039 |
 | member-experience/v7-visibility.mjs | PASS — 27e914544d8d9a6911742fcd1c47349fe1d1025622321564a49c40ee5be84dbf |
 
-Final measurement note: Final full 20-sample run after fixing stale manifest attribution in the timing runner; prior measurements retained. No sample filtering.
+Final measurement note: Latest full20-sample run after early Welcome artwork discovery; no sample selection. Streaming privacy tests2/2pass. No member traffic moved.
 
 Frame rendering: removed the old forced 3D/backface-hidden layers. The new unmodified test pages retain identical static frame pixels and DOM nodes through13 routes in each engine (26/26).
 

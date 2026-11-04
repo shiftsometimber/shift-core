@@ -781,25 +781,25 @@
     "fresh": {
       "today": {
         "n": 20,
-        "median": 919,
-        "p95": 977
+        "median": 956,
+        "p95": 1067
       },
       "fit": {
         "n": 20,
-        "median": 885,
-        "p95": 986
+        "median": 978,
+        "p95": 1053
       }
     },
     "warm": {
       "today": {
         "n": 20,
-        "median": 31,
+        "median": 30,
         "p95": 32
       },
       "fit": {
         "n": 20,
         "median": 31,
-        "p95": 32
+        "p95": 31
       }
     }
   },
@@ -1921,7 +1921,7 @@
     ]
   },
   "readiness": {
-    "at": "2026-11-04T17:26:32.122Z",
+    "at": "2026-11-04T18:40:51.777Z",
     "readOnly": true,
     "syntheticAccount": {
       "id": 900710301,
@@ -1970,7 +1970,7 @@
       "v7-release-20261103/programme.mjs": "2aa0d8f1d79aabc1efc184b132ba6d9859da22ba83b82a7b9d36717ffad24809"
     },
     "expectedHashes": {
-      "v7-release-20261103/programme.mjs": "6a58ded05a64fd10603bbaeb1dd70a617a0925fd371697026231dcc70f6e896d"
+      "v7-release-20261103/programme.mjs": "6d7efcbf231993cc8873af36c2baa4be39ead936c1901951ea06032b6c3a5662"
     },
     "schedules": [
       {
@@ -1979,8 +1979,8 @@
         "modified_on": "2026-11-04T00:34:26.630649Z"
       }
     ],
-    "candidate": "62e6b029-dc45-41a5-a6f2-736b8d366049",
-    "preparedAt": "2026-11-04T17:14:36.584Z",
+    "candidate": "bbe2a656-2b4f-43c0-b8da-31f5b8b35b9c",
+    "preparedAt": "2026-11-04T18:43:08.257Z",
     "memberTrafficChanged": false
   },
   "artwork": {
@@ -2063,16 +2063,16 @@
   "unit": "\u2714 all seven rotate on successive London dates, consistently within a day (19.774458ms)\n\u2714 scores maximise, Saw Duel minimises positive times, and stars merge per level (2.586792ms)\n\u2714 sound defaults off, nickname starts blank, and nudges cap at two per week (1.35875ms)\n\u2714 real SQL concurrent saves keep best, preserve health/pile/food and separate accounts without requiring health consent (30.851166ms)\n\u2714 arcade export contains only owner; account erasure clears arcade atomically, health erasure keeps it (4.398417ms)\n\u2714 actual SQL CAS awards once across twenty overlapping saves, a second session, refresh and retries (42.39175ms)\n\u2714 Done cannot write actual-food totals; feedback stays optional and changes a future offer with a reason (4.088208ms)\n\u2714 30th milestone is one durable database award across devices; privacy preference needs no new tracking consent (11.47825ms)\n\u2714 account ownership, Origin, paused tracking and a consent withdrawal at the SQL write fail closed (4.70175ms)\n\u2714 initial preparation preserves existing logs, milestone, words and unrelated settings (23.37025ms)\n\u2714 withdrawn tracking cannot initialise or overwrite member records (0.857625ms)\n\u2714 crew ACLs come from authenticated membership and disclose only opted-in effort (41.155333ms)\n\u2714 joining requires deliberate consent, an unexpired invitation and space (6.911542ms)\n\u2714 Monday reads the new weekly score without resetting lifetime pile (2.048708ms)\n\u2714 food writes use server source values, ignore supplied macros and do not alter the pile (36.235208ms)\n\u2714 overlapping food retries insert once and rebuild totals atomically (13.388209ms)\n\u2714 portion edits keep source and preserve pile; stale edits cannot replace a newer record (6.552417ms)\n\u2714 search does no external lookup, account mismatch and missing consent fail closed (4.456416ms)\n\u2714 one log per London calendar day survives swaps, retries, reloads and another device (25.247375ms)\n\u2714 Done saves only the action; food totals have no write path (0.199958ms)\n\u2714 optional feedback and dismissal keep the log; negative feedback explains tomorrow\u2019s change (0.679542ms)\n\u2714 weight defaults on, off chooses strength, and re-enabling leads with weight (0.945083ms)\n\u2714 a hard week never clears the pile, and Monday resets only the derived weekly count (0.300708ms)\n\u2714 30th milestone is awarded once, preserved across retries; sharing cannot expose private fields (4.277958ms)\n\u2714 London midnight and daylight-saving boundaries use the existing account calendar (0.313333ms)\n\u2714 ten original actions have three swaps within 5g using unrounded source data (0.991583ms)\n\u2714 different database versions, missing values and unverified recipes cannot pass as matched swaps (0.232458ms)\n\u2714 own saved plan targets are used, and absent or zero targets stay unknown (1.01475ms)\n\u2714 UK FoP exact boundaries, food/drink differences and large-portion overrides (0.130834ms)\n\u2714 portions preserve source, leave missing nutrients unknown, and actual-eaten totals ignore planned meals (0.251625ms)\n\u2714 preparation stops once the ranked original has three safe sourced alternatives (21.841709ms)\n\u2714 nightly observations retain recorded dates and never infer why weight changed (14.592959ms)\n\u2714 overnight job prepares once, does not change the pile, and never runs from a screen GET (2.582625ms)\n\u2714 hidden weight is suppressed when reading an older prepared insight (0.556542ms)\n\u2714 existing health erasure transaction also clears only the requesting account V7 stores (2.19725ms)\n\u2714 a failed original erasure rolls back V7 additions in the same transaction (0.883083ms)\n\u2714 public frame streams before identity completes; private data waits for verified account (28.767833ms)\n\u2714 signed-out stream contains no private snapshot and does not masquerade as a member (2.584625ms)\n\u2714 hidden-weight presentation removes body weight, changes, BMI, stalls and device weights across nested views (0.797042ms)\n\u2714 nutrition targets and a strength activity measured in kg are retained (0.111333ms)\n\u2714 explicit tracking grant stays signed in; withdrawal still clears all open private views (16.012917ms)\n\u2714 logout, deletion and unknown successful consent mutations retain fail-closed purge (3.037792ms)\n\u2139 tests 42\n\u2139 suites 0\n\u2139 pass 42\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 352.051458\n",
   "lighthouse": {
     "version": "13.6.0",
-    "fetchTime": "2026-11-04T17:14:04.195Z",
-    "performance": 0.99,
+    "fetchTime": "2026-11-04T18:41:46.690Z",
+    "performance": 1,
     "metrics": {
       "first-contentful-paint": {
-        "value": 1160.931,
-        "display": "1.2\u00a0s"
+        "value": 674.068,
+        "display": "0.7\u00a0s"
       },
       "largest-contentful-paint": {
-        "value": 2042.427,
-        "display": "2.0\u00a0s"
+        "value": 1604.055,
+        "display": "1.6\u00a0s"
       },
       "total-blocking-time": {
         "value": 0,
@@ -3349,5 +3349,5 @@
   },
   "sourceCommit": "371ef2950f027ccb2a824fff2187c1698a88459d",
   "speedBuild": "7ed2dc0d5e8bf923fcb8",
-  "speedMeasurementNote": "Final full 20-sample run after fixing stale manifest attribution in the timing runner; prior measurements retained. No sample filtering."
+  "speedMeasurementNote": "Latest full20-sample run after early Welcome artwork discovery; no sample selection. Streaming privacy tests2/2pass. No member traffic moved."
 }

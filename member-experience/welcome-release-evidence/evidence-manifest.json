@@ -10,18 +10,18 @@
     },
     {
       "path": "My-Timber-release-report.html",
-      "bytes": 13097895,
-      "sha256": "5c8530d9cf5ea509870815db861590ac633c24cc3fcf204187e536e5641598e8"
+      "bytes": 13097914,
+      "sha256": "a6b98918c4302f8807149327bd6cbe08e89a957fe1d79b26821a72f6d75b7ff3"
     },
     {
       "path": "REPORT.md",
-      "bytes": 52063,
-      "sha256": "73f2385b384e4ba3e7623397197e3179b4fd76a6eef7c52bac63b01374dbfab7"
+      "bytes": 52072,
+      "sha256": "e681ab3a2c96897735a194549be040f7e83f87835d2e0267c955945753de6bc2"
     },
     {
       "path": "acceptance.json",
-      "bytes": 791,
-      "sha256": "2236f765f8028636a5979a0d82906fdca67f1ebdc1ce3aa388c8d2744c0c72b6"
+      "bytes": 725,
+      "sha256": "71998cb4ca2bc17fa670f92b2303decca3125e247b3d3eb0267bad0215244c9d"
     },
     {
       "path": "artwork.json",
@@ -355,8 +355,8 @@
     },
     {
       "path": "build_report.py",
-      "bytes": 33844,
-      "sha256": "f4af71f797e213eeecc71d3c554866a9dc78b090e684228d8c19f3965ac83986"
+      "bytes": 33789,
+      "sha256": "b344dd410c6d662ce5e2e9fb0de8622c0d4a450ac756f29d1f67aeec0f804c2b"
     },
     {
       "path": "candidate-mobile-speed/results-1793806775159.json",
@@ -395,13 +395,13 @@
     },
     {
       "path": "candidate-mobile-speed/results.json",
-      "bytes": 125903,
-      "sha256": "62d60c67216d263f4cea44c56b26ce84fee6bda82b66832524a098548c73a6bb"
+      "bytes": 125632,
+      "sha256": "727e230d80ee7a4b2501d2339226168d2142793259deee8ebbbeaebe231a0084"
     },
     {
       "path": "compression.json",
       "bytes": 405,
-      "sha256": "83ccd38cbdacb61f5d303b4d904c0e3834372198b06e1b33e7f9a6b5ba0803c8"
+      "sha256": "d2b09b4b009839664ad700ed1e1830f0feb923c0262f820361f0124a0bf548cd"
     },
     {
       "path": "contrast.json",
@@ -410,8 +410,8 @@
     },
     {
       "path": "evidence-summary.json",
-      "bytes": 117443,
-      "sha256": "fdb6797208da5f959573e8f985fca90b7770f974576c8d62aadff86e79f36dff"
+      "bytes": 117446,
+      "sha256": "361ee404bb993370d17f34e1d778c5684dc8dce8b1bda3f2da361c0f8441cfa6"
     },
     {
       "path": "final-chromium/critical.webm",
@@ -775,13 +775,13 @@
     },
     {
       "path": "lighthouse/welcome.html",
-      "bytes": 503433,
-      "sha256": "d3fff030cad1c11b3131d5e87c7f7b1bb9009a3b5498c8009960e6206855501f"
+      "bytes": 548492,
+      "sha256": "d180c4e17eb62d3e5ad46503e565ba3163ec0b59ed63c65837900abcc877d202"
     },
     {
       "path": "lighthouse/welcome.json",
-      "bytes": 362258,
-      "sha256": "ede1b9a22e69591ad185b33f7d63e8e61f1a69584f95326b3e434907bf41af29"
+      "bytes": 408122,
+      "sha256": "3ffa7853837d7c40bf5f74b2962160a26ad859a0d724ead8f8698b71e1840e6a"
     },
     {
       "path": "link-inventory.json",
@@ -790,8 +790,8 @@
     },
     {
       "path": "pass-fail.json",
-      "bytes": 48677,
-      "sha256": "03773b401db6d448f1aa52e13cd712e9e20b6fa9ec1e85343d85e69dc06fae3f"
+      "bytes": 48680,
+      "sha256": "1722c6f4fd52cb7245f3d21aa2efacaf57d85b9f3d6f7cff05dcfc86f2b427bc"
     },
     {
       "path": "personalisation-source.json",
@@ -811,12 +811,12 @@
     {
       "path": "readiness.json",
       "bytes": 856,
-      "sha256": "d83171e9adf839dbd9828c6ce0d1a55350d5904b13c038bf80e911e147fe528e"
+      "sha256": "0118fcb895d70304e69d8ab979e398bd5ad9fe1cd34a6f83654116e9e879eefc"
     },
     {
       "path": "release.json",
       "bytes": 851,
-      "sha256": "2cad4b078ce20b1b046cb763e6cf0002c3399b41fe77c53e309b219ee0c96605"
+      "sha256": "9577102662f3c9121e46706d8e8303d97de56573f48161c207abcabbedd86ef1"
     },
     {
       "path": "screens/chromium-24-support.jpg",
@@ -1076,7 +1076,7 @@
     {
       "path": "test-package.json",
       "bytes": 16855,
-      "sha256": "09b0d30b38379e045b7de721d7bb7e8473c6bcdf766e86323c3165554fc6c4c2"
+      "sha256": "587f44c6146448128e46ded6a40d19bb815fe07635f68080e205655cad76f5ec"
     },
     {
       "path": "unit-tests.txt",
