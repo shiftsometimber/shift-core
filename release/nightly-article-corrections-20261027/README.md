@@ -121,3 +121,14 @@ PR1521 commit b222d2a8847358377838d7b1c22ba7aa0d5d4436: BabyLoveGrowth Webhook G
 The existing automatic master run41926653973 and route-sweep41926653836 were started by the normal PR infrastructure, not a new watcher. Last inspected child progress: integration job126912680859 completed the staged Radar commissioning and entered M03 scheduled authoritative scan; native job126912681113 completed native source/navigation checks and was preparing iOS resources; route-sweep job126912681135 was executing its whole-estate routes step. Preserve these existing jobs; do not restart successful checks or mistake them for production deployment. Their final results remain independently reviewable at the run URLs.
 
 CI status supersession: master integration run41926653973 completed SUCCESS at22:37:04GMT on exact candidate b222d2a8847358377838d7b1c22ba7aa0d5d4436. The child-step description above is its earlier progress receipt. Whole-estate run41926653836 remained in progress at the final candidate check; no full-estate pass is claimed. Preparation is complete through a tested handover; clinical/exact-copy/publication gates remain. No deployment was started.
+
+
+### Matt deployment approval — 4 November 2026, 22:42 GMT
+
+Matt explicitly instructed “Deploy” after the exact PR1521 copy/technical packet was shown. Record owner approval for unchanged candidate b222d2a8847358377838d7b1c22ba7aa0d5d4436, including its exact review-copy.md and import safeguard. This supersedes the earlier “Matt exact-copy approval pending” status for this candidate. Do not request the same owner approval again.
+
+Qualified clinical approval is separate: no qualifying clinical review receipt was found in this existing record or PR1521 review history. The corrected TA875/TA1152 eligibility and TA1026 continuation wording must retain that gate. Matt's deployment instruction is not evidence of a clinician's review. No public medical update, merge or production promotion was started.
+
+Technical state: Webhook64-test run41926653856 and Master41926653973 passed on the approved SHA. Estate41926653836/job126912681135 was still in its existing whole-estate sweep at22:41GMT; GitHub's live log download returned BlobNotFound while the job remained in progress. This is unavailable progress detail, not proof of a stall; no cancellation, retry or bypass was performed.
+
+The existing current-main Production Promote workflow also uploads the broader application. Do not trigger it just to bypass this scoped handover or manufacture a clinical approval. Release manager retains merging/deployment and current-serving-source protection. Owner approval is now satisfied; smallest remaining publication requirement is the qualified review receipt tied to the exact candidate. Capture/guard the real CMS row and owned rollback before any approved medical write, then verify actual live copy/schema/dates/provenance/security. The already completed Wegovy repair remains closed.
