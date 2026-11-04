@@ -187,7 +187,7 @@ function ui(){$('hl').textContent=`LEVEL ${S.level}`;$('hc').textContent=`SCORE 
   $('best').textContent=`Your best: ${best} pts`;$('bestsub').textContent='Crate +20 · oak +30 · chains add more';
   $('shed').textContent=`${fmt(SHED_EXAMPLE+smashedMine)} timber smashed`;$('mine').textContent=smashedMine?`incl. ${fmt(smashedMine)} of yours`:'Every smash adds to it';}
 $('again').onclick=$('pa').onclick=()=>{$('ov').classList.remove('on');start();};
-$('invite').onclick=$('pi').onclick=()=>invite(best?`Beat my ${best} points at Timber Smash in the My Timber Shed Arcade. Keep the ball up.`:'Fancy a go at Timber Smash in the My Timber Shed Arcade? Keep the ball up.');
+$('invite').onclick=$('pi').onclick=()=>invite(best?`Beat my ${best} points at Timber Smash in the My Timber Shift Arcade. Keep the ball up.`:'Fancy a go at Timber Smash in the My Timber Shift Arcade? Keep the ball up.');
 setupMute($('mute'));pixelTitle($('title'),'TIMBER SMASH');fitCanvas(cv,$('gwrap'),CW,CH);reset();
 let last=performance.now(),acc=0;const STEP=1/60;
 function frame(now){acc+=Math.min(0.1,(now-last)/1000);last=now;let n=0;while(acc>=STEP&&n<4){update(STEP);acc-=STEP;n++;}if(n===4)acc=0;render();requestAnimationFrame(frame);}

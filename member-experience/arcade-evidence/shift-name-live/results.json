@@ -1,0 +1,270 @@
+{
+  "origin": "https://shiftsometimber.co.uk",
+  "live": true,
+  "engines": [
+    {
+      "engine": "chromium",
+      "at": "2026-11-04T14:02:33.296Z",
+      "profile": "390x844 automated browser; not physical phone",
+      "account": "v7-live-proof@example.invalid",
+      "checks": [
+        {
+          "name": "Today label is SHIFT ARCADE",
+          "pass": true
+        },
+        {
+          "name": "Grid is SHIFT ARCADE with seven games",
+          "pass": true
+        },
+        {
+          "name": "Existing game names preserved",
+          "pass": true
+        },
+        {
+          "name": "Support link renamed; destination preserved",
+          "pass": true
+        },
+        {
+          "name": "timber-lob existing link opens in same frame",
+          "pass": true
+        },
+        {
+          "name": "timber-lob share says Shift Arcade",
+          "pass": true
+        },
+        {
+          "name": "chop-shop existing link opens in same frame",
+          "pass": true
+        },
+        {
+          "name": "chop-shop share says Shift Arcade",
+          "pass": true
+        },
+        {
+          "name": "timber existing link opens in same frame",
+          "pass": true
+        },
+        {
+          "name": "timber share says Shift Arcade",
+          "pass": true
+        },
+        {
+          "name": "stack-the-shed existing link opens in same frame",
+          "pass": true
+        },
+        {
+          "name": "stack-the-shed share says Shift Arcade",
+          "pass": true
+        },
+        {
+          "name": "saw-duel existing link opens in same frame",
+          "pass": true
+        },
+        {
+          "name": "saw-duel share says Shift Arcade",
+          "pass": true
+        },
+        {
+          "name": "timber-smash existing link opens in same frame",
+          "pass": true
+        },
+        {
+          "name": "timber-smash share says Shift Arcade",
+          "pass": true
+        },
+        {
+          "name": "over-the-shed existing link opens in same frame",
+          "pass": true
+        },
+        {
+          "name": "over-the-shed share says Shift Arcade",
+          "pass": true
+        },
+        {
+          "name": "Saved bests preserved",
+          "pass": true
+        },
+        {
+          "name": "Food and daily pile preserved",
+          "pass": true
+        },
+        {
+          "name": "No browser exceptions",
+          "pass": true,
+          "detail": []
+        }
+      ],
+      "shares": [
+        {
+          "title": "Timber Lob",
+          "text": "Beat my 0 stars at Timber Lob in the My Timber Shift Arcade. Knock the gnome off, if you can.",
+          "url": "https://shiftsometimber.co.uk/member/shed-arcade/timber-lob"
+        },
+        {
+          "title": "Chop Shop",
+          "text": "Beat my 25 timber chops at Chop Shop in the My Timber Shift Arcade. 30 seconds, one axe.",
+          "url": "https://shiftsometimber.co.uk/member/shed-arcade/chop-shop"
+        },
+        {
+          "title": "Timber!",
+          "text": "Fancy a run at Timber! in the My Timber Shift Arcade? Mind the trees.",
+          "url": "https://shiftsometimber.co.uk/member/shed-arcade/timber"
+        },
+        {
+          "title": "Stack the Shed",
+          "text": "Fancy a go at Stack the Shed in the My Timber Shift Arcade? Mind the wind.",
+          "url": "https://shiftsometimber.co.uk/member/shed-arcade/stack-the-shed"
+        },
+        {
+          "title": "Saw Duel",
+          "text": "Fancy a Saw Duel in the My Timber Shift Arcade? Left, right, left, right.",
+          "url": "https://shiftsometimber.co.uk/member/shed-arcade/saw-duel"
+        },
+        {
+          "title": "Timber Smash",
+          "text": "Fancy a go at Timber Smash in the My Timber Shift Arcade? Keep the ball up.",
+          "url": "https://shiftsometimber.co.uk/member/shed-arcade/timber-smash"
+        },
+        {
+          "title": "Over the Shed",
+          "text": "Fancy a go at Over the Shed in the My Timber Shift Arcade? Swing the plank.",
+          "url": "https://shiftsometimber.co.uk/member/shed-arcade/over-the-shed"
+        }
+      ],
+      "errors": [],
+      "success": true
+    },
+    {
+      "engine": "webkit",
+      "at": "2026-11-04T14:02:43.743Z",
+      "profile": "390x844 automated browser; not physical phone",
+      "account": "v7-live-proof@example.invalid",
+      "checks": [
+        {
+          "name": "Today label is SHIFT ARCADE",
+          "pass": true
+        },
+        {
+          "name": "Grid is SHIFT ARCADE with seven games",
+          "pass": true
+        },
+        {
+          "name": "Existing game names preserved",
+          "pass": true
+        },
+        {
+          "name": "Support link renamed; destination preserved",
+          "pass": true
+        },
+        {
+          "name": "timber-lob existing link opens in same frame",
+          "pass": true
+        },
+        {
+          "name": "timber-lob share says Shift Arcade",
+          "pass": true
+        },
+        {
+          "name": "chop-shop existing link opens in same frame",
+          "pass": true
+        },
+        {
+          "name": "chop-shop share says Shift Arcade",
+          "pass": true
+        },
+        {
+          "name": "timber existing link opens in same frame",
+          "pass": true
+        },
+        {
+          "name": "timber share says Shift Arcade",
+          "pass": true
+        },
+        {
+          "name": "stack-the-shed existing link opens in same frame",
+          "pass": true
+        },
+        {
+          "name": "stack-the-shed share says Shift Arcade",
+          "pass": true
+        },
+        {
+          "name": "saw-duel existing link opens in same frame",
+          "pass": true
+        },
+        {
+          "name": "saw-duel share says Shift Arcade",
+          "pass": true
+        },
+        {
+          "name": "timber-smash existing link opens in same frame",
+          "pass": true
+        },
+        {
+          "name": "timber-smash share says Shift Arcade",
+          "pass": true
+        },
+        {
+          "name": "over-the-shed existing link opens in same frame",
+          "pass": true
+        },
+        {
+          "name": "over-the-shed share says Shift Arcade",
+          "pass": true
+        },
+        {
+          "name": "Saved bests preserved",
+          "pass": true
+        },
+        {
+          "name": "Food and daily pile preserved",
+          "pass": true
+        },
+        {
+          "name": "No browser exceptions",
+          "pass": true,
+          "detail": []
+        }
+      ],
+      "shares": [
+        {
+          "title": "Timber Lob",
+          "text": "Beat my 0 stars at Timber Lob in the My Timber Shift Arcade. Knock the gnome off, if you can.",
+          "url": "https://shiftsometimber.co.uk/member/shed-arcade/timber-lob"
+        },
+        {
+          "title": "Chop Shop",
+          "text": "Beat my 25 timber chops at Chop Shop in the My Timber Shift Arcade. 30 seconds, one axe.",
+          "url": "https://shiftsometimber.co.uk/member/shed-arcade/chop-shop"
+        },
+        {
+          "title": "Timber!",
+          "text": "Fancy a run at Timber! in the My Timber Shift Arcade? Mind the trees.",
+          "url": "https://shiftsometimber.co.uk/member/shed-arcade/timber"
+        },
+        {
+          "title": "Stack the Shed",
+          "text": "Fancy a go at Stack the Shed in the My Timber Shift Arcade? Mind the wind.",
+          "url": "https://shiftsometimber.co.uk/member/shed-arcade/stack-the-shed"
+        },
+        {
+          "title": "Saw Duel",
+          "text": "Fancy a Saw Duel in the My Timber Shift Arcade? Left, right, left, right.",
+          "url": "https://shiftsometimber.co.uk/member/shed-arcade/saw-duel"
+        },
+        {
+          "title": "Timber Smash",
+          "text": "Fancy a go at Timber Smash in the My Timber Shift Arcade? Keep the ball up.",
+          "url": "https://shiftsometimber.co.uk/member/shed-arcade/timber-smash"
+        },
+        {
+          "title": "Over the Shed",
+          "text": "Fancy a go at Over the Shed in the My Timber Shift Arcade? Swing the plank.",
+          "url": "https://shiftsometimber.co.uk/member/shed-arcade/over-the-shed"
+        }
+      ],
+      "errors": [],
+      "success": true
+    }
+  ]
+}

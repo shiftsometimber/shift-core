@@ -252,7 +252,7 @@ function showPanel(kind,st,improved){const o=$('ov');o.classList.add('on');const
 function hidePanel(){$('ov').classList.remove('on');}
 $('again').onclick=$('pa').onclick=()=>{hidePanel();loadLevel(L);};
 $('next').onclick=$('pn').onclick=()=>{if(L<LEVELS.length-1&&unlocked(L+1)){hidePanel();loadLevel(L+1);}};
-$('invite').onclick=()=>invite(`Beat my ${totalStars()} stars at Timber Lob in the My Timber Shed Arcade. Knock the gnome off, if you can.`);
+$('invite').onclick=()=>invite(`Beat my ${totalStars()} stars at Timber Lob in the My Timber Shift Arcade. Knock the gnome off, if you can.`);
 setupMute($('mute'));pixelTitle($('title'),'TIMBER LOB');
 fitCanvas(cv,$('gwrap'),CW,CH);
 // ---- loop

@@ -1,0 +1,23 @@
+{
+  "createdAt": "2026-11-04T14:01:18.394Z",
+  "original": "33282b19-2c49-4b26-9dc6-4b9267087fef",
+  "core": "a397ea3f-f6b1-4de3-a0de-36ff49cf7a7d",
+  "rollback": "node member-experience/tools/shift-arcade-name-release.mjs rollback",
+  "originalHashes": {
+    "v7-release-20261103/programme.mjs": "dacfc2c176efcd5274440dc9dc11dc468740d8832f427da9d14c7d98afa84d2e"
+  },
+  "expectedHashes": {
+    "v7-release-20261103/programme.mjs": "2aa0d8f1d79aabc1efc184b132ba6d9859da22ba83b82a7b9d36717ffad24809"
+  },
+  "schedules": [
+    {
+      "cron": "0,15,30,45 0-5 * * *",
+      "created_on": "2026-11-04T00:34:26.630649Z",
+      "modified_on": "2026-11-04T00:34:26.630649Z"
+    }
+  ],
+  "uploadIntent": "2026-11-04T14:01:26.404Z",
+  "candidate": "42f085ae-553c-4b11-82f6-116203fb3c5e",
+  "preparedAt": "2026-11-04T14:01:30.774Z",
+  "liveAt": "2026-11-04T14:02:22.109Z"
+}

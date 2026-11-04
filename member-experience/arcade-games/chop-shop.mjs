@@ -145,7 +145,7 @@ function hud(){$('hl').textContent=`TIMBER ${S.logs}`;$('hc').textContent=`COMBO
 function ui(){hud();$('best').textContent=`Your best: ${best} chopped`;$('bestsub').textContent=best?'Beat it in 30 seconds':'Set one this round';
   $('shed').textContent=`${fmt(SHED_EXAMPLE+mine)} timber chops`;$('mine').textContent=mine?`incl. ${fmt(mine)} of yours`:'Every chop adds to it';}
 $('again').onclick=$('pa').onclick=()=>{$('ov').classList.remove('on');start();};
-$('invite').onclick=$('pi').onclick=()=>invite(best?`Beat my ${best} timber chops at Chop Shop in the My Timber Shed Arcade. 30 seconds, one axe.`:`Fancy a go at Chop Shop in the My Timber Shed Arcade? 30 seconds, one axe.`);
+$('invite').onclick=$('pi').onclick=()=>invite(best?`Beat my ${best} timber chops at Chop Shop in the My Timber Shift Arcade. 30 seconds, one axe.`:`Fancy a go at Chop Shop in the My Timber Shift Arcade? 30 seconds, one axe.`);
 setupMute($('mute'));pixelTitle($('title'),'CHOP SHOP');fitCanvas(cv,$('gwrap'),CW,CH);reset();
 let last=performance.now(),acc=0;const STEP=1/60;
 function frame(now){acc+=Math.min(0.1,(now-last)/1000);last=now;let n=0;while(acc>=STEP&&n<4){update(STEP);acc-=STEP;n++;}if(n===4)acc=0;render();requestAnimationFrame(frame);}

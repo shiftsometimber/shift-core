@@ -167,7 +167,7 @@ function hud(){$('hl').textContent=`${Math.floor(S.dist/12)} M`;$('hc').textCont
 function ui(){hud();$('best').textContent=`Your best: ${best} m`;$('bestsub').textContent=`Acorns saved: ${acornsTotal}${acornsTotal>=100?' · bobble hat on':' · hat at 100'}`;
   $('shed').textContent=`${fmt(SHED_EXAMPLE+dodged)} trees dodged`;$('mine').textContent=dodged?`incl. ${fmt(dodged)} of yours`:'Every dodge adds to it';}
 $('again').onclick=$('pa').onclick=()=>{$('ov').classList.remove('on');start();};
-$('invite').onclick=$('pi').onclick=()=>invite(best?`Beat my ${best}m at Timber! in the My Timber Shed Arcade. Mind the trees.`:'Fancy a run at Timber! in the My Timber Shed Arcade? Mind the trees.');
+$('invite').onclick=$('pi').onclick=()=>invite(best?`Beat my ${best}m at Timber! in the My Timber Shift Arcade. Mind the trees.`:'Fancy a run at Timber! in the My Timber Shift Arcade? Mind the trees.');
 setupMute($('mute'));pixelTitle($('title'),'TIMBER!');fitCanvas(cv,$('gwrap'),CW,CH);reset();
 let last=performance.now(),acc=0;const STEP=1/60;
 function frame(now){acc+=Math.min(0.1,(now-last)/1000);last=now;let n=0;while(acc>=STEP&&n<4){update(STEP);acc-=STEP;n++;}if(n===4)acc=0;render();requestAnimationFrame(frame);}

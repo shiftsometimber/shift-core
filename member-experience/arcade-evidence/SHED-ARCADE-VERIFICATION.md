@@ -1,4 +1,4 @@
-# Shed Arcade — release evidence
+# Shift Arcade — release evidence
 
 Live: 2026-11-04T09:36:17.679Z
 
@@ -113,3 +113,15 @@ The exact renderer was fetched from the serving production JavaScript, its SHA25
 Fresh Chromium and WebKit sessions using the app user agent and bundled iOS presentation scripts both opened the arcade through Today and Support, without browser errors. At 390 × 844 the Today card starts around 1,756px down the document, immediately after the timber pile. The shorter route is Support → Shed Arcade. This is app-style browser evidence, not inspection of Matt’s installed app or a physical-device pass. An older already-open screen remains a possible explanation until his actual view is identified; no production code was changed for this check.
 
 [WebKit Today location](app-entry/webkit-today.png) · [Chromium Today location](app-entry/chromium-today.png) · [WebKit results](app-entry/webkit.json) · [Chromium results](app-entry/chromium.json)
+
+## Shift Arcade name correction — 4 November 2026
+
+The member-facing name is now Shift Arcade in Today, Support, the arcade heading and all seven sharing messages. The original technical URLs, API, account storage keys and individual game names remain compatible. This is an exact display-name replacement; the original supplied HTML files are retained unchanged.
+
+Live at 2026-11-04T14:02:22.109Z; front version 42f085ae-553c-4b11-82f6-116203fb3c5e. Core, existing bindings, assets configuration and schedules were preserved. Twenty-one targeted checks passed in each of Chromium and WebKit on both the test site and production. Existing bests, food totals and the daily-action pile were verified unchanged. Forty unit tests passed. These are browser profiles, not physical-phone evidence; the existing physical-device acceptance limitation remains.
+
+[Production rename results](shift-name-live/results.json) · [Test rename results](shift-name-test/results.json) · [Change-scope check](shift-name-scope.json) · [Release and rollback receipt](shift-name-release.json)
+
+[Today screenshot](shift-name-live/webkit-today.png) · [Arcade screenshot](shift-name-live/webkit-arcade.png)
+
+Rename rollback: `node member-experience/tools/shift-arcade-name-release.mjs rollback`.

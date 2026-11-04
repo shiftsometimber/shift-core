@@ -1,37 +1,37 @@
 {
   "chop-shop": {
     "sourceSHA256": "f7f3402f90d354e732d3a1674dcc5793d5b07ca74c7b9a60aadb8a79448b02c7",
-    "moduleSHA256": "94a7878739e6d88cdfeeed633d23a1ca318ae8cf934309b5e1381f39939f083a",
-    "bytes": 27219
+    "moduleSHA256": "89a25dcd1d3d846766b68d61c310dd58a0e80623687bf3c7f49f57e67ac737a6",
+    "bytes": 27221
   },
   "over-the-shed": {
     "sourceSHA256": "1ce471048515308d8df4e6d9bffd44117e896e9150c84c02c06e166b6cf96ef2",
-    "moduleSHA256": "3ad9fcdb32b6207bbe8ca58c187f7d4e98fd5acf0e024b7d15ad69b3deac111c",
-    "bytes": 33007
+    "moduleSHA256": "cfae8e621235f97cc8485a7a9b1c0400b65c5bd840448e9723b5b0ffc78009a2",
+    "bytes": 33009
   },
   "saw-duel": {
     "sourceSHA256": "3a1d925a73dbd9b2a59e04da706f63d2253f13e94d9ff5ae7f667e05d46189f1",
-    "moduleSHA256": "d0fc3265e67d9a424a37d5aff6f00dbc213dec60c363a0a2ca10d6e004eaf407",
-    "bytes": 28120
+    "moduleSHA256": "bb70337c78882803c6dc22de7f25154d817a5eb5f40665d9f7271c8681be228d",
+    "bytes": 28123
   },
   "stack-the-shed": {
     "sourceSHA256": "3f13217ba474ebd97686876dfb611aee774b5cb1fea26815c7568547545d5ee1",
-    "moduleSHA256": "c1aea902cd1fa80de0d3ebf7790020eb8c061e5141d7a1266a9220d16b54e691",
-    "bytes": 26394
+    "moduleSHA256": "1e6e75bbe8faf86bc76b464fe265649b82a88569374457ce1eba22cf83c41a04",
+    "bytes": 26396
   },
   "timber": {
     "sourceSHA256": "2ea96c262c99ca092e17d3cfac5991ccf22e55be499a05a6c41052f9e82b9d05",
-    "moduleSHA256": "33e5c7869457379f67694be0a4c8414ff77a3871523493e25c707a34add877a2",
-    "bytes": 30329
+    "moduleSHA256": "1fa49e0b1811b6a50f8fc9f601888d8d1823e7c9ae58d9aca1bde4d62c3fcbc5",
+    "bytes": 30331
   },
   "timber-lob": {
     "sourceSHA256": "e22bd04216fe50fd61f17446d4e00929236912b44293982b1f2a830b98293ec1",
-    "moduleSHA256": "1cca08dc090e770ece1bb50f30cd55235b3bd36d1731b8306245e84adc522c1b",
-    "bytes": 40161
+    "moduleSHA256": "11acc8c173b30da9a0d307915c03c191b994d4d049d2296a85fc799e0d19b5e5",
+    "bytes": 40162
   },
   "timber-smash": {
     "sourceSHA256": "1575d371c2c5f4a4093371903b6b60d3b3604db865f9620e21c1bf2abd3fa15b",
-    "moduleSHA256": "152b44be8bf52bc55a83e869eea449d4b0660a8bc04b7c282a3697f8643e2fc5",
-    "bytes": 30890
+    "moduleSHA256": "2506432948399bf79768b471d46430c9ba09ba5175087ee4c8a800eeef43cd11",
+    "bytes": 30892
   }
 }

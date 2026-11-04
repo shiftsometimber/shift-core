@@ -146,8 +146,8 @@ function ui(){hud();$('cfrom').textContent=CH_.fromLink?`Friendly challenge from
   const tot=SHED_EXAMPLE+sawn;$('shed').textContent=`${fmt(tot)} / ${fmt(SHED_TARGET)} saws`;$('sbar').style.width=Math.min(100,tot/SHED_TARGET*100)+'%';$('mine').textContent=sawn?`incl. ${fmt(sawn)} of yours`:'Every bit of timber you saw adds to it';}
 $('handle').value=handle;$('handle').addEventListener('input',e=>{const v=clean(e.target.value);handle=v;store.set('mt_saw_handle',handle);});
 $('again').onclick=$('pa').onclick=()=>start();
-$('pi').onclick=()=>invite(`I sawed through in ${S.T.toFixed(1)}s at Saw Duel in the My Timber Shed Arcade. Your go: race my ghost.`,link(S.T));
-$('invite').onclick=()=>best?invite(`My best at Saw Duel is ${best.toFixed(1)}s. Race my ghost in the My Timber Shed Arcade.`,link(best)):invite('Fancy a Saw Duel in the My Timber Shed Arcade? Left, right, left, right.',location.href.split('#')[0]);
+$('pi').onclick=()=>invite(`I sawed through in ${S.T.toFixed(1)}s at Saw Duel in the My Timber Shift Arcade. Your go: race my ghost.`,link(S.T));
+$('invite').onclick=()=>best?invite(`My best at Saw Duel is ${best.toFixed(1)}s. Race my ghost in the My Timber Shift Arcade.`,link(best)):invite('Fancy a Saw Duel in the My Timber Shift Arcade? Left, right, left, right.',location.href.split('#')[0]);
 window.addEventListener('hashchange',()=>{CH_=readChallenge();reset();});
 setupMute($('mute'));pixelTitle($('title'),'SAW DUEL');fitCanvas(cv,$('gwrap'),CW,CH);reset();
 let last=performance.now(),acc=0;const STEP=1/60;

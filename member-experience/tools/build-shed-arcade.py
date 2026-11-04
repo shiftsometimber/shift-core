@@ -70,6 +70,7 @@ for path in sorted(source.glob('*-3nov.html')):
     script=script[:a]+"async function invite(text,link){return bridge.share(text,link);}\n"+script[b:]
     script=re.sub(r'SHED_EXAMPLE=\d+','SHED_EXAMPLE=0',script)
     script=script.replace('mt_loglob_','mt_timberlob_')
+    script=script.replace('Shed Arcade','Shift Arcade').replace('SHED ARCADE','SHIFT ARCADE')
     if slug=='saw-duel':
         script=script.replace('if(t>=3&&t<=99&&n)', 'if(t>=0.1&&t<=99&&n)')
         script=script.replace("return{name:'SawdustSteve',t:14.2,fromLink:false}","return{name:'Practice',t:14.2,fromLink:false}")

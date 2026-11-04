@@ -206,7 +206,7 @@ function ui(){$('hl').textContent=`OUTS ${S.outs}/3`;$('hc').textContent=`RUNS $
   $('best').textContent=`Your best: ${best} run${best===1?'':'s'}`;$('bestsub').textContent=longest?`Longest hit: ${longest} m`:'Clear the shed for a bonus run';
   $('shed').textContent=`${fmt(SHED_EXAMPLE+oversMine)} over the shed`;$('mine').textContent=oversMine?`incl. ${fmt(oversMine)} of yours`:'Every big one adds to it';}
 $('again').onclick=$('pa').onclick=()=>{$('ov').classList.remove('on');start();};
-$('invite').onclick=$('pi').onclick=()=>invite(best?`Beat my ${best} runs at Over the Shed in the My Timber Shed Arcade. Swing the plank.`:'Fancy a go at Over the Shed in the My Timber Shed Arcade? Swing the plank.');
+$('invite').onclick=$('pi').onclick=()=>invite(best?`Beat my ${best} runs at Over the Shed in the My Timber Shift Arcade. Swing the plank.`:'Fancy a go at Over the Shed in the My Timber Shift Arcade? Swing the plank.');
 setupMute($('mute'));pixelTitle($('title'),'OVER THE SHED');fitCanvas(cv,$('gwrap'),CW,CH);reset();
 let last=performance.now(),acc=0;const STEP=1/60;
 function frame(now){acc+=Math.min(0.1,(now-last)/1000);last=now;let n=0;while(acc>=STEP&&n<4){update(STEP);acc-=STEP;n++;}if(n===4)acc=0;render();requestAnimationFrame(frame);}
