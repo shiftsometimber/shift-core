@@ -1,0 +1,24 @@
+✔ private questionnaire can open and save before any pharmacy or Stripe configuration (27.577583ms)
+✔ anonymous, cross-origin, wrong-account and missing-consent writes fail closed (2.172875ms)
+✔ retry is idempotent; concurrent stale device cannot overwrite the accepted answers (1.956667ms)
+✔ new privacy epoch and a revoked session prevent late writes (1.993667ms)
+✔ draft is account-owned; deletion removes only this private assessment (1.704916ms)
+✔ existing adult guard and strict field allowlist apply to saved questions (1.694833ms)
+✔ options cannot be viewed before all written questions and confirmations are complete (1.714333ms)
+✔ the existing health-erasure route removes saved assessment answers (1.628083ms)
+✔ previous medicine/dose choices require a consented adult questionnaire and expose no prices or images (2.685417ms)
+✔ written questions complete without prepayment image consent and identify the new ten-step format (1.091708ms)
+✔ initial BMI guidance source matches existing clinical criteria at boundaries (0.549875ms)
+✔ BMI shown for the supplied measurements is 31.7, without implying prescribing approval (0.06375ms)
+✔ assessment fee and refund always sum to treatment amount; never round fee above 10% (0.205542ms)
+✔ completed, expressly accepted new assessment retains 10%; existing/unaccepted/unperformed returns full amount (0.094666ms)
+✔ new public sale terms preserve existing frame and statutory/existing-order protections (13.364583ms)
+✔ terms overlay leaves unrelated Shop and non-HTML responses untouched (0.270625ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 108.496666

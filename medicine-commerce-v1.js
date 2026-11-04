@@ -221,12 +221,16 @@ export function insulinEligibility(form, answer) {
   if (answer !== 'no') return {error:'insulin_answer_required',status:400,message:'Confirm whether you currently take insulin before continuing.'};
   return null;
 }
-export function bmiEligibility(item, assessment = {}) {
+export function medicineBmiCriteria(item) {
   const name=String(item?.name || '').toLowerCase();
-  const standard=30,conditional=name.includes('orlistat')?28:27;
-  if(!/mounjaro|wegovy|liraglutide|saxenda|foundayo|orlistat/.test(name))return {error:'eligibility_rules_unconfirmed',status:409,message:'The service criteria for this medicine need confirming before continuing.'};
+  return /mounjaro|wegovy|liraglutide|saxenda|foundayo|orlistat/.test(name)?{standard:30,conditional:name.includes('orlistat')?28:27,minHeightCm:120,maxHeightCm:230,minWeightKg:35,maxWeightKg:320}:null;
+}
+export function bmiEligibility(item, assessment = {}) {
+  const criteria=medicineBmiCriteria(item);
+  if(!criteria)return {error:'eligibility_rules_unconfirmed',status:409,message:'The service criteria for this medicine need confirming before continuing.'};
+  const {standard,conditional}=criteria;
   const height=Number(assessment.heightCm),weight=Number(assessment.weightKg);
-  if(!Number.isFinite(height)||height<120||height>230||!Number.isFinite(weight)||weight<35||weight>320)return {error:'bmi_details_required',status:400,message:'Enter your current height and weight to complete SHIFT’s eligibility check.'};
+  if(!Number.isFinite(height)||height<criteria.minHeightCm||height>criteria.maxHeightCm||!Number.isFinite(weight)||weight<criteria.minWeightKg||weight>criteria.maxWeightKg)return {error:'bmi_details_required',status:400,message:'Enter your current height and weight to complete SHIFT’s eligibility check.'};
   const bmi=weight/((height/100)**2);
   if(bmi<conditional || (bmi<standard && assessment.weightRelatedCondition==='no'))return {error:'bmi_service_exclusion',status:422,message:'Your BMI does not meet SHIFT’s criteria for this treatment. Explore wider health information at SHIFT Health or speak to your clinician about appropriate support. If you already use treatment, ask your prescriber about continuing care; do not change it yourself.'};
   if(bmi<standard && assessment.weightRelatedCondition!=='yes')return {error:'weight_related_condition_required',status:400,message:'Confirm whether you have a diagnosed weight-related condition. A prescriber must check whether it qualifies.'};

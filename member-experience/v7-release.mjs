@@ -1,3 +1,4 @@
+import {assessmentSaleTermsResponse} from './assessment-sale-terms.mjs';
 import {assessmentDraftRoute} from './assessment-draft.mjs';
 import {mountAssessment} from './assessment-browser.mjs';
 import {personalisationBundle} from './welcome-personalisation-bundle.mjs';
@@ -70,7 +71,7 @@ export function wrapV7(original,helpers){
    const bytes=Uint8Array.from(atob(packed),c=>c.charCodeAt(0));return new Response(request.method==='HEAD'?null:bytes,{encodeBody:'manual',headers:{'Content-Type':path.endsWith('.css')?'text/css; charset=utf-8':'text/javascript; charset=utf-8','Content-Encoding':'br','Content-Length':String(bytes.length),'Vary':'Accept-Encoding','Cache-Control':new URL(request.url).searchParams.get('v')==='__V7_NATIVE_ASSET_TAG__'?'public, max-age=31536000, immutable':'public, max-age=0, must-revalidate','X-Content-Type-Options':'nosniff'}});
   }
   const asset=publicAssets[path];if(asset&&['GET','HEAD'].includes(request.method))return new Response(request.method==='HEAD'?null:asset[0],{headers:{'Content-Type':asset[1]+'; charset=utf-8','Cache-Control':new URL(request.url).searchParams.get('v')==='__V7_NATIVE_ASSET_TAG__'?'public, max-age=31536000, immutable':'public, max-age=0, must-revalidate','X-Content-Type-Options':'nosniff'}});
-  const response=await original.fetch(request,env,ctx);
+  const response=await assessmentSaleTermsResponse(request,await original.fetch(request,env,ctx));
   if(path==='/v1/grub/eaten'&&['POST','PATCH','DELETE'].includes(request.method)&&response.ok){
    const auth=await authenticateMember(request,env);if(auth.response)return auth.response;
    await updateNutritionSummary(env.DB,auth.userId);

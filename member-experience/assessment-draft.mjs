@@ -1,5 +1,5 @@
 import {authenticateMember} from '../member-state-fast-v1.js';
-import {adultServiceEligibility} from '../medicine-commerce-v1.js';
+import {adultServiceEligibility,medicineBmiCriteria} from '../medicine-commerce-v1.js';
 
 // These are the existing intake fields, before provider submission or payment.
 // The draft lives in the existing private Journey store so the current account
@@ -23,13 +23,20 @@ export function validateAssessmentAnswers(input,complete=false,at=new Date()){
  return answers;
 }
 export async function assessmentDraftRoute(request,env,publicFetch=fetch){
- const u=new URL(request.url);if(![path,path+'/options'].includes(u.pathname))return null;
+ const u=new URL(request.url);if(![path,path+'/options',path+'/history-options'].includes(u.pathname))return null;
  if(!['GET','PUT','DELETE'].includes(request.method))return reply({error:'method_not_allowed'},405);
  if(request.headers.get('Sec-Fetch-Site')==='cross-site'||request.headers.get('Origin')&&request.headers.get('Origin')!==u.origin||request.method!=='GET'&&request.headers.get('Origin')!==u.origin)return reply({error:'origin_not_allowed'},403);
  let auth;try{auth=await authenticateMember(request,env)}catch{return reply({error:'account_unavailable'},503)}if(auth.response)return reply({error:'authentication_required'},401);
  const userId=auth.userId,at=new Date().toISOString();
  const read=async()=>{const row=await env.DB.prepare("SELECT json_extract(preferences,?) AS draft FROM member_state WHERE user_id=?").bind(key,userId).first();return parse(row?.draft)};
  const epoch=async()=>Number((await env.DB.prepare("SELECT MAX(id) AS id FROM consents WHERE user_id=? AND consent_type='my_shift_health_tracking'").bind(userId).first())?.id||0);
+ if(u.pathname===path+'/history-options'){
+  if(request.method!=='GET')return reply({error:'method_not_allowed'},405);
+  const d=await read();if(!d?.saveConsent||!d?.answers?.dateOfBirth||adultServiceEligibility(d.answers.dateOfBirth))return reply({error:'assessment_required',message:'Start your private questionnaire before choosing previous treatment.'},403);
+  let response;try{response=await publicFetch(new Request('https://api.shiftsometimber.co.uk/v1/catalogue/medicines',{headers:{Accept:'application/json'},signal:AbortSignal.timeout(10000)}));if(!response.ok)throw Error();}catch{return reply({error:'catalogue_unavailable',message:'The medicine choices could not load. Try again, or use Other to record exactly what you took.'},503);}
+  const source=await response.json(),products=(source.products||[]).filter(p=>typeof p.name==='string').map(p=>({name:p.name,doses:[...new Set((p.variants||[]).map(v=>String(v.strengthLabel||'').split(' · ')[0].trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'en-GB',{numeric:true}))})).sort((a,b)=>a.name.localeCompare(b.name,'en-GB'));
+  return reply({accountId:userId,source:'existing /v1/catalogue/medicines',purpose:'previous treatment only; not a treatment offer',products});
+ }
  if(u.pathname===path+'/options'){
   if(request.method!=='GET')return reply({error:'method_not_allowed'},405);
   if((await read())?.status!=='questions_complete')return reply({error:'questions_required',message:'Complete your health questions before viewing treatment options.'},403);
@@ -39,7 +46,7 @@ export async function assessmentDraftRoute(request,env,publicFetch=fetch){
   if(!source.ok)return reply({error:'catalogue_unavailable',message:'The current treatment catalogue could not load. Your answers are saved.'},503);
   const catalogue=await source.json();return reply({accountId:userId,paymentAvailable:false,source:'existing /v1/catalogue/medicines',products:(catalogue.products||[]).map(p=>({name:p.name,form:p.form,variants:(p.variants||[]).map(v=>({id:v.id,strengthLabel:v.strengthLabel,pricePence:v.pricePence,status:v.status}))}))});
  }
- if(request.method==='GET')return reply({accountId:userId,draft:await read(),privacyEpoch:await epoch(),contact:{patientFirstName:auth.user.first_name||'',patientLastName:auth.user.last_name||''}});
+ if(request.method==='GET')return reply({accountId:userId,draft:await read(),privacyEpoch:await epoch(),bmiRules:{general:medicineBmiCriteria({name:'Mounjaro'}),orlistat:medicineBmiCriteria({name:'Orlistat'})},contact:{patientFirstName:auth.user.first_name||'',patientLastName:auth.user.last_name||''}});
  if(request.method==='DELETE'){const body=await request.json().catch(()=>null);if(String(body?.expectedAccount)!==String(userId))return reply({error:'account_changed'},409);await env.DB.prepare('UPDATE member_state SET preferences=json_remove(preferences,?),updated_at=? WHERE user_id=?').bind(key,at,userId).run();return reply({ok:true,accountId:userId,deleted:true});}
  if(!request.headers.get('Content-Type')?.startsWith('application/json'))return reply({error:'json_required'},415);
  const raw=await request.text();if(new TextEncoder().encode(raw).length>16000)return reply({error:'assessment_too_large'},413);
@@ -47,13 +54,13 @@ export async function assessmentDraftRoute(request,env,publicFetch=fetch){
  const allowed=['expectedAccount','revision','privacyEpoch','operationId','step','answers','consents','saveConsent','complete'];
  if(!body||Object.keys(body).some(k=>!allowed.includes(k))||String(body.expectedAccount)!==String(userId))return reply({error:'account_changed',message:'Your account changed. Reopen the questionnaire.'},409);
  if(body.saveConsent!==true)return reply({error:'assessment_consent_required',message:'Agree to saving your private answers before continuing.'},409);
- if(!Number.isInteger(body.revision)||body.revision<0||!Number.isInteger(body.privacyEpoch)||!Number.isInteger(body.step)||body.step<1||body.step>11||typeof body.operationId!=='string'||!/^[a-zA-Z0-9-]{8,80}$/.test(body.operationId))return reply({error:'invalid_draft'},400);
+ if(!Number.isInteger(body.revision)||body.revision<0||!Number.isInteger(body.privacyEpoch)||!Number.isInteger(body.step)||body.step<1||body.step>10||typeof body.operationId!=='string'||!/^[a-zA-Z0-9-]{8,80}$/.test(body.operationId))return reply({error:'invalid_draft'},400);
  const complete=body.complete===true,consents=body.consents||{};
  if(Object.keys(consents).some(k=>!['gpContactConsent','imageConsent','answersConfirmed'].includes(k))||Object.values(consents).some(v=>typeof v!=='boolean'))return reply({error:'invalid_consent'},400);
- if(complete&&['gpContactConsent','imageConsent','answersConfirmed'].some(k=>consents[k]!==true))return reply({error:'confirmation_required',message:'Review and confirm your answers and permissions.'},400);
+ if(complete&&['gpContactConsent','answersConfirmed'].some(k=>consents[k]!==true))return reply({error:'confirmation_required',message:'Review and confirm your answers and permissions.'},400);
  let answers;try{answers=validateAssessmentAnswers(body.answers,complete,new Date(at))}catch(e){return reply({error:'invalid_answers',message:e.message},e.status||400)}
  const previous=await read();if(previous?.operationId===body.operationId)return reply({ok:true,accountId:userId,draft:previous,privacyEpoch:await epoch()});
- const draft={revision:body.revision+1,step:body.step,answers,consents,status:complete?'questions_complete':'draft',savedAt:at,saveConsent:{version:'assessment-draft/2026-11-04',grantedAt:previous?.saveConsent?.grantedAt||at},operationId:body.operationId};
+ const draft={questionnaireVersion:2,revision:body.revision+1,step:body.step,answers,consents,status:complete?'questions_complete':'draft',savedAt:at,saveConsent:{version:'assessment-draft/2026-11-04',grantedAt:previous?.saveConsent?.grantedAt||at},operationId:body.operationId};
  // CAS + a live session + an unchanged privacy epoch, in the actual SQL write.
  // A second device or a late request after account/health erasure cannot restore
  // stale answers, and this touches no food, pile, programme or treatment state.

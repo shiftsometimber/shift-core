@@ -59,10 +59,15 @@ const accessFile='/private/tmp/my-timber-v7-test-access.json';
 const access=fs.existsSync(accessFile)?JSON.parse(fs.readFileSync(accessFile)): {key:crypto.randomBytes(32).toString('hex'),cases:Object.fromEntries(['choose','hard-week','milestone'].map((name,i)=>[name,{id:900710001+i,email:'v7-'+name+'@example.invalid',token:crypto.randomBytes(32).toString('hex')}]))};
 fs.writeFileSync(accessFile,JSON.stringify(access),{mode:0o600});
 const phonePreview=fs.existsSync('/private/tmp/my-timber-v7-phone-preview.json')?JSON.parse(fs.readFileSync('/private/tmp/my-timber-v7-phone-preview.json')):null;
-const testEntry=String.raw`import app from './programme.mjs';
+programme.modules.push(module('v7-release-20261103/terms-preview.mjs',await build('member-experience/assessment-sale-terms.mjs',[])));
+// Anonymous build-time captures of the real current legal-page templates.
+const legalTemplates={};for(const pathname of['/terms-of-sale','/refunds']){const response=await fetch('https://shiftsometimber.co.uk'+pathname,{signal:AbortSignal.timeout(15000)});if(!response.ok)throw Error('Current legal template unavailable');const html=await response.text();if(!/<main\b[^>]*>[\s\S]*?<\/main>/i.test(html))throw Error('Current legal template changed');legalTemplates[pathname]=html;}
+const testEntry=String.raw`import app from './programme.mjs';import {assessmentSaleTermsResponse} from './terms-preview.mjs';
 const cases=${JSON.stringify(access.cases)},key=${JSON.stringify(access.key)},phone=${JSON.stringify(phonePreview)};
+const legalTemplates=${JSON.stringify(legalTemplates)};
 export default {...app,async fetch(request,env,ctx){
  const u=new URL(request.url);if(u.hostname!==${JSON.stringify(new URL(ORIGIN).hostname)})return new Response('Test host only',{status:403});
+ if(['/terms-of-sale','/refunds'].includes(u.pathname)&&['GET','HEAD'].includes(request.method)){return assessmentSaleTermsResponse(request,new Response(legalTemplates[u.pathname],{headers:{'Content-Type':'text/html; charset=utf-8'}}));}
  if(u.pathname.startsWith('/__v7/preview/')){if(!phone||u.pathname!=='/__v7/preview/'+phone.code||Date.parse(phone.expiresAt)<=Date.now())return new Response('Preview link unavailable',{status:404});return new Response(null,{status:302,headers:{Location:'/member/dashboard#today','Set-Cookie':'sst_session='+phone.token+'; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=7200','Cache-Control':'no-store, private','Referrer-Policy':'no-referrer','X-Robots-Tag':'noindex, nofollow, noarchive'}});}
  if(u.pathname.startsWith('/__v7/test-start/')){const name=u.pathname.split('/').pop(),entry=cases[name];if(!entry||u.searchParams.get('key')!==key)return new Response('Not found',{status:404});return new Response(null,{status:302,headers:{Location:'/member/dashboard#today','Set-Cookie':'sst_session='+entry.token+'; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=7200','Cache-Control':'no-store, private'}});}
  if(u.pathname==='/__v7/prepare'&&request.method==='POST'&&request.headers.get('X-V7-Test-Key')===key){const at=new Date().toISOString().slice(0,10)+'T01:30:00Z';const result=await app.scheduled({scheduledTime:Date.parse(at)},env,null);return Response.json({requested:true,result},{headers:{'Cache-Control':'no-store'}});}
