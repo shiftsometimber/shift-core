@@ -1,0 +1,850 @@
+{
+  "at": "2026-11-04T22:25:36.287Z",
+  "origin": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev",
+  "physical": false,
+  "syntheticOnly": true,
+  "engines": [
+    {
+      "name": "chromium",
+      "account": {
+        "id": 900710101,
+        "email": "v7-chromium-choose@example.invalid"
+      },
+      "checks": [
+        {
+          "id": "Prepare Weight on owned synthetic account only",
+          "pass": true
+        },
+        {
+          "id": "Weight initially leads Journey",
+          "pass": true
+        },
+        {
+          "id": "Strength switches before delayed save completes, without a Save tap",
+          "pass": true
+        },
+        {
+          "id": "A rapid second tap immediately switches to Energy",
+          "pass": true
+        },
+        {
+          "id": "The final rapid choice is persisted in the real account",
+          "pass": true
+        },
+        {
+          "id": "Background preference save keeps an unsaved Energy selection",
+          "pass": true
+        },
+        {
+          "id": "Shared shell persists during rapid lead switches",
+          "pass": true
+        },
+        {
+          "id": "Reload remembers Energy and keeps its card first",
+          "pass": true
+        },
+        {
+          "id": "Strength opens its activity card immediately",
+          "pass": true
+        },
+        {
+          "id": "Shared shell persists during Strength selection",
+          "pass": true
+        },
+        {
+          "id": "Reload remembers Strength",
+          "pass": true
+        },
+        {
+          "id": "Weight opens progress immediately",
+          "pass": true
+        },
+        {
+          "id": "The two unwanted guide headings are gone",
+          "pass": true
+        },
+        {
+          "id": "Guide still identifies its example and retains privacy wording",
+          "pass": true
+        },
+        {
+          "id": "320px: seven Day labels stay on one row with numbers beneath",
+          "pass": true
+        },
+        {
+          "id": "375px: seven Day labels stay on one row with numbers beneath",
+          "pass": true
+        },
+        {
+          "id": "390px: seven Day labels stay on one row with numbers beneath",
+          "pass": true
+        },
+        {
+          "id": "Day 1 still selects its illustration date",
+          "pass": true
+        },
+        {
+          "id": "Day 2 still selects its illustration date",
+          "pass": true
+        },
+        {
+          "id": "Day 3 still selects its illustration date",
+          "pass": true
+        },
+        {
+          "id": "Day 4 still selects its illustration date",
+          "pass": true
+        },
+        {
+          "id": "Day 5 still selects its illustration date",
+          "pass": true
+        },
+        {
+          "id": "Day 6 still selects its illustration date",
+          "pass": true
+        },
+        {
+          "id": "Day 7 still selects its illustration date",
+          "pass": true
+        },
+        {
+          "id": "Guide day selection and view preferences never change the pile",
+          "pass": true
+        },
+        {
+          "id": "The shared shell stays the same DOM throughout",
+          "pass": true
+        },
+        {
+          "id": "No execution errors",
+          "pass": true
+        }
+      ],
+      "errors": [],
+      "shots": [
+        "chromium-energy.jpg",
+        "chromium-strength.jpg",
+        "chromium-guide-320.jpg",
+        "chromium-guide-375.jpg",
+        "chromium-guide-390.jpg"
+      ],
+      "measurements": [
+        {
+          "kind": "single immediate Strength interaction; not p95",
+          "ms": 5.099999904632568,
+          "pressed": "true",
+          "first": "Your chosen activity"
+        },
+        {
+          "width": 320,
+          "labels": [
+            {
+              "word": "Day",
+              "number": "1",
+              "wordLines": 1,
+              "wordTop": 522.96875,
+              "wordBottom": 533.96875,
+              "numberTop": 535.96875,
+              "buttonTop": 512.265625,
+              "left": 20,
+              "right": 56.5625,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "2",
+              "wordLines": 1,
+              "wordTop": 522.96875,
+              "wordBottom": 533.96875,
+              "numberTop": 535.96875,
+              "buttonTop": 512.265625,
+              "left": 60.5625,
+              "right": 97.140625,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "3",
+              "wordLines": 1,
+              "wordTop": 522.96875,
+              "wordBottom": 533.96875,
+              "numberTop": 535.96875,
+              "buttonTop": 512.265625,
+              "left": 101.140625,
+              "right": 137.703125,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "4",
+              "wordLines": 1,
+              "wordTop": 522.96875,
+              "wordBottom": 533.96875,
+              "numberTop": 535.96875,
+              "buttonTop": 512.265625,
+              "left": 141.703125,
+              "right": 178.28125,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "5",
+              "wordLines": 1,
+              "wordTop": 522.96875,
+              "wordBottom": 533.96875,
+              "numberTop": 535.96875,
+              "buttonTop": 512.265625,
+              "left": 182.28125,
+              "right": 218.84375,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "6",
+              "wordLines": 1,
+              "wordTop": 522.96875,
+              "wordBottom": 533.96875,
+              "numberTop": 535.96875,
+              "buttonTop": 512.265625,
+              "left": 222.84375,
+              "right": 259.421875,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "7",
+              "wordLines": 1,
+              "wordTop": 522.96875,
+              "wordBottom": 533.96875,
+              "numberTop": 535.96875,
+              "buttonTop": 512.265625,
+              "left": 263.421875,
+              "right": 300,
+              "height": 52,
+              "nowrap": "nowrap"
+            }
+          ]
+        },
+        {
+          "width": 375,
+          "labels": [
+            {
+              "word": "Day",
+              "number": "1",
+              "wordLines": 1,
+              "wordTop": 382.703125,
+              "wordBottom": 394.25,
+              "numberTop": 396.25,
+              "buttonTop": 372.765625,
+              "left": 20,
+              "right": 64.421875,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "2",
+              "wordLines": 1,
+              "wordTop": 382.703125,
+              "wordBottom": 394.25,
+              "numberTop": 396.25,
+              "buttonTop": 372.765625,
+              "left": 68.421875,
+              "right": 112.84375,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "3",
+              "wordLines": 1,
+              "wordTop": 382.703125,
+              "wordBottom": 394.25,
+              "numberTop": 396.25,
+              "buttonTop": 372.765625,
+              "left": 116.84375,
+              "right": 161.28125,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "4",
+              "wordLines": 1,
+              "wordTop": 382.703125,
+              "wordBottom": 394.25,
+              "numberTop": 396.25,
+              "buttonTop": 372.765625,
+              "left": 165.28125,
+              "right": 209.703125,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "5",
+              "wordLines": 1,
+              "wordTop": 382.703125,
+              "wordBottom": 394.25,
+              "numberTop": 396.25,
+              "buttonTop": 372.765625,
+              "left": 213.703125,
+              "right": 258.140625,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "6",
+              "wordLines": 1,
+              "wordTop": 382.703125,
+              "wordBottom": 394.25,
+              "numberTop": 396.25,
+              "buttonTop": 372.765625,
+              "left": 262.140625,
+              "right": 306.5625,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "7",
+              "wordLines": 1,
+              "wordTop": 382.703125,
+              "wordBottom": 394.25,
+              "numberTop": 396.25,
+              "buttonTop": 372.765625,
+              "left": 310.5625,
+              "right": 354.984375,
+              "height": 52,
+              "nowrap": "nowrap"
+            }
+          ]
+        },
+        {
+          "width": 390,
+          "labels": [
+            {
+              "word": "Day",
+              "number": "1",
+              "wordLines": 1,
+              "wordTop": 401.109375,
+              "wordBottom": 413.109375,
+              "numberTop": 415.109375,
+              "buttonTop": 391.765625,
+              "left": 20,
+              "right": 66.5625,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "2",
+              "wordLines": 1,
+              "wordTop": 401.109375,
+              "wordBottom": 413.109375,
+              "numberTop": 415.109375,
+              "buttonTop": 391.765625,
+              "left": 70.5625,
+              "right": 117.140625,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "3",
+              "wordLines": 1,
+              "wordTop": 401.109375,
+              "wordBottom": 413.109375,
+              "numberTop": 415.109375,
+              "buttonTop": 391.765625,
+              "left": 121.140625,
+              "right": 167.703125,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "4",
+              "wordLines": 1,
+              "wordTop": 401.109375,
+              "wordBottom": 413.109375,
+              "numberTop": 415.109375,
+              "buttonTop": 391.765625,
+              "left": 171.703125,
+              "right": 218.28125,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "5",
+              "wordLines": 1,
+              "wordTop": 401.109375,
+              "wordBottom": 413.109375,
+              "numberTop": 415.109375,
+              "buttonTop": 391.765625,
+              "left": 222.28125,
+              "right": 268.84375,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "6",
+              "wordLines": 1,
+              "wordTop": 401.109375,
+              "wordBottom": 413.109375,
+              "numberTop": 415.109375,
+              "buttonTop": 391.765625,
+              "left": 272.84375,
+              "right": 319.421875,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "7",
+              "wordLines": 1,
+              "wordTop": 401.109375,
+              "wordBottom": 413.109375,
+              "numberTop": 415.109375,
+              "buttonTop": 391.765625,
+              "left": 323.421875,
+              "right": 370,
+              "height": 52,
+              "nowrap": "nowrap"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "webkit",
+      "account": {
+        "id": 900710201,
+        "email": "v7-webkit-choose@example.invalid"
+      },
+      "checks": [
+        {
+          "id": "Prepare Weight on owned synthetic account only",
+          "pass": true
+        },
+        {
+          "id": "Weight initially leads Journey",
+          "pass": true
+        },
+        {
+          "id": "Strength switches before delayed save completes, without a Save tap",
+          "pass": true
+        },
+        {
+          "id": "A rapid second tap immediately switches to Energy",
+          "pass": true
+        },
+        {
+          "id": "The final rapid choice is persisted in the real account",
+          "pass": true
+        },
+        {
+          "id": "Background preference save keeps an unsaved Energy selection",
+          "pass": true
+        },
+        {
+          "id": "Shared shell persists during rapid lead switches",
+          "pass": true
+        },
+        {
+          "id": "Reload remembers Energy and keeps its card first",
+          "pass": true
+        },
+        {
+          "id": "Strength opens its activity card immediately",
+          "pass": true
+        },
+        {
+          "id": "Shared shell persists during Strength selection",
+          "pass": true
+        },
+        {
+          "id": "Reload remembers Strength",
+          "pass": true
+        },
+        {
+          "id": "Weight opens progress immediately",
+          "pass": true
+        },
+        {
+          "id": "The two unwanted guide headings are gone",
+          "pass": true
+        },
+        {
+          "id": "Guide still identifies its example and retains privacy wording",
+          "pass": true
+        },
+        {
+          "id": "320px: seven Day labels stay on one row with numbers beneath",
+          "pass": true
+        },
+        {
+          "id": "375px: seven Day labels stay on one row with numbers beneath",
+          "pass": true
+        },
+        {
+          "id": "390px: seven Day labels stay on one row with numbers beneath",
+          "pass": true
+        },
+        {
+          "id": "Day 1 still selects its illustration date",
+          "pass": true
+        },
+        {
+          "id": "Day 2 still selects its illustration date",
+          "pass": true
+        },
+        {
+          "id": "Day 3 still selects its illustration date",
+          "pass": true
+        },
+        {
+          "id": "Day 4 still selects its illustration date",
+          "pass": true
+        },
+        {
+          "id": "Day 5 still selects its illustration date",
+          "pass": true
+        },
+        {
+          "id": "Day 6 still selects its illustration date",
+          "pass": true
+        },
+        {
+          "id": "Day 7 still selects its illustration date",
+          "pass": true
+        },
+        {
+          "id": "Guide day selection and view preferences never change the pile",
+          "pass": true
+        },
+        {
+          "id": "The shared shell stays the same DOM throughout",
+          "pass": true
+        },
+        {
+          "id": "No execution errors",
+          "pass": true
+        }
+      ],
+      "errors": [],
+      "shots": [
+        "webkit-energy.jpg",
+        "webkit-strength.jpg",
+        "webkit-guide-320.jpg",
+        "webkit-guide-375.jpg",
+        "webkit-guide-390.jpg"
+      ],
+      "measurements": [
+        {
+          "kind": "single immediate Strength interaction; not p95",
+          "ms": 6,
+          "pressed": "true",
+          "first": "Your chosen activity"
+        },
+        {
+          "width": 320,
+          "labels": [
+            {
+              "word": "Day",
+              "number": "1",
+              "wordLines": 1,
+              "wordTop": 522.96875,
+              "wordBottom": 533.96875,
+              "numberTop": 535.96875,
+              "buttonTop": 512.265625,
+              "left": 20,
+              "right": 56.5625,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "2",
+              "wordLines": 1,
+              "wordTop": 522.96875,
+              "wordBottom": 533.96875,
+              "numberTop": 535.96875,
+              "buttonTop": 512.265625,
+              "left": 60.5625,
+              "right": 97.140625,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "3",
+              "wordLines": 1,
+              "wordTop": 522.96875,
+              "wordBottom": 533.96875,
+              "numberTop": 535.96875,
+              "buttonTop": 512.265625,
+              "left": 101.140625,
+              "right": 137.703125,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "4",
+              "wordLines": 1,
+              "wordTop": 522.96875,
+              "wordBottom": 533.96875,
+              "numberTop": 535.96875,
+              "buttonTop": 512.265625,
+              "left": 141.703125,
+              "right": 178.28125,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "5",
+              "wordLines": 1,
+              "wordTop": 522.96875,
+              "wordBottom": 533.96875,
+              "numberTop": 535.96875,
+              "buttonTop": 512.265625,
+              "left": 182.28125,
+              "right": 218.84375,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "6",
+              "wordLines": 1,
+              "wordTop": 522.96875,
+              "wordBottom": 533.96875,
+              "numberTop": 535.96875,
+              "buttonTop": 512.265625,
+              "left": 222.84375,
+              "right": 259.421875,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "7",
+              "wordLines": 1,
+              "wordTop": 522.96875,
+              "wordBottom": 533.96875,
+              "numberTop": 535.96875,
+              "buttonTop": 512.265625,
+              "left": 263.421875,
+              "right": 299.984375,
+              "height": 52,
+              "nowrap": "nowrap"
+            }
+          ]
+        },
+        {
+          "width": 375,
+          "labels": [
+            {
+              "word": "Day",
+              "number": "1",
+              "wordLines": 1,
+              "wordTop": 382.703125,
+              "wordBottom": 394.25,
+              "numberTop": 396.25,
+              "buttonTop": 372.765625,
+              "left": 20,
+              "right": 64.421875,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "2",
+              "wordLines": 1,
+              "wordTop": 382.703125,
+              "wordBottom": 394.25,
+              "numberTop": 396.25,
+              "buttonTop": 372.765625,
+              "left": 68.421875,
+              "right": 112.84375,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "3",
+              "wordLines": 1,
+              "wordTop": 382.703125,
+              "wordBottom": 394.25,
+              "numberTop": 396.25,
+              "buttonTop": 372.765625,
+              "left": 116.84375,
+              "right": 161.28125,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "4",
+              "wordLines": 1,
+              "wordTop": 382.703125,
+              "wordBottom": 394.25,
+              "numberTop": 396.25,
+              "buttonTop": 372.765625,
+              "left": 165.28125,
+              "right": 209.703125,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "5",
+              "wordLines": 1,
+              "wordTop": 382.703125,
+              "wordBottom": 394.25,
+              "numberTop": 396.25,
+              "buttonTop": 372.765625,
+              "left": 213.703125,
+              "right": 258.140625,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "6",
+              "wordLines": 1,
+              "wordTop": 382.703125,
+              "wordBottom": 394.25,
+              "numberTop": 396.25,
+              "buttonTop": 372.765625,
+              "left": 262.140625,
+              "right": 306.5625,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "7",
+              "wordLines": 1,
+              "wordTop": 382.703125,
+              "wordBottom": 394.25,
+              "numberTop": 396.25,
+              "buttonTop": 372.765625,
+              "left": 310.5625,
+              "right": 355,
+              "height": 52,
+              "nowrap": "nowrap"
+            }
+          ]
+        },
+        {
+          "width": 390,
+          "labels": [
+            {
+              "word": "Day",
+              "number": "1",
+              "wordLines": 1,
+              "wordTop": 401.125,
+              "wordBottom": 413.109375,
+              "numberTop": 415.109375,
+              "buttonTop": 391.765625,
+              "left": 20,
+              "right": 66.5625,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "2",
+              "wordLines": 1,
+              "wordTop": 401.125,
+              "wordBottom": 413.109375,
+              "numberTop": 415.109375,
+              "buttonTop": 391.765625,
+              "left": 70.5625,
+              "right": 117.140625,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "3",
+              "wordLines": 1,
+              "wordTop": 401.125,
+              "wordBottom": 413.109375,
+              "numberTop": 415.109375,
+              "buttonTop": 391.765625,
+              "left": 121.140625,
+              "right": 167.703125,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "4",
+              "wordLines": 1,
+              "wordTop": 401.125,
+              "wordBottom": 413.109375,
+              "numberTop": 415.109375,
+              "buttonTop": 391.765625,
+              "left": 171.703125,
+              "right": 218.28125,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "5",
+              "wordLines": 1,
+              "wordTop": 401.125,
+              "wordBottom": 413.109375,
+              "numberTop": 415.109375,
+              "buttonTop": 391.765625,
+              "left": 222.28125,
+              "right": 268.84375,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "6",
+              "wordLines": 1,
+              "wordTop": 401.125,
+              "wordBottom": 413.109375,
+              "numberTop": 415.109375,
+              "buttonTop": 391.765625,
+              "left": 272.84375,
+              "right": 319.421875,
+              "height": 52,
+              "nowrap": "nowrap"
+            },
+            {
+              "word": "Day",
+              "number": "7",
+              "wordLines": 1,
+              "wordTop": 401.125,
+              "wordBottom": 413.109375,
+              "numberTop": 415.109375,
+              "buttonTop": 391.765625,
+              "left": 323.421875,
+              "right": 369.984375,
+              "height": 52,
+              "nowrap": "nowrap"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

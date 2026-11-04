@@ -1,0 +1,35 @@
+{
+  "base": "9944493f-8a54-4516-ae42-8cfad648214a",
+  "scope": "Immediate queued Journey lead preferences, fresh reads after saved records, two removed guide headings, Day above each number in a single seven-button row. Frame, assessment, payment, Core unchanged.",
+  "at": "2026-11-04T22:26:08.483Z",
+  "source": "453c387eadfb47772d0d7f72d877a1fb1745f38f",
+  "assetTag": "007f02a2faa09ddbf394",
+  "expectedHashes": {
+    "v7-release-20261103/programme.mjs": "ac26d9a3b3ba6843fda2f53a459b0542a68d8489094310c5892708bdb5bcce03"
+  },
+  "coreBefore": [
+    {
+      "version_id": "08cebab7-1143-46a7-863e-1506ab83aadb",
+      "percentage": 100
+    }
+  ],
+  "schedules": [
+    {
+      "cron": "0,15,30,45 0-5 * * *",
+      "created_on": "2026-11-04T00:34:26.630649Z",
+      "modified_on": "2026-11-04T00:34:26.630649Z"
+    }
+  ],
+  "memberTrafficChanged": true,
+  "candidate": "2abe05bf-2f50-4818-8335-a2180293cf7e",
+  "preparedAt": "2026-11-04T22:26:15.174Z",
+  "attemptedAt": "2026-11-04T22:27:25.019Z",
+  "liveAt": "2026-11-04T22:27:28.531Z",
+  "coreAfter": [
+    {
+      "version_id": "08cebab7-1143-46a7-863e-1506ab83aadb",
+      "percentage": 100
+    }
+  ],
+  "verifiedAt": "2026-11-04T22:27:56.851Z"
+}
