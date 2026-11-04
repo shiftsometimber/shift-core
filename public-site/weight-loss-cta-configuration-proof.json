@@ -1,0 +1,13 @@
+{
+  "recordedAt": "2026-11-04T15:01:23.235487+00:00",
+  "stagedVersionVerification": "PASS: original module hashes, bindings, compatibility flags/date and retained assets matched",
+  "configurationMetadata": "Original operating configuration was sent unchanged in each staged upload",
+  "additionalFinalSettingsRead": {
+    "state": "BLOCKED_NATIVE_SESSION_EXPIRED",
+    "httpStatus": 401,
+    "providerCode": 10000,
+    "message": "Authentication error",
+    "verificationClaimed": false
+  },
+  "liveWordingVerification": "PASS in served pages and rendered browser"
+}

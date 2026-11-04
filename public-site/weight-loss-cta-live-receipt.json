@@ -1,0 +1,438 @@
+{
+  "kind": "OWNER_APPROVED_EXPLORE_WEIGHT_LOSS_20261104",
+  "source": "6075c369fe7b9efa7388f00e2e0d0b161650491f",
+  "verificationSource": "5cf960b68659e49c5086bb2c060f230ab545820d",
+  "verifiedAt": "2026-11-04T14:52:04.613Z",
+  "wording": "Explore Weight Loss",
+  "owners": [
+    {
+      "name": "shift-help-guided-presentation-20261021",
+      "path": "/help",
+      "status": 200,
+      "version": "cea78e3c-9595-4234-8565-dfda7315181a",
+      "deployment": "468ce59b-7174-4044-b005-19dd3c9ff9d5",
+      "bodySHA256": "61c36de013de332e734ec51d66e371cc0ceb3fe922831919a18f366e00fa4826"
+    },
+    {
+      "name": "shift-public-answers",
+      "path": "/wegovy",
+      "status": 200,
+      "version": "de726d56-4717-4d4e-b074-ca23a371c125",
+      "deployment": "1313b026-c0b8-4e1f-8c40-19b6e3d4b253",
+      "bodySHA256": "6d023dcf99be37871ea038b10d5e26fc7b212c3b2548be5bde6dfc9fb7c5931d"
+    },
+    {
+      "name": "shift-newsroom-presentation-20261022",
+      "path": "/shift-newsroom",
+      "status": 200,
+      "version": "5747d809-5652-4368-a7f0-4ece62e7fb4f",
+      "deployment": "6cf2f6eb-fd1f-4af2-a3d4-d96f008a8c36",
+      "bodySHA256": "390f34e18be610c96cb862ae33106766d574cb56edccf6788292b860192aab1b"
+    },
+    {
+      "name": "shift-treatments-presentation-20261021",
+      "path": "/treatment-centre",
+      "status": 200,
+      "version": "9e4d96de-fdc9-4ce6-98f0-0260c7d32ce7",
+      "deployment": "6b9adaca-a7c6-4a03-8af0-77b447608a75",
+      "bodySHA256": "8e63e7c52b7bc5f457fed82fe9ae6121084f008315a4e0695596151750351180"
+    },
+    {
+      "name": "shift-core",
+      "path": "/",
+      "status": 200,
+      "version": "a301697d-5586-4839-aa44-5edb01105731",
+      "deployment": "e27b48f9-dde1-432f-af6f-41ac701f6fd4",
+      "bodySHA256": "aa81593a7415a3802396714fd9f72bf458b3ded8e4592c18c4e6bcd3fe67582c"
+    },
+    {
+      "name": "shift-ask-guided-presentation-20261021",
+      "path": "/ask-timber",
+      "status": 200,
+      "version": "125bd7d7-6fc0-4fc1-8245-3c715d585267",
+      "deployment": "aba2e79e-80f9-40da-8a02-d98611d59e2d",
+      "bodySHA256": "d687fb9691ffe055d38b0f7507eaac78204ce4721e772e8f79770b55cd07cfe6"
+    },
+    {
+      "name": "shift-timber-mill-presentation-20261021",
+      "path": "/shop",
+      "status": 200,
+      "version": "77a0e1cd-4516-4a01-bff2-a399aeaffa19",
+      "deployment": "8204ab2c-494c-4b53-8d9e-e3b52c229497",
+      "bodySHA256": "7cfbd6d693aba1b7310671e66e1fc6fde20200eefeab82c4af516d027718702f"
+    },
+    {
+      "name": "shift-bloods-public",
+      "path": "/shift-health/blood-tests",
+      "status": 200,
+      "version": "a637833c-052f-4f93-8f96-c9ba46e968f7",
+      "deployment": "313a95b6-2c6e-4df2-ae41-3c48b40f1525",
+      "bodySHA256": "0108684f8caf6cfe16a3c3304013d7362595d4d1e0052919e625094afe12b887"
+    },
+    {
+      "name": "shift-clinical-entry",
+      "path": "/treatment-assessment",
+      "status": 200,
+      "version": "f10db22f-019c-4bbc-81d8-8af6fc49a926",
+      "deployment": "e342464c-4c04-4c99-834c-c8b52bef67b4",
+      "bodySHA256": "b135471cd7402f67e2ac8a72805266082581e41ba8b2e6247639a4585307434d"
+    },
+    {
+      "name": "shift-final-pages-presentation-20261021",
+      "path": "/comparisons/surgery/gastric-band-vs-sleeve",
+      "status": 200,
+      "version": "7ed83299-acf3-494a-b4cb-f1de5ec05e91",
+      "deployment": "38ee6ec5-348a-47a6-b16e-1d4823ef81ef",
+      "bodySHA256": "30c9a8351446a5aac92346cb7538a7ef6632a8912a6509cb6f8c42da17aaa2d5"
+    },
+    {
+      "name": "shift-health-heroes-20261029",
+      "path": "/mens-mental-health",
+      "status": 200,
+      "version": "be3bef1a-69b0-4e7c-a347-e9c046cb5935",
+      "deployment": "1b05f1c6-57fe-4632-beb8-659348dd233a",
+      "bodySHA256": "14790e8203b400d5d3d4bf2de1bf19c330508a22228678fa2a4e95951bdcdf3a"
+    },
+    {
+      "name": "shift-about-presentation-20261022",
+      "path": "/about",
+      "status": 200,
+      "version": "83f29311-b41c-40f3-9f7a-1be755cb78a7",
+      "deployment": "5bb93674-00af-4f6e-80f3-9cbf4ee8c3e4",
+      "bodySHA256": "9b0f532658f0a49e83b6a09ca8c8f7d281f6e140d6d31f3366675387728adbc1"
+    },
+    {
+      "name": "shift-contact-presentation-20261022",
+      "path": "/contact",
+      "status": 200,
+      "version": "d5c9c6f1-0b05-4bef-bbf2-20a5b2e99f3c",
+      "deployment": "ba1746c2-cf44-47cc-b648-1f5b6a3486f2",
+      "bodySHA256": "db1587bfd3c4fdd4aae36dc7e8814801b3f3da47710f3401cc4f3c3882032ff2"
+    },
+    {
+      "name": "shift-work-with-us-presentation-20261022",
+      "path": "/work-with-us",
+      "status": 200,
+      "version": "77e48af2-1d83-43fd-af83-d448f01c3835",
+      "deployment": "582f92a9-e851-4de0-8614-003940f62523",
+      "bodySHA256": "5ccba8a08d9e0c7e00a8e974c2302650e970b023f26bece845afbec3b003747d"
+    },
+    {
+      "name": "shift-blog-publisher",
+      "path": "/male-obesity",
+      "status": 200,
+      "version": "f006307b-013a-4164-be5a-2e6e0bb423d6",
+      "deployment": "23c3d59f-7c63-4ab4-a64a-cb76ea5a9468",
+      "bodySHA256": "8fdfd16fa59792944354c3fa0cc6e07e1c223207a67d9e500d36e8690b7ca53e"
+    },
+    {
+      "name": "shift-tools-presentation-20261022",
+      "path": "/tools",
+      "status": 200,
+      "version": "4dc6e3ad-46b1-4f4e-a8bc-5170da2508a9",
+      "deployment": "de067a6d-4e03-49e4-80c2-0a00193b703e",
+      "bodySHA256": "a4ec28ef7a1e4bda5c6ced66fb1c05492ee52d33233a4006f76b7d7777453e74"
+    },
+    {
+      "name": "shift-mental-health-pathway-20261023",
+      "path": "/how-are-you-feeling",
+      "status": 200,
+      "version": "74fa3d64-fb4b-4d3e-9e9a-47ab3be69387",
+      "deployment": "754e16bd-5955-4a98-9206-fd84c25cb3d7",
+      "bodySHA256": "e80f8b6280fd755a33cce432acb6639bbd6d1b22801cd07ab70f593b0a173810"
+    },
+    {
+      "name": "shift-start-questions-20261022",
+      "path": "/start-here",
+      "status": 200,
+      "version": "b7037a62-c3c6-4af2-8ebe-ea7966c14601",
+      "deployment": "b27e1fe5-e485-41bb-96a9-72ecec0e5a74",
+      "bodySHA256": "bb6e62231e6e2f8a5ebab4f133cb1730aa516c3776cce00bb97c25ebb6aa89b5"
+    },
+    {
+      "name": "shift-quiet-presentation-20261022",
+      "path": "/clinic-gone-quiet",
+      "status": 200,
+      "version": "4399e72e-7c2d-445b-b6e9-67a77a4c7cbc",
+      "deployment": "59f5cc3c-0900-495e-96df-a8a2e9f28ad0",
+      "bodySHA256": "ab798efe7c7dad03e326c5dd62ce4f614368949203c82bb9dcda47eb2e5184c9"
+    },
+    {
+      "name": "shift-support-presentation-20261022",
+      "path": "/weight-loss-support-for-men",
+      "status": 200,
+      "version": "a236ab9b-84fb-4359-b2ed-8dd7460d91c5",
+      "deployment": "4a153e83-957a-480f-bd79-38067013cfee",
+      "bodySHA256": "3260572ff5379eb8e939320566a72cfe234ebd132b3d2f7d0f07b18e9733f0fd"
+    },
+    {
+      "name": "shift-treatment-options-presentation-20261022",
+      "path": "/treatment-order",
+      "status": 200,
+      "version": "66712f9b-341b-46d2-bb98-bef147796b18",
+      "deployment": "f42f9479-936f-48a4-8291-67dff5a353b7",
+      "bodySHA256": "476736071bd372df92a97c0d69b2ecf899f0e1fa96170ac87db26d13857a714d"
+    },
+    {
+      "name": "shift-mytimber-support-20261023",
+      "path": "/mens-mental-health",
+      "status": 200,
+      "version": "ea2980d5-c103-4799-a51c-718304b8b57b",
+      "deployment": "ee461851-0b9b-40ee-b46a-c842c51a6b92",
+      "bodySHA256": "14790e8203b400d5d3d4bf2de1bf19c330508a22228678fa2a4e95951bdcdf3a"
+    },
+    {
+      "name": "shift-husband-presentation-20261022",
+      "path": "/husband-help",
+      "status": 200,
+      "version": "a3fe11d1-d762-4a7d-97bd-9aba5f7b50d3",
+      "deployment": "813dfa00-35d3-45a2-809b-00c2be9dc0da",
+      "bodySHA256": "f0f3eb908f7d408c1b461b85558bdefb03c8939178a625e076fab9db33d6447e"
+    },
+    {
+      "name": "shift-provider-presentation-20261022",
+      "path": "/provider-switch",
+      "status": 200,
+      "version": "b37d83e9-ec27-4413-92a6-01e218e6603e",
+      "deployment": "d6810952-b96b-48ed-9dee-a1e0954287a1",
+      "bodySHA256": "08b3d885b94a1b263c2498cb6be2c0e5b0022cfba59318a0642b7d9cb1424287"
+    },
+    {
+      "name": "shift-public-presentation-batch-20261022",
+      "path": "/faq",
+      "status": 200,
+      "version": "d668eeab-bef8-4a01-a05b-525e6db71e3b",
+      "deployment": "165eba16-63f3-4ffe-ad8e-d25cdf20dda4",
+      "bodySHA256": "87cb071c5a65b7a90defcfa94514ad1e78922b22a58cd5157966453f836bf636"
+    },
+    {
+      "name": "shift-life-presentation-20261022",
+      "path": "/life-back",
+      "status": 200,
+      "version": "42056697-bc43-4c54-9d1a-8fb2fc9f5a4a",
+      "deployment": "3bc04bf6-a405-4ab3-a5ad-8d13b28065a3",
+      "bodySHA256": "3b2452ae482f98dc2d74479d190d36bd23ba8465435017c83c32d9b1e4f529b9"
+    },
+    {
+      "name": "shift-health-nutrition-20261027",
+      "path": "/shift-health",
+      "status": 200,
+      "version": "b3076620-96b0-49ad-890a-a64dd53d2af2",
+      "deployment": "02796741-b88e-4549-9485-ae3a803ac6a9",
+      "bodySHA256": "9f7d3f9178c7a81ba462d569163969b651eeff9f300ee498745f241fc880a126"
+    },
+    {
+      "name": "shift-seo-followup-v3-20261024",
+      "path": "/blog",
+      "status": 200,
+      "version": "8c6f54fe-7e4d-4d5e-8ef2-5745dc455c54",
+      "deployment": "84cbbfb8-516e-4ac6-a19d-da013907d981",
+      "bodySHA256": "778c97c09f8c53e375b3cb58904fddf80504fef33f99d3e11b1b69978c28a410"
+    }
+  ],
+  "candidateChecks": [
+    {
+      "name": "shift-help-guided-presentation-20261021",
+      "path": "/help",
+      "beforeSHA256": "1f934b1ecd8ea07c21530a9e1661cbbff4cfa9538e509d805e4b7c6461a697f6",
+      "candidateSHA256": "61c36de013de332e734ec51d66e371cc0ceb3fe922831919a18f366e00fa4826",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-newsroom-presentation-20261022",
+      "path": "/shift-newsroom",
+      "beforeSHA256": "8672e6cfc5b98733a549e15f672696889a1523c885f647ba2cb9462d1ea45fb5",
+      "candidateSHA256": "390f34e18be610c96cb862ae33106766d574cb56edccf6788292b860192aab1b",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-public-answers",
+      "path": "/wegovy",
+      "beforeSHA256": "b47b0835e0c1f88457f74ab7c12899b10b8c408863869b90d5ea27c5dcff16ef",
+      "candidateSHA256": "6d023dcf99be37871ea038b10d5e26fc7b212c3b2548be5bde6dfc9fb7c5931d",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-core",
+      "path": "/",
+      "beforeSHA256": "ad74c73e9a0a0ce010d27e8f21559cbfdcbccba9694178e3703dec458f04f058",
+      "candidateSHA256": "aa81593a7415a3802396714fd9f72bf458b3ded8e4592c18c4e6bcd3fe67582c",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-ask-guided-presentation-20261021",
+      "path": "/ask-timber",
+      "beforeSHA256": "15031a4a469b5c6cc7f08307976f2868d1f6661c97fb101a3b78362c5bc4dea0",
+      "candidateSHA256": "d687fb9691ffe055d38b0f7507eaac78204ce4721e772e8f79770b55cd07cfe6",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-treatments-presentation-20261021",
+      "path": "/treatment-centre",
+      "beforeSHA256": "8f38056e8726fd33cb8e91887a805a777097e056d881482e4c7329e15868e661",
+      "candidateSHA256": "8e63e7c52b7bc5f457fed82fe9ae6121084f008315a4e0695596151750351180",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-timber-mill-presentation-20261021",
+      "path": "/shop",
+      "beforeSHA256": "9df52275095d0506d274f25291ece6dec0785b16bbf8978c7898424ed97467ae",
+      "candidateSHA256": "7cfbd6d693aba1b7310671e66e1fc6fde20200eefeab82c4af516d027718702f",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-bloods-public",
+      "path": "/shift-health/blood-tests",
+      "beforeSHA256": "a153838afc20a257cfcbccf30c678f4e3b66b7d6c2eb46c70e417af898abe9bb",
+      "candidateSHA256": "0108684f8caf6cfe16a3c3304013d7362595d4d1e0052919e625094afe12b887",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-clinical-entry",
+      "path": "/treatment-assessment",
+      "beforeSHA256": "31b21bbd4ee2bb302768b30e662ed3bb0005e55383b1aaba20a00fd487c4b3bc",
+      "candidateSHA256": "b135471cd7402f67e2ac8a72805266082581e41ba8b2e6247639a4585307434d",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-about-presentation-20261022",
+      "path": "/about",
+      "beforeSHA256": "5af67a27a13bfa5c1af295bfad45538790d23c6bf8549dd6ef09533ae9390ff0",
+      "candidateSHA256": "9b0f532658f0a49e83b6a09ca8c8f7d281f6e140d6d31f3366675387728adbc1",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-final-pages-presentation-20261021",
+      "path": "/comparisons/surgery/gastric-band-vs-sleeve",
+      "beforeSHA256": "06b6c41b3a03d60872958d83373ba18a9041363982b56973f1e4f423a48252f0",
+      "candidateSHA256": "30c9a8351446a5aac92346cb7538a7ef6632a8912a6509cb6f8c42da17aaa2d5",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-health-heroes-20261029",
+      "path": "/mens-mental-health",
+      "beforeSHA256": "97afcf06677bd3972066b3240973496e64bb5f7e9b16675bd4a0fb386cad6dd3",
+      "candidateSHA256": "14790e8203b400d5d3d4bf2de1bf19c330508a22228678fa2a4e95951bdcdf3a",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-work-with-us-presentation-20261022",
+      "path": "/work-with-us",
+      "beforeSHA256": "0495bc52d002800d8960cb2782f3e273cdb51cf3d6c2302901f2156075d9e390",
+      "candidateSHA256": "5ccba8a08d9e0c7e00a8e974c2302650e970b023f26bece845afbec3b003747d",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-contact-presentation-20261022",
+      "path": "/contact",
+      "beforeSHA256": "1df9970da60946bca1d35a78ab4c53dcf2a08542694f69f0682bb8c3622368d8",
+      "candidateSHA256": "db1587bfd3c4fdd4aae36dc7e8814801b3f3da47710f3401cc4f3c3882032ff2",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-blog-publisher",
+      "path": "/male-obesity",
+      "beforeSHA256": "225e1909379c2bb0b7992664c475f2309fa4d5a9ecd9e89c43e03994924f3675",
+      "candidateSHA256": "8fdfd16fa59792944354c3fa0cc6e07e1c223207a67d9e500d36e8690b7ca53e",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-start-questions-20261022",
+      "path": "/start-here",
+      "beforeSHA256": "b4f17afb85e3f1ab5d6632e4777a099b831abfcd7b0c05c4f38e87183d4659d8",
+      "candidateSHA256": "bb6e62231e6e2f8a5ebab4f133cb1730aa516c3776cce00bb97c25ebb6aa89b5",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-mental-health-pathway-20261023",
+      "path": "/how-are-you-feeling",
+      "beforeSHA256": "eee81fe65113a66de7490462c1c7d5fea5c0ec81182e993985fc087e741010ba",
+      "candidateSHA256": "e80f8b6280fd755a33cce432acb6639bbd6d1b22801cd07ab70f593b0a173810",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-tools-presentation-20261022",
+      "path": "/tools",
+      "beforeSHA256": "02605cfc2bc5c25b64d41972f99c400776dd9728802aef1e4b6289e04b2944eb",
+      "candidateSHA256": "a4ec28ef7a1e4bda5c6ced66fb1c05492ee52d33233a4006f76b7d7777453e74",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-support-presentation-20261022",
+      "path": "/weight-loss-support-for-men",
+      "beforeSHA256": "f6c250701dcf69615cd1eff16eb1de6fee5c836f8bd1290e3b8c3af9d63989ef",
+      "candidateSHA256": "3260572ff5379eb8e939320566a72cfe234ebd132b3d2f7d0f07b18e9733f0fd",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-quiet-presentation-20261022",
+      "path": "/clinic-gone-quiet",
+      "beforeSHA256": "9637d57f8a35e1745edd90b9be23396ebe0986147812491ff5b500fb0fe38ec8",
+      "candidateSHA256": "ab798efe7c7dad03e326c5dd62ce4f614368949203c82bb9dcda47eb2e5184c9",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-treatment-options-presentation-20261022",
+      "path": "/treatment-order",
+      "beforeSHA256": "84d097af379531709024dac261f1c98fde1be01dabd18d11bca4f1fc9b3252b7",
+      "candidateSHA256": "476736071bd372df92a97c0d69b2ecf899f0e1fa96170ac87db26d13857a714d",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-husband-presentation-20261022",
+      "path": "/husband-help",
+      "beforeSHA256": "15a9d8c60169ad82d36180d7e8836c9836601c0321bd97afa1984803ee71ebad",
+      "candidateSHA256": "f0f3eb908f7d408c1b461b85558bdefb03c8939178a625e076fab9db33d6447e",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-mytimber-support-20261023",
+      "path": "/mens-mental-health",
+      "beforeSHA256": "97afcf06677bd3972066b3240973496e64bb5f7e9b16675bd4a0fb386cad6dd3",
+      "candidateSHA256": "14790e8203b400d5d3d4bf2de1bf19c330508a22228678fa2a4e95951bdcdf3a",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-provider-presentation-20261022",
+      "path": "/provider-switch",
+      "beforeSHA256": "ccd1bafd6098f4b30904736349f219b9b5308b98c45c899d06978d0ef4a936f6",
+      "candidateSHA256": "08b3d885b94a1b263c2498cb6be2c0e5b0022cfba59318a0642b7d9cb1424287",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-life-presentation-20261022",
+      "path": "/life-back",
+      "beforeSHA256": "97f0a2f8c59382884ccd26f71e746b89a92396320258e04e24ef8450920fc64a",
+      "candidateSHA256": "3b2452ae482f98dc2d74479d190d36bd23ba8465435017c83c32d9b1e4f529b9",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-public-presentation-batch-20261022",
+      "path": "/faq",
+      "beforeSHA256": "6160d88a4664d4b1c9e358d1cd963956d12d61c565fe6f66f2dd54c54144100b",
+      "candidateSHA256": "87cb071c5a65b7a90defcfa94514ad1e78922b22a58cd5157966453f836bf636",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-health-nutrition-20261027",
+      "path": "/shift-health",
+      "beforeSHA256": "3f78106303a672c28aa4c867c77ccfcd9df8ca5eba6ac7eee82a14ccabc4b655",
+      "candidateSHA256": "9f7d3f9178c7a81ba462d569163969b651eeff9f300ee498745f241fc880a126",
+      "exactExpected": true
+    },
+    {
+      "name": "shift-seo-followup-v3-20261024",
+      "path": "/blog",
+      "beforeSHA256": "bf6fe826dd440a44607e83ddaca8bb84f64c5cb20aabdb8cefe9d80bf20f6b0e",
+      "candidateSHA256": "778c97c09f8c53e375b3cb58904fddf80504fef33f99d3e11b1b69978c28a410",
+      "exactExpected": true
+    }
+  ],
+  "unchangedOriginalModuleCount": 871,
+  "routesUnchanged": true,
+  "customerRecordsRead": 0,
+  "customerDataWrites": 0,
+  "emailsSent": 0,
+  "configurationMetadataPreserved": true,
+  "additionalFinalSettingsRead": "Blocked by expired native session; no independent final settings-read claim"
+}

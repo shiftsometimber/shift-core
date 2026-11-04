@@ -1,0 +1,19 @@
+{
+  "verifiedAt": "2026-11-04T15:01:23.235487+00:00",
+  "url": "https://shiftsometimber.co.uk/",
+  "label": "Explore Weight Loss",
+  "header": true,
+  "hero": true,
+  "weightLossCard": true,
+  "openedMenu": true,
+  "footer": true,
+  "viewportWidth": 1363,
+  "documentWidth": 1348,
+  "originalPublicModulesPreserved": 883,
+  "publicPageComponents": 28,
+  "sharedShellComponents": 1,
+  "sourceTests": {
+    "publicShellPassed": 14,
+    "publicShellFailed": 0
+  }
+}

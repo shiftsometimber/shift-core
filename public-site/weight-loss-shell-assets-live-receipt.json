@@ -1,0 +1,33 @@
+{
+  "kind": "OWNER_APPROVED_EXPLORE_WEIGHT_LOSS_20261104",
+  "source": "cdcc0bfc91f34283bcba7d61293240e56703e75e",
+  "verificationSource": "cdcc0bfc91f34283bcba7d61293240e56703e75e",
+  "verifiedAt": "2026-11-04T14:55:04.869Z",
+  "wording": "Explore Weight Loss",
+  "owners": [
+    {
+      "name": "shift-public-review-fixes-20261029",
+      "path": "/assets/v42.js?v=price-period-20261018-1314bdafe846",
+      "status": 200,
+      "version": "cc4dc417-18ab-4b7a-aa06-830a76d18799",
+      "deployment": "8c916bbf-50e9-456d-917f-c5d5294a46bc",
+      "bodySHA256": "f15d7c077735b5aeebbf6b30b71b667d5f39e6f3250b6c6c4eb5c6b034247817"
+    }
+  ],
+  "candidateChecks": [
+    {
+      "name": "shift-public-review-fixes-20261029",
+      "path": "/assets/v42.js?v=price-period-20261018-1314bdafe846",
+      "beforeSHA256": "1618c5bff06c92c599027972acba007e9aaad771eaadacf9c21be98d630da873",
+      "candidateSHA256": "f15d7c077735b5aeebbf6b30b71b667d5f39e6f3250b6c6c4eb5c6b034247817",
+      "exactExpected": true
+    }
+  ],
+  "unchangedOriginalModuleCount": 12,
+  "routesUnchanged": true,
+  "customerRecordsRead": 0,
+  "customerDataWrites": 0,
+  "emailsSent": 0,
+  "configurationMetadataPreserved": true,
+  "additionalFinalSettingsRead": "Blocked by expired native session; no independent final settings-read claim"
+}
