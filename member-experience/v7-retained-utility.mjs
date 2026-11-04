@@ -37,6 +37,7 @@ function decorateUtility(s,host,row,icon,el,utility,detail){
   const privacy=c.querySelector('.mt-r-privacy');if(privacy)privacy.classList.add('mt-u-privacy');
   return;
  }
+ if(utility==='support'&&!detail){const shed=host.querySelector('[data-mt-shed]')?.closest('.mt-r-row');shed?.after(row('play','Shed Arcade','Bored? Seven quick games, just for a laugh.','/member/shed-arcade'));}
  if(detail){
   const back=c.querySelector('.mt-r-back');if(back){back.textContent='Back to Support';host.prepend(back);}
   for(const h of [...c.children].filter(n=>n.tagName==='H2')){const p=h.nextElementSibling;if(p?.tagName==='P'){const note=el('section','mt-u-note');h.before(note);note.append(h,p);}}

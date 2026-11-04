@@ -1,0 +1,195 @@
+<!doctype html><html lang="en-GB"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#050505"><title>Stack the Shed · My Timber Shed Arcade (prototype)</title>
+<style>*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:#050505;color:#E7E3DA;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;overscroll-behavior:none}
+body{display:flex;justify-content:center}
+.app{width:100%;max-width:460px;height:100vh;height:100dvh;display:flex;flex-direction:column;padding:0 10px env(safe-area-inset-bottom);user-select:none;-webkit-user-select:none}
+.hdr{flex:0 0 auto;height:46px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #1d1f1a;padding:0 4px}
+.hdr a{color:#9AA08A;text-decoration:none;font-size:14px;width:100px}
+.wm{font-weight:900;font-size:18px;letter-spacing:1.5px;font-family:"Arial Black","Archivo Black",Impact,sans-serif}.wm i{font-style:normal;color:#707762}
+.badge{width:100px;text-align:right}.badge b{display:inline-block;border:1px solid #707762;border-radius:10px;padding:3px 7px;font-size:9.5px;letter-spacing:.5px;white-space:nowrap}
+.tbar{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:8px 2px 4px;gap:8px}
+.tl{display:flex;flex-direction:column;gap:4px;min-width:0}
+.pill{align-self:flex-start;white-space:nowrap;font-size:10px;font-weight:700;letter-spacing:.4px;color:#050505;background:#E7E3DA;border-radius:4px;padding:2px 6px}
+.hook{font-size:12px;color:#b9b7ae;padding:0 2px 6px}
+.mono{font-family:ui-monospace,"SF Mono",Menlo,Consolas,"Courier New",monospace;font-weight:800;letter-spacing:.5px}
+.hud{flex:0 0 auto;display:flex;gap:6px;justify-content:space-between;padding-bottom:6px}
+.chip{font-size:11px;background:#0d0f0b;border:2px solid #E7E3DA;border-radius:3px;padding:4px 7px;white-space:nowrap}
+.chip.o{border-color:#C8702A;color:#F2B33D}.chip.g{border-color:#707762}
+.gwrap{flex:1 1 auto;min-height:150px;position:relative;display:flex;align-items:flex-start;justify-content:center;padding-top:4px}
+canvas.game{display:block;image-rendering:pixelated;image-rendering:crisp-edges;touch-action:none;border:3px solid #E7E3DA;border-radius:6px;box-shadow:0 0 0 3px #050505,0 0 0 5px #707762;background:#0d0f0b;cursor:crosshair}
+.ov{position:absolute;inset:0;display:none;align-items:center;justify-content:center;pointer-events:none}
+.ov.on{display:flex}
+.panel{pointer-events:auto;background:rgba(5,5,5,.92);border:3px solid #E7E3DA;border-radius:8px;padding:16px 18px;text-align:center;max-width:290px;box-shadow:0 0 0 3px #C8702A}
+.panel h2{font-size:18px;color:#F2B33D;margin-bottom:6px}.panel p{font-size:13px;color:#cfccc3;margin:4px 0}
+.panel .stars{font-size:28px;letter-spacing:4px;margin:4px 0}
+.panel .row{display:flex;gap:8px;margin-top:12px}
+.bot{flex:0 0 auto;padding:8px 0 10px}
+.cards{display:flex;gap:8px}
+.card{flex:1;background:#12140f;border:1px solid #2c3027;border-radius:10px;padding:7px 10px;min-width:0}
+.card .k{font-size:9.5px;letter-spacing:.6px;text-transform:uppercase;color:#9AA08A;font-weight:700}
+.card .v{font-size:13px;margin-top:3px;line-height:16px}
+.card.sh{background:#707762;color:#050505;border-color:#707762}.card.sh .k{color:#050505}
+.ex{font-size:8.5px;background:#050505;color:#E7E3DA;border-radius:3px;padding:1px 4px;margin-left:4px;letter-spacing:.4px;vertical-align:1px}
+.btns{display:flex;gap:8px;margin-top:8px}
+button{font:inherit;cursor:pointer;border:0;border-radius:8px;height:44px;flex:1;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-weight:800;font-size:12.5px;letter-spacing:.5px}
+button.p{background:#C8702A;color:#050505;box-shadow:0 4px 0 #8A4A1C}
+button.p:active{transform:translateY(2px);box-shadow:0 2px 0 #8A4A1C}
+button.s{background:transparent;border:2px solid #E7E3DA;color:#E7E3DA}
+button.t{flex:0 0 auto;padding:0 10px;background:transparent;border:2px solid #707762;color:#9AA08A;font-size:10.5px}
+button:disabled{opacity:.35;cursor:default}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);opacity:0;background:#E7E3DA;color:#050505;font-weight:700;font-size:13px;padding:9px 14px;border-radius:8px;transition:.2s;pointer-events:none;z-index:9}
+#toast.on{opacity:1;transform:translateX(-50%)}
+@media (max-height:700px){.hook{display:none}.card .v{font-size:13px}button{height:40px}}
+
+.pbig{font-size:26px;margin:4px 0 6px;color:#E7E3DA}
+</style></head><body><div class="app">
+<div class="hdr"><a href="index.html">‹ Arcade</a><span class="wm">MY TIMBER<i>.</i></span><span class="badge"><b>SHED ARCADE</b></span></div>
+<div class="tbar"><div class="tl"><span class="pill">Prototype · game concept</span><canvas id="title"></canvas></div></div>
+<div class="hook">Tap to drop the swinging timber. Overhang gets sawn off. Roof goes on every 8.</div>
+<div class="hud mono"><span class="chip" id="hl">HEIGHT 0</span><span class="chip o" id="hc">SCORE 0</span><span class="chip g" id="ht">WIND ›</span></div>
+<div class="gwrap" id="gwrap"><canvas class="game" id="game" width="128" height="176" aria-label="Stack the Shed game area"></canvas>
+ <div class="ov" id="ov"><div class="panel"><h2 class="mono" id="ph">Time!</h2><div class="pbig mono" id="pbig">0 POINTS</div><p id="pp"></p><p id="pp2" style="font-size:11.5px;color:#9AA08A"></p>
+ <div class="row"><button class="p" id="pa">ONE MORE GO</button><button class="s" id="pi">INVITE A MATE</button></div></div></div></div>
+<div class="bot"><div class="cards"><div class="card"><div class="k">Personal best</div><div class="v mono" id="best">Your best: 0 pts</div><div style="font-size:10.5px;color:#9AA08A;margin-top:1px" id="bestsub"></div></div>
+<div class="card sh"><div class="k">The Shed this week <span class="ex">EXAMPLE</span></div><div class="v mono" id="shed">1,204 sheds built</div><div style="font-size:10.5px;font-weight:600;margin-top:1px" id="mine"></div></div></div>
+<div class="btns"><button class="p" id="again">ONE MORE GO</button><button class="s" id="invite">INVITE A MATE</button><button class="t" id="mute">SOUND ON</button></div></div>
+</div><div id="toast"></div>
+<script>// ===== shared: palette, sprites, pixel font, audio, share, storage =====
+const PAL={k:'#050505',c:'#E7E3DA',a:'#707762',A:'#4C5243',g:'#8F977E',m:'#9AA08A',o:'#C8702A',O:'#8A4A1C',w:'#D9A066',y:'#B5652A',d:'#5A3416',s:'#E2B48C',b:'#3A2A1E',r:'#B23A2A',R:'#E0563A',f:'#F2B33D',F:'#FFE08A',x:'#A9A9A0',X:'#6E6E68',u:'#2F5F8A',n:'#2B2E26',G:'#5E6650'};
+function spr(rows){const h=rows.length,w=rows[0].length,c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d');
+  rows.forEach((r,j)=>{for(let i=0;i<w;i++){const ch=r[i];if(ch!=='.'&&PAL[ch]){x.fillStyle=PAL[ch];x.fillRect(i,j,1,1);}}});return c;}
+function cnv(w,h,fn){const c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d');fn(x,w,h);return c;}
+const BLOKE=spr(["....aaaa....","...aaaaaa...","...aAAAAa...","...sssss....","...sksks....","...sssss....","..bbbbbbb...","..bbsssbb...","...bbbbb....",".rorooroor..","roroooroor..","sroroororos.","s.rororor.s.","..AAAAAAA...","..AAA.AAA...","..AAA.AAA...","..kkk.kkk..."]);
+const BLOKE_NOARM=spr(["....aaaa....","...aaaaaa...","...aAAAAa...","...sssss....","...sksks....","...sssss....","..bbbbbbb...","..bbsssbb...","...bbbbb....",".rorooroor..","roroooroor..",".roroororo..","..rororor...","..AAAAAAA...","..AAA.AAA...","..AAA.AAA...","..kkk.kkk..."]);
+const LOGEND=spr(["....OOOO....","..OOwwwwOO..",".OwwyyyywwO.",".OwywwwwywO.","OwywwyywwywO","OwywyddywywO","OwywyddywywO","OwywwyywwywO",".OwywwwwywO.",".OwwyyyywwO.","..OOwwwwOO..","....OOOO...."]);
+// ---- pixel font 3x5
+const FONT={A:"010101111101101",B:"110101110101110",C:"011100100100011",D:"110101101101110",E:"111100110100111",F:"111100110100100",G:"011100101101011",H:"101101111101101",I:"111010010010111",J:"001001001101010",K:"101101110101101",L:"100100100100111",M:"101111111101101",N:"110101101101101",O:"010101101101010",P:"110101110100100",Q:"010101101110011",R:"110101110101101",S:"011100010001110",T:"111010010010010",U:"101101101101111",V:"101101101101010",W:"101101111111101",X:"101101010101101",Y:"101101010010010",Z:"111001010100111",
+"0":"111101101101111","1":"010110010010111","2":"110001010100111","3":"110001010001110","4":"101101111001001","5":"111100110001110","6":"011100111101111","7":"111001010010010","8":"111101111101111","9":"111101111001110",
+"!":"010010010000010",".":"000000000000010","'":"010010000000000",":":"000010000010000","-":"000000111000000","+":"000010111010000","/":"001001010100100","?":"110001010000010",",":"000000000010100","*":"010111010101000","@":"010101111100011","\u00d7":"000101010101000"," ":"000000000000000"};
+function txtW(s,sc){return String(s).length*4*sc-sc;}
+function txt(ctx,s,x,y,sc=1,col=PAL.c,align='left',sh=PAL.k){s=String(s);const u=s.replace(/x(?=\d)/g,'\u00d7').toUpperCase();const w=txtW(u,sc);
+  let x0=align==='center'?Math.round(x-w/2):align==='right'?x-w:x;x0=Math.round(x0);y=Math.round(y);
+  const draw=(ox,oy,c)=>{ctx.fillStyle=c;for(let i=0;i<u.length;i++){const g=FONT[u[i]]||FONT[' '];for(let k=0;k<15;k++)if(g[k]==='1')ctx.fillRect(ox+i*4*sc+(k%3)*sc,oy+Math.floor(k/3)*sc,sc,sc);}};
+  if(sh){draw(x0+sc,y+sc,sh);} draw(x0,y,col);}
+// ---- storage
+const store={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v);}catch(e){return d;}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
+// ---- audio
+let AC=null,muted=store.get('mt_arcade_muted',false),noiseBuf=null;
+function audio(){if(muted)return null;try{if(!AC){const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;AC=new C();}
+  if(AC.state==='suspended')AC.resume();return AC;}catch(e){return null;}}
+function beep(f,d=0.1,type='square',v=0.06,f2=null,delay=0){const a=audio();if(!a)return;const t=a.currentTime+delay,o=a.createOscillator(),g=a.createGain();
+  o.type=type;o.frequency.setValueAtTime(f,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+d);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(0.0001,t+d);
+  o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+d+0.03);}
+function noise(d=0.12,v=0.08,hp=600){const a=audio();if(!a)return;if(!noiseBuf){noiseBuf=a.createBuffer(1,a.sampleRate*0.5,a.sampleRate);const ch=noiseBuf.getChannelData(0);for(let i=0;i<ch.length;i++)ch[i]=Math.random()*2-1;}
+  const s=a.createBufferSource(),g=a.createGain(),fl=a.createBiquadFilter();fl.type='lowpass';fl.frequency.value=hp;s.buffer=noiseBuf;const t=a.currentTime;
+  g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(0.0001,t+d);s.connect(fl);fl.connect(g);g.connect(a.destination);s.start(t);s.stop(t+d+0.02);}
+function setupMute(btn){const upd=()=>{btn.textContent=muted?'SOUND OFF':'SOUND ON';btn.setAttribute('aria-pressed',String(!muted));};upd();
+  btn.addEventListener('click',()=>{muted=!muted;store.set('mt_arcade_muted',muted);upd();if(!muted)beep(660,0.08);});}
+// ---- share
+function toast(msg){let t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('on'),2200);}
+async function invite(text,link){const http=u=>/^https?:/.test(u||'');const url=link||(http(location.href)?location.href:undefined);const data={title:'My Timber · Shed Arcade',text};if(http(url))data.url=url;
+  try{if(navigator.share){await navigator.share(data);return 'shared';}}catch(e){if(e&&e.name==='AbortError')return 'cancelled';}
+  const full=url?text+' '+url:text;
+  try{await navigator.clipboard.writeText(full);toast('Copied. Send it to a mate.');return 'copied';}catch(e){}
+  try{const ta=document.createElement('textarea');ta.value=full;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();toast('Copied. Send it to a mate.');return 'copied';}catch(e){toast(full);return 'shown';}}
+// ---- pixel title on canvas
+function pixelTitle(el,s){const sc=4,w=txtW(s,sc)+3,h=5*sc+3;el.width=w;el.height=h;el.style.width=Math.round(w*1.15)+'px';el.style.height=Math.round(h*1.15)+'px';el.style.imageRendering='pixelated';
+  const x=el.getContext('2d');txt(x,s,3,3,sc,PAL.O,'left',null);txt(x,s,0,0,sc,PAL.c,'left',null);}
+// ---- fit canvas into wrapper keeping aspect
+function fitCanvas(canvas,wrap,W,H){const f=()=>{const r=wrap.getBoundingClientRect();let s=Math.min(r.width/W,r.height/H);if(!(s>0))s=1;
+  canvas.style.width=Math.floor(W*s)+'px';canvas.style.height=Math.floor(H*s)+'px';};window.addEventListener('resize',f);f();setTimeout(f,50);return f;}
+function fmt(n){return Math.round(n).toLocaleString('en-GB');}
+
+// ===== STACK THE SHED =====
+const CW=128,CH=176,GY=164,BH=8,MAXW=64,ROOF_EVERY=8;
+const cv=document.getElementById('game'),ctx=cv.getContext('2d');ctx.imageSmoothingEnabled=false;const $=id=>document.getElementById(id);
+const logCache={};
+function logImg(w){w=Math.max(2,Math.round(w));if(logCache[w])return logCache[w];return logCache[w]=cnv(w,BH,x=>{x.fillStyle=PAL.O;x.fillRect(0,0,w,BH);x.fillStyle=PAL.y;x.fillRect(0,0,w,1);x.fillStyle=PAL.d;x.fillRect(0,BH-1,w,1);
+  for(let i=2;i<w-3;i+=4)x.fillRect(i,2+(i*3)%4,2,1);x.fillStyle=PAL.w;x.fillRect(0,1,2,BH-2);x.fillRect(w-2,1,2,BH-2);x.fillStyle=PAL.y;x.fillRect(0,3,1,2);x.fillRect(w-1,3,1,2);});}
+function roofImg(w){return cnv(w,7,x=>{x.fillStyle=PAL.n;x.fillRect(0,1,w,5);x.fillStyle='#3d4136';for(let i=0;i<w;i+=6)x.fillRect(i,2,3,1);x.fillStyle=PAL.c;x.fillRect(0,0,w,1);x.fillStyle=PAL.k;x.fillRect(0,6,w,1);});}
+// ---- state
+let S,parts=[],pops=[],debris=[],shake=0,t=0;
+let best=store.get('mt_stack_best',0),shedsMine=store.get('mt_stack_sheds',0);const SHED_EXAMPLE=1204;
+function reset(){S={state:'ready',blocks:[{x:CW/2-MAXW/2,w:MAXW,y:GY-BH,kind:'base'}],score:0,height:0,perfects:0,sheds:0,phase:0,cur:null,cam:0,lastPerfect:false,combo:0};
+  parts=[];pops=[];debris=[];newLog();ui();}
+function topB(){return S.blocks[S.blocks.length-1];}
+function wind(){return Math.min(1,S.height/30);}
+function newLog(){const tp=topB();S.cur={w:tp.w,y:tp.y-46,drop:false,vy:0,x:CW/2-tp.w/2};}
+function pop(text,x,y,sc=1,col=PAL.f,life=1){pops.push({text,x,y,sc,col,t:0,life});}
+function burst(x,y,n,cols,sp=50){for(let i=0;i<n;i++){const a=-Math.PI*Math.random(),v=sp*(0.3+Math.random());parts.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,life:0.5+Math.random()*0.5,t:0,c:cols[i%cols.length]});}}
+function start(){reset();S.state='play';[392,523,659].forEach((f,i)=>beep(f,0.07,'square',0.05,null,i*0.07));}
+function tap(){audio();if(S.state==='ready'){start();return;}if(S.state!=='play'||S.cur.drop)return;S.cur.drop=true;S.cur.vy=40;beep(300,0.05,'square',0.03,200);}
+function land(){const c=S.cur,tp=topB();const off=c.x-tp.x;let nx,nw;
+  if(Math.abs(off)<=2){nx=tp.x;nw=Math.min(MAXW,tp.w+(S.combo>=2?2:0));S.combo++;S.perfects++;S.score+=3;pop('PERFECT DROP! +3',CW/2,58,1,PAL.f,0.9);
+    [784,988,1175].forEach((f,i)=>beep(f,0.06,'square',0.05,null,i*0.05));shake=2;burst(nx+nw/2,tp.y,14,[PAL.F,PAL.f,PAL.c],60);}
+  else{const l=Math.max(c.x,tp.x),r=Math.min(c.x+c.w,tp.x+tp.w);if(r-l<=1){fail();return;}nx=l;nw=r-l;S.combo=0;S.score+=1;
+    const cutL=c.x<tp.x,cw=c.w-nw;debris.push({x:cutL?c.x:r,y:c.y,w:cw,vx:cutL?-25:25,vy:-20,r:0,vr:cutL?-3:3});noise(0.1,0.08,1800);beep(400,0.05,'square',0.04,300);shake=1.5;burst(cutL?l:r,c.y+4,8,[PAL.w,PAL.y],40);
+    if(nw<14)pop('STEADY ON...',CW/2,58,1,PAL.c,0.9);}
+  S.blocks.push({x:nx,w:nw,y:tp.y-BH});S.height++;
+  if(S.height%ROOF_EVERY===0){const rw=Math.min(MAXW+8,nw+12),rx=nx+nw/2-rw/2;S.blocks.push({x:rx,w:rw,y:tp.y-BH-7,kind:'roof',h:7});S.sheds++;S.score+=5;shedsMine++;store.set('mt_stack_sheds',shedsMine);
+    pops=[];pop('ROOF ON!',CW/2,26,2,PAL.f,1.6);pop(`SHED ${S.sheds} BUILT +5`,CW/2,44,1,PAL.c,1.6);[523,659,784,1046].forEach((f,i)=>beep(f,0.1,'square',0.05,null,i*0.09));shake=3;
+    // next storey: base widened a little from roof
+    const fw=Math.min(MAXW,nw+16);S.blocks.push({x:rx+rw/2-fw/2,w:fw,y:tp.y-BH-7-BH,kind:'floor'});}
+  newLog();ui();}
+function fail(){S.state='over';const c=S.cur;debris.push({x:c.x,y:c.y,w:c.w,vx:(c.x+c.w/2<CW/2?-30:30),vy:0,r:0,vr:(c.x<CW/2?-2:2)});shake=5;noise(0.3,0.12,600);beep(220,0.35,'sawtooth',0.05,70);
+  const nb=S.score>best;if(nb){best=S.score;store.set('mt_stack_best',best);}
+  $('ph').textContent='Blew over!';$('pbig').textContent=`${S.score} POINTS`;$('pp').textContent='Still counts. Cracking effort.';
+  $('pp2').textContent=`${S.height} length${S.height===1?'':'s'} of timber high · ${S.sheds} shed${S.sheds===1?'':'s'} · ${S.perfects} perfect drop${S.perfects===1?'':'s'}${nb&&S.score>0?' · new personal best!':` · your best: ${best}`}`;
+  setTimeout(()=>{if(S.state==='over')$('ov').classList.add('on');},700);ui();}
+// ---- update
+function update(dt){t+=dt;
+  if(S.state==='play'&&S.cur){const c=S.cur;const w=wind();
+    if(!c.drop){S.phase+=dt*(2.1+w*1.9);const amp=20+w*26;c.x=CW/2-c.w/2+Math.sin(S.phase)*amp+Math.sin(S.phase*0.37+1)*w*6;}
+    else{c.vy+=700*dt;c.y+=c.vy*dt;if(c.y>=topB().y-BH){c.y=topB().y-BH;land();}}}
+  const target=Math.min(0,topB().y-112);S.cam+=(target-S.cam)*Math.min(1,dt*4);
+  for(const d of debris){d.vy+=400*dt;d.x+=d.vx*dt;d.y+=d.vy*dt;d.r+=d.vr*dt;}debris=debris.filter(d=>d.y-S.cam<CH+30);
+  for(const p of parts){p.t+=dt;p.vy+=200*dt;p.x+=p.vx*dt;p.y+=p.vy*dt;}parts=parts.filter(p=>p.t<p.life);for(const p of pops)p.t+=dt;pops=pops.filter(p=>p.t<p.life);shake*=Math.pow(0.01,dt);}
+// ---- render
+const STARS=[...Array(50)].map((_,i)=>({x:(i*53)%CW,y:(i*97)%600,p:i*0.7}));
+const CLOUDS=[[10,30,22],[70,60,28],[30,110,18],[90,150,24],[5,190,20]];
+function render(){ctx.save();if(shake>0.2)ctx.translate(Math.round((Math.random()-.5)*shake),Math.round((Math.random()-.5)*shake));
+  const h=Math.min(1,-S.cam/500);const sky=[[11,13,16],[16,20,15]].map(([r,g,b])=>`rgb(${Math.round(r*(1-h))},${Math.round(g*(1-h)+5*h)},${Math.round(b*(1-h)+12*h)})`);
+  ctx.fillStyle=sky[0];ctx.fillRect(0,0,CW,CH/2);ctx.fillStyle=sky[1];ctx.fillRect(0,CH/2,CW,CH/2);
+  for(const s of STARS){const y=((s.y+(-S.cam)*0.3)%CH+CH)%CH;ctx.globalAlpha=(0.2+0.6*h)*(0.5+0.5*Math.abs(Math.sin(t+s.p)));ctx.fillStyle=PAL.c;ctx.fillRect(s.x,Math.round(y),1,1);}ctx.globalAlpha=1;
+  const w=wind();for(const[cx,cy,cw]of CLOUDS){const x=((cx+t*(4+w*18))%(CW+40))-30,y=((cy-S.cam*0.5)%(CH+40)+CH+40)%(CH+40)-20;ctx.globalAlpha=0.12;ctx.fillStyle=PAL.c;ctx.fillRect(Math.round(x),Math.round(y),cw,3);ctx.fillRect(Math.round(x)+3,Math.round(y)-2,cw-7,2);}ctx.globalAlpha=1;
+  // wind streaks
+  if(S.state!=='ready'){ctx.fillStyle=PAL.c;const n=Math.round(2+w*7);for(let i=0;i<n;i++){const x=((i*47+t*(60+w*120))%(CW+30))-20,y=(i*31)%CH;ctx.globalAlpha=0.25+w*0.3;ctx.fillRect(Math.round(x),y,6+Math.round(w*8),1);}ctx.globalAlpha=1;}
+  ctx.translate(0,-Math.round(S.cam));
+  // ground + hills
+  ctx.fillStyle='#232820';for(let i=0;i<22;i++){const hh=Math.round(5+4*Math.sin(i*0.9)+3*Math.sin(i*2.3));ctx.fillRect(i*6,GY-4-hh,6,hh+4);}
+  ctx.fillStyle='#2e3428';ctx.fillRect(0,GY,CW,400);ctx.fillStyle=PAL.a;ctx.fillRect(0,GY,CW,1);
+  ctx.drawImage(BLOKE,CW-18,GY-17);
+  // blocks
+  S.blocks.forEach((b,i)=>{if(b.kind==='roof'){ctx.drawImage(roofImg(Math.round(b.w)),Math.round(b.x),Math.round(b.y));}else{ctx.drawImage(logImg(b.w),Math.round(b.x),Math.round(b.y));}});
+  // door on lower storey
+  if(S.blocks.length>2){const b=S.blocks[1];if(b.w>=16){ctx.fillStyle='#1a120c';ctx.fillRect(Math.round(b.x+b.w/2-5),GY-BH*3+2,10,BH*2-2);ctx.fillStyle=PAL.f;ctx.fillRect(Math.round(b.x+b.w/2+2),GY-BH*2,1,1);}}
+  // rope + current timber
+  if(S.cur&&S.state!=='over'){const c=S.cur;const ax=CW/2,ay=S.cam-2;if(!c.drop){ctx.strokeStyle=PAL.m;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(ax+0.5,ay);ctx.lineTo(Math.round(c.x+c.w/2)+0.5,Math.round(c.y));ctx.stroke();ctx.fillStyle=PAL.x;ctx.fillRect(Math.round(c.x+c.w/2)-2,Math.round(c.y)-2,5,2);
+      ctx.globalAlpha=0.25;ctx.fillStyle=PAL.c;for(let y=c.y+BH+2;y<topB().y-1;y+=4)ctx.fillRect(Math.round(c.x+c.w/2),Math.round(y),1,2);ctx.globalAlpha=1;}
+    ctx.drawImage(logImg(c.w),Math.round(c.x),Math.round(c.y));}
+  for(const d of debris){ctx.save();ctx.translate(Math.round(d.x+d.w/2),Math.round(d.y+BH/2));ctx.rotate(d.r);ctx.drawImage(logImg(d.w),-Math.round(d.w/2),-BH/2);ctx.restore();}
+  for(const p of parts){ctx.globalAlpha=Math.max(0,1-p.t/p.life);ctx.fillStyle=p.c;ctx.fillRect(Math.round(p.x),Math.round(p.y),1,1);}ctx.globalAlpha=1;
+  ctx.translate(0,Math.round(S.cam));
+  for(const p of pops){const k=p.t/p.life;ctx.globalAlpha=k>0.7?(1-k)/0.3:1;txt(ctx,p.text,p.x,Math.round(p.y-k*10),p.sc,p.col,'center');}ctx.globalAlpha=1;
+  // roof progress ticks
+  if(S.state!=='ready'){const into=S.height%ROOF_EVERY;txt(ctx,'NEXT ROOF',4,4,1,PAL.f,'left');for(let i=0;i<ROOF_EVERY;i++){ctx.fillStyle=i<into?PAL.f:PAL.A;ctx.fillRect(4+i*5,11,4,3);}}
+  if(S.state==='ready'){if(Math.floor(t*2)%2===0)txt(ctx,'TAP TO DROP',CW/2,40,2,PAL.c,'center');txt(ctx,'LINE IT UP DEAD CENTRE',CW/2,60,1,PAL.m,'center');}
+  ctx.restore();}
+// ---- input
+cv.addEventListener('pointerdown',e=>{e.preventDefault();tap();});
+['touchstart','touchmove','touchend','gesturestart'].forEach(tp=>cv.addEventListener(tp,e=>e.preventDefault(),{passive:false}));
+window.addEventListener('keydown',e=>{if((e.code==='Space'||e.code==='Enter')&&S.state!=='over'){e.preventDefault();tap();}});
+// ---- UI
+function ui(){$('hl').textContent=`HEIGHT ${S.height}`;$('hc').textContent=`SCORE ${S.score}`;const w=wind();$('ht').textContent='WIND '+(w<0.2?'›':w<0.5?'››':w<0.8?'›››':'››››');
+  $('best').textContent=`Your best: ${best} pts`;$('bestsub').textContent='Perfect drop +3 · roof +5';
+  $('shed').textContent=`${fmt(SHED_EXAMPLE+shedsMine)} sheds built`;$('mine').textContent=shedsMine?`incl. ${fmt(shedsMine)} of yours`:'Every roof adds to it';}
+$('again').onclick=$('pa').onclick=()=>{$('ov').classList.remove('on');start();};
+$('invite').onclick=$('pi').onclick=()=>invite(best?`Beat my ${best} points at Stack the Shed in the My Timber Shed Arcade. Mind the wind.`:'Fancy a go at Stack the Shed in the My Timber Shed Arcade? Mind the wind.');
+setupMute($('mute'));pixelTitle($('title'),'STACK THE SHED');fitCanvas(cv,$('gwrap'),CW,CH);reset();
+let last=performance.now(),acc=0;const STEP=1/60;
+function frame(now){acc+=Math.min(0.1,(now-last)/1000);last=now;let n=0;while(acc>=STEP&&n<4){update(STEP);acc-=STEP;n++;}if(n===4)acc=0;render();requestAnimationFrame(frame);}
+requestAnimationFrame(frame);
+window.__stack={state:()=>({state:S.state,height:S.height,score:S.score,sheds:S.sheds,cur:S.cur&&{x:S.cur.x,w:S.cur.w,drop:S.cur.drop},top:{x:topB().x,w:topB().w}}),tap,fast:n=>{for(let i=0;i<n;i++)update(STEP);render();}};
+</script></body></html>

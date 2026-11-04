@@ -1,0 +1,597 @@
+{
+  "engine": "webkit",
+  "at": "2026-11-04T09:35:36.448Z",
+  "device": "390x844 browser profile; not physical phone",
+  "account": "shed-arcade-one@example.invalid",
+  "checks": [
+    {
+      "id": "E1",
+      "name": "Today card follows check-in, action and pile and Play opens its game",
+      "result": "PASS",
+      "screenshot": "E1.png"
+    },
+    {
+      "id": "E2",
+      "name": "Game-of-day date selection",
+      "result": "PASS",
+      "detail": {
+        "on": "2026-11-04",
+        "game": "over-the-shed",
+        "dateBoundaryEvidence": "shed-arcade.test.mjs tests seven consecutive dates and London day boundaries"
+      },
+      "screenshot": "E2.png"
+    },
+    {
+      "id": "E3",
+      "name": "New account sees friendly no-best text",
+      "result": "PASS",
+      "screenshot": "E3.png",
+      "returningBest": true
+    },
+    {
+      "id": "E4",
+      "name": "Seven grid tiles link to their own game",
+      "result": "PASS",
+      "screenshot": "E4.png"
+    },
+    {
+      "id": "G1",
+      "name": "timber-lob input, completed result, saved best and retry",
+      "result": "PASS",
+      "detail": {
+        "win": true,
+        "trajectory": {
+          "vx": 10,
+          "vy": 0
+        },
+        "state": {
+          "L": 0,
+          "state": "win",
+          "logsLeft": 2,
+          "gnomes": 1,
+          "down": 1,
+          "used": 1,
+          "bodies": [
+            {
+              "t": "ground",
+              "x": 12,
+              "y": 25,
+              "r": 0
+            },
+            {
+              "t": "V",
+              "x": 12.3,
+              "y": 22.24,
+              "r": 1.24
+            },
+            {
+              "t": "V",
+              "x": 14.65,
+              "y": 22.63,
+              "r": 1.57
+            },
+            {
+              "t": "P",
+              "x": 12.22,
+              "y": 21.49,
+              "r": -0.33
+            },
+            {
+              "t": "G",
+              "x": 10.88,
+              "y": 21.1,
+              "r": -1.91
+            },
+            {
+              "t": "proj",
+              "x": 0.84,
+              "y": 22.45,
+              "r": -15.53
+            }
+          ]
+        },
+        "firedByPointer": true,
+        "savedBest": [
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "method": "Actual controls plus supplied simulation-time helpers; no API result interception",
+        "retryCanvasVisible": true
+      },
+      "screenshot": "G1.png"
+    },
+    {
+      "id": "G2",
+      "name": "chop-shop input, completed result, saved best and retry",
+      "result": "PASS",
+      "detail": {
+        "state": "over",
+        "time": 0,
+        "logs": 8,
+        "chain": 5,
+        "mult": 2,
+        "bestMult": 2,
+        "m": 0.1016085619791442,
+        "dir": -1,
+        "sp": 1.0848393281250002,
+        "pw": 0.08511590312499998,
+        "c": 0.41146915311170273,
+        "swing": 0,
+        "swingKind": "perfect",
+        "cool": -0.003333333333333254,
+        "logDrop": 0,
+        "perf": 5,
+        "good": 0,
+        "miss": 0,
+        "lastTick": 1,
+        "savedBest": 8,
+        "method": "Actual controls plus supplied simulation-time helpers; no API result interception",
+        "retryCanvasVisible": true
+      },
+      "screenshot": "G2.png"
+    },
+    {
+      "id": "G3",
+      "name": "timber input, completed result, saved best and retry",
+      "result": "PASS",
+      "detail": {
+        "state": "over",
+        "dist": 218.88824999999994,
+        "m": 18,
+        "y": 126,
+        "ground": true,
+        "duck": 0,
+        "sp": 79.78499999999998,
+        "acorns": 0,
+        "cause": "log",
+        "obs": [
+          {
+            "type": "log",
+            "x": 38.747796296296336
+          }
+        ],
+        "savedBest": 18,
+        "method": "Actual controls plus supplied simulation-time helpers; no API result interception",
+        "retryCanvasVisible": true
+      },
+      "screenshot": "G3.png"
+    },
+    {
+      "id": "G4",
+      "name": "stack-the-shed input, completed result, saved best and retry",
+      "result": "PASS",
+      "detail": {
+        "state": "over",
+        "height": 6,
+        "score": 8,
+        "sheds": 0,
+        "cur": {
+          "x": 87.13006056101055,
+          "w": 5.578428103965408,
+          "drop": true
+        },
+        "top": {
+          "x": 53.43683120604682,
+          "w": 5.578428103965408
+        },
+        "savedBest": 8,
+        "method": "Actual controls plus supplied simulation-time helpers; no API result interception",
+        "retryCanvasVisible": true
+      },
+      "screenshot": "G4.png"
+    },
+    {
+      "id": "G5",
+      "name": "saw-duel input, completed result, saved best and retry",
+      "result": "PASS",
+      "detail": {
+        "state": "done",
+        "k": 80,
+        "tr": 4.2833333333333234,
+        "T": 4.2,
+        "last": "R",
+        "ghost": {
+          "name": "Practice",
+          "t": 14.2,
+          "fromLink": false
+        },
+        "wrong": 0,
+        "savedBest": 4.2,
+        "method": "Actual controls plus supplied simulation-time helpers; no API result interception",
+        "retryCanvasVisible": true
+      },
+      "screenshot": "G5.png"
+    },
+    {
+      "id": "G6",
+      "name": "timber-smash input, completed result, saved best and retry",
+      "result": "PASS",
+      "detail": {
+        "state": "play",
+        "level": 1,
+        "score": 10,
+        "lives": 3,
+        "bricks": 31,
+        "balls": [
+          {
+            "x": 67.56797002161593,
+            "y": 49.227918374317355,
+            "vx": 2.62171657882272,
+            "vy": 82.30825658571759
+          }
+        ],
+        "px": 57.33259568321222,
+        "pw": 24,
+        "held": false,
+        "smashed": 1,
+        "final": {
+          "state": "over",
+          "level": 1,
+          "score": 30,
+          "lives": 0,
+          "bricks": 29,
+          "balls": [],
+          "px": 1,
+          "pw": 24,
+          "held": false,
+          "smashed": 3
+        },
+        "savedBest": 30,
+        "method": "Actual controls plus supplied simulation-time helpers; no API result interception",
+        "retryCanvasVisible": true
+      },
+      "screenshot": "G6.png"
+    },
+    {
+      "id": "G7",
+      "name": "over-the-shed input, completed result, saved best and retry",
+      "result": "PASS",
+      "detail": {
+        "hit": {
+          "state": "play",
+          "phase": "result",
+          "runs": 2,
+          "outs": 0,
+          "strikes": 0,
+          "bases": [
+            0,
+            0,
+            0
+          ],
+          "pitch": "straight",
+          "kind": "shed",
+          "d": 128,
+          "hits": 1,
+          "swing": -1
+        },
+        "timings": [
+          {
+            "timing": -0.06,
+            "state": {
+              "state": "over",
+              "phase": "result",
+              "runs": 0,
+              "outs": 3,
+              "strikes": 0,
+              "bases": [
+                0,
+                0,
+                1
+              ],
+              "pitch": "slow",
+              "kind": null,
+              "d": null,
+              "hits": 1,
+              "swing": -1
+            }
+          },
+          {
+            "timing": 0,
+            "state": {
+              "state": "play",
+              "phase": "result",
+              "runs": 2,
+              "outs": 0,
+              "strikes": 0,
+              "bases": [
+                0,
+                0,
+                0
+              ],
+              "pitch": "straight",
+              "kind": "shed",
+              "d": 126,
+              "hits": 1,
+              "swing": -1
+            }
+          },
+          {
+            "timing": 0.06,
+            "state": {
+              "state": "over",
+              "phase": "result",
+              "runs": 0,
+              "outs": 3,
+              "strikes": 0,
+              "bases": [
+                0,
+                0,
+                1
+              ],
+              "pitch": "wobble",
+              "kind": null,
+              "d": null,
+              "hits": 1,
+              "swing": -1
+            }
+          }
+        ],
+        "final": {
+          "state": "over",
+          "phase": "result",
+          "runs": 2,
+          "outs": 3,
+          "strikes": 0,
+          "bases": [
+            0,
+            0,
+            0
+          ],
+          "pitch": "straight",
+          "kind": null,
+          "d": null,
+          "hits": 1,
+          "swing": -1
+        },
+        "savedBest": 2,
+        "method": "Actual controls plus supplied simulation-time helpers; no API result interception",
+        "retryCanvasVisible": true
+      },
+      "screenshot": "G7.png"
+    },
+    {
+      "id": "E5",
+      "name": "Every game returns to Today inside the same frame",
+      "result": "PASS",
+      "screenshot": "E5.png"
+    },
+    {
+      "id": "E6",
+      "name": "Shed-area door opens arcade",
+      "result": "PASS",
+      "screenshot": "E6.png"
+    },
+    {
+      "id": "E7",
+      "name": "Post-check-in nudge dismisses and stays dismissed",
+      "result": "PASS",
+      "detail": {
+        "cap": "twice per week; at least two days between appearances; server cap tested in SQL/model tests"
+      },
+      "screenshot": "E7.png"
+    },
+    {
+      "id": "E8",
+      "name": "Signed-out arcade asks for sign-in; public menus unchanged",
+      "result": "PASS",
+      "detail": {
+        "publicNavigation": "No public navigation source changed"
+      },
+      "screenshot": "E8.png"
+    },
+    {
+      "id": "P1",
+      "name": "Accounts separated and bests retained in a second authenticated session",
+      "result": "PASS",
+      "detail": {
+        "one": 900710401,
+        "two": 900710402,
+        "passwordLogoutLogin": true,
+        "samePhoneAccountSwitch": true,
+        "offline": "see P3 actual earned score and reconnect"
+      },
+      "screenshot": "P1.png"
+    },
+    {
+      "id": "P2",
+      "name": "Every initial game silent; member toggle remembered",
+      "result": "PASS",
+      "screenshot": "P2.png"
+    },
+    {
+      "id": "P3",
+      "name": "Seven cached games open offline; earned offline best syncs on reconnect",
+      "result": "PASS",
+      "detail": {
+        "device": "Automated browser phone profile, not physical phone",
+        "baseline": 8,
+        "offlineBest": 64,
+        "synced": 64,
+        "speedEvidence": "arcade-speed.json"
+      },
+      "screenshot": "P3.png"
+    },
+    {
+      "id": "P4",
+      "name": "Keyboard focus, labelled canvas, touch layout and zoom allowed",
+      "result": "PASS",
+      "screenshot": "P4.png"
+    },
+    {
+      "id": "P5",
+      "name": "No example Shed totals appear",
+      "result": "PASS",
+      "screenshot": "P5.png"
+    },
+    {
+      "id": "P6",
+      "name": "Captured shares contain game/result and typed nickname only",
+      "result": "PASS",
+      "detail": [
+        {
+          "title": "Timber Lob",
+          "text": "Beat my 3 stars at Timber Lob in the My Timber Shed Arcade. Knock the gnome off, if you can.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/timber-lob"
+        },
+        {
+          "title": "Timber Lob",
+          "text": "Beat my 3 stars at Timber Lob in the My Timber Shed Arcade. Knock the gnome off, if you can.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/timber-lob"
+        },
+        {
+          "title": "Chop Shop",
+          "text": "Beat my 8 timber chops at Chop Shop in the My Timber Shed Arcade. 30 seconds, one axe.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/chop-shop"
+        },
+        {
+          "title": "Timber Lob",
+          "text": "Beat my 3 stars at Timber Lob in the My Timber Shed Arcade. Knock the gnome off, if you can.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/timber-lob"
+        },
+        {
+          "title": "Chop Shop",
+          "text": "Beat my 8 timber chops at Chop Shop in the My Timber Shed Arcade. 30 seconds, one axe.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/chop-shop"
+        },
+        {
+          "title": "Timber!",
+          "text": "Beat my 18m at Timber! in the My Timber Shed Arcade. Mind the trees.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/timber"
+        },
+        {
+          "title": "Timber Lob",
+          "text": "Beat my 3 stars at Timber Lob in the My Timber Shed Arcade. Knock the gnome off, if you can.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/timber-lob"
+        },
+        {
+          "title": "Chop Shop",
+          "text": "Beat my 8 timber chops at Chop Shop in the My Timber Shed Arcade. 30 seconds, one axe.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/chop-shop"
+        },
+        {
+          "title": "Timber!",
+          "text": "Beat my 18m at Timber! in the My Timber Shed Arcade. Mind the trees.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/timber"
+        },
+        {
+          "title": "Stack the Shed",
+          "text": "Beat my 8 points at Stack the Shed in the My Timber Shed Arcade. Mind the wind.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/stack-the-shed"
+        },
+        {
+          "title": "Timber Lob",
+          "text": "Beat my 3 stars at Timber Lob in the My Timber Shed Arcade. Knock the gnome off, if you can.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/timber-lob"
+        },
+        {
+          "title": "Chop Shop",
+          "text": "Beat my 8 timber chops at Chop Shop in the My Timber Shed Arcade. 30 seconds, one axe.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/chop-shop"
+        },
+        {
+          "title": "Timber!",
+          "text": "Beat my 18m at Timber! in the My Timber Shed Arcade. Mind the trees.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/timber"
+        },
+        {
+          "title": "Stack the Shed",
+          "text": "Beat my 8 points at Stack the Shed in the My Timber Shed Arcade. Mind the wind.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/stack-the-shed"
+        },
+        {
+          "title": "Saw Duel",
+          "text": "My best at Saw Duel is 4.2s. Race my ghost in the My Timber Shed Arcade.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/saw-duel#vs=ShedTester&t=4.2"
+        },
+        {
+          "title": "Timber Lob",
+          "text": "Beat my 3 stars at Timber Lob in the My Timber Shed Arcade. Knock the gnome off, if you can.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/timber-lob"
+        },
+        {
+          "title": "Chop Shop",
+          "text": "Beat my 8 timber chops at Chop Shop in the My Timber Shed Arcade. 30 seconds, one axe.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/chop-shop"
+        },
+        {
+          "title": "Timber!",
+          "text": "Beat my 18m at Timber! in the My Timber Shed Arcade. Mind the trees.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/timber"
+        },
+        {
+          "title": "Stack the Shed",
+          "text": "Beat my 8 points at Stack the Shed in the My Timber Shed Arcade. Mind the wind.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/stack-the-shed"
+        },
+        {
+          "title": "Saw Duel",
+          "text": "My best at Saw Duel is 4.2s. Race my ghost in the My Timber Shed Arcade.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/saw-duel#vs=ShedTester&t=4.2"
+        },
+        {
+          "title": "Timber Smash",
+          "text": "Beat my 30 points at Timber Smash in the My Timber Shed Arcade. Keep the ball up.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/timber-smash"
+        },
+        {
+          "title": "Timber Lob",
+          "text": "Beat my 3 stars at Timber Lob in the My Timber Shed Arcade. Knock the gnome off, if you can.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/timber-lob"
+        },
+        {
+          "title": "Chop Shop",
+          "text": "Beat my 8 timber chops at Chop Shop in the My Timber Shed Arcade. 30 seconds, one axe.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/chop-shop"
+        },
+        {
+          "title": "Timber!",
+          "text": "Beat my 18m at Timber! in the My Timber Shed Arcade. Mind the trees.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/timber"
+        },
+        {
+          "title": "Stack the Shed",
+          "text": "Beat my 8 points at Stack the Shed in the My Timber Shed Arcade. Mind the wind.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/stack-the-shed"
+        },
+        {
+          "title": "Saw Duel",
+          "text": "My best at Saw Duel is 4.2s. Race my ghost in the My Timber Shed Arcade.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/saw-duel#vs=ShedTester&t=4.2"
+        },
+        {
+          "title": "Timber Smash",
+          "text": "Beat my 30 points at Timber Smash in the My Timber Shed Arcade. Keep the ball up.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/timber-smash"
+        },
+        {
+          "title": "Over the Shed",
+          "text": "Beat my 2 runs at Over the Shed in the My Timber Shed Arcade. Swing the plank.",
+          "url": "https://shift-programme-my-timber-v7-test.matobrien.workers.dev/member/shed-arcade/over-the-shed"
+        }
+      ],
+      "screenshot": "P6.png"
+    },
+    {
+      "id": "P7",
+      "name": "Player-visible arcade wording scan",
+      "result": "PASS",
+      "screenshot": "P7.png"
+    },
+    {
+      "id": "X1",
+      "name": "Health/food/pile preserved after all games",
+      "result": "PASS",
+      "detail": {
+        "before": 12,
+        "after": 12
+      },
+      "screenshot": "X1.png"
+    }
+  ],
+  "errors": []
+}

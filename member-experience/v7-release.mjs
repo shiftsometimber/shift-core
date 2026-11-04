@@ -4,6 +4,9 @@ import {v7FoodRoutes,updateNutritionSummary} from './v7-food-routes.mjs';
 import {nativeDocument,nativeCSS,nativeJS} from './v7-native.mjs';
 import {v7CrewRoutes} from './v7-crew.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
+import {arcadeRoutes} from './shed-arcade-routes.mjs';
+import {arcadeAssets} from './shed-arcade-assets.mjs';
+import {mountArcade} from './shed-arcade-browser.mjs';
 // V7 owns only the named new behaviour. The captured serving handler and all
 // its legacy routes, clinical/commerce controls and private writes stay intact.
 import{v7Write}from'./v7-api.mjs';
@@ -25,6 +28,12 @@ export function wrapV7(original,helpers){
  };
  return {...original,async fetch(request,env,ctx){
   const path=new URL(request.url).pathname;
+  const arcade=await arcadeRoutes(request,env);if(arcade)return arcade;
+  if(path.startsWith('/assets/member-experience/v7-arcade')&&['GET','HEAD'].includes(request.method)){
+   const slug=path.match(/^\/assets\/member-experience\/v7-arcade-([a-z-]+)\.mjs$/)?.[1];
+   const script=path==='/assets/member-experience/v7-arcade.mjs'?'export const mountArcade='+mountArcade.toString()+';':arcadeAssets[slug];
+   if(script)return new Response(request.method==='HEAD'?null:script,{headers:{'Content-Type':'text/javascript; charset=utf-8','Cache-Control':'public, max-age=31536000, immutable','X-Content-Type-Options':'nosniff'}});
+  }
   const retained=await retainedScript(request,env,original,ctx);if(retained)return retained;
   const expected=request.headers.get('X-My-Timber-Expected-Account');if(path.startsWith('/v1/')&&expected){const auth=await authenticateMember(request,env);if(auth.response)return auth.response;if(String(auth.userId)!==expected)return Response.json({error:'Your account changed. Reopen My Timber.'},{status:409,headers:privateHeaders});}
   const crew=await v7CrewRoutes(request,env);if(crew)return crew;

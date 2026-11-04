@@ -1,0 +1,100 @@
+{
+  "at": "2026-11-04T09:38:47.318Z",
+  "origin": "https://shiftsometimber.co.uk",
+  "phase": "desktop",
+  "engine": "chromium",
+  "device": "1280x900 desktop browser",
+  "account": "v7-live-proof@example.invalid",
+  "shop": {
+    "text": "Useful things.Properly explained.A bit more help, on your terms.SHOP & SERVICESYour ordersTesting & wellbeingHome tests, lab tests and what each can tell you.Explore testsSupplements & nutritionUnderstand the optional extras before choosing.Explore the rangeWeight-management careUnderstand your options and the assessment.Explore careEveryday kitClothing and useful accessories from the Timber Mill.Explore the MillYour food, movement and support stay free.Everything here is optional.",
+    "links": [
+      {
+        "text": "Your orders",
+        "href": "/member/orders"
+      },
+      {
+        "text": "Testing & wellbeingHome tests, lab tests and what each can tell you.Explore tests",
+        "href": "/member/life-back/shop/testing"
+      },
+      {
+        "text": "Supplements & nutritionUnderstand the optional extras before choosing.Explore the range",
+        "href": "/member/life-back/shop/nutrition"
+      },
+      {
+        "text": "Weight-management careUnderstand your options and the assessment.Explore care",
+        "href": "/member/life-back/shop/care"
+      },
+      {
+        "text": "Everyday kitClothing and useful accessories from the Timber Mill.Explore the Mill",
+        "href": "/member/life-back/shop/kit"
+      }
+    ]
+  },
+  "checks": [
+    {
+      "name": "Shop catalogue available",
+      "result": "PASS"
+    },
+    {
+      "name": "Shop exact content and links unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "Today card available after pile",
+      "result": "PASS"
+    },
+    {
+      "name": "All seven native game tiles",
+      "result": "PASS"
+    },
+    {
+      "name": "timber-lob opens in shared frame",
+      "result": "PASS"
+    },
+    {
+      "name": "chop-shop opens in shared frame",
+      "result": "PASS"
+    },
+    {
+      "name": "timber opens in shared frame",
+      "result": "PASS"
+    },
+    {
+      "name": "stack-the-shed opens in shared frame",
+      "result": "PASS"
+    },
+    {
+      "name": "saw-duel opens in shared frame",
+      "result": "PASS"
+    },
+    {
+      "name": "timber-smash opens in shared frame",
+      "result": "PASS"
+    },
+    {
+      "name": "over-the-shed opens in shared frame",
+      "result": "PASS"
+    },
+    {
+      "name": "Actual synthetic played best saved on production",
+      "result": "PASS",
+      "detail": {
+        "account": "v7-live-proof@example.invalid",
+        "best": 25
+      }
+    },
+    {
+      "name": "Daily pile and nutrition unchanged by arcade",
+      "result": "PASS"
+    },
+    {
+      "name": "Signed-out arcade gated",
+      "result": "PASS"
+    },
+    {
+      "name": "Public menus have no Shed or arcade entrance",
+      "result": "PASS"
+    }
+  ],
+  "errors": []
+}

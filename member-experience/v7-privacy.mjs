@@ -20,6 +20,7 @@ export function erasureDatabase(DB,userId,present,healthOnly){
     if(present.has('mt_v7_crew_invites'))batch.push(DB.prepare('DELETE FROM mt_v7_crew_invites WHERE creator_id=?').bind(userId));
     for(const table of ['mt_v7_crew_members','mt_v7_effort'])if(present.has(table))batch.push(DB.prepare('DELETE FROM '+table+' WHERE user_id=?').bind(userId));
     if(present.has('mt_v7_crews'))batch.push(DB.prepare('UPDATE mt_v7_crews SET created_by=NULL WHERE created_by=?').bind(userId));
+    if(!healthOnly)batch.push(DB.prepare("UPDATE member_state SET preferences=json_remove(preferences,'$.shedArcade') WHERE user_id=?").bind(userId));
     if(healthOnly)batch.push(DB.prepare("UPDATE member_state SET preferences=json_remove(preferences,'$.v7NutritionDay') WHERE user_id=?").bind(userId));
    }
    return target.batch(batch);
@@ -40,6 +41,6 @@ export function withV7Privacy(original){return {...original,async fetch(request,
   const exists=await env.DB.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='mt_v7_crew_members'").first();
   const membership=exists?await env.DB.prepare('SELECT crew_id,alias,joined_at FROM mt_v7_crew_members WHERE user_id=?').bind(auth.userId).first():null;
   const effort=exists?(await env.DB.prepare('SELECT week,logs,updated_at FROM mt_v7_effort WHERE user_id=? ORDER BY week').bind(auth.userId).all()).results||[]:[];
-  return Response.json({...body,myTimberV7:{progress:prefs.lifeBack?.progress?.v7||null,nutritionSummary:prefs.v7NutritionDay||null,privateCrew:{membership,effort}}},{status:response.status,headers});
+  return Response.json({...body,myTimberV7:{arcade:prefs.shedArcade||null,progress:prefs.lifeBack?.progress?.v7||null,nutritionSummary:prefs.v7NutritionDay||null,privateCrew:{membership,effort}}},{status:response.status,headers});
  }catch{return Response.json({error:'privacy_unavailable',message:'Your complete privacy request could not be confirmed. Please retry.'},{status:503,headers});}
 }};}

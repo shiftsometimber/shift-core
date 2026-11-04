@@ -16,7 +16,7 @@ self.addEventListener('fetch',event=>{
   if(/\/v1\/(?:auth\/)?(?:logout|privacy\/(?:account|health-tracking)|consent)/.test(url.pathname))event.respondWith((async()=>{const response=await fetch(request);if(response.ok)await mtNotice('MT_PURGE_PRIVATE');return response;})());
   return;
  }
- if(request.mode==='navigate'&&MT_ROUTES.has(url.pathname)&&!url.searchParams.has('tools')&&!url.searchParams.has('view-data')&&!url.searchParams.has('mt-rollback')){
+ if(request.mode==='navigate'&&(MT_ROUTES.has(url.pathname)||url.pathname.startsWith('/member/shed-arcade'))&&!url.searchParams.has('tools')&&!url.searchParams.has('view-data')&&!url.searchParams.has('mt-rollback')){
   event.respondWith((async()=>{const cache=await caches.open(MT_CACHE);const shell=await cache.match(MT_SHELL);if(shell)return shell;try{return await fetch(request);}catch{return new Response('<!doctype html><html lang="en"><meta name="theme-color" content="#050505"><body style="background:#050505;color:#E7E3DA;font:16px Arial;padding:24px"><h1>MY TIMBER</h1><p>You’re offline. Reconnect to open your saved shell.</p></body></html>',{headers:{'Content-Type':'text/html'}});}})());return;
  }
  if(url.pathname==='/v1/me'||url.pathname.startsWith('/v1/')){
@@ -24,7 +24,7 @@ self.addEventListener('fetch',event=>{
   // enter CacheStorage. The client owns encrypted, account-bound snapshots.
   return;
  }
- if(url.pathname.startsWith('/assets/member-experience/v7-')){event.respondWith((async()=>{const saved=await caches.match(request);if(saved)return saved;return fetch(request);})());return;}
+ if(url.pathname.startsWith('/assets/member-experience/v7-')){event.respondWith((async()=>{const saved=await caches.match(request);if(saved)return saved;const response=await fetch(request);if(response.ok&&!/private|no-store/i.test(response.headers.get('Cache-Control')||'')){const cache=await caches.open(MT_CACHE);await cache.put(request,response.clone());}return response;})());return;}
  if(MT_STATIC.some(path=>new URL(path,self.location.origin).href===url.href)){
   event.respondWith((async()=>{const cache=await caches.open(MT_CACHE),saved=await cache.match(request);if(saved)return saved;const response=await fetch(request);if(response.ok)await cache.put(request,response.clone());return response;})());return;
  }
