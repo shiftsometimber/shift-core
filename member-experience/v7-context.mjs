@@ -16,6 +16,7 @@ export function v7Offer(prefs,recipes=[],at=new Date().toISOString(),helpers={})
  const grub=structuredClone(prefs.grubV2||helpers.emptyGrub?.()||{}),context=helpers.grubMemberContext?.(prefs,view.today)||{};
  const excluded=new Set();
  if(['not-helped','not-fit'].includes(reason.outcome)&&reason.actionId?.startsWith('recipe:'))excluded.add(reason.actionId.slice(7));
+ const easy=view.returning||reason.outcome==='not-tried'||reason.outcome==='not-helped',wanted=saved?(saved.kind==='food'?saved.recipeId:null):!easy&&old&&!old.pending&&!reason.outcome?old.recipeId:null;
  let pool=recipes.filter(r=>r.meal_type==='dinner'&&!excluded.has(r.id)&&recipeNutrition(r)),dinners=[];
  for(let n=0;n<200&&pool.length;n++){
   const recommendation=helpers.recommendationFor(grub,pool,context),r=recommendation.recipe;if(!r)break;
@@ -24,12 +25,13 @@ export function v7Offer(prefs,recipes=[],at=new Date().toISOString(),helpers={})
    steps:r.method.map(s=>typeof s==='string'?s:s?.text||s?.instruction||'').filter(Boolean),allergenNote:r.allergen_note,allergens:r.allergens,
    completedLabel:'Dinner made.',reason:reason.text||recommendation.reasons.join(' ')||'From your reviewed Grub choices.'};
   dinners.push(a);pool=pool.filter(x=>x.id!==r.id);delete grub.recommendation;
+  const original=wanted?dinners.find(d=>d.recipeId===wanted):dinners[0];if(original&&proteinMatchedSwaps(original,dinners).length===3)break;
  }
- const returnEasy=view.returning||reason.outcome==='not-tried'||reason.outcome==='not-helped';
+ const returnEasy=easy;
  const easier=reason.previousName===pause.name?{id:'routine:earlier',...practicalActions.earlier,completedLabel:'Your fallback is chosen.'}:pause;
  let initial=returnEasy?{...easier,reason:reason.text||'Good to see you. Keep today manageable. Your pile is still here.'}:old&&!old.pending&&!reason.outcome?prepared(old,old.recipeId?'recipe:'+old.recipeId:'support:'+progress.nextShift.id):dinners[0];
  if(initial?.kind==='food'&&initial.recipeId&&!initial.nutrition){const match=dinners.find(d=>d.recipeId===initial.recipeId);initial=match?{...match,reason:initial.reason||match.reason}:null;}
- if(!initial)initial={id:'review:food',name:'Review a familiar dinner in Grub',kind:'food',pending:true,href:'/member/grub',label:'Open Grub',reason:'Your saved choices need checking before we can suggest a reviewed dinner.'};
+ if(!initial)initial={...pause,reason:'Keep one manageable thing in view while your saved food choices are prepared.'};
  // The original and swaps are the same prepared records in Today and Grub.
  const action=saved||initial,alternatives=action.kind==='food'?proteinMatchedSwaps(action,dinners):dinners.slice(0,3);
  return {action,alternatives,adaptation:reason.text,returning:view.returning};

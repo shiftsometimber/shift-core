@@ -40,3 +40,12 @@ test('portions preserve source, leave missing nutrients unknown, and actual-eate
  assert.equal(day.totals.proteinG,25);assert.equal(day.totals.kcal,250);assert.equal(day.underEating.enabled,false);
  assert.equal(day.entries.length,1);assert.equal(day.unknown.sugarsG,true);
 });
+
+import {v7Offer} from '../v7-context.mjs';
+test('preparation stops once the ranked original has three safe sourced alternatives',()=>{
+ const rows=Array.from({length:200},(_,i)=>({...recipe('r'+i,45+i%3),name:'Reviewed meal '+i,meal_type:'dinner',minutes:15,ingredients:[],method:[]}));let calls=0;
+ const helpers={emptyGrub:()=>({}),grubMemberContext:()=>({}),recommendationFor:(_state,pool)=>{calls++;return {recipe:pool[0],reasons:[]}}};
+ const result=v7Offer({},rows,'2026-11-04T12:00:00Z',helpers);
+ assert.equal(result.alternatives.length,3);assert.equal(calls,4);assert.equal(result.action.recipeId,'r0');
+ for(const alt of result.alternatives)assert(Math.abs(alt.proteinG-result.action.proteinG)<=5);
+});

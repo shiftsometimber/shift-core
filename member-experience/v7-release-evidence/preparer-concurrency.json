@@ -1,0 +1,26 @@
+{
+  "at": "2026-11-04T00:15:00.044Z",
+  "ms": 4428,
+  "rows": [
+    {
+      "status": 200,
+      "identicalToPreviousApprovedSession": true,
+      "exercises": 4
+    },
+    {
+      "status": 200,
+      "identicalToPreviousApprovedSession": true,
+      "exercises": 4
+    },
+    {
+      "status": 200,
+      "identicalToPreviousApprovedSession": true,
+      "exercises": 4
+    },
+    {
+      "status": 200,
+      "identicalToPreviousApprovedSession": true,
+      "exercises": 4
+    }
+  ]
+}

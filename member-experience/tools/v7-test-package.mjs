@@ -1,9 +1,10 @@
+import {generatorSubset} from './v7-generator-subset.mjs';
 // Installs only the isolated synthetic-account test site. No production routes,
 // secrets, schedules or database bindings are copied. Production is rejected.
 import {execFileSync} from 'node:child_process';import fs from 'node:fs';import path from 'node:path';import zlib from 'node:zlib';import crypto from 'node:crypto';import esbuild from 'esbuild';
 import {cloudflareRequest as cf} from '/Users/shiftsometimberltd/SST/builds/apple-completion-20261024/journey-shop-release-20261031/performance-precompiled-cloudflare-client-20261103.mjs';
 const ACCOUNT='9e5386dcf455be34c582d93f8bfc79e6',TEST_DB='247b065f-fea4-4891-945b-b707f2417656',PROD_DB='88f40aed-cb23-4372-8c94-8a73f48bc847';
-const LEGACY='shift-programme-my-timber-v7-legacy';
+const LEGACY='shift-programme-my-timber-v7-legacy',PREPARER='shift-my-timber-v7-test-preparer';
 const FRONT='shift-programme-my-timber-v7-test',BACK='shift-core-my-timber-v7-backend',ORIGIN='https://'+FRONT+'.matobrien.workers.dev';
 if(TEST_DB===PROD_DB||![FRONT,BACK].every(n=>/my-timber-v7-(test|backend)$/.test(n)))throw Error('Test isolation failed');
 const root=process.cwd(),output='/private/tmp/my-timber-v7-test-package';fs.mkdirSync(output,{recursive:true});
@@ -28,6 +29,15 @@ const build=async(entry,external)=>{const r=await esbuild.build({entryPoints:[en
 let l=await build('member-experience/v7-legacy-service.mjs',['cloudflare:workers','__MY_TIMBER_CURRENT_SERVING__','__MY_TIMBER_CURRENT_HELPERS__']);
 l=l.replaceAll('__MY_TIMBER_CURRENT_SERVING__','../'+legacy.main_module).replaceAll('__MY_TIMBER_CURRENT_HELPERS__','../worker.mjs');
 legacy.modules.push(module('v7-release-20261103/legacy-service.mjs',l));legacy.main_module='v7-release-20261103/legacy-service.mjs';
+// Tree-shake the reviewed generators away from their serving document graph.
+const prepCapture=path.join(output,'preparer-source');
+const subsetManifests={};
+for(const [kind,source]of [['core',core],['programme',legacy]])for(const m of source.modules){const file=path.join(prepCapture,kind,m.name);fs.mkdirSync(path.dirname(file),{recursive:true});let bytes=Buffer.from(m.content_base64,'base64');if(kind==='core'&&m.name==='worker.js'||kind==='programme'&&m.name==='worker.mjs'){const exports=kind==='core'?{v7ApprovedFitPreview:'v7ApprovedFitPreview',v7FitCatalogue:'loadGovernedFitCatalogue'}:{v7LoadGrubCatalogue:'loadGrubCatalogue',v7EmptyGrub:'emptyGrub',v7UsableCatalogue:'usableCatalogue',v7RecommendationFor:'recommendationFor',v7GrubMemberContext:'grubMemberContext'};const subset=generatorSubset(bytes.toString(),exports);bytes=Buffer.from(subset.code);subsetManifests[kind]=subset.manifest;}fs.writeFileSync(file,bytes);}
+fs.writeFileSync('member-experience/v7-release-evidence/generator-subset.json',JSON.stringify(subsetManifests,null,2)+'\n');
+const prepared=await esbuild.build({entryPoints:['member-experience/v7-preparer.mjs'],bundle:true,write:false,format:'esm',platform:'node',target:'es2022',minify:true,external:['cloudflare:workers'],plugins:[{name:'reviewed-serving-generators',setup(build){build.onResolve({filter:/^__MY_TIMBER_CURRENT_(?:CORE|PROGRAMME)_HELPERS__$/},args=>({path:path.join(prepCapture,args.path.includes('CORE')?'core/worker.js':'programme/worker.mjs')}));}}]});
+const preparer={main_module:'preparer.mjs',compatibility_date:core.compatibility_date,compatibility_flags:core.compatibility_flags,modules:[module('preparer.mjs',prepared.outputFiles[0].text)]};
+fs.writeFileSync(path.join(output,'preparer.json.gz'),zlib.gzipSync(JSON.stringify(preparer)));
+console.log(JSON.stringify({preparerGzipBytes:zlib.gzipSync(prepared.outputFiles[0].contents).length,servingGeneratorsUnmodified:true}));
 programme.modules=[];
 let p=await build('member-experience/v7-programme-native-entry.mjs',[]);
 p=p.replaceAll('__MY_TIMBER_CURRENT_SERVING__','../'+programme.main_module).replaceAll('__MY_TIMBER_CURRENT_HELPERS__','../worker.mjs');
@@ -57,13 +67,13 @@ const checkFile=path.join(output,'test-entry-check.mjs');fs.writeFileSync(checkF
 programme.modules.push(module('v7-release-20261103/test-entry.mjs',testEntry));programme.main_module='v7-release-20261103/test-entry.mjs';
 const publicBindings=[{type:'plain_text',name:'ALLOWED_ORIGINS',text:ORIGIN},{type:'plain_text',name:'PUBLIC_SITE_URL',text:ORIGIN},{type:'plain_text',name:'SHIFT_ENVIRONMENT',text:'my-timber-preview'},{type:'plain_text',name:'STRIPE_MODE',text:'test'},{type:'plain_text',name:'MEMBER_EXPERIENCE_V1_ENABLED',text:'true'},{type:'plain_text',name:'MY_TIMBER_V6_RELEASE_ENABLED',text:'true'},{type:'plain_text',name:'MY_TIMBER_PWA_ENABLED',text:'true'},{type:'plain_text',name:'MY_TREATMENT_ENABLED',text:'true'}];
 async function upload(name,source,bindings){
- if(![FRONT,BACK,LEGACY].includes(name))throw Error('Production upload rejected');
+ if(![FRONT,BACK,LEGACY,PREPARER].includes(name))throw Error('Production upload rejected');
  const metadata={main_module:source.main_module,compatibility_date:source.compatibility_date,compatibility_flags:[...new Set([...(source.compatibility_flags||[]),'global_fetch_strictly_public'])],bindings:[{type:'d1',name:'DB',id:TEST_DB},...bindings],keep_assets:false};
  const form=new FormData();form.append('metadata',JSON.stringify(metadata));let gzip=0;
  for(const m of source.modules){const bytes=Buffer.from(m.content_base64,'base64');gzip+=zlib.gzipSync(bytes).length;form.append(m.name,new Blob([bytes],{type:m.content_type}),m.name);}
  if(gzip>=10*1024*1024)throw Error('Worker exceeds compressed module budget');
  const result=await cf('/accounts/'+ACCOUNT+'/workers/scripts/'+name,'PUT',form);
- await cf('/accounts/'+ACCOUNT+'/workers/scripts/'+name+'/subdomain','POST',{enabled:name!==LEGACY});
+ await cf('/accounts/'+ACCOUNT+'/workers/scripts/'+name+'/subdomain','POST',{enabled:![LEGACY,PREPARER].includes(name)});
  return {worker:name,main:source.main_module,modules:source.modules.length,gzipBytes:gzip,result};
 }
 // Public static assets are fetched anonymously by a read-only service below;
@@ -83,8 +93,9 @@ if(process.argv.includes('--upload-test')||process.argv.includes('--upload-front
  const oldManifest=fs.existsSync('member-experience/v7-release-evidence/test-legacy-build.json')?JSON.parse(fs.readFileSync('member-experience/v7-release-evidence/test-legacy-build.json')):null;
  const legacyBuild=digest(l+JSON.stringify(originalHashes.programme)+'public-catalogues-v2-treatment');let legacyUpload={worker:LEGACY,retained:true};if(oldManifest?.build!==legacyBuild){legacyUpload=await upload(LEGACY,legacy,[...publicBindings,{type:'service',name:'CORE',service:BACK},...['MY_TIMBER_PUBLIC_TESTING','MY_TIMBER_PUBLIC_NUTRITION','MY_TIMBER_PUBLIC_KIT'].map(name=>({type:'service',name,service:LEGACY,entrypoint:'V7PublicCatalogues'}))]);fs.writeFileSync('member-experience/v7-release-evidence/test-legacy-build.json',JSON.stringify({worker:LEGACY,build:legacyBuild}));}
  manifest.legacy=legacyUpload;
- let back={worker:BACK,retained:true};if(process.argv.includes('--upload-test')){back=await upload(BACK,core,[...publicBindings,{type:'service',name:'MEMBER_ASSETS',service:BACK,entrypoint:'PublicAssets'},{type:'service',name:'V7_OFFERS',service:LEGACY,entrypoint:'V7Offers'}]);}
- const front=await upload(FRONT,programme,[...publicBindings,{type:'service',name:'MEMBER_LEGACY',service:LEGACY},{type:'service',name:'V7_OFFERS',service:LEGACY,entrypoint:'V7Offers'},{type:'service',name:'CORE',service:BACK},{type:'service',name:'V7_PLANNER',service:BACK,entrypoint:'V7Planner'}]);
+ const preparationUpload=await upload(PREPARER,preparer,[{type:'service',name:'LEGACY_JOBS',service:LEGACY,entrypoint:'V7Offers'}]);manifest.preparer=preparationUpload;
+ let back={worker:BACK,retained:true};if(process.argv.includes('--upload-test')){back=await upload(BACK,core,[...publicBindings,{type:'service',name:'MEMBER_ASSETS',service:BACK,entrypoint:'PublicAssets'},{type:'service',name:'V7_PREPARER',service:PREPARER,entrypoint:'V7Planner'}]);}
+ const front=await upload(FRONT,programme,[...publicBindings,{type:'service',name:'MEMBER_LEGACY',service:LEGACY},{type:'service',name:'V7_OFFERS',service:PREPARER,entrypoint:'V7Offers'},{type:'service',name:'CORE',service:BACK},{type:'service',name:'V7_PLANNER',service:PREPARER,entrypoint:'V7Planner'}]);
  manifest.state='TEST_SERVICES_UPLOADED_NOT_MEMBER_DEPLOYED';manifest.uploads=[back,front];fs.writeFileSync('member-experience/v7-release-evidence/test-package.json',JSON.stringify(manifest,null,2)+'\n');
  console.log(JSON.stringify({state:manifest.state,testOrigin:ORIGIN,back:back.gzipBytes,front:front.gzipBytes,legacy:legacyUpload.gzipBytes}));
 }else console.log(JSON.stringify({state:manifest.state,testOrigin:ORIGIN,assetTag}));
