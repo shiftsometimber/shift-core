@@ -53,7 +53,7 @@
     "rule": "MAKE IT MINE is part of the artwork, with a real tappable hotspot exactly over it (left 10.8%, top 77.5%, width 78.1%, height 11.3% of the note image), a 44px minimum tap height, a visible focus ring and the label \"Make it mine\" for screen readers. It goes to the three quick taps, then the first Done on Today.",
     "result": "PASS",
     "evidence": "Both engines W3: accessible hotspot, original three setup sections, real consent/save, first Done, browse and after-setup states.",
-    "limitation": ""
+    "limitation": "Prepared synthetic setup accounts on the hosted test service; not a claim that a bare new registration or real member was exercised."
   },
   {
     "group": "Welcome and Explore brief",
@@ -157,7 +157,7 @@
     "rule": "42 Questions: one question per screen, progress bar, Back and Continue, Save and finish later. Questions come from the existing provider route.",
     "result": "FAIL",
     "evidence": "readiness.json: live assessmentAvailable=false; no pharmacy integration bindings; existing assessment page closed.",
-    "limitation": "44\u201346 status rendering and return-to-Today work with labelled synthetic DB fixtures. These are UI checks, not proof of payment, provider decisions, dispensing or refunds. No option or price was invented for 43."
+    "limitation": "44–46 status rendering and return-to-Today work with labelled synthetic DB fixtures. These are UI checks, not proof of payment, provider decisions, dispensing or refunds. No option or price was invented for 43."
   },
   {
     "group": "Welcome and Explore brief",
@@ -165,7 +165,7 @@
     "rule": "43 Choose and pay: shown only after the questionnaire is complete. Option and price come from the live till. This plain line sits directly above the pay button: \"If the prescriber decides it isn't right for you, you get a full refund. Automatically.\" (Use \"Automatically\" only once confirmed in section 6.) Also shows \"Paying doesn't guarantee a prescription. The prescriber decides.\"",
     "result": "FAIL",
     "evidence": "readiness.json: live assessmentAvailable=false; no pharmacy integration bindings; existing assessment page closed.",
-    "limitation": "44\u201346 status rendering and return-to-Today work with labelled synthetic DB fixtures. These are UI checks, not proof of payment, provider decisions, dispensing or refunds. No option or price was invented for 43."
+    "limitation": "44–46 status rendering and return-to-Today work with labelled synthetic DB fixtures. These are UI checks, not proof of payment, provider decisions, dispensing or refunds. No option or price was invented for 43."
   },
   {
     "group": "Welcome and Explore brief",
@@ -173,7 +173,7 @@
     "rule": "44 Under review: \"Paid. A prescriber is reviewing your answers.\" Next steps: approved, dispensed and sent; not approved, full refund. No promised times. Main button \"Back to My Timber\" goes to Today, with the line \"We'll tell you the prescriber's decision here in the app.\"",
     "result": "FAIL",
     "evidence": "readiness.json: live assessmentAvailable=false; no pharmacy integration bindings; existing assessment page closed.",
-    "limitation": "44\u201346 status rendering and return-to-Today work with labelled synthetic DB fixtures. These are UI checks, not proof of payment, provider decisions, dispensing or refunds. No option or price was invented for 43."
+    "limitation": "44–46 status rendering and return-to-Today work with labelled synthetic DB fixtures. These are UI checks, not proof of payment, provider decisions, dispensing or refunds. No option or price was invented for 43."
   },
   {
     "group": "Welcome and Explore brief",
@@ -181,7 +181,7 @@
     "rule": "45 Not suitable: kind wording, ask the prescriber why, talk to your GP, other support, My Timber stays free. Shows \"Your refund is on its way\" (charge then refund) or \"Your card hasn't been charged\" (card hold), matching the method used. Main button \"Back to My Timber\" goes to Today.",
     "result": "FAIL",
     "evidence": "readiness.json: live assessmentAvailable=false; no pharmacy integration bindings; existing assessment page closed.",
-    "limitation": "44\u201346 status rendering and return-to-Today work with labelled synthetic DB fixtures. These are UI checks, not proof of payment, provider decisions, dispensing or refunds. No option or price was invented for 43."
+    "limitation": "44–46 status rendering and return-to-Today work with labelled synthetic DB fixtures. These are UI checks, not proof of payment, provider decisions, dispensing or refunds. No option or price was invented for 43."
   },
   {
     "group": "Welcome and Explore brief",
@@ -189,7 +189,7 @@
     "rule": "46 Today with status: a small row \"Your treatment: with your prescriber\" at the top of Today. Tapping it opens the review status. It updates when the outcome arrives.",
     "result": "FAIL",
     "evidence": "readiness.json: live assessmentAvailable=false; no pharmacy integration bindings; existing assessment page closed.",
-    "limitation": "44\u201346 status rendering and return-to-Today work with labelled synthetic DB fixtures. These are UI checks, not proof of payment, provider decisions, dispensing or refunds. No option or price was invented for 43."
+    "limitation": "44–46 status rendering and return-to-Today work with labelled synthetic DB fixtures. These are UI checks, not proof of payment, provider decisions, dispensing or refunds. No option or price was invented for 43."
   },
   {
     "group": "Welcome and Explore brief",
@@ -197,7 +197,7 @@
     "rule": "PASS: after payment, and after any outcome, the member lands back in My Timber Today, and the review status is visible there.",
     "result": "FAIL",
     "evidence": "readiness.json: live assessmentAvailable=false; no pharmacy integration bindings; existing assessment page closed.",
-    "limitation": "44\u201346 status rendering and return-to-Today work with labelled synthetic DB fixtures. These are UI checks, not proof of payment, provider decisions, dispensing or refunds. No option or price was invented for 43."
+    "limitation": "44–46 status rendering and return-to-Today work with labelled synthetic DB fixtures. These are UI checks, not proof of payment, provider decisions, dispensing or refunds. No option or price was invented for 43."
   },
   {
     "group": "Welcome and Explore brief",
@@ -411,9 +411,9 @@
     "group": "Original V7 regression",
     "id": "V1",
     "rule": "V7 (Today, Journey, Grub, Fit, recap, league, share card, preferences) and the speed fixes go live together in one release. No feature flags, no phased rollout.",
-    "result": "FAIL",
-    "evidence": "No member release or partial rollout made. Candidate prepared without serving traffic.",
-    "limitation": "Full single release held for clinical/financial and strict speed failures."
+    "result": "PASS",
+    "evidence": "interface-live-release.json: all approved member interface source deployed at 100% in version bbe2a656-2b4f-43c0-b8da-31f5b8b35b9c.",
+    "limitation": "No feature flag or staged rollout. Complete clinical acceptance and strict speed targets remain failed separately."
   },
   {
     "group": "Original V7 regression",
@@ -428,15 +428,15 @@
     "id": "V3",
     "rule": "Keep a one-step rollback to the current live version ready on release day. If anything breaks for members, roll back first, fix after.",
     "result": "PASS",
-    "evidence": "release.json anchors exact serving version; one command rollback, bindings/assets/schedules retained.",
-    "limitation": "Rollback not invoked because member traffic never changed."
+    "evidence": "Original exact member version 42f085ae-553c-4b11-82f6-116203fb3c5e captured before deployment; node member-experience/tools/welcome-release.mjs rollback.",
+    "limitation": "Rollback not invoked: post-deployment navigation and Shop preservation checks passed. Existing clinical gate remains closed."
   },
   {
     "group": "Original V7 regression",
     "id": "V4",
     "rule": "Only Done on Today's one thing earns a pile log. Once per day per account, across devices, whichever screen Done is tapped on (Today or the Grub card for the same action).",
     "result": "PASS",
-    "evidence": "Real SQL concurrency + both engine choose journeys: Today/Grub two sessions yield exactly one award.",
+    "evidence": "Real SQL concurrency + both engine choose journeys: Today/Grub two sessions yield exactly one award. Confirmed in the restored-source 4 November 19:34/19:35 GMT journey rerun, 26/26 conditions per engine.",
     "limitation": ""
   },
   {
@@ -444,7 +444,7 @@
     "id": "V5",
     "rule": "Nothing else ever adds or removes a log: quick logs, food, off-plan meals, eating out, walks, extra sessions.",
     "result": "PASS",
-    "evidence": "Both choose journeys: five quick logs, full food day, walk and extra session leave pile unchanged.",
+    "evidence": "Both choose journeys: five quick logs, full food day, walk and extra session leave pile unchanged. Confirmed in the restored-source 4 November 19:34/19:35 GMT journey rerun, 26/26 conditions per engine.",
     "limitation": ""
   },
   {
@@ -452,15 +452,15 @@
     "id": "V6",
     "rule": "Pile shows N of 30 and \"X to go\" that always add up to 30. Milestone at 30 awarded once. Monday reset clears only the weekly league, never the pile.",
     "result": "PASS",
-    "evidence": "Both milestone journeys, SQL one-time award and Monday lifetime-pile retention tests.",
+    "evidence": "Both milestone journeys, SQL one-time award and Monday lifetime-pile retention tests. Confirmed in the restored-source 4 November 19:34/19:35 GMT journey rerun, 26/26 conditions per engine.",
     "limitation": ""
   },
   {
     "group": "Original V7 regression",
     "id": "V7",
-    "rule": "Mood: Good / So-so / A bit flat buttons stay visible. No previously recorded mood shows on Today; only a \"History \u203a\" link opens past check-ins.",
+    "rule": "Mood: Good / So-so / A bit flat buttons stay visible. No previously recorded mood shows on Today; only a \"History ›\" link opens past check-ins.",
     "result": "PASS",
-    "evidence": "Both choose journeys: mood buttons and History retained, no recorded mood on Today.",
+    "evidence": "Both choose journeys: mood buttons and History retained, no recorded mood on Today. Confirmed in the restored-source 4 November 19:34/19:35 GMT journey rerun, 26/26 conditions per engine.",
     "limitation": ""
   },
   {
@@ -468,7 +468,7 @@
     "id": "V8",
     "rule": "Quick log row (Pint, Takeaway, Gym done, Rough night, Weigh in) under \"Quick log\" with \"Helps Timber learn. Doesn't add a pile log.\"",
     "result": "PASS",
-    "evidence": "Both choose recordings exercise all five quick logs with unchanged pile.",
+    "evidence": "Both choose recordings exercise all five quick logs with unchanged pile. Confirmed in the restored-source 4 November 19:34/19:35 GMT journey rerun, 26/26 conditions per engine.",
     "limitation": ""
   },
   {
@@ -476,7 +476,7 @@
     "id": "V9",
     "rule": "Swap: three alternatives, each within 5g protein of the original, from the same nutrition data, not hard-coded. Plus Not for me, Didn't get round to it, None of these?, Keep the original.",
     "result": "PASS",
-    "evidence": "Ten-original-action source/version/5g unit test and three sourced swaps in both engines.",
+    "evidence": "Ten-original-action source/version/5g unit test and three sourced swaps in both engines. Confirmed in the restored-source 4 November 19:34/19:35 GMT journey rerun, 26/26 conditions per engine.",
     "limitation": ""
   },
   {
@@ -484,7 +484,7 @@
     "id": "V10",
     "rule": "After Done: +1 log, optional \"How did it go?\" (Helped / Tried it, didn't help / Ask me later). Log is safe either way. Done never adds food.",
     "result": "PASS",
-    "evidence": "Both choose/hard-week journeys and SQL tests: feedback optional, log retained, food separate.",
+    "evidence": "Both choose/hard-week journeys and SQL tests: feedback optional, log retained, food separate. Confirmed in the restored-source 4 November 19:34/19:35 GMT journey rerun, 26/26 conditions per engine.",
     "limitation": ""
   },
   {
@@ -522,7 +522,7 @@
   {
     "group": "Original V7 regression",
     "id": "V15",
-    "rule": "Today's meals: swipe row (Breakfast, Lunch, Dinner, Snacks), one line each: name \u00b7 protein \u00b7 kcal. Next card peeks.",
+    "rule": "Today's meals: swipe row (Breakfast, Lunch, Dinner, Snacks), one line each: name · protein · kcal. Next card peeks.",
     "result": "FAIL",
     "evidence": "Existing Grub native module unchanged and full day recorded.",
     "limitation": "Next-card peek and every one-line card condition not separately measured in this run."
@@ -548,7 +548,7 @@
     "id": "V18",
     "rule": "Off-plan: neutral confirmation, calories shown plainly. No red, no warnings, no \"over budget\".",
     "result": "PASS",
-    "evidence": "Both choose recordings: neutral off-plan confirmation with plain calorie totals.",
+    "evidence": "Both choose recordings: neutral off-plan confirmation with plain calorie totals. Confirmed in the restored-source 4 November 19:34/19:35 GMT journey rerun, 26/26 conditions per engine.",
     "limitation": ""
   },
   {
@@ -588,7 +588,7 @@
     "id": "V23",
     "rule": "Today's session by time (10/20/40) and kit (None/Dumbbells/Gym), Start and Swap it (shorter, no-kit, low-impact).",
     "result": "PASS",
-    "evidence": "Both choose journeys: native Fit and all three shorter/no-kit/low-impact alternatives.",
+    "evidence": "Both choose journeys: native Fit and all three shorter/no-kit/low-impact alternatives. Confirmed in the restored-source 4 November 19:34/19:35 GMT journey rerun, 26/26 conditions per engine.",
     "limitation": ""
   },
   {
@@ -612,7 +612,7 @@
     "id": "V26",
     "rule": "\"How did it go?\" and \"How hard was it?\" are optional; next session adjusts overnight.",
     "result": "PASS",
-    "evidence": "Both engines: optional session rating dismissal keeps activity; overnight-only adjustment tests.",
+    "evidence": "Both engines: optional session rating dismissal keeps activity; overnight-only adjustment tests. Confirmed in the restored-source 4 November 19:34/19:35 GMT journey rerun, 26/26 conditions per engine.",
     "limitation": ""
   },
   {
@@ -651,49 +651,49 @@
     "group": "Latest release rules",
     "id": "S-Fresh Today",
     "rule": "Fresh Today must match or beat supplied live p95.",
-    "result": "PASS",
-    "evidence": "20 samples, Slow 4G / CPU 4\u00d7, candidate-mobile-speed/results.json",
-    "limitation": "Supplied 1070ms; remeasured live 1412ms; candidate 1067ms."
+    "result": "FAIL",
+    "evidence": "live-mobile-speed/results.json; 20 samples per metric on actual production, rounded p95 milliseconds.",
+    "limitation": "Supplied live limit 1070ms; latest actual-live measurement 1379ms. Chromium mobile emulation, not a physical phone."
   },
   {
     "group": "Latest release rules",
     "id": "S-Fresh Fit",
     "rule": "Fresh Fit must match or beat supplied live p95.",
     "result": "FAIL",
-    "evidence": "20 samples, Slow 4G / CPU 4\u00d7, candidate-mobile-speed/results.json",
-    "limitation": "Supplied 1010ms; remeasured live 1343ms; candidate 1053ms."
+    "evidence": "live-mobile-speed/results.json; 20 samples per metric on actual production, rounded p95 milliseconds.",
+    "limitation": "Supplied live limit 1010ms; latest actual-live measurement 1372ms. Chromium mobile emulation, not a physical phone."
   },
   {
     "group": "Latest release rules",
     "id": "S-Visited tab switch (worst destination)",
     "rule": "Visited tab switch (worst destination) must match or beat supplied live p95.",
-    "result": "PASS",
-    "evidence": "20 samples, Slow 4G / CPU 4\u00d7, candidate-mobile-speed/results.json",
-    "limitation": "Supplied 32ms; remeasured live 33ms; candidate 32ms."
+    "result": "FAIL",
+    "evidence": "live-mobile-speed/results.json; 20 samples per metric on actual production, rounded p95 milliseconds.",
+    "limitation": "Supplied live limit 32ms; latest actual-live measurement 33ms. Chromium mobile emulation, not a physical phone."
   },
   {
     "group": "Latest release rules",
     "id": "S-Tap feedback",
     "rule": "Tap feedback must match or beat supplied live p95.",
     "result": "PASS",
-    "evidence": "20 samples, Slow 4G / CPU 4\u00d7, candidate-mobile-speed/results.json",
-    "limitation": "Supplied 33ms; remeasured live 33ms; candidate 32ms."
+    "evidence": "live-mobile-speed/results.json; 20 samples per metric on actual production, rounded p95 milliseconds.",
+    "limitation": "Supplied live limit 33ms; latest actual-live measurement 33ms. Chromium mobile emulation, not a physical phone."
   },
   {
     "group": "Latest release rules",
     "id": "S-Repeat shell",
     "rule": "Repeat shell must match or beat supplied live p95.",
     "result": "FAIL",
-    "evidence": "20 samples, Slow 4G / CPU 4\u00d7, candidate-mobile-speed/results.json",
-    "limitation": "Supplied 77ms; remeasured live 79ms; candidate 79ms."
+    "evidence": "live-mobile-speed/results.json; 20 samples per metric on actual production, rounded p95 milliseconds.",
+    "limitation": "Supplied live limit 77ms; latest actual-live measurement 82ms. Chromium mobile emulation, not a physical phone."
   },
   {
     "group": "Latest release rules",
     "id": "R-live",
     "rule": "Single member release live and verified",
-    "result": "FAIL",
-    "evidence": "readiness.json: original front still receives 100%; prepared candidate receives 0%.",
-    "limitation": "Clinical route, automated refunds, stricter speed and phone proof incomplete."
+    "result": "PASS",
+    "evidence": "interface-live-release.json and live-screens/results.json: member interface deployed and live-verified in Chromium and WebKit, 14/14 checks each.",
+    "limitation": "This is not a claim that the clinical purchase journey or complete acceptance brief passes."
   },
   {
     "group": "Latest release rules",
@@ -716,8 +716,8 @@
     "id": "R-rollback",
     "rule": "One-step exact rollback ready before traffic moves",
     "result": "PASS",
-    "evidence": "welcome-release.mjs rollback; release.json original hashes, settings and cron capture.",
-    "limitation": "No production traffic move attempted."
+    "evidence": "One-step exact front rollback prepared before the 19:14 GMT deployment; Core version and schedules preserved.",
+    "limitation": "No member issue was observed in the recorded live checks, so rollback was not invoked."
   },
   {
     "group": "Must-not-break inventory",

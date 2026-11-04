@@ -1,0 +1,173 @@
+{
+  "at": "2026-11-04T19:17:15.541Z",
+  "origin": "https://shiftsometimber.co.uk",
+  "syntheticAccount": {
+    "id": 900710301,
+    "email": "v7-live-proof@example.invalid"
+  },
+  "physical": false,
+  "engines": [
+    {
+      "name": "chromium",
+      "checks": [
+        {
+          "id": "Four approved top tabs live",
+          "pass": true
+        },
+        {
+          "id": "No medicine or price before questionnaire",
+          "pass": true
+        },
+        {
+          "id": "Existing clinical gate stays closed; no payment enabled",
+          "pass": true
+        },
+        {
+          "id": "Live Support ending",
+          "pass": true
+        },
+        {
+          "id": "Live Support stall",
+          "pass": true
+        },
+        {
+          "id": "Live Support wobble",
+          "pass": true
+        },
+        {
+          "id": "Live Support cost",
+          "pass": true
+        },
+        {
+          "id": "Live Support side-effects",
+          "pass": true
+        },
+        {
+          "id": "Preferences retains More selection",
+          "pass": true
+        },
+        {
+          "id": "Shop home exact text and links preserved",
+          "pass": true
+        },
+        {
+          "id": "Live grub keeps shared frame",
+          "pass": true
+        },
+        {
+          "id": "Live fit keeps shared frame",
+          "pass": true
+        },
+        {
+          "id": "Live journey keeps shared frame",
+          "pass": true
+        },
+        {
+          "id": "Live today keeps shared frame",
+          "pass": true
+        }
+      ],
+      "shots": [
+        "chromium-today.jpg",
+        "chromium-welcome.jpg",
+        "chromium-explore.jpg",
+        "chromium-existing-clinical-gate.jpg",
+        "chromium-support.jpg",
+        "chromium-support-ending.jpg",
+        "chromium-support-stall.jpg",
+        "chromium-support-wobble.jpg",
+        "chromium-support-cost.jpg",
+        "chromium-support-side-effects.jpg",
+        "chromium-more.jpg",
+        "chromium-preferences.jpg",
+        "chromium-shop.jpg",
+        "chromium-grub.jpg",
+        "chromium-fit.jpg",
+        "chromium-journey.jpg",
+        "chromium-today.jpg"
+      ],
+      "errors": []
+    },
+    {
+      "name": "webkit",
+      "checks": [
+        {
+          "id": "Four approved top tabs live",
+          "pass": true
+        },
+        {
+          "id": "No medicine or price before questionnaire",
+          "pass": true
+        },
+        {
+          "id": "Existing clinical gate stays closed; no payment enabled",
+          "pass": true
+        },
+        {
+          "id": "Live Support ending",
+          "pass": true
+        },
+        {
+          "id": "Live Support stall",
+          "pass": true
+        },
+        {
+          "id": "Live Support wobble",
+          "pass": true
+        },
+        {
+          "id": "Live Support cost",
+          "pass": true
+        },
+        {
+          "id": "Live Support side-effects",
+          "pass": true
+        },
+        {
+          "id": "Preferences retains More selection",
+          "pass": true
+        },
+        {
+          "id": "Shop home exact text and links preserved",
+          "pass": true
+        },
+        {
+          "id": "Live grub keeps shared frame",
+          "pass": true
+        },
+        {
+          "id": "Live fit keeps shared frame",
+          "pass": true
+        },
+        {
+          "id": "Live journey keeps shared frame",
+          "pass": true
+        },
+        {
+          "id": "Live today keeps shared frame",
+          "pass": true
+        }
+      ],
+      "shots": [
+        "webkit-today.jpg",
+        "webkit-welcome.jpg",
+        "webkit-explore.jpg",
+        "webkit-existing-clinical-gate.jpg",
+        "webkit-support.jpg",
+        "webkit-support-ending.jpg",
+        "webkit-support-stall.jpg",
+        "webkit-support-wobble.jpg",
+        "webkit-support-cost.jpg",
+        "webkit-support-side-effects.jpg",
+        "webkit-more.jpg",
+        "webkit-preferences.jpg",
+        "webkit-shop.jpg",
+        "webkit-grub.jpg",
+        "webkit-fit.jpg",
+        "webkit-journey.jpg",
+        "webkit-today.jpg"
+      ],
+      "errors": []
+    }
+  ]
+}

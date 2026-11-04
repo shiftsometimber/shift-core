@@ -1,5 +1,9 @@
 {
-  "at": "2026-11-04T18:40:51.777Z",
+  "at": "2026-11-04T19:41:23.601665+00:00",
+  "status": "INTERFACE_LIVE_ACCEPTANCE_INCOMPLETE",
+  "memberReleaseDeployed": true,
+  "liveVersion": "bbe2a656-2b4f-43c0-b8da-31f5b8b35b9c",
+  "liveAt": "2026-11-04T19:14:40.397Z",
   "allRequiredPass": false,
   "clinicalEndToEnd": false,
   "automaticRefund": false,
@@ -7,13 +11,14 @@
   "speedPass": false,
   "shopUnchanged": true,
   "physicalPhoneEvidence": false,
-  "memberReleaseDeployed": false,
-  "status": "BLOCKED_NOT_LIVE",
+  "checks": {
+    "PASS": 80,
+    "FAIL": 40
+  },
   "reasons": [
-    "Existing provider assessment closed and unconfigured; questionnaire-to-dispensing path not verifiable.",
-    "Till automatic refund and safe card-hold lifecycle absent.",
-    "At least one strict speed requirement remains failed; see latest measured table.",
-    "Required physical iPhone Safari/Android Chrome proof not performed.",
-    "Complete checkout/settings mutation evidence incomplete."
+    "Existing assessment closed; provider connection is not configured.",
+    "Automatic decline-refund and a safe authorise/capture/cancel/expiry card-hold lifecycle are not implemented in this till.",
+    "Four of the five latest strict speed targets are missed.",
+    "Physical iPhone Safari / Android Chrome and complete settings/checkout mutation proof are not performed."
   ]
 }

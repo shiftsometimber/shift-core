@@ -1,0 +1,30 @@
+{
+  "at": "2026-11-04T19:14:32.472Z",
+  "source": "a559507b",
+  "original": "42f085ae-553c-4b11-82f6-116203fb3c5e",
+  "candidate": "bbe2a656-2b4f-43c0-b8da-31f5b8b35b9c",
+  "authority": "Matt: get it live now; test on Mac as you go, preserve Shop and existing clinical/payment gates",
+  "clinicalEndToEndComplete": false,
+  "memberTrafficChanged": true,
+  "coreBefore": [
+    {
+      "version_id": "a301697d-5586-4839-aa44-5edb01105731",
+      "percentage": 100
+    }
+  ],
+  "clinicalGate": "Existing assessment remains closed. No provider, till, payment, stock or supplier configuration changed.",
+  "deploymentAttemptAt": "2026-11-04T19:14:38.033Z",
+  "liveAt": "2026-11-04T19:14:40.397Z",
+  "active": [
+    {
+      "version_id": "bbe2a656-2b4f-43c0-b8da-31f5b8b35b9c",
+      "percentage": 100
+    }
+  ],
+  "coreAfter": [
+    {
+      "version_id": "a301697d-5586-4839-aa44-5edb01105731",
+      "percentage": 100
+    }
+  ]
+}
