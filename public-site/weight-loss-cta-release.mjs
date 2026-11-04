@@ -2,9 +2,13 @@ import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,mkdirSync,existsSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
-import {relabelWeightLossCtas,WEIGHT_LOSS_CTA_RELEASE} from './weight-loss-cta.mjs';
+import * as pageLabels from './weight-loss-cta.mjs';
+import * as assetLabels from './weight-loss-shell-assets.mjs';
+const assetsMode=process.argv.includes('--shell-assets');
+const {relabelWeightLossCtas,WEIGHT_LOSS_CTA_RELEASE}=assetsMode?assetLabels:pageLabels;
+const labelSourcePath=assetsMode?'public-site/weight-loss-shell-assets.mjs':'public-site/weight-loss-cta.mjs';
 const phase=process.argv[2],account='9e5386dcf455be34c582d93f8bfc79e6',zone='66ec3268950adcfc837b7b8b2f8356ed';
-const dir='/private/tmp/explore-weight-loss-cta-evidence-20261104',statePath=dir+'/state.json',prefix='explore-weight-loss-20261104/';
+const dir=assetsMode?'/private/tmp/explore-weight-loss-shell-assets-evidence-20261104':'/private/tmp/explore-weight-loss-cta-evidence-20261104',statePath=dir+'/state.json',prefix=assetsMode?'explore-weight-loss-assets-20261104/':'explore-weight-loss-20261104/';
 mkdirSync(dir,{recursive:true,mode:0o700});
 const hash=b=>createHash('sha256').update(b).digest('hex');
 const hashes=ms=>Object.fromEntries(ms.map(m=>[m.name,hash(Buffer.from(m.content_base64,'base64'))]).sort(([a],[b])=>a.localeCompare(b)));
@@ -60,7 +64,7 @@ async function captureOwner(name,paths){
  let selected;
  for(const path of [...new Set(paths)].sort((a,b)=>a.length-b.length).slice(0,6)){
   const p=await page(path);
-  if(p.status===200&&/text\/html/i.test(p.type)&&relabelWeightLossCtas(p.body)!==p.body){selected={path,page:p};break;}
+  if(p.status===200&&(assetsMode?/javascript/i.test(p.type):/text\/html/i.test(p.type))&&relabelWeightLossCtas(p.body)!==p.body){selected={path,page:p};break;}
  }
  if(!selected){state.skipped.push({name,reason:'No old generic weight-loss entry label on public sample'});save();console.log('NO_LABEL_CHANGE',name);return;}
  const a=await active(name),id=versionId(a),v=await version(name,id),settings=await cf(ep(name)+'/settings');
@@ -79,6 +83,7 @@ async function baseline(){
  const owners=new Map();
  for(const r of state.routes){const path=routePath(r.pattern);if(path&&r.script){if(!owners.has(r.script))owners.set(r.script,[]);owners.get(r.script).push(path);}}
  // Read-only independent captures may run together; mutations remain sequential.
+ if(assetsMode){owners.clear();owners.set('shift-public-review-fixes-20261029',['/assets/v42.js?v=price-period-20261018-1314bdafe846']);}
  const entries=[...owners];for(let at=0;at<entries.length;at+=3){
   const results=await Promise.allSettled(entries.slice(at,at+3).map(([name,paths])=>captureOwner(name,paths)));
   const failed=results.filter(r=>r.status==='rejected');for(const r of failed)console.error('CAPTURE_FAILED',r.reason.message);assert.equal(failed.length,0);
@@ -90,12 +95,12 @@ async function verifyUpload(o){
  assert.deepEqual(hashes(v.modules),o.newHashes);return v;
 }
 async function stage(){
- assert(state.baselineAt);state.source=source();state.labelSHA256=hash(readFileSync('public-site/weight-loss-cta.mjs'));save();
+ assert(state.baselineAt);state.source=source();state.labelSHA256=hash(readFileSync(labelSourcePath));save();
  for(const o of state.owners){
   await guard(o);if(o.newVersion){await verifyUpload(o);continue;}assert(!o.uploadIntent,'Inspect unknown upload for '+o.name);
   const v=JSON.parse(readFileSync(dir+'/'+o.name+'-baseline.json'));versionPreserved(v,o);assert.deepEqual(hashes(v.modules),o.baselineHashes);
   const entry='import original from "../'+o.oldMain+'";\nexport * from "../'+o.oldMain+'";\nimport {wrapWeightLossCta} from "./labels.mjs";\nexport default wrapWeightLossCta(original);\n';
-  const modules=[...v.modules,{name:prefix+'entry.mjs',content_type:'application/javascript+module',content_base64:Buffer.from(entry).toString('base64')},{name:prefix+'labels.mjs',content_type:'application/javascript+module',content_base64:readFileSync('public-site/weight-loss-cta.mjs').toString('base64')}];
+  const modules=[...v.modules,{name:prefix+'entry.mjs',content_type:'application/javascript+module',content_base64:Buffer.from(entry).toString('base64')},{name:prefix+'labels.mjs',content_type:'application/javascript+module',content_base64:readFileSync(labelSourcePath).toString('base64')}];
   o.newHashes=hashes(modules);for(const [name,h]of Object.entries(o.baselineHashes))assert.equal(o.newHashes[name],h,'Existing module must stay byte-identical');
   const metadata={main_module:prefix+'entry.mjs',compatibility_date:o.compatibilityDate,compatibility_flags:o.compatibilityFlags,bindings:o.bindings.map(b=>({type:'inherit',name:b.name})),keep_assets:true,...o.operating,annotations:{'workers/message':'Matt-approved Explore Weight Loss CTA '+state.source,'workers/tag':'weight-loss-cta-'+state.source.slice(0,12)}};
   const form=new FormData();form.set('metadata',new Blob([JSON.stringify(metadata)],{type:'application/json'}),'metadata.json');
@@ -140,7 +145,7 @@ async function live(){
  });
  state.verifiedAt=new Date().toISOString();save();
  const receipt={kind:state.kind,source:state.source,verificationSource:source(),verifiedAt:state.verifiedAt,wording:'Explore Weight Loss',owners:state.liveChecks,candidateChecks:state.candidateChecks,unchangedOriginalModuleCount:state.owners.reduce((n,o)=>n+Object.keys(o.baselineHashes).length,0),routesUnchanged:true,settingsUnchanged:true,customerRecordsRead:0,customerDataWrites:0,emailsSent:0};
- writeFileSync('public-site/weight-loss-cta-live-receipt.json',JSON.stringify(receipt,null,2)+'\n');console.log('COMPLETE',JSON.stringify({owners:receipt.owners.length,modulesPreserved:receipt.unchangedOriginalModuleCount,source:receipt.source}));
+ writeFileSync(assetsMode?'public-site/weight-loss-shell-assets-live-receipt.json':'public-site/weight-loss-cta-live-receipt.json',JSON.stringify(receipt,null,2)+'\n');console.log('COMPLETE',JSON.stringify({owners:receipt.owners.length,modulesPreserved:receipt.unchangedOriginalModuleCount,source:receipt.source}));
 }
 try{
  if(phase==='baseline')await baseline();else if(phase==='stage')await stage();else if(phase==='candidate')await candidate();else if(phase==='live')await live();else if(phase==='status')console.log(JSON.stringify({owners:state.owners.map(o=>({name:o.name,path:o.path,previous:o.previousVersion,candidate:o.newVersion,live:o.liveDeployment})),candidateAcceptedAt:state.candidateAcceptedAt,verifiedAt:state.verifiedAt},null,2));else throw Error('Use baseline, stage, candidate, live or status');
