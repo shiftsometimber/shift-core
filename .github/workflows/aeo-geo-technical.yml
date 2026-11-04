@@ -14,6 +14,7 @@ jobs:
     timeout-minutes: 8
     outputs:
       retatrutide: ${{ steps.scope.outputs.retatrutide }}
+      wegovy: ${{ steps.wegovy.outputs.wegovy }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -23,13 +24,64 @@ jobs:
           node-version-file: .nvmrc
       - name: Public-only rendering, publication boundaries and existing privacy guards
         run: |
-          node --test aeo-geo/source.test.mjs aeo-geo/retatrutide.test.mjs acquisition-activation/ai-referrals.test.mjs tests/general-analytics-privacy.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/runtime-rollback-guard.test.mjs
+          node --test aeo-geo/source.test.mjs aeo-geo/retatrutide.test.mjs aeo-geo/seo-intent-candidate.test.mjs acquisition-activation/ai-referrals.test.mjs tests/general-analytics-privacy.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/runtime-rollback-guard.test.mjs
           node --check aeo-geo/build.mjs
           node --check aeo-geo/capture.mjs
           git diff --check
       - id: scope
         name: Select only the finite owner-approved medicine amendment
         run: node aeo-geo/retatrutide-scope.mjs
+      - id: wegovy
+        name: Select the reviewed Wegovy search metadata amendment only
+        run: |
+          node --input-type=module <<'WEGOVY_SCOPE'
+          import {execFileSync} from 'node:child_process';
+          import {readFileSync,appendFileSync} from 'node:fs';
+          const event=JSON.parse(readFileSync(process.env.GITHUB_EVENT_PATH,'utf8'));
+          const allowed=new Set(['aeo-geo/schema.mjs','aeo-geo/seo-intent-candidate.test.mjs','aeo-geo/release.mjs','.github/workflows/aeo-geo-technical.yml']);
+          let selected=false;
+          if(process.env.GITHUB_EVENT_NAME==='push'&&process.env.GITHUB_REF==='refs/heads/main'&&event.before){
+            const paths=execFileSync('git',['diff','--name-only',event.before,'HEAD'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
+            selected=paths.includes('aeo-geo/schema.mjs')&&paths.every(p=>allowed.has(p));
+          }
+          appendFileSync(process.env.GITHUB_OUTPUT,'wegovy='+selected+'\n');
+          console.log(JSON.stringify({wegovy:selected}));
+          WEGOVY_SCOPE
+  wegovy:
+    needs: source
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.source.outputs.wegovy == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    concurrency:
+      group: cloudflare-production-promote
+      cancel-in-progress: false
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Run metadata, privacy and rollback qualification
+        run: |
+          node --test aeo-geo/seo-intent-candidate.test.mjs aeo-geo/source.test.mjs tests/general-analytics-privacy.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/runtime-rollback-guard.test.mjs
+          node --check aeo-geo/release.mjs
+      - name: Stage and promote only the article worker's existing schema module
+        run: node aeo-geo/release.mjs amend-wegovy
+      - name: Restore this release's owned deployment on failure
+        if: failure()
+        run: node aeo-geo/release.mjs rollback
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: wegovy-seo-release-${{ github.run_id }}
+          path: aeo-geo-proof/
+          if-no-files-found: warn
+          retention-days: 90
   retatrutide:
     needs: source
     if: github.ref == 'refs/heads/main' && needs.source.outputs.retatrutide == 'true'
@@ -67,7 +119,7 @@ jobs:
           retention-days: 90
   catalogue:
     needs: source
-    if: github.event_name == 'push' && needs.source.outputs.retatrutide != 'true'
+    if: github.event_name == 'push' && needs.source.outputs.retatrutide != 'true' && needs.source.outputs.wegovy != 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     concurrency:
