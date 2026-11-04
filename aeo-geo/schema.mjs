@@ -55,9 +55,38 @@ export function addApprovedFoundayoContext(html,path){
  return html.replace(article,article.replace(FOUNDAYO_CONTEXT_ANCHOR,FOUNDAYO_CONTEXT_ANCHOR+FOUNDAYO_CONTEXT_INSERT));
 }
 
+
+// REVIEW CANDIDATE ONLY — not an approval to publish or change the source CMS.
+// Based on settled UK search-intent observations, 5 October–1 November 2026.
+// Strict old-source matching prevents overwriting subsequent editorial changes.
+export const WEGOVY_SEARCH_CANDIDATE=Object.freeze({
+ path:'/articles/wegovy-eligibility-uk',
+ beforeTitle:'Wegovy eligibility for UK men: NHS BMI rules and the two year cap',
+ beforeDescription:'See who can get Wegovy in the UK, how NHS BMI thresholds and referrals work, what private clinics check, and key treatment limits and safety points.',
+ title:'Wegovy BMI Requirements UK: NHS vs Private | SHIFT',
+ description:'What BMI do you need for Wegovy in the UK? Understand NHS eligibility, private assessments, and the health factors a qualified prescriber considers.'
+});
+export function applyWegovySearchCandidate(html,path){
+ if(path!==WEGOVY_SEARCH_CANDIDATE.path)return html;
+ const c=WEGOVY_SEARCH_CANDIDATE;
+ const replacements=[
+  ['<title>'+c.beforeTitle+'</title>','<title>'+c.title+'</title>'],
+  ['<meta name="description" content="'+c.beforeDescription+'">','<meta name="description" content="'+c.description+'">'],
+  ['<meta property="og:title" content="'+c.beforeTitle+'">','<meta property="og:title" content="'+c.title+'">'],
+  ['<meta name="twitter:title" content="'+c.beforeTitle+'">','<meta name="twitter:title" content="'+c.title+'">'],
+  ['<meta property="og:description" content="'+c.beforeDescription+'">','<meta property="og:description" content="'+c.description+'">'],
+  ['<meta name="twitter:description" content="'+c.beforeDescription+'">','<meta name="twitter:description" content="'+c.description+'">']
+ ];
+ // All six source tags must be exact, unique and previously unmodified.
+ if(!replacements.every(([before,after])=>html.split(before).length===2&&!html.includes(after)))return html;
+ for(const [before,after] of replacements)html=html.replace(before,after);
+ return html;
+}
+
 export function enhancePublicHtml(html,path,metadata={}){
  if(isPrivatePath(path)||/name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html))return html;
  html=addApprovedFoundayoContext(html,path);
+ html=applyWegovySearchCandidate(html,path);
  let hasOrg=false,hasWebsite=false,hasBreadcrumb=false,hasFaq=false,article=null;
  if(metadata.description){
   html=html.replace(/<meta\b(?=[^>]*(?:name=["']description["']|property=["']og:description["']|name=["']twitter:description["']))[^>]*>/gi,tag=>tag.replace(/content=["'][\s\S]*?["'](?=\s|\/?>)/i,'content="'+esc(metadata.description)+'"'));
