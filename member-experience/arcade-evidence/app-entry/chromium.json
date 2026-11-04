@@ -1,0 +1,16 @@
+{
+  "engine": "chromium",
+  "at": "2026-11-04T10:14:17.161Z",
+  "profile": "Native presentation scripts and app UA in browser; not physical app",
+  "account": "v7-live-proof@example.invalid",
+  "metrics": {
+    "top": 1756.265625,
+    "height": 225.546875,
+    "viewport": 844,
+    "docHeight": 2263,
+    "text": "SHED ARCADE\n\nBORED?! WANT 2 MINS ESCAPISM?\n\nOver the Shed · The batting one.\n\nNo best yet. Have a go.\n\nPLAY  All seven games"
+  },
+  "fromToday": true,
+  "support": "/member/shed-arcade",
+  "errors": []
+}

@@ -107,3 +107,9 @@ The exact renderer was fetched from the serving production JavaScript, its SHA25
 [Results and served-source hash](date-ui/results.json) · [Chromium recording](date-ui/chromium.webm) · [WebKit recording](date-ui/webkit.webm)
 
 [Chromium day one](date-ui/chromium-2026-11-04-early.png) · [Chromium day two](date-ui/chromium-2026-11-05-early.png) · [WebKit day one](date-ui/webkit-2026-11-04-early.png) · [WebKit day two](date-ui/webkit-2026-11-05-early.png)
+
+## App entry check — 4 November 2026, 10:14 GMT
+
+Fresh Chromium and WebKit sessions using the app user agent and bundled iOS presentation scripts both opened the arcade through Today and Support, without browser errors. At 390 × 844 the Today card starts around 1,756px down the document, immediately after the timber pile. The shorter route is Support → Shed Arcade. This is app-style browser evidence, not inspection of Matt’s installed app or a physical-device pass. An older already-open screen remains a possible explanation until his actual view is identified; no production code was changed for this check.
+
+[WebKit Today location](app-entry/webkit-today.png) · [Chromium Today location](app-entry/chromium-today.png) · [WebKit results](app-entry/webkit.json) · [Chromium results](app-entry/chromium.json)
