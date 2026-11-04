@@ -14,6 +14,7 @@ export function nativeBrowser(){
  function persist(){clearTimeout(persistence);persistence=setTimeout(()=>{if(data&&!blocked)cache.save(owner,data.expiresAt,{data,responses:[...responses]}).catch(()=>{});},80);}
  async function purge(broadcast=true){responses.clear();await cache.purge();if(broadcast)channel?.postMessage({type:'purge'});}
  function clear(){arcadeStop?.();arcade?.close();arcade=null;document.dispatchEvent(new CustomEvent('sst:member-basket-clear'));retained.clear();generation++;blocked=true;data=null;owner=null;identityPromise=null;daily?.clear();grub?.clear();router?.clear();document.body.dataset.memberSession='signed-out';main.innerHTML='<p>Sign in to open your private My Timber account.</p><a href="/member-login?returnTo=%2Fmember%2Fdashboard">Sign in</a>';purge();}
+ const releaseUpdates=makeShellUpdates({main,ready,persist});
  const channel=typeof BroadcastChannel==='function'?new BroadcastChannel('my-timber-shell-privacy'):null;
  channel?.addEventListener('message',()=>{if(data){generation++;blocked=true;data=null;daily?.clear();router?.clear();main.innerHTML='<p>Your account or privacy settings changed. <a href="/member/dashboard">Reopen My Timber</a>.</p>';}purge(false);});
  async function request(path,body,method='POST'){
@@ -108,7 +109,7 @@ export function nativeBrowser(){
   visitCheck=(async()=>{try{
    const r=await fetch('/v1/my-timber/boot',{credentials:'same-origin',cache:'no-store',signal:AbortSignal.timeout(15000)});
    if(g!==generation||!data)return;if(r.status===401){clear();return;}if(!r.ok)throw Error('Your account could not be checked. Reopen My Timber.');const fresh=await r.json();
-   if(String(fresh.accountId)!==was){clear();return;}
+   if(String(fresh.accountId)!==was){clear();return;}releaseUpdates.server(fresh.release);
    if(JSON.stringify(data.treatment)!==JSON.stringify(fresh.treatment)){data.treatment=fresh.treatment;router.invalidate('treatment-status');router.refresh();}data.setupComplete=fresh.setupComplete;router.invalidate('welcome');data.expiresAt=fresh.expiresAt;arcade?.accept(fresh.arcade);identityPromise=Promise.resolve({user:{id:data.accountId},expiresAt:data.expiresAt});
    if(fresh.v7.preferences.showWeight!==data.v7.preferences.showWeight){data=fresh;daily.accept(data.v7);await privacyChanged();router.refresh();}
    main.hidden=false;persist();
@@ -118,6 +119,6 @@ export function nativeBrowser(){
  addEventListener('pageshow',event=>{if(event.persisted)verifyVisit();});
  document.addEventListener('sst:account-changed',clear);document.addEventListener('sst:private-record-deleted',()=>purge());
  navigator.serviceWorker?.addEventListener('message',e=>{if(e.data?.type==='MT_PURGE_PRIVATE'&&data)clear();});
- if('serviceWorker' in navigator)navigator.serviceWorker.register('/treatment-sw.js',{scope:'/member/'}).catch(()=>{});
- boot().finally(()=>{window.__MT_NAV_READY=true;});
+ releaseUpdates.start();
+ boot().finally(()=>{window.__MT_NAV_READY=true;releaseUpdates.server(data?.release);});
 }

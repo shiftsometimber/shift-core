@@ -2,14 +2,15 @@ import {treatmentServiceWorker} from './treatment-service-worker.mjs';
 // Extend the existing member-scoped reminder worker. Its push subscription and
 // reminder behaviour stay intact; no second registration or notification prompt.
 export const shellServiceWorker=treatmentServiceWorker+String.raw`
+const MT_VERSION='__V7_NATIVE_ASSET_TAG__';
 const MT_CACHE='my-timber-shell-__V7_NATIVE_ASSET_TAG__';
 const MT_SHELL='/member/app-shell.html?v=__V7_NATIVE_ASSET_TAG__';
 const MT_STATIC=[MT_SHELL,'/assets/member-experience/v7-native.css?v=__V7_NATIVE_ASSET_TAG__','/assets/member-experience/v7-native.mjs?v=__V7_NATIVE_ASSET_TAG__','/assets/member-experience/v7-brand.svg?v=__V7_NATIVE_ASSET_TAG__','/assets/member-experience/v7-heading-font.woff2?v=__V7_NATIVE_ASSET_TAG__','/member/manifest.webmanifest'];
 const MT_ROUTES=new Set(['/member/dashboard/personalise','/member/dashboard/welcome','/member/dashboard/explore-weight-loss','/member/dashboard/explore-weight-loss/status','/member/dashboard/explore-weight-loss/questions','/member/dashboard','/member/grub','/member/fit','/member/life-back','/member/life-back/journey','/member/life-back/shop','/member/life-back/support','/member/life-back/support/league','/member/life-back/preferences','/member/more']);
 self.addEventListener('install',event=>event.waitUntil((async()=>{const cache=await caches.open(MT_CACHE);await cache.addAll(MT_STATIC);})()));
-self.addEventListener('activate',event=>event.waitUntil((async()=>{const keys=await caches.keys();const old=keys.filter(key=>key.startsWith('my-timber-shell-')&&key!==MT_CACHE);for(const key of old.slice(0,-1))await caches.delete(key);})()));
-async function mtNotice(type){for(const client of await self.clients.matchAll({type:'window',includeUncontrolled:true}))client.postMessage({type});}
-self.addEventListener('message',event=>{if(event.data?.type==='MT_PURGE_PRIVATE')event.waitUntil(mtNotice('MT_PURGE_PRIVATE'));});
+self.addEventListener('activate',event=>event.waitUntil((async()=>{const keys=await caches.keys();const old=keys.filter(key=>key.startsWith('my-timber-shell-')&&key!==MT_CACHE);for(const key of old.slice(0,-1))await caches.delete(key);await mtNotice('MT_SHELL_UPDATED',MT_VERSION);})()));
+async function mtNotice(type,version){for(const client of await self.clients.matchAll({type:'window',includeUncontrolled:true}))client.postMessage({type,version});}
+self.addEventListener('message',event=>{if(event.data?.type==='MT_SHELL_VERSION')event.source?.postMessage({type:'MT_SHELL_UPDATED',version:MT_VERSION});if(event.data?.type==='MT_PURGE_PRIVATE')event.waitUntil(mtNotice('MT_PURGE_PRIVATE'));});
 self.addEventListener('fetch',event=>{
  const request=event.request,url=new URL(request.url);if(url.origin!==self.location.origin)return;
  if(request.method!=='GET'){
@@ -28,7 +29,7 @@ self.addEventListener('fetch',event=>{
   // enter CacheStorage. The client owns encrypted, account-bound snapshots.
   return;
  }
- if(url.pathname.startsWith('/assets/member-experience/v7-')){event.respondWith((async()=>{const saved=await caches.match(request);if(saved)return saved;const response=await fetch(request);if(response.ok&&!/private|no-store/i.test(response.headers.get('Cache-Control')||'')){const cache=await caches.open(MT_CACHE);await cache.put(request,response.clone());}return response;})());return;}
+ if(url.pathname.startsWith('/assets/member-experience/v7-')){event.respondWith((async()=>{if(url.searchParams.has('v'))url.searchParams.set('v',MT_VERSION);const current=new Request(url.href,request),cache=await caches.open(MT_CACHE),saved=await cache.match(current);if(saved)return saved;let response;try{response=await fetch(current);}catch(error){if(/^\/assets\/member-experience\/v7-arcade(?:-[a-z-]+)?\.mjs$/.test(url.pathname)){const offline=await caches.match(request,{ignoreSearch:true});if(offline)return offline;}throw error;}if(response.ok&&!/private|no-store/i.test(response.headers.get('Cache-Control')||''))await cache.put(current,response.clone());return response;})());return;}
  if(MT_STATIC.some(path=>new URL(path,self.location.origin).href===url.href)){
   event.respondWith((async()=>{const cache=await caches.open(MT_CACHE),saved=await cache.match(request);if(saved)return saved;const response=await fetch(request);if(response.ok)await cache.put(request,response.clone());return response;})());return;
  }
