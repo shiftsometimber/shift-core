@@ -10,30 +10,30 @@ Personal bests, sound and a manually typed Saw Duel nickname are account scoped.
 
 ## Named checks
 
-| ID | Check | Chromium | WebKit | Evidence |
-|---|---|---|---|---|
-| E1 | Today card follows check-in, action and pile and Play opens its game | PASS | PASS | [Chromium](chromium-proof/E1.png), [WebKit](webkit-proof/E1.png) |
-| E2 | Game-of-day date selection | PASS | PASS | [Chromium](chromium-proof/E2.png), [WebKit](webkit-proof/E2.png) |
-| E3 | New account sees friendly no-best text | PASS | PASS | [Chromium](chromium-proof/E3.png), [WebKit](webkit-proof/E3.png) |
-| E4 | Seven grid tiles link to their own game | PASS | PASS | [Chromium](chromium-proof/E4.png), [WebKit](webkit-proof/E4.png) |
-| E5 | Every game returns to Today inside the same frame | PASS | PASS | [Chromium](chromium-proof/E5.png), [WebKit](webkit-proof/E5.png) |
-| E6 | Shed-area door opens arcade | PASS | PASS | [Chromium](chromium-proof/E6.png), [WebKit](webkit-proof/E6.png) |
-| E7 | Post-check-in nudge dismisses and stays dismissed | PASS | PASS | [Chromium](chromium-proof/E7.png), [WebKit](webkit-proof/E7.png) |
-| E8 | Signed-out arcade asks for sign-in; public menus unchanged | PASS | PASS | [Chromium](chromium-proof/E8.png), [WebKit](webkit-proof/E8.png) |
-| G1 | timber-lob input, completed result, saved best and retry | PASS | PASS | [Chromium](chromium-proof/G1.png), [WebKit](webkit-proof/G1.png) |
-| G2 | chop-shop input, completed result, saved best and retry | PASS | PASS | [Chromium](chromium-proof/G2.png), [WebKit](webkit-proof/G2.png) |
-| G3 | timber input, completed result, saved best and retry | PASS | PASS | [Chromium](chromium-proof/G3.png), [WebKit](webkit-proof/G3.png) |
-| G4 | stack-the-shed input, completed result, saved best and retry | PASS | PASS | [Chromium](chromium-proof/G4.png), [WebKit](webkit-proof/G4.png) |
-| G5 | saw-duel input, completed result, saved best and retry | PASS | PASS | [Chromium](chromium-proof/G5.png), [WebKit](webkit-proof/G5.png) |
-| G6 | timber-smash input, completed result, saved best and retry | PASS | PASS | [Chromium](chromium-proof/G6.png), [WebKit](webkit-proof/G6.png) |
-| G7 | over-the-shed input, completed result, saved best and retry | PASS | PASS | [Chromium](chromium-proof/G7.png), [WebKit](webkit-proof/G7.png) |
-| P1 | Accounts separated and bests retained in a second authenticated session | PASS | PASS | [Chromium](chromium-proof/P1.png), [WebKit](webkit-proof/P1.png) |
-| P2 | Every initial game silent; member toggle remembered | PASS | PASS | [Chromium](chromium-proof/P2.png), [WebKit](webkit-proof/P2.png) |
-| P3 | Seven cached games open offline; earned offline best syncs on reconnect | PASS | PASS | [Chromium](chromium-proof/P3.png), [WebKit](webkit-proof/P3.png) |
-| P4 | Keyboard focus, labelled canvas, touch layout and zoom allowed | PASS | PASS | [Chromium](chromium-proof/P4.png), [WebKit](webkit-proof/P4.png) |
-| P5 | No example Shed totals appear | PASS | PASS | [Chromium](chromium-proof/P5.png), [WebKit](webkit-proof/P5.png) |
-| P6 | Captured shares contain game/result and typed nickname only | PASS | PASS | [Chromium](chromium-proof/P6.png), [WebKit](webkit-proof/P6.png) |
-| P7 | Player-visible arcade wording scan | PASS | PASS | [Chromium](chromium-proof/P7.png), [WebKit](webkit-proof/P7.png) |
+| ID | Check | Chromium | WebKit | Full acceptance | Evidence |
+|---|---|---|---|---|---|
+| E1 | Today card follows check-in, action and pile and Play opens its game | PASS | PASS | PASS | [Chromium](chromium-proof/E1.png), [WebKit](webkit-proof/E1.png) |
+| E2 | Game-of-day date selection | PASS | PASS | FAIL — second-date UI evidence missing | [Chromium](chromium-proof/E2.png), [WebKit](webkit-proof/E2.png) |
+| E3 | New account sees friendly no-best text | PASS | PASS | PASS | [Chromium](chromium-proof/E3.png), [WebKit](webkit-proof/E3.png) |
+| E4 | Seven grid tiles link to their own game | PASS | PASS | PASS | [Chromium](chromium-proof/E4.png), [WebKit](webkit-proof/E4.png) |
+| E5 | Every game returns to Today inside the same frame | PASS | PASS | PASS | [Chromium](chromium-proof/E5.png), [WebKit](webkit-proof/E5.png) |
+| E6 | Shed-area door opens arcade | PASS | PASS | PASS | [Chromium](chromium-proof/E6.png), [WebKit](webkit-proof/E6.png) |
+| E7 | Post-check-in nudge dismisses and stays dismissed | PASS | PASS | PASS | [Chromium](chromium-proof/E7.png), [WebKit](webkit-proof/E7.png) |
+| E8 | Signed-out arcade asks for sign-in; public menus unchanged | PASS | PASS | PASS | [Chromium](chromium-proof/E8.png), [WebKit](webkit-proof/E8.png) |
+| G1 | timber-lob input, completed result, saved best and retry | PASS | PASS | PASS | [Chromium](chromium-proof/G1.png), [WebKit](webkit-proof/G1.png) |
+| G2 | chop-shop input, completed result, saved best and retry | PASS | PASS | PASS | [Chromium](chromium-proof/G2.png), [WebKit](webkit-proof/G2.png) |
+| G3 | timber input, completed result, saved best and retry | PASS | PASS | PASS | [Chromium](chromium-proof/G3.png), [WebKit](webkit-proof/G3.png) |
+| G4 | stack-the-shed input, completed result, saved best and retry | PASS | PASS | PASS | [Chromium](chromium-proof/G4.png), [WebKit](webkit-proof/G4.png) |
+| G5 | saw-duel input, completed result, saved best and retry | PASS | PASS | PASS | [Chromium](chromium-proof/G5.png), [WebKit](webkit-proof/G5.png) |
+| G6 | timber-smash input, completed result, saved best and retry | PASS | PASS | PASS | [Chromium](chromium-proof/G6.png), [WebKit](webkit-proof/G6.png) |
+| G7 | over-the-shed input, completed result, saved best and retry | PASS | PASS | PASS | [Chromium](chromium-proof/G7.png), [WebKit](webkit-proof/G7.png) |
+| P1 | Accounts separated and bests retained in a second authenticated session | PASS | PASS | PASS | [Chromium](chromium-proof/P1.png), [WebKit](webkit-proof/P1.png) |
+| P2 | Every initial game silent; member toggle remembered | PASS | PASS | PASS | [Chromium](chromium-proof/P2.png), [WebKit](webkit-proof/P2.png) |
+| P3 | Seven cached games open offline; earned offline best syncs on reconnect | PASS | PASS | FAIL — physical-phone evidence missing | [Chromium](chromium-proof/P3.png), [WebKit](webkit-proof/P3.png) |
+| P4 | Keyboard focus, labelled canvas, touch layout and zoom allowed | PASS | PASS | PASS | [Chromium](chromium-proof/P4.png), [WebKit](webkit-proof/P4.png) |
+| P5 | No example Shed totals appear | PASS | PASS | PASS | [Chromium](chromium-proof/P5.png), [WebKit](webkit-proof/P5.png) |
+| P6 | Captured shares contain game/result and typed nickname only | PASS | PASS | PASS | [Chromium](chromium-proof/P6.png), [WebKit](webkit-proof/P6.png) |
+| P7 | Player-visible arcade wording scan | PASS | PASS | PASS | [Chromium](chromium-proof/P7.png), [WebKit](webkit-proof/P7.png) |
 
 [Chromium recording](chromium-proof/arcade.webm) · [WebKit recording](webkit-proof/arcade.webm)
 
@@ -91,3 +91,11 @@ node member-experience/tools/shed-arcade-release.mjs rollback
 This restores the exact previous V7 serving versions and reverses only the two added Arcade page routes; it retains existing member records and entertainment scores. Candidate module hashes, all existing bindings, assets configuration and schedules were checked before promotion. No database migration or member-data initialisation was needed.
 
 Synthetic accounts only: shed-arcade-one@example.invalid, shed-arcade-two@example.invalid; V7 journey-specific synthetic accounts in their reports; v7-live-proof@example.invalid for production. No purchases, emails, messages, invitations or native-app submission were made. Physical-device recordings and two actual calendar dates remain unverified, as explicitly distinguished above.
+
+## Completion recheck — 4 November 2026
+
+The serving release was rechecked against its exact approved worker versions. No production code was changed or redeployed. Twenty named checks have their required automated evidence; E2 and P3 remain acceptance failures because the additional UI-date and physical-device evidence is missing. Browser test PASS results in the table do not override those two acceptance failures.
+
+Only the SST Mac is remotely accessible. USB inventory found no iPhone, iPad or Android phone; iOS device enumeration timed out after 15 seconds; Android ADB and the iOS USB utility are unavailable. No physical-phone result is claimed. The smallest next step is access to test phones. Second-date UI proof also needs a second London calendar date; no reminder or background task was created.
+
+[Exact completion status](completion-status.json)
