@@ -1,0 +1,16 @@
+✔ private questionnaire can open and save before any pharmacy or Stripe configuration (25.938125ms)
+✔ anonymous, cross-origin, wrong-account and missing-consent writes fail closed (2.103959ms)
+✔ retry is idempotent; concurrent stale device cannot overwrite the accepted answers (1.944083ms)
+✔ new privacy epoch and a revoked session prevent late writes (2.037ms)
+✔ draft is account-owned; deletion removes only this private assessment (1.711292ms)
+✔ existing adult guard and strict field allowlist apply to saved questions (1.795458ms)
+✔ options cannot be viewed before all written questions and confirmations are complete (1.693459ms)
+✔ the existing health-erasure route removes saved assessment answers (1.624667ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 98.951709

@@ -1,14 +1,14 @@
 {
   "at": "2026-11-04T19:41:23.601665+00:00",
-  "status": "INTERFACE_LIVE_ACCEPTANCE_INCOMPLETE",
+  "status": "WRITTEN_QUESTIONS_LIVE_PROVIDER_HANDOFF_PENDING",
   "memberReleaseDeployed": true,
-  "liveVersion": "bbe2a656-2b4f-43c0-b8da-31f5b8b35b9c",
-  "liveAt": "2026-11-04T19:14:40.397Z",
+  "liveVersion": "ef5bff31-558e-4f67-acff-9e6dea720b33",
+  "liveAt": "2026-11-04T20:29:05.392Z",
   "allRequiredPass": false,
   "clinicalEndToEnd": false,
   "automaticRefund": false,
   "cardHoldImplemented": false,
-  "speedPass": false,
+  "speedPass": null,
   "shopUnchanged": true,
   "physicalPhoneEvidence": false,
   "checks": {
@@ -20,5 +20,10 @@
     "Automatic decline-refund and a safe authorise/capture/cancel/expiry card-hold lifecycle are not implemented in this till.",
     "Four of the five latest strict speed targets are missed.",
     "Physical iPhone Safari / Android Chrome and complete settings/checkout mutation proof are not performed."
-  ]
+  ],
+  "writtenQuestionsPass": true,
+  "providerSubmissionReady": false,
+  "clinicalImagesUploaded": false,
+  "paymentDisabled": true,
+  "speedMeasurementVersion": "bbe2a656-2b4f-43c0-b8da-31f5b8b35b9c"
 }

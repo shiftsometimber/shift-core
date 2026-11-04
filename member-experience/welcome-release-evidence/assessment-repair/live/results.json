@@ -1,0 +1,164 @@
+{
+  "at": "2026-11-04T20:29:06.750Z",
+  "origin": "https://shiftsometimber.co.uk",
+  "physical": false,
+  "syntheticOnly": true,
+  "payments": false,
+  "providerSubmissions": false,
+  "engines": [
+    {
+      "name": "chromium",
+      "account": {
+        "id": 900710301,
+        "email": "v7-live-proof@example.invalid"
+      },
+      "checks": [
+        {
+          "id": "Reset only this owned synthetic assessment draft",
+          "pass": true
+        },
+        {
+          "id": "Questions open while provider and payment are unavailable",
+          "pass": true
+        },
+        {
+          "id": "Shared frame remains while opening questions",
+          "pass": true
+        },
+        {
+          "id": "No catalogue price or product before completion",
+          "pass": true
+        },
+        {
+          "id": "Save and finish later returns to Today",
+          "pass": true
+        },
+        {
+          "id": "Reload resumes saved step and answers",
+          "pass": true
+        },
+        {
+          "id": "Existing evidence fields remain; no claim they were uploaded",
+          "pass": true
+        },
+        {
+          "id": "All eleven written-question steps complete and save",
+          "pass": true
+        },
+        {
+          "id": "Saved result is questions_complete, not a prescription or provider submission",
+          "pass": true
+        },
+        {
+          "id": "Questionnaire does not award a log or change the pile",
+          "pass": true
+        },
+        {
+          "id": "Private answers are absent from the Today boot payload",
+          "pass": true
+        },
+        {
+          "id": "No browser storage receives the written answers",
+          "pass": true
+        },
+        {
+          "id": "Current catalogue only opens after saved questions; payment remains disabled",
+          "pass": true
+        },
+        {
+          "id": "Completed questionnaire reopens for review and editing",
+          "pass": true
+        },
+        {
+          "id": "No execution errors",
+          "pass": true
+        }
+      ],
+      "errors": [],
+      "shots": [
+        "chromium-question-1.jpg",
+        "chromium-question-2.jpg",
+        "chromium-review.jpg",
+        "chromium-saved.jpg",
+        "chromium-options.jpg"
+      ]
+    },
+    {
+      "name": "webkit",
+      "account": {
+        "id": 900710301,
+        "email": "v7-live-proof@example.invalid"
+      },
+      "checks": [
+        {
+          "id": "Reset only this owned synthetic assessment draft",
+          "pass": true
+        },
+        {
+          "id": "Questions open while provider and payment are unavailable",
+          "pass": true
+        },
+        {
+          "id": "Shared frame remains while opening questions",
+          "pass": true
+        },
+        {
+          "id": "No catalogue price or product before completion",
+          "pass": true
+        },
+        {
+          "id": "Save and finish later returns to Today",
+          "pass": true
+        },
+        {
+          "id": "Reload resumes saved step and answers",
+          "pass": true
+        },
+        {
+          "id": "Existing evidence fields remain; no claim they were uploaded",
+          "pass": true
+        },
+        {
+          "id": "All eleven written-question steps complete and save",
+          "pass": true
+        },
+        {
+          "id": "Saved result is questions_complete, not a prescription or provider submission",
+          "pass": true
+        },
+        {
+          "id": "Questionnaire does not award a log or change the pile",
+          "pass": true
+        },
+        {
+          "id": "Private answers are absent from the Today boot payload",
+          "pass": true
+        },
+        {
+          "id": "No browser storage receives the written answers",
+          "pass": true
+        },
+        {
+          "id": "Current catalogue only opens after saved questions; payment remains disabled",
+          "pass": true
+        },
+        {
+          "id": "Completed questionnaire reopens for review and editing",
+          "pass": true
+        },
+        {
+          "id": "No execution errors",
+          "pass": true
+        }
+      ],
+      "errors": [],
+      "shots": [
+        "webkit-question-1.jpg",
+        "webkit-question-2.jpg",
+        "webkit-review.jpg",
+        "webkit-saved.jpg",
+        "webkit-options.jpg"
+      ]
+    }
+  ]
+}
