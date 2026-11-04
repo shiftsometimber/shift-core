@@ -5,7 +5,7 @@ export function arcadeSession(s){
  const games=s.games,merge=(g,a,b)=>g.kind==='stars'?Array.from({length:7},(_,i)=>Math.max(a?.[i]||0,b?.[i]||0)):g.kind==='time'?(a>0&&b>0?Math.min(a,b):a>0?a:b||0):Math.max(a||0,b||0);
  let state=s.state().arcade||{bests:{},muted:true,nickname:''},syncing=null,closed=false;
  const persist=()=>{try{localStorage.setItem(key,JSON.stringify(local));}catch{}};
- function accept(next){state={...next,bests:{...next.bests}};for(const g of games){const v=merge(g,state.bests[g.key],local.values[g.key]);if(v!==undefined){state.bests[g.key]=v;local.values[g.key]=v;}}if(local.pending.sound)state.muted=local.pending.sound.muted;if(local.pending.nickname)state.nickname=local.pending.nickname.nickname;state.muted=state.muted!==false;s.update(state);persist();}
+ function accept(next){state={...next,bests:{...next.bests}};for(const g of games){const v=merge(g,state.bests[g.key],local.values[g.key]);if(v!==undefined){state.bests[g.key]=v;local.values[g.key]=v;}if(g.progressKey){const n=Math.max(state.bests[g.progressKey]||0,local.values[g.progressKey]||0);state.bests[g.progressKey]=n;local.values[g.progressKey]=n;}}if(local.pending.sound)state.muted=local.pending.sound.muted;if(local.pending.nickname)state.nickname=local.pending.nickname.nickname;state.muted=state.muted!==false;s.update(state);persist();}
  accept(state);
  async function sync(){
   if(syncing||closed||!navigator.onLine||!s.ready()||String(s.state()?.accountId)!==owner)return syncing;
@@ -22,6 +22,7 @@ export function arcadeSession(s){
   if(closed)return;local.values[k]=v;
   if(k==='mt_arcade_muted'){state.muted=!!v;queue('sound',{action:'sound',muted:!!v});}
   else if(k==='mt_saw_handle'){state.nickname=String(v);queue('nickname',{action:'nickname',nickname:String(v)});}
+  else if(games.some(g=>g.progressKey===k)){const g=games.find(g=>g.progressKey===k),value=Math.max(state.bests[k]||0,v);state.bests[k]=value;local.values[k]=value;queue(g.id+':progress',{action:'progress',game:g.id,value});}
   else {const g=games.find(g=>g.key===k);if(g){const value=merge(g,state.bests[k],v);state.bests[k]=value;local.values[k]=value;queue(g.id,{action:'best',game:g.id,value});}}
   persist();s.update(state);
  }

@@ -14,6 +14,11 @@
     "moduleSHA256": "bb70337c78882803c6dc22de7f25154d817a5eb5f40665d9f7271c8681be228d",
     "bytes": 28123
   },
+  "shed-fighter": {
+    "sourceSHA256": "d0b1122960aa9a14935606a3322633c76b03820532dcd177bd49d88f36dd1faa",
+    "moduleSHA256": "47ab6ce36dbe105debe1d72e2c5b1c599283dc3cc6d4321cbe1198adf516ecaa",
+    "bytes": 44155
+  },
   "stack-the-shed": {
     "sourceSHA256": "3f13217ba474ebd97686876dfb611aee774b5cb1fea26815c7568547545d5ee1",
     "moduleSHA256": "1e6e75bbe8faf86bc76b464fe265649b82a88569374457ce1eba22cf83c41a04",
@@ -26,8 +31,8 @@
   },
   "timber-lob": {
     "sourceSHA256": "e22bd04216fe50fd61f17446d4e00929236912b44293982b1f2a830b98293ec1",
-    "moduleSHA256": "11acc8c173b30da9a0d307915c03c191b994d4d049d2296a85fc799e0d19b5e5",
-    "bytes": 40162
+    "moduleSHA256": "81b182e3ba7358a9af9cf5715e178ea3226eae9d1ff7d507dfb6aa75336ab7ad",
+    "bytes": 40698
   },
   "timber-smash": {
     "sourceSHA256": "1575d371c2c5f4a4093371903b6b60d3b3604db865f9620e21c1bf2abd3fa15b",

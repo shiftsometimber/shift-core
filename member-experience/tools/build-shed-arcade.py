@@ -6,6 +6,7 @@ single shared-shell content node. No eval, iframe, external library or network.
 from pathlib import Path
 import re,json,hashlib,sys
 from lxml import html
+from arcade_endless import endless_game
 
 source=Path(sys.argv[1]);output=Path(sys.argv[2]);output.mkdir(parents=True,exist_ok=True)
 records={}
@@ -49,8 +50,8 @@ export function mount(root,bridge){
  return ()=>{if(dead)return;dead=true;for(const id of frames)realWindow.cancelAnimationFrame(id);for(const id of timers)realWindow.clearTimeout(id);for(const [t,f,o]of listeners)realWindow.removeEventListener(t,f,o);realDocument.removeEventListener('visibilitychange',visibility);for(const [k,v]of properties){if(v.existed)realWindow[k]=v.value;else delete realWindow[k];}if(AC)AC.close().catch(()=>{});pauseButton.onclick=null;root.replaceChildren();};
 }
 '''
-for path in sorted(source.glob('*-3nov.html')):
-    slug=path.stem.removesuffix('-3nov');text=path.read_text();doc=html.fromstring(text)
+for path in sorted(source.glob('*-*nov.html')):
+    slug=re.sub(r'-\d+nov$','',path.stem);text=path.read_text();doc=html.fromstring(text)
     css='\n'.join(doc.xpath('//style/text()'))
     css=scoped(css).replace('.mt-arcade-game','#mtNativeMain .mt-arcade-game').replace('#C8702A','#707762').replace('#8A4A1C','#414733').replace('#F2B33D','#E7E3DA')
     css+='\n.mt-arcade-game .app{height:calc(100dvh - 240px)!important;min-height:440px;padding:0 3px!important;display:flex;flex-direction:column}.mt-arcade-game button{min-height:44px!important}.mt-arcade-game .sh{display:none!important}.mt-arcade-game .gwrap{min-height:150px}.mt-arcade-game #toast{z-index:1200}.mt-arcade-game :focus-visible{outline:3px solid #E7E3DA;outline-offset:3px}'
@@ -78,12 +79,23 @@ for path in sorted(source.glob('*-3nov.html')):
         script=script.replace("handle=v||'ShedMate'","handle=v")
         script=script.replace("$('cfrom').textContent=`Friendly challenge from @${CH_.name}`;", "$('cfrom').textContent=CH_.fromLink?`Friendly challenge from @${CH_.name}`:'Practice ghost';")
         script=script.replace("$('cq').textContent=`\"Bet you can't beat ${CH_.t.toFixed(1)}s, mate.\"`;", "$('cq').textContent=CH_.fromLink?`\"Bet you can't beat ${CH_.t.toFixed(1)}s, mate.\"`:`Practice target: ${CH_.t.toFixed(1)}s`;")
+    if slug=='shed-fighter':
+        # Keep the supplied mechanics; repair captured-pointer sliding and
+        # release every held action on pause, backgrounding and unmount.
+        a=script.index('function press(k,on)')
+        b=script.index("cv.addEventListener('pointerdown'",a)
+        script=script[:a]+(Path(__file__).parent/'shed-fighter-controls.js').read_text()+script[b:]
+        script=script.replace("addEventListener('resize',f)","window.addEventListener('resize',f)")
+        script=script.replace("if(shake>0.2)","if(!motion.matches&&shake>0.2)")
+        css+='\n#mtNativeMain .mt-arcade-game .app{height:calc(100dvh - 280px)!important}#mtNativeMain .mt-arcade-game .dpad{grid-template-columns:repeat(3,42px);grid-template-rows:repeat(3,44px)}#mtNativeMain .mt-arcade-game .acts{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,62px);width:49%}#mtNativeMain .mt-arcade-game button.k{padding:0 3px;font-size:12px}#mtNativeMain .mt-arcade-game .hook{font-size:12px}#mtNativeMain .mt-arcade-game .btns button{font-size:10.5px;padding:0 5px!important;white-space:nowrap}@media(prefers-reduced-motion:reduce){#mtNativeMain .mt-arcade-game button.sp{animation:none}}'
+    script=endless_game(slug,script)
+    if slug=='shed-fighter':markup=markup.replace('Pick your bloke, grab your timber, win best of three. Fill the meter for a special.','Pick your bloke. Best of three each fight. Every ladder gets tougher.')
     # Avoid unsolicited shake effects for reduced-motion users without changing mechanics.
     script=script.replace('ctx.translate((Math.random()-.5)*shake,(Math.random()-.5)*shake)', 'ctx.translate(motion.matches?0:(Math.random()-.5)*shake,motion.matches?0:(Math.random()-.5)*shake)')
-    module='const HTML='+json.dumps(markup)+';\nconst CSS='+json.dumps(css)+';\n'+runtime.replace('/* ORIGINAL_GAME */',script)
+    module='const HTML='+json.dumps(markup)+';\nconst CSS='+json.dumps(css)+';\n'+(runtime.replace('paused=value;','paused=value;if(value)clearControls();').replace('dead=true;for','dead=true;clearControls();for') if slug=='shed-fighter' else runtime).replace('/* ORIGINAL_GAME */',script)
     (output/(slug+'.mjs')).write_text(module)
     records[slug]={'sourceSHA256':hashlib.sha256(text.encode()).hexdigest(),'moduleSHA256':hashlib.sha256(module.encode()).hexdigest(),'bytes':len(module.encode())}
-assets='// Generated from the approved 3 November handover; do not hand-edit.\nexport const arcadeAssets='+json.dumps({p.stem:p.read_text() for p in sorted(output.glob('*.mjs'))},ensure_ascii=False)+';\n'
+assets='// Generated from the approved November handovers; do not hand-edit.\nexport const arcadeAssets='+json.dumps({p.stem:p.read_text() for p in sorted(output.glob('*.mjs'))},ensure_ascii=False)+';\n'
 (output.parent/'shed-arcade-assets.mjs').write_text(assets)
 (output.parent/'arcade-source-manifest.json').write_text(json.dumps(records,indent=2)+'\n')
 print(json.dumps({'games':len(records),'moduleBytes':sum(x['bytes'] for x in records.values())}))
