@@ -24,6 +24,15 @@ test('Saxenda answer is an additive exact insertion with publication metadata, s
  const again=await approvedComparisonAnswer(req,new Response(body,{headers:{'Content-Type':'text/html'}}));assert.equal(await again.text(),body);
  await assert.rejects(()=>approvedComparisonAnswer(req,new Response('<main>Changed template</main>',{headers:{'Content-Type':'text/html'}})),/anchor changed/);
 });
+test('Bloods title correction removes double encoding and keeps structured data truthful',async()=>{
+ const html='<title>Explore Baseline, Advanced &amp;amp; Complete | SHIFT Bloods</title><meta property="og:title" content="Explore Baseline, Advanced &amp;amp; Complete | SHIFT Bloods"><script type="application/ld+json">{"@type":"WebPage","name":"Explore Baseline, Advanced &amp; Complete | SHIFT Bloods"}</script>';
+ const req=new Request('https://shiftsometimber.co.uk/shift-health/blood-tests');
+ const result=await approvedComparisonAnswer(req,new Response(html,{headers:{'Content-Type':'text/html','ETag':'old','Content-Length':String(html.length),'Content-Security-Policy':"default-src 'self'",'Strict-Transport-Security':'max-age=31536000','X-Frame-Options':'SAMEORIGIN'}}));
+ const body=await result.text();assert(body.includes('<title>Explore Baseline, Advanced &amp; Complete | SHIFT Bloods</title>'));assert(body.includes('content="Explore Baseline, Advanced &amp; Complete | SHIFT Bloods"'));assert(body.includes('"name":"Explore Baseline, Advanced & Complete | SHIFT Bloods"'));assert(!body.includes('&amp;amp;'));
+ assert.equal(result.headers.get('ETag'),null);assert.equal(result.headers.get('Content-Length'),null);assert.equal(result.headers.get('X-Shift-Approved-Correction'),'bloods-title-20261029');
+ for(const k of ['Content-Security-Policy','Strict-Transport-Security','X-Frame-Options'])assert(result.headers.get(k));
+ const again=await approvedComparisonAnswer(req,new Response(body,{headers:{'Content-Type':'text/html'}}));assert.equal(await again.text(),body);assert.equal(again.headers.get('X-Shift-Approved-Correction'),null);
+});
 test('homepage, member pages, private methods and unrelated assets remain untouched',async()=>{
  for(const path of ['/','/my-timber','/member/dashboard','/articles/another','/contact']){const request=new Request('https://shiftsometimber.co.uk'+path),r=new Response('unchanged');assert.equal(await approvedComparisonAnswer(request,r),r);assert.equal(approvedTelemetryAsset(request),null);}
  assert.equal(approvedTelemetryAsset(new Request('https://example.invalid/assets/shift-product-events-v42m.js')),null);
