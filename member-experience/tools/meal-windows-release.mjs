@@ -27,6 +27,13 @@ async function prepareMembers(){
  const old=await cf(version(operator,original[0].version_id)),form=new FormData();form.set('metadata',JSON.stringify({main_module:'operator.mjs',compatibility_date:old.compatibility_date,compatibility_flags:old.compatibility_flags||[],bindings:[...old.bindings.map(b=>({type:'inherit',name:b.name})),{type:'service',name:'MEALS',service:prep,entrypoint:'V7Offers'}]}));form.set('operator.mjs',new Blob([code],{type:'application/javascript+module'}),'operator.mjs');
  try{
   const uploaded=await cf(ep(operator)+'/versions?bindings_inheritance=strict','POST',form);await traffic(operator,uploaded.id);await cf(ep(operator)+'/subdomain','POST',{enabled:true});
+  let ready=false;
+  for(let attempt=0;attempt<20&&!ready;attempt++){
+   const probe=await fetch('https://'+operator+'.matobrien.workers.dev/meal-windows',{method:'POST',headers:{'X-Release-Key':key,'Content-Type':'application/json'},body:JSON.stringify({userIds:[]}),signal:AbortSignal.timeout(10000)});
+   if(probe.ok){const body=await probe.json();ready=body.prepared===0&&body.skipped===0&&body.conflicts===0;}
+   if(!ready)await new Promise(resolve=>setTimeout(resolve,1000));
+  }
+  assert(ready,'Finite preparation operator did not become ready; no member batch submitted');
   const rows=await query("SELECT user_id FROM member_state WHERE json_type(preferences,'$.lifeBack.progress.v7')='object' AND (SELECT granted FROM consents WHERE user_id=member_state.user_id AND consent_type='my_shift_health_tracking' ORDER BY id DESC LIMIT 1)=1 AND COALESCE(json_extract(preferences,'$.myJourney.setup.paused'),0)<>1 ORDER BY user_id"),counts={eligible:rows.length,prepared:0,skipped:0,conflicts:0};
   for(let i=0;i<rows.length;i+=8){
    const r=await fetch('https://'+operator+'.matobrien.workers.dev/meal-windows',{method:'POST',headers:{'X-Release-Key':key,'Content-Type':'application/json'},body:JSON.stringify({userIds:rows.slice(i,i+8).map(r=>r.user_id)}),signal:AbortSignal.timeout(60000)});assert(r.ok,'Meal preparation failed HTTP '+r.status);const b=await r.json();for(const k of['prepared','skipped','conflicts'])counts[k]+=b[k];state.preparation=counts;save();console.log(JSON.stringify({mealPreparation:counts}));
@@ -46,7 +53,7 @@ if(command==='prepare'){
  const p=packet('programme');p.modules=p.modules.filter(m=>m.name==='v7-release-20261103/programme.mjs');p.main_module=p.modules[0].name;assert.equal(p.modules.length,1);assert(!Buffer.from(p.modules[0].content_base64,'base64').toString().includes('mt_upgrade_fixture'));
  await upload(prep,packet('preparer'));await upload(front,p);state.preparedAt=new Date().toISOString();save();console.log(JSON.stringify({prepared:true,owners:state.owners.map(({name,candidate})=>({name,candidate}))}));
 }else if(command==='live'){
- assert(state.preparedAt);try{
+ assert(state.preparedAt);if(state.failure){(state.priorAttempts||=[]).push({failure:state.failure,rolledBackAt:state.rolledBackAt});delete state.failure;delete state.rolledBackAt;save();}try{
   for(const o of state.owners){assert.deepEqual(await active(o.name),[{version_id:o.base,percentage:100}]);await traffic(o.name,o.candidate);assert.deepEqual((await cf(ep(o.name)+'/schedules')).schedules,o.schedules);}
   state.liveAt=new Date().toISOString();save();await prepareMembers();
   execFileSync(process.execPath,['member-experience/tools/meal-windows-proof.mjs','--live'],{stdio:'inherit',timeout:180000});
