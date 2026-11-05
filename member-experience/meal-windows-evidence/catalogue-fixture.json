@@ -1,0 +1,70 @@
+{
+  "synthetic": "v7-choose@example.invalid",
+  "at": "2026-11-05T12:22:01.179Z",
+  "recipes": 2692,
+  "periods": {
+    "breakfast": {
+      "kind": "food",
+      "meal": "breakfast",
+      "recipe": "industrial-breakfast-breakfast-wrap-apple-cinnamon-0",
+      "name": "Egg breakfast wrap — kidney beans, spinach, tomato salsa",
+      "proteinG": 26.7,
+      "swaps": [
+        {
+          "meal": "breakfast",
+          "proteinG": 25.6
+        },
+        {
+          "meal": "breakfast",
+          "proteinG": 25.8
+        },
+        {
+          "meal": "breakfast",
+          "proteinG": 25.6
+        }
+      ]
+    },
+    "lunch": {
+      "kind": "food",
+      "meal": "lunch",
+      "recipe": "industrial-lunch-chicken-wholemeal-wrap",
+      "name": "Chicken salad wrap — salad leaves, plain yoghurt",
+      "proteinG": 46.7,
+      "swaps": [
+        {
+          "meal": "lunch",
+          "proteinG": 49.2
+        },
+        {
+          "meal": "lunch",
+          "proteinG": 50.9
+        },
+        {
+          "meal": "lunch",
+          "proteinG": 51.6
+        }
+      ]
+    },
+    "tea": {
+      "kind": "food",
+      "meal": "dinner",
+      "recipe": "industrial-dinner-chicken-traybake",
+      "name": "Chicken with roasted potatoes and vegetables — chicken breast, baby potatoes, broccoli, red pepper",
+      "proteinG": 48.1,
+      "swaps": [
+        {
+          "meal": "dinner",
+          "proteinG": 48.7
+        },
+        {
+          "meal": "dinner",
+          "proteinG": 52
+        },
+        {
+          "meal": "dinner",
+          "proteinG": 50.4
+        }
+      ]
+    }
+  }
+}

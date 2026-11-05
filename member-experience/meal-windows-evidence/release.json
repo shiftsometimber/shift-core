@@ -1,0 +1,67 @@
+{
+  "scope": "UK-clock prepared breakfast, lunch and tea shared by Today and Grub; retain chosen/completed action and one daily log",
+  "base": {
+    "shift-programme-member-20261023": "17bb6c7a-8f46-45f5-9ce3-e81cd7946adf",
+    "shift-my-timber-v7-preparer-live": "fd40f888-6cec-48bc-b9e8-22bce33b182b"
+  },
+  "owners": [
+    {
+      "name": "shift-my-timber-v7-preparer-live",
+      "base": "fd40f888-6cec-48bc-b9e8-22bce33b182b",
+      "candidate": "637b0bab-7fff-4a83-a98c-524373e4837e",
+      "hashes": {
+        "preparer.mjs": "66cf9ab4668f8bd5db1ab4cc1eccaf0c332d11684a259b13c7f4f5d0f17b1938"
+      },
+      "schedules": [],
+      "verifiedAt": "2026-11-05T12:23:20.999Z"
+    },
+    {
+      "name": "shift-programme-member-20261023",
+      "base": "17bb6c7a-8f46-45f5-9ce3-e81cd7946adf",
+      "candidate": "819fc42f-1a75-4689-b84b-370c19d6bbb5",
+      "hashes": {
+        "v7-release-20261103/programme.mjs": "bb2e85c72708e31b08c54a55be24fb608797b465b357fce9888bf49a8e4ced6c"
+      },
+      "schedules": [
+        {
+          "cron": "0,15,30,45 0-5 * * *",
+          "created_on": "2026-11-04T00:34:26.630649Z",
+          "modified_on": "2026-11-04T00:34:26.630649Z"
+        }
+      ],
+      "verifiedAt": "2026-11-05T12:23:30.660Z"
+    }
+  ],
+  "source": "88ef635c38ada106c4ce9fba3c84db023f9d855f",
+  "coreBefore": [
+    {
+      "version_id": "36d0c04b-bb34-4c05-81ac-27e20a958756",
+      "percentage": 100
+    }
+  ],
+  "preparedAt": "2026-11-05T12:23:30.661Z",
+  "liveAt": "2026-11-05T12:25:53.412Z",
+  "priorAttempts": [
+    {
+      "failure": {
+        "at": "2026-11-05T12:24:01.993Z",
+        "message": "Meal preparation failed HTTP 404"
+      },
+      "rolledBackAt": "2026-11-05T12:24:09.274Z"
+    }
+  ],
+  "preparation": {
+    "eligible": 223,
+    "prepared": 223,
+    "skipped": 0,
+    "conflicts": 0
+  },
+  "preparedMembersAt": "2026-11-05T12:27:54.450Z",
+  "coreAfter": [
+    {
+      "version_id": "36d0c04b-bb34-4c05-81ac-27e20a958756",
+      "percentage": 100
+    }
+  ],
+  "verifiedAt": "2026-11-05T12:28:12.553Z"
+}

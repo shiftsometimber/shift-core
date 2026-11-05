@@ -1,0 +1,46 @@
+✔ actual SQL CAS awards once across twenty overlapping saves, a second session, refresh and retries (43.600208ms)
+✔ Done cannot write actual-food totals; feedback stays optional and changes a future offer with a reason (4.240667ms)
+✔ 30th milestone is one durable database award across devices; privacy preference needs no new tracking consent (12.660917ms)
+✔ account ownership, Origin, paused tracking and a consent withdrawal at the SQL write fail closed (5.522833ms)
+✔ initial preparation preserves existing logs, milestone, words and unrelated settings (20.991791ms)
+✔ withdrawn tracking cannot initialise or overwrite member records (1.667708ms)
+✔ exact UK minute boundaries including late-night tea (14.588333ms)
+✔ clock uses London summer time and daylight-saving transitions (0.37875ms)
+✔ all three periods use canonical recipes and three same-source swaps within 5g, for ten starting actions (12.854083ms)
+✔ screen reads use only prepared offers; chosen/completed action remains pinned across boundaries (2.062417ms)
+✔ old data, non-food fallback and mismatched preferences stay safe (0.814792ms)
+✔ one log per London calendar day survives swaps, retries, reloads and another device (22.713875ms)
+✔ Done saves only the action; food totals have no write path (0.167375ms)
+✔ optional feedback and dismissal keep the log; negative feedback explains tomorrow’s change (0.689833ms)
+✔ weight defaults on, off chooses strength, and re-enabling leads with weight (1.088959ms)
+✔ a hard week never clears the pile, and Monday resets only the derived weekly count (0.337667ms)
+✔ 30th milestone is awarded once, preserved across retries; sharing cannot expose private fields (2.890084ms)
+✔ London midnight and daylight-saving boundaries use the existing account calendar (0.286375ms)
+✔ ten original actions have three swaps within 5g using unrounded source data (1.1705ms)
+✔ different database versions, missing values and unverified recipes cannot pass as matched swaps (0.110666ms)
+✔ own saved plan targets are used, and absent or zero targets stay unknown (0.599167ms)
+✔ UK FoP exact boundaries, food/drink differences and large-portion overrides (0.113458ms)
+✔ portions preserve source, leave missing nutrients unknown, and actual-eaten totals ignore planned meals (0.378667ms)
+✔ preparation stops once the ranked original has three safe sourced alternatives (19.212792ms)
+✔ nightly observations retain recorded dates and never infer why weight changed (18.364542ms)
+✔ overnight job prepares once, does not change the pile, and never runs from a screen GET (2.7685ms)
+✔ hidden weight is suppressed when reading an older prepared insight (1.345625ms)
+✔ existing health erasure transaction also clears only the requesting account V7 stores (4.073834ms)
+✔ a failed original erasure rolls back V7 additions in the same transaction (0.921ms)
+✔ A stale fingerprint resolves to this release cache, never the old global cache (14.1535ms)
+✔ A current cache miss fetches the canonical release and caches those exact bytes (1.5065ms)
+✔ Offline entertainment can use its previous saved module without pinning it to the new release (0.654833ms)
+✔ Native/clinical assets never fall back to older code, private APIs remain network-only (0.650292ms)
+✔ Current app registers one worker and performs no extra startup update request (0.508792ms)
+✔ A stale app offers an explicit update without navigating or changing its form (0.502584ms)
+✔ Update prompt is deferred during Shop, an active game or a modal (1.308375ms)
+✔ A pending update cannot navigate after sign-out (0.341958ms)
+✔ Resume update checks are throttled and do not run while hidden (0.361084ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 38
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 346.852917

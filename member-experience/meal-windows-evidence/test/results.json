@@ -1,0 +1,247 @@
+{
+  "at": "2026-11-05T12:21:44.990Z",
+  "synthetic": "v7-choose@example.invalid",
+  "physical": false,
+  "engines": [
+    {
+      "name": "chromium",
+      "checks": [
+        {
+          "id": "Shop is unchanged",
+          "pass": true
+        },
+        {
+          "id": "Actual preparation RPC succeeds",
+          "pass": true
+        },
+        {
+          "id": "Owned synthetic account",
+          "pass": true
+        },
+        {
+          "id": "Three prepared meal periods in snapshot",
+          "pass": true
+        },
+        {
+          "id": "02:59 shows tea",
+          "pass": true,
+          "detail": "MAKE TEA: CHICKEN WITH ROASTED POTATOES AND VEGETABLES"
+        },
+        {
+          "id": "03:00 changes to breakfast without reload",
+          "pass": true
+        },
+        {
+          "id": "Breakfast food entry opens with Breakfast selected",
+          "pass": true
+        },
+        {
+          "id": "11:00 still breakfast",
+          "pass": true
+        },
+        {
+          "id": "Resuming the app applies the current prepared meal",
+          "pass": true
+        },
+        {
+          "id": "11:01 changes to lunch",
+          "pass": true
+        },
+        {
+          "id": "Today and Grub share the same lunch",
+          "pass": true,
+          "detail": "CHICKEN SALAD WRAP"
+        },
+        {
+          "id": "15:00 Grub still shows lunch",
+          "pass": true
+        },
+        {
+          "id": "15:01 Grub changes to tea",
+          "pass": true
+        },
+        {
+          "id": "Clock changes and visited tab use no extra API requests",
+          "pass": true,
+          "detail": {
+            "requests": []
+          }
+        },
+        {
+          "id": "Shared frame never remounts",
+          "pass": true
+        },
+        {
+          "id": "breakfast: three safe sourced swaps",
+          "pass": true
+        },
+        {
+          "id": "lunch: three safe sourced swaps",
+          "pass": true
+        },
+        {
+          "id": "tea: three safe sourced swaps",
+          "pass": true
+        },
+        {
+          "id": "Swap shows three prepared alternatives",
+          "pass": true
+        },
+        {
+          "id": "Pick saves without adding food or a pile log",
+          "pass": true
+        },
+        {
+          "id": "Picked meal is not replaced by clock",
+          "pass": true
+        },
+        {
+          "id": "Second device completion accepted",
+          "pass": true
+        },
+        {
+          "id": "Two devices and Done award exactly one pile log",
+          "pass": true,
+          "detail": {
+            "before": 12,
+            "after": 13
+          }
+        },
+        {
+          "id": "Done and negative feedback do not add food",
+          "pass": true
+        },
+        {
+          "id": "Completed action stays pinned",
+          "pass": true
+        },
+        {
+          "id": "No browser errors",
+          "pass": true,
+          "detail": []
+        }
+      ],
+      "errors": []
+    },
+    {
+      "name": "webkit",
+      "checks": [
+        {
+          "id": "Shop is unchanged",
+          "pass": true
+        },
+        {
+          "id": "Actual preparation RPC succeeds",
+          "pass": true
+        },
+        {
+          "id": "Owned synthetic account",
+          "pass": true
+        },
+        {
+          "id": "Three prepared meal periods in snapshot",
+          "pass": true
+        },
+        {
+          "id": "02:59 shows tea",
+          "pass": true,
+          "detail": "MAKE TEA: CHICKEN WITH ROASTED POTATOES AND VEGETABLES"
+        },
+        {
+          "id": "03:00 changes to breakfast without reload",
+          "pass": true
+        },
+        {
+          "id": "Breakfast food entry opens with Breakfast selected",
+          "pass": true
+        },
+        {
+          "id": "11:00 still breakfast",
+          "pass": true
+        },
+        {
+          "id": "Resuming the app applies the current prepared meal",
+          "pass": true
+        },
+        {
+          "id": "11:01 changes to lunch",
+          "pass": true
+        },
+        {
+          "id": "Today and Grub share the same lunch",
+          "pass": true,
+          "detail": "CHICKEN SALAD WRAP"
+        },
+        {
+          "id": "15:00 Grub still shows lunch",
+          "pass": true
+        },
+        {
+          "id": "15:01 Grub changes to tea",
+          "pass": true
+        },
+        {
+          "id": "Clock changes and visited tab use no extra API requests",
+          "pass": true,
+          "detail": {
+            "requests": []
+          }
+        },
+        {
+          "id": "Shared frame never remounts",
+          "pass": true
+        },
+        {
+          "id": "breakfast: three safe sourced swaps",
+          "pass": true
+        },
+        {
+          "id": "lunch: three safe sourced swaps",
+          "pass": true
+        },
+        {
+          "id": "tea: three safe sourced swaps",
+          "pass": true
+        },
+        {
+          "id": "Swap shows three prepared alternatives",
+          "pass": true
+        },
+        {
+          "id": "Pick saves without adding food or a pile log",
+          "pass": true
+        },
+        {
+          "id": "Picked meal is not replaced by clock",
+          "pass": true
+        },
+        {
+          "id": "Second device completion accepted",
+          "pass": true
+        },
+        {
+          "id": "Two devices and Done award exactly one pile log",
+          "pass": true,
+          "detail": {
+            "before": 12,
+            "after": 13
+          }
+        },
+        {
+          "id": "Done and negative feedback do not add food",
+          "pass": true
+        },
+        {
+          "id": "Completed action stays pinned",
+          "pass": true
+        },
+        {
+          "id": "No browser errors",
+          "pass": true,
+          "detail": []
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

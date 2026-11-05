@@ -1,0 +1,26 @@
+{
+  "at": "2026-11-05T12:15:40.783Z",
+  "synthetic": "v7-choose@example.invalid",
+  "physical": false,
+  "engines": [
+    {
+      "name": "chromium",
+      "checks": [],
+      "errors": [
+        "Ke is not defined",
+        "Ke is not defined",
+        "Ke is not defined",
+        "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#mtShopMain .mt-shop-category').first() to be visible\u001b[22m\n\n    at /private/tmp/my-timber-current-release-20261103/member-experience/tools/meal-windows-proof.mjs:15:120"
+      ]
+    },
+    {
+      "name": "webkit",
+      "checks": [],
+      "errors": [
+        "ReferenceError: Can't find variable: Ke",
+        "Can't find variable: Ke",
+        "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#mtShopMain .mt-shop-category').first() to be visible\u001b[22m\n\n    at /private/tmp/my-timber-current-release-20261103/member-experience/tools/meal-windows-proof.mjs:15:120"
+      ]
+    }
+  ]
+}

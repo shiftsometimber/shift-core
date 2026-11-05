@@ -1,0 +1,12 @@
+{
+  "at": "2026-11-05T12:14:32.766Z",
+  "synthetic": "v7-live-proof@example.invalid",
+  "physical": false,
+  "engines": [
+    {
+      "name": "chromium",
+      "checks": [],
+      "errors": []
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "at": "2026-11-05T12:29:31.364Z",
+  "mode": "after",
+  "physical": false,
+  "profile": {
+    "viewport": [
+      390,
+      844
+    ],
+    "latencyMs": 150,
+    "downloadBytesPerSecond": 200000,
+    "uploadBytesPerSecond": 96000,
+    "cpuSlowdown": 4
+  },
+  "samples": [
+    {
+      "n": 0,
+      "freshToday": 941.8000000715256,
+      "warmSwitch": 21.799999952316284
+    },
+    {
+      "n": 1,
+      "freshToday": 1301.3000000715256,
+      "warmSwitch": 19.600000023841858
+    },
+    {
+      "n": 2,
+      "freshToday": 1256.1999999284744,
+      "warmSwitch": 23.200000047683716
+    },
+    {
+      "n": 3,
+      "freshToday": 1492.5,
+      "warmSwitch": 19.600000023841858
+    },
+    {
+      "n": 4,
+      "freshToday": 1301.1000000238419,
+      "warmSwitch": 21.5
+    },
+    {
+      "n": 5,
+      "freshToday": 828.0999999046326,
+      "warmSwitch": 20.5
+    },
+    {
+      "n": 6,
+      "freshToday": 1390.5,
+      "warmSwitch": 22.5
+    },
+    {
+      "n": 7,
+      "freshToday": 986.7000000476837,
+      "warmSwitch": 21.700000047683716
+    },
+    {
+      "n": 8,
+      "freshToday": 1376.2000000476837,
+      "warmSwitch": 20.799999952316284
+    },
+    {
+      "n": 9,
+      "freshToday": 1414.6000000238419,
+      "warmSwitch": 21.299999952316284
+    },
+    {
+      "n": 10,
+      "freshToday": 1088.5,
+      "warmSwitch": 22.200000047683716
+    },
+    {
+      "n": 11,
+      "freshToday": 1272.2000000476837,
+      "warmSwitch": 22.299999952316284
+    },
+    {
+      "n": 12,
+      "freshToday": 1250,
+      "warmSwitch": 22.5
+    },
+    {
+      "n": 13,
+      "freshToday": 1328.1000000238419,
+      "warmSwitch": 22.300000071525574
+    },
+    {
+      "n": 14,
+      "freshToday": 922.2999999523163,
+      "warmSwitch": 22.899999976158142
+    },
+    {
+      "n": 15,
+      "freshToday": 939.5,
+      "warmSwitch": 23.600000023841858
+    },
+    {
+      "n": 16,
+      "freshToday": 1029.5,
+      "warmSwitch": 18.5
+    },
+    {
+      "n": 17,
+      "freshToday": 1011.5,
+      "warmSwitch": 21.899999976158142
+    },
+    {
+      "n": 18,
+      "freshToday": 1210.7999999523163,
+      "warmSwitch": 22.5
+    },
+    {
+      "n": 19,
+      "freshToday": 1243.5999999046326,
+      "warmSwitch": 22.100000023841858
+    }
+  ],
+  "errors": [],
+  "summary": {
+    "freshToday": {
+      "n": 20,
+      "medianMs": 1250,
+      "p95Ms": 1415
+    },
+    "warmSwitch": {
+      "n": 20,
+      "medianMs": 22,
+      "p95Ms": 23
+    }
+  }
+}
