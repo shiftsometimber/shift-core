@@ -75,7 +75,7 @@ export function nativeBrowser(){
    const services={esc,icon,state:()=>data,request,status,sheet:(...args)=>daily.sheet(...args),sheetRoot:()=>daily.sheetRoot(),close:()=>daily.close(),save:(...args)=>daily.save(...args),update:patch=>{if(!data)return;Object.assign(data,patch);if(patch.nutritionDay)data.v7.proteinG=patch.nutritionDay.proteinG;daily.accept(data.v7);router.refresh();persist();}};
    welcome=makeWelcome({state:()=>data,icon,esc,ready,request,readAssessment:async options=>{const r=await refresh('/v1/my-timber/assessment-draft'+(options==='history'?'/history-options':options?'/options':''));const value=await r.json();if(!r.ok)throw Error(value.message||'Your saved health questions could not load.');return value;},lookupGp:async query=>{const r=await refresh('/v1/member/details/gp-search?q='+encodeURIComponent(query));const value=await r.json();if(!r.ok)throw Error(value.message||'GP search could not load.');return value;},clinicalContext:async()=>{const r=await refresh('/v1/commerce/medicine-clinical-context');if(!r.ok)throw Error('Clinical service unavailable');return r.json();}});grub=makeGrub(services);fit=makeFit(services);crew=makeCrew(services);router=makeShellRouter({welcome,startPersonalisation,root:main,esc,icon,crew,startArcade,startUtility:(page,node)=>makeUtility({root:node,page,ready,account:()=>owner,clearAuth:clear,weightVisible:()=>data.v7.preferences.showWeight,logout:()=>request('/v1/auth/logout',{})}),state:()=>data,ready,nativeMarkup,bindDaily:n=>daily.bind(n),save:(...args)=>daily.save(...args),privacyChanged,persist,legacy,startLegacy,shopMarkup:SHOP_MARKUP,startBasket,startJourney:()=>startJourney(),startSupport:()=>startSupport()});
   }
-  daily.accept(data.v7);
+  data.v7=mealView(data.v7);daily.accept(data.v7);
   const pendingDestination=window.__MT_PENDING_ROUTE;delete window.__MT_PENDING_ROUTE;window.__MT_NAV_READY=true;let destination=pendingDestination||location.href;try{const key='mt:welcome-seen:'+owner,seen=localStorage.getItem(key);if(!pendingDestination&&!seen&&!data.setupComplete&&data.v7.count===0&&router.pageFor(location.href)==='today'&&!new URL(location.href).search){destination='/member/dashboard/welcome';history.replaceState({},'',destination);}localStorage.setItem(key,'1');}catch{}
   router.navigate(destination,!!pendingDestination);offlineNote();persist();
  }
@@ -92,8 +92,18 @@ export function nativeBrowser(){
  async function quickRecord(key){if(key==='Pint'||key==='Takeaway'){if(await daily.save('v7-quick',{kind:key==='Pint'?'pint':'takeaway'}))daily.sheet('Quick log saved','<h2>'+key.toUpperCase()+' RECORDED</h2><p>Helps Timber learn. Doesn’t add a pile log.</p><p>Your food totals are unchanged. Record the food or drink and portion you had to update them.</p><a href="/member/grub#record-eaten">Record what you ate</a>');return;}if(key==='Weigh in'){daily.sheet('Record your weight','<h2>WEIGH IN</h2><form data-native-weight><label>Weight (kg)<input type="number" name="weight" step="0.1" min="20" max="400" required></label><button>Save reading</button></form><p>This saves your reading. It doesn’t add a pile log.</p>');daily.sheetRoot().querySelector('form').onsubmit=async e=>{e.preventDefault();try{await request('/v1/progress',{weightKg:Number(new FormData(e.target).get('weight')),recordedOn:data.v7.today,source:'my_timber_quick_log'});daily.close();status('Reading saved. Your pile is unchanged.');}catch(error){status(error.message);}};return;}
   const gym=key==='Gym done';daily.sheet(gym?'Record activity':'Record a rough night','<h2>'+(gym?'GYM DONE':'ROUGH NIGHT')+'</h2><p>This records a private '+(gym?'activity':'sleep note')+'. It doesn’t add a pile log.</p><button type="button" data-native-quick>Record '+(gym?'gym activity':'rough night')+'</button>');daily.sheetRoot().querySelector('[data-native-quick]').onclick=async()=>{if(await daily.save('v7-quick',{kind:gym?'gym':'sleep'}))daily.close();};
  }
+ function refreshMealWindow(){
+  if(!ready()||document.hidden||!data?.v7||document.querySelector('dialog[open],#mtShopMain form,#mtShopMain details[open]')||daily.isBusy())return;
+  const next=mealView(data.v7);
+  if(next===data.v7)return;
+  data.v7=next;daily.accept(next);router.invalidate('today');router.invalidate('grub');
+  if(['today','grub'].includes(router.pageFor(location.href)))router.refresh();
+  persist();
+ }
+ setInterval(refreshMealWindow,15000);
+ document.addEventListener('mt:screen-activated',refreshMealWindow);
  document.addEventListener('mt:headline-privacy',()=>router.refresh());
- document.addEventListener('mt:screen-activated',e=>{if(e.detail?.page==='grub'&&location.hash==='#record-eaten')grub.quick('dinner');});
+ document.addEventListener('mt:screen-activated',e=>{if(e.detail?.page==='grub'&&location.hash==='#record-eaten')grub.quick(data.v7.action?.meal||'dinner');});
  document.addEventListener('click',async e=>{
   const link=e.target.closest('a[href]');if(link&&router&&ready()&&!e.defaultPrevented&&e.button===0&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey&&!e.altKey&&!link.download&&link.target!=='_blank'){
    const url=new URL(link.href,location.origin);if(url.origin===location.origin&&router.pageFor(url)){e.preventDefault();daily.close();await router.navigate(url.href);return;}}
@@ -110,7 +120,7 @@ export function nativeBrowser(){
    const r=await fetch('/v1/my-timber/boot',{credentials:'same-origin',cache:'no-store',signal:AbortSignal.timeout(15000)});
    if(g!==generation||!data)return;if(r.status===401){clear();return;}if(!r.ok)throw Error('Your account could not be checked. Reopen My Timber.');const fresh=await r.json();
    if(String(fresh.accountId)!==was){clear();return;}releaseUpdates.server(fresh.release);
-   if(JSON.stringify(data.treatment)!==JSON.stringify(fresh.treatment)){data.treatment=fresh.treatment;router.invalidate('treatment-status');router.refresh();}data.setupComplete=fresh.setupComplete;router.invalidate('welcome');data.expiresAt=fresh.expiresAt;arcade?.accept(fresh.arcade);identityPromise=Promise.resolve({user:{id:data.accountId},expiresAt:data.expiresAt});
+   if(JSON.stringify(data.treatment)!==JSON.stringify(fresh.treatment)){data.treatment=fresh.treatment;router.invalidate('treatment-status');router.refresh();}if(fresh.v7.preferences.showWeight===data.v7.preferences.showWeight){const next=mealView(fresh.v7),changed=data.v7.action?.id!==next.action?.id||data.v7.mealPeriod!==next.mealPeriod||data.v7.today!==next.today||data.v7.completedToday!==next.completedToday;data.v7=next;data.progress=fresh.progress;data.nutritionDay=fresh.nutritionDay;data.foodEntries=fresh.foodEntries;daily.accept(next);if(changed){router.invalidate('today');router.invalidate('grub');if(['today','grub'].includes(router.pageFor(location.href))&&!main.querySelector('form,details[open]'))router.refresh();}}data.setupComplete=fresh.setupComplete;router.invalidate('welcome');data.expiresAt=fresh.expiresAt;arcade?.accept(fresh.arcade);identityPromise=Promise.resolve({user:{id:data.accountId},expiresAt:data.expiresAt});
    if(fresh.v7.preferences.showWeight!==data.v7.preferences.showWeight){data=fresh;daily.accept(data.v7);await privacyChanged();router.refresh();}
    main.hidden=false;persist();
   }catch{if(g===generation&&data){main.replaceChildren();const p=document.createElement('p');p.textContent='Your account could not be checked. Reopen My Timber to continue.';const a=document.createElement('a');a.href='/member/dashboard';a.textContent='Reopen My Timber';main.append(p,a);main.hidden=false;}}finally{visitCheck=null;}})();return visitCheck;

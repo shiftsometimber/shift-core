@@ -4,7 +4,7 @@ import {WorkerEntrypoint} from 'cloudflare:workers';
 import original from '__MY_TIMBER_CURRENT_SERVING__';
 export * from '__MY_TIMBER_CURRENT_SERVING__';
 import {v7LoadGrubCatalogue as loadGrubCatalogue,v7EmptyGrub as emptyGrub,v7UsableCatalogue as usableCatalogue,v7RecommendationFor as recommendationFor,v7GrubMemberContext as grubMemberContext} from '__MY_TIMBER_CURRENT_HELPERS__';
-import {v7Offer} from './v7-context.mjs';
+import {prepareMealOffers} from './v7-context.mjs';
 export default {...original,fetch(request,env,ctx){
  const h=new Headers(request.headers),release=h.get('X-My-Timber-Legacy-Release');h.delete('X-My-Timber-Legacy-Release');
  return original.fetch(new Request(request,{headers:h}),release===null?env:{...env,MY_TIMBER_V6_RELEASE_ENABLED:release},ctx);
@@ -17,8 +17,8 @@ export class V7Offers extends WorkerEntrypoint {
   const consent=await this.env.DB.prepare("SELECT granted FROM consents WHERE user_id=? AND consent_type='my_shift_health_tracking' ORDER BY id DESC LIMIT 1").bind(userId).first();
   const prefs=JSON.parse((await this.env.DB.prepare('SELECT preferences FROM member_state WHERE user_id=?').bind(userId).first())?.preferences||'{}');
   if(Number(consent?.granted)!==1||prefs.myJourney?.setup?.paused===true)throw Error('Tracking is off or paused');
-  const recipes=usableCatalogue(await loadGrubCatalogue(this.env.DB)),offer=v7Offer(prefs,recipes,at,{emptyGrub,recommendationFor,grubMemberContext});
-  return {on:offer.today||new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London'}).format(new Date(at)),grubRevision:prefs.grubV2?.revision||0,foodChoices:JSON.stringify(prefs.food||{}),action:offer.action,alternatives:offer.alternatives,choices:[offer.action,...offer.alternatives]};
+  const recipes=usableCatalogue(await loadGrubCatalogue(this.env.DB));
+  return prepareMealOffers(prefs,recipes,at,{emptyGrub,recommendationFor,grubMemberContext});
  }
 }
 

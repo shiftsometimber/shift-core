@@ -31,13 +31,13 @@ export function v7Browser(services){
   }catch(e){if(generation===services.generation())status(e.message||'That save could not be confirmed. Your pile has not been guessed.');return null;}
   finally{busy=false;}
  }
- function title(a){return a.kind==='food'&&!a.pending?'Make tonight’s dinner: '+a.name.split(' — ')[0]:a.name;}
+ function title(a){return a.kind==='food'&&!a.pending?'Make '+({breakfast:'breakfast',lunch:'lunch',tea:'tea'}[a.mealPeriod]||'tonight’s dinner')+': '+a.name.split(' — ')[0]:a.name;}
  function todayMarkup(){
   if(!view)return '<p role="status">Opening your saved action…</p>';
   const a=view.action,p=view.proteinG,target=view.proteinTarget;
   return '<section class="mt-v7-card mt-v7-cream" data-v7-action-card><p class="mt-v7-eyebrow">TODAY’S ONE THING</p><h2>'+text(title(a))+'</h2>'+
    (target?'<p><strong>Your protein target: '+text(target)+'g</strong> · <a href="/member/settings#food">Change</a></p>':'')+
-   (a.kind==='food'?'<p>Logged today: '+(p===null?'no amounts recorded':text(Math.round(p*10)/10)+'g')+'. '+(Number.isFinite(a.proteinG)?'This dinner contains about '+text(a.proteinG)+'g per serving.':'Amounts stay unknown until you record them.')+'</p>':'')+
+   (a.kind==='food'?'<p>Logged today: '+(p===null?'no amounts recorded':text(Math.round(p*10)/10)+'g')+'. '+(Number.isFinite(a.proteinG)?'This meal contains about '+text(a.proteinG)+'g per serving.':'Amounts stay unknown until you record them.')+'</p>':'')+
    (a.reason?'<p class="mt-v7-reason">'+text(a.reason)+'</p>':'')+
    (a.items?.length||a.steps?.length?'<details><summary>'+text(a.time||'Instructions')+' · '+text(a.label||'Recipe')+'</summary><ul>'+a.items.map(i=>'<li>'+text(i)+'</li>').join('')+'</ul><ol>'+a.steps.map(i=>'<li>'+text(i)+'</li>').join('')+'</ol>'+(a.allergenNote?'<p>'+text(a.allergenNote)+'</p>':'')+'</details>':'<p><a href="'+text(a.href)+'">'+text(a.label||'Open this step')+'</a></p>')+
    (a.kind==='food'?'<p><a href="/member/grub#record-eaten">Record what you ate</a></p>':'')+
@@ -66,9 +66,9 @@ export function v7Browser(services){
  }
  function swap(){
   if(!view||view.completedToday)return;
-  sheet('Swap your action','<p class="mt-v7-eyebrow">SWAP IT</p><h2>SAME GOAL, ANOTHER WAY</h2><p>Choose what fits today. Choosing dinner does not record it as eaten.</p>'+
+  sheet('Swap your action','<p class="mt-v7-eyebrow">SWAP IT</p><h2>SAME GOAL, ANOTHER WAY</h2><p>Choose what fits today. Choosing a meal does not record it as eaten.</p>'+
    view.alternatives.map(a=>'<article class="mt-v7-choice"><div><strong>'+text(a.name)+'</strong><p>'+text(a.time)+(Number.isFinite(a.proteinG)?' · about '+text(a.proteinG)+'g protein per serving':'')+'</p></div>'+button('Pick','pick','data-choice="'+text(a.id)+'"')+'</article>').join('')+
-   (!view.alternatives.length?'<p>No other prepared dinners are saved for today yet.</p>'+button('Prepare my alternatives','refresh')+'':'')+
+   (!view.alternatives.length?'<p>No other prepared meals are saved for this time yet.</p>'+button('Prepare my alternatives','refresh')+'':'')+
    '<div class="mt-v7-actions">'+button('Not for me','decline','data-outcome="not-fit"')+button('Didn’t get round to it today','decline','data-outcome="not-tried"')+'</div><p><a href="/member/life-back/support">None of these? Tell Timber what’s difficult</a></p>'+button('Keep the original','close'));
  }
  async function done(){
@@ -127,7 +127,7 @@ export function v7Browser(services){
    else if(key==='quick'){if(services.quickRecord)await services.quickRecord(b.dataset.quickKind);else await window.SST_QUICK_LOG?.open(b);}
   });
  }
- return {accept,clear,todayMarkup,stackMarkup,bind,save,sheet,sheetRoot:()=>modal,close};
+ return {accept,clear,isBusy:()=>busy,todayMarkup,stackMarkup,bind,save,sheet,sheetRoot:()=>modal,close};
 }
 export const v7Styles=String.raw`
 .mt-v7-card{border:1px solid #707762;border-radius:20px;background:#10120f;color:#E7E3DA;padding:18px;margin:14px 0;line-height:1.45}.mt-v7-card h2,.mt-v7-sheet h2{font-size:clamp(26px,6vw,36px);line-height:1.1;margin:12px 0;text-transform:uppercase}.mt-v7-eyebrow{font-size:12px!important;letter-spacing:.12em;font-weight:700}.mt-v7-cream{background:#E7E3DA;color:#050505}.mt-v7-cream :is(a,summary){color:#414733!important}.mt-v7-cream h2{color:#050505!important}.mt-v7-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0}.mt-v7-actions button,.mt-v7-sheet button{font:700 16px/1.25 inherit;min-height:44px;border:1px solid #707762;border-radius:12px;padding:12px;background:#151713;color:#E7E3DA}.mt-v7-cream .mt-v7-actions button{background:#050505;color:#E7E3DA}.mt-v7-cream .mt-v7-actions button+button{background:transparent;color:#050505;border:2px solid #050505}.mt-v7-card [disabled]{opacity:.65;cursor:default}.mt-v7-saved{border-top:1px solid #bcb9ad;padding-top:12px}.mt-v7-small{font-size:13px}.mt-v7-reason{color:#414733;font-weight:600}.mt-v7-why{background:#050505}.mt-v7-why a{float:right}.mt-v7-quick{display:flex;gap:6px;flex-wrap:wrap}.mt-v7-quick :is(a,button){flex:1;min-width:55px;min-height:44px;background:#151713!important;color:#E7E3DA!important;border:1px solid #414733;border-radius:12px;padding:10px 6px!important;text-align:center;font:600 13px/1.3 Arial,sans-serif;text-decoration:none}.mt-v7-pile{max-width:320px;margin:20px auto}.mt-v7-log-row{display:flex;justify-content:center;margin-top:-2px;gap:3px}.mt-v7-log{width:29px;height:29px;border:2px dashed #707762;border-radius:50%;box-sizing:border-box;display:block}.mt-v7-log.is-filled{background:#E7E3DA;border:5px solid #707762;box-shadow:6px -3px 0 #414733}.mt-v7-sheet{box-sizing:border-box;position:fixed;inset:auto 0 0;width:100%;max-width:636px;margin:auto;max-height:90dvh;overflow:auto;background:#10120f;color:#E7E3DA;border:1px solid #707762;border-radius:24px 24px 0 0;padding:24px 18px calc(24px + env(safe-area-inset-bottom));font:16px/1.45 Arial,sans-serif}.mt-v7-sheet::backdrop{background:#050505b8}.mt-v7-sheet a{color:#E7E3DA}.mt-v7-close{float:right}.mt-v7-choice{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid #414733;border-radius:16px;padding:14px;margin:12px 0}.mt-v7-choice p{font-size:14px;margin:6px 0}.mt-v7-feedback{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.mt-v7-sheet input{display:block;width:100%;box-sizing:border-box;min-height:44px;font:inherit;background:#050505;color:#E7E3DA;border:1px solid #707762;padding:10px}.mt-v7-sheet label{display:block;margin:14px 0}.mt-v7-share-image{display:block;width:100%;max-height:65dvh;object-fit:contain;margin:auto}.mt-v7-share{background:#050505;color:#E7E3DA;border:1px solid #707762;padding:24px}.mt-v7-sheet small{font-size:12px}.mt-support.mt-v7-host{border:0;padding:0}.mt-v7-host>details{border:1px solid #707762;border-radius:16px;padding:12px;margin:16px 0}

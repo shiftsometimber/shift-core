@@ -2,7 +2,7 @@
 // No public route, member-page render, commerce handler or clinical gate is copied.
 import {WorkerEntrypoint} from 'cloudflare:workers';
 import {initialiseV7Member} from './v7-bootstrap.mjs';
-import {v7Offer} from './v7-context.mjs';
+import {prepareMealOffers} from './v7-context.mjs';
 import {v7ApprovedFitPreview,v7FitCatalogue} from '__MY_TIMBER_CURRENT_CORE_HELPERS__';
 import {v7LoadGrubCatalogue as loadGrubCatalogue,v7EmptyGrub as emptyGrub,v7UsableCatalogue as usableCatalogue,v7RecommendationFor as recommendationFor,v7GrubMemberContext as grubMemberContext} from '__MY_TIMBER_CURRENT_PROGRAMME_HELPERS__';
 export default {fetch(){return new Response('Not found',{status:404})}};
@@ -62,12 +62,29 @@ export class V7Planner extends WorkerEntrypoint {
 export class V7Offers extends WorkerEntrypoint {
  async legacyScheduled(input){return this.env.LEGACY_JOBS?.legacyScheduled(input)||null;}
  async recipeById({id}){if(typeof id!=='string'||id.length>180)throw Error('Invalid recipe');return (await reviewedFoodCatalogue(this.env)).find(r=>r.id===id)||null;}
+ // Finite release migration of prepared suggestions only. No action, food,
+ // consent, Fit plan or pile record is changed; never called on a page GET.
+ async prepareMealWindows({userId,at}){
+  if(!Number.isSafeInteger(userId)||userId<=0||!Number.isFinite(Date.parse(at)))throw Error('Invalid prepared offer request');
+  for(let attempt=0;attempt<4;attempt++){
+   const row=await this.env.DB.prepare('SELECT preferences FROM member_state WHERE user_id=?').bind(userId).first();
+   if(!row)return {skipped:'no_saved_setup'};
+   const prefs=JSON.parse(row.preferences||'{}'),progress=prefs.lifeBack?.progress;
+   const consent=await this.env.DB.prepare("SELECT granted FROM consents WHERE user_id=? AND consent_type='my_shift_health_tracking' ORDER BY id DESC LIMIT 1").bind(userId).first();
+   if(!progress?.v7||Number(consent?.granted)!==1||prefs.myJourney?.setup?.paused===true)return {skipped:'tracking_off_or_paused'};
+   const recipes=await reviewedFoodCatalogue(this.env),offers=prepareMealOffers(prefs,recipes,at,{emptyGrub,recommendationFor,grubMemberContext}),old=progress.v7.offers;
+   if(old?.mealWindowsVersion===1&&old.on===offers.on&&old.grubRevision===offers.grubRevision&&old.foodChoices===offers.foodChoices)return {skipped:'already_prepared'};
+   const result=await this.env.DB.prepare("UPDATE member_state SET preferences=json_set(preferences,'$.lifeBack.progress.v7.offers',json(?),'$.lifeBack.progress.revision',?),updated_at=? WHERE user_id=? AND COALESCE(json_extract(preferences,'$.lifeBack.progress.revision'),0)=? AND json_extract(preferences,'$.food') IS ? AND COALESCE(json_extract(preferences,'$.grubV2.revision'),0)=? AND (SELECT granted FROM consents WHERE user_id=? AND consent_type='my_shift_health_tracking' ORDER BY id DESC LIMIT 1)=1 AND COALESCE(json_extract(preferences,'$.myJourney.setup.paused'),0)<>1").bind(JSON.stringify(offers),(progress.revision||0)+1,at,userId,progress.revision||0,prefs.food===undefined?null:JSON.stringify(prefs.food),prefs.grubV2?.revision||0,userId).run();
+   if(result.meta.changes===1)return {prepared:true};
+  }
+  return {skipped:'concurrent_change_retry_later'};
+ }
  async prepareOffers({userId,at}){
   if(!Number.isSafeInteger(userId)||userId<=0||!Number.isFinite(Date.parse(at)))throw Error('Invalid prepared offer request');
   const consent=await this.env.DB.prepare("SELECT granted FROM consents WHERE user_id=? AND consent_type='my_shift_health_tracking' ORDER BY id DESC LIMIT 1").bind(userId).first();
   const prefs=JSON.parse((await this.env.DB.prepare('SELECT preferences FROM member_state WHERE user_id=?').bind(userId).first())?.preferences||'{}');
   if(Number(consent?.granted)!==1||prefs.myJourney?.setup?.paused===true)throw Error('Tracking is off or paused');
-  const recipes=await reviewedFoodCatalogue(this.env),offer=v7Offer(prefs,recipes,at,{emptyGrub,recommendationFor,grubMemberContext});
-  return {on:offer.today||new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London'}).format(new Date(at)),grubRevision:prefs.grubV2?.revision||0,foodChoices:JSON.stringify(prefs.food||{}),action:offer.action,alternatives:offer.alternatives,choices:[offer.action,...offer.alternatives]};
+  const recipes=await reviewedFoodCatalogue(this.env);
+  return prepareMealOffers(prefs,recipes,at,{emptyGrub,recommendationFor,grubMemberContext});
  }
 }

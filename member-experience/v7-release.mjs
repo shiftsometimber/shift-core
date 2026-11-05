@@ -14,7 +14,7 @@ import {mountArcade} from './shed-arcade-browser.mjs';
 // V7 owns only the named new behaviour. The captured serving handler and all
 // its legacy routes, clinical/commerce controls and private writes stay intact.
 import{v7Write}from'./v7-api.mjs';
-import{v7Context,v7Offer}from'./v7-context.mjs';
+import{v7Context,prepareMealOffers}from'./v7-context.mjs';
 import{v7State}from'./v7-model.mjs';
 import{v7PreferencesRoutes}from'./v7-preferences.mjs';
 import{supportPlanRuntime,supportPlanStyles}from'./support-plan-client.mjs';
@@ -28,8 +28,7 @@ export function wrapV7(original,helpers){
  const prepareOffers=async(DB,prefs,at,userId)=>{
   if(helpers.prepareOffers)return helpers.prepareOffers(DB,prefs,at,userId);
   const recipes=helpers.usableCatalogue(await helpers.loadGrubCatalogue(DB));
-  const offer=v7Offer(prefs,recipes,at,helpers);
-  return {on:offer.today||new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London'}).format(new Date(at)),grubRevision:prefs.grubV2?.revision||0,foodChoices:JSON.stringify(prefs.food||{}),action:offer.action,alternatives:offer.alternatives,choices:[offer.action,...offer.alternatives]};
+  return prepareMealOffers(prefs,recipes,at,helpers);
  };
  return {...original,async fetch(request,env,ctx){
   const path=new URL(request.url).pathname;
