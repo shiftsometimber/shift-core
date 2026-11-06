@@ -3,6 +3,7 @@ import {readFile} from 'node:fs/promises';
 import test from 'node:test';
 import vm from 'node:vm';
 import {medicineCommerceRoutes} from '../medicine-commerce-v1.js';
+import {CATALOGUE_POLICY} from '../hq-catalogue-governance-v31.mjs';
 
 function assessment(overrides = {}) {
   const form = new FormData();
@@ -20,13 +21,33 @@ function assessment(overrides = {}) {
   return form;
 }
 
-async function submit(form) {
+async function submit(form,{catalogue='approved'}={}) {
   const sent = [];
+  // Intake-answer tests still run the real catalogue authority calculation.
+  // These are explicit fictional source rows, not a canBuy or approval bypass.
+  const future='2099-01-01T00:00:00Z';
   const db = {prepare(sql){return {bind(){return this},async run(){return {meta:{changes:1}}},
+    async all(){return {results:sql.includes('FROM catalogue_supply_routes')?[{
+      partner_id:'synthetic',role:'primary',readiness:'ready',stock_on_hand:10,reserved:0,
+      authority:1,availability:'available',authority_until:catalogue==='expired-supply'?'2000-01-01T00:00:00Z':future,
+      evidence_ref:'TEST-INTAKE-STOCK',version:1,org_version:1,
+      organisation:JSON.stringify({kind:'pharmacy',status:'approved',expiresAt:future}),
+    }]:[]}},
     async first(){
+      if(sql.includes('FROM catalogue_prescriber_approvals'))return catalogue==='missing-signoff'?null:{
+        id:'TEST-INTAKE-APPROVAL',product_version:1,variant_version:1,actor_id:3,org_id:'TEST-CLINIC',
+        profile_version:1,organisation_version:1,current_profile_version:1,current_org_version:1,
+        approved_at:new Date(Date.now()-60000).toISOString(),valid_until:future,
+        evidence_ref:'TEST-INTAKE-RX',policy_version:CATALOGUE_POLICY,
+        actor_status:'active',actor_role:'clinical',mfa_enabled:1,
+        professional:JSON.stringify({kind:'clinician',status:'active'}),
+        organisation:JSON.stringify({kind:'clinical',status:'approved',expiresAt:future}),
+      };
       if(sql.includes('user_sessions')) return {id:42,email:'member@example.test',email_verified:1,expires_at:'2099-01-01T00:00:00Z'};
       if(sql.includes('FROM medicine_variants')) return {
-        id:102,form:'injection',name:'Mounjaro',variant_status:'available',
+        id:102,medicine_id:1,form:'injection',name:'Mounjaro',variant_status:'available',
+        status:'available',sellable:1,availability_state:'available',catalogue_version:1,
+        product_status:'available',product_sellable:1,product_availability:'available',product_version:1,
         medicine_status:'available',variant_sellable:1,medicine_sellable:1,
         variant_partner:'synthetic',medicine_partner:'synthetic',
         variant_availability:'available',medicine_availability:'available',
@@ -46,6 +67,13 @@ async function submit(form) {
     return {status:response.status,body:await response.json(),sent};
   } finally {globalThis.fetch=originalFetch}
 }
+
+for(const catalogue of ['missing-signoff','expired-supply'])test('intake refuses '+catalogue+' before forwarding any assessment',async()=>{
+  const result=await submit(assessment(),{catalogue});
+  assert.equal(result.status,409);
+  assert.equal(result.body.error,'out_of_stock');
+  assert.equal(result.sent.length,0);
+});
 
 for (const [label,fields] of [
   ['missing previous-treatment answer',{previousTreatment:undefined}],
