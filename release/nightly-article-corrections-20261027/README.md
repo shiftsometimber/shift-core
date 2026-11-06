@@ -1,0 +1,161 @@
+# Nightly article correction handover — 27 October 2026
+
+## Completed and verified
+
+Article ID 44, `what-to-eat-on-mounjaro`, retained its original publication time and BabyLoveGrowth provenance. A guarded D1 update changed only the service-availability paragraph, replacing wording that could imply active prescribing partners with:
+
+> SHIFT does not currently provide or book prescribing.
+
+The update accepted only the exact reviewed before-body SHA-256 and changed exactly one published row. Production verification passed in GitHub Actions run 40605366408. See `live-proof.json`.
+
+## Exact qualified-review packet
+
+No clinical wording was changed automatically.
+
+Proposed replacement for the existing combined side-effect sentence:
+
+> Seek urgent medical help if you develop severe, persistent abdominal pain, especially if it spreads to your back or occurs with nausea or vomiting, as this may be pancreatitis. If you cannot keep fluids down, contact your prescriber, GP or NHS 111 promptly because dehydration can become serious.
+
+Required owner: a qualified clinical reviewer. Pass: approve or amend this exact wording against the current MHRA GLP-1 pancreatitis warning and the current Mounjaro patient leaflet, then use the guarded article repair route with the live body hash.
+
+## Testosterone ownership
+
+Article ID 45, `testosterone-blood-test-timing`, overlaps `/shift-health/testosterone-blood-tests` on timing, fasting, preparation, results and follow-up. No automatic rewrite, redirect or clinical claim was made.
+
+Recommended resolution: keep `/shift-health/testosterone-blood-tests` as the canonical preparation/timing owner. Consolidate useful material there and redirect the new article, or refocus the article exclusively on the post-result appointment workflow. Any added 9–11am or fasting statement requires qualified review against the applicable current UK guidance.
+
+## Discovery
+
+The Mounjaro article was in the sitemap but absent from the sampled Explore Knowledge listing and lacked a contextual link from `/mounjaro`. This remains a publishing/runtime follow-up after the clinical safety wording is approved; do not promote the article more widely before that correction.
+
+## 3 November 2026 — Wegovy correction and contributor-route follow-through
+
+Status: prepared and fixture-tested; not merged, deployed or production-verified. Matt instructed “Action” and then “Nd approved” in this chat. The release manager retains merge and publication control. No unseen article, clinical edit, new workflow, email or runtime release is authorised by this packet.
+
+### Current public evidence
+
+A fresh neutral public HTTP read on 3 November still returned the misleading partner-service sentence, the “We hear ... lots of men” assertion, the “Most men start here” assertion, and a Matt-signed blockquote under the SHIFT Team byline on https://shiftsometimber.co.uk/articles/wegovy-injection-sites. The production source header remains babylovegrowth. Delivered HTML SHA256: 3a418b2def78c8981a62e265fbf142a7058c084c77cc7996fbf4aec3f436975e. This is an HTML observation hash, NOT the database body hash and must not be used as the mutation guard.
+
+The older plateau-in-men article also still contains a present-tense partner-prescribing statement. No broader repair or consolidation is claimed in this packet.
+
+### Exact bounded copy
+
+On /articles/wegovy-injection-sites only:
+
+1. Replace “Most men start here because it is easy to see and reach.” with “The stomach can be easy to see and reach.”
+2. Replace “We hear the same worry from lots of men: am I doing this right?” with “A practical question is: am I doing this right?”
+3. Replace the sentence beginning “Clinical assessment, prescribing and dispensing are handled by appropriately regulated partners” with:
+   > SHIFT does not currently provide or book prescribing. We offer general information and practical support before, during and after treatment, including if you started somewhere else. Treatment questions go to your own prescriber.
+4. Remove the standalone Matt O’Brien signature in that blockquote. Retain the organisation byline; do not invent a personal author, first-hand experience or clinical reviewer.
+
+Keep all other article text, citations, title, canonical owner, metadata, source receipt and original 2026-11-02T05:02:38.522Z publication timestamp. Update the modified timestamp only when this substantive change actually happens.
+
+### Preparation and tests
+
+Files: article-correction-20261103.mjs, article-correction-20261103.test.mjs, readonly-capture-20261103.sql in this directory. The module prepares an optimistic-concurrency update but performs no database or network writes. It requires the actual captured body hash and refuses unexpected article, byline, signature, changed/missing/duplicated wording and stale source. The update additionally matches original body, author, publication and modified timestamps and requires exactly one changed row.
+
+Seven Node 24 built-in fixture tests passed on 3 November. They cover scope/date preservation, stale body refusal, wrong owner/byline, missing/duplicated wording, repeat-apply refusal, unexpected signature and impossible modified date. These tests do not constitute an authenticated live-row dry run or production verification.
+
+### Existing route and missing evidence
+
+Current main source 68219826b3126c027e2186c5fa0c326a36e597b8 was confirmed after reading its tree snapshot 68219826b3126c027e2186c5fa0c326a36e597b8. daily-content/publication.mjs explicitly distinguishes website-owned shift-editorial releases from contributor receipt source_id shift-contributor. Do not relabel an editorial release to claim contributor delivery.
+
+The public 2 November check established one BabyLoveGrowth publication and no verified contributor publication by its cutoff. No original 2 November contributor job/receipt is accessible through the read-only GitHub repository. Absence of such a receipt is not a proved job error. The prepared SELECTs capture only article records and publication metadata, then discover existing journal names without creating tables or triggering a job. Retrieve the actual job outcome before retrying, and never backdate a catch-up article.
+
+### Release-manager handover and access boundary
+
+Repository: shiftsometimber/shift-core. Existing isolated branch: fix/nightly-article-review-20261027; existing PR #1443. Preparation extends this retained record and does not merge its old branch wholesale into current main. Only the three new preparation files and this appended record concern this follow-through; no shared runtime source was edited. The prior verified October correction remains preserved.
+
+The retained Mac directory /Users/shiftsometimberltd/SST/builds/apple-completion-20261024/journey-shop-release-20261031 is no longer a Git checkout; the retained source-repository directory contains no checkout. No repository clone, dependency install, private-member inspection or credential retrieval was attempted. No production mutation or deployment was started here; there is no deployment job ID to report.
+
+Next action for the existing release manager: execute readonly-capture-20261103.sql through the retained authenticated D1 route, inspect the actual raw row and before-body hash, run prepareCorrection against that row, retain its exact before/after plus rollback, then publish only this approved bounded correction through the existing article route. Verify final content, preserved datePublished/provenance, substantive dateModified, canonical, HTML/header indexing, links and security headers. Capture the contributor job/receipt independently and carry forward only approved copy. Do not restart a genuinely progressing release or repeat successful unrelated checks.
+
+### 3 November 2026, 14:07 GMT — execution/access recheck
+
+Matt repeated “Action” after the tested handover. At 14:07:32 GMT a fresh public GET returned HTTP 200, X-Shift-Article-Source babylovegrowth, oldPartnerClaimPresent=true and correctedBoundaryPresent=false. No production correction is claimed.
+
+The managed Mac command initially refused to start because another managed check held the foreground lock. No process was stopped and no limit was bypassed. The lock subsequently cleared; one bounded read-only check completed normally in 2.11 seconds with process-group cleanup. It confirmed the live state above. No new browser/profile, install or clone was created.
+
+The supported interfaces available to this worker expose GitHub preparation and Mac filesystem/process access, but no connected authenticated HQ/D1 article editor. The user’s signed-in native Mac Chrome session is not a session this worker can control through its current browser interface. No credentials, cookies or browser authentication stores were read or copied. The existing legacy snapshot workflows inspected are push-triggered, exact-historical-source jobs, not a current arbitrary query executor; none was replayed or weakened.
+
+The remaining finite operation is unchanged: the existing release manager, using its authenticated D1/HQ article route, must capture the current Wegovy row and apply the exact prepared correction with its body/date concurrency guards, retaining rollback and production evidence. No further copy approval is requested. Do not merge this historical branch wholesale or imply fixture tests are a live-row check. Contributor delivery diagnosis still requires the original job/receipt. This record is a handover, not evidence that a worker has accepted it or is running.
+
+### 3 November — approved CMS execution now running
+
+Matt's later “Finish it” instruction is being executed as a bounded article CMS repair. It does not merge PR #1443, deploy Core, change runtime configuration, publish an extra blog, send any notification or change clinical instructions.
+
+The existing authenticated GitHub/Cloudflare toolchain now owns one finite CMS operation: run 41661132346, job 126004303828, source e25d3da0cd93548ac447592da69274cfb2410b0f on release/wegovy-approved-cms-20261103. It uses the existing cloudflare-production-promote concurrency group with cancel-in-progress=false. Original prepared module bytes and seven tests are copied unchanged. Before mutation it captures the raw article and exact rollback, checks current main c175ab099305c47fd70ff917e13da736dbabd870, confirms source/publishAt, and requires body/author/publication/modified timestamp match. It updates only the approved body and substantive modified date. Failed proof invokes an owned-row rollback; a newer owner's row is never overwritten.
+
+Actual outcome remains pending until the job's production verification and retained receipt pass. Do not start a competing repair or replay this mutation.
+
+### VERIFIED CLOSEOUT — 3 November 2026, 15:12 GMT
+
+The approved Wegovy correction is now published and verified. This supersedes the earlier access-blocked/pending status for this bounded correction only.
+
+Run 41661132346 completed successfully. Article ID 52 was captured, guarded and changed exactly once; publication remains 2026-11-02T05:02:38.522Z, substantive modification 2026-11-03T15:11:18.093Z. Production proof at 15:11:27.069Z passed current body, preserved organisation author, removed unverified personal signature/experience/majority claims, new prescribing boundary, canonical/indexability/schema/provenance/security. All seven fixture tests passed. See wegovy-live-proof-20261103.json; exact raw before/after and rollback artifacts are retained with the run.
+
+An independent Mac public GET at 15:12:06 GMT confirmed HTTP 200, babylovegrowth provenance, new boundary present, old partner/experience/majority assertions absent, no Matt signature in the quote, original publication date and new modification date present, and CSP/HSTS/X-Frame-Options. The managed check ended successfully with cleanup. No application runtime, main merge, homepage, analytics, private/member data or notification changed. The completed one-off mutation workflow was removed in d658be66141137fb9c15afe8bcb12edeac13d544; no new watcher/schedule remains.
+
+Authenticated public-article metadata for the whole 2 November UTC/London day returned only article ID 52, source receipt 1040441, with no contributor article/receipt in that window. This confirms no contributor publication record in the inspected journal for that day; it does not identify the external contributor job's failure reason. No catch-up article or backdated date was invented. That separate route-recovery item remains open pending the actual contributor job/receipt. Do not report that both pipelines are repaired.
+
+
+### 4 November 2026 — NHS eligibility correction and recurrence safeguard prepared
+
+Matt instructed “Act as our SEO expert and resolve” after the two-route review. The already verified Wegovy correction remains closed. Current public NHS-eligibility HTML still contains the scoped faults; it is not declared repaired.
+
+Isolated candidate: PR #1521, https://github.com/shiftsometimber/shift-core/pull/1521 ; branch prepare/nhs-eligibility-quality-20261104; exact commit b222d2a8847358377838d7b1c22ba7aa0d5d4436, based on current main 60ecf85d61848d64ab2ea5ba9037176721171131. No Mac checkout, repository clone, dependency installation, member inspection, email, deployment or new watcher was created. Public HTTP checks ran through the mandated managed helper and completed with cleanup. No active GitHub deployment was returned before candidate preparation.
+
+Approved preparation scope/current state: preserve /articles/glp-1-nhs-eligibility, original publication 2026-11-03T04:00:15.349Z and SHIFT Team organisation byline. Eighteen exact copy replacements plus removal of the standalone unverified personal signature are prepared, including specific TA875 versus TA1152 scope, the TA1026 individual continuation decision, NICE recommendation terminology, accurate service boundary and /programme destination. Full copy, complete private markup preview and evidence are in release/nightly-article-corrections-20261027/nhs-eligibility-20261104/ on that exact candidate. Source retrieval is not clinical approval.
+
+Changed runtime components: babylove/webhook.mjs; new babylove/article-review.mjs; webhook tests. This only prepares a narrow new-delivery risk hold, retaining original receipts/body in the existing draft route. No rewrite/delete or clinical approval; clean publication, auth, retries, collisions and existing editorial rows remain protected. This does NOT touch PR1520-owned dynamic-public/sitemap source or replay its release. Publication behaviour changes remain for release-manager qualification and separate release approval.
+
+Tests: 17 focused Node24/real in-memory SQLite/handler tests passed against the candidate directory layout, including concurrency and owned rollback. Current renderer/schema source checks matched all 18 visible targets and regenerated the four FAQ answers. A fixture reconstructed from delivered markup is not the authenticated DB Markdown and must never supply the mutation guard. Actual raw-row capture/dry run and real browser/production verification remain pending.
+
+Dependencies and next action: retained qualified clinical review plus Matt exact-copy sign-off, then release manager captures readonly-capture.sql through the existing authenticated CMS/D1 route; checks real id/source/body/date/author; prepares the raw-row optimistic change and preserves rollback. Publish only that approved body plus substantive modification time, and verify actual production text/FAQ/schema/canonical/source/indexability/security/images/links. Separately qualify/deploy the import safeguard using existing current-source/rollback protections. No source or main merge has been performed by this worker. No deployment job ID exists for this preparation. Record acceptance explicitly; this handover is not proof that another worker is executing.
+
+
+### Candidate CI receipt — 4 November 2026
+
+PR1521 commit b222d2a8847358377838d7b1c22ba7aa0d5d4436: BabyLoveGrowth Webhook Gate run41926653856, job126912681764 succeeded with 64 tests passing, zero failures (22:36:14 GMT). Source-only artifact13368698300 retained by the existing workflow; preview deployment job skipped because the PR is a draft. This is source/handler qualification, not a deployed gate or public-copy approval.
+
+The existing automatic master run41926653973 and route-sweep41926653836 were started by the normal PR infrastructure, not a new watcher. Last inspected child progress: integration job126912680859 completed the staged Radar commissioning and entered M03 scheduled authoritative scan; native job126912681113 completed native source/navigation checks and was preparing iOS resources; route-sweep job126912681135 was executing its whole-estate routes step. Preserve these existing jobs; do not restart successful checks or mistake them for production deployment. Their final results remain independently reviewable at the run URLs.
+
+CI status supersession: master integration run41926653973 completed SUCCESS at22:37:04GMT on exact candidate b222d2a8847358377838d7b1c22ba7aa0d5d4436. The child-step description above is its earlier progress receipt. Whole-estate run41926653836 remained in progress at the final candidate check; no full-estate pass is claimed. Preparation is complete through a tested handover; clinical/exact-copy/publication gates remain. No deployment was started.
+
+
+### Matt deployment approval — 4 November 2026, 22:42 GMT
+
+Matt explicitly instructed “Deploy” after the exact PR1521 copy/technical packet was shown. Record owner approval for unchanged candidate b222d2a8847358377838d7b1c22ba7aa0d5d4436, including its exact review-copy.md and import safeguard. This supersedes the earlier “Matt exact-copy approval pending” status for this candidate. Do not request the same owner approval again.
+
+Qualified clinical approval is separate: no qualifying clinical review receipt was found in this existing record or PR1521 review history. The corrected TA875/TA1152 eligibility and TA1026 continuation wording must retain that gate. Matt's deployment instruction is not evidence of a clinician's review. No public medical update, merge or production promotion was started.
+
+Technical state: Webhook64-test run41926653856 and Master41926653973 passed on the approved SHA. Estate41926653836/job126912681135 was still in its existing whole-estate sweep at22:41GMT; GitHub's live log download returned BlobNotFound while the job remained in progress. This is unavailable progress detail, not proof of a stall; no cancellation, retry or bypass was performed.
+
+The existing current-main Production Promote workflow also uploads the broader application. Do not trigger it just to bypass this scoped handover or manufacture a clinical approval. Release manager retains merging/deployment and current-serving-source protection. Owner approval is now satisfied; smallest remaining publication requirement is the qualified review receipt tied to the exact candidate. Capture/guard the real CMS row and owned rollback before any approved medical write, then verify actual live copy/schema/dates/provenance/security. The already completed Wegovy repair remains closed.
+
+
+### 4 November 2026 — bounded approved execution resumed
+
+Matt instructed “Get it live”. All three candidate CI runs are now confirmed successful, including whole-estate41926653836 completed22:45:16GMT. Do not restart them. PR1521 remains unmerged so its separate medical corrections retain qualified clinical review.
+
+The current worker is executing ONLY the unchanged already-approved non-clinical subset for /articles/glp-1-nhs-eligibility: service-boundary and unverified-experience replacements, Programme destination, standalone personal-signature removal. Every other body byte, including held clinical wording, is preserved. Three focused Node24/real SQLite tests pass, including source/owner/date guards, one-write and owned rollback. Current main remains60ecf85d61848d64ab2ea5ba9037176721171131. No active/queued production run was returned. The finite CMS job will use the existing cloudflare-production-promote concurrency group; no broad current-main release, notification or competing watcher. Exact before/after and rollback are uploaded before any write. Source-specific runtime safeguard is independently qualified against serving bytes before any runtime promotion; no broader application change is authorised. Actual deployment/result remains pending until a dated receipt is appended.
+
+
+### VERIFIED partial closeout — 4 November 2026, 23:12 GMT
+
+Approved non-clinical NHS article subset is published and verified in run41931768457/job126930166784, source8fb89cc25678f977256e1d49b5779a21a1a96a23 on release/approved-article-safety-20261104. Article53 retains BabyLoveGrowth provenance and original publication2026-11-03T04:00:15.349Z; substantive modified date2026-11-04T23:12:30.266Z. Three approved replacements and signature removal only. Body SHA2565dd19c0c77293601eccd140c4b006005242bcf18a16a367366245fcc2e36244f →2f45f5de8dbfdf82fddf0f3cda7e0a97beafa55717214488e0fa834572470013. Actual raw-row, optimistic apply/readback, public exact text/schema/date/source/canonical/indexability and CSP/HSTS/XFO all passed. Original artifact before13370913378/result13371233075 retained90days. The first run41931442901 correctly refused before mutation because raw root-link Markdown omitted the trailing slash present in reconstructed markup; the equivalent exact approved anchor is now guarded and tested. No clinical wording, source receipt, runtime, homepage, analytics or notification changed.
+
+Approved import safeguard qualification is complete against the actual serving worker.js SHA256db1e47b416898acef972900433ed4dc95be059b75da9842988804dad85d33a35, captured version08cebab7-1143-46a7-863e-1506ab83aadb, deploymentc48a3ce8-d1f3-4c6a-a208-c9f490dd1243. Three source/package/lease tests and13 actual compiled-handler tests pass. The scoped release preserves every unrelated bundled byte via exact inverse and every existing module/main entry/binding/assets/settings; it adds the unchanged approved review module and two approved handler insertions. No rebuild/install, broad main deployment or real vendor test notification is needed. This worker owns the finite shared-concurrency safeguard release next; actual promotion remains pending. Qualified medical review and the separate contributor original-job diagnosis remain open. New /articles/appetite-control-on-glp-1 is not silently included in this older exact-copy approval.
+
+
+### VERIFIED release closeout — 4 November 2026, 23:20 GMT
+
+The approved non-clinical article corrections AND import review safeguard are now live. This supersedes earlier pending/execution notes for these bounded changes. The remaining medicine wording has not been changed.
+
+CMS run [41931768457](https://github.com/shiftsometimber/shift-core/actions/runs/41931768457), job 126930166784, succeeded. Independent managed public verification at 23:19:43 GMT confirmed the corrected service boundary once, old service/experience claims absent, no personal signature in the quote, correct Programme destination, HTTP 200, one self-canonical, index/follow, parseable Article data, original publication and substantive modified date. /programme, /work-with-us and /shift-health/blood-tests returned HTTP 200; CSP, HSTS and X-Frame-Options were present. The managed command completed in 3.2 seconds with cleanup; no browser was started.
+
+Safeguard run [41932766838](https://github.com/shiftsometimber/shift-core/actions/runs/41932766838), job 126933564953, succeeded on release source cdd6af19231f4fb68b2b8d5eeab3211acf26b3fa. Production verification completed 23:20:10 GMT. Active shift-core version 36d0c04b-bb34-4c05-81ac-27e20a958756, deployment 9e15801e-59a9-4bd6-b8d9-13a3adcf76a7. Captured predecessor: version 08cebab7-1143-46a7-863e-1506ab83aadb, deployment c48a3ce8-d1f3-4c6a-a208-c9f490dd1243. Only worker.js received the two source-proven handler insertions and one import; the exact approved article-review module was added. All 97 other modules, current main entry, bindings, assets, settings and migration state were preserved and read back from the provider. All 13 actual compiled-handler tests and three source/package tests passed; nine protected public/anonymous documents and both unauthenticated integration boundaries were unchanged after promotion. No database, route, notification, homepage or analytics changes were made by the runtime release. No dependency installation or rebuild was needed.
+
+Exact combined evidence: [approved-safety-live-proof-20261104.json](./approved-safety-live-proof-20261104.json). Before/result artifacts are retained for 90 days: CMS 13370913378 / 13371233075; runtime 13372053911 / 13372387448. Owned rollback is available and refuses a newer deployment. The successful one-off workflow was removed in 415dec738c7f117ccc32bd9e362aeea7da742aca; no watcher or schedule was added or altered.
+
+Release-manager follow-through: PR #1521 remains unmerged. Preserve the exact approved import guard in the next coordinated application release; a broad upload from current main would otherwise omit it. Do not repeat these CMS changes or replay a successful release. Remaining medical eligibility/continuation corrections require a qualified review receipt tied to the exact copy, then a fresh raw-row plan against the now-modified body (the old full-plan preimage is superseded). No authenticated real vendor delivery was manufactured; observe the next genuine delivery before claiming unattended-cycle success. Contributor-route original job evidence and the new 4 November article's separate exact-copy/clinical corrections remain open. This closeout does not establish daily two-route delivery, indexing or SEO/AI growth.
