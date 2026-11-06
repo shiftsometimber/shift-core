@@ -9,6 +9,7 @@ import hq from './hq-ai.js';
 import {upsertKnowledge} from './knowledge-graph-v1.js';
 import {loadRadarSources,runAuthoritativeRadarScan} from './radar-authoritative-scan-v1.js';
 import {radarSocialPortal} from './radar-social-portal-v1.js';
+import {tickerControlRoute,tickerPreviewResponse,tickerFeedResponse} from './radar-ticker-control-v31.mjs';
 const j=(x,s=200)=>new Response(JSON.stringify(x),{status:s,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'}});
 const iso=()=>new Date().toISOString();
 const safe=(v,d={})=>{try{return typeof v==='string'?JSON.parse(v):v??d}catch{return d}};
@@ -25,6 +26,10 @@ export async function radarRoutes(request,env,ctx){
  await ensureRadarSchema(env.DB);
  if(p.startsWith('/v1/hq/radar')){
   const a=await hqUser(request,env,ctx);if(a.response)return a.response;
+  if(p==='/v1/hq/radar/ticker-controls')return tickerControlRoute(request,env,a.user,null);
+  const tickerControl=p.match(/^\/v1\/hq\/radar\/ticker-controls\/([1-9]\d*)$/);if(tickerControl)return tickerControlRoute(request,env,a.user,Number(tickerControl[1]));
+  if(m==='GET'&&p==='/v1/hq/radar/ticker-preview')return tickerPreviewResponse();
+  if(m==='GET'&&p==='/v1/hq/radar/ticker-feed')return tickerFeedResponse(env);
   if(m==='GET'&&p==='/v1/hq/radar/queue')return queue(env,u.searchParams.get('event'));
   if(m==='GET'&&p==='/v1/hq/radar/bulk-approve-preview')return bulkApprovePreview(env,a.user);
   if(m==='POST'&&p==='/v1/hq/radar/bulk-approve')return bulkApprove(request,env,a.user);
