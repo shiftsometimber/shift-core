@@ -25,7 +25,7 @@ export function myTimberRedirect(request) {
   if (url.hostname === 'shiftsometimber.co.uk' || url.hostname === 'www.shiftsometimber.co.uk') url.protocol = 'https:';
   return new Response(null, {status: 301, headers: {Location: url.href, 'Cache-Control': 'public, max-age=300'}});
 }
-const tickerMarkup = `<section id="shift-public-news" data-shift-news-ticker="${tickerVersion}" data-shift-ai-full-wire="${tickerVersion}" class="medicine-ticker-v138" aria-label="SHIFT Newsroom"><a class="shift-news-label" href="/shift-newsroom">SHIFT Newsroom</a><div class="shift-news-window"><div class="shift-news-track"><span class="shift-news-copy"><a href="/shift-newsroom">Read the latest published stories →</a><span aria-hidden="true"> · </span><a href="/shift-newsroom">Medicine news and evidence →</a></span></div></div></section>`;
+export const tickerMarkup = `<section id="shift-public-news" data-shift-news-ticker="${tickerVersion}" data-shift-ai-full-wire="${tickerVersion}" class="medicine-ticker-v138" aria-label="SHIFT Newsroom"><a class="shift-news-label" href="/shift-newsroom">SHIFT Newsroom</a><div class="shift-news-window"><div class="shift-news-track"><span class="shift-news-copy"><a href="/shift-newsroom">Read the latest published stories →</a><span aria-hidden="true"> · </span><a href="/shift-newsroom">Medicine news and evidence →</a></span></div></div></section>`;
 export const tickerStyles = `.medicine-ticker-v138:not([data-shift-news-ticker]){display:none!important}
 #shift-public-news{box-sizing:border-box;display:grid!important;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:16px;width:100%;max-width:100%;overflow:hidden;background:#050505!important;color:#E7E3DA!important;border-block:1px solid #707762!important;padding:10px max(18px,4vw);font:700 14px/1.45 Arial,sans-serif}
 #shift-public-news a{color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important;text-decoration:none}#shift-public-news a:hover,#shift-public-news a:focus-visible{text-decoration:underline}#shift-public-news a:focus-visible{outline:2px solid #E7E3DA;outline-offset:3px}
@@ -36,7 +36,7 @@ export const tickerStyles = `.medicine-ticker-v138:not([data-shift-news-ticker])
 #shift-public-news [hidden]{display:none!important}
 @keyframes shiftPublicNews{to{transform:translateX(-50%)}}
 @media(max-width:560px){#shift-public-news{grid-template-columns:minmax(0,1fr);gap:6px 12px}#shift-public-news .shift-news-label{grid-column:1}#shift-public-news .shift-news-window{grid-column:1/-1}}
-@media(prefers-reduced-motion:reduce){#shift-public-news .shift-news-track{animation:none!important;width:auto}#shift-public-news .shift-news-copy{white-space:normal;flex-wrap:wrap}#shift-public-news .shift-news-copy[aria-hidden]{display:none}}`;
+@media(prefers-reduced-motion:reduce){#shift-public-news .shift-news-track{animation:none!important;display:block;width:100%;max-width:100%}#shift-public-news .shift-news-copy{box-sizing:border-box;width:100%;min-width:0!important;max-width:100%;flex-shrink:1;white-space:normal;flex-wrap:wrap;padding-right:0}#shift-public-news .shift-news-copy a{min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere}#shift-public-news .shift-news-copy[aria-hidden]{display:none}}`;
 export const contrastSafetyVersion='public-contrast-20260917-r2';
 // The shared bridge can be inserted after load. Set the actual paint colour,
 // not just `color`, because reading-page styles also set text-fill explicitly.
@@ -114,11 +114,15 @@ export const tickerClient = String.raw`(function bootTicker() {
     const strip = document.getElementById('shift-public-news');
     if (!strip || strip.dataset.started) return;
     strip.dataset.started = 'true';
-    const track = strip.querySelector('.shift-news-track');
+    const track = strip.querySelector('.shift-news-track'), original = track.innerHTML;
+    let timer,observer,disposed=false;
+    const reset=()=>{track.innerHTML=original;strip.removeAttribute?.('data-ready');};
+    const schedule=body=>{if(disposed||typeof setTimeout!=='function')return;const change=Date.parse(body?.next_change_at),server=Date.parse(body?.server_now),delay=Number.isFinite(change)&&Number.isFinite(server)?Math.max(100,Math.min(30000,change-server+25)):30000;timer=setTimeout(()=>{reset();load();},delay);};
+    const load=async()=>{let body;
     try {
       const response = await fetch('/v1/radar/ticker', {credentials:'omit', cache:'no-store', signal:AbortSignal.timeout(8000)});
-      const body = await response.json();
-      if (!response.ok) return;
+      body = await response.json();
+      if (!response.ok) {reset();return;}
       const edition = !body.current && body.published_edition?.current_wire === false ? body.published_edition : null;
       const items = body.current ? body.items : edition?.items;
       if (!Array.isArray(items)) return;
@@ -144,8 +148,11 @@ export const tickerClient = String.raw`(function bootTicker() {
         const width = strip.querySelector('.shift-news-window').clientWidth;
         copy.style.minWidth = duplicate.style.minWidth = width + 'px';
       };
-      fit(); new ResizeObserver(fit).observe(strip);
-    } catch { }
+      fit();observer?.disconnect();observer=new ResizeObserver(fit);observer.observe(strip);
+    } catch {reset();} finally{schedule(body);}
+    };
+    if(typeof window!=='undefined')window.addEventListener('pagehide',()=>{disposed=true;observer?.disconnect();if(typeof clearTimeout==='function')clearTimeout(timer);},{once:true});
+    load();
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, {once:true}); else start();
 })();`;
