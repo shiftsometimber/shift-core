@@ -1,4 +1,5 @@
 import {sendTrackedCommerceEmail} from './hq-commerce-delivery.mjs';
+import {aiActionPolicy} from './hq-v3-contracts.mjs';
 import {hqMfaOriginAllowed,claimHqMfaChallenge} from './hq-mfa-readiness.mjs';
 import {passwordMeetsPolicy,PASSWORD_POLICY_MESSAGE} from './password-policy-v1.js';
 import {fastMemberLogin} from './member-login-fastpath-v1.js';
@@ -1185,7 +1186,27 @@ async function adminRoutes(request, env, path, method) {
   if(method==='POST'&&path==='/v1/hq/outbox/process'){const result=await processShiftOutbox(env,25);await hqAudit(env,hqActor,'outbox.process','communications','outbox',result);return json({ok:true,...result})}
   if(method==='GET'&&path==='/v1/hq/ai/actions'){const rows=(await env.DB.prepare(`SELECT * FROM ai_action_requests ORDER BY id DESC LIMIT 150`).all()).results||[];return json({actions:rows})}
   const actionMatch=path.match(/^\/v1\/hq\/ai\/actions\/(\d+)\/(approve|reject)$/);
-  if(method==='POST'&&actionMatch){const id=Number(actionMatch[1]),decision=actionMatch[2],b=await readJson(request);await env.DB.prepare(`UPDATE ai_action_requests SET status=?,reviewed_by=?,review_note=?,reviewed_at=? WHERE id=? AND status='pending'`).bind(decision==='approve'?'approved':'rejected',hqActor?.email||'hq',clean(b.note||'',1000),isoNow(),id).run();await hqAudit(env,hqActor,'ai.action_'+decision,'ai_action',String(id),{});return json({ok:true})}
+  if(method==='POST'&&actionMatch){
+    const id=Number(actionMatch[1]),decision=actionMatch[2],b=await readJson(request);
+    const action=await env.DB.prepare('SELECT id,action_type,status FROM ai_action_requests WHERE id=?').bind(id).first();
+    if(!action)return json({ok:false,error:'ai_action_not_found'},404);
+    const policy=aiActionPolicy(action.action_type);
+    if(decision==='approve'&&!policy.allowed){
+      try{await hqAudit(env,hqActor,'hq.ai_action_blocked','ai_action',String(id),{policy_version:policy.policy_version,reason:'dedicated_authority_required'});}catch{return json({ok:false,error:'blocked_action_audit_unavailable'},503);}
+      return json({ok:false,error:'ai_action_hard_stop',message:policy.reason,policy_version:policy.policy_version},403);
+    }
+    const status=decision==='approve'?'approved':'rejected';
+    if(action.status===status)return json({ok:true,status,execution_permitted:false});
+    if(action.status!=='pending')return json({ok:false,error:'ai_action_already_reviewed'},409);
+    const stamp=isoNow();
+    try{await env.DB.batch([
+      env.DB.prepare("UPDATE ai_action_requests SET status=?,reviewed_by=?,review_note=?,reviewed_at=? WHERE id=? AND status='pending'").bind(status,hqActor?.email||'hq',clean(b.note||'',1000),stamp,id),
+      env.DB.prepare('INSERT INTO hq_audit(hq_user_id,action,entity_type,entity_id,metadata,created_at) SELECT ?,?,?,?,?,? WHERE changes()=1').bind(hqActor?.id||null,'ai.action_'+decision,'ai_action',String(id),JSON.stringify({policy_version:policy.policy_version,execution_permitted:false}),stamp)
+    ]);}catch{return json({ok:false,error:'ai_action_review_audit_unavailable'},503);}
+    const reviewed=await env.DB.prepare('SELECT status FROM ai_action_requests WHERE id=?').bind(id).first();
+    if(reviewed?.status!==status)return json({ok:false,error:'ai_action_review_conflict'},409);
+    return json({ok:true,status,execution_permitted:false});
+  }
   if(method==='GET'&&path==='/v1/hq/launch-check')return json({checks:await launchChecks(env)});
 
 
