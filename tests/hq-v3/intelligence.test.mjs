@@ -5,7 +5,7 @@ import {hqIntelligence} from '../../hq-intelligence-signals.mjs';
 const at=new Date('2026-11-06T12:00:00.000Z');
 function fixture(){
  const sql=new DatabaseSync(':memory:');sql.exec("CREATE TABLE users(id INTEGER PRIMARY KEY,created_at TEXT);CREATE TABLE assessments(user_id INTEGER,status TEXT);CREATE TABLE member_status(lifecycle_stage TEXT,last_activity_at TEXT,created_at TEXT);CREATE TABLE hq_tasks(status TEXT,due_at TEXT);CREATE TABLE support_tickets(status TEXT,priority TEXT);CREATE TABLE orders(status TEXT);");
- const queries=[],DB={prepare(q){queries.push(q);const run=args=>({first:async()=>sql.prepare(q).get(...args)});return {...run([]),bind(...args){return run(args)}}}};
+ const queries=[],DB={prepare(q){queries.push(q);const run=args=>({first:async()=>sql.prepare(q).get(...args)});return {...run([]),bind(...args){return run(args)}}};
  return {sql,DB,queries,close:()=>sql.close()};
 }
 test('Native operational counts retain source-specific availability and confirmed zeros',async()=>{
