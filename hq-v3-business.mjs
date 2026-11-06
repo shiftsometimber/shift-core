@@ -65,9 +65,17 @@ export const METRIC_DICTIONARY=Object.freeze([
 export async function memberDemographics(DB,policy,now=new Date()){
  if(!policy?.approval_ref||!Number.isInteger(policy.minimum_cell_size)||policy.minimum_cell_size<5)return unavailable('Approved aggregate privacy policy and minimum cell size are required.','Privacy owner');
  try{
-  const rows=(await DB.prepare("SELECT u.date_of_birth FROM users u WHERE lower(u.email) LIKE '%@example.invalid' AND NOT EXISTS(SELECT 1 FROM hq_users h WHERE lower(h.email)=lower(u.email)) ORDER BY u.id LIMIT 10001").all()).results||[];
+  const rows=(await DB.prepare("SELECT u.date_of_birth FROM users u WHERE (lower(trim(u.email)) LIKE '%@example.invalid' OR lower(trim(u.email)) LIKE '%@example.test') AND NOT EXISTS(SELECT 1 FROM hq_users h WHERE lower(trim(h.email))=lower(trim(u.email))) ORDER BY u.id LIMIT 10001").all()).results||[];
   return demographicAggregates(rows,{asOf:now,minimumCellSize:policy.minimum_cell_size,policyReference:policy.approval_ref,complete:rows.length<=10000});
  }catch{return unavailable('Canonical member schema or staff exclusion source is unavailable.','Member data owner');}
+}
+export async function memberDemographicSources(DB,demographics,now=new Date()){
+ try{
+  const columns=(await DB.prepare('PRAGMA table_info(users)').all()).results||[];
+  if(!columns.length)return unavailable('The authoritative member-profile schema was not found. Map its existing service before reporting demographics.','Member data owner');
+  const names=new Set(columns.map(x=>x.name));
+  return {status:'available',partition:'TEST',observed_at:new Date(now).toISOString(),owner:'Member data owner',source:'Existing users profile schema; no clinical assessment source',fields:['date_of_birth','postcode','region','nation'].map(column=>({table:'users',column,present:names.has(column),state:names.has(column)?'field_proven':'not_present'})),age_coverage:{status:demographics?.status||'unavailable',value:typeof demographics?.coverage==='number'?demographics.coverage:null,definition:'Validated age coverage in the same privacy-protected directory snapshot; never a clinical-body backfill.'},region_mapping:{status:'unavailable',value:null,owner:'Member data owner / engineering',reason:'No approved nation/region taxonomy is connected. A postcode column alone does not establish a region.',next_action:'Map the existing member-profile postcode to an approved outward-code/nation/region source; retain unknowns and aggregate suppression.'},clinical_bodies_read:false};
+ }catch{return unavailable('The authoritative profile schema could not be inspected. Do not infer fields from a mock or an assessment.','Member data owner');}
 }
 export async function supportMetadata(DB,calendar,now=new Date()){
  try{

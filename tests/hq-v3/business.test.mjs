@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
-import {parseCalendar,firstResponseDeadline,demographicAggregates,scenarioProjection,supportMetadata,memberDemographics,staffMfaMetadata,learningCatalogue} from '../../hq-v3-business.mjs';
+import {parseCalendar,firstResponseDeadline,demographicAggregates,scenarioProjection,supportMetadata,memberDemographics,memberDemographicSources,staffMfaMetadata,learningCatalogue} from '../../hq-v3-business.mjs';
 import {hqV3Route} from '../../hq-v3-api.mjs';
 const calendar={version:'TEST-CALENDAR-1',approval_ref:'TEST-OWNER-FIXTURE',timezone:'Europe/London',valid_from:'2026-01-01',valid_until:'2026-12-31',holidays:[]};
 class D1{constructor(){this.db=new DatabaseSync(':memory:')}prepare(sql){const db=this.db;return {bind(...values){return {async all(){return {results:db.prepare(sql).all(...values)}},async first(){return db.prepare(sql).get(...values)||null}}},async all(){return {results:db.prepare(sql).all()}},async first(){return db.prepare(sql).get()||null}}}}
@@ -48,4 +48,16 @@ test('All added read models retain production/role/partition guards and learning
  let r=await hqV3Route(new Request('https://test.invalid/v1/hq/management/v3/demographics?member_id=1'),env,{},owner);assert.equal(r.status,400);
  r=await hqV3Route(new Request('https://test.invalid/v1/hq/management/v3/dictionary'),env,{},owner);assert.equal(r.status,200);assert.ok((await r.json()).metrics.every(m=>m.definition_version&&m.owner&&m.denominator&&m.freshness));
  const learning=learningCatalogue(null);assert.ok(learning.catalogue.every(x=>x.status==='excluded'&&x.training_rows===null));assert.equal(learning.clinical_bodies_permitted,false);
+});
+
+test('Actual native TEST member domains are included; source maps prove fields without exposing profiles or inventing regions',async()=>{
+ const DB=new D1();try{
+  DB.db.exec('CREATE TABLE users(id INTEGER PRIMARY KEY,email TEXT,date_of_birth TEXT,postcode TEXT);CREATE TABLE hq_users(id INTEGER PRIMARY KEY,email TEXT);');
+  const insert=DB.db.prepare('INSERT INTO users VALUES(?,?,?,?)');
+  for(let i=1;i<=15;i++)insert.run(i,'native-'+i+(i<=10?'@example.test':'@example.invalid'),i<=5?'1990-01-01':i<=10?'1980-01-01':null,'TEST PROFILE ONLY');
+  insert.run(16,'staff@example.test','1990-01-01','TEST STAFF');DB.db.prepare('INSERT INTO hq_users VALUES(?,?)').run(1,'staff@example.test');insert.run(17,'excluded@deliverable.test','1990-01-01','NOT IN TEST PARTITION');
+  const d=await memberDemographics(DB,{approval_ref:'TEST-PRIVACY',minimum_cell_size:5},new Date('2026-11-06T12:00:00Z'));assert.equal(d.total,15);assert.equal(d.coverage,10/15);
+  const source=await memberDemographicSources(DB,d);assert.equal(source.fields.find(x=>x.column==='date_of_birth').present,true);assert.equal(source.fields.find(x=>x.column==='postcode').present,true);assert.equal(source.fields.find(x=>x.column==='region').present,false);assert.equal(source.region_mapping.status,'unavailable');assert.equal(source.region_mapping.value,null);assert.equal(source.clinical_bodies_read,false);
+  assert.ok(!JSON.stringify(source).includes('1990-01-01'));assert.ok(!JSON.stringify(source).includes('TEST PROFILE ONLY'));assert.ok(!JSON.stringify(source).includes('native-1@'));
+ }finally{DB.db.close();}
 });

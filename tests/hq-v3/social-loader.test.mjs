@@ -14,3 +14,17 @@ test('A read timeout stops the loader and exposes retry without pretending the s
  const d=dom();let timeout,ms;const context={document:d.document,Response,AbortController,setTimeout:(fn,delay)=>{timeout=fn;ms=delay;return 1;},clearTimeout(){},fetch:async(_url,options)=>new Promise((_,reject)=>options.signal.addEventListener('abort',()=>reject(new DOMException('Aborted','AbortError'))))};
  vm.runInNewContext(await source(),context);assert.equal(ms,12000);timeout();await new Promise(resolve=>setImmediate(resolve));assert.match(d.nodes.get('#state').textContent,/Unavailable.*12 seconds/);assert.equal(d.nodes.get('#retry-load').hidden,false);assert.equal(d.nodes.get('#events').attributes['aria-busy'],undefined);
 });
+
+test('A source that ignores AbortSignal still stops at the read deadline',async()=>{
+ const d=dom();let timeout;const context={document:d.document,Response,AbortController,setTimeout:(fn)=>{timeout=fn;return 1;},clearTimeout(){},fetch:async()=>new Promise(()=>{})};
+ vm.runInNewContext(await source(),context);timeout();await new Promise(resolve=>setImmediate(resolve));
+ assert.match(d.nodes.get('#state').textContent,/Unavailable.*12 seconds/);assert.equal(d.nodes.get('#retry-load').hidden,false);assert.equal(d.nodes.get('#events').attributes['aria-busy'],undefined);
+});
+test('An earlier queue result cannot replace a newer read or resurrect cards after lost access',async()=>{
+ for(const denied of [false,true]){
+  const d=dom();let resolveFirst,calls=0;const context={document:d.document,Response,AbortController,setTimeout,clearTimeout,fetch:async()=>++calls===1?await new Promise(resolve=>{resolveFirst=resolve}):new Response(JSON.stringify(denied?{error:'unauthorised'}:{events:[{id:2,status:'published',headline:'TEST LATEST'}]}),{status:denied?401:200})};
+  vm.runInNewContext(await source(),context);await context.load();resolveFirst(new Response(JSON.stringify({events:[{id:1,status:'published',headline:'TEST OLD PRIVATE'}]})));await new Promise(resolve=>setImmediate(resolve));
+  assert.ok(!d.nodes.get('#events').innerHTML.includes('TEST OLD PRIVATE'));assert.equal(d.nodes.get('#events').attributes['aria-busy'],undefined);
+  if(denied){assert.equal(d.nodes.get('#events').innerHTML,'');assert.match(d.nodes.get('#state').textContent,/Sign in/)}else assert.ok(d.nodes.get('#events').innerHTML.includes('TEST LATEST'));
+ }
+});
