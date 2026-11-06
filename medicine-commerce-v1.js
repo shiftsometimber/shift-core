@@ -1,3 +1,4 @@
+import {CAPTURE_SCHEMA,captureReceipt,captureStatement} from './medicine-capture-receipt.mjs';
 import {readCatalogueAuthority,catalogueReservationGuard,catalogueReservationStatements,settleCatalogueReservationStatements,catalogueReservationExists,catalogueReservationState} from './hq-catalogue-governance-v31.mjs';
 import {ensureCheckoutAttempts,acquireCheckoutAttempt,prepareCheckoutAttempt,requestCheckoutSession,checkoutProblem} from './checkout-attempt-v1.mjs';
 import {reserveOrderReference,attachOrderReference,updateOrderReferenceStatus,ensureOrderReferenceRegistry} from './order-reference-v1.js';
@@ -164,6 +165,7 @@ async function validSignature(payload, header, secret) {
 async function schema(env) {
   await ensurePurchaseabilitySchema(env.DB);
   await env.DB.batch([
+    ...CAPTURE_SCHEMA.map(sql=>env.DB.prepare(sql)),
     env.DB.prepare(
       `CREATE TABLE IF NOT EXISTS medicine_inventory (variant_id INTEGER PRIMARY KEY,stock_on_hand INTEGER NOT NULL DEFAULT 0,reserved INTEGER NOT NULL DEFAULT 0,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,FOREIGN KEY(variant_id) REFERENCES medicine_variants(id))`,
     ),
@@ -749,7 +751,11 @@ async function webhook(request, env, ctx) {
     .run();
   if (Number(inserted.meta?.changes || 0) !== 1) {
     const previous = await env.DB.prepare("SELECT processed_at FROM medicine_stripe_events WHERE stripe_event_id=?").bind(event.id).first();
-    if (previous?.processed_at) return json({ ok: true, duplicate: true });
+    if(previous?.processed_at){
+      const receipt=await env.DB.prepare('SELECT payload_digest FROM medicine_payment_receipts WHERE event_id=?').bind(event.id).first();
+      if(receipt&&receipt.payload_digest!==await digest(payload))return json({ok:false,error:'medicine_capture_event_conflict'},409);
+      return json({ok:true,duplicate:true,receiptCoverage:receipt?'verified':'legacy_unmapped'});
+    }
   }
   const session = event.data.object,
     number = clean(
@@ -776,10 +782,12 @@ async function webhook(request, env, ctx) {
     const payable = "status IN ('pending','checkout_open','failed','expired')";
     const reserved = "status IN ('pending','checkout_open')";
     if (paid) {
+      const receipt=await captureReceipt(event,order,env.STRIPE_MODE,payload);
       statements.push(
         env.DB.prepare(`UPDATE medicine_inventory SET stock_on_hand=MAX(0,stock_on_hand-1),reserved=MAX(0,reserved-CASE WHEN EXISTS(SELECT 1 FROM medicine_orders WHERE id=? AND ${reserved}) THEN 1 ELSE 0 END),updated_at=? WHERE variant_id=? AND EXISTS(SELECT 1 FROM medicine_orders WHERE id=? AND ${payable})`).bind(order.id,stamp,order.variant_id,order.id),
         env.DB.prepare(`UPDATE order_reference_registry SET status='paid',updated_at=? WHERE order_number=? AND EXISTS(SELECT 1 FROM medicine_orders WHERE id=? AND ${payable})`).bind(stamp,number,order.id),
-        env.DB.prepare(`UPDATE medicine_orders SET status='paid',clinical_status='assessment_pending',clinical_updated_at=?,stripe_payment_intent_id=?,updated_at=? WHERE id=? AND ${payable}`).bind(stamp,clean(session.payment_intent,200),stamp,order.id)
+        env.DB.prepare(`UPDATE medicine_orders SET status='paid',clinical_status='assessment_pending',clinical_updated_at=?,stripe_payment_intent_id=?,updated_at=? WHERE id=? AND ${payable}`).bind(stamp,clean(session.payment_intent,200),stamp,order.id),
+        captureStatement(env.DB,receipt,stamp)
       );
     } else if (failed) {
       statements.push(
@@ -797,6 +805,7 @@ async function webhook(request, env, ctx) {
   } catch (error) {
     await env.DB.prepare("UPDATE medicine_stripe_events SET processing_error=? WHERE stripe_event_id=? AND processed_at IS NULL")
       .bind(clean(error?.message,1000),event.id).run().catch(()=>{});
+    if(error.captureReceipt)return json({ok:false,error:error.message},409);
     throw error;
   }
   if (notifyPaid) {

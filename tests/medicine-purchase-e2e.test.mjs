@@ -151,7 +151,7 @@ test('one treatment order completes verification, Stripe test payment, tracker, 
     }
     assert.equal((await DB.prepare('SELECT COUNT(*) count FROM medicine_orders').first()).count,1);
 
-    const timestamp=Math.floor(Date.now()/1000),event={id:'evt_shift_e2e_paid',type:'checkout.session.completed',data:{object:{id:'cs_test_shift_e2e_1',client_reference_id:checkout.orderNumber,payment_status:'paid',payment_intent:'pi_shift_e2e',metadata:{order_type:'medicine',order_number:checkout.orderNumber}}}},payload=JSON.stringify(event),signature=createHmac('sha256',env.STRIPE_WEBHOOK_SECRET).update(`${timestamp}.${payload}`).digest('hex');
+    const timestamp=Math.floor(Date.now()/1000),event={created:timestamp,livemode:false,id:'evt_shift_e2e_paid',type:'checkout.session.completed',data:{object:{id:'cs_test_shift_e2e_1',amount_total:(await DB.prepare('SELECT total_pence FROM medicine_orders WHERE order_number=?').bind(checkout.orderNumber).first()).total_pence,currency:'gbp',client_reference_id:checkout.orderNumber,payment_status:'paid',payment_intent:'pi_shift_e2e',metadata:{order_type:'medicine',order_number:checkout.orderNumber}}}},payload=JSON.stringify(event),signature=createHmac('sha256',env.STRIPE_WEBHOOK_SECRET).update(`${timestamp}.${payload}`).digest('hex');
     const webhook=await medicineCommerceRoutes(new Request('https://api.shiftsometimber.co.uk/v1/commerce/stripe/webhook',{method:'POST',headers:{'stripe-signature':`t=${timestamp},v1=${signature}`},body:payload}),env,{});
     assert.equal(webhook.status,200);
 
@@ -272,7 +272,7 @@ test('handover explicitly maps patient contact, authoritative treatment, full an
     const long='Full medical history '.repeat(45),response=await submit(completeIntake({conditions:long}));
     assert.equal(response.status,202);
     const {init}=calls[0],sent=init.body;
-    assert.equal(init.redirect,'error');assert.ok(init.signal);
+    assert.equal(init.redirect,'manual');assert.ok(init.signal);
     assert.equal(sent.get('patientEmail'),'member@example.test');
     for(const field of ['patientFirstName','patientLastName','patientPhone','patientAddress1','patientTown','patientPostcode','gpName','gpPractice','gpAddress','gpPostcode'])assert.ok(sent.get(field),field);
     assert.equal(sent.get('medicineName'),'Mounjaro');assert.equal(sent.get('strengthLabel'),'2.5 mg');
@@ -380,4 +380,8 @@ test('unknown and duplicated answers cannot be silently dropped',async()=>{
     const unknown=completeIntake();unknown.set('allergies','A future field must be mapped before use');assert.equal((await submit(unknown)).status,400);
     const duplicate=completeIntake();duplicate.append('medicines','contradictory second answer');assert.equal((await submit(duplicate)).status,400);assert.equal(calls.length,0);
   });
+});
+
+test('A pharmacy redirect is never followed or counted as assessment delivery; retry waits for correlation',async()=>{
+ await withPharmacy(async({DB,calls,submit})=>{const id=crypto.randomUUID(),response=await submit(completeIntake({submissionId:id})),body=await response.json();assert.equal(response.status,503);assert.equal(body.status,'delivery_unconfirmed');assert.equal(calls.length,1);assert.equal(calls[0].init.redirect,'manual');assert.equal(DB.database.prepare('SELECT COUNT(*) n FROM medicine_prepay_verifications').get().n,0);await submit(completeIntake({submissionId:id}));assert.equal(calls.length,1);},()=>new Response(null,{status:302,headers:{Location:'https://unapproved.example.test/redirect'}}));
 });
