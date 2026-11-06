@@ -6,6 +6,17 @@ const clean=(v,n=500)=>String(v??'').trim().slice(0,n);
 const now=()=>new Date().toISOString();
 function contentState(env){if(!env.SITE_CONTENT_STATE)return null;return env.SITE_CONTENT_STATE.get(env.SITE_CONTENT_STATE.idFromName('global'))}
 async function contentStateCall(env,route,payload){const stub=contentState(env);if(!stub)return null;const response=await stub.fetch('https://site-content-state'+route,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(payload)});const body=await response.json().catch(()=>({}));if(!response.ok||body.ok!==true)throw new Error(body.error||'content_state_failed');return body}
+const deliveryOwner='Website delivery owner / engineering';
+const deliveryUnavailable=reason=>({status:'unavailable',reason,owner:deliveryOwner});
+function deliveryBindingReady(env){try{return typeof contentState(env)?.fetch==='function'}catch{return false}}
+async function readDeliveryState(env){
+  if(!deliveryBindingReady(env))return {deliveryState:deliveryUnavailable('The website delivery binding is not configured.'),overrides:null};
+  try{
+    const result=await contentStateCall(env,'/read-all',{});
+    if(!Array.isArray(result?.overrides))throw Error('invalid_delivery_state');
+    return {deliveryState:{status:'ready',reason:null,owner:deliveryOwner},overrides:result.overrides};
+  }catch{return {deliveryState:deliveryUnavailable('The website delivery state could not be verified.'),overrides:null};}
+}
 async function actor(request,env,ctx){const r=await hq.fetch(new Request(new URL('/v1/hq/me',request.url),{headers:request.headers}),env,ctx);if(!r.ok)return{response:r};return{user:(await r.json()).user}}
 const canWrite=u=>['owner','admin','marketing','content','operations'].includes(u?.role);
 const canCommerce=u=>['owner','admin','operations'].includes(u?.role);
@@ -65,13 +76,22 @@ async function portalWithLifecycleStatus(){const response=portal(),html=await re
 
 export async function hqCommerceContentRoutes(request,env,ctx){
   const u=new URL(request.url),path=u.pathname.replace(/\/+$/,'')||'/',method=request.method;
-  if(path==='/v1/commerce/discounts/validate'||path==='/v1/site-content'||path.startsWith('/v1/site-content/')||path.startsWith('/v1/hq/discounts')||path.startsWith('/v1/hq/site-content')||path==='/v1/hq/continuity-interest')await ensureSchema(env.DB);
+  const siteContent=path.startsWith('/v1/hq/site-content');
+  if(path==='/v1/commerce/discounts/validate'||path==='/v1/site-content'||path.startsWith('/v1/site-content/')||path.startsWith('/v1/hq/discounts')||path==='/v1/hq/continuity-interest')await ensureSchema(env.DB);
   if(method==='GET'&&path==='/v1/commerce/discounts/validate')return validateDiscount(request,env);
   if((method==='GET'||method==='POST')&&(path==='/v1/site-content'||path.startsWith('/v1/site-content/')))return publicContent(request,env);
   if(method==='GET'&&path==='/hq/commerce-content-controls'){const response=await portalWithLifecycleStatus(),html=await response.text(),linked=html.replace('</h1><p>Owner/admin controls','</h1><p><a href="/hq/order-register" style="display:inline-block;background:#e7e3da;color:#050505;padding:11px 15px;border-radius:9px;text-decoration:none;font-weight:800;margin-right:8px">Order register</a><a href="/hq/catalogue-controls" style="display:inline-block;background:#707762;color:#050505;padding:11px 15px;border-radius:9px;text-decoration:none;font-weight:800;margin-right:8px">Products, images &amp; medicines</a><a href="/hq/radar-controls" style="display:inline-block;background:#707762;color:#050505;padding:11px 15px;border-radius:9px;text-decoration:none;font-weight:800;margin-right:8px">SHIFT AI desk</a><a href="/hq/radar-social" style="display:inline-block;background:#707762;color:#050505;padding:11px 15px;border-radius:9px;text-decoration:none;font-weight:800;margin-right:8px">Social distribution</a><a href="/hq/admin-email-test" style="display:inline-block;background:#e7e3da;color:#050505;padding:11px 15px;border-radius:9px;text-decoration:none;font-weight:800">Test admin email</a></p><p>Owner/admin controls');return new Response(linked,{headers:response.headers})}
   if(method==='GET'&&path==='/hq/order-register')return orderRegistryPortal();
   if(!path.startsWith('/v1/hq/discounts')&&!path.startsWith('/v1/hq/site-content')&&path!=='/v1/hq/order-registry'&&path!=='/v1/hq/continuity-interest'&&path!=='/hq/admin-email-test')return null;
   const a=await actor(request,env,ctx);if(a.response)return a.response;
+  if(siteContent){
+    if(!canWrite(a.user))return json({ok:false,error:'forbidden'},403);
+    if(method==='PATCH'&&/^\/v1\/hq\/site-content\/\d+$/.test(path)){
+      const body=await request.clone().json().catch(()=>({}));
+      if(['publish','rollback','pause'].includes(clean(body.action,20))&&!deliveryBindingReady(env))return json({ok:false,error:'content_delivery_not_configured',deliveryState:deliveryUnavailable('The website delivery binding is not configured.')},503);
+    }
+    await ensureSchema(env.DB);
+  }
   if(path==='/hq/admin-email-test'&&(method==='GET'||method==='POST')){
     if(!['owner','admin'].includes(a.user?.role))return json({ok:false,error:'hq_forbidden'},403);
     const recipient=clean(env.ADMIN_NOTIFICATION_EMAIL||'hq@shiftsometimber.co.uk',254);
@@ -110,13 +130,29 @@ export async function hqCommerceContentRoutes(request,env,ctx){
         DB.prepare(`UPDATE site_content_overrides SET status='paused',version=?,updated_by=?,updated_at=? WHERE id=?`).bind(version,a.user.id,stamp,row.id),
         DB.prepare('INSERT INTO site_content_versions(content_override_id,version,text_value,action,actor_id,created_at) VALUES(?,?,?,?,?,?)').bind(row.id,version,row.published_text||row.draft_text,'rolled_back',a.user.id,stamp)
       ]);
-      try{await contentStateCall(env,'/pause',{pagePath:row.page_path,contentKey:row.content_key})}catch{return json({ok:false,error:'content_delivery_not_committed'},503)}
+      try{await contentStateCall(env,'/pause',{pagePath:row.page_path,contentKey:row.content_key})}catch{return json({ok:false,error:'content_delivery_not_committed',deliveryState:deliveryUnavailable('The website delivery change could not be verified.')},503)}
       await audit(env,a.user,'site_content.rolled_back','site_content',row.id,{key:row.content_key,version});
       return json({ok:true,status:'paused',rolledBack:true,version});
     }
   }
-  if(method==='GET'&&path==='/v1/hq/site-content'){const state=await contentStateCall(env,'/read-all',{}).catch(()=>({overrides:[]}));for(const item of state?.overrides||[]){const proofCopy=item.page_path==='/about'&&(item.published_text?.includes('Investor rescue preview proof')||item.published_text?.includes('controlled HQ publish test'));if(proofCopy){await contentStateCall(env,'/pause',{pagePath:item.page_path,contentKey:item.content_key});await DB.prepare(`UPDATE site_content_overrides SET status='paused',updated_at=? WHERE content_key=?`).bind(now(),item.content_key).run();}}const fresh=await contentStateCall(env,'/read-all',{}).catch(()=>({overrides:[]})),published=new Map((fresh?.overrides||[]).map(x=>[x.content_key,x])),rows=(await DB.prepare('SELECT * FROM site_content_overrides ORDER BY page_path,label').all()).results||[];return json({ok:true,content:rows.map(x=>published.has(x.content_key)?{...x,status:'published',published_text:published.get(x.content_key).published_text,version:published.get(x.content_key).version}:x),deliveryOverrides:fresh?.overrides||[]})}
+  if(method==='GET'&&path==='/v1/hq/site-content'){
+    let delivery=await readDeliveryState(env);
+    if(delivery.deliveryState.status==='ready'){
+      try{
+        for(const item of delivery.overrides){
+          const proofCopy=item.page_path==='/about'&&(item.published_text?.includes('Investor rescue preview proof')||item.published_text?.includes('controlled HQ publish test'));
+          if(proofCopy){
+            await contentStateCall(env,'/pause',{pagePath:item.page_path,contentKey:item.content_key});
+            await DB.prepare(`UPDATE site_content_overrides SET status='paused',updated_at=? WHERE content_key=?`).bind(now(),item.content_key).run();
+          }
+        }
+        delivery=await readDeliveryState(env);
+      }catch{delivery={deliveryState:deliveryUnavailable('The website delivery cleanup could not be verified.'),overrides:null};}
+    }
+    const published=new Map((delivery.overrides||[]).map(x=>[x.content_key,x])),rows=(await DB.prepare('SELECT * FROM site_content_overrides ORDER BY page_path,label').all()).results||[];
+    return json({ok:true,content:rows.map(x=>published.has(x.content_key)?{...x,status:'published',published_text:published.get(x.content_key).published_text,version:published.get(x.content_key).version}:x),deliveryOverrides:delivery.overrides,deliveryState:delivery.deliveryState});
+  }
   if(method==='POST'&&path==='/v1/hq/site-content'){const b=await request.json().catch(()=>({})),page=clean(b.pagePath,240),key=clean(b.contentKey,100)||`edit_${crypto.randomUUID().replace(/-/g,'')}`,findText=clean(b.findText,5000),selector=findText?`__TEXT__:${encodeURIComponent(findText)}`:clean(b.cssSelector,300),text=clean(b.text,5000);if(!page.startsWith('/')||!/^[a-z0-9._-]{3,100}$/i.test(key)||!selector||/[{}<>]/.test(selector)||!text)return json({ok:false,error:'invalid_content_control'},400);const r=await DB.prepare(`INSERT INTO site_content_overrides(page_path,content_key,css_selector,label,draft_text,status,created_by,updated_by,created_at,updated_at) VALUES(?,?,?,?,?,'draft',?,?,?,?)`).bind(page,key,selector,clean(b.label,120)||key,text,a.user.id,a.user.id,now(),now()).run();await audit(env,a.user,'site_content.created','site_content',r.meta?.last_row_id,{key,page});return json({ok:true,id:r.meta?.last_row_id},201)}
-  const m=path.match(/^\/v1\/hq\/site-content\/(\d+)$/);if(m&&method==='PATCH'){const b=await request.json().catch(()=>({})),row=await DB.prepare('SELECT * FROM site_content_overrides WHERE id=?').bind(Number(m[1])).first();if(!row)return json({ok:false,error:'not_found'},404);const action=clean(b.action,20),text=clean(b.text??row.draft_text,5000);if(!text)return json({ok:false,error:'text_required'},400);if(action==='publish'){const version=Number(row.version||1)+1;await DB.batch([DB.prepare(`UPDATE site_content_overrides SET draft_text=?,published_text=?,status='published',version=?,updated_by=?,published_by=?,published_at=?,updated_at=? WHERE id=?`).bind(text,text,version,a.user.id,a.user.id,now(),now(),row.id),DB.prepare('INSERT INTO site_content_versions(content_override_id,version,text_value,action,actor_id,created_at) VALUES(?,?,?,?,?,?)').bind(row.id,version,text,'published',a.user.id,now())]);const stored=await DB.prepare('SELECT status,version FROM site_content_overrides WHERE id=?').bind(row.id).first();if(stored?.status!=='published'||Number(stored.version)!==version)return json({ok:false,error:'content_state_not_committed'},409);try{await contentStateCall(env,'/publish',{pagePath:row.page_path,contentKey:row.content_key,cssSelector:row.css_selector,publishedText:text,version})}catch{return json({ok:false,error:'content_delivery_not_committed'},503)}await audit(env,a.user,'site_content.published','site_content',row.id,{key:row.content_key,version});return json({ok:true,status:stored.status,version:Number(stored.version)})}if(action==='pause'){await DB.prepare(`UPDATE site_content_overrides SET status='paused',updated_by=?,updated_at=? WHERE id=?`).bind(a.user.id,now(),row.id);try{await contentStateCall(env,'/pause',{pagePath:row.page_path,contentKey:row.content_key})}catch{return json({ok:false,error:'content_delivery_not_committed'},503)}return json({ok:true,status:'paused'})}await DB.prepare(`UPDATE site_content_overrides SET draft_text=?,status='draft',updated_by=?,updated_at=? WHERE id=?`).bind(text,a.user.id,now(),row.id);return json({ok:true,status:'draft'})}
+  const m=path.match(/^\/v1\/hq\/site-content\/(\d+)$/);if(m&&method==='PATCH'){const b=await request.json().catch(()=>({})),row=await DB.prepare('SELECT * FROM site_content_overrides WHERE id=?').bind(Number(m[1])).first();if(!row)return json({ok:false,error:'not_found'},404);const action=clean(b.action,20),text=clean(b.text??row.draft_text,5000);if(!text)return json({ok:false,error:'text_required'},400);if(action==='publish'){const version=Number(row.version||1)+1;await DB.batch([DB.prepare(`UPDATE site_content_overrides SET draft_text=?,published_text=?,status='published',version=?,updated_by=?,published_by=?,published_at=?,updated_at=? WHERE id=?`).bind(text,text,version,a.user.id,a.user.id,now(),now(),row.id),DB.prepare('INSERT INTO site_content_versions(content_override_id,version,text_value,action,actor_id,created_at) VALUES(?,?,?,?,?,?)').bind(row.id,version,text,'published',a.user.id,now())]);const stored=await DB.prepare('SELECT status,version FROM site_content_overrides WHERE id=?').bind(row.id).first();if(stored?.status!=='published'||Number(stored.version)!==version)return json({ok:false,error:'content_state_not_committed'},409);try{await contentStateCall(env,'/publish',{pagePath:row.page_path,contentKey:row.content_key,cssSelector:row.css_selector,publishedText:text,version})}catch{return json({ok:false,error:'content_delivery_not_committed',deliveryState:deliveryUnavailable('The website delivery change could not be verified.')},503)}await audit(env,a.user,'site_content.published','site_content',row.id,{key:row.content_key,version});return json({ok:true,status:stored.status,version:Number(stored.version)})}if(action==='pause'){await DB.prepare(`UPDATE site_content_overrides SET status='paused',updated_by=?,updated_at=? WHERE id=?`).bind(a.user.id,now(),row.id);try{await contentStateCall(env,'/pause',{pagePath:row.page_path,contentKey:row.content_key})}catch{return json({ok:false,error:'content_delivery_not_committed',deliveryState:deliveryUnavailable('The website delivery change could not be verified.')},503)}return json({ok:true,status:'paused'})}await DB.prepare(`UPDATE site_content_overrides SET draft_text=?,status='draft',updated_by=?,updated_at=? WHERE id=?`).bind(text,a.user.id,now(),row.id);return json({ok:true,status:'draft'})}
   return json({ok:false,error:'not_found'},404);
 }
