@@ -1,4 +1,5 @@
 import {hasCatalogueWriteGrant} from './hq-catalogue-governance-v31.mjs';
+import {hqIntelligence} from './hq-intelligence-signals.mjs';
 import {auditedCatalogueMutation} from './hq-catalogue-admin-v31.mjs';
 import {sendTrackedCommerceEmail} from './hq-commerce-delivery.mjs';
 import {aiActionPolicy} from './hq-v3-contracts.mjs';
@@ -994,31 +995,7 @@ async function adminRoutes(request, env, path, method) {
       .bind(status||null,priority||null,Number(b.assignedHqUserId||0)||null,isoNow(),status||'',isoNow(),id).run();
     await hqAudit(env,hqActor,'support.ticket_updated','support_ticket',String(id),{status,priority}); return json({ok:true});
   }
-  if(method==='GET'&&path==='/v1/hq/intelligence'){
-    const now=Date.now(), weekAgo=new Date(now-7*86400000).toISOString(), stale=new Date(now-21*86400000).toISOString(), today=new Date().toISOString().slice(0,10);
-    const [newUsers,incompleteMot,staleMembers,overdue,openSupport,urgentSupport,openOrders]=await Promise.all([
-      env.DB.prepare('SELECT COUNT(*) count FROM users WHERE created_at>=?').bind(weekAgo).first(),
-      env.DB.prepare(`SELECT COUNT(*) count FROM users u WHERE NOT EXISTS(SELECT 1 FROM assessments a WHERE a.user_id=u.id AND a.status='completed')`).first(),
-      env.DB.prepare(`SELECT COUNT(*) count FROM member_status WHERE lifecycle_stage IN ('registered','onboarding','active') AND COALESCE(last_activity_at,created_at)<?`).bind(stale).first(),
-      env.DB.prepare(`SELECT COUNT(*) count FROM hq_tasks WHERE status NOT IN ('done','cancelled') AND due_at IS NOT NULL AND due_at<?`).bind(today).first(),
-      env.DB.prepare(`SELECT COUNT(*) count FROM support_tickets WHERE status!='closed'`).first(),
-      env.DB.prepare(`SELECT COUNT(*) count FROM support_tickets WHERE status!='closed' AND priority='urgent'`).first(),
-      env.DB.prepare(`SELECT COUNT(*) count FROM orders WHERE status NOT IN ('fulfilled','refunded','cancelled')`).first()
-    ]);
-    const signals=[
-      {key:'urgent_support',severity:Number(urgentSupport?.count||0)?'high':'good',count:Number(urgentSupport?.count||0),title:'Urgent support tickets',message:Number(urgentSupport?.count||0)?'These should be looked at first.':'No urgent support tickets right now.'},
-      {key:'overdue_tasks',severity:Number(overdue?.count||0)?'high':'good',count:Number(overdue?.count||0),title:'Overdue follow-ups',message:Number(overdue?.count||0)?'Follow-ups are past their due date.':'No overdue HQ tasks.'},
-      {key:'mot_incomplete',severity:Number(incompleteMot?.count||0)?'medium':'good',count:Number(incompleteMot?.count||0),title:'MOT not completed',message:'Registered people without a completed Shift MOT.'},
-      {key:'stale_members',severity:Number(staleMembers?.count||0)?'medium':'good',count:Number(staleMembers?.count||0),title:'Potential disengagement',message:'Active/onboarding members with no activity for 21+ days.'},
-      {key:'open_orders',severity:Number(openOrders?.count||0)?'medium':'good',count:Number(openOrders?.count||0),title:'Orders in progress',message:'Orders not yet fulfilled, refunded or cancelled.'},
-      {key:'new_users',severity:'good',count:Number(newUsers?.count||0),title:'New registrations this week',message:'Fresh people entering the Shift journey.'},
-      {key:'open_support',severity:Number(openSupport?.count||0)?'medium':'good',count:Number(openSupport?.count||0),title:'Open support load',message:'All support tickets currently awaiting resolution.'}
-    ];
-    const priority=signals.filter(x=>x.severity==='high').length?`There are ${signals.filter(x=>x.severity==='high').length} high-priority areas needing attention.`:
-      signals.filter(x=>x.severity==='medium'&&x.count).length?`Nothing critical, but ${signals.filter(x=>x.severity==='medium'&&x.count).length} areas are worth a look.`:
-      'Shift is looking clear right now. No material operational alerts.';
-    return json({generatedAt:isoNow(),brief:priority,signals});
-  }
+  if(method==='GET'&&path==='/v1/hq/intelligence')return json(await hqIntelligence(env.DB));
 
 
   if(method==='GET'&&path==='/v1/hq/segments'){
