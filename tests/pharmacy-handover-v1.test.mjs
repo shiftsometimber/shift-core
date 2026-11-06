@@ -22,3 +22,9 @@ test('provider references and secure portal identity are explicit',()=>{
   assert.equal(secureResumeUrl('https://portal.example.test/questions?session=opaque','https://portal.example.test'),'https://portal.example.test/questions?session=opaque');
   assert.throws(()=>secureResumeUrl('https://portal.example.test.evil.example/questions','https://portal.example.test'));
 });
+
+test('Workers-compatible pharmacy transport refuses redirects without following or replaying an assessment',async()=>{
+ const original=globalThis.fetch;const calls=[];
+ globalThis.fetch=async(url,init)=>{assert.equal(init.redirect,'manual');calls.push({url,reference:init.headers['Idempotency-Key']});return new Response(JSON.stringify({reference:'FICTIONAL',patientReference:'TEST-PATIENT',status:'verified'}),{status:302,headers:{Location:'https://private-redirect.invalid/intake','Content-Type':'application/json'}});};
+ try{await assert.rejects(()=>pharmacyRequest({PHARMACY_INTEGRATION_SECRET:'FICTIONAL'},'https://pharmacy.example.test/intake',{},'FICTIONAL-ONE'),error=>error.code==='pharmacy_unavailable'&&error.uncertain);assert.deepEqual(calls,[{url:'https://pharmacy.example.test/intake',reference:'FICTIONAL-ONE'}]);}finally{globalThis.fetch=original;}
+});

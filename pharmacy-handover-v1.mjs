@@ -33,7 +33,7 @@ export async function pharmacyRequest(env, endpoint, payload, clientReference, {
   try {
     const multipart = payload instanceof FormData;
     const response = await fetch(url.href, {
-      method:'POST', redirect:'error', cache:'no-store', signal:controller.signal,
+      method:'POST', redirect:'manual', cache:'no-store', signal:controller.signal,
       headers:{authorization:`Bearer ${env.PHARMACY_INTEGRATION_SECRET}`, 'Idempotency-Key':clientReference,
         ...(multipart ? {} : {'content-type':'application/json'})},
       body:multipart ? payload : JSON.stringify(payload),
