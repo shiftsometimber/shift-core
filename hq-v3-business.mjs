@@ -75,16 +75,19 @@ export async function supportMetadata(DB,calendar,now=new Date()){
   return {status:rows.length>500?'partial':'available',partition:'TEST',calendar:parseCalendar(calendar),records:rows.slice(0,500).map(r=>{const due=firstResponseDeadline(r.created_at,calendar);return {reference:r.reference,status:r.status,priority:r.priority,owner:r.owner_status==='active'?r.owner_name:null,owner_required:r.owner_status!=='active',original_created_at:r.created_at,updated_at:r.updated_at,deadline:due,deadline_elapsed:due.status==='available'&&Date.parse(due.due_at)<+now,first_human_response:unavailable('Canonical first-human-response receipt is not yet mapped. Do not infer response from updated_at, assignment or bot acknowledgement.','Support owner'),next_action:'Open the existing support ticket; confirm first human response and accountable cover.',view:'support'};}),privacy:'No subjects, member identities, clinical text or message bodies.',coverage:{limit:500,has_more:rows.length>500}};
  }catch{return unavailable('Support source query or owner mapping is unavailable.','Support owner');}
 }
-export async function staffMfaMetadata(DB){
+export async function staffMfaMetadata(DB,{partition='TEST'}={}){
+ if(!['TEST','LIVE'].includes(partition))throw Error('invalid_projection_scope');
  try{
-  const row=await DB.prepare("SELECT COUNT(*) active,COALESCE(SUM(CASE WHEN mfa_enabled=1 THEN 1 ELSE 0 END),0) enrolled FROM hq_users WHERE status='active' AND lower(email) LIKE '%@example.invalid'").first();
+  const filter=partition==='TEST'?"lower(email) LIKE '%@example.invalid'":"length(trim(email))>0 AND lower(trim(email)) NOT LIKE '%@example.invalid' AND lower(trim(email)) NOT LIKE '%@example.test'";
+  const row=await DB.prepare("SELECT COUNT(*) active,COALESCE(SUM(CASE WHEN mfa_enabled=1 THEN 1 ELSE 0 END),0) enrolled FROM hq_users WHERE status='active' AND "+filter).first();
   const active=Number(row.active),enrolled=Number(row.enrolled);
-  return {status:'available',partition:'TEST',active,enrolled,without_mfa:active-enrolled,coverage:active?enrolled/active:null,owner:'Owner/admin',source:'Existing hq_users auth state; fictional staff only',view:'users',waive_permitted:false,professional_mfa_unchanged:true};
+  return {status:'available',partition,active,enrolled,without_mfa:active-enrolled,coverage:active?enrolled/active:null,owner:'Owner/admin',source:partition==='TEST'?'Existing hq_users auth state; fictional staff only':'Existing active HQ staff directory; known example-domain test identities excluded. Directory enrolment is not fresh-device or professional-role verification.',view:'users',waive_permitted:false,professional_mfa_unchanged:true};
  }catch{return unavailable('Staff authentication state could not be read.','Owner/admin');}
 }
-export async function businessSourceHealth(DB){
+export async function businessSourceHealth(DB,{partition='TEST'}={}){
+ if(!['TEST','LIVE'].includes(partition))throw Error('invalid_projection_scope');
  const jobs=await serviceJobHealth(DB);
- return {status:jobs.some(j=>j.state==='unavailable')?'partial':'available',partition:'TEST',jobs,source_freshness:unavailable('Job execution is not proof of upstream data freshness. Source receipts and backlog must be connected.','Infrastructure owner'),sources:[['accounting','Finance owner'],['bank','Finance owner'],['costs','Finance owner'],['analytics','Growth owner'],['supplier_receipts','Supplier integration owner'],['device_receipt','Notification owner']].map(([key,owner])=>({key,...unavailable('Authoritative connected-source evidence remains unverified.',owner)}))};
+ return {status:jobs.some(j=>j.state==='unavailable')?'partial':'available',partition,jobs,source_freshness:unavailable('Job execution is not proof of upstream data freshness. Source receipts and backlog must be connected.','Infrastructure owner'),sources:[['accounting','Finance owner'],['bank','Finance owner'],['costs','Finance owner'],['analytics','Growth owner'],['supplier_receipts','Supplier integration owner'],['device_receipt','Notification owner']].map(([key,owner])=>({key,...unavailable('Authoritative connected-source evidence remains unverified.',owner)}))};
 }
 export function learningCatalogue(configuration,now=new Date()){
  const catalogue=['purchase','journey_stage','engagement','support_outcome'].map(family=>{const value={purchase:'shop',journey_stage:'pending',engagement:'returned',support_outcome:'open'}[family];const check=permittedLearningFeature({family,value},configuration,now);return {family,status:check.status==='permitted'?'policy_ready_producer_unverified':'excluded',reason:check.reason||'Policy is eligible; actual de-identification and producer coverage still require evidence.',training_rows:null};});
