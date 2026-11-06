@@ -25,6 +25,13 @@ function nativeDelivery(){
  return {namespace,calls,direct,async published(){return (await(await direct('/read-all')).json()).overrides;}};
 }
 
+test('Native draft creation returns its authoritative edit version for the first optimistic Save',async()=>{
+ seed();const response=await hqCommerceContentRoutes(new Request('https://api.shiftsometimber.co.uk'+endpoint,{method:'POST',headers:{...owner,'Content-Type':'application/json'},body:JSON.stringify({pagePath:'/__synthetic-new-draft',contentKey:'TEST_NEW_NATIVE_DRAFT',cssSelector:'h1',label:'TEST created draft',text:'TEST initial created wording'})}),env,{});
+ assert.equal(response.status,201);const created=await response.json(),stored=DB.sqlite.prepare('SELECT version FROM site_content_overrides WHERE id=?').get(created.id);assert.equal(created.version,stored.version);assert.equal(created.version,1);
+ const saved=await hqCommerceContentRoutes(new Request('https://api.shiftsometimber.co.uk'+endpoint+'/'+created.id,{method:'PATCH',headers:{...owner,'Content-Type':'application/json'},body:JSON.stringify({action:'save',expectedVersion:created.version,text:'TEST first saved wording'})}),env,{});
+ assert.equal(saved.status,200);assert.equal((await saved.json()).version,created.version+1);
+});
+
 test('Native Save persists the edit, version, history and named actor audit without a delivery binding',async()=>{
  seed();const before=snapshot(),result=await invoke('save',4,'TEST saved draft');
  assert.equal(result.response.status,200);assert.deepEqual(result.body,{ok:true,saved:true,status:'draft',version:5});
