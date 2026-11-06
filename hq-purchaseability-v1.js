@@ -13,7 +13,9 @@ export async function ensurePurchaseabilitySchema(DB){
     `ALTER TABLE medicine_variants ADD COLUMN sellable INTEGER NOT NULL DEFAULT 0`,
     `ALTER TABLE medicine_variants ADD COLUMN availability_state TEXT NOT NULL DEFAULT 'unavailable'`,
     `ALTER TABLE medicine_products ADD COLUMN catalogue_version INTEGER NOT NULL DEFAULT 1`,
-    `ALTER TABLE medicine_variants ADD COLUMN catalogue_version INTEGER NOT NULL DEFAULT 1`
+    `ALTER TABLE medicine_variants ADD COLUMN catalogue_version INTEGER NOT NULL DEFAULT 1`,
+    `ALTER TABLE medicine_products ADD COLUMN catalogue_change_key TEXT`,
+    `ALTER TABLE medicine_variants ADD COLUMN catalogue_change_key TEXT`
   ]) await DB.prepare(sql).run().catch(()=>{});
 }
 

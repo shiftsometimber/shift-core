@@ -4,6 +4,47 @@ const hash=async value=>Array.from(new Uint8Array(await crypto.subtle.digest('SH
 export async function auditedCatalogueMutation(DB,user,statements,action,type,id,metadata,date=new Date().toISOString()){
  return DB.batch([...statements,DB.prepare('INSERT INTO hq_audit(hq_user_id,action,entity_type,entity_id,metadata,created_at) VALUES(?,?,?,?,?,?)').bind(user.id,action,type,String(id),JSON.stringify(metadata),date)]);
 }
+const fail=(status,message)=>{throw Object.assign(Error(message),{status})};
+export async function createCatalogueMedicine(DB,user,item){
+ // Request metadata links to the existing medicine ID; it holds no second
+ // catalogue, order or clinical record. The unique identity claim also closes
+ // concurrent duplicate creation through the retained editor.
+ await DB.prepare('CREATE TABLE IF NOT EXISTS catalogue_creation_keys(identity_key TEXT PRIMARY KEY,payload_hash TEXT NOT NULL,claim_token TEXT NOT NULL,medicine_id INTEGER,created_at TEXT NOT NULL)').run();
+ const identity=await hash(JSON.stringify([item.name.toLowerCase(),item.ingredient.toLowerCase(),item.form])),payloadHash=await hash(JSON.stringify(item));
+ const old=await DB.prepare('SELECT payload_hash,medicine_id FROM catalogue_creation_keys WHERE identity_key=?').bind(identity).first();
+ if(old){if(old.payload_hash!==payloadHash)fail(409,'medicine_exists_use_amend');if(!old.medicine_id)fail(409,'catalogue_creation_requires_reconciliation');return {ok:true,id:old.medicine_id,replayed:true,auditRecorded:true};}
+ const existing=await DB.prepare('SELECT id FROM medicine_products WHERE lower(name)=? AND lower(active_ingredient)=? AND form=? LIMIT 1').bind(item.name.toLowerCase(),item.ingredient.toLowerCase(),item.form).first();
+ if(existing)fail(409,'medicine_exists_use_amend');
+ const token=crypto.randomUUID(),date=new Date().toISOString(),guard='EXISTS(SELECT 1 FROM catalogue_creation_keys WHERE identity_key=? AND claim_token=? AND medicine_id IS NULL)';
+ await DB.batch([
+  DB.prepare('INSERT OR IGNORE INTO catalogue_creation_keys SELECT ?,?,?,NULL,? WHERE EXISTS(SELECT 1 FROM hq_users WHERE id=? AND role=? AND status=\'active\')').bind(identity,payloadHash,token,date,user.id,user.role),
+  DB.prepare(`INSERT INTO medicine_products(name,active_ingredient,form,status,description,sort_order,created_by,updated_by,created_at,updated_at,catalogue_change_key) SELECT ?,?,?,?,?,?,?,?,?,?,? WHERE ${guard}`).bind(item.name,item.ingredient,item.form,item.status,item.description,item.sortOrder,user.id,user.id,date,date,token,identity,token),
+  DB.prepare(`INSERT INTO hq_audit(hq_user_id,action,entity_type,entity_id,metadata,created_at) SELECT ?,'medicine.created','medicine',CAST(id AS TEXT),?,? FROM medicine_products WHERE catalogue_change_key=? AND ${guard}`).bind(user.id,JSON.stringify({before:null,after:item,signoffRequired:true}),date,token,identity,token),
+  DB.prepare(`UPDATE catalogue_creation_keys SET medicine_id=(SELECT id FROM medicine_products WHERE catalogue_change_key=?) WHERE identity_key=? AND claim_token=? AND medicine_id IS NULL`).bind(token,identity,token)
+ ]);
+ const saved=await DB.prepare('SELECT payload_hash,medicine_id FROM catalogue_creation_keys WHERE identity_key=?').bind(identity).first();
+ if(!saved?.medicine_id)fail(409,'catalogue_creation_or_access_changed');if(saved.payload_hash!==payloadHash)fail(409,'medicine_exists_use_amend');
+ return {ok:true,id:saved.medicine_id,auditRecorded:true,signoffRequired:true};
+}
+export async function saveCatalogueStrength(DB,user,medicineId,item){
+ const medicine=await DB.prepare('SELECT id FROM medicine_products WHERE id=?').bind(medicineId).first();if(!medicine)fail(404,'medicine_not_found');
+ const before=await DB.prepare('SELECT v.*,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_variants v LEFT JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.medicine_id=? AND v.strength_label=?').bind(medicineId,item.strength).first();
+ if(before&&item.expectedVersion!=null&&item.expectedVersion!==before.catalogue_version)fail(409,'catalogue_version_changed');
+ if(before&&before.reserved>item.stock)fail(409,'stock_below_reservation');
+ const same=before&&before.cost_pence===item.cost&&before.selling_price_pence===item.selling&&before.target_margin_bps===item.targetMarginBps&&before.status===item.status&&before.stock_on_hand===item.stock;
+ if(same){const audited=await DB.prepare("SELECT 1 found FROM hq_audit WHERE action='medicine.variant_saved' AND entity_type='medicine_variant' AND entity_id=? AND json_extract(metadata,'$.after.version')=? LIMIT 1").bind(String(before.id),before.catalogue_version).first();if(audited)return {ok:true,id:before.id,version:before.catalogue_version,replayed:true,auditRecorded:true,stockOnHand:item.stock,status:item.status};}
+ const token=crypto.randomUUID(),date=new Date().toISOString(),oldVersion=before?.catalogue_version||0,version=oldVersion+1,guard='catalogue_change_key=? AND medicine_id=? AND strength_label=?';
+ const after={strength:item.strength,costPence:item.cost,sellingPricePence:item.selling,targetMarginBps:item.targetMarginBps,stockOnHand:item.stock,status:item.status,version};
+ const result=await DB.batch([
+  DB.prepare(`INSERT INTO medicine_variants(medicine_id,strength_label,cost_pence,selling_price_pence,target_margin_bps,status,sort_order,created_at,updated_at,catalogue_change_key) SELECT ?,?,?,?,?,?,0,?,?,? WHERE EXISTS(SELECT 1 FROM hq_users WHERE id=? AND role=? AND status='active') AND NOT EXISTS(SELECT 1 FROM medicine_inventory i JOIN medicine_variants v ON v.id=i.variant_id WHERE v.medicine_id=? AND v.strength_label=? AND i.reserved>?) ON CONFLICT(medicine_id,strength_label) DO UPDATE SET cost_pence=excluded.cost_pence,selling_price_pence=excluded.selling_price_pence,target_margin_bps=excluded.target_margin_bps,status=excluded.status,updated_at=excluded.updated_at,catalogue_version=medicine_variants.catalogue_version+1,catalogue_change_key=excluded.catalogue_change_key WHERE medicine_variants.catalogue_version=?`).bind(medicineId,item.strength,item.cost,item.selling,item.targetMarginBps,item.status,date,date,token,user.id,user.role,medicineId,item.strength,item.stock,oldVersion),
+  DB.prepare(`INSERT INTO medicine_inventory(variant_id,stock_on_hand,reserved,updated_at) SELECT id,?,0,? FROM medicine_variants WHERE ${guard} ON CONFLICT(variant_id) DO UPDATE SET stock_on_hand=excluded.stock_on_hand,updated_at=excluded.updated_at`).bind(item.stock,date,token,medicineId,item.strength),
+  DB.prepare(`INSERT INTO medicine_variant_price_history(variant_id,cost_pence,target_margin_bps,selling_price_pence,changed_by,created_at) SELECT id,?,?,?,?,? FROM medicine_variants WHERE ${guard}`).bind(item.cost,item.targetMarginBps,item.selling,user.id,date,token,medicineId,item.strength),
+  DB.prepare(`INSERT INTO hq_audit(hq_user_id,action,entity_type,entity_id,metadata,created_at) SELECT ?,'medicine.variant_saved','medicine_variant',CAST(id AS TEXT),?,? FROM medicine_variants WHERE ${guard}`).bind(user.id,JSON.stringify({before:before?{costPence:before.cost_pence,sellingPricePence:before.selling_price_pence,stockOnHand:before.stock_on_hand,status:before.status,version:before.catalogue_version}:null,after,signoffInvalidated:true}),date,token,medicineId,item.strength)
+ ]);
+ if(result[0].meta?.changes!==1)fail(409,'catalogue_stock_version_or_access_changed');
+ const saved=await DB.prepare('SELECT id,catalogue_version FROM medicine_variants WHERE catalogue_change_key=?').bind(token).first();
+ return {ok:true,id:saved.id,version:saved.catalogue_version,auditRecorded:true,signoffRequired:true,stockOnHand:item.stock,status:item.status};
+}
 export async function saveTestSupplierRoutes(DB,user,variantId,body,grants,now=new Date()){
  const fail=(status,message)=>{throw Object.assign(Error(message),{status})};
  if(!hasCatalogueWriteGrant(user,grants,now))fail(403,'catalogue_commerce_grant_required');
