@@ -1,7 +1,7 @@
 import {validCatalogueImage} from './catalogue-image-validation.mjs';
 import hq from "./hq-ai-v2.js";
 import { ensurePurchaseabilitySchema, normaliseAvailability } from "./hq-purchaseability-v1.js";
-import {catalogueAdminV31Route,auditedCatalogueMutation} from './hq-catalogue-admin-v31.mjs';
+import {catalogueAdminV31Route,auditedCatalogueMutation,createCatalogueMedicine,saveCatalogueStrength} from './hq-catalogue-admin-v31.mjs';
 import {hasCatalogueWriteGrant} from './hq-catalogue-governance-v31.mjs';
 
 const json = (body, status = 200) =>
@@ -280,8 +280,7 @@ export async function hqCatalogueRoutes(request, env, ctx) {
   if (medicineImage && method === "DELETE") {
     const medicine = await env.DB.prepare("SELECT id FROM medicine_products WHERE id=?").bind(Number(medicineImage[1])).first();
     if (!medicine) return json({ok:false,error:"medicine_not_found"},404);
-    await env.DB.prepare("DELETE FROM medicine_product_images WHERE medicine_id=?").bind(medicine.id).run();
-    await audit(env,auth.user,"medicine.image_removed","medicine",medicine.id);
+    await auditedCatalogueMutation(env.DB,auth.user,[env.DB.prepare("DELETE FROM medicine_product_images WHERE medicine_id=?").bind(medicine.id)],"medicine.image_removed","medicine",medicine.id,{imageRemoved:true,orderHistoryRetained:true});
     return json({ok:true});
   }
   if (method === "POST" && path === "/v1/hq/medicines") {
@@ -297,31 +296,7 @@ export async function hqCatalogueRoutes(request, env, ctx) {
       !["draft", "out_of_stock", "available", "archived"].includes(status)
     )
       return json({ ok: false, error: "invalid_medicine" }, 400);
-    const r = await env.DB.prepare(
-      `INSERT INTO medicine_products(name,active_ingredient,form,status,description,sort_order,created_by,updated_by,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?)`,
-    )
-      .bind(
-        name,
-        ingredient,
-        form,
-        status,
-        clean(b.description, 5000),
-        Math.max(0, Number(b.sortOrder || 0)),
-        auth.user.id,
-        auth.user.id,
-        now(),
-        now(),
-      )
-      .run();
-    await audit(
-      env,
-      auth.user,
-      "medicine.created",
-      "medicine",
-      r.meta?.last_row_id,
-      { name, status },
-    );
-    return json({ ok: true, id: r.meta?.last_row_id }, 201);
+    try{return json(await createCatalogueMedicine(env.DB,auth.user,{name,ingredient,form,status,description:clean(b.description,5000),sortOrder:Math.max(0,Number(b.sortOrder||0))}),201);}catch(error){return json({ok:false,error:error.status?error.message:'catalogue_save_or_audit_failed'},error.status||503);}
   }
   const medicineEdit = path.match(/^\/v1\/hq\/medicines\/(\d+)$/);
   if (method === "PATCH" && medicineEdit) {
@@ -401,57 +376,8 @@ export async function hqCatalogueRoutes(request, env, ctx) {
         },
         400,
       );
-    const medicine = await env.DB.prepare(
-      "SELECT id FROM medicine_products WHERE id=?",
-    )
-      .bind(medicineId)
-      .first();
-    if (!medicine) return json({ ok: false, error: "medicine_not_found" }, 404);
-    const stamp = now(),
-      effective =
-        stock > 0 && status === "available" ? "available" : "out_of_stock";
-    await env.DB.prepare(
-      `INSERT INTO medicine_variants(medicine_id,strength_label,cost_pence,selling_price_pence,target_margin_bps,status,sort_order,created_at,updated_at) VALUES(?,?,?,?,?,?,0,?,?) ON CONFLICT(medicine_id,strength_label) DO UPDATE SET cost_pence=excluded.cost_pence,selling_price_pence=excluded.selling_price_pence,target_margin_bps=excluded.target_margin_bps,status=excluded.status,updated_at=excluded.updated_at`,
-    )
-      .bind(medicineId, strength, cost, selling, targetMarginBps, effective, stamp, stamp)
-      .run();
-    const saved = await env.DB.prepare(
-      "SELECT id FROM medicine_variants WHERE medicine_id=? AND strength_label=?",
-    )
-      .bind(medicineId, strength)
-      .first();
-    await env.DB.prepare(
-      `INSERT INTO medicine_inventory(variant_id,stock_on_hand,reserved,updated_at) VALUES(?,?,0,?) ON CONFLICT(variant_id) DO UPDATE SET stock_on_hand=excluded.stock_on_hand,updated_at=excluded.updated_at`,
-    )
-      .bind(saved.id, stock, stamp)
-      .run();
-    await env.DB.prepare(
-      `INSERT INTO medicine_variant_price_history(variant_id,cost_pence,target_margin_bps,selling_price_pence,changed_by,created_at) VALUES(?,?,?,?,?,?)`,
-    ).bind(saved.id,cost,targetMarginBps,selling,auth.user.id,stamp).run();
-    await audit(
-      env,
-      auth.user,
-      "medicine.variant_saved",
-      "medicine",
-      medicineId,
-      {
-        strength,
-        stockOnHand: stock,
-        ...calculateMargin(cost, selling),
-        status: effective,
-      },
-    );
-    return json(
-      {
-        ok: true,
-        id: saved.id,
-        stockOnHand: stock,
-        status: effective,
-        targetGrossMarginPercent: requestedMargin,
-        ...calculateMargin(cost, selling),
-      },
-      201,
-    );
+    const effective=status==='archived'?'archived':stock>0&&status==='available'?'available':'out_of_stock';
+    try{const saved=await saveCatalogueStrength(env.DB,auth.user,medicineId,{strength,cost,selling,targetMarginBps,status:effective,stock,expectedVersion:b.version});return json({...saved,targetGrossMarginPercent:requestedMargin,...calculateMargin(cost,selling)},saved.replayed?200:201);}catch(error){return json({ok:false,error:error.status?error.message:'catalogue_save_or_audit_failed'},error.status||503);}
   }
   const variantEdit = path.match(/^\/v1\/hq\/medicine-variants\/(\d+)$/);
   if (method === "PATCH" && variantEdit) {
