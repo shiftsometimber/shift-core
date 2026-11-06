@@ -21,7 +21,7 @@ test('Catalogue mutation grant is separate from operations or clinical role; sup
  assert.equal(hasCatalogueWriteGrant({id:2,role:'operations'},[{user_id:2,permission:'catalogue_write',approval_ref:'TEST-OWNER',expires_at:'2026-01-01T00:00:00Z'}],now),false);
  for(const bad of [[route('A','backup')],[route('A','primary'),route('B','primary')],[route('A','primary'),route('A','backup')],[{...route('A','primary'),prescriber_approval:approval}],[{...route('A','primary'),stock_on_hand:-1}],[{...route('A','primary'),authority_until:'2026-01-01T00:00:00Z'}]])assert.throws(()=>validateSupplierRoutes(bad,now));
 });
-async function setup(){const DB=new D1();DB.db.exec(`CREATE TABLE medicine_products(id INTEGER PRIMARY KEY,name TEXT,status TEXT,sellable INTEGER,availability_state TEXT);CREATE TABLE medicine_variants(id INTEGER PRIMARY KEY,medicine_id INTEGER,status TEXT,sellable INTEGER,availability_state TEXT,updated_at TEXT);CREATE TABLE medicine_inventory(variant_id INTEGER PRIMARY KEY,stock_on_hand INTEGER,reserved INTEGER);CREATE TABLE hq_users(id INTEGER PRIMARY KEY,status TEXT,mfa_enabled INTEGER,role TEXT);CREATE TABLE partner_staff(hq_user_id INTEGER,version INTEGER,state_json TEXT);CREATE TABLE partner_organisations(id TEXT PRIMARY KEY,version INTEGER,state_json TEXT);CREATE TABLE hq_audit(id INTEGER PRIMARY KEY,hq_user_id INTEGER,action TEXT,entity_type TEXT,entity_id TEXT,metadata TEXT,created_at TEXT);INSERT INTO medicine_products VALUES(1,'TEST-MED-A','available',1,'available');INSERT INTO medicine_variants VALUES(1,1,'available',1,'available','2026-11-06T09:00:00Z');INSERT INTO medicine_inventory VALUES(1,5,0);INSERT INTO hq_users VALUES(3,'active',1,'clinical');`);
+async function setup(){const DB=new D1();DB.db.exec(`CREATE TABLE medicine_products(id INTEGER PRIMARY KEY,name TEXT,status TEXT,sellable INTEGER,availability_state TEXT);CREATE TABLE medicine_variants(id INTEGER PRIMARY KEY,medicine_id INTEGER,status TEXT,sellable INTEGER,availability_state TEXT,updated_at TEXT);CREATE TABLE medicine_inventory(variant_id INTEGER PRIMARY KEY,stock_on_hand INTEGER,reserved INTEGER,updated_at TEXT);CREATE TABLE hq_users(id INTEGER PRIMARY KEY,status TEXT,mfa_enabled INTEGER,role TEXT);CREATE TABLE partner_staff(hq_user_id INTEGER,version INTEGER,state_json TEXT);CREATE TABLE partner_organisations(id TEXT PRIMARY KEY,version INTEGER,state_json TEXT);CREATE TABLE hq_audit(id INTEGER PRIMARY KEY,hq_user_id INTEGER,action TEXT,entity_type TEXT,entity_id TEXT,metadata TEXT,created_at TEXT);INSERT INTO medicine_products VALUES(1,'TEST-MED-A','available',1,'available');INSERT INTO medicine_variants VALUES(1,1,'available',1,'available','2026-11-06T09:00:00Z');INSERT INTO medicine_inventory VALUES(1,5,0,'2026-11-06T09:00:00.000Z');INSERT INTO hq_users VALUES(3,'active',1,'clinical');`);
  for(const id of ['TEST-PHARMACY-A','TEST-PHARMACY-B','TEST-CLINIC'])DB.db.prepare('INSERT INTO partner_organisations VALUES(?,1,?)').run(id,JSON.stringify({kind:id==='TEST-CLINIC'?'clinical':'pharmacy',status:'approved',expiresAt:future}));
  DB.db.prepare('INSERT INTO partner_staff VALUES(3,1,?)').run(JSON.stringify({kind:'clinician',status:'active'}));await ensureCatalogueGovernanceSchema(DB);return DB;}
 async function approve(DB,version=2){await DB.prepare('INSERT INTO catalogue_prescriber_approvals VALUES(?,?,?,?,?,?,?,?,?,?,?,?)').bind('TEST-APPROVAL',1,1,version,3,'TEST-CLINIC',1,1,'2026-11-06T09:00:00Z',future,'TEST-RX-APPROVAL',CATALOGUE_POLICY).run();}
@@ -40,7 +40,7 @@ test('Audit failure rolls back supplier changes and version; reserved stock cann
  const DB=await setup();try{
  let body={version:1,request_id:crypto.randomUUID(),routes:[route('TEST-PHARMACY-A','primary')]};
  DB.db.exec("CREATE TRIGGER fail_catalogue_audit BEFORE INSERT ON hq_audit BEGIN SELECT RAISE(ABORT,'audit_failed'); END;");
- await assert.rejects(saveTestSupplierRoutes(DB,{id:1,role:'owner'},1,body,null,now),/audit_failed/);assert.equal(DB.db.prepare('SELECT catalogue_version FROM medicine_variants').get().catalogue_version,1);assert.equal(DB.db.prepare('SELECT COUNT(*) n FROM catalogue_supply_routes').get().n,0);
+ await assert.rejects(saveTestSupplierRoutes(DB,{id:1,role:'owner'},1,body,null,now),/audit_failed/);assert.equal(DB.db.prepare('SELECT catalogue_version FROM medicine_variants').get().catalogue_version,1);assert.equal(DB.db.prepare('SELECT COUNT(*) n FROM catalogue_supply_routes').get().n,0);assert.equal(DB.db.prepare('SELECT stock_on_hand FROM medicine_inventory').get().stock_on_hand,5);assert.equal(DB.db.prepare('SELECT updated_at FROM medicine_inventory').get().updated_at,'2026-11-06T09:00:00.000Z');
  DB.db.exec('DROP TRIGGER fail_catalogue_audit');await saveTestSupplierRoutes(DB,{id:1,role:'owner'},1,body,null,now);DB.db.exec('UPDATE catalogue_supply_routes SET reserved=2');
  body={version:2,request_id:crypto.randomUUID(),routes:[route('TEST-PHARMACY-A','primary',1)]};await assert.rejects(saveTestSupplierRoutes(DB,{id:1,role:'owner'},1,body,null,now),/version_stock_or_reservation_changed/);assert.equal(DB.db.prepare('SELECT catalogue_version FROM medicine_variants').get().catalogue_version,2);
  await assert.rejects(saveTestSupplierRoutes(DB,{id:1,role:'owner'},1,{...body,request_id:crypto.randomUUID(),routes:[route('TEST-PHARMACY-B','primary')]},null,now),/version_stock_or_reservation_changed/);
@@ -65,5 +65,35 @@ test('Existing catalogue updates and their audit append share one rollback bound
   assert.equal(DB.db.prepare('SELECT name FROM medicine_products WHERE id=1').get().name,'TEST-MED-A');
   DB.db.exec('DROP TRIGGER fail_catalogue_audit');await auditedCatalogueMutation(DB,{id:1},[update()],'medicine.updated','medicine',1,{before:'TEST-MED-A',after:'TEST-AMENDED'});
   assert.equal(DB.db.prepare('SELECT name FROM medicine_products WHERE id=1').get().name,'TEST-AMENDED');assert.equal(DB.db.prepare('SELECT COUNT(*) n FROM hq_audit').get().n,1);
+ }finally{DB.db.close()}
+});
+
+test('A fresh authorised supplier receipt updates native inventory atomically without releasing reservations or refreshing a replay',async()=>{
+ const DB=await setup();try{
+ DB.db.exec('UPDATE medicine_inventory SET reserved=1');
+ const body={version:1,request_id:crypto.randomUUID(),routes:[route('TEST-PHARMACY-A','primary',3),route('TEST-PHARMACY-B','backup',4)]};
+ await saveTestSupplierRoutes(DB,{id:1,role:'owner'},1,body,null,now);
+ const inventory=()=>DB.db.prepare('SELECT stock_on_hand,reserved,updated_at FROM medicine_inventory WHERE variant_id=1').get();
+ assert.deepEqual({...inventory()},{stock_on_hand:7,reserved:1,updated_at:now.toISOString()});
+ const replay=await saveTestSupplierRoutes(DB,{id:1,role:'owner'},1,body,null,new Date(+now+60000));assert.equal(replay.replayed,true);assert.equal(inventory().updated_at,now.toISOString());
+ const audit=JSON.parse(DB.db.prepare('SELECT metadata FROM hq_audit').get().metadata);assert.equal(audit.inventory_source,'authorised_supplier_receipt');assert.equal(audit.inventory_updated_at,now.toISOString());
+ }finally{DB.db.close()}
+});
+test('Unavailable or unauthorised suppliers cannot refresh positive native stock',async()=>{
+ for(const kind of ['paused','no_authority','unavailable','unapproved','expired']){
+ const DB=await setup();try{
+ const item=route('TEST-PHARMACY-A','primary',7);if(kind==='paused')item.readiness='paused';if(kind==='no_authority')item.authority=false;if(kind==='unavailable')item.availability='hold';
+ if(kind==='unapproved'||kind==='expired'){const state={kind:'pharmacy',status:kind==='unapproved'?'pending':'approved',expiresAt:kind==='expired'?'2026-11-01T00:00:00Z':future};DB.db.prepare('UPDATE partner_organisations SET state_json=? WHERE id=?').run(JSON.stringify(state),item.partner_id);}
+ await saveTestSupplierRoutes(DB,{id:1,role:'owner'},1,{version:1,request_id:crypto.randomUUID(),routes:[item]},null,now);
+ assert.equal(DB.db.prepare('SELECT stock_on_hand FROM medicine_inventory').get().stock_on_hand,0,kind);
+ }finally{DB.db.close()}}
+});
+test('A supplier receipt cannot undercut native checkout reservations; the whole receipt rolls back',async()=>{
+ const DB=await setup();try{
+ const original=DB.db.prepare('SELECT * FROM medicine_inventory').get();
+ DB.db.exec('UPDATE medicine_inventory SET reserved=4');
+ await assert.rejects(saveTestSupplierRoutes(DB,{id:1,role:'owner'},1,{version:1,request_id:crypto.randomUUID(),routes:[route('TEST-PHARMACY-A','primary',3)]},null,now),/version_stock_or_reservation_changed/);
+ assert.equal(DB.db.prepare('SELECT catalogue_version FROM medicine_variants').get().catalogue_version,1);assert.equal(DB.db.prepare('SELECT COUNT(*) n FROM catalogue_supply_routes').get().n,0);assert.equal(DB.db.prepare('SELECT COUNT(*) n FROM hq_audit').get().n,0);
+ assert.deepEqual({...DB.db.prepare('SELECT * FROM medicine_inventory').get()},{...original,reserved:4});
  }finally{DB.db.close()}
 });
