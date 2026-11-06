@@ -1,3 +1,4 @@
+import {readCatalogueAuthority,catalogueReservationGuard,catalogueReservationStatements,settleCatalogueReservationStatements,catalogueReservationExists,catalogueReservationState} from './hq-catalogue-governance-v31.mjs';
 import {ensureCheckoutAttempts,acquireCheckoutAttempt,prepareCheckoutAttempt,requestCheckoutSession,checkoutProblem} from './checkout-attempt-v1.mjs';
 import {reserveOrderReference,attachOrderReference,updateOrderReferenceStatus,ensureOrderReferenceRegistry} from './order-reference-v1.js';
 import {ensurePurchaseabilitySchema,authoritativePurchaseability} from './hq-purchaseability-v1.js';
@@ -293,6 +294,7 @@ async function clinicalIntake(request, env) {
   const eligibility = item && (insulinEligibility(item.form, form.get('insulinUse')) || bmiEligibility(item,Object.fromEntries(['heightCm','weightKg','weightRelatedCondition'].map(key=>[key,form.get(key)]))));
   if (eligibility) return json({ok:false,error:eligibility.error,message:eligibility.message},eligibility.status,cors(request));
   const itemTruth=item?authoritativePurchaseability({product:{status:item.medicine_status,sellable:item.medicine_sellable,partner:item.medicine_partner,availability_state:item.medicine_availability},variant:{status:item.variant_status,sellable:item.variant_sellable,partner:item.variant_partner,availability_state:item.variant_availability},inventory:{stock_on_hand:item.stock_on_hand,reserved:item.reserved}}):null;
+  if(itemTruth?.canBuy)itemTruth.canBuy=(await readCatalogueAuthority(env.DB,variantId)).canBuy;
   if (!itemTruth?.canBuy) return json({ok:false,error:"out_of_stock",message:"Currently out of stock. No clinical evidence has been sent."},409,cors(request));
   const ageEligibility = adultServiceEligibility(form.get('dateOfBirth'));
   if (ageEligibility) return json({ok:false,error:ageEligibility.error,message:ageEligibility.message},ageEligibility.status,cors(request));
@@ -464,6 +466,7 @@ async function prepayVerification(request, env) {
   const eligibility = item && (insulinEligibility(item.form, input.assessment.insulinUse) || bmiEligibility(item,input.assessment));
   if (eligibility) return json({ok:false,error:eligibility.error,message:eligibility.message},eligibility.status,cors(request));
   const itemTruth=item?authoritativePurchaseability({product:{status:item.medicine_status,sellable:item.medicine_sellable,partner:item.medicine_partner,availability_state:item.medicine_availability},variant:{status:item.variant_status,sellable:item.variant_sellable,partner:item.variant_partner,availability_state:item.variant_availability},inventory:{stock_on_hand:item.stock_on_hand,reserved:item.reserved}}):null;
+  if(itemTruth?.canBuy)itemTruth.canBuy=(await readCatalogueAuthority(env.DB,variantId)).canBuy;
   if (!itemTruth?.canBuy) return json({ok:false,error:"out_of_stock",message:"Currently out of stock."},409,cors(request));
   const ageEligibility = adultServiceEligibility(input.assessment.dateOfBirth);
   if (ageEligibility) return json({ok:false,error:ageEligibility.error,message:ageEligibility.message},ageEligibility.status,cors(request));
@@ -533,12 +536,14 @@ export async function reconcileExpiredReservations(env) {
     if(session.id!==order.stripe_checkout_session_id||session.status!=='expired'||session.payment_status==='paid')continue;
     await ensureOrderReferenceRegistry(env.DB);await ensureCheckoutAttempts(env.DB);
     const date=now(),condition="EXISTS(SELECT 1 FROM medicine_orders WHERE id=? AND status IN ('pending','checkout_open'))";
+    const supplierExpiry=await catalogueReservationExists(env.DB,order.order_number)?settleCatalogueReservationStatements(env.DB,order.order_number,'expired',condition,[order.id],date):[];
     const result=await env.DB.batch([
+      ...supplierExpiry,
       env.DB.prepare(`UPDATE medicine_inventory SET reserved=MAX(0,reserved-1),updated_at=? WHERE variant_id=? AND ${condition}`).bind(date,order.variant_id,order.id),
       env.DB.prepare(`UPDATE order_reference_registry SET status='expired',updated_at=? WHERE order_number=? AND ${condition}`).bind(date,order.order_number,order.id),
       env.DB.prepare(`UPDATE checkout_attempts SET active=0,state='expired',updated_at=? WHERE order_number=? AND ${condition}`).bind(date,order.order_number,order.id),
       env.DB.prepare("UPDATE medicine_orders SET status='expired',updated_at=? WHERE id=? AND status IN ('pending','checkout_open')").bind(date,order.id)
-    ]);count+=Number(result[3]?.meta?.changes||0);
+    ]);count+=Number(result[supplierExpiry.length+3]?.meta?.changes||0);
   }
   return count;
 }
@@ -553,6 +558,7 @@ async function catalogue(env) {
     ).results || [];
   const products = [];
   for (const row of rows) {
+    const catalogueGate=await readCatalogueAuthority(env.DB,row.variant_id);
     const medicineName = String(row.name || "").trim().toLowerCase();
     const originalLabel = String(row.strength_label || "").trim();
     const strengthLabel = medicineName === "orlistat" && /^\d+$/.test(originalLabel)
@@ -589,7 +595,7 @@ async function catalogue(env) {
       id: row.variant_id,
       strengthLabel,
       pricePence: Number(row.selling_price_pence),
-      status: authoritativePurchaseability({product:{status:row.medicine_status,sellable:row.medicine_sellable,partner:row.medicine_partner,availability_state:row.medicine_availability},variant:{status:row.variant_status,sellable:row.variant_sellable,partner:row.variant_partner,availability_state:row.variant_availability},inventory:{stock_on_hand:row.stock_on_hand,reserved:row.reserved}}).canBuy ? "available" : "out_of_stock",
+      status: authoritativePurchaseability({product:{status:row.medicine_status,sellable:row.medicine_sellable,partner:row.medicine_partner,availability_state:row.medicine_availability},variant:{status:row.variant_status,sellable:row.variant_sellable,partner:row.variant_partner,availability_state:row.variant_availability},inventory:{stock_on_hand:row.stock_on_hand,reserved:row.reserved}}).canBuy && catalogueGate.canBuy ? "available" : "out_of_stock",
       remaining,
     });
   }
@@ -692,17 +698,22 @@ async function checkout(request, env) {
     if(!linkedIntake)return reject('verified_assessment_reference_required',409,'The pharmacy assessment reference must be confirmed before payment.');
     const item=await env.DB.prepare(`SELECT v.id variant_id,v.medicine_id,v.strength_label,v.selling_price_pence,v.status variant_status,v.sellable variant_sellable,v.partner variant_partner,v.availability_state variant_availability,m.name,m.status medicine_status,m.sellable medicine_sellable,m.partner medicine_partner,m.availability_state medicine_availability,COALESCE(i.stock_on_hand,0) stock_on_hand,COALESCE(i.reserved,0) reserved FROM medicine_variants v JOIN medicine_products m ON m.id=v.medicine_id LEFT JOIN medicine_inventory i ON i.variant_id=v.id WHERE v.id=?`).bind(variantId).first();
     const truth=item?authoritativePurchaseability({product:{status:item.medicine_status,sellable:item.medicine_sellable,partner:item.medicine_partner,availability_state:item.medicine_availability},variant:{status:item.variant_status,sellable:item.variant_sellable,partner:item.variant_partner,availability_state:item.variant_availability},inventory:{stock_on_hand:item.stock_on_hand,reserved:item.reserved}}):null;
+    const catalogueGate=await readCatalogueAuthority(env.DB,variantId);
+    if(!catalogueGate.canBuy)return reject('catalogue_authority_required',409,'This treatment is not currently available to purchase.');
+    if(env.PHARMACY_CATALOGUE_PARTNER_ID!==catalogueGate.selectedPartner)return reject('supplier_route_not_connected',409,'The approved supply route is not connected for checkout.');
     if(!truth?.canBuy)return reject('out_of_stock',409,'Currently out of stock.');
     const offer=await discount(env,input?.discountCode,Number(item.selling_price_pence));
     if(input?.discountCode&&!offer)return reject('invalid_discount_code',400);
     const order={orderNumber:attempt.order_number,totalPence:Number(item.selling_price_pence)-Number(offer?.amount||0)},date=now();
     await ensureOrderReferenceRegistry(env.DB);
-    const availableSql=`EXISTS(SELECT 1 FROM medicine_inventory WHERE variant_id=? AND stock_on_hand-reserved>0)`+(verification?` AND EXISTS(SELECT 1 FROM medicine_prepay_verifications WHERE token_hash=? AND user_id=? AND variant_id=? AND used_at IS NULL AND expires_at>?) AND NOT EXISTS(SELECT 1 FROM medicine_prepay_verifications WHERE user_id=? AND partner_reference=? AND used_at IS NOT NULL)`:'');
-    attempt=await prepareCheckoutAttempt(env.DB,attempt,{availableSql,availableArgs:[variantId,...(verification?[verificationHash,user.id,variantId,date,user.id,verification.partner_reference]:[])],form:stripeForm(order,item,user,env),statements:guard=>[
+    const catalogueGuard=catalogueReservationGuard(catalogueGate,new Date(date));
+    const availableSql='('+catalogueGuard.sql+') AND '+`EXISTS(SELECT 1 FROM medicine_inventory WHERE variant_id=? AND stock_on_hand-reserved>0)`+(verification?` AND EXISTS(SELECT 1 FROM medicine_prepay_verifications WHERE token_hash=? AND user_id=? AND variant_id=? AND used_at IS NULL AND expires_at>?) AND NOT EXISTS(SELECT 1 FROM medicine_prepay_verifications WHERE user_id=? AND partner_reference=? AND used_at IS NOT NULL)`:'');
+    attempt=await prepareCheckoutAttempt(env.DB,attempt,{availableSql,availableArgs:[...catalogueGuard.args,variantId,...(verification?[verificationHash,user.id,variantId,date,user.id,verification.partner_reference]:[])],form:stripeForm(order,item,user,env),statements:guard=>[
       env.DB.prepare(`INSERT INTO medicine_orders(order_number,user_id,email,medicine_id,variant_id,medicine_name,strength_label,unit_price_pence,discount_code,discount_pence,total_pence,reorder_of_order_id,clinical_intake_submitted_at,clinical_intake_reference,created_at,updated_at) SELECT ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? WHERE ${guard}`).bind(order.orderNumber,user.id,user.email,item.medicine_id,variantId,item.name,item.strength_label,item.selling_price_pence,offer?.code||null,offer?.amount||0,order.totalPence,reorderOf?.id||null,verification?date:null,linkedIntake.public_reference,date,date),
       env.DB.prepare(`INSERT INTO order_reference_registry(order_number,channel,user_id,source_table,source_id,status,created_at,updated_at) SELECT ?,'medicine',?,'medicine_orders',(SELECT id FROM medicine_orders WHERE order_number=?),'pending',?,? WHERE ${guard}`).bind(order.orderNumber,user.id,order.orderNumber,date,date),
       env.DB.prepare(`UPDATE medicine_inventory SET reserved=reserved+1,updated_at=? WHERE variant_id=? AND ${guard}`).bind(date,variantId),
       ...(verification?[env.DB.prepare(`UPDATE medicine_prepay_verifications SET used_at=? WHERE token_hash=? AND ${guard}`).bind(date,verificationHash)]:[])
+      ,...catalogueReservationStatements(env.DB,catalogueGate,order.orderNumber,guard,date)
     ]});
     if(attempt.state==='preparing')return reject('stock_or_verification_changed',409,'Stock or verification changed. Please check your selection before trying again.');
   }
@@ -759,6 +770,7 @@ async function webhook(request, env, ctx) {
     const stamp = now(), statements = [];
     const paid = ["checkout.session.completed", "checkout.session.async_payment_succeeded"].includes(event.type) && session.payment_status === "paid";
     const failed = ["checkout.session.expired", "checkout.session.async_payment_failed", "payment_intent.payment_failed"].includes(event.type);
+    if(paid&&(await catalogueReservationState(env.DB,number))==='expired')throw Error('late_capture_requires_catalogue_reconciliation');
     // Conditions are evaluated inside the transaction, not against the earlier read.
     // Distinct Stripe events and concurrent deliveries must settle one order only once.
     const payable = "status IN ('pending','checkout_open','failed','expired')";
@@ -776,6 +788,7 @@ async function webhook(request, env, ctx) {
         env.DB.prepare(`UPDATE medicine_orders SET status='failed',updated_at=? WHERE id=? AND ${reserved}`).bind(stamp,order.id)
       );
     }
+    if((paid||failed)&&await catalogueReservationExists(env.DB,number))statements.push(...settleCatalogueReservationStatements(env.DB,number,paid?'paid':'expired',"EXISTS(SELECT 1 FROM medicine_orders WHERE id=? AND status=?)",[order.id,paid?'paid':'failed'],stamp));
     if(paid||event.type==='checkout.session.expired')statements.push(env.DB.prepare("UPDATE checkout_attempts SET active=0,state=?,updated_at=? WHERE order_number=?").bind(paid?'paid':'expired',stamp,number));
     // The event is complete only when order, inventory and registry commit together.
     statements.push(env.DB.prepare("UPDATE medicine_stripe_events SET processed_at=?,processing_error=NULL WHERE stripe_event_id=?").bind(stamp,event.id));

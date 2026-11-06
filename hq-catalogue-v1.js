@@ -1,5 +1,8 @@
+import {validCatalogueImage} from './catalogue-image-validation.mjs';
 import hq from "./hq-ai-v2.js";
 import { ensurePurchaseabilitySchema, normaliseAvailability } from "./hq-purchaseability-v1.js";
+import {catalogueAdminV31Route,auditedCatalogueMutation} from './hq-catalogue-admin-v31.mjs';
+import {hasCatalogueWriteGrant} from './hq-catalogue-governance-v31.mjs';
 
 const json = (body, status = 200) =>
   new Response(JSON.stringify(body), {
@@ -74,7 +77,7 @@ async function actor(request, env, ctx) {
     ctx,
   );
   if (!response.ok) return { response };
-  return { user: (await response.json()).user };
+  const identity=await response.json();return { user:identity.user,permissions:identity.permissions||[] };
 }
 const canManage = (user) =>
   ["owner", "admin", "operations"].includes(user?.role);
@@ -156,8 +159,12 @@ export async function hqCatalogueRoutes(request, env, ctx) {
   }
   const auth = await actor(request, env, ctx);
   if (auth.response) return auth.response;
+  if(method==='GET'&&path==='/v1/hq/catalogue/permissions')return json({ok:true,canRead:canManage(auth.user)||auth.permissions.includes('commerce_read')||auth.permissions.includes('*'),canEdit:hasCatalogueWriteGrant(auth.user,env.HQ_CATALOGUE_EDITOR_GRANTS)});
+  const governed=await catalogueAdminV31Route(request,env,auth.user,auth.permissions);if(governed)return governed;
   if (!canManage(auth.user))
     return json({ ok: false, error: "forbidden" }, 403);
+  if(!['GET','HEAD'].includes(method)&&!hasCatalogueWriteGrant(auth.user,env.HQ_CATALOGUE_EDITOR_GRANTS))return json({ok:false,error:'catalogue_commerce_grant_required'},403);
+  if(!['GET','HEAD'].includes(method)&&!['https://hq.shiftsometimber.co.uk','https://api.shiftsometimber.co.uk'].includes(request.headers.get('Origin')))return json({ok:false,error:'origin_forbidden'},403);
   if (method === "GET" && path === "/v1/hq/catalogue/products") {
     const rows =
       (
@@ -185,7 +192,7 @@ export async function hqCatalogueRoutes(request, env, ctx) {
       base64 = String(b.imageBase64 || "").trim(),
       alt = clean(b.altText, 180);
     if (
-      !["image/jpeg", "image/png", "image/webp"].includes(mime) ||
+      !validCatalogueImage(mime,base64,alt) ||
       !alt ||
       !/^[A-Za-z0-9+/]+={0,2}$/.test(base64) ||
       base64.length > 2097152
@@ -203,19 +210,12 @@ export async function hqCatalogueRoutes(request, env, ctx) {
       .bind(Number(image[1]))
       .first();
     if (!product) return json({ ok: false, error: "product_not_found" }, 404);
-    await env.DB.prepare(
+    const imageMutation=env.DB.prepare(
       `INSERT INTO commerce_product_images(product_id,mime_type,image_base64,alt_text,updated_by,updated_at) VALUES(?,?,?,?,?,?) ON CONFLICT(product_id) DO UPDATE SET mime_type=excluded.mime_type,image_base64=excluded.image_base64,alt_text=excluded.alt_text,updated_by=excluded.updated_by,updated_at=excluded.updated_at`,
     )
       .bind(product.id, mime, base64, alt, auth.user.id, now())
-      .run();
-    await audit(
-      env,
-      auth.user,
-      "product.image_updated",
-      "product",
-      product.id,
-      { mime, alt },
-    );
+;
+    await auditedCatalogueMutation(env.DB,auth.user,[imageMutation],'catalogue.product_image_updated','product',product.id,{mime,alt});
     return json({
       ok: true,
       imageUrl: `/v1/catalogue/product-images/${product.id}`,
@@ -250,6 +250,7 @@ export async function hqCatalogueRoutes(request, env, ctx) {
           .filter((v) => v.medicine_id === m.id && v.status !== "archived")
           .map((v) => ({
             id: v.id,
+            catalogueVersion:v.catalogue_version,
             strengthLabel: v.strength_label,
             status: v.status,
             partner: v.partner || "",
@@ -268,12 +269,12 @@ export async function hqCatalogueRoutes(request, env, ctx) {
   const medicineImage = path.match(/^\/v1\/hq\/medicines\/(\d+)\/image$/);
   if (medicineImage && method === "PUT") {
     const b = await request.json().catch(() => ({})), mime = clean(b.mimeType, 80), base64 = String(b.imageBase64 || "").trim(), alt = clean(b.altText, 180);
-    if (!["image/jpeg", "image/png", "image/webp"].includes(mime) || !alt || !/^[A-Za-z0-9+/]+={0,2}$/.test(base64) || base64.length > 2097152)
+    if (!validCatalogueImage(mime,base64,alt) || !alt || !/^[A-Za-z0-9+/]+={0,2}$/.test(base64) || base64.length > 2097152)
       return json({ ok: false, error: "invalid_medicine_image", message: "Use a JPG, PNG or WebP no larger than 1.5 MB and provide alt text." }, 400);
     const medicine = await env.DB.prepare("SELECT id FROM medicine_products WHERE id=?").bind(Number(medicineImage[1])).first();
     if (!medicine) return json({ ok: false, error: "medicine_not_found" }, 404);
-    await env.DB.prepare(`INSERT INTO medicine_product_images(medicine_id,mime_type,image_base64,alt_text,updated_by,updated_at) VALUES(?,?,?,?,?,?) ON CONFLICT(medicine_id) DO UPDATE SET mime_type=excluded.mime_type,image_base64=excluded.image_base64,alt_text=excluded.alt_text,updated_by=excluded.updated_by,updated_at=excluded.updated_at`).bind(medicine.id,mime,base64,alt,auth.user.id,now()).run();
-    await audit(env,auth.user,"medicine.image_updated","medicine",medicine.id,{mime,alt});
+    const imageMutation=env.DB.prepare(`INSERT INTO medicine_product_images(medicine_id,mime_type,image_base64,alt_text,updated_by,updated_at) VALUES(?,?,?,?,?,?) ON CONFLICT(medicine_id) DO UPDATE SET mime_type=excluded.mime_type,image_base64=excluded.image_base64,alt_text=excluded.alt_text,updated_by=excluded.updated_by,updated_at=excluded.updated_at`).bind(medicine.id,mime,base64,alt,auth.user.id,now());
+    await auditedCatalogueMutation(env.DB,auth.user,[imageMutation],'medicine.image_updated','medicine',medicine.id,{mime,alt});
     return json({ok:true,imageUrl:`/v1/catalogue/medicine-images/${medicine.id}`});
   }
   if (medicineImage && method === "DELETE") {
@@ -345,8 +346,8 @@ export async function hqCatalogueRoutes(request, env, ctx) {
       !["draft", "out_of_stock", "available", "archived"].includes(status)
     )
       return json({ ok: false, error: "invalid_medicine" }, 400);
-    await env.DB.prepare(
-      "UPDATE medicine_products SET name=?,active_ingredient=?,form=?,status=?,description=?,partner=?,sellable=?,availability_state=?,updated_by=?,updated_at=? WHERE id=?",
+    const medicineMutation=env.DB.prepare(
+      "UPDATE medicine_products SET name=?,active_ingredient=?,form=?,status=?,description=?,partner=?,sellable=?,availability_state=?,updated_by=?,updated_at=?,catalogue_version=catalogue_version+1 WHERE id=?",
     )
       .bind(
         name,
@@ -361,11 +362,8 @@ export async function hqCatalogueRoutes(request, env, ctx) {
         now(),
         current.id,
       )
-      .run();
-    await audit(env, auth.user, "medicine.updated", "medicine", current.id, {
-      name,
-      status,
-    });
+;
+    await auditedCatalogueMutation(env.DB,auth.user,[medicineMutation],'medicine.updated','medicine',current.id,{before:{name:current.name,status:current.status,version:current.catalogue_version},after:{name,status,version:current.catalogue_version+1},signoffInvalidated:true});
     return json({ ok: true, id: current.id });
   }
   const variant = path.match(/^\/v1\/hq\/medicines\/(\d+)\/variants$/);
@@ -505,29 +503,18 @@ export async function hqCatalogueRoutes(request, env, ctx) {
             ? "available"
             : "out_of_stock",
       stamp = now();
-    await env.DB.batch([
+    const variantMutations=[
       env.DB.prepare(
-        "UPDATE medicine_variants SET cost_pence=?,selling_price_pence=?,target_margin_bps=?,status=?,partner=?,sellable=?,availability_state=?,updated_at=? WHERE id=?",
+        "UPDATE medicine_variants SET cost_pence=?,selling_price_pence=?,target_margin_bps=?,status=?,partner=?,sellable=?,availability_state=?,updated_at=?,catalogue_version=catalogue_version+1 WHERE id=?",
       ).bind(cost, selling, targetMarginBps, effective, partner || null, sellable, availability, stamp, id),
       env.DB.prepare(
         `INSERT INTO medicine_inventory(variant_id,stock_on_hand,reserved,updated_at) VALUES(?,?,0,?) ON CONFLICT(variant_id) DO UPDATE SET stock_on_hand=excluded.stock_on_hand,updated_at=excluded.updated_at`,
       ).bind(id, stock, stamp),
-    ]);
-    await env.DB.prepare(
+    ];
+    const historyMutation=env.DB.prepare(
       `INSERT INTO medicine_variant_price_history(variant_id,cost_pence,target_margin_bps,selling_price_pence,changed_by,created_at) VALUES(?,?,?,?,?,?)`,
-    ).bind(id,cost,targetMarginBps,selling,auth.user.id,stamp).run();
-    await audit(
-      env,
-      auth.user,
-      "medicine.variant_updated",
-      "medicine_variant",
-      id,
-      {
-        stockOnHand: stock,
-        status: effective,
-        ...calculateMargin(cost, selling),
-      },
-    );
+    ).bind(id,cost,targetMarginBps,selling,auth.user.id,stamp);
+    await auditedCatalogueMutation(env.DB,auth.user,[...variantMutations,historyMutation],'medicine.variant_updated','medicine_variant',id,{before:{costPence:current.cost_pence,sellingPricePence:current.selling_price_pence,status:current.status,version:current.catalogue_version},after:{costPence:cost,sellingPricePence:selling,status:effective,version:current.catalogue_version+1,stockOnHand:stock},signoffInvalidated:true});
     return json({
       ok: true,
       id,

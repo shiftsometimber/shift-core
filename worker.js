@@ -1,3 +1,5 @@
+import {hasCatalogueWriteGrant} from './hq-catalogue-governance-v31.mjs';
+import {auditedCatalogueMutation} from './hq-catalogue-admin-v31.mjs';
 import {sendTrackedCommerceEmail} from './hq-commerce-delivery.mjs';
 import {aiActionPolicy} from './hq-v3-contracts.mjs';
 import {hqMfaOriginAllowed,claimHqMfaChallenge} from './hq-mfa-readiness.mjs';
@@ -811,6 +813,10 @@ async function adminRoutes(request, env, path, method) {
   const access = await requireHqAccess(request, env, permission);
   if (access.response) return access.response;
   const hqActor = access.actor;
+  if(/^\/v1\/hq\/products(?:\/|$)/.test(path)&&!['GET','HEAD','OPTIONS'].includes(method)){
+    if(!hasCatalogueWriteGrant(hqActor,env.HQ_CATALOGUE_EDITOR_GRANTS))return json({ok:false,error:'catalogue_commerce_grant_required'},403);
+    if(request.headers.get('Origin')!=='https://hq.shiftsometimber.co.uk')return json({ok:false,error:'origin_forbidden'},403);
+  }
 
   if (method === 'GET' && path === '/v1/hq/adaptive-today') {
     await env.DB.batch([
@@ -1302,9 +1308,15 @@ async function adminRoutes(request, env, path, method) {
     const b=await readJson(request);
     const name=clean(b.name,200), sku=clean(b.sku,100), type=clean(b.productType,50)||'physical', status=clean(b.status,30)||'draft';
     if(!name||!sku||!['membership','physical','digital','service'].includes(type)||!['active','draft','archived'].includes(status)) return json({ok:false,error:'invalid_request'},400);
-    await env.DB.prepare(`INSERT INTO products(name,sku,product_type,price_pence,status,description,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?)`)
-      .bind(name,sku,type,Math.max(0,Number(b.pricePence||0)),status,clean(b.description,5000),isoNow(),isoNow()).run();
-    return json({ok:true},201);
+    const pricePence=b.pricePence,description=clean(b.description,5000),date=isoNow();
+    if(!Number.isSafeInteger(pricePence)||pricePence<0)return json({ok:false,error:'integer_pence_required'},400);
+    const existing=await env.DB.prepare('SELECT id,name,product_type,price_pence,status,description FROM products WHERE sku=?').bind(sku).first();
+    if(existing){if(existing.name===name&&existing.product_type===type&&existing.price_pence===pricePence&&existing.status===status&&existing.description===description)return json({ok:true,id:existing.id,replayed:true});return json({ok:false,error:'sku_already_exists'},409);}
+    try{await env.DB.batch([
+      env.DB.prepare(`INSERT INTO products(name,sku,product_type,price_pence,status,description,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?)`).bind(name,sku,type,pricePence,status,description,date,date),
+      env.DB.prepare("INSERT INTO hq_audit(hq_user_id,action,entity_type,entity_id,metadata,created_at) SELECT ?,'commerce.product_created','product',CAST(id AS TEXT),?,? FROM products WHERE sku=? AND changes()=1").bind(hqActor.id,JSON.stringify({before:null,after:{name,sku,type,pricePence,status}}),date,sku)
+    ]);}catch{return json({ok:false,error:'catalogue_save_or_audit_failed'},503);}
+    return json({ok:true,auditRecorded:true},201);
   }
 
   const productUpdateMatch=path.match(/^\/v1\/hq\/products\/(\d+)$/);
@@ -1313,14 +1325,15 @@ async function adminRoutes(request, env, path, method) {
     if(!existing)return json({ok:false,error:'product_not_found'},404);
     const name=clean(b.name??existing.name,200),status=clean(b.status??existing.status,30),description=clean(b.description??existing.description,5000),pricePence=Math.max(0,Math.floor(Number(b.pricePence??existing.price_pence)));
     if(!name||!['active','draft','archived'].includes(status)||!Number.isFinite(pricePence))return json({ok:false,error:'invalid_request'},400);
-    await env.DB.prepare('UPDATE products SET name=?,price_pence=?,status=?,description=?,updated_at=? WHERE id=?').bind(name,pricePence,status,description,isoNow(),id).run();
     const detail=await env.DB.prepare('SELECT * FROM commerce_product_details WHERE product_id=?').bind(id).first();
+    const date=isoNow(),mutations=[env.DB.prepare('UPDATE products SET name=?,price_pence=?,status=?,description=?,updated_at=? WHERE id=?').bind(name,pricePence,status,description,date,id)];
     if(detail){
       const colours=Array.isArray(b.colours)&&b.colours.length?b.colours.filter(x=>['Black','Cream','Ash Green'].includes(x)):JSON.parse(detail.colours_json),featured=clean(b.featuredColour??detail.featured_colour,30);
       if(!colours.includes(featured))return json({ok:false,error:'featured_colour_unavailable'},400);
-      await env.DB.prepare('UPDATE commerce_product_details SET featured_colour=?,colours_json=?,updated_at=? WHERE product_id=?').bind(featured,JSON.stringify(colours),isoNow(),id).run();
+      mutations.push(env.DB.prepare('UPDATE commerce_product_details SET featured_colour=?,colours_json=?,updated_at=? WHERE product_id=?').bind(featured,JSON.stringify(colours),date,id));
     }
-    await hqAudit(env,hqActor,'commerce.product_updated','product',String(id),{name,status,pricePence});return json({ok:true,id});
+    try{await auditedCatalogueMutation(env.DB,hqActor,mutations,'commerce.product_updated','product',id,{before:{name:existing.name,status:existing.status,pricePence:existing.price_pence},after:{name,status,pricePence},historyRetained:true},date);}catch{return json({ok:false,error:'catalogue_save_or_audit_failed'},503);}
+    return json({ok:true,id,auditRecorded:true});
   }
 
   if(method==='GET'&&path==='/v1/hq/orders/recovery')return json(await shopRecoveryStatus(env));

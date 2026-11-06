@@ -1,6 +1,6 @@
 // HQ v3 metadata/metric contracts. These do not authenticate supplier receipts,
 // execute clinical commands, persist events or introduce another source of truth.
-export const CONTRACT_VERSION = 'hq-v3-2026-11-05';
+export const CONTRACT_VERSION = 'hq-v3.1-2026-11-06';
 export const TIMEZONE = 'Europe/London';
 const dateFormatter = new Intl.DateTimeFormat('en-CA', {timeZone:TIMEZONE,year:'numeric',month:'2-digit',day:'2-digit'});
 const partsFormatter = new Intl.DateTimeFormat('en-GB', {timeZone:TIMEZONE,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'});

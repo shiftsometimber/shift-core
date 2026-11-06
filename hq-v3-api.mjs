@@ -1,4 +1,5 @@
 import {CONTRACT_VERSION,periodWindow,comparisonWindow,AI_ALLOWED_ACTIONS} from './hq-v3-contracts.mjs';
+import {METRIC_DICTIONARY,memberDemographics,supportMetadata,staffMfaMetadata,businessSourceHealth,learningCatalogue,scenarioProjection} from './hq-v3-business.mjs';
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 const unavailable=(reason,owner)=>({status:'unavailable',value:null,reason,owner});
 const SOURCES=Object.freeze({
@@ -69,12 +70,40 @@ export async function hqV3Route(request,env,ctx,authenticate){
   // This new projection cannot accidentally query production via an HQ cookie.
   if(env.HQ_V3_TEST_MODE!=='true'||env.DEPLOYMENT_ENVIRONMENT!=='test')return json({ok:false,error:'isolated_test_environment_required',message:'The v3 TEST projection is not enabled on this environment.'},503);
   if((url.searchParams.get('partition')||'TEST')!=='TEST')return json({ok:false,error:'test_partition_required'},403);
-  let period;
-  try{period=periodWindow({preset:url.searchParams.get('period')||'TODAY',start:url.searchParams.get('start'),end:url.searchParams.get('end')});}catch{return json({ok:false,error:'invalid_period'},400);}
+  const capturedNow=new Date();let period;
+  try{period=periodWindow({now:capturedNow,preset:url.searchParams.get('period')||'TODAY',start:url.searchParams.get('start'),end:url.searchParams.get('end')});}catch{return json({ok:false,error:'invalid_period'},400);}
   if(path.endsWith('/purchases'))return json({ok:true,definition_version:CONTRACT_VERSION,...await testPurchaseProjection(env.DB,period,{synthetic:env.SSTRX_ENVIRONMENT==='synthetic'})});
   if(path.endsWith('/sources'))return json({ok:true,partition:'TEST',definition_version:CONTRACT_VERSION,sources:await sourceSchemaMap(env.DB),coverage_status:'NOT RUN'});
+  const configuration=key=>{try{return JSON.parse(env[key]||'null')}catch{return null}};
+  const response=data=>json({ok:true,partition:'TEST',definition_version:CONTRACT_VERSION,observed_at:new Date().toISOString(),period,...data});
+  if(path==='/v1/hq/management/v3/dictionary')return response({metrics:METRIC_DICTIONARY});
+  if(path==='/v1/hq/management/v3/demographics'){
+    if([...url.searchParams.keys()].some(k=>!['period','partition','start','end'].includes(k)))return json({ok:false,error:'aggregate_crosscuts_not_permitted'},400);
+    return response({demographics:await memberDemographics(env.DB,configuration('HQ_V3_AGGREGATE_POLICY'))});
+  }
+  if(path==='/v1/hq/management/v3/support')return response({support:await supportMetadata(env.DB,configuration('HQ_V3_SUPPORT_CALENDAR'))});
+  if(path==='/v1/hq/management/v3/access')return response({staff:await staffMfaMetadata(env.DB)});
+  if(path==='/v1/hq/management/v3/health')return response({health:await businessSourceHealth(env.DB)});
+  if(path==='/v1/hq/management/v3/learning')return response({learning:learningCatalogue(configuration('HQ_V3_LEARNING_POLICY'))});
+  if(path==='/v1/hq/management/v3/scenario'){
+    try{
+      const input=JSON.parse(url.searchParams.get('assumptions')||'null');
+      return response({scenario:scenarioProjection(input)});
+    }catch{return json({ok:false,error:'invalid_scenario',message:'Use a versioned TEST scenario, GBP and bounded integer assumptions. Unknown costs must stay empty.'},400);}
+  }
+  const detail=path.match(/^\/v1\/hq\/management\/v3\/purchases\/([A-Za-z0-9][A-Za-z0-9._-]{1,100})$/);
+  if(detail){
+    const synthetic=env.SSTRX_ENVIRONMENT==='synthetic';
+    if(!synthetic&&!detail[1].startsWith('TEST-'))return json({ok:false,error:'not_found'},404);
+    const purchase=await testPurchaseProjection(env.DB,period,{synthetic}),lines=purchase.orders.filter(row=>row.order_ref===detail[1]);
+    if(!lines.length)return json({ok:false,error:purchase.status==='available'?'not_found':'purchase_source_incomplete'},purchase.status==='available'?404:503);
+    let refs=unavailable('Shared case/order mapping source is not connected.','Clinical operations owner');
+    const mapped=lines.find(row=>row.ref_mapping_status==='canonical_owned_record'&&row.rx_case_ref);
+    if(mapped)refs={status:'available',case_ref:mapped.rx_case_ref,order_ref:mapped.order_ref,rx_path:'/workspace/clinical#'+encodeURIComponent(mapped.rx_case_ref)};
+    return response({purchase:{status:purchase.status,order_ref:detail[1],lines,refs,recognition_basis:purchase.recognition_basis,gaps:purchase.gaps,refund_receipt:unavailable('Verified refund lifecycle receipt is not yet mapped.','Finance owner'),supplier:unavailable('Authoritative supplier/pathway mapping is not yet connected.','Supplier integration owner'),tracking:unavailable('No verified parcel tracking source is mapped.','Pharmacy owner'),clinical_detail_in_hq:false}});
+  }
   if(path.endsWith('/contract')){
-    let comparison;try{comparison=comparisonWindow(period);}catch{comparison=unavailable('The comparison wall-clock time is ambiguous or missing across daylight saving.','Reporting owner');}
+    let comparison;try{comparison=comparisonWindow(period,capturedNow);}catch{comparison=unavailable('The comparison wall-clock time is ambiguous or missing across daylight saving.','Reporting owner');}
     return json({ok:true,partition:'TEST',definition_version:CONTRACT_VERSION,period,comparison,ai:{allowed_suggestion_types:AI_ALLOWED_ACTIONS,execution_permitted:false},acceptance_status:'NOT RUN',supplier_path:'UNVERIFIED',device_receipt:'UNVERIFIED'});
   }
   return json({ok:false,error:'not_found'},404);

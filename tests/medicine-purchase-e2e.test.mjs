@@ -1,3 +1,4 @@
+import {ensureCatalogueGovernanceSchema,CATALOGUE_POLICY} from '../hq-catalogue-governance-v31.mjs';
 import assert from 'node:assert/strict';
 import {createHash,createHmac} from 'node:crypto';
 import {readFile} from 'node:fs/promises';
@@ -64,6 +65,15 @@ async function setup(){
   `);
   const foundayoLock=await readFile(new URL('../migrations/019_foundayo_option_stock_lock.sql',import.meta.url),'utf8');
   await DB.exec(foundayoLock);
+  // Explicit synthetic catalogue authority. This is not a real prescriber
+  // approval; the authenticated Rx approval boundary has separate tests.
+  await DB.exec(`CREATE TABLE hq_users(id INTEGER PRIMARY KEY,status TEXT,mfa_enabled INTEGER,role TEXT);CREATE TABLE partner_staff(hq_user_id INTEGER,version INTEGER,state_json TEXT);CREATE TABLE partner_organisations(id TEXT PRIMARY KEY,version INTEGER,state_json TEXT);
+    INSERT INTO hq_users VALUES(9001,'active',1,'clinical');
+    INSERT INTO partner_staff VALUES(9001,1,'{"kind":"clinician","status":"active"}');
+    INSERT INTO partner_organisations VALUES('TEST_PHARMACY',1,'{"kind":"pharmacy","status":"approved","expiresAt":"2099-01-01T00:00:00.000Z"}'),('TEST_CLINIC',1,'{"kind":"clinical","status":"approved","expiresAt":"2099-01-01T00:00:00.000Z"}');`);
+  await ensureCatalogueGovernanceSchema(DB);
+  await DB.prepare(`INSERT INTO catalogue_supply_routes VALUES('medicine_variant',11,'TEST_PHARMACY','primary','ready',1,0,1,'available','2099-01-01T00:00:00.000Z','TEST-STOCK-RECEIPT',1,9001,'2026-01-01T00:00:00.000Z')`).run();
+  await DB.prepare('INSERT INTO catalogue_prescriber_approvals VALUES(?,?,?,?,?,?,?,?,?,?,?,?)').bind('TEST-CATALOGUE-APPROVAL',11,1,1,9001,'TEST_CLINIC',1,1,'2026-01-01T00:00:00.000Z','2099-01-01T00:00:00.000Z','TEST-RX-CATALOGUE-APPROVAL',CATALOGUE_POLICY).run();
   return DB;
 }
 
@@ -91,7 +101,7 @@ test('one treatment order completes verification, Stripe test payment, tracker, 
     }
     throw new Error(`Unexpected outbound request: ${url}`);
   };
-  const env={DB,STRIPE_MODE:'test',STRIPE_SECRET_KEY:'sk_test_shift_e2e',STRIPE_WEBHOOK_SECRET:'whsec_shift_e2e',PHARMACY_CLINICAL_INTAKE_URL:'https://pharmacy.example.test/clinical-intake',PHARMACY_INTEGRATION_SECRET:'pharmacy-e2e-secret',PUBLIC_SITE_URL:'https://shiftsometimber.co.uk'};
+  const env={DB,PHARMACY_CATALOGUE_PARTNER_ID:'TEST_PHARMACY',STRIPE_MODE:'test',STRIPE_SECRET_KEY:'sk_test_shift_e2e',STRIPE_WEBHOOK_SECRET:'whsec_shift_e2e',PHARMACY_CLINICAL_INTAKE_URL:'https://pharmacy.example.test/clinical-intake',PHARMACY_INTEGRATION_SECRET:'pharmacy-e2e-secret',PUBLIC_SITE_URL:'https://shiftsometimber.co.uk'};
   try{
     const catalogueResponse=await medicineCommerceRoutes(memberRequest('/v1/catalogue/medicines'),env,{}),catalogue=await catalogueResponse.json();
     assert.equal(catalogueResponse.status,200);
@@ -119,6 +129,12 @@ test('one treatment order completes verification, Stripe test payment, tracker, 
     assert.equal(intake.nextStep,'payment');
     assert.ok(intake.verificationToken);
     assert.equal(seen.pharmacy,true);
+    const approval=DB.database.prepare('SELECT * FROM catalogue_prescriber_approvals WHERE variant_id=11').get();
+    DB.database.exec('DELETE FROM catalogue_prescriber_approvals WHERE variant_id=11');
+    const noAuthority=await medicineCommerceRoutes(memberRequest('/v1/commerce/medicine-checkout',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({variantId:11,insulinUse:'no',eligibility:{heightCm:173,weightKg:92.4,weightRelatedCondition:'no'},verificationToken:intake.verificationToken})}),env,{});
+    assert.equal(noAuthority.status,409);assert.equal((await noAuthority.json()).error,'catalogue_authority_required');assert.equal(seen.stripe,false);
+    assert.equal(DB.database.prepare('SELECT reserved FROM medicine_inventory WHERE variant_id=11').get().reserved,0);
+    const keys=Object.keys(approval);DB.database.prepare('INSERT INTO catalogue_prescriber_approvals('+keys.join(',')+') VALUES('+keys.map(()=>'?').join(',')+')').run(...keys.map(k=>approval[k]));
 
     const checkoutResponse=await medicineCommerceRoutes(memberRequest('/v1/commerce/medicine-checkout',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({variantId:11,insulinUse:'no',eligibility:{heightCm:173,weightKg:92.4,weightRelatedCondition:'no'},verificationToken:intake.verificationToken})}),env,{}),checkout=await checkoutResponse.json();
     assert.equal(checkoutResponse.status,201);
@@ -190,7 +206,7 @@ test('one treatment order completes verification, Stripe test payment, tracker, 
 test('SHIFT eligibility blocks insulin, missing answers and low BMI before new, repeat or resumed checkout',async()=>{
   const DB=await setup(),outbound=globalThis.fetch;let sent=0;
   globalThis.fetch=async()=>{sent++;throw Error('Blocked eligibility must not contact a partner or Stripe')};
-  const env={DB,STRIPE_MODE:'test',STRIPE_SECRET_KEY:'sk_test_eligibility',PHARMACY_PREPAY_VERIFICATION_URL:'https://pharmacy.example.test/verify',PHARMACY_CLINICAL_INTAKE_URL:'https://pharmacy.example.test/intake',PHARMACY_INTEGRATION_SECRET:'test'};
+  const env={DB,PHARMACY_CATALOGUE_PARTNER_ID:'TEST_PHARMACY',STRIPE_MODE:'test',STRIPE_SECRET_KEY:'sk_test_eligibility',PHARMACY_PREPAY_VERIFICATION_URL:'https://pharmacy.example.test/verify',PHARMACY_CLINICAL_INTAKE_URL:'https://pharmacy.example.test/intake',PHARMACY_INTEGRATION_SECRET:'test'};
   try{
     const heightCm=173,weightKg=92.4;
     for(const route of ['/v1/commerce/medicine-checkout','/v1/commerce/medicine-prepay-verification']){
@@ -218,7 +234,7 @@ test('SHIFT eligibility blocks insulin, missing answers and low BMI before new, 
 test('invalid or underage intake cannot forward images or obtain prepayment verification',async()=>{
   const DB=await setup(),outbound=globalThis.fetch;let sent=0;
   globalThis.fetch=async()=>{sent++;throw Error('Rejected birth dates must not contact a partner or Stripe')};
-  const env={DB,PHARMACY_PREPAY_VERIFICATION_URL:'https://pharmacy.example.test/verify',PHARMACY_CLINICAL_INTAKE_URL:'https://pharmacy.example.test/intake',PHARMACY_INTEGRATION_SECRET:'test'};
+  const env={DB,PHARMACY_CATALOGUE_PARTNER_ID:'TEST_PHARMACY',PHARMACY_PREPAY_VERIFICATION_URL:'https://pharmacy.example.test/verify',PHARMACY_CLINICAL_INTAKE_URL:'https://pharmacy.example.test/intake',PHARMACY_INTEGRATION_SECRET:'test'};
   try{
     for(const [dateOfBirth,error,status] of [['','date_of_birth_invalid',400],['2008-02-30','date_of_birth_invalid',400],['2099-01-01','date_of_birth_invalid',400],['2015-01-01','adult_service_required',422]]){
       const assessment={dateOfBirth,heightCm:173,weightKg:92.4,weightRelatedCondition:'no',insulinUse:'no'};
@@ -245,7 +261,7 @@ function completeIntake(overrides={}){
 }
 async function withPharmacy(run,handler=()=>Response.json({reference:'PHA-COMPLETE',patientReference:'PAT-42',status:'submitted'})){
   const DB=await setup(),original=globalThis.fetch,calls=[];
-  const env={DB,PHARMACY_CLINICAL_INTAKE_URL:'https://pharmacy.example.test/intake',PHARMACY_CLINICAL_RESUME_URL:'https://pharmacy.example.test/resume',PHARMACY_PORTAL_ORIGIN:'https://portal.example.test',PHARMACY_INTEGRATION_SECRET:'pharmacy-e2e-secret'};
+  const env={DB,PHARMACY_CATALOGUE_PARTNER_ID:'TEST_PHARMACY',PHARMACY_CLINICAL_INTAKE_URL:'https://pharmacy.example.test/intake',PHARMACY_CLINICAL_RESUME_URL:'https://pharmacy.example.test/resume',PHARMACY_PORTAL_ORIGIN:'https://portal.example.test',PHARMACY_INTEGRATION_SECRET:'pharmacy-e2e-secret'};
   globalThis.fetch=async(url,init)=>{calls.push({url:String(url),init});return handler(url,init,calls.length)};
   const submit=form=>medicineCommerceRoutes(memberRequest('/v1/commerce/medicine-clinical-intake',{method:'POST',body:form}),env,{});
   try{await run({DB,env,calls,submit})}finally{globalThis.fetch=original;DB.close()}

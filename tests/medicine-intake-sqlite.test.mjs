@@ -3,6 +3,7 @@ import test from 'node:test';
 import {DatabaseSync} from 'node:sqlite';
 import {createHash} from 'node:crypto';
 import {medicineCommerceRoutes} from '../medicine-commerce-v1.js';
+import {ensureCatalogueGovernanceSchema,CATALOGUE_POLICY} from '../hq-catalogue-governance-v31.mjs';
 
 // Executes the production queries and schema against an isolated real SQLite
 // database. Only provider HTTP is synthetic; this is not a partner acceptance.
@@ -43,6 +44,18 @@ function assessment(submissionId=crypto.randomUUID(),overrides={}) {
 }
 async function fixture(t,provider) {
   const {DB,sql}=database();t.after(()=>sql.close());
+  // Fictional authority receipts are test prerequisites, never evidence of
+  // real clinical commissioning. The Rx authenticated boundary is tested
+  // separately; these tests must retain the current intake/checkout gate.
+  sql.exec(`CREATE TABLE hq_users(id INTEGER PRIMARY KEY,status TEXT,mfa_enabled INTEGER,role TEXT);
+    CREATE TABLE partner_staff(hq_user_id INTEGER,version INTEGER,state_json TEXT);
+    CREATE TABLE partner_organisations(id TEXT PRIMARY KEY,version INTEGER,state_json TEXT);
+    INSERT INTO hq_users VALUES(9001,'active',1,'clinical');
+    INSERT INTO partner_staff VALUES(9001,1,'{"kind":"clinician","status":"active"}');
+    INSERT INTO partner_organisations VALUES('synthetic-provider',1,'{"kind":"pharmacy","status":"approved","expiresAt":"2099-01-01T00:00:00.000Z"}'),('TEST_CLINIC',1,'{"kind":"clinical","status":"approved","expiresAt":"2099-01-01T00:00:00.000Z"}');`);
+  await ensureCatalogueGovernanceSchema(DB);
+  sql.exec("INSERT INTO catalogue_supply_routes VALUES('medicine_variant',102,'synthetic-provider','primary','ready',10,0,1,'available','2099-01-01T00:00:00.000Z','TEST-STOCK-RECEIPT',1,9001,'2026-01-01T00:00:00.000Z')");
+  sql.prepare('INSERT INTO catalogue_prescriber_approvals VALUES(?,?,?,?,?,?,?,?,?,?,?,?)').run('TEST-INTAKE-CATALOGUE',102,1,1,9001,'TEST_CLINIC',1,1,'2026-01-01T00:00:00.000Z','2099-01-01T00:00:00.000Z','TEST-RX-CATALOGUE-APPROVAL',CATALOGUE_POLICY);
   const original=globalThis.fetch;const calls=[];
   globalThis.fetch=async(url,init)=>{assert.equal(new URL(url).origin,'https://pharmacy.example.test');calls.push({url,init});return provider(url,init)};
   t.after(()=>{globalThis.fetch=original});
@@ -58,6 +71,18 @@ async function fixture(t,provider) {
 const intake='/v1/commerce/medicine-clinical-intake';
 const status='/v1/commerce/medicine-clinical-intake-status';
 const callback='/v1/integrations/pharmacy/clinical-intake-status';
+
+test('real SQL blocks intake before provider delivery when catalogue authority is missing, stale, expired or professionally revoked',async t=>{
+  const f=await fixture(t,()=>{throw Error('Blocked authority must not call the provider')});
+  for(const [change,restore] of [
+    ["UPDATE medicine_variants SET catalogue_version=2", "UPDATE medicine_variants SET catalogue_version=1"],
+    ["UPDATE catalogue_prescriber_approvals SET valid_until='2000-01-01T00:00:00.000Z'", "UPDATE catalogue_prescriber_approvals SET valid_until='2099-01-01T00:00:00.000Z'"],
+    ["UPDATE hq_users SET status='suspended'", "UPDATE hq_users SET status='active'"],
+    ["DELETE FROM catalogue_prescriber_approvals", null],
+  ]){
+    f.sql.exec(change);const r=await f.request(intake,{method:'POST',body:assessment()});assert.equal(r.status,409);assert.equal(f.calls.length,0);if(restore)f.sql.exec(restore);
+  }
+});
 
 test('real SQL persists one complete assessment, rejects changed replay and isolates reopening',async t=>{
   const f=await fixture(t,()=>Response.json({reference:'provider-case',patientReference:'provider-patient',status:'submitted'}));
