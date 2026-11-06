@@ -1,5 +1,5 @@
 import {CONTRACT_VERSION,periodWindow,comparisonWindow,AI_ALLOWED_ACTIONS} from './hq-v3-contracts.mjs';
-import {METRIC_DICTIONARY,memberDemographics,supportMetadata,staffMfaMetadata,businessSourceHealth,learningCatalogue,scenarioProjection} from './hq-v3-business.mjs';
+import {METRIC_DICTIONARY,memberDemographics,memberDemographicSources,supportMetadata,staffMfaMetadata,businessSourceHealth,learningCatalogue,scenarioProjection} from './hq-v3-business.mjs';
 import {hqProjectionScope} from './hq-v3-scope.mjs';
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 const unavailable=(reason,owner)=>({status:'unavailable',value:null,reason,owner});
@@ -85,7 +85,8 @@ export async function hqV3Route(request,env,ctx,authenticate){
   if(path==='/v1/hq/management/v3/dictionary')return response({metrics:METRIC_DICTIONARY.map(m=>({...m,partition}))});
   if(path==='/v1/hq/management/v3/demographics'){
     if([...url.searchParams.keys()].some(k=>!['period','partition','start','end'].includes(k)))return json({ok:false,error:'aggregate_crosscuts_not_permitted'},400);
-    return response({demographics:partition==='TEST'?await memberDemographics(env.DB,configuration('HQ_V3_AGGREGATE_POLICY')):unavailable('An authoritative live member-directory partition is not mapped. Email exclusions alone cannot qualify age, population or coverage.','Member data owner')});
+    const demographics=partition==='TEST'?await memberDemographics(env.DB,configuration('HQ_V3_AGGREGATE_POLICY')):unavailable('An authoritative live member-directory partition is not mapped. Email exclusions alone cannot qualify age, population or coverage.','Member data owner');
+    return response({demographics,sources:partition==='TEST'?await memberDemographicSources(env.DB,demographics):unavailable('Live member-profile source mapping is not commissioned.','Member data owner')});
   }
   if(path==='/v1/hq/management/v3/support')return response({support:partition==='TEST'?await supportMetadata(env.DB,configuration('HQ_V3_SUPPORT_CALENDAR')):unavailable('An authoritative live support-record partition is not mapped. Original response deadlines and receipt coverage remain unverified.','Support owner')});
   if(path==='/v1/hq/management/v3/access')return response({staff:await staffMfaMetadata(env.DB,{partition})});
