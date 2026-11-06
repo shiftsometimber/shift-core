@@ -1,3 +1,4 @@
+import {medicineCaptureProjection} from './hq-v3-captures.mjs';
 import {CONTRACT_VERSION,periodWindow,comparisonWindow,AI_ALLOWED_ACTIONS} from './hq-v3-contracts.mjs';
 import {METRIC_DICTIONARY,memberDemographics,memberDemographicSources,supportMetadata,staffMfaMetadata,businessSourceHealth,learningCatalogue,scenarioProjection} from './hq-v3-business.mjs';
 import {hqProjectionScope} from './hq-v3-scope.mjs';
@@ -11,6 +12,7 @@ const SOURCES=Object.freeze({
   shop_payment:{table:'commerce_order_details',fields:['order_id','stripe_checkout_session_id'],owner:'Finance owner'},
   medicine_orders:{table:'medicine_orders',fields:['order_number','email','medicine_name','strength_label','unit_price_pence','discount_pence','total_pence','stripe_checkout_session_id','created_at'],owner:'Commerce owner'},
   medicine_membership:{table:'medicine_orders',fields:['order_number','user_id'],owner:'Commerce owner'},
+  medicine_receipts:{table:'medicine_payment_receipts',fields:['event_id','order_number','session_id','payment_intent','mode','amount_pence','currency','occurred_at','payload_digest'],owner:'Finance owner'},
   clinical_refs:{table:'clinical_member_records',fields:['id','order_number','user_id'],owner:'Rx operations owner'},
   support:{table:'support_tickets',fields:['reference','status','assigned_hq_user_id','created_at'],owner:'Support owner'},
   tasks:{table:'hq_tasks',fields:['id','status','assigned_to','due_at'],owner:'Operations owner'},
@@ -59,7 +61,7 @@ export async function purchaseProjection(DB,period,{synthetic=false,partition='T
       for(const order of orders.filter(o=>o.type==='medicine')){const matches=links.filter(r=>r.order_number===order.order_ref),link=matches.length===1?matches[0]:null;if(link&&typeof link.id==='string'&&link.id.length<=120&&!/[\s@]/.test(link.id)){order.rx_case_ref=link.id;order.ref_mapping_status='canonical_owned_record';}}
     }catch{gaps.push('Canonical RX case-reference lookup failed; no case reference inferred.');}
   }
-  return {status:gaps.length?'partial':'available',partition,audience:'ops_meta',source_scope:{payment_mode:live?'live':'test',authority:'Retained checkout-session identifiers; manual and missing-session orders are excluded.',known_test_exclusions:live?'TEST order references, TEST medicine labels and reserved example.invalid/example.test email destinations.':'Reserved fictional destinations and test checkout sessions.'},recognition_basis:'Order creation cohort; this is not capture-event revenue.',period,orders,gaps,captured:unavailable('A verified capture-event timestamp/receipt source is not mapped.','Finance owner'),accounting:unavailable('Accounting source not connected.','Finance owner'),cash:unavailable('Bank source not connected.','Finance owner'),contribution:unavailable('Verified costs and accounting sources not connected.','Finance owner'),privacy:'Commercial allowlist only. No addresses, assessment answers, prescribed-dose rationale, clinical message text or Health measures.'};
+  return {status:gaps.length?'partial':'available',partition,audience:'ops_meta',source_scope:{payment_mode:live?'live':'test',authority:'Retained checkout-session identifiers; manual and missing-session orders are excluded.',known_test_exclusions:live?'TEST order references, TEST medicine labels and reserved example.invalid/example.test email destinations.':'Reserved fictional destinations and test checkout sessions.'},recognition_basis:'Order creation cohort; this is not capture-event revenue.',period,orders,gaps,medicine_capture_receipts:await medicineCaptureProjection(DB,period,{synthetic,partition}),captured:unavailable('Combined processor captures require shop and additional-payment receipt coverage as well as medicine receipts.','Finance owner'),accounting:unavailable('Accounting source not connected.','Finance owner'),cash:unavailable('Bank source not connected.','Finance owner'),contribution:unavailable('Verified costs and accounting sources not connected.','Finance owner'),privacy:'Commercial allowlist only. No addresses, assessment answers, prescribed-dose rationale, clinical message text or Health measures.'};
 }
 // Retained test helper cannot be repurposed to request live records.
 export const testPurchaseProjection=(DB,period,{synthetic=false}={})=>purchaseProjection(DB,period,{synthetic,partition:'TEST'});

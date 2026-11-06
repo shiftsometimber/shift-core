@@ -2,6 +2,7 @@ import {digest} from './pharmacy-handover-v1.mjs';
 export const CAPTURE_SCHEMA=[
  `CREATE TABLE IF NOT EXISTS medicine_payment_receipts(event_id TEXT PRIMARY KEY,order_number TEXT NOT NULL,session_id TEXT NOT NULL,payment_intent TEXT NOT NULL,mode TEXT NOT NULL CHECK(mode IN ('test','live')),amount_pence INTEGER NOT NULL CHECK(amount_pence>=0),currency TEXT NOT NULL CHECK(currency='GBP'),occurred_at TEXT NOT NULL,received_at TEXT NOT NULL,payload_digest TEXT NOT NULL)`,
  `CREATE INDEX IF NOT EXISTS medicine_payment_receipt_time ON medicine_payment_receipts(mode,occurred_at)`,
+ `CREATE INDEX IF NOT EXISTS medicine_payment_receipt_intent ON medicine_payment_receipts(mode,payment_intent,occurred_at,event_id)`,
  `CREATE TRIGGER IF NOT EXISTS medicine_capture_snapshot BEFORE INSERT ON medicine_payment_receipts WHEN NOT EXISTS(SELECT 1 FROM medicine_orders m WHERE m.order_number=NEW.order_number AND m.stripe_checkout_session_id=NEW.session_id AND m.stripe_payment_intent_id=NEW.payment_intent AND m.total_pence=NEW.amount_pence AND upper(m.currency)=NEW.currency) BEGIN SELECT RAISE(ABORT,'medicine_capture_snapshot_changed'); END`,
  `CREATE TRIGGER IF NOT EXISTS medicine_capture_immutable_update BEFORE UPDATE ON medicine_payment_receipts BEGIN SELECT RAISE(ABORT,'immutable_capture_receipt'); END`,
  `CREATE TRIGGER IF NOT EXISTS medicine_capture_immutable_delete BEFORE DELETE ON medicine_payment_receipts BEGIN SELECT RAISE(ABORT,'immutable_capture_receipt'); END`
