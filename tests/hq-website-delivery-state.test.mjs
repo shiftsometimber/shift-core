@@ -4,7 +4,7 @@ import {hqCommerceContentRoutes} from '../hq-commerce-content-v1.js';
 import {env,DB,cookies} from '../hq-management-acceptance.mjs';
 
 const path='/v1/hq/site-content',owner={Cookie:cookies.owner,Origin:'https://hq.shiftsometimber.co.uk'};
-const request=(action)=>new Request('https://api.shiftsometimber.co.uk'+path+(action?'/9001':''),{method:action?'PATCH':'GET',headers:{...owner,...(action?{'Content-Type':'application/json'}:{})},body:action?JSON.stringify({action,text:'TEST proposed wording'}):undefined});
+const request=(action)=>new Request('https://api.shiftsometimber.co.uk'+path+(action?'/9001':''),{method:action?'PATCH':'GET',headers:{...owner,...(action?{'Content-Type':'application/json'}:{})},body:action?JSON.stringify({action,text:'TEST proposed wording',expectedVersion:4}):undefined});
 const binding=fetch=>({idFromName:name=>name,get:()=>({fetch:(input,init)=>fetch(new Request(input,init))})});
 const call=(action,delivery)=>hqCommerceContentRoutes(request(action),{...env,SITE_CONTENT_STATE:delivery},{});
 // The native authenticated handler creates only its retained in-memory schema.
@@ -47,7 +47,7 @@ test('A valid bound read-all establishes delivery readiness and retains the auth
   seed();const override={content_key:'TEST_WEBSITE_DELIVERY',page_path:'/test',published_text:'TEST delivered wording',version:5};
   const response=await call(undefined,binding(async()=>Response.json({ok:true,overrides:[override]}))),body=await response.json();
   assert.equal(response.status,200);assert.deepEqual(body.deliveryState,{status:'ready',reason:null,owner:'Website delivery owner / engineering'});
-  assert.deepEqual(body.deliveryOverrides,[override]);assert.equal(body.content[0].published_text,override.published_text);assert.equal(body.content[0].version,5);
+  assert.deepEqual(body.deliveryOverrides,[override]);assert.equal(body.content[0].published_text,override.published_text);assert.equal(body.content[0].version,4);assert.equal(body.content[0].published_version,5);
 });
 
 test('A bound publish or rollback delivery failure never returns a committed success or success audit',async()=>{
