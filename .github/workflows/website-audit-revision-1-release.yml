@@ -23,7 +23,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-      - name: Qualify and verify the three approved public changes
+      - name: Qualify the approved previews and verify live bodies and policy
         run: node release/website-audit-r1-20261107/publish.mjs
       - name: Restore this release's route changes on failure
         if: failure()

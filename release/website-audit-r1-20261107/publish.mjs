@@ -216,6 +216,7 @@ async function publish() {
 
   const baselineResponses = await Promise.all(scope.map(path=>readPage(path)));
   const expected = {};
+  const expectedBodies = {};
   for (const [i,path] of scope.entries()) {
     const before=baselineResponses[i];
     assert.equal(before.status,200);
@@ -223,6 +224,7 @@ async function publish() {
     assert.notEqual(after,before.body,'Approved baseline absent or already changed: '+path);
     confirmText(path,after);
     expected[path]=fingerprint({...before,body:after});
+    expectedBodies[path]=after;
   }
   const protectedBefore = await readProtected();
   save('before',{scope,patchHash,copyHash,source,zone,routeCount:baseline.length,plan,owners,expected,protectedBefore});
@@ -249,17 +251,28 @@ async function publish() {
     assert(receipt.bindings.some(b=>b.type==='secret_text'&&b.name==='PREVIEW_TOKEN')&&receipt.assets==null);
     const preview='https://'+version.id.slice(0,8)+'-'+worker+'.'+subdomain+'.workers.dev';
     assert(receipt.urls?.some(url=>url===preview||url===preview+'/'));
+    const previewPolicyDifferences = {};
     await settle(async ()=>{
       assert.equal((await readPage('/',{site:preview})).status,404);
       for (const path of scope) {
         const result=await readPage(path,{site:preview,secret});
         confirmText(path,result.body);
-        assert.deepEqual(fingerprint(result),expected[path],'Staged GET differs: ' + path);
+        const actual = fingerprint(result);
+        previewPolicyDifferences[path] = Object.keys(actual.policy).filter(key=>actual.policy[key]!==expected[path].policy[key]);
+        if (actual.sha256!==expected[path].sha256) {
+          const expectedBody=expectedBodies[path];
+          const first=[...expectedBody].findIndex((value,index)=>value!==result.body[index]);
+          save('preview-mismatch',{path,expected:expected[path],actual,firstDifference:first,expectedLength:expectedBody.length,actualLength:result.body.length});
+        }
+        // A version preview uses the Workers dev host. Qualify its exact body
+        // here, then compare the full set of public headers after routing.
+        assert.deepEqual([actual.status,actual.sha256],[expected[path].status,expected[path].sha256],'Staged GET body differs: '+path);
         const head=await readPage(path,{site:preview,secret,method:'HEAD'});
         assert.equal(head.status,200,'Staged HEAD not healthy: '+path);
         assert.equal(head.body,'','HEAD has a body: '+path);
       }
     });
+    save('preview-policy',{differences:previewPolicyDifferences});
   } finally {
     const closed=await cf(prefix+'/scripts/'+worker+'/subdomain',withJson('POST',{enabled:false,previews_enabled:false}));
     assert.deepEqual([closed.enabled,closed.previews_enabled],[false,false]);
