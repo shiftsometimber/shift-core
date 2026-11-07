@@ -96,6 +96,14 @@ test('bespoke public guides are discoverable on both Knowledge routes without du
  }
 });
 
+test('bespoke cards lead the existing guides even when imported cards are present',async()=>{
+ const input=new Response('<div class="kh-grid kh-legacy"></div>');
+ const html=await (await withDynamicBabyLoveDiscovery(input,new Request('https://shiftsometimber.co.uk/knowledge'),env(row))).text();
+ assert.deepEqual([...html.matchAll(/data-babylove-dynamic="([^"]+)"/g)].map(match=>match[1]),[
+  'wegovy-cost-uk','oral-semaglutide-for-weight-loss','mounjaro-cost-uk',
+ ]);
+});
+
 test('both bespoke cards appear when missing, and do not alter sitemap or unrelated responses',async()=>{
  const input=new Response('<div id="knowledgeResults"></div>');
  const html=await (await withDynamicBabyLoveDiscovery(input,new Request('https://shiftsometimber.co.uk/knowledge'),env(null))).text();
