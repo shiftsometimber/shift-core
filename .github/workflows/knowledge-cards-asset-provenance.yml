@@ -1,0 +1,54 @@
+name: Knowledge cards asset provenance
+on:
+  push:
+    branches: [release/knowledge-cards-preflight-20261107]
+    paths: ['.github/workflows/knowledge-cards-asset-provenance.yml']
+permissions:
+  contents: read
+jobs:
+  audit:
+    if: github.repository == 'shiftsometimber/shift-core' && github.actor_id == '315011648'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      CLOUDFLARE_ACCOUNT_ID: '9e5386dcf455be34c582d93f8bfc79e6'
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - name: Check whether the deployment history records the active asset source
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          const {CLOUDFLARE_ACCOUNT_ID: account,CLOUDFLARE_API_TOKEN: token}=process.env;
+          assert(account&&token);
+          const root='https://api.cloudflare.com/client/v4/accounts/'+account;
+          const intervals=[
+            ['2026-11-04T21:55:00Z','2026-11-04T22:05:00Z'],
+            ['2026-11-04T23:18:00Z','2026-11-04T23:21:00Z'],
+            ['2026-11-07T14:11:00Z','2026-11-07T14:14:00Z'],
+          ];
+          for(const [since,before] of intervals){
+            const args=new URLSearchParams({since,before,limit:'100'});
+            const res=await fetch(root+'/logs/audit?'+args,{headers:{Authorization:'Bearer '+token},signal:AbortSignal.timeout(30000)});
+            const body=await res.json();
+            if(!res.ok||!body.success){
+              console.log('AUDIT_ACCESS '+JSON.stringify({status:res.status,codes:(body.errors||[]).map(e=>e.code)}));
+              break;
+            }
+            const filter=(body.result||[]).filter(event=>JSON.stringify([event.resource,event.action]).includes('shift-core')||JSON.stringify(event.action).includes('worker'));
+            const select=(value,trail=[])=>{
+              if(!value||typeof value!=='object'||trail.length>6)return {};
+              const result={};
+              for(const [k,v] of Object.entries(value)){
+                const path=[...trail,k];
+                if(/^(?:keep_assets|assets_manifest_hash|asset_manifest_hash|manifest_sha256|version_id|script_name|deployment_id)$/i.test(k)&&
+                   (typeof v==='boolean'||(typeof v==='string'&&(/^[a-f0-9-]{16,80}$/i.test(v)||v==='shift-core'))))
+                  result[path.join('.')]=v;
+                else if(v&&typeof v==='object')Object.assign(result,select(v,path));
+              }
+              return result;
+            };
+            console.log('AUDIT_ASSET_TRACE '+JSON.stringify({since,before,paginated:!!body.result_info?.cursor,
+              actions:filter.map(e=>({type:e.action?.type??(typeof e.action==='string'?e.action:null),
+              time:e.action?.time, fields:select(e),metadataKeys:Object.keys(e.metadata??{})}))}));
+          }
+          NODE
