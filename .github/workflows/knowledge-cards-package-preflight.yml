@@ -1,0 +1,35 @@
+name: Knowledge cards serving package qualification
+on:
+  push:
+    branches: [release/knowledge-cards-preflight-20261107]
+    paths: ['.github/workflows/knowledge-cards-package-preflight.yml']
+permissions:
+  contents: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  qualify:
+    if: github.repository == 'shiftsometimber/shift-core' && github.actor_id == '315011648'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    env:
+      CLOUDFLARE_ACCOUNT_ID: '9e5386dcf455be34c582d93f8bfc79e6'
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: release/knowledge-cards-20261107
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Prove the exact patch against the serving package with no provider writes
+        run: node release/knowledge-cards-20261107/preflight.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: knowledge-cards-qualification-${{ github.run_id }}
+          path: knowledge-cards-preflight-proof/
+          if-no-files-found: warn
+          retention-days: 90
