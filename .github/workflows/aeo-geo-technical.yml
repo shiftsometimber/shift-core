@@ -87,8 +87,8 @@ jobs:
             const {before}=JSON.parse(readFileSync(process.env.GITHUB_EVENT_PATH,'utf8'));
             const paths=execFileSync('git',['diff','--name-only',before,'HEAD'],{encoding:'utf8'}).trim().split('\n').filter(Boolean).sort();
             if(paths.includes('aeo-geo/my-timber-copy-release.mjs')){
-              assert.equal(before,'bb201fba85e9678dcee07924f4e4b0b5396c69b4');
-              assert.deepEqual(paths,['.github/workflows/aeo-geo-technical.yml','aeo-geo/delivery.mjs','aeo-geo/my-timber-copy-release.mjs']);
+              assert.equal(before,'003e2a96f69baee6bf9b4b6efd04af5bb3f1de7b');
+              assert.deepEqual(paths,['.github/workflows/aeo-geo-technical.yml','aeo-geo/my-timber-copy-release.mjs']);
               selected=true;
             }
           }
