@@ -18,6 +18,7 @@ const targetPaths = [alias, alias + query, programme, programme + query];
 const protectedPaths = ['/', '/start-here', '/member/dashboard', '/recipes', '/exercises', destination];
 const delivery = 'aeo-geo/delivery.mjs';
 const firstRelease = 'ca0b012b91e7830d11a1d7d5af424f253ee990b8';
+const previousAttempt = '5dc70174703e8fc7e58c528777f6aff244eb9727';
 const reviewedBase = 'cf6df68d5bc233d8e87359a268f40ee6932a53d2';
 const baseHash = 'f459d7d72b975715a3eaf1af0333c3b3ba53f413dfc26aa532c1e7cf5a2a6195';
 const capturedCoreHash = 'fa58850787c6daf32fc7e0bf52053b4b4c9be5b752a55768daf2303195e792a6';
@@ -26,7 +27,7 @@ const capturedCore = {
  mainModule: 'assessment-notes-20261104/core.mjs', moduleCount: 99
 };
 const approvedHash = '6911161bc49ffab987e6503c8f5027200cfb8874dfc0ff1009b451224e4375d2';
-const settingsKeys = ['placement', 'limits', 'observability', 'logpush'];
+const settingsKeys = ['observability', 'logpush', 'tags', 'tail_consumers'];
 const versionKeys = ['bindings', 'compatibility_date', 'compatibility_flags', 'assets', 'usage_model', 'migration_tag',
  'cache_options', 'containers', 'exports', 'limits', 'package_dependencies', 'placement'];
 const uuid = /^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/;
@@ -206,26 +207,34 @@ async function deploymentLease({worker, before, config}) {
  const current = await latest(worker);
  assert.equal(current.id, before.id, `Serving lease moved for ${worker}`);
  same(current.providerVersions, before.providerVersions, `Serving traffic moved for ${worker}`);
+ await workerSettingsLease(worker, config);
+}
+async function workerSettingsLease(worker, config) {
  const currentSettings = await settings(worker);
  for (const key of settingsKeys) same(currentSettings[key], config[key], `Serving ${key} moved for ${worker}`);
 }
-async function stage({worker, original, config, modules, amendedHash, method}) {
- const metadata = {main_module: original.main_module, compatibility_date: original.compatibility_date,
-  compatibility_flags: original.compatibility_flags || [], bindings: original.bindings.map(binding => ({type: 'inherit', name: binding.name})),
-  keep_assets: true, annotations: {'workers/commit_sha': source, 'workers/message': `Approved Shift continuity and Programme links, run ${run}`}};
- for (const key of settingsKeys) if (config[key] !== undefined) metadata[key] = config[key];
- for (const key of ['cache_options', 'containers', 'limits', 'package_dependencies', 'placement', 'usage_model']) {
-  if (original[key] !== undefined) metadata[key] = original[key];
+async function stage({worker, original, modules, amendedHash, method}) {
+ // The JSON API can inherit bindings from a selected version. Its native asset
+ // upload requires a manifest completion token, so refuse native asset workers.
+ const nativeAssets = original.assets != null || original.bindings.some(binding => binding.type === 'assets');
+ save(`stage-input-${worker}`, {worker, inheritedFrom: original.id, nativeAssets, bindingCount: original.bindings.length});
+ assert(!nativeAssets, `Cannot retain native static assets from the pinned version for ${worker}`);
+ assert(Object.values(original.exports || {}).every(entry => entry.state === undefined || entry.state === 'created'),
+  `Captured exports have an in-progress lifecycle change for ${worker}`);
+ const payload = {
+  main_module: original.main_module,
+  bindings: original.bindings.map(binding => ({type: 'inherit', name: binding.name, version_id: original.id})),
+  modules: modules.map(({name, content_type, content_base64}) => ({name, content_type, content_base64})),
+  annotations: {'workers/message': `Approved Shift continuity and Programme links ${source}, run ${run}`}
+ };
+ for (const key of versionKeys.filter(key => !['bindings', 'assets', 'migration_tag'].includes(key))) {
+  if (original[key] !== undefined) payload[key] = original[key];
  }
- const form = new FormData();
- form.set('metadata', new Blob([JSON.stringify(metadata)], {type: 'application/json'}), 'metadata.json');
- for (const module of modules) form.set(module.name, new Blob([Buffer.from(module.content_base64, 'base64')], {type: module.content_type}), module.name);
- // Multipart inheritance uses the newest uploaded version, even if it has no traffic.
- assert.equal((await version(worker, 'latest')).id, original.id, `An unpromoted upload could change inherited settings for ${worker}`);
- const staged = await api(`${script(worker)}/versions?bindings_inherit=strict`, {method: 'POST', body: form});
+ const staged = await api(`/workers/workers/${worker}/versions?deploy=false`, {
+  method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload)
+ });
  assert(uuid.test(staged.id), 'Staged version identity absent');
  const reviewed = await version(worker, staged.id, '?include=modules,sourcemaps');
- assert(Number.isInteger(original.number) && reviewed.number === original.number + 1, `Another upload could have changed inherited settings for ${worker}`);
  assert.equal(reviewed.id, staged.id, 'Retrieved version does not match the staged version');
  assert.equal(reviewed.main_module, original.main_module, 'Staged entry module changed');
  for (const key of versionKeys) same(reviewed[key], original[key], `Staged ${key} changed for ${worker}`);
@@ -235,7 +244,8 @@ async function stage({worker, original, config, modules, amendedHash, method}) {
   assert(actual?.content_type === expected.content_type && hash(Buffer.from(actual.content_base64, 'base64')) ===
    hash(Buffer.from(expected.content_base64, 'base64')), `Staged module differs for ${worker}: ${expected.name}`);
  }
- save(`staged-${worker}`, {worker, versionId: staged.id, originalModulesUnchanged: modules.length - 1, amendedModule: delivery, sha256: amendedHash, method});
+ save(`staged-${worker}`, {worker, versionId: staged.id, inheritedFrom: original.id,
+  originalModulesUnchanged: modules.length - 1, amendedModule: delivery, sha256: amendedHash, method});
  return staged.id;
 }
 
@@ -244,8 +254,8 @@ async function release() {
  mainLease();
  const event = JSON.parse(readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
  assert.equal(event.after, source);
- assert.equal(event.before, firstRelease, 'Retry must directly extend the reviewed first release');
- const changed = git('diff', '--name-only', firstRelease, source).toString().trim().split('\n').sort();
+ assert.equal(event.before, previousAttempt, 'Retry must directly extend the reviewed previous attempt');
+ const changed = git('diff', '--name-only', previousAttempt, source).toString().trim().split('\n').sort();
  same(changed, ['.github/workflows/aeo-geo-technical.yml', 'aeo-geo/seo-campaign-release.mjs'], 'Unapproved files in retry scope');
  const approved = git('show', `${firstRelease}:${delivery}`);
  assert.equal(hash(approved), approvedHash, 'First release does not match the approved delivery module');
@@ -318,6 +328,7 @@ async function release() {
  mainLease();
  same(await owners(zone), routes, 'Route owners moved during verification');
  for (const receipt of receipts) assert.equal((await latest(receipt.script)).id, receipt.deploymentId, 'Deployment moved during verification');
+ for (const plan of plans) await workerSettingsLease(plan.worker, plan.config);
  save('live-verification', {verified: true, source, run, workers, redirect: {from: alias, to: destination, status: 301, queryPreserved: true},
   programme: {path: programme, links: {'Browse public recipes': '/recipes', 'Browse movement guides': '/exercises'}},
   protectedPaths, routeWrites: 0, databaseWrites: 0});
