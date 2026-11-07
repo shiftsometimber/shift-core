@@ -16,6 +16,7 @@ jobs:
       retatrutide: ${{ steps.scope.outputs.retatrutide }}
       wegovy: ${{ steps.wegovy.outputs.wegovy }}
       seo_campaign: ${{ steps.seo_campaign.outputs.selected }}
+      my_timber_copy: ${{ steps.my_timber_copy.outputs.selected }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -29,6 +30,7 @@ jobs:
           node --check aeo-geo/build.mjs
           node --check aeo-geo/capture.mjs
           node --check aeo-geo/seo-campaign-release.mjs
+          node --check aeo-geo/my-timber-copy-release.mjs
           git diff --check
       - id: scope
         name: Select only the finite owner-approved medicine amendment
@@ -73,6 +75,56 @@ jobs:
           }
           appendFileSync(process.env.GITHUB_OUTPUT,'selected='+selected+'\n');
           SEO_CAMPAIGN_SCOPE
+      - id: my_timber_copy
+        name: Select the reviewed homepage and prescribing FAQ copy only
+        run: |
+          node --input-type=module <<'PLACEMENT_SCOPE'
+          import assert from 'node:assert/strict';
+          import {execFileSync} from 'node:child_process';
+          import {readFileSync,appendFileSync} from 'node:fs';
+          let selected=false;
+          if(process.env.GITHUB_EVENT_NAME==='push'&&process.env.GITHUB_REF==='refs/heads/main'){
+            const {before}=JSON.parse(readFileSync(process.env.GITHUB_EVENT_PATH,'utf8'));
+            const paths=execFileSync('git',['diff','--name-only',before,'HEAD'],{encoding:'utf8'}).trim().split('\n').filter(Boolean).sort();
+            if(paths.includes('aeo-geo/my-timber-copy-release.mjs')){
+              assert.equal(before,'bb201fba85e9678dcee07924f4e4b0b5396c69b4');
+              assert.deepEqual(paths,['.github/workflows/aeo-geo-technical.yml','aeo-geo/delivery.mjs','aeo-geo/my-timber-copy-release.mjs']);
+              selected=true;
+            }
+          }
+          appendFileSync(process.env.GITHUB_OUTPUT,'selected='+selected+'\n');
+          PLACEMENT_SCOPE
+  my_timber_copy:
+    needs: source
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.source.outputs.my_timber_copy == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    concurrency:
+      group: cloudflare-production-promote
+      cancel-in-progress: false
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Qualify and publish the two approved public placements
+        run: node aeo-geo/my-timber-copy-release.mjs
+      - name: Restore only this release's routes on failure
+        if: failure()
+        run: node aeo-geo/my-timber-copy-release.mjs rollback
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: my-timber-copy-release-${{ github.run_id }}
+          path: my-timber-copy-release-proof/
+          if-no-files-found: warn
+          retention-days: 90
   seo_campaign:
     needs: source
     if: github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.source.outputs.seo_campaign == 'true'
@@ -176,7 +228,7 @@ jobs:
           retention-days: 90
   catalogue:
     needs: source
-    if: github.event_name == 'push' && needs.source.outputs.retatrutide != 'true' && needs.source.outputs.wegovy != 'true' && needs.source.outputs.seo_campaign != 'true'
+    if: github.event_name == 'push' && needs.source.outputs.retatrutide != 'true' && needs.source.outputs.wegovy != 'true' && needs.source.outputs.seo_campaign != 'true' && needs.source.outputs.my_timber_copy != 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     concurrency:
