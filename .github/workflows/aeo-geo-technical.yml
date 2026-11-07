@@ -62,15 +62,11 @@ jobs:
             if(before){
               const changed=execFileSync('git',['diff','--name-only',before,'HEAD'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
               if(changed.includes('aeo-geo/seo-campaign-release.mjs')){
-                const approved=[
+                assert.equal(before,'5dc70174703e8fc7e58c528777f6aff244eb9727','The SEO campaign must extend the captured release checkpoint');
+                assert.deepEqual(changed.sort(),[
                   '.github/workflows/aeo-geo-technical.yml',
-                  'aeo-geo/delivery.mjs',
-                  'aeo-geo/seo-campaign-release.mjs',
-                  'aeo-geo/seo-campaign.test.mjs'
-                ];
-                const retry=before==='ca0b012b91e7830d11a1d7d5af424f253ee990b8';
-                const expected=retry?approved.filter(path=>path==='.github/workflows/aeo-geo-technical.yml'||path==='aeo-geo/seo-campaign-release.mjs'):approved;
-                assert.deepEqual(changed.sort(),expected,'The SEO campaign must be released in its own scoped change');
+                  'aeo-geo/seo-campaign-release.mjs'
+                ],'The SEO campaign must be released in its own scoped change');
                 selected=true;
               }
             }
