@@ -101,7 +101,7 @@ jobs:
         if: always()
         with:
           name: seo-campaign-release-${{ github.run_id }}
-          path: seo-campaign-proof/
+          path: seo-campaign-edge-proof/
           if-no-files-found: warn
           retention-days: 90
   wegovy:
