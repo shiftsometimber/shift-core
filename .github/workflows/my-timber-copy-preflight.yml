@@ -1,0 +1,66 @@
+name: My Timber copy release preflight
+on:
+  push:
+    branches: [codex/my-timber-copy-preflight-20261107]
+    paths: ['.github/workflows/my-timber-copy-preflight.yml']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read current Core deployment, package ownership and route eligibility
+        run: |
+          node --input-type=module <<'CHECK'
+          import {createHash} from 'node:crypto';
+          import {readFileSync} from 'node:fs';
+          import assert from 'node:assert/strict';
+          const account=process.env.CLOUDFLARE_ACCOUNT_ID;
+          const token=process.env.CLOUDFLARE_API_TOKEN;
+          assert(token,'Cloudflare deployment credential is unavailable');
+          const root='https://api.cloudflare.com/client/v4';
+          async function read(path,optional=false){
+            const response=await fetch(root+path,{headers:{Authorization:'Bearer '+token},signal:AbortSignal.timeout(40000)});
+            const data=await response.json();
+            if(optional)return {status:response.status,success:data.success,codes:data.errors?.map(e=>e.code),count:Array.isArray(data.result)?data.result.length:undefined};
+            assert(response.ok&&data.success,'Cloudflare read '+path+' returned '+response.status+' ('+(data.errors?.map(e=>e.code).join(',')||'no error code')+')');
+            return data.result;
+          }
+          const core='/accounts/'+account+'/workers/scripts/shift-core';
+          const zone='shiftsometimber.co.uk';
+          const [activeList,uploads,zoneList]=await Promise.all([
+            read(core+'/deployments'),
+            read(core+'/versions?per_page=5'),
+            read('/zones?name='+zone)
+          ]);
+          const active=activeList.deployments.toSorted((a,b)=>b.created_on.localeCompare(a.created_on))[0];
+          assert(active?.versions?.length===1&&active.versions[0].percentage===100,'Core has no single fully serving version');
+          const versionId=active.versions[0].version_id;
+          const items=Array.isArray(uploads)?uploads:uploads.items;
+          assert(items?.length,'Core upload version list is unavailable');
+          const newest=items.toSorted((a,b)=>(b.number??0)-(a.number??0)||b.metadata.created_on.localeCompare(a.metadata.created_on))[0];
+          const captured=await read('/accounts/'+account+'/workers/workers/shift-core/versions/'+versionId+'?include=modules');
+          const zoneId=zoneList.find(z=>z.name===zone)?.id;
+          assert(zoneId,'SHIFT zone is unavailable');
+          const [routes,snippets]=await Promise.all([
+            read('/zones/'+zoneId+'/workers/routes'),
+            read('/zones/'+zoneId+'/snippets/snippet_rules',true)
+          ]);
+          const delivery=captured.modules.find(m=>m.name==='aeo-geo/delivery.mjs');
+          const hash=x=>createHash('sha256').update(x).digest('hex');
+          const prior=hash(readFileSync('aeo-geo/delivery.mjs'));
+          const relevant=routes.filter(r=>r.pattern.endsWith(zone+'/*')||r.pattern.endsWith(zone+'/')||r.pattern.includes(zone+'/faq')||r.pattern.includes(zone+'/programme'));
+          console.log('PLACEMENT_PREFLIGHT '+JSON.stringify({
+            deployment:active.id,activeVersion:versionId,latestUpload:newest.id,
+            latestIsActive:newest.id===versionId,entry:captured.main_module,
+            deliveryModuleFound:!!delivery,
+            deliveryMatchesRepository:!!delivery&&hash(Buffer.from(delivery.content_base64,'base64'))===prior,
+            moduleCount:captured.modules.length,assetsMetadataPresent:Object.hasOwn(captured,'assets'),
+            assetsBindingPresent:captured.bindings?.some(b=>b.type==='assets'),routes:relevant.map(r=>({pattern:r.pattern,script:r.script})),snippets
+          }));
+          CHECK
