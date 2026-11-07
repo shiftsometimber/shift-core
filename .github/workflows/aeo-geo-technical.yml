@@ -62,7 +62,7 @@ jobs:
             if(before){
               const changed=execFileSync('git',['diff','--name-only',before,'HEAD'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
               if(changed.includes('aeo-geo/seo-campaign-release.mjs')){
-                assert.equal(before,'5dc70174703e8fc7e58c528777f6aff244eb9727','The SEO campaign must extend the captured release checkpoint');
+                assert.equal(before,'f40c98ebe4b7a4bd68720d295d533faa08175dec','The SEO campaign must extend the captured release checkpoint');
                 assert.deepEqual(changed.sort(),[
                   '.github/workflows/aeo-geo-technical.yml',
                   'aeo-geo/seo-campaign-release.mjs'
@@ -94,7 +94,7 @@ jobs:
           node-version-file: .nvmrc
       - name: Publish the approved redirect and Programme links
         run: node aeo-geo/seo-campaign-release.mjs
-      - name: Restore only this release's owned traffic if verification fails
+      - name: Remove only this release's routes if verification fails
         if: failure()
         run: node aeo-geo/seo-campaign-release.mjs rollback
       - uses: actions/upload-artifact@v4
