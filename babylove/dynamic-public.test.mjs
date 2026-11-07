@@ -85,3 +85,32 @@ test('published articles are added to the canonical current Knowledge hub',async
  assert.match(html,/data-babylove-dynamic="mounjaro-cost-uk"/);
  assert.match(html,/href="\/articles\/mounjaro-cost-uk"/);
 });
+
+test('bespoke public guides are discoverable on both Knowledge routes without duplicates',async()=>{
+ for(const path of ['/knowledge','/explore-knowledge']){
+  const input=new Response("<main><div class='kh-grid kh-legacy'><a href='https://shiftsometimber.co.uk/articles/wegovy-cost-uk/'>Existing guide</a></div></main>");
+  const html=await (await withDynamicBabyLoveDiscovery(input,new Request('https://shiftsometimber.co.uk'+path),env(null))).text();
+  assert.equal([...html.matchAll(/href=['"][^'"]*\/articles\/wegovy-cost-uk\/?['"]/g)].length,1);
+  assert.equal([...html.matchAll(/href="\/articles\/oral-semaglutide-for-weight-loss"/g)].length,1);
+  assert.match(html,/A guide to what the published research can tell you/);
+ }
+});
+
+test('bespoke cards lead the existing guides even when imported cards are present',async()=>{
+ const input=new Response('<div class="kh-grid kh-legacy"></div>');
+ const html=await (await withDynamicBabyLoveDiscovery(input,new Request('https://shiftsometimber.co.uk/knowledge'),env(row))).text();
+ assert.deepEqual([...html.matchAll(/data-babylove-dynamic="([^"]+)"/g)].map(match=>match[1]),[
+  'wegovy-cost-uk','oral-semaglutide-for-weight-loss','mounjaro-cost-uk',
+ ]);
+});
+
+test('both bespoke cards appear when missing, and do not alter sitemap or unrelated responses',async()=>{
+ const input=new Response('<div id="knowledgeResults"></div>');
+ const html=await (await withDynamicBabyLoveDiscovery(input,new Request('https://shiftsometimber.co.uk/knowledge'),env(null))).text();
+ for(const slug of ['wegovy-cost-uk','oral-semaglutide-for-weight-loss'])
+  assert.equal(html.split('href="/articles/'+slug+'"').length,2);
+ for(const [path,body] of [['/sitemap.xml','<urlset></urlset>'],['/programme','<div id="knowledgeResults"></div>']]){
+  const result=await withDynamicBabyLoveDiscovery(new Response(body),new Request('https://shiftsometimber.co.uk'+path),env(null));
+  assert.equal(await result.text(),body);
+ }
+});
