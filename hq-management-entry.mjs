@@ -1,7 +1,11 @@
 import {partnerRoute} from './hq-partner-api.mjs';
 import hq from './hq-ai-v2.js';
+import {SEO_CONTENT_PATH, seoContentRoute} from './hq-seo-content-api.mjs';
 export default {async fetch(request,env,ctx){
  const url=new URL(request.url),path=url.pathname.replace(/\/+$/,'');
+ if(path===SEO_CONTENT_PATH||path.startsWith(SEO_CONTENT_PATH+'/')){
+   return seoContentRoute(request,env,ctx,(r,e,c)=>hq.fetch(r,e,c));
+ }
  if(/^\/v1\/hq\/management\/(partners|partner-handovers)(?:\/|$)/.test(path)){
    if(request.method==='OPTIONS')return hq.fetch(request,env,ctx);
    const response=await partnerRoute(request,env,ctx,(r,e,c)=>hq.fetch(r,e,c));if(!response)return new Response('Not found',{status:404});
