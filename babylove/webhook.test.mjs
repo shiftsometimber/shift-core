@@ -52,3 +52,16 @@ test('each new LoveGrowth post emails the configured owner exactly once, includi
   const draft=await babyLoveRoutes(request({...payload,id:78,slug:'arrival-draft',title:'Arrival draft',status:'draft'}),env);assert.equal(draft.status,200);assert.equal(sent.length,2);assert.match(sent[1].text,/Status: Draft/);
  }finally{env.DB.sqlite.close()}
 });
+
+
+
+test('known service and medical copy faults stay as exact private drafts with source receipts',async()=>{
+ for(const content_markdown of ['Clinical assessment, prescribing and dispensing are handled by appropriately regulated partners.','[NICE authorises](https://www.nice.org.uk/) it.','NICE guidance says to stop tirzepatide if weight loss is under 5%.','Semaglutide can only be prescribed through a specialist weight management service.','Plenty of men tell us the same thing.','> *Matt O’Brien*']){
+  const env=setup();try{
+   const data={...payload,content_markdown,status:'published'};
+   const result=await babyLoveRoutes(request(data),env);assert.equal(result.status,200);const response=await result.json();assert.equal(response.published,false);assert.equal(response.status,'draft');assert.equal(response.reviewRequired,true);assert(response.reviewIssues.length>0);assert.equal(response.link,undefined);
+   const row=env.DB.sqlite.prepare('SELECT * FROM knowledge_articles').get();assert.equal(row.body,content_markdown);assert.equal(row.status,'draft');assert.equal(row.publish_at,null);assert.equal(JSON.parse(env.DB.sqlite.prepare('SELECT payload_json FROM babylove_receipts').get().payload_json).content_markdown,content_markdown);
+   const retry=await babyLoveRoutes(request(data),env);assert.equal((await retry.json()).published,false);assert.equal(env.DB.sqlite.prepare('SELECT count(*) n FROM knowledge_articles').get().n,1);
+  }finally{env.DB.sqlite.close();}
+ }
+});

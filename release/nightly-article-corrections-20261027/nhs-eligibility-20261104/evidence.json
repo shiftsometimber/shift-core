@@ -1,0 +1,23 @@
+{
+  "status": "prepared; exact-copy and qualified-review gates retained",
+  "previewHtmlSha256": "d85e420051f462c54a1fd880bf9aaa29a41e3f89bfbb13409f9c93c2455c5dc9",
+  "renderedTargets": 18,
+  "faqQuestions": 4,
+  "testsPassed": 17,
+  "rawDatabaseBodyCaptured": false,
+  "fixture": "reconstructed from delivered HTML; not authenticated Markdown/row",
+  "source": "60ecf85d61848d64ab2ea5ba9037176721171131",
+  "rendererSourceBlob": "3a027bc05bef08e438532b5a5a786ea06cc3f728",
+  "schemaSourceBlob": "d323df55b26207f88f46c34a4c4832fce587447b",
+  "checks": [
+    "18 visible targets matched exactly once",
+    "unverified personal signature removed",
+    "four FAQ schema answers rebuilt by retained enhancer",
+    "canonical and original publication metadata preserved"
+  ],
+  "rawHttpHtmlSha256": "05ca3d73b68b0c0261aa97e05c495a7d2347bdc7a55976486a68180c6f14a9c1",
+  "localHtmlCaptureSha256": "40a8a5103791105210c80e0ef26e355ee8dfa2d150ad3a9477cead0627819d4b",
+  "localCaptureNote": "Local text fixture has a terminal newline added by file creation; do not use either delivered-HTML hash as a database-body mutation guard.",
+  "previewScripts": "All executable scripts removed; only JSON-LD retained. Public asset URLs absolute. No analytics or forms executed.",
+  "browserRendered": "not run; generated full delivered-markup preview and exact source-renderer/schema checks only"
+}

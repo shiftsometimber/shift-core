@@ -1,0 +1,92 @@
+[
+  {
+    "id": "scope-opening",
+    "from": "In England, you may qualify for a GLP-1 type weight loss injection on the NHS if your BMI is 35 or more (32.5 or more for some ethnic backgrounds) and you have at least four of five listed weight-related conditions. Access is being phased in, so the group who can get it widens over time. Semaglutide (Wegovy) is only available through a specialist weight management service. This guide explains the rules in plain English and what to do next, whether you qualify or not.",
+    "to": "In England, NHS access to weight-loss injections depends on the medicine, the reason for treatment and the available service. England's current primary-care tirzepatide (Mounjaro) rollout generally requires a BMI of at least 35, adjusted for specified ethnic backgrounds, and at least four of five listed weight-related conditions. Specialist-service routes have different criteria. Semaglutide for weight management under NICE TA875 is provided through specialist services; a separate cardiovascular-risk indication has different rules. This guide explains those distinctions and what to ask next."
+  },
+  {
+    "id": "primary-care-scope",
+    "from": "The NHS England criteria for tirzepatide (Mounjaro) are a BMI of 35 or more, and at least 4 of 5 listed health conditions.",
+    "to": "England's current primary-care tirzepatide (Mounjaro) rollout generally requires a BMI of at least 35 and at least four of five listed conditions. The broader NICE recommendation and specialist-service routes differ."
+  },
+  {
+    "id": "semaglutide-summary",
+    "from": "- Semaglutide can only be prescribed through a specialist weight management service.",
+    "to": "- For NHS weight management under NICE TA875, semaglutide is provided through a specialist weight management service. Other treatment indications have separate guidance."
+  },
+  {
+    "id": "specialist-route-not-guarantee",
+    "from": "In practice, that means a man with a BMI of 37 and four of the conditions could now be in scope, while one with a BMI of 42 and three conditions will be waiting until April 2027. Your GP practice or integrated care board (ICB) will know how far your area has got, because local services can vary in how they run the rollout.",
+    "to": "In practice, a man with a BMI of 37 and four of the conditions may be within the current primary-care cohort. A man with a BMI of 42 and three conditions does not meet that cohort, but can ask whether a specialist-service route or other support is appropriate. A planned future cohort is not a promise of a prescription or a confirmed local start date. Your GP practice or integrated care board (ICB) can explain the arrangements in your area."
+  },
+  {
+    "id": "semaglutide-indication",
+    "from": "This can only be prescribed through a specialist weight management service.",
+    "to": "For NHS weight management under NICE TA875, this is prescribed through a specialist weight management service."
+  },
+  {
+    "id": "regulatory-role",
+    "from": "NICE authorises",
+    "to": "NICE recommends"
+  },
+  {
+    "id": "tirzepatide-review",
+    "from": "NICE guidance says to stop tirzepatide if weight loss is under 5% after 6 months on the highest tolerated dose.",
+    "to": "For tirzepatide, [NICE TA1026](https://www.nice.org.uk/guidance/ta1026/chapter/1-Recommendations) calls for a decision about continuing treatment if less than 5% of starting weight has been lost after 6 months on the highest tolerated dose, taking the person's benefits and risks into account. Do not stop or change treatment yourself; discuss it with your prescriber."
+  },
+  {
+    "id": "semaglutide-review-time",
+    "from": "to consider stopping if less than 5% of starting weight has gone.",
+    "to": "to consider stopping if less than 5% of starting weight has been lost after 6 months of treatment."
+  },
+  {
+    "id": "two-year-indication",
+    "from": "It should be used for a maximum of 2 years within a multidisciplinary specialist service.",
+    "to": "Under NICE TA875 for weight management, it is used for a maximum of 2 years within a multidisciplinary specialist service. This is not a rule for every semaglutide indication."
+  },
+  {
+    "id": "unverified-prevalence",
+    "from": "Most men with weight to lose will not meet the NHS criteria, and that is not a verdict on whether your health matters.",
+    "to": "Not meeting the criteria for a particular NHS medicine is not a verdict on whether your health matters."
+  },
+  {
+    "id": "unverified-experience",
+    "from": "Plenty of men tell us the same thing: they have been told they are \"not bad enough\" for help, then left to get on with it.",
+    "to": "Not meeting a medicine's eligibility criteria should not leave you without useful information or practical support."
+  },
+  {
+    "id": "support-not-guarantee",
+    "from": "What you eat, how you move and how you feel about yourself decide how well the results hold up.",
+    "to": "Food, movement and emotional wellbeing remain useful parts of support; no routine can guarantee a particular treatment result or prevent weight regain."
+  },
+  {
+    "id": "service-boundary",
+    "from": "SHIFT brings treatment information together with food, movement and tracking support, and any clinical assessment, prescribing and dispensing is handled by appropriately regulated partners.",
+    "to": "SHIFT offers general treatment information and practical food, movement and tracking support. SHIFT does not currently provide or book prescribing. Treatment questions go to your own prescriber."
+  },
+  {
+    "id": "programme-owner",
+    "from": "[SHIFT programme and how it works](https://shiftsometimber.co.uk/)",
+    "to": "[SHIFT programme and how it works](https://shiftsometimber.co.uk/programme)"
+  },
+  {
+    "id": "faq-indication",
+    "from": "Tirzepatide can be prescribed in primary care for eligible patients, while semaglutide goes through specialist weight management services.",
+    "to": "Tirzepatide may be prescribed in primary care for eligible patients. Under NICE TA875, semaglutide for weight management is provided through specialist services. Separate indications, including cardiovascular-risk reduction, have different guidance."
+  },
+  {
+    "id": "faq-gp",
+    "from": "Not directly. Semaglutide can only be prescribed through a specialist weight management service, so your GP would refer you if you are eligible. Ask which tier 3 service covers your area and what the waiting time is.",
+    "to": "For NHS weight management under NICE TA875, semaglutide is provided through a specialist service; ask your GP about the assessment and referral route. A separate [NICE recommendation, TA1152](https://www.nice.org.uk/guidance/ta1152/chapter/1-Recommendation), concerns cardiovascular-risk reduction for adults with established cardiovascular disease and a BMI of at least 27. That guidance does not specify a treatment setting. A clinician must decide which indication and pathway apply; neither route guarantees an individual prescription."
+  },
+  {
+    "id": "separate-indication-note",
+    "from": "Your GP would normally refer you to what is called a tier 3 service.",
+    "to": "Your GP would normally refer you to what is called a tier 3 service.\n\nSemaglutide also has a separate NHS indication. [NICE TA1152](https://www.nice.org.uk/guidance/ta1152/chapter/1-Recommendation), published on 7 May 2026, covers cardiovascular-risk reduction for adults with established cardiovascular disease and a BMI of at least 27. That guidance does not specify a treatment setting. Its criteria and treatment duration must not be inferred from the weight-management appraisal. Ask your clinician which recommendation applies to your care."
+  },
+  {
+    "id": "primary-source-list",
+    "from": "- [NICE NG246: Medicines and surgery](https://www.nice.org.uk/guidance/ng246/chapter/Medicines-and-surgery)",
+    "to": "- [NICE NG246: Medicines and surgery](https://www.nice.org.uk/guidance/ng246/chapter/Medicines-and-surgery)\n- [NICE TA1026: Tirzepatide recommendations](https://www.nice.org.uk/guidance/ta1026/chapter/1-Recommendations)\n- [NICE TA1152: Semaglutide for cardiovascular-risk reduction](https://www.nice.org.uk/guidance/ta1152/chapter/1-Recommendation)"
+  }
+]

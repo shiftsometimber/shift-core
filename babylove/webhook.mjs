@@ -1,3 +1,4 @@
+import {articlePublicationReview} from './article-review.mjs';
 // https://www.babylovegrowth.ai/docs/integrations/webhook
 // Draft intake only: no publication, arbitrary URL fetches or article overwrites.
 export const PATH='/v1/integrations/babylovegrowth';
@@ -70,6 +71,9 @@ export async function babyLoveRoutes(request,env){
       }
       return reply({success:false,error:'article_conflict_requires_review'},409);
     }
+    // Preserve authenticated source and exact copy; known editorial risks require review.
+    const reviewIssues=articlePublicationReview(article.body);
+    if(reviewIssues.length)article={...article,publish:false};
     // D1 batches are atomic: collision rolls back the receipt as well.
     // Raw HTML, hero image and schema are retained in the receipt, not rendered.
     await env.DB.batch([
@@ -77,7 +81,7 @@ export async function babyLoveRoutes(request,env){
       env.DB.prepare(`INSERT INTO knowledge_articles(title,slug,category,author,status,summary,body,seo_title,publish_at) VALUES(?,?,'Knowledge','SHIFT Team',?,?,?,?,?)`).bind(article.title,article.slug,article.publish?'published':'draft',article.summary,article.body,article.title,article.publish?new Date().toISOString():null)
     ]);
     await notifyArrival(env,article);
-    return reply({success:true,status:article.publish?'published':'draft',published:article.publish,link:article.publish?'/articles/'+article.slug:undefined});
+    return reply({success:true,status:article.publish?'published':'draft',published:article.publish,link:article.publish?'/articles/'+article.slug:undefined,...(reviewIssues.length?{reviewRequired:true,reviewIssues}: {})});
   }catch{
     try{
       const receipt=await env.DB.prepare('SELECT source_id,slug,payload_hash FROM babylove_receipts WHERE source_id=? OR slug=?').bind(article.id,article.slug).first();
@@ -95,3 +99,4 @@ export function sameArticleDelivery(a,b){
  const fields=['id','slug','title','metaDescription','content_markdown','content_html','heroImageUrl','heroImageAlt','featureImageEnabled','status'];
  return fields.every(key=>String(a[key]??'')===String(b[key]??''));
 }
+
