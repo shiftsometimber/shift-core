@@ -23,6 +23,7 @@ jobs:
           const root='https://api.cloudflare.com/client/v4/accounts/'+account;
           const intervals=[
             ['2026-11-04T21:55:00Z','2026-11-04T22:05:00Z'],
+            ['2026-11-04T20:30:00Z','2026-11-04T21:58:00Z'],
             ['2026-11-04T23:18:00Z','2026-11-04T23:21:00Z'],
             ['2026-11-07T14:11:00Z','2026-11-07T14:14:00Z'],
           ];
@@ -34,7 +35,7 @@ jobs:
               console.log('AUDIT_ACCESS '+JSON.stringify({status:res.status,codes:(body.errors||[]).map(e=>e.code)}));
               break;
             }
-            const filter=(body.result||[]).filter(event=>JSON.stringify([event.resource,event.action]).includes('shift-core')||JSON.stringify(event.action).includes('worker'));
+            const filter=(body.result||[]).filter(event=>JSON.stringify([event.resource,event.action]).includes('shift-core')&&event.action?.type!=='view');
             const select=(value,trail=[])=>{
               if(!value||typeof value!=='object'||trail.length>6)return {};
               const result={};
@@ -49,6 +50,9 @@ jobs:
             };
             console.log('AUDIT_ASSET_TRACE '+JSON.stringify({since,before,paginated:!!body.result_info?.cursor,
               actions:filter.map(e=>({type:e.action?.type??(typeof e.action==='string'?e.action:null),
-              time:e.action?.time, fields:select(e),metadataKeys:Object.keys(e.metadata??{})}))}));
+              time:e.action?.time, fields:select(e),resourceKeys:Object.keys(e.resource??{}),
+              resourceType:e.resource?.type, resourceMethod:e.resource?.method,
+              requestKeys:Object.keys(e.resource?.request??{}), responseKeys:Object.keys(e.resource?.response??{}),
+              assetWords:[...new Set((JSON.stringify(e.resource??{}).match(/keep.assets|assets.upload.session|manifest|retained.assets|version.upload|multipart/gi)||[]).map(s=>s.toLowerCase()))]}))}));
           }
           NODE
