@@ -15,6 +15,7 @@ jobs:
     outputs:
       retatrutide: ${{ steps.scope.outputs.retatrutide }}
       wegovy: ${{ steps.wegovy.outputs.wegovy }}
+      seo_campaign: ${{ steps.seo_campaign.outputs.selected }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -24,9 +25,10 @@ jobs:
           node-version-file: .nvmrc
       - name: Public-only rendering, publication boundaries and existing privacy guards
         run: |
-          node --test aeo-geo/source.test.mjs aeo-geo/retatrutide.test.mjs aeo-geo/seo-intent-candidate.test.mjs aeo-geo/wegovy-meta.test.mjs acquisition-activation/ai-referrals.test.mjs tests/general-analytics-privacy.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/runtime-rollback-guard.test.mjs
+          node --test aeo-geo/source.test.mjs aeo-geo/retatrutide.test.mjs aeo-geo/seo-intent-candidate.test.mjs aeo-geo/wegovy-meta.test.mjs aeo-geo/seo-campaign.test.mjs acquisition-activation/ai-referrals.test.mjs tests/general-analytics-privacy.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/runtime-rollback-guard.test.mjs
           node --check aeo-geo/build.mjs
           node --check aeo-geo/capture.mjs
+          node --check aeo-geo/seo-campaign-release.mjs
           git diff --check
       - id: scope
         name: Select only the finite owner-approved medicine amendment
@@ -47,6 +49,63 @@ jobs:
           appendFileSync(process.env.GITHUB_OUTPUT,'wegovy='+selected+'\n');
           console.log(JSON.stringify({wegovy:selected}));
           WEGOVY_SCOPE
+      - id: seo_campaign
+        name: Select the approved continuity and Programme batch
+        run: |
+          node --input-type=module <<'SEO_CAMPAIGN_SCOPE'
+          import assert from 'node:assert/strict';
+          import {execFileSync} from 'node:child_process';
+          import {readFileSync,appendFileSync} from 'node:fs';
+          let selected=false;
+          if(process.env.GITHUB_EVENT_NAME==='push'&&process.env.GITHUB_REF==='refs/heads/main'){
+            const {before}=JSON.parse(readFileSync(process.env.GITHUB_EVENT_PATH,'utf8'));
+            if(before){
+              const changed=execFileSync('git',['diff','--name-only',before,'HEAD'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
+              if(changed.includes('aeo-geo/seo-campaign-release.mjs')){
+                const approved=[
+                  '.github/workflows/aeo-geo-technical.yml',
+                  'aeo-geo/delivery.mjs',
+                  'aeo-geo/seo-campaign-release.mjs',
+                  'aeo-geo/seo-campaign.test.mjs'
+                ];
+                assert.deepEqual(changed.sort(),approved,'The SEO campaign must be released in its own scoped change');
+                selected=true;
+              }
+            }
+          }
+          appendFileSync(process.env.GITHUB_OUTPUT,'selected='+selected+'\n');
+          SEO_CAMPAIGN_SCOPE
+  seo_campaign:
+    needs: source
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.source.outputs.seo_campaign == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    concurrency:
+      group: cloudflare-production-promote
+      cancel-in-progress: false
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Publish the approved redirect and Programme links
+        run: node aeo-geo/seo-campaign-release.mjs
+      - name: Restore only this release's owned traffic if verification fails
+        if: failure()
+        run: node aeo-geo/seo-campaign-release.mjs rollback
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: seo-campaign-release-${{ github.run_id }}
+          path: seo-campaign-proof/
+          if-no-files-found: warn
+          retention-days: 90
   wegovy:
     needs: source
     if: github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.source.outputs.wegovy == 'true'
@@ -119,7 +178,7 @@ jobs:
           retention-days: 90
   catalogue:
     needs: source
-    if: github.event_name == 'push' && needs.source.outputs.retatrutide != 'true' && needs.source.outputs.wegovy != 'true'
+    if: github.event_name == 'push' && needs.source.outputs.retatrutide != 'true' && needs.source.outputs.wegovy != 'true' && needs.source.outputs.seo_campaign != 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     concurrency:
