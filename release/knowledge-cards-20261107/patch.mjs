@@ -3,7 +3,21 @@ import {createHash} from 'node:crypto';
 
 const discoveryName = 'withDynamicBabyLoveDiscovery';
 const linkedNames = [discoveryName, 'HOSTS', 'editorialDiscovery', 'articleModifiedDate', 'esc'];
-const linkedNamePattern = new RegExp('\\b(' + linkedNames.join('|') + ')([0-9]*)\\b', 'g');
+const localDeclarations = new Map([
+  ['rows', /^  let (rows[0-9]*) = \[\];$/m],
+  ['own', /^  const (own[0-9]*) = await editorialDiscovery[0-9]*\(env\);$/m],
+  ['map', /^  const (map[0-9]*) = new Map\(/m],
+  ['text', /^  let (text[0-9]*) = await response\.text\(\);$/m],
+  ['marker', /^    const (marker[0-9]*) = healthMarker[0-9]*\.test\(/m],
+  ['health', /^      const (health[0-9]*) = marker[0-9]* === healthMarker[0-9]*;$/m],
+  ['headers', /^  const (headers[0-9]*) = new Headers\(response\.headers\);$/m]
+]);
+const knownNames = new Set([...linkedNames, ...localDeclarations.keys()]);
+// The compiled discovery function uses strings, SQL and regex literals. Keep
+// their bytes opaque while aligning the known identifier tokens.
+const tokens = /"(?:\\[\s\S]|[^"\\])*"|'(?:\\[\s\S]|[^'\\])*'|`(?:\\[\s\S]|[^`\\])*`|\/(?:\\[^\r\n]|\[(?:\\[^\r\n]|[^\]\\\r\n])*\]|[^/\\[\r\n])+\/[a-z]*|[A-Za-z_$][\w$]*/g;
+const headerShorthand = /^(  return new Response\(\w+, \{ status: response\.status, )headers( \}\);)$/m;
+const headerExpanded = /^(  return new Response\(\w+, \{ status: response\.status, )headers: headers( \}\);)$/m;
 const reviewName = 'article-publication-review-20261104.mjs';
 const reviewHash = 'ddf6c46932785f1e7887aedd6f09bca37626173d5dd7da57ee80e7baf71597c0';
 const targetName = 'worker.js';
@@ -23,18 +37,64 @@ function discoveryRegion(source) {
   return {body, before: source.slice(0, index), after: source.slice(index + body.length)};
 }
 
-function linkedIdentifiers(body) {
+function identifierRoot(token, index, body) {
+  if (!/^[A-Za-z_$][\w$]*$/.test(token)) return;
+  const prefix = body.slice(Math.max(0, index - 3), index);
+  if (prefix.endsWith('.') && !prefix.endsWith('...')) return;
+  if (/^\s*:/.test(body.slice(index + token.length))) return;
+  const root = token.replace(/[0-9]+$/, '');
+  return knownNames.has(root) ? root : undefined;
+}
+
+function identifiers(body) {
   const names = new Map();
-  for (const [full, base] of body.matchAll(linkedNamePattern)) {
+  for (const {0: full, index} of body.matchAll(tokens)) {
+    const base = identifierRoot(full, index, body);
+    if (!base) continue;
     assert(!names.has(base) || names.get(base) === full, 'Ambiguous compiled identifier: ' + base);
     names.set(base, full);
   }
-  assert.equal(names.size, linkedNames.length, 'Compiled discovery dependencies changed');
+  assert.equal(names.size, knownNames.size, 'Compiled discovery dependencies or local declarations changed');
+  for (const [name, declaration] of localDeclarations) {
+    assert.equal(names.get(name), body.match(declaration)?.[1], 'Unknown compiled declaration for ' + name);
+  }
   return names;
 }
 
+function expandHeaderShorthand(body) {
+  return body.replace(headerShorthand, '$1headers: headers$2');
+}
+
 function project(body, names) {
-  return body.replace(linkedNamePattern, (_full, base) => names.get(base));
+  return expandHeaderShorthand(body).replace(tokens, (token, index, source) => {
+    const base = identifierRoot(token, index, source);
+    return base ? names.get(base) : token;
+  });
+}
+
+export function diagnoseServingDiscovery(input, builtBefore) {
+  try {
+    const active = discoveryRegion(utf8(input)).body;
+    const before = discoveryRegion(utf8(builtBefore)).body;
+    identifiers(before);
+    const projected = project(before, identifiers(active));
+    const expected = projected.split('\n');
+    const actual = expandHeaderShorthand(active).split('\n');
+    const differingLineCount = Math.max(expected.length, actual.length);
+    const mismatchLines = [];
+    for (let index = 0; index < differingLineCount; index += 1) {
+      if (expected[index] !== actual[index]) mismatchLines.push(index + 1);
+    }
+    return {
+      classification: mismatchLines.length ? 'unapproved-compiled-drift' : before === active ? 'exact' : 'known-identifier-alignment',
+      compiledLineCount: expected.length - 1,
+      activeLineCount: actual.length - 1,
+      mismatchLineCount: mismatchLines.length,
+      firstMismatchLines: mismatchLines.slice(0, 12)
+    };
+  } catch {
+    return {classification: 'unrecognised-compiled-region'};
+  }
 }
 
 function safeguardRegion(source) {
@@ -61,9 +121,13 @@ export function patchServingModule(input, builtBefore, builtAfter) {
   const {before, after} = verifiedDiscoveryRegions(builtBefore, builtAfter);
 
   const active = discoveryRegion(original);
-  const activeIdentifiers = linkedIdentifiers(active.body);
-  assert(project(before.body, activeIdentifiers) === active.body, 'Serving discovery does not match the approved compiled baseline');
-  const replacement = project(after.body, activeIdentifiers);
+  const activeIdentifiers = identifiers(active.body);
+  const activeExpanded = expandHeaderShorthand(active.body);
+  assert(project(before.body, activeIdentifiers) === activeExpanded, 'Serving discovery does not match the approved compiled baseline: ' + JSON.stringify(diagnoseServingDiscovery(original, builtBefore)));
+  const projected = project(after.body, activeIdentifiers);
+  const replacement = headerShorthand.test(active.body)
+    ? projected.replace(headerExpanded, '$1headers$2')
+    : projected;
   const code = active.before + replacement + active.after;
   const patched = discoveryRegion(code);
   assert(patched.body === replacement, 'Patched discovery function is ambiguous');
@@ -88,7 +152,7 @@ function verifiedDiscoveryRegions(builtBefore, builtAfter) {
   const after = discoveryRegion(utf8(builtAfter));
   assert(before.before === after.before && before.after === after.after, 'Candidate changes compiled bytes outside the discovery function');
   assert(before.body !== after.body, 'Approved discovery change is absent from candidate build');
-  assert.deepEqual(linkedIdentifiers(after.body), linkedIdentifiers(before.body), 'Candidate changes the compiled discovery dependencies');
+  assert.deepEqual(identifiers(after.body), identifiers(before.body), 'Candidate changes the compiled discovery dependencies');
   return {before, after};
 }
 

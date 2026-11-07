@@ -1,0 +1,39 @@
+name: Release the two approved Knowledge cards
+on:
+  push:
+    branches: [release/knowledge-cards-preflight-20261107]
+    paths: ['.github/workflows/knowledge-cards-guarded-release.yml']
+permissions:
+  contents: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  scoped_release:
+    if: github.repository == 'shiftsometimber/shift-core' && github.actor_id == '315011648'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      CLOUDFLARE_ACCOUNT_ID: '9e5386dcf455be34c582d93f8bfc79e6'
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Verify exact current provider code and public baseline
+        run: node release/knowledge-cards-20261107/preflight.mjs
+      - run: npm ci --no-audit --no-fund
+      - name: Stage, verify and promote only the approved Knowledge change
+        run: node release/knowledge-cards-20261107/promote.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: knowledge-cards-release-${{ github.run_id }}
+          path: |
+            knowledge-cards-preflight-proof/
+            knowledge-cards-release-proof/
+          if-no-files-found: warn
+          retention-days: 90
