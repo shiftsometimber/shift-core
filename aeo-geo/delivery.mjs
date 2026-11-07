@@ -4,6 +4,39 @@ import {repairAnalytics} from './analytics.mjs';
 import {repairPublicChrome} from './chrome.mjs';
 import {withRetatrutideEvidence,retatrutideImage,isRetaDocument,RETA_RELEASE} from './retatrutide.mjs';
 export const RELEASE='aeo-geo-20261102-v1';
+// Review candidate: one retired public alias, with no account or clinical route changes.
+export const PUBLIC_CONTINUITY_ALIASES=Object.freeze({
+ '/when-the-clinic-goes-quiet':'/clinic-gone-quiet'
+});
+export function continuityAliasResponse(request){
+ const url=new URL(request.url);
+ if(!['GET','HEAD'].includes(request.method)||!['http:','https:'].includes(url.protocol)||!['shiftsometimber.co.uk','www.shiftsometimber.co.uk'].includes(url.hostname))return null;
+ const path=url.pathname.replace(/\/+$/,'').replace(/\.html$/,'');
+ if(!Object.hasOwn(PUBLIC_CONTINUITY_ALIASES,path))return null;
+ const target=new URL(PUBLIC_CONTINUITY_ALIASES[path],ORIGIN);target.search=url.search;
+ return new Response(null,{status:301,headers:{
+  Location:target.href,'Cache-Control':'public, max-age=300','X-Content-Type-Options':'nosniff',
+  'Referrer-Policy':'strict-origin-when-cross-origin'
+ }});
+}
+// Two bounded link edits in the existing Programme feature section. If its
+// inspected source changes, leave the complete section untouched for review.
+export function programmePublicLibraryLinks(html,path){
+ if(path!=='/programme')return html;
+ if(/<meta\b(?=[^>]*name=["']robots["'])(?=[^>]*content=["'][^"']*noindex)[^>]*>/i.test(html))return html;
+ const sections=[...html.matchAll(/<section\b[^>]*\baria-labelledby="pv-week-title"[^>]*>[\s\S]*?<\/section>/g)];
+ if(sections.length!==1)return html;
+ const before=sections[0][0];
+ const pairs=[
+  ['href="https://shiftsometimber.co.uk/member/grub" target="_blank" rel="noopener"','href="/recipes"'],
+  ['href="https://shiftsometimber.co.uk/member/fit" target="_blank" rel="noopener"','href="/exercises"'],
+  ['<span class="pv-text-link">Explore Grub ','<span class="pv-text-link">Browse public recipes '],
+  ['<span class="pv-text-link">Explore Fit ','<span class="pv-text-link">Browse movement guides ']
+ ];
+ if(!pairs.every(([old,next])=>before.split(old).length===2&&!before.includes(next)))return html;
+ let after=before;for(const [old,next] of pairs)after=after.replace(old,next);
+ return html.replace(before,after);
+}
 export const ROBOTS=`# Public search and AI crawling; account, payment and administration routes stay private.
 User-agent: *
 User-agent: Googlebot
@@ -79,6 +112,7 @@ export function withAeoGeo(original,{catalogue,shell,metadata={}}){
  return {...original,async fetch(request,...args){
   const url=new URL(request.url),host=url.hostname,path=url.pathname;
   if(!['shiftsometimber.co.uk','www.shiftsometimber.co.uk'].includes(host)||!['GET','HEAD'].includes(request.method)||isPrivatePath(path))return original.fetch(request,...args);
+  const alias=continuityAliasResponse(request);if(alias)return alias;
   // The owned public routes run before the retained origin handler, so they
   // must retain its HTTP-to-HTTPS policy instead of returning an HTTP body.
   if(url.protocol==='http:'){
@@ -112,7 +146,7 @@ export function withAeoGeo(original,{catalogue,shell,metadata={}}){
   else if(isChrome)after=repairPublicChrome(before);
   else if(isSitemap)after=completeSitemap(before,await catalogue(),metadata);
   else if(isLlms)after=repairLlms(before);
-  else if(isHtml)after=await withRetatrutideEvidence(enhancePublicHtml(before,path,metadata[path]),path);
+  else if(isHtml)after=programmePublicLibraryLinks(await withRetatrutideEvidence(enhancePublicHtml(before,path,metadata[path]),path),path);
   const headers=new Headers(response.headers);
   // The marker confirms this wrapper inspected the public response, including
   // already-correct documents. It does not claim that its content changed.
