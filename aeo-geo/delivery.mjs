@@ -108,6 +108,21 @@ export function completeSitemap(xml,data,metadata={}){
  const rows=[{path:'/recipes'},{path:'/exercises'},...data.recipes,...data.exercises].filter(r=>!seen.has(ORIGIN+r.path));
  return cleaned.replace(/<\/urlset>/i,rows.map(r=>xmlNode(r.path,data.publishedAt)).join('')+'</urlset>');
 }
+export function publicSupportContinuityCopy(html,path){
+ const support='You can use My Timber free alongside your own clinic and keep using it after treatment ends.';
+ let existing, revised;
+ if(path==='/'){
+  existing='<p class="sst-free-intro">Food, movement, check-ins and progress — all in one place.</p>';
+  revised=`<p class="sst-free-intro">${support}</p>`;
+ }else if(path==='/faq/does-sst-prescribe'){
+  const gpAdvice='Speak to your GP or an appropriately qualified prescriber about treatment.';
+  existing=`<p>${gpAdvice} Use SHIFT to organise practical food, movement and day-to-day questions.</p>`;
+  revised=`<p style="color:#E7E3DA!important">${gpAdvice} ${support}</p>`;
+ }else return html;
+ if(html.includes(support)||html.split(existing).length!==2)return html;
+ return html.replace(existing,revised);
+}
+
 export function withAeoGeo(original,{catalogue,shell,metadata={}}){
  return {...original,async fetch(request,...args){
   const url=new URL(request.url),host=url.hostname,path=url.pathname;
@@ -146,7 +161,10 @@ export function withAeoGeo(original,{catalogue,shell,metadata={}}){
   else if(isChrome)after=repairPublicChrome(before);
   else if(isSitemap)after=completeSitemap(before,await catalogue(),metadata);
   else if(isLlms)after=repairLlms(before);
-  else if(isHtml)after=programmePublicLibraryLinks(await withRetatrutideEvidence(enhancePublicHtml(before,path,metadata[path]),path),path);
+  else if(isHtml){
+   const enhanced=await withRetatrutideEvidence(enhancePublicHtml(before,path,metadata[path]),path);
+   after=publicSupportContinuityCopy(programmePublicLibraryLinks(enhanced,path),path);
+  }
   const headers=new Headers(response.headers);
   // The marker confirms this wrapper inspected the public response, including
   // already-correct documents. It does not claim that its content changed.
