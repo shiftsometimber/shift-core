@@ -17,9 +17,9 @@ const query = '?utm_source=placement-verification';
 const lookalike = faq + '-scope-probe';
 const changed = ['/', faq, faq + query];
 const unchanged = ['/' + query, '/programme', '/start-here', '/robots.txt', '/assets/shift-wordmark.png', '/faq/can-men-take-wegovy', lookalike];
-const base = 'bb201fba85e9678dcee07924f4e4b0b5396c69b4';
+const base = '003e2a96f69baee6bf9b4b6efd04af5bb3f1de7b';
 const approvedHash = '168cc8415148b91d9a0dbe92774b991494f0d707c0c7dc97146fcf54493e235d';
-const approvedFiles = ['.github/workflows/aeo-geo-technical.yml', 'aeo-geo/delivery.mjs', 'aeo-geo/my-timber-copy-release.mjs'];
+const approvedFiles = ['.github/workflows/aeo-geo-technical.yml', 'aeo-geo/my-timber-copy-release.mjs'];
 const previewHeader = 'x-shift-placement-preview';
 const moduleName = 'my-timber-copy-edge.mjs';
 const proof = 'my-timber-copy-release-proof';
@@ -201,18 +201,24 @@ async function release() {
  const protectedBefore = await snapshots(unchanged);
  const expected = {};
  const head = {};
+ const originalHeadStatus = {};
  for (const path of changed) {
   const original = await page(path);
   assert.equal(original.status, 200);
   const body = publicSupportContinuityCopy(original.body.toString(), new URL(origin + path).pathname);
   assert.notEqual(body, original.body.toString(), 'Approved paragraph moved or was already changed: ' + path);
   expected[path] = fingerprint({...original, body});
-  head[path] = fingerprint(await page(path, origin, 'HEAD'));
+  const originalHead = await page(path, origin, 'HEAD');
+  assert([200, 503].includes(originalHead.status), 'Unexpected baseline HEAD status: ' + path);
+  originalHeadStatus[path] = originalHead.status;
+  // A transient upstream 503 is not a response to reproduce. Require a
+  // bodyless 200 with the independently verified GET security and cache policy.
+  head[path] = fingerprint(originalHead.status === 503 ? {...original, body: Buffer.alloc(0)} : originalHead);
  }
  const code = edgeSource({CORE: identify(coreBefore)[1], FAQ: identify(faqBefore)[1]});
  const metadata = await api(versionPath(core) + '/' + identify(coreBefore)[1]);
  assert.match(metadata.compatibility_date || '', /^\d{4}-\d{2}-\d{2}$/);
- save('before', {zone, owners: [coreBefore, faqBefore].map(identify), plan, expected, protectedBefore});
+ save('before', {zone, owners: [coreBefore, faqBefore].map(identify), plan, expected, head, originalHeadStatus, protectedBefore});
 
  const secret = randomBytes(32).toString('hex');
  const newWorker = await api('/workers/workers', json('POST', {name: worker, subdomain: {enabled: false, previews_enabled: true}}));
@@ -240,6 +246,11 @@ async function release() {
    for (const [path, target] of Object.entries({...expected, [lookalike]: protectedBefore[lookalike]})) {
     const actual = fingerprint(await page(path, preview, 'GET', secret));
     assert.deepEqual([actual.status, actual.sha256], [target.status, target.sha256], 'Staged document differs: ' + path);
+   }
+   for (const path of changed) {
+    const actual = await page(path, preview, 'HEAD', secret);
+    assert.equal(actual.status, 200, 'Staged HEAD is unavailable: ' + path);
+    assert.equal(actual.body.length, 0, 'Staged HEAD sends a body: ' + path);
    }
   });
  } finally {
@@ -276,7 +287,7 @@ async function release() {
  assert.deepEqual(identify(await latest(worker)), deployed);
  assert.deepEqual(await routes(zone), scopedRoutes);
  const result = {verified: true, source, run, worker, deploymentId: deployment.id, versionId: staged.id,
-  changed, preserved: unchanged, homepageQueryCopy: false, coreVersion: identify(coreBefore)[1], approvedModuleSha256: approvedHash};
+  changed, preserved: unchanged, originalHeadStatus, homepageQueryCopy: false, coreVersion: identify(coreBefore)[1], approvedModuleSha256: approvedHash};
  save('live-verification', result);
  console.log('PLACEMENT_LIVE ' + JSON.stringify(result));
 }
