@@ -1,0 +1,66 @@
+name: Repair approved publication discovery delivery
+on:
+  push:
+    branches: [fix/knowledge-sitemap-lastmod-20261103]
+    paths:
+      - .github/workflows/knowledge-sitemap-lastmod-20261103.yml
+      - babylove/dynamic-public.mjs
+      - babylove/dynamic-public.test.mjs
+      - aeo-geo/delivery.mjs
+      - release/knowledge-sitemap-lastmod-20261103.mjs
+      - tests/knowledge-sitemap-lastmod-20261103.test.mjs
+permissions:
+  contents: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  delivery:
+    if: github.repository == 'shiftsometimber/shift-core' && github.actor_id == '315011648'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Require exact bounded source delta and unchanged editorial guards
+        run: |
+          git fetch --no-tags --depth=1 origin c175ab099305c47fd70ff917e13da736dbabd870
+          python3 - <<'PY'
+          import subprocess
+          base='c175ab099305c47fd70ff917e13da736dbabd870'
+          expected={'.github/workflows/knowledge-sitemap-lastmod-20261103.yml','babylove/dynamic-public.mjs','babylove/dynamic-public.test.mjs','aeo-geo/delivery.mjs','release/knowledge-sitemap-lastmod-20261103.mjs','tests/knowledge-sitemap-lastmod-20261103.test.mjs'}
+          assert set(subprocess.check_output(['git','diff','--name-only',base,'HEAD'],text=True).splitlines())==expected
+          original=subprocess.check_output(['git','show',base+':babylove/dynamic-public.mjs'],text=True)
+          current=open('babylove/dynamic-public.mjs').read()
+          old="if(row.editorial&&text.includes('<loc>'+loc+'</loc>'))"
+          new="if(text.includes('<loc>'+loc+'</loc>'))"
+          assert original.count(old)==1 and current==original.replace(old,new)
+          for path in ['radar-source-review-v1.js','radar-integration-v1.js','radar-live-email-v1.js','release/approved-shared-ticker-wording-20261031.mjs','tests/approved-shared-ticker-wording-20261031.test.mjs']:
+            assert subprocess.check_output(['git','rev-parse','HEAD:'+path])==subprocess.check_output(['git','rev-parse',base+':'+path])
+          PY
+          node --check release/knowledge-sitemap-lastmod-20261103.mjs
+      - name: Run existing Knowledge, source and publication notification regression suites
+        run: |
+          npm ci --no-audit --no-fund
+          node --test babylove/*.test.mjs tests/knowledge-editorial-d1.test.mjs tests/knowledge-editorial-read.test.mjs tests/radar-auto-news-publisher-permissions.test.mjs tests/radar-new-publication-email.test.mjs tests/approved-shared-ticker-wording-20261031.test.mjs tests/knowledge-sitemap-lastmod-20261103.test.mjs aeo-geo/source.test.mjs
+      - name: Stage minimal captured modules, verify inverse preservation and promote owned versions
+        run: |
+          node release/knowledge-sitemap-lastmod-20261103.mjs --diagnose
+          node release/knowledge-sitemap-lastmod-20261103.mjs --sitemap-chain
+      - name: Retain exact runtime, source, verification and owned rollback evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: approved-publication-delivery-proof-${{ github.run_id }}-${{ github.run_attempt }}
+          path: knowledge-sitemap-proof/
+          if-no-files-found: warn
+          retention-days: 90

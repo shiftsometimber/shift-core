@@ -101,7 +101,12 @@ export function completeSitemap(xml,data,metadata={}){
   if(u.origin!==ORIGIN||isPrivatePath(u.pathname)||(u.search&&!productGuide)||u.hash||seen.has(u.href))return '';
   const fix=metadata[u.pathname];if(fix?.exclude)return '';
   seen.add(u.href);
-  if(fix?.lastmod){node=node.replace(/<lastmod>[^<]*<\/lastmod>/gi,'');node=node.replace('</url>','<lastmod>'+esc(fix.lastmod)+'</lastmod></url>');}
+  if(fix?.lastmod){
+   const current=node.match(/<lastmod>([^<]*)<\/lastmod>/i)?.[1],modified=Date.parse(current),audited=Date.parse(fix.lastmod);
+   const keepCurrent=u.pathname.startsWith('/articles/')&&Number.isFinite(modified)&&modified>audited&&modified<=Date.now();
+   const lastmod=keepCurrent?current:fix.lastmod;
+   node=node.replace(/<lastmod>[^<]*<\/lastmod>/gi,'');node=node.replace('</url>','<lastmod>'+esc(lastmod)+'</lastmod></url>');
+  }
   else node=node.replace(/<lastmod>2026-08-27<\/lastmod>/gi,'');
   return node;
  });

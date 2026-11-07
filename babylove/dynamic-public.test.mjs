@@ -85,3 +85,18 @@ test('published articles are added to the canonical current Knowledge hub',async
  assert.match(html,/data-babylove-dynamic="mounjaro-cost-uk"/);
  assert.match(html,/href="\/articles\/mounjaro-cost-uk"/);
 });
+
+
+test('existing imported article sitemap entries reflect CMS modifications without duplicating URLs or changing first publication',async()=>{
+ const revised={...row,updated_at:'2026-11-03T14:17:37.188Z'};
+ const loc='https://shiftsometimber.co.uk/articles/'+row.slug,unrelated='<url><loc>https://shiftsometimber.co.uk/unchanged</loc><lastmod>2025-01-01</lastmod></url>';
+ const input='<urlset><url><loc>'+loc+'</loc><lastmod>2026-09-21</lastmod></url>'+unrelated+'</urlset>';
+ const xml=await(await withDynamicBabyLoveDiscovery(new Response(input),new Request('https://shiftsometimber.co.uk/sitemap.xml'),env(revised))).text();
+ assert.equal(xml.split('<loc>'+loc+'</loc>').length,2);
+ assert.match(xml,/<lastmod>2026-11-03<\/lastmod>/);assert(xml.includes(unrelated));
+ const html=await(await dynamicBabyLovePublicRoute(new Request(loc),env(revised))).text();
+ const schema=JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+ assert.equal(schema.datePublished,row.publish_at);assert.equal(schema.dateModified,revised.updated_at);
+ const held=await(await withDynamicBabyLoveDiscovery(new Response(input),new Request('https://shiftsometimber.co.uk/sitemap.xml'),env({...revised,status:'draft'}))).text();
+ assert.equal(held,input);
+});
