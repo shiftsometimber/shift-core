@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
+import {isDeepStrictEqual} from 'node:util';
 
 const discoveryName = 'withDynamicBabyLoveDiscovery';
 const linkedNames = [discoveryName, 'HOSTS', 'editorialDiscovery', 'articleModifiedDate', 'esc'];
@@ -72,6 +73,13 @@ function project(body, names) {
   });
 }
 
+function sitemapRegion(body) {
+  const matches = [...body.matchAll(/^  if \(path === "\/sitemap\.xml"\) \{\n[\s\S]*?^  \} else \{\n/gm)];
+  assert.equal(matches.length, 1, 'Expected exactly one compiled sitemap branch');
+  const [{0: contents, index}] = matches;
+  return {contents, start: body.slice(0,index), end: body.slice(index+contents.length)};
+}
+
 export function diagnoseServingDiscovery(input, builtBefore) {
   try {
     const active = discoveryRegion(utf8(input)).body;
@@ -123,8 +131,15 @@ export function patchServingModule(input, builtBefore, builtAfter) {
   const active = discoveryRegion(original);
   const activeIdentifiers = identifiers(active.body);
   const activeExpanded = expandHeaderShorthand(active.body);
-  assert(project(before.body, activeIdentifiers) === activeExpanded, 'Serving discovery does not match the approved compiled baseline: ' + JSON.stringify(diagnoseServingDiscovery(original, builtBefore)));
-  const projected = project(after.body, activeIdentifiers);
+  const expected = sitemapRegion(project(before.body, activeIdentifiers));
+  const activeSitemap = sitemapRegion(activeExpanded);
+  const candidate = sitemapRegion(project(after.body, activeIdentifiers));
+  assert(expected.start === activeSitemap.start && expected.end === activeSitemap.end,
+    'Serving Knowledge HTML branch does not match the compiled baseline: ' + JSON.stringify(diagnoseServingDiscovery(original, builtBefore)));
+  assert.equal(candidate.contents, expected.contents, 'The approved change must preserve sitemap logic');
+  // An earlier scoped production release changed sitemap processing. Carry that
+  // complete serving branch forward without recompiling or changing its bytes.
+  const projected = candidate.start + activeSitemap.contents + candidate.end;
   const replacement = headerShorthand.test(active.body)
     ? projected.replace(headerExpanded, '$1headers$2')
     : projected;
@@ -141,6 +156,7 @@ export function patchServingModule(input, builtBefore, builtAfter) {
       afterSHA256: hash(code),
       discoveryBeforeSHA256: hash(active.body),
       discoveryAfterSHA256: hash(replacement),
+      sitemapBranchSHA256: hash(activeSitemap.contents),
       importSafeguardHandlerSHA256: hash(guard),
       exactInverse: true
     }
@@ -187,7 +203,7 @@ export function prepareKnowledgePackage(original, builtBefore, builtAfter) {
 export function verifyKnowledgePackage(original, actual, planned) {
   assert.equal(planned.main_module, original.main_module, 'Planned main module changed');
   for (const field of ['main_module', 'bindings', 'compatibility_date', 'compatibility_flags', 'assets', 'usage_model', 'limits', 'placement']) {
-    assert.deepEqual(actual[field], original[field], 'Serving version configuration changed: ' + field);
+    assert(isDeepStrictEqual(actual[field], original[field]), 'Serving version configuration changed: ' + field);
   }
   if (actual.migration_tag !== undefined) assert.equal(actual.migration_tag, original.migration_tag);
   const names = modules => modules.map(module => module.name).sort();

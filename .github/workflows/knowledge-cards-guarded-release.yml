@@ -23,7 +23,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-      - name: Verify exact current provider code and public baseline
+      - name: Verify exact current provider code and retain the serving sitemap branch
         run: node release/knowledge-cards-20261107/preflight.mjs
       - run: npm ci --no-audit --no-fund
       - name: Stage, verify and promote only the approved Knowledge change
