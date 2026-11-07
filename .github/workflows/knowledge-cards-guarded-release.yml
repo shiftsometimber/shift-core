@@ -5,6 +5,7 @@ on:
     paths: ['.github/workflows/knowledge-cards-guarded-release.yml']
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: cloudflare-production-promote
   cancel-in-progress: false
@@ -26,7 +27,13 @@ jobs:
       - name: Verify exact current provider code and retain the serving sitemap branch
         run: node release/knowledge-cards-20261107/preflight.mjs
       - run: npm ci --no-audit --no-fund
-      - name: Stage, verify and promote only the approved Knowledge change
+      - uses: actions/download-artifact@v4
+        with:
+          name: knowledge-cards-release-42384222346
+          run-id: 42384222346
+          github-token: ${{ github.token }}
+          path: previous-knowledge-stage
+      - name: Verify and promote the previously staged Knowledge version
         run: node release/knowledge-cards-20261107/promote.mjs
       - uses: actions/upload-artifact@v4
         if: always()

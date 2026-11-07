@@ -1,9 +1,10 @@
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { isDeepStrictEqual } from 'node:util';
 import { prepareKnowledgePackage, verifyKnowledgePackage, hash } from './patch.mjs';
 import { captureLive, verifyLive, verifyRestored } from './live.mjs';
-import { assetHash, uploadPreservedAssets, verifyPreservedAssets } from '../../knowledge-health/release-assets.mjs';
+import { assetHash, verifyPreservedAssets } from '../../knowledge-health/release-assets.mjs';
 import { routeOwner } from '../../knowledge-health/release-helpers.mjs';
 import { latestDeployment, runtimeRollbackDecision } from '../runtime-rollback-guard.mjs';
 
@@ -28,6 +29,10 @@ const settingsPath = runtime + '/scripts/' + worker + '/settings';
 const { CLOUDFLARE_ACCOUNT_ID: account, CLOUDFLARE_API_TOKEN: token, GITHUB_RUN_ID: run } = process.env;
 const proofDir = 'knowledge-cards-release-proof';
 const operation = 'knowledge-cards-' + run;
+const stageRun = '42384222346';
+const capturedStageDir = 'previous-knowledge-stage/knowledge-cards-release-proof';
+const capturedStage = name=>JSON.parse(readFileSync(capturedStageDir+'/'+name+'.json','utf8'));
+
 
 assert(account && token);
 assert.equal(process.env.GITHUB_REF, releaseRef);
@@ -82,7 +87,7 @@ function settingsEqual(before,after) {
     }
     return clean;
   };
-  assert.deepEqual(project(after),project(before),'Serving settings changed');
+  assert(isDeepStrictEqual(project(after),project(before)),'Serving settings changed');
 }
 async function verifyAssetWitness() {
   const name='frontend/member/my-timber-preview.html';
@@ -123,41 +128,44 @@ const projected=verifyKnowledgePackage(original,{...original,modules:planned.mod
 save('captured',{repository,source,main,run,previous,witness,publicBefore,projected});
 console.log('KNOWLEDGE_CAPTURED '+JSON.stringify({source,run,originalId,originalDeployment,projected,witness}));
 
-const assets=await uploadPreservedAssets({cf,account,name:worker,save:(name,record)=>{
-  assert.equal(record.assetSource,main);
-  assert.equal(record.uploaded,0);
-  assert.equal(record.fileCount,5701);
-  assert.equal(record.manifestSHA256,'3f2f9bdeafbf7660423811eeaacd037d94b6e2acf6d9ce16770d900477639d0a');
-  assert(record.preservedLiveTextAssets.length>=100,'Native asset verification coverage fell below the established baseline');
-  save(name,record);
-}});
-sourceLease();
-originalLease(await active());
+// The earlier run staged an exact version but stopped before promotion when
+// script settings followed the newest upload. Reuse that owned version.
+const previousCapture=capturedStage('captured');
+const assetReceipt=capturedStage('assets');
+assert.equal(previousCapture.run,stageRun);
+assert.equal(previousCapture.source,source);
+assert.equal(previousCapture.main,main);
+assert.equal(previousCapture.previous.id,previous.id);
+assert.equal(previousCapture.previous.versions[0].version_id,originalId);
+assert.deepEqual(previousCapture.projected,projected);
+assert.deepEqual(previousCapture.publicBefore.pages,publicBefore.pages);
+assert.deepEqual(previousCapture.witness,witness);
+assert.equal(assetReceipt.assetSource,main);
+assert.equal(assetReceipt.uploaded,0);
+assert.equal(assetReceipt.fileCount,5701);
+assert.equal(assetReceipt.manifestSHA256,'3f2f9bdeafbf7660423811eeaacd037d94b6e2acf6d9ce16770d900477639d0a');
+assert.equal(assetReceipt.preservedLiveTextAssets.length,102);
+const assets={checks:assetReceipt.preservedLiveTextAssets};
+save('assets',assetReceipt);
 
-const payload={
-  main_module:original.main_module,
-  compatibility_date:original.compatibility_date,
-  compatibility_flags:original.compatibility_flags,
-  modules:planned.modules,
-  bindings:original.bindings.map(binding=>({type:'inherit',name:binding.name,version_id:originalId})),
-  assets:{...original.assets,jwt:assets.jwt},
-  annotations:{'workers/message':'Approved two Knowledge cards only; source '+source+'; run '+run,'workers/tag':operation},
-};
-for(const field of ['limits','placement','usage_model'])if(original[field]!==undefined)payload[field]=original[field];
-const staged=await cf(versionPath+'?deploy=false','POST',payload);
+const staged=await cf(versionPath+'/latest');
 assert.match(staged.id||'',/^[a-f0-9-]{36}$/);
+assert.equal(staged.annotations?.['workers/tag'],'knowledge-cards-'+stageRun,'Latest staged version belongs to a different run');
+assert.equal(staged.annotations?.['workers/message'],'Approved two Knowledge cards only; source '+source+'; run '+stageRun);
 const readBack=await getVersion(staged.id);
 assert.equal(readBack.id,staged.id);
 const stagedProof=verifyKnowledgePackage(original,readBack,planned);
+const byName=bindings=>bindings.toSorted((a,b)=>a.name.localeCompare(b.name));
+assert(isDeepStrictEqual(byName(settings.bindings),byName(readBack.bindings)),'Latest script settings do not match the exact version bindings');
 settingsEqual(settings,await cf(settingsPath));
-assert.deepEqual(await routes(),routeTable,'Production route ownership changed during staging');
+assert.deepEqual(await routes(),routeTable,'Production route ownership changed after staging');
 originalLease(await active());
 await verifyRestored(publicBefore);
 await verifyPreservedAssets(assets.checks);
 await verifyAssetWitness();
 sourceLease();
 originalLease(await active());
-save('staged',{id:staged.id,stagedProof,assetCount:assets.checks.length});
+save('staged',{id:staged.id,stageRun,stagedProof,assetCount:assets.checks.length});
 console.log('KNOWLEDGE_STAGED '+JSON.stringify({id:staged.id,stagedProof}));
 
 let receipt;
