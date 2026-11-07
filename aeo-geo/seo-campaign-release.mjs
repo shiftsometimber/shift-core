@@ -17,7 +17,14 @@ const query = '?source=release-check&next=%2Fprogramme';
 const targetPaths = [alias, alias + query, programme, programme + query];
 const protectedPaths = ['/', '/start-here', '/member/dashboard', '/recipes', '/exercises', destination];
 const delivery = 'aeo-geo/delivery.mjs';
+const firstRelease = 'ca0b012b91e7830d11a1d7d5af424f253ee990b8';
+const reviewedBase = 'cf6df68d5bc233d8e87359a268f40ee6932a53d2';
 const baseHash = 'f459d7d72b975715a3eaf1af0333c3b3ba53f413dfc26aa532c1e7cf5a2a6195';
+const capturedCoreHash = 'fa58850787c6daf32fc7e0bf52053b4b4c9be5b752a55768daf2303195e792a6';
+const capturedCore = {
+ worker: 'shift-core', versionId: '36d0c04b-bb34-4c05-81ac-27e20a958756', deploymentId: '9e15801e-59a9-4bd6-b8d9-13a3adcf76a7',
+ mainModule: 'assessment-notes-20261104/core.mjs', moduleCount: 99
+};
 const approvedHash = '6911161bc49ffab987e6503c8f5027200cfb8874dfc0ff1009b451224e4375d2';
 const settingsKeys = ['placement', 'limits', 'observability', 'logpush'];
 const versionKeys = ['bindings', 'compatibility_date', 'compatibility_flags', 'assets', 'usage_model', 'migration_tag',
@@ -135,6 +142,47 @@ async function rollback() {
  assert(results.every(result => result.action !== 'refused'), 'At least one guarded rollback was refused');
 }
 
+function uniqueAnchor(sourceText, pattern, name) {
+ const matches = [...sourceText.matchAll(pattern)];
+ assert.equal(matches.length, 1, `Missing or ambiguous delivery anchor: ${name}`);
+ return matches[0];
+}
+
+function additiveDelivery(original, approved) {
+ const originalText = original.toString('utf8');
+ const approvedText = approved.toString('utf8');
+ assert(original.equals(Buffer.from(originalText)), 'Captured delivery is not round-trip UTF-8');
+ assert(!/\b(?:continuityAliasResponse|programmePublicLibraryLinks|PUBLIC_CONTINUITY_ALIASES)\b/.test(originalText),
+  'The captured delivery already declares a campaign symbol');
+ const helpers = uniqueAnchor(approvedText,
+  /^\/\/ Review candidate: one retired public alias[^\n]*\n[\s\S]+?(?=^export const ROBOTS=)/gm, 'approved helpers')[0];
+ const aliasHook = uniqueAnchor(approvedText, /^  const alias=continuityAliasResponse\(request\);if\(alias\)return alias;\n/gm,
+  'approved redirect hook')[0];
+ uniqueAnchor(originalText, /^import \{ORIGIN,[^\n]+from ['"]\.\/schema\.mjs['"];\n/gm, 'canonical origin import');
+ const constants = uniqueAnchor(originalText, /^export const ROBOTS=/gm, 'public constants');
+ const publicGuard = uniqueAnchor(originalText,
+  /^  if\(!\['shiftsometimber\.co\.uk','www\.shiftsometimber\.co\.uk'\]\.includes\(host\)\|\|!\['GET','HEAD'\]\.includes\(request\.method\)\|\|isPrivatePath\(path\)\)return original\.fetch\(request,\.\.\.args\);\n/gm,
+  'public request guard');
+ const html = uniqueAnchor(originalText, /^  else if\(isHtml\)after=[^\r\n]+;\n(?=  const headers=new Headers\(response\.headers\);\n)/gm,
+  'public HTML response');
+ const edits = [
+  {offset: constants.index, addition: helpers},
+  {offset: publicGuard.index + publicGuard[0].length, addition: aliasHook},
+  {offset: html.index + html[0].length, addition: '  if(isHtml)after=programmePublicLibraryLinks(after,path);\n'}
+ ];
+ assert(edits.every((edit, i) => !i || edit.offset > edits[i - 1].offset), 'Captured delivery anchors are out of order');
+
+ let amended = originalText;
+ for (const {offset, addition} of edits.toReversed()) amended = amended.slice(0, offset) + addition + amended.slice(offset);
+ let inverse = amended;
+ for (const {offset, addition} of edits) {
+  assert(inverse.slice(offset, offset + addition.length) === addition, 'Delivery splice cannot be reversed');
+  inverse = inverse.slice(0, offset) + inverse.slice(offset + addition.length);
+ }
+ assert(original.equals(Buffer.from(inverse)), 'Delivery splice changed bytes outside the approved additions');
+ return Buffer.from(amended);
+}
+
 async function capture(worker, approved) {
  const before = await latest(worker);
  const original = await version(worker, before.versions[0].version_id, '?include=modules,sourcemaps');
@@ -143,12 +191,16 @@ async function capture(worker, approved) {
  assert(original.modules.some(module => module.name === original.main_module), 'Published entry module absent');
  assert.equal(new Set(original.modules.map(module => module.name)).size, original.modules.length, 'Duplicate published module names');
  const current = original.modules.find(module => module.name === delivery);
- const currentHash = current && hash(Buffer.from(current.content_base64, 'base64'));
- save(`capture-${worker}`, {worker, deploymentId: before.id, versionId: before.versions[0].version_id,
-  mainModule: original.main_module, deliverySha256: currentHash ?? null, moduleCount: original.modules.length});
- assert.equal(currentHash, baseHash, `Published delivery module drifted for ${worker}`);
- const modules = original.modules.map(module => module.name === delivery ? {...module, content_base64: approved.toString('base64')} : module);
- return {worker, before, original, config, modules};
+ const currentBytes = current && Buffer.from(current.content_base64, 'base64');
+ const currentHash = currentBytes && hash(currentBytes);
+ const identity = {worker, deploymentId: before.id, versionId: before.versions[0].version_id,
+  mainModule: original.main_module, moduleCount: original.modules.length};
+ save(`capture-${worker}`, {...identity, deliverySha256: currentHash ?? null});
+ const exactBase = currentHash === baseHash;
+ assert(exactBase || (currentHash === capturedCoreHash && isDeepStrictEqual(identity, capturedCore)), `Published delivery module drifted for ${worker}`);
+ const amended = exactBase ? approved : additiveDelivery(currentBytes, approved);
+ const modules = original.modules.map(module => module.name === delivery ? {...module, content_base64: amended.toString('base64')} : module);
+ return {worker, before, original, config, modules, amendedHash: hash(amended), method: exactBase ? 'reviewed-base' : 'pinned-additions'};
 }
 async function deploymentLease({worker, before, config}) {
  const current = await latest(worker);
@@ -157,7 +209,7 @@ async function deploymentLease({worker, before, config}) {
  const currentSettings = await settings(worker);
  for (const key of settingsKeys) same(currentSettings[key], config[key], `Serving ${key} moved for ${worker}`);
 }
-async function stage({worker, original, config, modules}) {
+async function stage({worker, original, config, modules, amendedHash, method}) {
  const metadata = {main_module: original.main_module, compatibility_date: original.compatibility_date,
   compatibility_flags: original.compatibility_flags || [], bindings: original.bindings.map(binding => ({type: 'inherit', name: binding.name})),
   keep_assets: true, annotations: {'workers/commit_sha': source, 'workers/message': `Approved Shift continuity and Programme links, run ${run}`}};
@@ -183,7 +235,7 @@ async function stage({worker, original, config, modules}) {
   assert(actual?.content_type === expected.content_type && hash(Buffer.from(actual.content_base64, 'base64')) ===
    hash(Buffer.from(expected.content_base64, 'base64')), `Staged module differs for ${worker}: ${expected.name}`);
  }
- save(`staged-${worker}`, {worker, versionId: staged.id, originalModulesUnchanged: modules.length - 1, amendedModule: delivery, sha256: approvedHash});
+ save(`staged-${worker}`, {worker, versionId: staged.id, originalModulesUnchanged: modules.length - 1, amendedModule: delivery, sha256: amendedHash, method});
  return staged.id;
 }
 
@@ -192,13 +244,13 @@ async function release() {
  mainLease();
  const event = JSON.parse(readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
  assert.equal(event.after, source);
- assert.match(event.before || '', /^[a-f0-9]{40}$/);
- const changed = git('diff', '--name-only', event.before, source).toString().trim().split('\n');
- const allowed = [delivery, 'aeo-geo/seo-campaign.test.mjs', 'aeo-geo/seo-campaign-release.mjs', '.github/workflows/aeo-geo-technical.yml'];
- assert(changed.includes(delivery) && changed.every(path => allowed.includes(path)), 'Unapproved files in release scope');
- const approved = readFileSync(delivery);
- assert.equal(hash(approved), approvedHash, 'Checkout does not match the approved delivery module');
- assert.equal(hash(git('show', `${event.before}:${delivery}`)), baseHash, 'Main base differs from reviewed delivery module');
+ assert.equal(event.before, firstRelease, 'Retry must directly extend the reviewed first release');
+ const changed = git('diff', '--name-only', firstRelease, source).toString().trim().split('\n').sort();
+ same(changed, ['.github/workflows/aeo-geo-technical.yml', 'aeo-geo/seo-campaign-release.mjs'], 'Unapproved files in retry scope');
+ const approved = git('show', `${firstRelease}:${delivery}`);
+ assert.equal(hash(approved), approvedHash, 'First release does not match the approved delivery module');
+ assert(readFileSync(delivery).equals(approved), 'Checkout differs from the approved delivery module');
+ assert.equal(hash(git('show', `${reviewedBase}:${delivery}`)), baseHash, 'Original source differs from reviewed delivery module');
  const zones = await provider(`/zones?name=${host}`);
  assert(zones.length === 1 && zones[0].name === host && zones[0].account?.id === account, 'Approved Cloudflare zone was not found');
  const zone = zones[0].id;
